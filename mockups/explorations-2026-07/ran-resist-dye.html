@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<!--
+  染 Rǎn · Resist Dye
+  Tsumugu Core design exploration, 2026-07
+
+  THESIS
+  The library is one bolt of indigo-dyed cloth that pales as the learner learns.
+  In resist dyeing (三峽 Sanxia indigo craft) the stitched places stay white:
+  KNOWN = UNDYED is materially true here. Every card's ground tint carries that
+  reading's unknown-word share; the whole wall is the learner's knowledge state.
+  Progress is subtraction, promoted to the entire identity.
+  Brand lineage: 紡 spin, weave, dye, wear.
+
+  PALETTE (light / "raw cotton")
+    paper (raw cotton)      #F6F4ED
+    ink (indigo-black)      #1D2A3A
+    accent (vat indigo 藍)  #2F5288   brand, cognate bridge, the one deliberate action
+    card wash (full dye)    #C7D4E8   mixed into card grounds by unknown-word share
+    new (madder clay)       #B4506B   solid 2.5px underline only
+    learning (turmeric)     #B8862F   dotted 2px underline only
+    confirm (jade)          #2F8F6F   the known checkmark only
+    Hán-Việt (slate teal)   #46707A   HV ruby rail, off the accent lane
+  PALETTE (dark / "vat night")
+    paper #0E1622 · ink #E8E9E4 · accent #7C9BD9 · card wash #223C66
+    new #D488A0 · learning #CFA34F · confirm #5FB392 · Hán-Việt #8FB6C0
+
+  TYPE ROLES
+    Reading face:  LXGW WenKai TC (fallback Kaiti TC, Songti TC, Noto Serif TC, serif)
+    Display:       Source Serif 4 (English display and headings only, never ruby)
+    Chrome/ruby:   Inter (Vietnamese tone stacks render safely)
+
+  SIGNATURE
+    Coverage-as-ground-tint at wall scale: card and shelf grounds are dye,
+    known text sits on undyed cloth. One motion: THE WASH. The "replay" control
+    on the reader re-plays a re-entry: the 4 words learned since the last visit
+    fade from turmeric marks to plain ink in one staggered breath (~600ms,
+    instant under prefers-reduced-motion). A delta report, not a celebration.
+
+  LOOK FIRST
+    1. Library wall: A1 bolt is nearly undyed, B1 bolt sits visibly deeper blue.
+    2. Reader: press 重播 replay to see the wash.
+    3. The word card on 音樂: the Hán-Việt bridge (âm / nhạc).
+    4. Below the prose: the Hán-Việt rail with differential ink.
+-->
+<html lang="zh-Hant" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>染 Rǎn · Tsumugu 紡</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.7.0/style.css" rel="stylesheet">
+<style>
+/* ============ tokens ============ */
+:root{
+  --paper:#F6F4ED;
+  --ink:#1D2A3A;
+  --vat:#2F5288;
+  --vat-ink:#F6F4ED;          /* text on vat */
+  --wash:#C7D4E8;             /* full-dye card ground */
+  --card:#FBFAF4;             /* undyed card ground */
+  --raise:#FDFCF7;            /* word card */
+  --new:#B4506B;
+  --learn:#B8862F;
+  --jade:#2F8F6F;
+  --hv:#46707A;
+  --meta:color-mix(in oklab, var(--ink) 74%, var(--paper));
+  --faint:color-mix(in oklab, var(--ink) 46%, var(--paper));
+  --line:color-mix(in oklab, var(--ink) 16%, var(--paper));
+  --weave:rgba(47,82,136,.028);
+  --mottle:rgba(47,82,136,.045);
+  --shadow:0 10px 28px rgba(29,42,58,.10);
+  --han:"LXGW WenKai TC","Kaiti TC","Songti TC","Noto Serif TC",serif;
+  --disp:"Source Serif 4",Georgia,serif;
+  --ui:"Inter","Be Vietnam Pro",-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;
+}
+[data-theme="dark"]{
+  --paper:#0E1622;
+  --ink:#E8E9E4;
+  --vat:#7C9BD9;
+  --vat-ink:#0E1622;
+  --wash:#223C66;
+  --card:#131B27;
+  --raise:#17212F;
+  --new:#D488A0;
+  --learn:#CFA34F;
+  --jade:#5FB392;
+  --hv:#8FB6C0;
+  --meta:color-mix(in oklab, var(--ink) 76%, var(--paper));
+  --faint:color-mix(in oklab, var(--ink) 48%, var(--paper));
+  --line:color-mix(in oklab, var(--ink) 15%, var(--paper));
+  --weave:rgba(124,155,217,.022);
+  --mottle:rgba(124,155,217,.05);
+  --shadow:0 10px 28px rgba(0,0,0,.35);
+}
+/* ============ base ============ */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  color:var(--ink);
+  background-color:var(--paper);
+  background-image:
+    repeating-linear-gradient(0deg, var(--weave) 0 1px, transparent 1px 8px),
+    repeating-linear-gradient(90deg, var(--weave) 0 1px, transparent 1px 8px);
+  font-family:var(--ui);
+  font-size:15px;
+  line-height:1.55;
+}
+:focus-visible{outline:2px solid var(--vat);outline-offset:2px;border-radius:4px}
+button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:pointer}
+a{color:inherit}
+[hidden]{display:none!important}
+
+/* ============ header ============ */
+.top{
+  position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.top .in{
+  max-width:1240px;margin:0 auto;padding:10px 24px;
+  display:flex;align-items:center;gap:18px;
+}
+.brand{display:flex;align-items:center;gap:10px;background:none;border:none;padding:0}
+.brand .seal{
+  width:30px;height:30px;border-radius:8px;
+  background:var(--vat);color:var(--vat-ink);
+  font-family:var(--han);font-size:19px;line-height:30px;text-align:center;
+}
+.brand .word{font-family:var(--disp);font-weight:600;font-size:17px;letter-spacing:.01em}
+.tabs{display:flex;gap:2px;border:1px solid var(--line);border-radius:999px;padding:2px;margin-left:6px}
+.tabs button{
+  padding:5px 14px;border-radius:999px;font-size:13px;font-weight:500;color:var(--meta);
+}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected="true"]{background:color-mix(in oklab, var(--ink) 9%, var(--paper));color:var(--ink)}
+.top .grow{flex:1}
+.khint{
+  font-size:12px;color:var(--faint);border:1px solid var(--line);
+  border-radius:6px;padding:3px 9px;white-space:nowrap;
+}
+.khint b{font-weight:600;color:var(--meta)}
+.theme{
+  width:32px;height:32px;border:1px solid var(--line);border-radius:8px;
+  font-size:15px;line-height:1;color:var(--meta);
+}
+.theme:hover{color:var(--ink);border-color:var(--meta)}
+
+main{max-width:1240px;margin:0 auto;padding:26px 24px 80px}
+
+/* ============ ruby + status doctrine (shared) ============ */
+ruby{ruby-position:over}
+rt{
+  font-family:var(--ui);font-weight:400;font-size:.42em;letter-spacing:.02em;
+  color:color-mix(in oklab, var(--ink) 86%, var(--paper));
+}
+.w{cursor:pointer;border-radius:3px}
+.w:hover{background:color-mix(in oklab, var(--ink) 5%, transparent)}
+.w.k rt{color:var(--faint);opacity:.62}          /* known: dimmed ruby */
+.w.n{border-bottom:2.5px solid var(--new);padding-bottom:1px}   /* new: solid clay */
+.w.l{border-bottom:2px dotted var(--learn);padding-bottom:2px}  /* learning: dotted amber */
+.w.sel{box-shadow:0 0 0 2px color-mix(in srgb, var(--vat) 60%, transparent)}
+/* the wash */
+.w.wash{transition:border-color .6s ease}
+.w.wash rt{transition:color .6s ease, opacity .6s ease}
+.w.wash.washed{border-color:transparent}
+.w.wash.washed rt{color:var(--faint);opacity:.62}
+
+/* ============ library ============ */
+.masthead{margin:4px 0 26px}
+.masthead p{margin:0;font-size:14px;color:var(--meta)}
+.masthead p b{font-weight:500;color:var(--ink)}
+
+.secline{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 12px}
+.secline h2{
+  margin:0;font-family:var(--disp);font-weight:600;font-size:17px;letter-spacing:.01em;
+}
+.secline h2 .zi{font-family:var(--han);font-size:19px;margin-right:6px}
+.secline .fact{font-size:12.5px;color:var(--meta)}
+.secline .grow{flex:1}
+.secline .decode{font-size:12px;color:var(--faint)}
+
+/* continue strip */
+.continue{margin-bottom:34px}
+.cont-card{
+  position:relative;
+  border:1px solid var(--line);border-radius:12px;
+  background-color:color-mix(in oklab, var(--wash) 30%, var(--card));
+  padding:20px 22px;
+  display:flex;align-items:center;gap:26px;
+}
+.cont-card::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(140% 110% at 16% 0%, transparent 55%, var(--mottle));
+}
+.cont-main{flex:1;min-width:0}
+.cont-title{font-family:var(--han);font-size:23px;margin:0 0 3px}
+.cont-cat{font-size:12.5px;color:var(--meta);margin:0 0 12px}
+.cont-ex{font-family:var(--han);font-size:20px;line-height:2.15;color:var(--ink);margin:0}
+.go{
+  position:relative;z-index:1;
+  background:var(--vat);color:var(--vat-ink);
+  border-radius:999px;padding:10px 20px;font-size:13.5px;font-weight:600;white-space:nowrap;
+}
+.go:hover{filter:brightness(1.08)}
+
+/* companion shelf: the selvage strip */
+.selvage{margin-bottom:38px}
+.selv-band{
+  border:1px solid var(--line);border-radius:12px;background:var(--card);
+  padding:16px 18px;display:flex;gap:26px;flex-wrap:wrap;
+}
+.book{display:flex;flex-direction:column;gap:8px}
+.book .bl{font-size:12px;color:var(--meta)}
+.book .bl .zi{font-family:var(--han);font-size:14px;color:var(--ink);margin-right:5px}
+.ticks{display:flex;gap:4px;flex-wrap:wrap}
+.tick{
+  width:10px;height:22px;border-radius:3px;
+  border:1px solid var(--line);
+  background:color-mix(in oklab, var(--wash) var(--dye,0%), var(--card));
+}
+.tick.now{border-color:var(--vat);box-shadow:inset 0 0 0 1.5px var(--vat);background:var(--card)}
+.selv-note{font-size:12.5px;color:var(--faint);margin:10px 2px 0}
+
+/* the wall: bolts */
+.bolt{
+  border:1px solid var(--line);border-radius:14px;
+  padding:18px 18px 20px;margin-bottom:22px;
+  background-color:color-mix(in oklab, var(--wash) var(--bolt,0%), var(--paper));
+}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{
+  position:relative;
+  border:1px solid var(--line);border-radius:10px;
+  background-color:color-mix(in oklab, var(--wash) var(--dye,0%), var(--card));
+  padding:16px 18px 14px;
+  display:flex;flex-direction:column;gap:10px;
+  transition:border-color .15s ease;
+}
+.card::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(150% 110% at 20% 0%, transparent 58%, var(--mottle));
+}
+.card:hover{border-color:color-mix(in oklab, var(--ink) 34%, var(--paper))}
+.card .ex{
+  font-family:var(--han);font-size:20px;line-height:2.1;margin:0;
+  color:var(--ink);
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.card .cat{font-size:12px;color:var(--meta);display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:auto}
+.chip{border:1px solid var(--line);border-radius:999px;padding:1px 8px;white-space:nowrap;background:color-mix(in srgb, var(--paper) 40%, transparent)}
+.libfoot{font-size:12px;color:var(--faint);margin-top:26px}
+
+/* ============ reader ============ */
+.reader-grid{
+  display:grid;grid-template-columns:minmax(0,680px) 340px;
+  justify-content:center;gap:34px;align-items:start;
+}
+.page{min-width:0}
+
+/* progress thread + wash control */
+.threadrow{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.thread{position:relative;flex:1;height:2px;background:var(--vat);border-radius:2px;overflow:visible}
+.thread .undyed{position:absolute;left:0;top:0;bottom:0;width:45%;background:var(--line)}
+.thread .knot{
+  position:absolute;left:45%;top:50%;width:9px;height:9px;border-radius:50%;
+  transform:translate(-50%,-50%);
+  background:var(--paper);border:2px solid var(--vat);
+}
+.threadfact{font-size:12px;color:var(--meta);white-space:nowrap}
+.washrow{display:flex;align-items:center;gap:10px;margin:0 0 26px;font-size:12.5px;color:var(--meta)}
+.washbtn{
+  border:1px solid var(--line);border-radius:999px;padding:4px 13px;
+  font-size:12.5px;font-weight:500;color:var(--meta);
+}
+.washbtn:hover{color:var(--ink);border-color:var(--meta)}
+
+.rtitle{font-family:var(--han);font-weight:400;font-size:40px;margin:0 0 8px;letter-spacing:.02em}
+.rcat{font-size:13px;color:var(--meta);margin:0 0 22px}
+
+/* rails + legend */
+.rails{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.railset{display:flex;align-items:center;gap:2px;border:1px solid var(--line);border-radius:999px;padding:2px}
+.railset .lbl{font-size:11.5px;color:var(--faint);padding:0 6px 0 10px}
+.railset button{padding:3px 11px;border-radius:999px;font-size:12.5px;color:var(--meta)}
+.railset button:hover{color:var(--ink)}
+.railset button[aria-pressed="true"]{background:color-mix(in oklab, var(--ink) 9%, var(--paper));color:var(--ink);font-weight:500}
+.legend{display:flex;gap:16px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--meta);margin-bottom:30px}
+.legend .sw{display:inline-block;width:20px;height:0;vertical-align:middle;margin-right:6px}
+.legend .sw.n{border-bottom:2.5px solid var(--new)}
+.legend .sw.l{border-bottom:2px dotted var(--learn)}
+.legend .sw.k{border-bottom:2px solid transparent}
+
+.prose{font-family:var(--han);font-size:29px;line-height:2.4;margin:0}
+.prose p{margin:0 0 1.1em}
+
+/* HV rail demo */
+.hvdemo{
+  margin-top:34px;border-top:1px solid var(--line);padding-top:18px;
+}
+.hvdemo .lbl{font-size:12px;color:var(--meta);margin:0 0 10px}
+.hvdemo .lbl b{font-weight:600;color:var(--hv)}
+.hvline{font-family:var(--han);font-size:27px;line-height:2.5;margin:0}
+.hvline rt{color:var(--hv);opacity:1;font-size:.44em;padding-inline:3px}
+.hvline .far rt{opacity:.35}
+.hvdemo .decode{font-size:12px;color:var(--faint);margin:10px 0 0}
+
+/* word card (popup, open state) */
+.wordcard{
+  position:relative;
+  margin-top:340px; /* aligns the caret with 音樂 on prose line 2 at desktop */
+  background:var(--raise);
+  border:1px solid var(--line);border-radius:14px;
+  box-shadow:var(--shadow);
+  padding:20px 22px 18px;
+}
+.wordcard::before{
+  content:"";position:absolute;left:-7px;top:56px;width:12px;height:12px;
+  background:var(--raise);
+  border-left:1px solid var(--line);border-bottom:1px solid var(--line);
+  transform:rotate(45deg);
+}
+.wc-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:6px}
+.wc-glyph{font-family:var(--han);font-size:46px;line-height:1.15}
+.wc-readings{display:flex;flex-direction:column;gap:2px;padding-top:3px}
+.wc-py{font-size:15px;font-weight:500}
+.wc-zy{font-family:var(--han);font-size:13px;color:var(--meta);letter-spacing:.08em}
+.wc-hv{font-size:13px;color:var(--hv);font-weight:500}
+.wc-gloss{font-size:14px;color:var(--ink);margin:2px 0 14px}
+.wc-gloss .pos{color:var(--faint);font-size:12.5px;margin-left:6px}
+.bridge{
+  border-left:3px solid var(--vat);
+  background:color-mix(in srgb, var(--vat) 6%, transparent);
+  border-radius:0 8px 8px 0;
+  padding:10px 14px 11px;margin-bottom:16px;
+}
+.bridge .eye{
+  font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--vat);font-weight:600;margin:0 0 8px;
+}
+.cog{display:flex;align-items:baseline;gap:9px;font-size:13.5px;margin:4px 0;color:var(--meta)}
+.cog .zi{font-family:var(--han);font-size:19px;color:var(--ink)}
+.cog .shared{color:var(--vat);font-weight:600}
+.cog i{font-style:normal}
+.grades{display:flex;gap:6px;align-items:stretch;margin-bottom:12px;flex-wrap:wrap}
+.gr{
+  min-width:40px;padding:5px 7px 4px;border:1px solid var(--line);border-radius:8px;
+  display:flex;flex-direction:column;align-items:center;gap:1px;
+}
+.gr:hover{border-color:var(--meta)}
+.gr b{font-size:14px;font-weight:600;line-height:1.1}
+.gr span{font-size:9.5px;color:var(--faint);letter-spacing:.02em}
+.gr.known b{color:var(--jade)}
+.gr.known{border-color:color-mix(in srgb, var(--jade) 45%, var(--line))}
+.wc-acts{display:flex;gap:8px;border-top:1px solid var(--line);padding-top:12px}
+.act{
+  border:1px solid var(--line);border-radius:999px;padding:4px 13px;
+  font-size:12.5px;font-weight:500;color:var(--meta);
+}
+.act:hover{color:var(--ink);border-color:var(--meta)}
+.act .zi{font-family:var(--han)}
+.wc-keys{font-size:11px;color:var(--faint);margin:10px 0 0}
+
+/* ============ responsive ============ */
+@media (max-width:1120px){
+  .reader-grid{grid-template-columns:minmax(0,680px);}
+  .wordcard{margin:34px auto 0;max-width:520px}
+  .wordcard::before{display:none}
+}
+@media (max-width:640px){
+  .top .in{padding:8px 14px;gap:10px}
+  .khint{display:none}
+  main{padding:20px 16px 60px}
+  .cont-card{flex-direction:column;align-items:flex-start;gap:14px}
+  .prose{font-size:26px}
+  .hvline{font-size:24px}
+  .rtitle{font-size:32px}
+  .cards{grid-template-columns:1fr}
+}
+/* ============ motion ============ */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="in">
+    <button class="brand" id="brandBtn" aria-label="Tsumugu home">
+      <span class="seal">紡</span>
+      <span class="word">Tsumugu</span>
+    </button>
+    <nav class="tabs" aria-label="View">
+      <button id="tabLib" aria-selected="true">書架 Library</button>
+      <button id="tabRead" aria-selected="false">閱讀 Reader</button>
+    </nav>
+    <span class="grow"></span>
+    <span class="khint"><b>⌘K</b> 搜尋 search</span>
+    <button class="theme" id="themeBtn" aria-label="Theme">☾</button>
+  </div>
+</header>
+
+<!-- ==================== LIBRARY ==================== -->
+<main id="viewLib">
+
+  <div class="masthead">
+    <p><b>Graded Traditional Chinese readings.</b> Read with pinyin, zhuyin, or Hán-Việt.</p>
+  </div>
+
+  <!-- continue strip -->
+  <section class="continue" aria-label="Continue">
+    <div class="secline">
+      <h2><span class="zi">續</span>Continue</h2>
+      <span class="fact">上次閱讀 last read · 昨天 yesterday</span>
+    </div>
+    <div class="cont-card" style="--dye:30%">
+      <div class="cont-main">
+        <h3 class="cont-title">追垃圾車</h3>
+        <p class="cont-cat">A2 · <span class="chip">當代 B2·L07</span> · 短文 story · 470字 · ¶ 3 · 5 · 94% known · 7 new</p>
+        <p class="cont-ex">追了大半條街，車子<span class="w l"><ruby>總算<rt>zǒngsuàn</rt></ruby></span>停了下來。司機從車上<span class="w n"><ruby>探出<rt>tànchū</rt></ruby></span>頭，笑著問她…</p>
+      </div>
+      <button class="go" id="contBtn">繼續閱讀 Continue</button>
+    </div>
+  </section>
+
+  <!-- companion shelf: the selvage -->
+  <section class="selvage" aria-label="Companion shelf">
+    <div class="secline">
+      <h2><span class="zi">課</span>Companion</h2>
+      <span class="fact">當代中文課程 Books 1 to 5 · 64 lessons</span>
+    </div>
+    <div class="selv-band">
+      <div class="book">
+        <span class="bl"><span class="zi">一</span>Book 1 · 15 lessons</span>
+        <div class="ticks">
+          <span class="tick" title="B1 第一課"></span><span class="tick" title="B1 第二課"></span><span class="tick" title="B1 第三課"></span><span class="tick" title="B1 第四課"></span><span class="tick" title="B1 第五課"></span><span class="tick" title="B1 第六課"></span><span class="tick" title="B1 第七課"></span><span class="tick" title="B1 第八課"></span><span class="tick" title="B1 第九課"></span><span class="tick" title="B1 第十課"></span><span class="tick" title="B1 第十一課"></span><span class="tick" title="B1 第十二課"></span><span class="tick" title="B1 第十三課"></span><span class="tick" title="B1 第十四課"></span><span class="tick" title="B1 第十五課"></span>
+        </div>
+      </div>
+      <div class="book">
+        <span class="bl"><span class="zi">二</span>Book 2 · 13 lessons · 第七課</span>
+        <div class="ticks">
+          <span class="tick" title="B2 第一課"></span><span class="tick" title="B2 第二課"></span><span class="tick" title="B2 第三課"></span><span class="tick" title="B2 第四課"></span><span class="tick" title="B2 第五課"></span><span class="tick" title="B2 第六課"></span><span class="tick now" title="B2 第七課 · current"></span><span class="tick" style="--dye:22%" title="B2 第八課"></span><span class="tick" style="--dye:22%" title="B2 第九課"></span><span class="tick" style="--dye:22%" title="B2 第十課"></span><span class="tick" style="--dye:22%" title="B2 第十一課"></span><span class="tick" style="--dye:22%" title="B2 第十二課"></span><span class="tick" style="--dye:22%" title="B2 第十三課"></span>
+        </div>
+      </div>
+      <div class="book">
+        <span class="bl"><span class="zi">三</span>Book 3 · 12 lessons</span>
+        <div class="ticks">
+          <span class="tick" style="--dye:42%" title="B3 第一課"></span><span class="tick" style="--dye:42%" title="B3 第二課"></span><span class="tick" style="--dye:42%" title="B3 第三課"></span><span class="tick" style="--dye:42%" title="B3 第四課"></span><span class="tick" style="--dye:42%" title="B3 第五課"></span><span class="tick" style="--dye:42%" title="B3 第六課"></span><span class="tick" style="--dye:42%" title="B3 第七課"></span><span class="tick" style="--dye:42%" title="B3 第八課"></span><span class="tick" style="--dye:42%" title="B3 第九課"></span><span class="tick" style="--dye:42%" title="B3 第十課"></span><span class="tick" style="--dye:42%" title="B3 第十一課"></span><span class="tick" style="--dye:42%" title="B3 第十二課"></span>
+        </div>
+      </div>
+      <div class="book">
+        <span class="bl"><span class="zi">四</span>Book 4 · 12 lessons</span>
+        <div class="ticks">
+          <span class="tick" style="--dye:66%" title="B4 第一課"></span><span class="tick" style="--dye:66%" title="B4 第二課"></span><span class="tick" style="--dye:66%" title="B4 第三課"></span><span class="tick" style="--dye:66%" title="B4 第四課"></span><span class="tick" style="--dye:66%" title="B4 第五課"></span><span class="tick" style="--dye:66%" title="B4 第六課"></span><span class="tick" style="--dye:66%" title="B4 第七課"></span><span class="tick" style="--dye:66%" title="B4 第八課"></span><span class="tick" style="--dye:66%" title="B4 第九課"></span><span class="tick" style="--dye:66%" title="B4 第十課"></span><span class="tick" style="--dye:66%" title="B4 第十一課"></span><span class="tick" style="--dye:66%" title="B4 第十二課"></span>
+        </div>
+      </div>
+      <div class="book">
+        <span class="bl"><span class="zi">五</span>Book 5 · 12 lessons</span>
+        <div class="ticks">
+          <span class="tick" style="--dye:88%" title="B5 第一課"></span><span class="tick" style="--dye:88%" title="B5 第二課"></span><span class="tick" style="--dye:88%" title="B5 第三課"></span><span class="tick" style="--dye:88%" title="B5 第四課"></span><span class="tick" style="--dye:88%" title="B5 第五課"></span><span class="tick" style="--dye:88%" title="B5 第六課"></span><span class="tick" style="--dye:88%" title="B5 第七課"></span><span class="tick" style="--dye:88%" title="B5 第八課"></span><span class="tick" style="--dye:88%" title="B5 第九課"></span><span class="tick" style="--dye:88%" title="B5 第十課"></span><span class="tick" style="--dye:88%" title="B5 第十一課"></span><span class="tick" style="--dye:88%" title="B5 第十二課"></span>
+        </div>
+      </div>
+    </div>
+    <p class="selv-note">每課 3 篇，合計覆蓋該課詞彙與語法 100% · 3 readings per lesson, together covering 100% of lesson vocabulary and grammar. 讀完的課色退 · finished lessons lose their dye.</p>
+  </section>
+
+  <!-- reading wall -->
+  <section aria-label="Reading wall">
+    <div class="secline">
+      <h2><span class="zi">牆</span>Reading Wall</h2>
+      <span class="grow"></span>
+      <span class="decode">底色＝未知詞比例 · ground tint = unknown-word share</span>
+    </div>
+
+    <!-- bolt: Starter -->
+    <div class="bolt" style="--bolt:0%">
+      <div class="secline">
+        <h2><span class="zi">起</span>Starter</h2>
+        <span class="fact">A1 · 當代 Book 1 · 45 readings</span>
+      </div>
+      <div class="cards">
+        <article class="card" style="--dye:0%">
+          <p class="ex">林小姐：你好，請問你是高先生嗎？高先生：你好，是的，我姓高，叫高文。</p>
+          <p class="cat"><span class="chip">當代 B1·L01</span> 對話 dialogue · 317字 · 100% known · 0 new</p>
+        </article>
+        <article class="card" style="--dye:0%">
+          <p class="ex">你們好！我姓周，叫周大同，我是日本人，不是美國人。我來臺灣學中文。</p>
+          <p class="cat"><span class="chip">當代 B1·L01</span> 自述 first person · 278字 · 100% known · 0 new</p>
+        </article>
+        <article class="card" style="--dye:0%">
+          <p class="ex">周先生是美國人，這是他第一次來臺灣。今天林小姐到機場接他。</p>
+          <p class="cat"><span class="chip">當代 B1·L01</span> 短文 story · 267字 · 100% known · 0 new</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- bolt: Elementary -->
+    <div class="bolt" style="--bolt:7%">
+      <div class="secline">
+        <h2><span class="zi">承</span>Elementary</h2>
+        <span class="fact">A2 · 當代 Book 2 · 39 readings at your level</span>
+      </div>
+      <div class="cards">
+        <article class="card" style="--dye:28%">
+          <p class="ex">林太太：高先生，你搬來我們這個城市才幾天，住得還<span class="w k"><ruby>習慣<rt>xíguàn</rt></ruby></span>嗎？我本來以為<span class="w l"><ruby>垃圾<rt>lèsè</rt></ruby></span>跟在國外一樣…</p>
+          <p class="cat"><span class="chip">當代 B2·L07</span> 對話 dialogue · 488字 · 95% known · 6 new</p>
+        </article>
+        <article class="card" style="--dye:32%">
+          <p class="ex">各位市民朋友，大家好，歡迎<span class="w l"><ruby>收聽<rt>shōutīng</rt></ruby></span>今天的「綠色城市」<span class="w k"><ruby>廣播<rt>guǎngbò</rt></ruby></span>，我是主持人小林。</p>
+          <p class="cat"><span class="chip">當代 B2·L07</span> 廣播 radio · 468字 · 94% known · 8 new</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- bolt: Intermediate -->
+    <div class="bolt" style="--bolt:15%">
+      <div class="secline">
+        <h2><span class="zi">轉</span>Intermediate</h2>
+        <span class="fact">B1 · 當代 Books 3 and 4 · 72 readings</span>
+      </div>
+      <div class="cards">
+        <article class="card" style="--dye:50%">
+          <p class="ex">林佳穎：欸，江<span class="w l"><ruby>學弟<rt>xuédì</rt></ruby></span>，今天開學你怎麼那麼晚才到教室？差一點就遲到了吧？</p>
+          <p class="cat"><span class="chip">當代 B3·L01</span> 對話 dialogue · 961字 · 92% known · 15 new</p>
+        </article>
+        <article class="card" style="--dye:50%">
+          <p class="ex">我叫周怡君，是家裡的<span class="w n"><ruby>獨生女<rt>dúshēngnǚ</rt></ruby></span>，從小爸媽就希望我念一個出社會好找工作的<span class="w l"><ruby>科系<rt>kēxì</rt></ruby></span>…</p>
+          <p class="cat"><span class="chip">當代 B3·L01</span> 自述 first person · 797字 · 92% known · 13 new</p>
+        </article>
+        <article class="card" style="--dye:54%">
+          <p class="ex">又到了一年一度的開學季，各大學<span class="w l"><ruby>教務處<rt>jiàowùchù</rt></ruby></span>這幾天<span class="w n"><ruby>湧進<rt>yǒngjìn</rt></ruby></span>大批新生，準備辦理註冊相關手續。</p>
+          <p class="cat"><span class="chip">當代 B3·L01</span> 報導 report · 855字 · 91% known · 16 new</p>
+        </article>
+        <article class="card" style="--dye:72%">
+          <p class="ex">甲：欸，妳來看一下，<span class="w n"><ruby>衣櫥<rt>yīchú</rt></ruby></span>到底該<span class="w l"><ruby>擺<rt>bǎi</rt></ruby></span>在哪裡比較好？我們都搬進來三個禮拜了，東西還<span class="w l"><ruby>堆<rt>duī</rt></ruby></span>在客廳中間…</p>
+          <p class="cat"><span class="chip">當代 B4·L04</span> 對話 dialogue · 1005字 · 88% known · 24 new</p>
+        </article>
+        <article class="card" style="--dye:76%">
+          <p class="ex">我從小住在一棟蓋了快五十年的老公寓裡，附近的<span class="w n"><ruby>巷子<rt>xiàngzi</rt></ruby></span>又<span class="w n"><ruby>窄<rt>zhǎi</rt></ruby></span>又<span class="w l"><ruby>彎<rt>wān</rt></ruby></span>…</p>
+          <p class="cat"><span class="chip">當代 B4·L04</span> 自述 first person · 1030字 · 87% known · 26 new</p>
+        </article>
+        <article class="card" style="--dye:74%">
+          <p class="ex">信義計畫區是台北這幾年發展最快的<span class="w l"><ruby>地標<rt>dìbiāo</rt></ruby></span>之一，從信義路一路走到松智路，<span class="w n"><ruby>沿線<rt>yánxiàn</rt></ruby></span>蓋了不少高樓<span class="w l"><ruby>大廈<rt>dàshà</rt></ruby></span>…</p>
+          <p class="cat"><span class="chip">當代 B4·L04</span> 報導 report · 1104字 · 88% known · 25 new</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <p class="libfoot">預覽版 preview build · 內文為本站原創語料 original corpus</p>
+</main>
+
+<!-- ==================== READER ==================== -->
+<main id="viewRead" hidden>
+  <div class="reader-grid">
+    <article class="page">
+
+      <div class="threadrow" aria-label="Position">
+        <div class="thread" role="img" aria-label="Position paragraph 3 of 5, dye remaining on unread portion">
+          <span class="undyed"></span><span class="knot"></span>
+        </div>
+        <span class="threadfact">¶ 3 · 5 · 未讀部分帶染 unread keeps its dye</span>
+      </div>
+
+      <div class="washrow">
+        <span>自上次來訪：4 詞轉為已知 · since last visit: 4 words to known</span>
+        <button class="washbtn" id="washBtn">重播 replay</button>
+      </div>
+
+      <h1 class="rtitle">追垃圾車</h1>
+      <p class="rcat">A2 · 當代 B2 L07 · 短文 story · 470字 · ≈6 min · 94% known · 7 new</p>
+
+      <div class="rails" aria-label="Rails">
+        <span class="railset" role="group" aria-label="Gloss language">
+          <span class="lbl">釋義 gloss</span>
+          <button aria-pressed="true">EN</button>
+          <button aria-pressed="false">VI</button>
+        </span>
+        <span class="railset" role="group" aria-label="Reading rail">
+          <span class="lbl">標音 ruby</span>
+          <button aria-pressed="true">拼音</button>
+          <button aria-pressed="false">注音</button>
+          <button aria-pressed="false">漢越</button>
+        </span>
+      </div>
+
+      <div class="legend">
+        <span><span class="sw n"></span>新 new</span>
+        <span><span class="sw l"></span>學習中 learning</span>
+        <span><span class="sw k"></span>已知 known · 無標 no mark</span>
+        <span>點字看詞卡 · tap a word for its card</span>
+      </div>
+
+      <div class="prose" id="prose">
+        <p>那天晚上，周小姐正坐在<span class="w k"><ruby>客廳<rt>kètīng</rt></ruby></span>的<span class="w k"><ruby>沙發<rt>shāfā</rt></ruby></span>上看電視，<span class="w k"><ruby>窗外<rt>chuāngwài</rt></ruby></span><span class="w l wash"><ruby>忽然<rt>hūrán</rt></ruby></span><span class="w k"><ruby>傳來<rt>chuánlái</rt></ruby></span><span class="w k"><ruby>一陣<rt>yízhèn</rt></ruby></span><span class="w l"><ruby>熟悉<rt>shúxī</rt></ruby></span>的<span class="w k sel" id="anchorWord"><ruby>音樂<rt>yīnyuè</rt></ruby></span>。她跳了起來，心想：<span class="w n"><ruby>糟糕<rt>zāogāo</rt></ruby></span>，<span class="w l"><ruby>垃圾車<rt>lèsèchē</rt></ruby></span>已經開到路上了！她<span class="w k"><ruby>趕快<rt>gǎnkuài</rt></ruby></span>把<span class="w k"><ruby>廚房<rt>chúfáng</rt></ruby></span>裡的兩個<span class="w k"><ruby>袋子<rt>dàizi</rt></ruby></span><span class="w k"><ruby>提<rt>tí</rt></ruby></span>好，又<span class="w k"><ruby>抓起<rt>zhuāqǐ</rt></ruby></span>放在桌上的<span class="w l wash"><ruby>皮包<rt>píbāo</rt></ruby></span>，連<span class="w n"><ruby>拖鞋<rt>tuōxié</rt></ruby></span>都<span class="w k"><ruby>來不及<rt>láibují</rt></ruby></span>換，就<span class="w k"><ruby>急急忙忙<rt>jíjímángmáng</rt></ruby></span>地走出來。</p>
+        <p>她跑到<span class="w n"><ruby>巷子口<rt>xiàngzikǒu</rt></ruby></span>，那<span class="w k"><ruby>輛<rt>liàng</rt></ruby></span><span class="w l"><ruby>垃圾車<rt>lèsèchē</rt></ruby></span>卻<span class="w k"><ruby>剛好<rt>gānghǎo</rt></ruby></span>開走了。周小姐沒有<span class="w n"><ruby>放棄<rt>fàngqì</rt></ruby></span>，提著<span class="w k"><ruby>沉沉<rt>chénchén</rt></ruby></span>的<span class="w k"><ruby>袋子<rt>dàizi</rt></ruby></span>在後面<span class="w k"><ruby>追<rt>zhuī</rt></ruby></span>，一邊跑一邊<span class="w k"><ruby>喊<rt>hǎn</rt></ruby></span>：等一下！等一下！路上的人看著她，<span class="w k"><ruby>大概<rt>dàgài</rt></ruby></span>都覺得這個<span class="w l wash"><ruby>畫面<rt>huàmiàn</rt></ruby></span>很<span class="w k"><ruby>有趣<rt>yǒuqù</rt></ruby></span>吧。有個騎<span class="w k"><ruby>機車<rt>jīchē</rt></ruby></span>的先生還<span class="w l wash"><ruby>特地<rt>tèdì</rt></ruby></span>停下來，<span class="w k"><ruby>以為<rt>yǐwéi</rt></ruby></span>她<span class="w k"><ruby>掉<rt>diào</rt></ruby></span>了什麼重要的東西，問她要不要<span class="w k"><ruby>幫忙<rt>bāngmáng</rt></ruby></span>。</p>
+      </div>
+
+      <div class="hvdemo">
+        <p class="lbl"><b>漢越軌 Hán-Việt rail</b> · ¶1 句 2 sentence 2</p>
+        <p class="hvline" lang="zh-Hant"><span class="far"><ruby>窗<rt lang="vi">song</rt></ruby></span><ruby>外<rt lang="vi">ngoại</rt></ruby><span class="far"><ruby>忽<rt lang="vi">hốt</rt></ruby></span><ruby>然<rt lang="vi">nhiên</rt></ruby><ruby>傳<rt lang="vi">truyền</rt></ruby><ruby>來<rt lang="vi">lai</rt></ruby><ruby>一<rt lang="vi">nhất</rt></ruby><ruby>陣<rt lang="vi">trận</rt></ruby><span class="far"><ruby>熟<rt lang="vi">thục</rt></ruby></span><span class="far"><ruby>悉<rt lang="vi">tất</rt></ruby></span><ruby>的<rt lang="vi">đích</rt></ruby><ruby>音<rt lang="vi">âm</rt></ruby><ruby>樂<rt lang="vi">nhạc</rt></ruby>。</p>
+        <p class="decode">深＝越南語常用漢越音節 full ink = Sino-Vietnamese syllable current in Vietnamese · 淺＝罕用 faint = rare</p>
+      </div>
+
+    </article>
+
+    <!-- word card: open state, anchored to 音樂 -->
+    <aside class="wordcard" role="dialog" aria-label="音樂 word card">
+      <div class="wc-head">
+        <span class="wc-glyph" lang="zh-Hant">音樂</span>
+        <span class="wc-readings">
+          <span class="wc-py">yīnyuè</span>
+          <span class="wc-zy" lang="zh-Hant">ㄧㄣ ㄩㄝˋ</span>
+          <span class="wc-hv" lang="vi">âm nhạc</span>
+        </span>
+      </div>
+      <p class="wc-gloss">music<span class="pos">名 noun</span></p>
+
+      <div class="bridge">
+        <p class="eye" lang="vi">Âm Hán-Việt dùng chung · shared Sino-Vietnamese reading</p>
+        <div class="cog"><span class="zi" lang="zh-Hant">音</span><span><span class="shared" lang="vi">âm</span> · <i lang="vi"><span class="shared">âm</span> thanh</i></span><span>sound</span></div>
+        <div class="cog"><span class="zi" lang="zh-Hant">樂</span><span><span class="shared" lang="vi">nhạc</span> · <i lang="vi"><span class="shared">nhạc</span> sĩ</i></span><span>musician</span></div>
+      </div>
+
+      <div class="grades" aria-label="Grade">
+        <button class="gr"><b>1</b><span>again</span></button>
+        <button class="gr"><b>2</b><span>hard</span></button>
+        <button class="gr"><b>3</b><span>good</span></button>
+        <button class="gr"><b>4</b><span>easy</span></button>
+        <button class="gr known"><b>✓</b><span>已知 known</span></button>
+        <button class="gr"><b>✕</b><span>略過 ignore</span></button>
+      </div>
+
+      <div class="wc-acts">
+        <button class="act">+ card</button>
+        <button class="act"><span class="zi">字</span> → dict</button>
+      </div>
+      <p class="wc-keys">鍵盤 keys 1 2 3 4 · esc 關閉 close</p>
+    </aside>
+  </div>
+</main>
+
+<script>
+"use strict";
+(function(){
+  var tabLib = document.getElementById("tabLib");
+  var tabRead = document.getElementById("tabRead");
+  var viewLib = document.getElementById("viewLib");
+  var viewRead = document.getElementById("viewRead");
+
+  function show(view){
+    var lib = view === "lib";
+    viewLib.hidden = !lib;
+    viewRead.hidden = lib;
+    tabLib.setAttribute("aria-selected", lib ? "true" : "false");
+    tabRead.setAttribute("aria-selected", lib ? "false" : "true");
+    window.scrollTo(0,0);
+  }
+  tabLib.addEventListener("click", function(){ show("lib"); });
+  tabRead.addEventListener("click", function(){ show("read"); });
+  if(location.hash === "#reader") show("read");
+  document.getElementById("brandBtn").addEventListener("click", function(){ show("lib"); });
+  document.getElementById("contBtn").addEventListener("click", function(){ show("read"); });
+
+  var themeBtn = document.getElementById("themeBtn");
+  themeBtn.addEventListener("click", function(){
+    var root = document.documentElement;
+    var dark = root.getAttribute("data-theme") === "dark";
+    root.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.textContent = dark ? "☾" : "☀";
+  });
+
+  /* THE WASH: replay the re-entry delta. Words learned since the last visit
+     fade from their marks to plain ink, staggered, one breath. */
+  var washBtn = document.getElementById("washBtn");
+  var washed = false;
+  washBtn.addEventListener("click", function(){
+    var words = document.querySelectorAll("#prose .wash");
+    if(!washed){
+      words.forEach(function(el, i){
+        el.style.transitionDelay = (i * 140) + "ms";
+        var rt = el.querySelector("rt");
+        if(rt) rt.style.transitionDelay = (i * 140) + "ms";
+        el.classList.add("washed");
+      });
+      washed = true;
+    }else{
+      words.forEach(function(el){
+        el.style.transitionDelay = "0ms";
+        var rt = el.querySelector("rt");
+        if(rt) rt.style.transitionDelay = "0ms";
+        el.classList.remove("washed");
+      });
+      washed = false;
+    }
+  });
+})();
+</script>
+</body>
+</html>

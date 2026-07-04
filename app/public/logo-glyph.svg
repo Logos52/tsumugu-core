@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+<defs>
+  <!-- Violet-reserved brand glyph (per PRD: #6B4BD6 only for brand/bridge/known) -->
+  <linearGradient id="badge" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#1F1A2E"/>
+    <stop offset="100%" stop-color="#14130F"/>
+  </linearGradient>
+  <radialGradient id="halo" cx="50%" cy="44%" r="58%">
+    <stop offset="0%"  stop-color="#6B4BD6" stop-opacity="0.12"/>
+    <stop offset="100%" stop-color="#6B4BD6" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect x="8" y="8" width="224" height="224" rx="54" fill="url(#badge)"/>
+<circle cx="120" cy="112" r="96" fill="url(#halo)"/>
+<text x="120" y="132" text-anchor="middle" dominant-baseline="central"
+      font-family="'LXGW WenKai TC','Songti TC','Noto Serif CJK TC','PingFang TC',serif"
+      font-weight="700" font-size="150" fill="#6B4BD6">紡</text>
+</svg>

@@ -1,0 +1,28 @@
+{
+  // Federation routing Worker — DEPLOY BLOCKED (see worker/README.md).
+  // Placeholder bindings; fill project names + zone/routes at cutover.
+  "$schema": "https://developers.cloudflare.com/schema.json",
+  "name": "tsumugu-federation",
+  "main": "index.ts",
+  "compatibility_date": "2026-07-01",
+  "observability": { "enabled": true },
+
+  // Vars — override per environment at deploy time.
+  "vars": {
+    "PRIMARY_HOST": "tsumugu.cc",
+    "LEGACY_HOST": "tsumugu-ed.com"
+  },
+
+  // Service bindings to the two Pages projects. Names are placeholders; set to the
+  // real Pages project names once tsumugu.cc resolves and tsumugu-ed has landed.
+  "services": [
+    { "binding": "CORE", "service": "tsumugu-core-pages" },
+    { "binding": "ED", "service": "tsumugu-ed-pages" }
+  ]
+
+  // Routes (attach at cutover — DO NOT enable before the prereqs in README):
+  // "routes": [
+  //   { "pattern": "tsumugu.cc/*", "zone_name": "tsumugu.cc" },
+  //   { "pattern": "tsumugu-ed.com/*", "zone_name": "tsumugu-ed.com" }
+  // ]
+}

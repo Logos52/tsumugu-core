@@ -1,0 +1,145 @@
+<!doctype html>
+<!--
+  Marking the selected book — accent-treatment studies
+  2026-07-03 · no left edge (fights top-down reading). Same slim cover, five ways
+  to show "this book is open." Apple-minimal, spectral teal-blue, dark toned.
+-->
+<html lang="zh-Hant" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem("tsu-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Tsumugu · marking the book</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --f-ui:"Inter",-apple-system,sans-serif;--f-han:"PingFang TC","Noto Sans TC","Inter",sans-serif;
+  --bg:#F5F6F8;--surface:#FFFFFF;--ink:#1C1C1E;--muted:#6E6E76;--faint:#A2A2AA;--ghost:#C7C7CE;--hair:#E9E9ED;
+  --a:#0C8DAF;--a-wash:rgba(15,160,196,.10);
+  --cover:0 1px 2px rgba(20,22,28,.08),0 6px 16px -10px rgba(20,22,28,.22);
+  --lift:0 3px 6px rgba(20,22,28,.10),0 16px 30px -12px rgba(20,22,28,.30);
+}
+[data-theme="dark"]{
+  --bg:#0B0B0D;--surface:#1A1A1D;--ink:#F2F2F5;--muted:#98989F;--faint:#68686F;--ghost:#48484E;--hair:#2A2A2E;
+  --a:#43ADC6;--a-wash:rgba(67,173,198,.14);
+  --cover:0 1px 2px rgba(0,0,0,.5),0 6px 16px -8px rgba(0,0,0,.7);
+  --lift:0 3px 8px rgba(0,0,0,.6),0 18px 34px -12px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:14px;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+.wrap{max-width:760px;margin:0 auto;padding:30px 22px 90px}
+.head{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+.head h1{font-size:20px;font-weight:700;letter-spacing:-.02em;margin:0}
+.themebtn{margin-left:auto;color:var(--muted);font-size:14px}
+.lede{color:var(--muted);font-size:13px;margin:0 0 26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.cell{border:1px solid var(--hair);border-radius:14px;padding:20px 18px 16px;background:color-mix(in srgb,var(--surface) 40%,var(--bg))}
+.mini{display:flex;gap:13px;align-items:flex-end;height:118px;padding-bottom:4px}
+.lab{margin-top:14px}
+.lab b{font-weight:600;font-size:13px}
+.lab .w{display:block;color:var(--faint);font-size:11.5px;margin-top:3px;line-height:1.45}
+
+/* base cover — clean, no coloured edge */
+.cover{width:60px;height:92px;flex:none;border-radius:2px 5px 5px 2px;background:var(--surface);box-shadow:var(--cover);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:12px 3px 13px}
+.cover .v{writing-mode:vertical-rl;font-family:var(--f-han);font-weight:600;font-size:13.5px;letter-spacing:.1em;color:var(--ink)}
+.cover .lv{font-size:9px;color:var(--faint);font-weight:600}
+.cover .bar{position:absolute;left:8px;right:6px;bottom:7px;height:2px;border-radius:2px;background:var(--hair)}
+.cover .bar i{display:block;height:100%;background:var(--ghost);border-radius:2px}
+
+/* ── A · title in accent ── */
+.m-title .cover.on .v{color:var(--a)}
+.m-title .cover.on .lv{color:var(--a)}
+.m-title .cover.on .bar i{background:var(--a)}
+
+/* ── B · top rule ── */
+.m-top .cover.on{box-shadow:var(--lift);transform:translateY(-4px)}
+.m-top .cover.on::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--a);border-radius:2px 5px 0 0}
+.m-top .cover.on .bar i{background:var(--a)}
+
+/* ── C · bookmark tab (書籤) at the top ── */
+.m-tab .cover.on{box-shadow:var(--lift);transform:translateY(-4px)}
+.m-tab .cover.on::after{content:"";position:absolute;top:-9px;right:12px;width:8px;height:16px;background:var(--a);border-radius:2px 2px 0 0;clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%)}
+.m-tab .cover.on .bar i{background:var(--a)}
+
+/* ── D · ring ── */
+.m-ring .cover.on{outline:1.5px solid var(--a);outline-offset:2px;border-radius:2px 5px 5px 2px}
+.m-ring .cover.on .bar i{background:var(--a)}
+
+/* ── E · lift only (no colour) ── */
+.m-lift .cover.on{box-shadow:var(--lift);transform:translateY(-10px)}
+
+/* ── F · accent wash ── */
+.m-wash .cover.on{background:color-mix(in srgb,var(--a) 8%,var(--surface))}
+.m-wash .cover.on .v{color:var(--a)}
+.m-wash .cover.on .bar i{background:var(--a)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head"><h1>Marking the open book</h1><button class="themebtn" id="themeBtn">☾</button></div>
+  <p class="lede">Same slim cover, no left edge. The middle book is “open.” Which mark reads best — light and dark?</p>
+  <div class="grid">
+
+    <div class="cell m-title">
+      <div class="mini">
+        <div class="cover"><span class="v">第一冊</span><span class="lv">A1</span><span class="bar"><i style="width:100%"></i></span></div>
+        <div class="cover on"><span class="v">第二冊</span><span class="lv">A2</span><span class="bar"><i style="width:40%"></i></span></div>
+        <div class="cover"><span class="v">第三冊</span><span class="lv">B1</span><span class="bar"><i style="width:0"></i></span></div>
+      </div>
+      <div class="lab"><b>A · Title in accent</b><span class="w">The title turns teal. No line anywhere. The most minimal.</span></div>
+    </div>
+
+    <div class="cell m-top">
+      <div class="mini">
+        <div class="cover"><span class="v">第一冊</span><span class="lv">A1</span><span class="bar"><i style="width:100%"></i></span></div>
+        <div class="cover on"><span class="v">第二冊</span><span class="lv">A2</span><span class="bar"><i style="width:40%"></i></span></div>
+        <div class="cover"><span class="v">第三冊</span><span class="lv">B1</span><span class="bar"><i style="width:0"></i></span></div>
+      </div>
+      <div class="lab"><b>B · Top rule</b><span class="w">A thin accent line across the top + the book lifts. Reads top-down.</span></div>
+    </div>
+
+    <div class="cell m-tab">
+      <div class="mini">
+        <div class="cover"><span class="v">第一冊</span><span class="lv">A1</span><span class="bar"><i style="width:100%"></i></span></div>
+        <div class="cover on"><span class="v">第二冊</span><span class="lv">A2</span><span class="bar"><i style="width:40%"></i></span></div>
+        <div class="cover"><span class="v">第三冊</span><span class="lv">B1</span><span class="bar"><i style="width:0"></i></span></div>
+      </div>
+      <div class="lab"><b>C · Bookmark 書籤</b><span class="w">A small ribbon peeks from the top — the one genuinely bookish touch.</span></div>
+    </div>
+
+    <div class="cell m-ring">
+      <div class="mini">
+        <div class="cover"><span class="v">第一冊</span><span class="lv">A1</span><span class="bar"><i style="width:100%"></i></span></div>
+        <div class="cover on"><span class="v">第二冊</span><span class="lv">A2</span><span class="bar"><i style="width:40%"></i></span></div>
+        <div class="cover"><span class="v">第三冊</span><span class="lv">B1</span><span class="bar"><i style="width:0"></i></span></div>
+      </div>
+      <div class="lab"><b>D · Ring</b><span class="w">A thin outline frames the book — the familiar selection ring.</span></div>
+    </div>
+
+    <div class="cell m-lift">
+      <div class="mini">
+        <div class="cover"><span class="v">第一冊</span><span class="lv">A1</span><span class="bar"><i style="width:100%"></i></span></div>
+        <div class="cover on"><span class="v">第二冊</span><span class="lv">A2</span><span class="bar"><i style="width:40%"></i></span></div>
+        <div class="cover"><span class="v">第三冊</span><span class="lv">B1</span><span class="bar"><i style="width:0"></i></span></div>
+      </div>
+      <div class="lab"><b>E · Lift only</b><span class="w">The book pulls off the shelf — no colour at all. Quietest.</span></div>
+    </div>
+
+    <div class="cell m-wash">
+      <div class="mini">
+        <div class="cover"><span class="v">第一冊</span><span class="lv">A1</span><span class="bar"><i style="width:100%"></i></span></div>
+        <div class="cover on"><span class="v">第二冊</span><span class="lv">A2</span><span class="bar"><i style="width:40%"></i></span></div>
+        <div class="cover"><span class="v">第三冊</span><span class="lv">B1</span><span class="bar"><i style="width:0"></i></span></div>
+      </div>
+      <div class="lab"><b>F · Accent wash</b><span class="w">The whole cover takes a faint teal tint. Soft, ambient.</span></div>
+    </div>
+
+  </div>
+</div>
+<script>
+var r=document.documentElement,b=document.getElementById("themeBtn");if(!r.getAttribute("data-theme"))r.setAttribute("data-theme","light");
+function s(){b.textContent=r.getAttribute("data-theme")==="dark"?"☀":"☾";}s();
+b.addEventListener("click",function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";r.setAttribute("data-theme",n);try{localStorage.setItem("tsu-theme",n);}catch(e){}s();});
+</script>
+</body>
+</html>

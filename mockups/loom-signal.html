@@ -1,0 +1,1070 @@
+<!-- @dsCard group="Tsumugu Core · Reader" -->
+<!DOCTYPE html>
+<html lang="vi" data-palette="loom-signal" data-theme="light" data-rail="vi" data-script="trad" data-reading="hv" data-gloss="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tsumugu Core · Loom &amp; Signal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@latest/style.css" rel="stylesheet">
+<style>
+/* ============================================================
+   LOOM & SIGNAL — Tsumugu Core reader
+   Two-layer token system: RAW palette  ->  SEMANTIC tokens.
+   Palette swap = one [data-palette] attr; light/dark orthogonal.
+   ============================================================ */
+
+/* ---------- RAW PALETTE: Loom & Signal (native, default) ---------- */
+:root,
+[data-palette="loom-signal"][data-theme="light"]{
+  --r-base:#FBFCFD; --r-sunk:#F2F5F8; --r-card:#FFFFFF;
+  --r-hair:#E2E8EF; --r-border:#CBD4DE;
+  --r-ink:#1B2530; --r-ink-muted:#5A6675; --r-ink-faint:#8B97A6;
+  --r-signal:#6D4AE0; --r-signal-tint:#EEE9FC; --r-on-signal:#FFFFFF;
+  --r-rail:#3E6E8C;                       /* VI-rail / Hán-Việt ruby ink */
+  --r-new:#C2410C; --r-learning:#B7791F;  /* status warms */
+  --r-shadow:rgba(27,37,48,.10); --r-shadow-strong:rgba(27,37,48,.18);
+}
+[data-palette="loom-signal"][data-theme="dark"]{
+  --r-base:#0E1217; --r-sunk:#141A21; --r-card:#1A2129;
+  --r-hair:#283139; --r-border:#384450;
+  --r-ink:#E6EBF1; --r-ink-muted:#A2AEBB; --r-ink-faint:#6C7884;
+  --r-signal:#9B82F5; --r-signal-tint:#221C3A; --r-on-signal:#0E1217;
+  --r-rail:#7FB0CC;
+  --r-new:#F08A4B; --r-learning:#E0B05A;
+  --r-shadow:rgba(0,0,0,.45); --r-shadow-strong:rgba(0,0,0,.62);
+}
+
+/* ---------- ALT PALETTE: Graphite (mono-cool, violet only) ---------- */
+[data-palette="graphite"][data-theme="light"]{
+  --r-base:#FAFAFB; --r-sunk:#EFEFF1; --r-card:#FFFFFF;
+  --r-hair:#E4E4E8; --r-border:#CACAD2;
+  --r-ink:#1E1E22; --r-ink-muted:#5C5C66; --r-ink-faint:#8E8E98;
+  --r-signal:#6D4AE0; --r-signal-tint:#ECE8FB; --r-on-signal:#FFFFFF;
+  --r-rail:#4D5566;
+  --r-new:#C2410C; --r-learning:#B7791F;
+  --r-shadow:rgba(20,20,24,.10); --r-shadow-strong:rgba(20,20,24,.18);
+}
+[data-palette="graphite"][data-theme="dark"]{
+  --r-base:#101012; --r-sunk:#17171A; --r-card:#1D1D21;
+  --r-hair:#2A2A2F; --r-border:#3A3A41;
+  --r-ink:#EAEAEE; --r-ink-muted:#A4A4AE; --r-ink-faint:#6E6E78;
+  --r-signal:#9B82F5; --r-signal-tint:#211C36; --r-on-signal:#0E0E10;
+  --r-rail:#9AA4B5;
+  --r-new:#F08A4B; --r-learning:#E0B05A;
+  --r-shadow:rgba(0,0,0,.5); --r-shadow-strong:rgba(0,0,0,.66);
+}
+
+/* ---------- ALT PALETTE: Sea Glass (cool teal-leaning gray) ---------- */
+[data-palette="seaglass"][data-theme="light"]{
+  --r-base:#F8FCFC; --r-sunk:#ECF4F4; --r-card:#FFFFFF;
+  --r-hair:#DAE9E9; --r-border:#BFD6D6;
+  --r-ink:#16282B; --r-ink-muted:#4E6669; --r-ink-faint:#86A0A2;
+  --r-signal:#5B4BD6; --r-signal-tint:#E9E6FB; --r-on-signal:#FFFFFF;
+  --r-rail:#2E7D8C;
+  --r-new:#BF3D0B; --r-learning:#A87014;
+  --r-shadow:rgba(22,40,43,.10); --r-shadow-strong:rgba(22,40,43,.18);
+}
+[data-palette="seaglass"][data-theme="dark"]{
+  --r-base:#091415; --r-sunk:#0E1C1D; --r-card:#13262A;
+  --r-hair:#22383B; --r-border:#33504F;
+  --r-ink:#E2EFF0; --r-ink-muted:#9BB4B6; --r-ink-faint:#688082;
+  --r-signal:#9B86F6; --r-signal-tint:#1E1A35; --r-on-signal:#091415;
+  --r-rail:#6EC0CF;
+  --r-new:#F0894A; --r-learning:#E2B45C;
+  --r-shadow:rgba(0,0,0,.5); --r-shadow-strong:rgba(0,0,0,.66);
+}
+
+/* ---------- ALT PALETTE: Ironwood (warm-cool slate, violet kept) ---------- */
+[data-palette="ironwood"][data-theme="light"]{
+  --r-base:#FBFAF9; --r-sunk:#F1EFEC; --r-card:#FFFFFF;
+  --r-hair:#E6E2DD; --r-border:#CFC9C1;
+  --r-ink:#26221E; --r-ink-muted:#665E55; --r-ink-faint:#9A9087;
+  --r-signal:#6D4AE0; --r-signal-tint:#EEE9FC; --r-on-signal:#FFFFFF;
+  --r-rail:#5C6B57;
+  --r-new:#C2410C; --r-learning:#B7791F;
+  --r-shadow:rgba(38,34,30,.10); --r-shadow-strong:rgba(38,34,30,.18);
+}
+[data-palette="ironwood"][data-theme="dark"]{
+  --r-base:#13110F; --r-sunk:#1A1714; --r-card:#211D19;
+  --r-hair:#2F2A24; --r-border:#403930;
+  --r-ink:#ECE7E0; --r-ink-muted:#ABA398; --r-ink-faint:#766E64;
+  --r-signal:#9B82F5; --r-signal-tint:#231C33; --r-on-signal:#13110F;
+  --r-rail:#9CAE93;
+  --r-new:#F08A4B; --r-learning:#E0B05A;
+  --r-shadow:rgba(0,0,0,.5); --r-shadow-strong:rgba(0,0,0,.66);
+}
+
+/* ---------- SEMANTIC TOKENS (everything below references these) ---------- */
+:root{
+  --base:var(--r-base); --sunk:var(--r-sunk); --card:var(--r-card);
+  --hair:var(--r-hair); --border:var(--r-border);
+  --ink:var(--r-ink); --muted:var(--r-ink-muted); --faint:var(--r-ink-faint);
+  --signal:var(--r-signal); --signal-tint:var(--r-signal-tint); --on-signal:var(--r-on-signal);
+  --rail:var(--r-rail);
+  --new:var(--r-new); --learning:var(--r-learning);
+  --shadow:var(--r-shadow); --shadow-strong:var(--r-shadow-strong);
+
+  --font-display:"Geist","Inter Display","Inter",-apple-system,system-ui,sans-serif;
+  --font-body:"Inter",-apple-system,system-ui,sans-serif;
+  --font-cjk:"LXGW WenKai TC","Songti TC","Noto Serif TC","PingFang TC",serif;
+  --font-cjk-dict:"Kaiti TC","Kaiti","STKaiti","LXGW WenKai TC","Songti TC",serif;
+
+  --measure:38rem;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --spring:cubic-bezier(.34,1.56,.64,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-body);
+  background:var(--base);
+  color:var(--ink);
+  letter-spacing:-.006em;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  font-size:15px;
+  min-height:100vh;
+  transition:background .25s var(--ease),color .25s var(--ease);
+}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:var(--signal-tint);color:var(--ink)}
+
+/* ============================================================
+   SHUTTLE LINE — the loom in motion (load / rail-switch flash)
+   ============================================================ */
+#shuttle{
+  position:fixed;top:0;left:0;height:2px;width:0;
+  background:var(--signal);z-index:120;
+  box-shadow:0 0 8px var(--signal);
+  opacity:0;pointer-events:none;
+}
+#shuttle.run{animation:shuttle 620ms var(--ease) forwards}
+@keyframes shuttle{
+  0%{width:0;opacity:1}
+  70%{width:100%;opacity:1}
+  100%{width:100%;opacity:0}
+}
+
+/* ============================================================
+   CHROME — header + instrument strip
+   ============================================================ */
+.chrome{
+  position:sticky;top:0;z-index:60;
+  transition:transform .2s var(--ease);
+}
+.chrome.recede{transform:translateY(calc(-100% + 6px))}
+.chrome.recede::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:6px;
+  background:var(--signal);cursor:pointer;
+}
+
+/* recede peek bar (always one tap back) */
+.peek{
+  position:fixed;top:0;left:0;right:0;height:6px;
+  background:var(--signal);z-index:55;cursor:pointer;
+  opacity:0;pointer-events:none;transition:opacity .2s var(--ease);
+}
+.peek.show{opacity:1;pointer-events:auto}
+
+header.bar{
+  height:52px;
+  background:var(--sunk);
+  border-bottom:1px solid var(--hair);
+  display:flex;align-items:center;
+  padding:0 18px;gap:14px;
+}
+.brand{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.knot{width:18px;height:18px;flex-shrink:0}
+.knot path{stroke:var(--signal);stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.knot circle{fill:var(--signal)}
+.wordmark{
+  font-family:var(--font-display);font-weight:600;font-size:16px;
+  letter-spacing:-.02em;color:var(--ink);
+}
+.wordmark .core{color:var(--signal)}
+.bar-spacer{flex:1}
+
+/* rail switcher — the ONLY colored thing in the chrome */
+.railsw{
+  display:flex;align-items:stretch;
+  background:var(--base);
+  border:1px solid var(--hair);
+  border-radius:9px;padding:3px;gap:3px;
+  flex-shrink:0;
+}
+.railsw button{
+  font-family:var(--font-display);
+  font-weight:500;font-size:12.5px;letter-spacing:-.01em;
+  padding:5px 13px;border-radius:6px;color:var(--muted);
+  display:flex;flex-direction:column;align-items:center;gap:0;line-height:1.25;
+  position:relative;transition:color .14s var(--ease),background .14s var(--ease);
+}
+.railsw button .sub{font-family:var(--font-body);font-size:9px;font-weight:450;letter-spacing:.02em;color:var(--faint);transition:color .14s}
+.railsw button[aria-pressed="true"]{
+  background:var(--signal-tint);color:var(--signal);
+}
+.railsw button[aria-pressed="true"] .sub{color:var(--signal)}
+.railsw button[aria-pressed="true"]::after{
+  content:"";position:absolute;left:11px;right:11px;bottom:1px;height:2px;
+  background:var(--signal);border-radius:2px;
+}
+
+.overflow{
+  width:32px;height:32px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:18px;line-height:1;flex-shrink:0;
+  transition:background .14s,color .14s;border:1px solid transparent;
+}
+.overflow:hover{background:var(--base);color:var(--ink);border-color:var(--hair)}
+
+/* ----- instrument strip ----- */
+.strip{
+  height:42px;background:var(--base);
+  border-bottom:1px solid var(--hair);
+  display:flex;align-items:center;gap:10px;
+  padding:0 18px;overflow-x:auto;scrollbar-width:none;
+}
+.strip::-webkit-scrollbar{display:none}
+.seg{
+  display:flex;align-items:center;
+  background:var(--sunk);
+  border:1px solid var(--hair);
+  border-radius:7px;padding:2px;gap:1px;flex-shrink:0;
+}
+.seg button{
+  font-family:var(--font-display);
+  font-size:11.5px;font-weight:500;letter-spacing:-.005em;
+  padding:3.5px 10px;border-radius:5px;color:var(--muted);
+  white-space:nowrap;transition:color .12s var(--ease),background .12s var(--ease);
+}
+.seg button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 2px var(--shadow)}
+.seg .cjk{font-family:var(--font-cjk)}
+.strip-dot{width:3px;height:3px;border-radius:50%;background:var(--border);flex-shrink:0}
+.strip-spacer{flex:1}
+.strip-collapse{
+  font-size:11px;color:var(--faint);padding:4px 8px;border-radius:6px;flex-shrink:0;
+  transition:color .12s,background .12s;display:flex;align-items:center;gap:5px;
+}
+.strip-collapse:hover{color:var(--muted);background:var(--sunk)}
+
+/* ============================================================
+   READING — content-first column on bare stock
+   ============================================================ */
+main{padding:0 20px 30vh}
+.reader{max-width:var(--measure);margin:0 auto}
+
+.read-head{padding:34px 0 0}
+.titleline{
+  font-family:var(--font-cjk);font-size:30px;font-weight:400;
+  color:var(--ink);letter-spacing:.01em;line-height:1.3;
+}
+.title-rom{
+  font-family:var(--font-display);font-size:13px;font-weight:450;
+  color:var(--faint);letter-spacing:.01em;margin-top:5px;font-style:italic;
+}
+.title-rom .vi-title{display:none}
+[data-gloss="vi"] .title-rom .vi-title{display:inline}
+[data-gloss="vi"] .title-rom .en-title{display:none}
+
+.metarow{
+  display:flex;flex-wrap:wrap;align-items:center;gap:7px;
+  margin-top:14px;padding-bottom:14px;
+  border-bottom:1px solid var(--hair);
+}
+.chip{
+  font-family:var(--font-body);font-size:11px;font-weight:500;letter-spacing:.01em;
+  color:var(--muted);background:var(--sunk);border:1px solid var(--hair);
+  padding:3px 9px;border-radius:5px;font-variant-numeric:tabular-nums;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.chip.binding .cjk{font-family:var(--font-cjk)}
+.chip.origin{color:var(--rail);border-color:color-mix(in srgb,var(--rail) 30%,var(--hair))}
+.chip-vi{display:none}
+[data-gloss="vi"] .chip-vi{display:inline-flex}
+[data-gloss="vi"] .chip-en{display:none}
+.count-chip{
+  margin-left:auto;display:inline-flex;align-items:center;gap:11px;
+  font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;
+  background:none;border:none;padding:0;
+}
+.count-chip .cnt{display:inline-flex;align-items:center;gap:5px}
+.dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.dot.new{background:var(--new)}
+.dot.learning{background:var(--learning)}
+
+.legend{
+  font-size:11px;color:var(--faint);margin-top:13px;line-height:1.6;
+}
+.legend .lg-vi{display:none}
+[data-gloss="vi"] .legend .lg-vi{display:inline}
+[data-gloss="vi"] .legend .lg-en{display:none}
+.legend u{text-decoration:none;border-bottom:2px solid var(--new);padding-bottom:1px}
+.legend u.lrn{border-color:var(--learning)}
+
+/* ----- the prose ----- */
+.passage{
+  font-family:var(--font-cjk);
+  margin-top:30px;
+  font-size:25px;
+  line-height:2.35;
+  color:var(--ink);
+  letter-spacing:.01em;
+}
+.sentence{display:inline}
+.tok{
+  display:inline-flex;flex-direction:column;align-items:center;
+  vertical-align:bottom;cursor:pointer;
+  position:relative;padding:0 .5px;
+  transition:color .14s var(--ease);
+}
+.tok .ruby{
+  font-family:var(--font-body);
+  font-size:11px;font-weight:450;line-height:1.1;
+  color:var(--faint);letter-spacing:0;
+  height:14px;margin-bottom:1px;white-space:nowrap;
+  transition:opacity .14s var(--ease),color .14s var(--ease);
+}
+[data-rail="vi"] .tok .ruby{color:var(--rail);font-weight:500}
+.tok .han{
+  display:inline-block;position:relative;
+  padding-bottom:3px;
+}
+/* status = underline channel ONLY */
+.tok[data-st="new"] .han{box-shadow:inset 0 -2px 0 var(--new)}
+.tok[data-st="learning"] .han{box-shadow:inset 0 -2px 0 var(--learning)}
+.tok[data-st="known"] .han{box-shadow:none}
+/* new target = subtle violet-tint wash behind the glyph block */
+.tok[data-nw="true"] .han{
+  background:var(--signal-tint);border-radius:4px;
+  padding:0 2px 3px;margin:0 -1px;
+}
+.tok:hover .han{color:var(--signal)}
+.tok:focus-visible{outline:2px solid var(--signal);outline-offset:2px;border-radius:4px}
+.tok.flash .han{animation:tapflash .26s var(--ease)}
+@keyframes tapflash{
+  0%{box-shadow:inset 0 -2px 0 var(--signal)}
+  50%{box-shadow:inset 0 -100% 0 var(--signal-tint),inset 0 -2px 0 var(--signal)}
+  100%{}
+}
+.tok.active .han{color:var(--signal)}
+
+/* gloss-toggle: when gloss off, ruby hides but han stays; reading toggle hides ruby */
+[data-reading="off"] .tok .ruby{opacity:0;height:6px}
+
+.punct{
+  font-family:var(--font-cjk);font-size:25px;color:var(--ink);
+  vertical-align:bottom;display:inline-block;padding-bottom:3px;
+  cursor:default;
+}
+
+.read-foot{
+  margin-top:40px;padding-top:18px;border-top:1px solid var(--hair);
+  font-size:12px;color:var(--faint);display:flex;align-items:center;gap:8px;
+}
+.read-foot .ft-vi{display:none}
+[data-gloss="vi"] .read-foot .ft-vi{display:inline}
+[data-gloss="vi"] .read-foot .ft-en{display:none}
+
+/* ============================================================
+   TAP CARD — popover (desktop) / bottom-sheet (mobile)
+   ============================================================ */
+.scrim{
+  position:fixed;inset:0;z-index:90;
+  background:transparent;opacity:0;pointer-events:none;
+  transition:opacity .18s var(--ease);
+}
+.scrim.show{opacity:1;pointer-events:auto}
+@media(max-width:719px){
+  .scrim.show{background:color-mix(in srgb,var(--ink) 28%,transparent)}
+}
+
+.card{
+  position:fixed;z-index:100;
+  width:340px;max-width:calc(100vw - 28px);
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow:0 12px 40px var(--shadow-strong),0 2px 8px var(--shadow);
+  padding:18px 18px 16px;
+  opacity:0;pointer-events:none;
+  transform:translateY(8px) scale(.985);
+  transform-origin:top center;
+  transition:opacity .16s var(--ease),transform .18s var(--ease);
+}
+.card.show{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
+.card.show.bridge-rise{animation:rise .34s var(--spring)}
+@keyframes rise{
+  0%{transform:translateY(14px) scale(.97);opacity:0}
+  100%{transform:translateY(0) scale(1);opacity:1}
+}
+
+.card-top{display:flex;align-items:flex-start;gap:14px}
+.card-glyph{
+  font-family:var(--font-cjk-dict);
+  font-size:54px;line-height:1;color:var(--ink);flex-shrink:0;
+  letter-spacing:0;padding-top:2px;
+}
+.card-head{flex:1;min-width:0;padding-top:3px}
+.card-reading{
+  font-family:var(--font-display);font-size:21px;font-weight:600;
+  color:var(--rail);letter-spacing:-.01em;line-height:1.1;
+}
+[data-rail="en"] .card-reading{color:var(--ink)}
+.card-py{
+  font-family:var(--font-body);font-size:12px;color:var(--faint);
+  margin-top:3px;font-variant-numeric:tabular-nums;
+}
+.card-pos{
+  display:inline-block;margin-top:7px;
+  font-size:10.5px;font-weight:500;letter-spacing:.03em;text-transform:uppercase;
+  color:var(--muted);background:var(--sunk);border:1px solid var(--hair);
+  padding:2px 7px;border-radius:4px;
+}
+.card-gloss{
+  font-size:14.5px;color:var(--ink);margin-top:13px;line-height:1.45;
+}
+.card-close{
+  position:absolute;top:11px;right:11px;width:26px;height:26px;border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--faint);font-size:16px;transition:background .12s,color .12s;
+}
+.card-close:hover{background:var(--sunk);color:var(--ink)}
+
+/* ----- the bridge block (the moat) ----- */
+.bridge{
+  margin-top:15px;position:relative;
+  border-left:2px solid var(--rail);
+  background:var(--signal-tint);
+  border-radius:0 9px 9px 0;
+  padding:12px 13px 13px 14px;
+  opacity:0;transform:translateX(-4px);
+}
+.card.show .bridge{animation:bridge-in .28s var(--ease) .12s forwards}
+@keyframes bridge-in{to{opacity:1;transform:translateX(0)}}
+.bridge-eyebrow{
+  font-family:var(--font-body);font-size:9.5px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--rail);line-height:1.4;display:flex;align-items:center;gap:6px;
+}
+.bridge-eyebrow .dia{color:var(--signal)}
+.bridge-eyebrow .sub{color:var(--faint);font-weight:500;text-transform:none;letter-spacing:.02em}
+.cognates{margin-top:10px;display:flex;flex-direction:column;gap:7px}
+.cog{
+  display:flex;align-items:baseline;gap:8px;font-size:13.5px;
+}
+.cog .vi{font-family:var(--font-body);color:var(--ink);min-width:88px;letter-spacing:-.005em}
+.cog .vi .shared{font-weight:700;color:var(--rail)}
+.cog .vi .other{font-weight:450;color:var(--faint)}
+.cog .zh{font-family:var(--font-cjk);font-size:15px;color:var(--muted)}
+.cog .zh .shared{color:var(--rail);font-weight:500}
+.cog .en{font-family:var(--font-body);font-size:11.5px;color:var(--faint);margin-left:auto;font-style:italic}
+.bridge-close{
+  margin-top:11px;font-size:12.5px;color:var(--muted);line-height:1.45;
+  font-family:var(--font-body);
+}
+.bridge-close .stitched{font-family:var(--font-cjk);color:var(--rail);font-weight:500}
+.bridge-mech{
+  margin-top:11px;padding-top:10px;border-top:1px solid color-mix(in srgb,var(--rail) 22%,transparent);
+  font-size:11px;color:var(--faint);line-height:1.5;
+  font-family:var(--font-body);
+}
+.bridge-mech .cjk{font-family:var(--font-cjk);color:var(--muted)}
+
+/* EN-rail component note (no "you already know" claim) */
+.compnote{
+  margin-top:15px;position:relative;
+  border-left:2px solid var(--border);
+  background:var(--sunk);
+  border-radius:0 9px 9px 0;
+  padding:12px 13px 13px 14px;
+  font-size:12.5px;color:var(--muted);line-height:1.5;
+}
+.compnote .cn-eyebrow{
+  font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:8px;
+}
+.compnote .cjk{font-family:var(--font-cjk);color:var(--ink)}
+.compnote b{color:var(--ink);font-weight:600}
+
+/* ----- card actions ----- */
+.card-actions{
+  display:flex;align-items:center;gap:8px;margin-top:15px;
+}
+.act{
+  font-family:var(--font-display);font-size:12.5px;font-weight:500;letter-spacing:-.005em;
+  padding:7px 13px;border-radius:8px;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:background .14s var(--ease),color .14s var(--ease),border-color .14s var(--ease),transform .1s var(--ease);
+}
+.act:active{transform:scale(.97)}
+.act.primary{background:var(--signal);color:var(--on-signal)}
+.act.primary:hover{filter:brightness(1.06)}
+.act.ghost{border:1px solid var(--border);color:var(--muted);background:var(--card)}
+.act.ghost:hover{border-color:var(--rail);color:var(--rail)}
+.act.ghost.done{border-color:var(--signal);color:var(--signal);background:var(--signal-tint)}
+.act.link{
+  margin-left:auto;color:var(--muted);font-family:var(--font-cjk);font-size:13px;
+  padding:7px 4px;
+}
+.act.link .arrow{font-family:var(--font-display);font-weight:600;margin-left:1px}
+.act.link:hover{color:var(--signal)}
+
+/* ============================================================
+   PALETTE MENU (popover from "···")
+   ============================================================ */
+.menu{
+  position:fixed;top:54px;right:14px;z-index:110;
+  width:236px;background:var(--card);border:1px solid var(--border);
+  border-radius:12px;box-shadow:0 12px 36px var(--shadow-strong);
+  padding:9px;opacity:0;pointer-events:none;transform:translateY(-6px) scale(.98);
+  transform-origin:top right;transition:opacity .15s var(--ease),transform .15s var(--ease);
+}
+.menu.show{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
+.menu-label{
+  font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--faint);padding:6px 8px 6px;
+}
+.menu-row{
+  display:flex;align-items:center;gap:9px;width:100%;
+  padding:8px;border-radius:8px;text-align:left;
+  transition:background .12s var(--ease);
+}
+.menu-row:hover{background:var(--sunk)}
+.menu-row[aria-pressed="true"]{background:var(--signal-tint)}
+.swatches{display:flex;gap:0;flex-shrink:0;border-radius:5px;overflow:hidden;border:1px solid var(--hair)}
+.swatches span{width:13px;height:18px;display:block}
+.menu-row .name{font-family:var(--font-display);font-size:12.5px;font-weight:500;color:var(--ink);flex:1}
+.menu-row .tick{font-size:13px;color:var(--signal);opacity:0;font-weight:700}
+.menu-row[aria-pressed="true"] .tick{opacity:1}
+.menu-sep{height:1px;background:var(--hair);margin:7px 4px}
+.menu-toggle{
+  display:flex;align-items:center;justify-content:space-between;width:100%;
+  padding:8px;border-radius:8px;transition:background .12s;
+}
+.menu-toggle:hover{background:var(--sunk)}
+.menu-toggle .name{font-family:var(--font-display);font-size:12.5px;font-weight:500;color:var(--ink)}
+.menu-toggle .val{font-size:11.5px;color:var(--muted);display:flex;align-items:center;gap:6px}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:719px){
+  body{font-size:15px}
+  header.bar{padding:0 12px;gap:8px}
+  .strip{padding:0 12px;gap:8px}
+  .railsw button{padding:5px 10px}
+  main{padding:0 16px 32vh}
+  .passage{font-size:23px;line-height:2.2}
+  .titleline{font-size:25px}
+  .read-head{padding:24px 0 0}
+
+  /* card -> bottom sheet */
+  .card{
+    left:0;right:0;bottom:0;top:auto !important;
+    width:100%;max-width:100%;
+    border-radius:18px 18px 0 0;
+    border-bottom:none;
+    transform:translateY(100%);
+    padding:20px 18px calc(18px + env(safe-area-inset-bottom));
+  }
+  .card.show{transform:translateY(0)}
+  .card.show.bridge-rise{animation:sheet-rise .34s var(--spring)}
+  @keyframes sheet-rise{0%{transform:translateY(100%)}100%{transform:translateY(0)}}
+  .card::before{
+    content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);
+    width:36px;height:4px;border-radius:2px;background:var(--border);
+  }
+  .card-glyph{font-size:46px}
+  .menu{left:14px;right:14px;top:auto;bottom:14px;width:auto;transform-origin:bottom center}
+}
+
+@media(min-width:1200px){
+  .reader{max-width:42rem}
+  .passage{font-size:26px}
+}
+</style>
+</head>
+<body>
+
+<div id="shuttle"></div>
+<div class="peek" id="peek" title="Show controls"></div>
+
+<div class="chrome" id="chrome">
+  <header class="bar">
+    <div class="brand">
+      <svg class="knot" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 9 C6 5, 11 5, 12 9 C13 13, 18 13, 18 9 C18 5, 13 5, 12 9 C11 13, 6 13, 6 9 Z"/>
+        <path d="M12 9 L12 19"/>
+        <circle cx="12" cy="9" r="1.5"/>
+      </svg>
+      <span class="wordmark">Tsumugu<span class="core"> Core</span></span>
+    </div>
+
+    <div class="bar-spacer"></div>
+
+    <div class="railsw" role="group" aria-label="Học viên / Learner rail">
+      <button id="rail-en" aria-pressed="false" onclick="setRail('en')">
+        EN<span class="sub">English learner</span>
+      </button>
+      <button id="rail-vi" aria-pressed="true" onclick="setRail('vi')">
+        VI<span class="sub">Vietnamese learner</span>
+      </button>
+    </div>
+
+    <button class="overflow" id="ovbtn" aria-label="More" onclick="toggleMenu(event)">···</button>
+  </header>
+
+  <div class="strip" id="strip">
+    <!-- script -->
+    <div class="seg" role="group" aria-label="Script">
+      <button class="cjk" id="sc-trad" aria-pressed="true" onclick="setScript('trad')">繁</button>
+      <button class="cjk" id="sc-simp" aria-pressed="false" onclick="setScript('simp')">简</button>
+    </div>
+    <span class="strip-dot"></span>
+    <!-- reading (rail-aware) -->
+    <div class="seg" role="group" aria-label="Reading">
+      <button id="rd-main" aria-pressed="true" onclick="setReading('hv')">Hán-Việt</button>
+      <button class="cjk" id="rd-zh" aria-pressed="false" onclick="setReading('zhuyin')">ㄅ</button>
+      <button id="rd-off" aria-pressed="false" onclick="setReading('off')">ẩn</button>
+    </div>
+    <span class="strip-dot"></span>
+    <!-- gloss -->
+    <div class="seg" role="group" aria-label="Gloss">
+      <button class="cjk" id="gl-en" aria-pressed="false" onclick="setGloss('en')">EN</button>
+      <button id="gl-vi" aria-pressed="true" onclick="setGloss('vi')">VI</button>
+    </div>
+
+    <div class="strip-spacer"></div>
+    <button class="strip-collapse" onclick="recede()" title="Ẩn thanh công cụ">
+      <span id="strip-collapse-label">Ẩn</span> ↑
+    </button>
+  </div>
+</div>
+
+<main>
+  <article class="reader">
+    <div class="read-head">
+      <h1 class="titleline" id="title-zh">山中的客棧</h1>
+      <div class="title-rom">
+        <span class="en-title">Sơn trung đích khách sạn · The Inn in the Mountains</span>
+        <span class="vi-title">Sơn trung đích khách sạn · Quán trọ trong núi</span>
+      </div>
+
+      <div class="metarow">
+        <span class="chip">B1 · TOCFL 3</span>
+        <span class="chip binding"><span class="cjk">當代中文課程</span> · B4 L3</span>
+        <span class="chip origin chip-vi">nguyên tác</span>
+        <span class="chip origin chip-en">AI-original</span>
+        <span class="chip chip-vi">3 từ mới</span>
+        <span class="chip chip-en">3 new</span>
+        <span class="count-chip">
+          <span class="cnt"><span class="dot new"></span><span id="cnt-new">3</span></span>
+          <span class="cnt"><span class="dot learning"></span><span id="cnt-learn">4</span></span>
+        </span>
+      </div>
+
+      <p class="legend">
+        <span class="lg-vi"><u>gạch cam</u> = từ mới · <u class="lrn">gạch hổ phách</u> = đang học · chữ không gạch = đã biết · chạm một từ để xem nghĩa.</span>
+        <span class="lg-en"><u>orange</u> = new · <u class="lrn">amber</u> = learning · unmarked = known · tap a word for its gloss.</span>
+      </p>
+    </div>
+
+    <div class="passage" id="passage"><!-- rendered by JS --></div>
+
+    <div class="read-foot">
+      <span class="ft-vi">≈ 2 phút đọc · nguyên tác do AI tạo, neo theo 當代中文課程 B4 L3</span>
+      <span class="ft-en">≈ 2 min read · AI-original, bound to 當代中文課程 B4 L3</span>
+    </div>
+  </article>
+</main>
+
+<!-- palette / theme menu -->
+<div class="menu" id="menu" role="menu" aria-label="Appearance">
+  <div class="menu-label">Bảng màu · Palette</div>
+  <button class="menu-row" aria-pressed="true" onclick="setPalette('loom-signal')">
+    <span class="swatches"><span style="background:#FBFCFD"></span><span style="background:#3E6E8C"></span><span style="background:#6D4AE0"></span><span style="background:#C2410C"></span></span>
+    <span class="name">Loom &amp; Signal</span><span class="tick">✓</span>
+  </button>
+  <button class="menu-row" aria-pressed="false" onclick="setPalette('graphite')">
+    <span class="swatches"><span style="background:#FAFAFB"></span><span style="background:#4D5566"></span><span style="background:#6D4AE0"></span><span style="background:#C2410C"></span></span>
+    <span class="name">Graphite</span><span class="tick">✓</span>
+  </button>
+  <button class="menu-row" aria-pressed="false" onclick="setPalette('seaglass')">
+    <span class="swatches"><span style="background:#F8FCFC"></span><span style="background:#2E7D8C"></span><span style="background:#5B4BD6"></span><span style="background:#BF3D0B"></span></span>
+    <span class="name">Sea Glass</span><span class="tick">✓</span>
+  </button>
+  <button class="menu-row" aria-pressed="false" onclick="setPalette('ironwood')">
+    <span class="swatches"><span style="background:#FBFAF9"></span><span style="background:#5C6B57"></span><span style="background:#6D4AE0"></span><span style="background:#C2410C"></span></span>
+    <span class="name">Ironwood</span><span class="tick">✓</span>
+  </button>
+  <div class="menu-sep"></div>
+  <button class="menu-toggle" onclick="toggleTheme()">
+    <span class="name">Giao diện · Theme</span>
+    <span class="val" id="theme-val">☾ Tối</span>
+  </button>
+</div>
+
+<!-- tap scrim + card -->
+<div class="scrim" id="scrim" onclick="closeCard()"></div>
+<div class="card" id="card" role="dialog" aria-modal="true" aria-label="Word">
+  <button class="card-close" aria-label="Close" onclick="closeCard()">✕</button>
+  <div class="card-top">
+    <div class="card-glyph" id="c-glyph"></div>
+    <div class="card-head">
+      <div class="card-reading" id="c-reading"></div>
+      <div class="card-py" id="c-py"></div>
+      <span class="card-pos" id="c-pos"></span>
+    </div>
+  </div>
+  <div class="card-gloss" id="c-gloss"></div>
+  <div id="c-extra"><!-- bridge or component note injected here --></div>
+  <div class="card-actions">
+    <button class="act primary" id="c-add"><span>+</span> <span id="c-add-label">Thêm thẻ</span></button>
+    <button class="act ghost" id="c-known" onclick="markKnown(this)"><span id="c-known-label">✓ Đã biết</span></button>
+    <button class="act link" id="c-dict"><span id="c-dict-label">Mở trang chữ</span><span class="arrow"> →</span></button>
+  </div>
+</div>
+
+<script>
+/* ===== DATA (verbatim from specs/_content.json) ===== */
+const SENTENCES = [
+  [
+    {zh:"他",py:"tā",hv:"tha",vi:"anh ấy",en:"he",st:"known"},
+    {zh:"抬起",py:"táiqǐ",hv:"đài khởi",vi:"ngẩng (lên)",en:"to raise",st:"known"},
+    {zh:"頭",py:"tóu",hv:"đầu",vi:"đầu",en:"head",st:"known"},
+    {zh:"，",py:"",hv:"",vi:"",en:"",st:"punct"},
+    {zh:"望",py:"wàng",hv:"vọng",vi:"nhìn ra xa",en:"to gaze",st:"new",nw:true},
+    {zh:"向",py:"xiàng",hv:"hướng",vi:"về phía",en:"toward",st:"known"},
+    {zh:"那",py:"nà",hv:"na",vi:"kia",en:"that",st:"known"},
+    {zh:"座",py:"zuò",hv:"tọa",vi:"(lượng từ)",en:"(measure word)",st:"learning"},
+    {zh:"高",py:"gāo",hv:"cao",vi:"cao",en:"tall",st:"known"},
+    {zh:"山",py:"shān",hv:"sơn",vi:"núi",en:"mountain",st:"known"},
+    {zh:"。",py:"",hv:"",vi:"",en:"",st:"punct"}
+  ],
+  [
+    {zh:"山",py:"shān",hv:"sơn",vi:"núi",en:"mountain",st:"known"},
+    {zh:"中",py:"zhōng",hv:"trung",vi:"trong",en:"in",st:"known"},
+    {zh:"有",py:"yǒu",hv:"hữu",vi:"có",en:"there is",st:"known"},
+    {zh:"一",py:"yī",hv:"nhất",vi:"một",en:"one",st:"known"},
+    {zh:"間",py:"jiān",hv:"gian",vi:"(lượng từ)",en:"(measure word)",st:"known"},
+    {zh:"古老",py:"gǔlǎo",hv:"cổ lão",vi:"cổ kính",en:"ancient",st:"learning",nw:true},
+    {zh:"的",py:"de",hv:"đích",vi:"(trợ từ)",en:"(particle)",st:"known"},
+    {zh:"客棧",py:"kèzhàn",hv:"khách sạn",vi:"quán trọ",en:"inn",st:"learning",nw:true},
+    {zh:"，",py:"",hv:"",vi:"",en:"",st:"punct"},
+    {zh:"燈",py:"dēng",hv:"đăng",vi:"đèn",en:"lamp",st:"known"},
+    {zh:"還",py:"hái",hv:"hoàn",vi:"vẫn",en:"still",st:"known"},
+    {zh:"亮",py:"liàng",hv:"lượng",vi:"sáng",en:"bright",st:"learning"},
+    {zh:"著",py:"zhe",hv:"trước",vi:"(đang)",en:"(aspect)",st:"known"},
+    {zh:"。",py:"",hv:"",vi:"",en:"",st:"punct"}
+  ]
+];
+
+const BRIDGE = {
+  char:"望", hv:"vọng", py:"wàng", zhuyin:"ㄨㄤˋ",
+  pos_vi:"động từ", pos_en:"verb",
+  gloss_vi:"nhìn ra xa; ngóng trông", gloss_en:"to gaze into the distance; to look toward",
+  eyebrow_vi:"Bạn đã biết âm này rồi", eyebrow_en:"you already know this morpheme",
+  cognates:[
+    {vi:"hy vọng", zh:"希望", en:"to hope", shared:"vọng"},
+    {vi:"thất vọng", zh:"失望", en:"disappointed", shared:"vọng"},
+    {vi:"nguyện vọng", zh:"願望", en:"aspiration", shared:"vọng"}
+  ],
+  closing_vi:"cùng chữ 望 vọng — âm bạn đã nói hằng ngày",
+  closing_en:"all the same 望 vọng you already say",
+  en_rail_note:"phonetic series",
+  dict_link_vi:"Mở trang chữ", dict_link_en:"Open full entry"
+};
+
+/* simple Trad->Simp map for the tokens present (precompute/render split, render side) */
+const T2S = {"頭":"头","間":"间","客棧":"客栈","燈":"灯","還":"还","著":"着","願望":"愿望","來":"来"};
+function toSimp(zh){ return T2S[zh] || [...zh].map(c=>T2S[c]||c).join(""); }
+
+const ZHUYIN = {"tā":"ㄊㄚ","táiqǐ":"ㄊㄞˊ ㄑㄧˇ","tóu":"ㄊㄡˊ","wàng":"ㄨㄤˋ","xiàng":"ㄒㄧㄤˋ","nà":"ㄋㄚˋ","zuò":"ㄗㄨㄛˋ","gāo":"ㄍㄠ","shān":"ㄕㄢ","zhōng":"ㄓㄨㄥ","yǒu":"ㄧㄡˇ","yī":"ㄧ","jiān":"ㄐㄧㄢ","gǔlǎo":"ㄍㄨˇ ㄌㄠˇ","de":"˙ㄉㄜ","kèzhàn":"ㄎㄜˋ ㄓㄢˋ","dēng":"ㄉㄥ","hái":"ㄏㄞˊ","liàng":"ㄌㄧㄤˋ","zhe":"˙ㄓㄜ"};
+
+/* ===== STATE ===== */
+const $ = id => document.getElementById(id);
+const html = document.documentElement;
+let activeTok = null;
+
+/* ===== RENDER PASSAGE ===== */
+function rubyFor(tok){
+  const rail = html.dataset.rail, reading = html.dataset.reading;
+  if(reading === "off") return "";
+  if(reading === "zhuyin") return ZHUYIN[tok.py] || "";
+  if(rail === "vi") return tok.hv;          // VI rail -> Hán-Việt
+  return tok.py;                            // EN rail -> pinyin
+}
+function hanFor(tok){
+  return html.dataset.script === "simp" ? toSimp(tok.zh) : tok.zh;
+}
+function renderPassage(){
+  const p = $("passage");
+  p.innerHTML = "";
+  SENTENCES.forEach((sent, si)=>{
+    const sp = document.createElement("span");
+    sp.className = "sentence";
+    sent.forEach((tok, ti)=>{
+      if(tok.st === "punct"){
+        const pu = document.createElement("span");
+        pu.className = "punct";
+        pu.textContent = (html.dataset.script==="simp") ? (tok.zh==="，"?"，":tok.zh) : tok.zh;
+        sp.appendChild(pu);
+        return;
+      }
+      const w = document.createElement("button");
+      w.className = "tok";
+      w.dataset.st = tok.st;
+      if(tok.nw) w.dataset.nw = "true";
+      w.setAttribute("aria-label", `${tok.zh} — ${html.dataset.gloss==="vi"?tok.vi:tok.en}`);
+      const ruby = document.createElement("span");
+      ruby.className = "ruby";
+      ruby.textContent = rubyFor(tok);
+      const han = document.createElement("span");
+      han.className = "han";
+      han.textContent = hanFor(tok);
+      w.appendChild(ruby);
+      w.appendChild(han);
+      w.addEventListener("click", ()=>openCard(tok, w));
+      sp.appendChild(w);
+    });
+    p.appendChild(sp);
+  });
+}
+
+/* ===== TOGGLES ===== */
+function shuttle(){
+  const s = $("shuttle");
+  s.classList.remove("run"); void s.offsetWidth; s.classList.add("run");
+}
+function pressGroup(ids, onId){
+  ids.forEach(id => $(id).setAttribute("aria-pressed", id===onId ? "true":"false"));
+}
+
+function setRail(r){
+  html.dataset.rail = r;
+  pressGroup(["rail-en","rail-vi"], r==="vi"?"rail-vi":"rail-en");
+  // reading toggle is rail-aware: master is the rail
+  if(html.dataset.reading !== "zhuyin" && html.dataset.reading !== "off"){
+    html.dataset.reading = (r==="vi") ? "hv" : "py";
+  }
+  $("rd-main").textContent = (r==="vi") ? "Hán-Việt" : "拼";
+  $("rd-main").classList.toggle("cjk", r!=="vi");
+  // default gloss tracks rail unless user overrode — keep simple: follow rail
+  setGloss(r==="vi" ? "vi" : "en", true);
+  shuttle();
+  renderPassage();
+}
+
+function setScript(s){
+  html.dataset.script = s;
+  pressGroup(["sc-trad","sc-simp"], s==="trad"?"sc-trad":"sc-simp");
+  $("title-zh").textContent = (s==="simp") ? toSimp("山中的客棧") : "山中的客棧";
+  renderPassage();
+}
+
+function setReading(mode){
+  // mode: 'hv'/'py' (main), 'zhuyin', 'off'
+  if(mode==="hv" || mode==="py"){
+    html.dataset.reading = (html.dataset.rail==="vi") ? "hv" : "py";
+    pressGroup(["rd-main","rd-zh","rd-off"], "rd-main");
+  } else if(mode==="zhuyin"){
+    html.dataset.reading = "zhuyin";
+    pressGroup(["rd-main","rd-zh","rd-off"], "rd-zh");
+  } else {
+    html.dataset.reading = "off";
+    pressGroup(["rd-main","rd-zh","rd-off"], "rd-off");
+  }
+  renderPassage();
+}
+
+function setGloss(g, quiet){
+  html.dataset.gloss = g;
+  pressGroup(["gl-en","gl-vi"], g==="vi"?"gl-vi":"gl-en");
+  if(!quiet) renderPassage();
+}
+
+/* ===== THEME + PALETTE ===== */
+function toggleTheme(){
+  const dark = html.dataset.theme === "dark";
+  html.dataset.theme = dark ? "light" : "dark";
+  $("theme-val").textContent = dark ? "☾ Tối" : "☀ Sáng";
+  shuttle();
+}
+function setPalette(name){
+  html.dataset.palette = name;
+  document.querySelectorAll(".menu-row").forEach(b=>{
+    b.setAttribute("aria-pressed", b.getAttribute("onclick").includes(`'${name}'`) ? "true":"false");
+  });
+  shuttle();
+}
+function toggleMenu(e){
+  e.stopPropagation();
+  $("menu").classList.toggle("show");
+}
+document.addEventListener("click", e=>{
+  if(!$("menu").contains(e.target) && e.target !== $("ovbtn")) $("menu").classList.remove("show");
+});
+
+/* ===== CHROME RECEDE ===== */
+function recede(){
+  $("chrome").classList.add("recede");
+  $("peek").classList.add("show");
+}
+function expand(){
+  $("chrome").classList.remove("recede");
+  $("peek").classList.remove("show");
+}
+$("peek").addEventListener("click", expand);
+$("chrome").addEventListener("click", e=>{
+  if($("chrome").classList.contains("recede")) expand();
+});
+let lastY = 0;
+window.addEventListener("scroll", ()=>{
+  const y = window.scrollY;
+  if(y > lastY + 8 && y > 120){ recede(); }
+  else if(y < lastY - 8){ expand(); }
+  lastY = y;
+}, {passive:true});
+
+/* ===== TAP CARD ===== */
+function boldShared(viPhrase, shared){
+  // bold the recurring Hán-Việt syllable, faint the other
+  const parts = viPhrase.split(" ");
+  return parts.map(p =>
+    p === shared ? `<span class="shared">${p}</span>` : `<span class="other">${p}</span>`
+  ).join(" ");
+}
+function zhShared(zhWord, sharedChar){
+  // the shared char in cognates is always 望 here
+  return [...zhWord].map(c => c==="望" ? `<span class="shared">${c}</span>` : c).join("");
+}
+
+function openCard(tok, el){
+  const rail = html.dataset.rail, isVI = rail==="vi", gl = html.dataset.gloss;
+  const isBridge = tok.zh === "望";
+
+  if(activeTok) activeTok.classList.remove("active");
+  activeTok = el; el.classList.add("active");
+  el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
+
+  // header
+  $("c-glyph").textContent = (html.dataset.script==="simp") ? toSimp(tok.zh) : tok.zh;
+  $("c-reading").textContent = isVI ? tok.hv : tok.py;
+  $("c-py").textContent = isVI ? `${tok.py}` : (ZHUYIN[tok.py]||tok.py);
+  $("c-pos").textContent = isBridge ? (isVI?BRIDGE.pos_vi:BRIDGE.pos_en) : (gl==="vi"?"từ":"word");
+  $("c-gloss").textContent = isBridge ? (isVI?BRIDGE.gloss_vi:BRIDGE.gloss_en) : (gl==="vi"?tok.vi:tok.en);
+
+  // extra block
+  const extra = $("c-extra");
+  extra.innerHTML = "";
+  if(isBridge && isVI){
+    extra.innerHTML = buildBridge();
+  } else if(isBridge && !isVI){
+    extra.innerHTML = buildCompNote();
+  }
+
+  // action labels per gloss/rail
+  $("c-add-label").textContent = (gl==="vi") ? "Thêm thẻ" : "Add card";
+  $("c-known-label").textContent = (gl==="vi") ? "✓ Đã biết" : "✓ Known";
+  $("c-dict-label").textContent = (gl==="vi") ? BRIDGE.dict_link_vi : BRIDGE.dict_link_en;
+  $("c-known").classList.remove("done");
+  $("c-known-label").textContent = (gl==="vi") ? "✓ Đã biết" : "✓ Known";
+
+  // position
+  positionCard(el, isBridge);
+
+  const card = $("card");
+  card.classList.toggle("bridge-rise", isBridge);
+  card.classList.add("show");
+  $("scrim").classList.add("show");
+}
+
+function positionCard(el, isBridge){
+  const card = $("card");
+  if(window.innerWidth <= 719){ card.style.top = ""; card.style.left = ""; return; }
+  // anchored popover near the word
+  const r = el.getBoundingClientRect();
+  card.style.left = ""; card.style.top = "";
+  // measure after show by temporarily revealing offscreen
+  card.style.visibility = "hidden"; card.classList.add("show");
+  const cw = card.offsetWidth, ch = card.offsetHeight;
+  card.classList.remove("show"); card.style.visibility = "";
+  let left = r.left + r.width/2 - cw/2;
+  left = Math.max(14, Math.min(left, window.innerWidth - cw - 14));
+  let top = r.bottom + 12;
+  if(top + ch > window.innerHeight - 14){
+    top = Math.max(60, r.top - ch - 12);
+  }
+  card.style.left = left + "px";
+  card.style.top = top + "px";
+}
+
+function buildBridge(){
+  const cogs = BRIDGE.cognates.map(c => `
+    <div class="cog">
+      <span class="vi">${boldShared(c.vi, c.shared)}</span>
+      <span class="zh">${zhShared(c.zh, "望")}</span>
+      <span class="en">${c.en}</span>
+    </div>`).join("");
+  return `
+    <div class="bridge">
+      <div class="bridge-eyebrow">
+        <span class="dia">◆</span>
+        <span>${BRIDGE.eyebrow_vi.toUpperCase()}<span class="sub"> · ${BRIDGE.eyebrow_en}</span></span>
+      </div>
+      <div class="cognates">${cogs}</div>
+      <div class="bridge-close">
+        <span class="stitched">cùng chữ 望 vọng</span> — âm bạn đã nói hằng ngày.
+      </div>
+      <div class="bridge-mech">
+        <span class="cjk">望</span> = <span class="cjk">亡</span> (âm <i>vong/wáng</i>) + <span class="cjk">月</span> + <span class="cjk">王</span> · cùng họ ngữ âm với <span class="cjk">忘 / 茫</span>.
+      </div>
+    </div>`;
+}
+function buildCompNote(){
+  return `
+    <div class="compnote">
+      <div class="cn-eyebrow">PHONETIC SERIES · YOU'VE SEEN THIS PIECE</div>
+      The phonetic <span class="cjk">亡</span> (<b>wáng</b>) seeds a whole family:
+      <span class="cjk">望</span> (wàng) · <span class="cjk">忘</span> (wàng) · <span class="cjk">茫</span> (máng).
+      Spot <span class="cjk">亡</span> and you can guess the sound. <i>No Hán-Việt bridge on the English rail — that proof belongs to the VI learner.</i>
+    </div>`;
+}
+
+function markKnown(btn){
+  btn.classList.toggle("done");
+  const gl = html.dataset.gloss;
+  if(btn.classList.contains("done")){
+    $("c-known-label").textContent = (gl==="vi") ? "✓ Đã đánh dấu" : "✓ Marked known";
+    if(activeTok){ activeTok.dataset.st = "known"; delete activeTok.dataset.nw; }
+  } else {
+    $("c-known-label").textContent = (gl==="vi") ? "✓ Đã biết" : "✓ Known";
+  }
+}
+
+function closeCard(){
+  $("card").classList.remove("show");
+  $("scrim").classList.remove("show");
+  if(activeTok){ activeTok.classList.remove("active"); activeTok = null; }
+}
+document.addEventListener("keydown", e=>{
+  if(e.key === "Escape"){ closeCard(); $("menu").classList.remove("show"); }
+});
+window.addEventListener("resize", ()=>{ if($("card").classList.contains("show")) closeCard(); });
+
+/* ===== INIT ===== */
+$("c-add").addEventListener("click", function(){
+  const gl = html.dataset.gloss;
+  $("c-add-label").textContent = (gl==="vi") ? "Đã thêm" : "Added";
+  this.style.filter = "brightness(.9)";
+  setTimeout(()=>{ this.style.filter=""; }, 700);
+});
+renderPassage();
+</script>
+</body>
+</html>

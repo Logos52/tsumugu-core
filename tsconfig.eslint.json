@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["node", "vite/client"]
+  },
+  "include": [
+    "app/src/**/*.ts",
+    "packages/**/*.ts",
+    "scripts/**/*.ts",
+    "pipeline/**/*.ts",
+    "worker/**/*.ts",
+    "vite.config.ts",
+    "vitest.config.ts"
+  ]
+}

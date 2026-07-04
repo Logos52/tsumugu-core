@@ -1,0 +1,1495 @@
+<!-- @dsCard group="Tsumugu Core · Reader" -->
+<!DOCTYPE html>
+<html lang="vi" data-theme="light" data-palette="loom" data-rail="vi" data-script="trad" data-reading="hv" data-gloss="on">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tsumugu Core · Loom &amp; Lamplight</title>
+
+<!-- Display / serif: Newsreader. UI chrome: Inter. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<!-- Chinese reading face: LXGW WenKai TC (霞鶩文楷), warm brush-kai -->
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@latest/style.css" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   LOOM & LAMPLIGHT — Tsumugu Core reader
+   Two-layer tokens: RAW palette (per data-palette + data-theme)
+   feeds SEMANTIC tokens. Light/dark orthogonal to palette.
+   ============================================================ */
+
+/* ---------- NATIVE PALETTE: Loom (light) ---------- */
+:root,
+[data-palette="loom"][data-theme="light"]{
+  --page:        #F4F1EB;
+  --raised:      #FBF9F4;
+  --well:        #ECE8DF;
+  --ink:         #23211C;
+  --ink-muted:   #5E594F;
+  --ink-faint:   #938C7E;
+  --rule:        #DBD5C8;
+  --violet:      #6D5AE0;
+  --violet-wash: #EFEBFB;
+  --st-new:      #C2603F;
+  --st-learning: #C79A3A;
+  --rail-tint:   #4C6B86;
+  --shadow:      28 33 28;     /* rgb seed for slip shadow */
+}
+/* ---------- NATIVE PALETTE: Loom (dark) ---------- */
+[data-palette="loom"][data-theme="dark"]{
+  --page:        #16161A;
+  --raised:      #1E1E24;
+  --well:        #121215;
+  --ink:         #E9E5DC;
+  --ink-muted:   #A39E92;
+  --ink-faint:   #6E6A60;
+  --rule:        #2C2B30;
+  --violet:      #A99BF2;
+  --violet-wash: #211F33;
+  --st-new:      #D98763;
+  --st-learning: #D3AE5C;
+  --rail-tint:   #8AA9C6;
+  --shadow:      0 0 0;
+}
+
+/* ---------- ALT PALETTE: Foxed (aged paper, deeper sepia) ---------- */
+[data-palette="foxed"][data-theme="light"]{
+  --page:        #EFE7D6;
+  --raised:      #F8F2E4;
+  --well:        #E5DBC4;
+  --ink:         #2A2419;
+  --ink-muted:   #635741;
+  --ink-faint:   #998A6B;
+  --rule:        #D8CBAE;
+  --violet:      #6A4FB8;
+  --violet-wash: #ECE4F6;
+  --st-new:      #B05633;
+  --st-learning: #B98C2C;
+  --rail-tint:   #5A6E55;
+  --shadow:      40 30 16;
+}
+[data-palette="foxed"][data-theme="dark"]{
+  --page:        #19150F;
+  --raised:      #221D14;
+  --well:        #14110B;
+  --ink:         #EDE3CF;
+  --ink-muted:   #A89A7C;
+  --ink-faint:   #6E6450;
+  --rule:        #30291D;
+  --violet:      #B6A2F2;
+  --violet-wash: #261F32;
+  --st-new:      #DA8A5F;
+  --st-learning: #D7B25C;
+  --rail-tint:   #95AC83;
+  --shadow:      0 0 0;
+}
+
+/* ---------- ALT PALETTE: Slate Press (cool grey editorial) ---------- */
+[data-palette="slate"][data-theme="light"]{
+  --page:        #EEF0F1;
+  --raised:      #F8F9FA;
+  --well:        #E2E5E8;
+  --ink:         #1E2225;
+  --ink-muted:   #54595E;
+  --ink-faint:   #8A9196;
+  --rule:        #D2D7DB;
+  --violet:      #5B53D6;
+  --violet-wash: #E9E8FA;
+  --st-new:      #BC5C42;
+  --st-learning: #B4923E;
+  --rail-tint:   #436276;
+  --shadow:      24 30 34;
+}
+[data-palette="slate"][data-theme="dark"]{
+  --page:        #14171A;
+  --raised:      #1C2024;
+  --well:        #101316;
+  --ink:         #E6EAEC;
+  --ink-muted:   #99A1A7;
+  --ink-faint:   #636B71;
+  --rule:        #282D32;
+  --violet:      #9F95F0;
+  --violet-wash: #1F2034;
+  --st-new:      #D9876A;
+  --st-learning: #D2AD5E;
+  --rail-tint:   #7FA1BC;
+  --shadow:      0 0 0;
+}
+
+/* ---------- ALT PALETTE: Vellum (warm cream, classic book) ---------- */
+[data-palette="vellum"][data-theme="light"]{
+  --page:        #F7F3E9;
+  --raised:      #FDFBF4;
+  --well:        #EFE9D9;
+  --ink:         #2B2519;
+  --ink-muted:   #635A48;
+  --ink-faint:   #9C927B;
+  --rule:        #E0D8C3;
+  --violet:      #715BD8;
+  --violet-wash: #F0ECFA;
+  --st-new:      #C05E3B;
+  --st-learning: #C0962F;
+  --rail-tint:   #4E6B83;
+  --shadow:      44 36 20;
+}
+[data-palette="vellum"][data-theme="dark"]{
+  --page:        #181712;
+  --raised:      #211F18;
+  --well:        #13120D;
+  --ink:         #EEE6D4;
+  --ink-muted:   #A99E83;
+  --ink-faint:   #6F6651;
+  --rule:        #2E2B21;
+  --violet:      #B2A1F4;
+  --violet-wash: #25203300;
+  --violet-wash: #25203A;
+  --st-new:      #DB8A60;
+  --st-learning: #D6B05E;
+  --rail-tint:   #93AcC4;
+  --shadow:      0 0 0;
+}
+
+/* ---------- SEMANTIC / type tokens ---------- */
+:root{
+  --serif: "Newsreader", "Georgia", "Songti TC", serif;
+  --ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --cjk: "LXGW WenKai TC", "Songti TC", "Noto Serif TC", "PingFang TC", serif;
+  --measure: 36rem;
+  --reading-cjk: 29px;
+  --reading-lh: 2.25;
+  --t-fast: 120ms;
+  --t-mid: 200ms;
+  --t-stitch: 240ms;
+}
+
+@media (prefers-reduced-motion: reduce){
+  :root{ --t-fast: 0ms; --t-mid: 0ms; --t-stitch: 0ms; }
+}
+
+*{ box-sizing: border-box; }
+html, body{ margin: 0; padding: 0; }
+body{
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background var(--t-mid) ease, color var(--t-mid) ease;
+  min-height: 100vh;
+}
+
+/* ============================================================
+   HEADER / CHROME — sits on the sunk well (deckle edge)
+   ============================================================ */
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--well);
+  border-bottom: 1px solid var(--rule);
+  transition: background var(--t-mid) ease, box-shadow var(--t-mid) ease;
+}
+/* the 4px violet reading-progress thread, drawn on top of the well */
+.topbar::after{
+  content: "";
+  position: absolute;
+  left: 0; bottom: -1px;
+  height: 4px;
+  width: var(--progress, 0%);
+  background: linear-gradient(90deg, var(--violet), color-mix(in srgb, var(--violet) 55%, transparent));
+  opacity: 0;
+  transition: opacity var(--t-mid) ease, width 60ms linear;
+}
+html[data-scrolled="1"] .topbar::after{ opacity: 1; }
+
+.topbar-inner{
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* --- brand row --- */
+.brandrow{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0 10px;
+}
+.brand{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.knot{ flex: none; display: block; }
+.knot path, .knot circle{ stroke: var(--violet); }
+.brand-name{
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.brand-core{ color: var(--violet); font-style: italic; }
+
+.chrome-right{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* generic ghost button (light/dark, palette menu trigger) */
+.ghost-btn{
+  font-family: var(--ui);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: color var(--t-fast) ease, border-color var(--t-fast) ease, background var(--t-fast) ease;
+}
+.ghost-btn:hover{ color: var(--ink); border-color: var(--ink-faint); }
+.ghost-btn:focus-visible{ outline: 2px solid var(--violet); outline-offset: 2px; }
+
+/* palette switcher (popover) */
+.palette-wrap{ position: relative; }
+.swatch{
+  width: 13px; height: 13px; border-radius: 50%;
+  background: var(--violet);
+  box-shadow: 0 0 0 2px var(--page) , 0 0 0 3px var(--rule);
+}
+.palette-menu{
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--raised);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 6px;
+  min-width: 188px;
+  box-shadow: 0 14px 40px rgb(var(--shadow) / .14);
+  display: none;
+  z-index: 50;
+}
+.palette-menu.open{ display: block; }
+.palette-opt{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  font-family: var(--ui);
+  font-size: 13px;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.palette-opt:hover{ background: var(--well); }
+.palette-opt[aria-checked="true"]{ color: var(--violet); font-weight: 600; }
+.palette-opt .dots{ display: flex; gap: 3px; margin-left: auto; }
+.palette-opt .dot{ width: 11px; height: 11px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgb(0 0 0 / .12); }
+
+/* --- rail switcher: a real choice, full-width segmented control --- */
+.railrow{ padding: 2px 0 8px; }
+.rail-switch{
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 460px;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: var(--raised);
+  overflow: hidden;
+}
+/* the woven divider = 2px violet stitch */
+.rail-switch::before{
+  content: "";
+  position: absolute;
+  top: 8px; bottom: 8px;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--violet) 0 4px,
+    transparent 4px 8px
+  );
+  opacity: .55;
+  z-index: 2;
+  pointer-events: none;
+}
+.rail-pill{
+  appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--ui);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  padding: 11px 14px 13px;
+  position: relative;
+  transition: color var(--t-fast) ease, background var(--t-fast) ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  line-height: 1.2;
+}
+.rail-pill .rail-sub{
+  font-size: 11px;
+  color: var(--ink-faint);
+  font-weight: 400;
+}
+.rail-pill::after{
+  content: "";
+  position: absolute;
+  left: 22%; right: 22%;
+  bottom: 7px;
+  height: 2px;
+  background: var(--violet);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform var(--t-mid) ease;
+}
+html[data-rail="en"] .rail-pill[data-rail-set="en"],
+html[data-rail="vi"] .rail-pill[data-rail-set="vi"]{
+  color: var(--ink);
+  background: var(--violet-wash);
+}
+html[data-rail="en"] .rail-pill[data-rail-set="en"]::after,
+html[data-rail="vi"] .rail-pill[data-rail-set="vi"]::after{ transform: scaleX(1); }
+html[data-rail="en"] .rail-pill[data-rail-set="en"] .rail-sub,
+html[data-rail="vi"] .rail-pill[data-rail-set="vi"] .rail-sub{ color: var(--violet); }
+.rail-pill:focus-visible{ outline: 2px solid var(--violet); outline-offset: -3px; }
+
+/* --- axis toggles: ghost, label-over-value, underline = active --- */
+.togglerow{
+  display: flex;
+  gap: 26px;
+  padding: 0 0 12px;
+  flex-wrap: wrap;
+  transition: opacity var(--t-mid) ease, max-height var(--t-mid) ease, padding var(--t-mid) ease;
+  overflow: hidden;
+}
+html[data-scrolled="1"] .togglerow{
+  opacity: 0;
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  pointer-events: none;
+}
+html[data-scrolled="1"] .railrow{
+  max-height: 0;
+  opacity: 0;
+  padding: 0;
+  overflow: hidden;
+  transition: opacity var(--t-mid) ease, max-height var(--t-mid) ease, padding var(--t-mid) ease;
+}
+.toggle{
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.toggle-label{
+  font-family: var(--ui);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.toggle-opts{ display: flex; gap: 2px; align-items: baseline; }
+.topt{
+  appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--ui);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-faint);
+  padding: 1px 2px 3px;
+  border-bottom: 1.5px solid transparent;
+  transition: color var(--t-fast) ease, border-color var(--t-fast) ease;
+}
+.topt[aria-pressed="true"]{ color: var(--ink); border-bottom-color: var(--violet); }
+.topt:hover{ color: var(--ink); }
+.topt:focus-visible{ outline: 2px solid var(--violet); outline-offset: 2px; border-radius: 3px; }
+.tslash{ color: var(--ink-faint); font-family: var(--ui); font-size: 13px; }
+
+/* scroll-collapsed mini rail chip (shows only when scrolled) */
+.mini-rail{
+  display: none;
+  font-family: var(--ui);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--violet);
+  background: var(--violet-wash);
+  border: 1px solid color-mix(in srgb, var(--violet) 35%, transparent);
+  border-radius: 999px;
+  padding: 4px 11px;
+  cursor: pointer;
+}
+html[data-scrolled="1"] .mini-rail{ display: inline-flex; align-items: center; gap: 6px; }
+html[data-scrolled="1"] .brandrow{ padding-bottom: 12px; }
+
+/* ============================================================
+   READING SURFACE — one centered column, no card, no shadow
+   ============================================================ */
+.reader{
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 54px 28px 220px;
+}
+
+/* source meta — small-caps faint serif, hairline below */
+.source-meta{
+  margin-bottom: 40px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--rule);
+}
+.title-zh{
+  font-family: var(--cjk);
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--ink);
+  margin: 0 0 6px;
+  letter-spacing: 0.02em;
+}
+.title-rom{
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ink-muted);
+  margin: 0 0 18px;
+}
+.meta-chips{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+}
+.chip{
+  font-family: var(--ui);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  padding: 3px 8px;
+  background: var(--raised);
+}
+.chip.band{ color: var(--ink); border-color: var(--ink-faint); }
+.chip.binding{ font-variant: small-caps; letter-spacing: 0.06em; }
+.meta-prov{
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13.5px;
+  color: var(--ink-faint);
+}
+.meta-prov .dotsep{ margin: 0 7px; opacity: .6; }
+.meta-prov .newcount{ color: var(--st-new); font-style: normal; font-weight: 500; }
+
+/* the passage */
+.passage{ font-size: 0; }   /* kill inline-block whitespace; rhythm comes from CJK */
+.sentence{ display: block; margin-bottom: 6px; }
+
+/* each word = a ruby stack */
+.w{
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: bottom;
+  font-family: var(--cjk);
+  cursor: pointer;
+  position: relative;
+  padding: 0 1px;
+  line-height: var(--reading-lh);
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  transition: background var(--t-fast) ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.w:hover{ background: color-mix(in srgb, var(--violet) 8%, transparent); }
+.w:focus-visible{ outline: 2px solid var(--violet); outline-offset: 1px; }
+
+.w .ruby{
+  font-family: var(--serif);
+  font-size: 12.5px;
+  line-height: 1.1;
+  color: var(--rail-tint);
+  height: 15px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition: opacity var(--t-fast) ease, color var(--t-fast) ease;
+}
+html[data-gloss="off"] .w .ruby{ /* ruby persists even when gloss-line off; gloss toggle handles tray glosses */ }
+.w .han{
+  font-size: var(--reading-cjk);
+  color: var(--ink);
+  position: relative;
+  line-height: 1.18;
+  transition: color var(--t-fast) ease;
+}
+
+/* hide ruby line entirely when reading detail set to none is NOT a thing here;
+   ruby always shows the active reading. When gloss=off we still keep ruby (reading aid),
+   the 文/譯 toggle controls inline gloss tray visibility below. */
+
+/* status = UNDERLINE only, offset below baseline */
+.w[data-st="new"] .han{
+  text-decoration: underline;
+  text-decoration-color: var(--st-new);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+.w[data-st="learning"] .han{
+  text-decoration: underline dotted;
+  text-decoration-color: var(--st-learning);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+/* known = no mark */
+
+/* nw:true = subtle 'new target' highlight (a faint warm wash behind the glyph) */
+.w[data-nw="1"] .han{
+  background: linear-gradient(transparent 62%, color-mix(in srgb, var(--st-new) 16%, transparent) 62%);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+/* punctuation: plain, ink-faint, no ruby, not tappable */
+.punct{
+  font-family: var(--cjk);
+  font-size: var(--reading-cjk);
+  color: var(--ink-faint);
+  cursor: default;
+  vertical-align: bottom;
+  line-height: var(--reading-lh);
+}
+
+/* inline gloss tray under each sentence (shown when gloss=on) — kept light;
+   the real glossing happens in the tap card. This is an at-a-glance translation line. */
+.gloss-line{
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--ink-muted);
+  line-height: 1.65;
+  margin: 2px 0 20px;
+  max-width: var(--measure);
+}
+html[data-gloss="off"] .gloss-line{ display: none; }
+
+/* end mark */
+.end-mark{
+  margin-top: 48px;
+  text-align: center;
+  color: var(--ink-faint);
+}
+.end-mark .knot-end{ display: inline-block; opacity: .5; }
+
+/* ============================================================
+   GLOSS SLIP (popover) — lifted paper, anchored under word
+   ============================================================ */
+.scrim{
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: transparent;   /* page never darkens */
+  display: none;
+}
+.scrim.open{ display: block; }
+
+.slip{
+  position: absolute;
+  z-index: 61;
+  width: min(360px, calc(100vw - 32px));
+  background: var(--raised);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgb(var(--shadow) / .18), 0 2px 6px rgb(var(--shadow) / .10);
+  padding: 0;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 160ms ease, transform 160ms ease;
+  overflow: hidden;
+}
+.slip.show{ opacity: 1; transform: translateY(0); }
+
+.slip-body{ padding: 16px 18px 14px; }
+
+/* headword line */
+.slip-head{
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 2px;
+}
+.slip-glyph{
+  font-family: var(--cjk);
+  font-size: 38px;
+  line-height: 1;
+  color: var(--ink);
+}
+.slip-reading{
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--rail-tint);
+  font-weight: 500;
+}
+.slip-py{
+  font-family: var(--ui);
+  font-size: 13px;
+  color: var(--ink-faint);
+  margin-left: auto;
+}
+.slip-pos{
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-faint);
+  margin: 2px 0 8px;
+}
+.slip-gloss{
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+  margin: 0 0 4px;
+}
+
+/* ---- THE BRIDGE (the moat) — card-within-the-card on violet-wash ---- */
+.bridge{
+  margin-top: 14px;
+  background: var(--violet-wash);
+  border: 1px solid color-mix(in srgb, var(--violet) 30%, transparent);
+  border-radius: 11px;
+  padding: 13px 14px 14px;
+  position: relative;
+}
+.bridge-eyebrow{
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--ui);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: 10px;
+}
+.bridge-eyebrow .knot-tie{ flex: none; }
+.bridge-eyebrow .en{ color: var(--ink-faint); font-weight: 500; text-transform: none; letter-spacing: 0.02em; font-size: 10px; }
+
+/* the cognate compounds — serif, shared morpheme bold+violet, other faint */
+.cognates{
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+.cog{
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--ink-faint);     /* faint syllable default */
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  line-height: 1.3;
+}
+.cog .shared{
+  color: var(--violet);
+  font-weight: 600;
+  position: relative;
+}
+/* the stitch-pull underline draws left→right on open */
+.cog .shared::after{
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--violet);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.slip.show .cog .shared::after{
+  animation: stitch-pull var(--t-stitch) ease-out forwards;
+}
+.cog .cog-zh{
+  font-family: var(--cjk);
+  font-size: 16px;
+  color: var(--ink-muted);
+}
+.cog .cog-en{
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-faint);
+  margin-left: auto;
+}
+@keyframes stitch-pull{
+  from{ transform: scaleX(0); }
+  to{ transform: scaleX(1); }
+}
+
+.bridge-closing{
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14.5px;
+  color: var(--ink-muted);
+  line-height: 1.45;
+}
+.bridge-closing .em{ color: var(--violet); font-style: normal; font-weight: 500; }
+.bridge-closing .em .han{ font-family: var(--cjk); }
+
+/* EN-rail quieter sibling: component / phonetic-series note (no violet claim) */
+.series-note{
+  margin-top: 14px;
+  background: var(--well);
+  border: 1px solid var(--rule);
+  border-radius: 11px;
+  padding: 12px 14px;
+}
+.series-note .sn-label{
+  font-family: var(--ui);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 8px;
+}
+.series-note .sn-body{
+  font-family: var(--serif);
+  font-size: 15px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+.series-note .sn-body .han{ font-family: var(--cjk); color: var(--ink); }
+.series-note .sn-body .phon{ color: var(--st-learning); font-weight: 500; }
+
+/* actions */
+.slip-actions{
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 13px;
+  border-top: 1px solid var(--rule);
+  flex-wrap: wrap;
+}
+.act{
+  font-family: var(--ui);
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  background: var(--page);
+  color: var(--ink-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--t-fast) ease;
+}
+.act:hover{ color: var(--ink); border-color: var(--ink-faint); }
+.act.known:hover{ color: var(--violet); border-color: var(--violet); background: var(--violet-wash); }
+.act.dict{
+  margin-left: auto;
+  color: var(--violet);
+  border-color: color-mix(in srgb, var(--violet) 40%, transparent);
+}
+.act.dict:hover{ background: var(--violet-wash); }
+.act .han{ font-family: var(--cjk); }
+.act:focus-visible{ outline: 2px solid var(--violet); outline-offset: 2px; }
+
+/* "walk into the reference library" hint on dict tap-down */
+.slip.dive .slip-body{ transition: background var(--t-mid) ease; }
+.slip.dive{ background: #F7F3EA; }
+[data-theme="dark"] .slip.dive{ background: #221c14; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 720px){
+  :root{ --reading-cjk: 26px; --reading-lh: 2.15; }
+  .topbar-inner{ padding: 0 18px; }
+  .reader{ padding: 36px 20px 200px; }
+  .title-zh{ font-size: 28px; }
+  .rail-switch{ max-width: none; }
+  .togglerow{ gap: 18px; }
+  .chrome-right .ghost-btn .btxt{ display: none; }
+}
+@media (min-width: 1100px){
+  /* wide layout: keep reading column centered, give chrome air */
+  .topbar-inner{ padding: 0 40px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================ HEADER / CHROME ============================ -->
+<header class="topbar" id="topbar">
+  <div class="topbar-inner">
+
+    <!-- brand row -->
+    <div class="brandrow">
+      <div class="brand">
+        <!-- violet stitched-knot mark -->
+        <svg class="knot" width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+          <path d="M5 9 C5 4, 12 4, 13 9 C14 14, 7 14, 7 18 C7 22, 14 22, 15 17"
+                stroke-width="2.1" stroke-linecap="round" fill="none"/>
+          <path d="M21 9 C21 4, 14 4, 13 9 C12 14, 19 14, 19 18 C19 22, 12 22, 11 17"
+                stroke-width="2.1" stroke-linecap="round" fill="none" opacity="0.55"/>
+          <circle cx="13" cy="13" r="1.6" stroke-width="0" fill="currentColor" style="fill:var(--violet)"/>
+        </svg>
+        <span class="brand-name">Tsumugu <span class="brand-core">Core</span></span>
+        <span class="mini-rail" id="miniRail" tabindex="0" role="button" aria-label="Rail switcher">
+          <span id="miniRailText">Tiếng Việt</span> ⇄
+        </span>
+      </div>
+
+      <div class="chrome-right">
+        <!-- palette switcher -->
+        <div class="palette-wrap">
+          <button class="ghost-btn" id="paletteBtn" aria-haspopup="true" aria-expanded="false">
+            <span class="swatch" aria-hidden="true"></span>
+            <span class="btxt" id="paletteName">Loom</span>
+          </button>
+          <div class="palette-menu" id="paletteMenu" role="menu" aria-label="Color templates">
+            <button class="palette-opt" role="menuitemradio" data-pal="loom" aria-checked="true">
+              Loom &amp; Lamplight
+              <span class="dots">
+                <span class="dot" style="background:#F4F1EB"></span>
+                <span class="dot" style="background:#6D5AE0"></span>
+                <span class="dot" style="background:#C2603F"></span>
+              </span>
+            </button>
+            <button class="palette-opt" role="menuitemradio" data-pal="foxed" aria-checked="false">
+              Foxed
+              <span class="dots">
+                <span class="dot" style="background:#EFE7D6"></span>
+                <span class="dot" style="background:#6A4FB8"></span>
+                <span class="dot" style="background:#B05633"></span>
+              </span>
+            </button>
+            <button class="palette-opt" role="menuitemradio" data-pal="slate" aria-checked="false">
+              Slate Press
+              <span class="dots">
+                <span class="dot" style="background:#EEF0F1"></span>
+                <span class="dot" style="background:#5B53D6"></span>
+                <span class="dot" style="background:#BC5C42"></span>
+              </span>
+            </button>
+            <button class="palette-opt" role="menuitemradio" data-pal="vellum" aria-checked="false">
+              Vellum
+              <span class="dots">
+                <span class="dot" style="background:#F7F3E9"></span>
+                <span class="dot" style="background:#715BD8"></span>
+                <span class="dot" style="background:#C05E3B"></span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- light/dark -->
+        <button class="ghost-btn" id="themeBtn" aria-label="Toggle light / dark">
+          <span id="themeIcon">☾</span>
+          <span class="btxt" id="themeText">Tối</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- rail switcher row -->
+    <div class="railrow">
+      <div class="rail-switch" role="tablist" aria-label="Learner rail">
+        <button class="rail-pill" data-rail-set="en" role="tab" aria-selected="false">
+          English
+          <span class="rail-sub">pinyin · English gloss</span>
+        </button>
+        <button class="rail-pill" data-rail-set="vi" role="tab" aria-selected="true">
+          Tiếng Việt
+          <span class="rail-sub">Hán-Việt · cầu nối âm</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- axis toggles -->
+    <div class="togglerow">
+      <div class="toggle">
+        <span class="toggle-label">Script</span>
+        <div class="toggle-opts" id="scriptToggle">
+          <button class="topt" data-axis="script" data-val="trad" aria-pressed="true">繁</button>
+          <span class="tslash">/</span>
+          <button class="topt" data-axis="script" data-val="simp" aria-pressed="false">简</button>
+        </div>
+      </div>
+
+      <div class="toggle">
+        <span class="toggle-label">Reading</span>
+        <div class="toggle-opts" id="readingToggle">
+          <!-- options swap label by rail (Hán on VI, 拼 on EN), zhuyin always available -->
+          <button class="topt" data-axis="reading" data-val="hv" aria-pressed="true" id="readPrimary">Hán</button>
+          <span class="tslash">/</span>
+          <button class="topt" data-axis="reading" data-val="py" aria-pressed="false" id="readPinyin">拼</button>
+          <span class="tslash">/</span>
+          <button class="topt" data-axis="reading" data-val="zh" aria-pressed="false">ㄅ</button>
+        </div>
+      </div>
+
+      <div class="toggle">
+        <span class="toggle-label">Gloss</span>
+        <div class="toggle-opts" id="glossToggle">
+          <button class="topt" data-axis="gloss" data-val="on" aria-pressed="true">譯</button>
+          <span class="tslash">/</span>
+          <button class="topt" data-axis="gloss" data-val="off" aria-pressed="false">文</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- ============================ READING SURFACE ============================ -->
+<main class="reader" id="reader">
+
+  <div class="source-meta">
+    <h1 class="title-zh" id="titleZh">山中的客棧</h1>
+    <p class="title-rom" id="titleRom">Sơn trung đích khách sạn</p>
+    <div class="meta-chips">
+      <span class="chip band">B1 · TOCFL 3</span>
+      <span class="chip binding">當代中文課程 · B4 L3</span>
+      <span class="meta-prov">
+        <span id="provText">nguyên tác</span>
+        <span class="dotsep">·</span>
+        <span class="newcount" id="newCount">3 từ mới</span>
+        <span class="dotsep">·</span>
+        <span id="minRead">2 phút</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- passage rendered by JS from content -->
+  <div class="passage" id="passage"></div>
+
+  <div class="end-mark">
+    <svg class="knot-end" width="20" height="20" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+      <path d="M5 9 C5 4, 12 4, 13 9 C14 14, 7 14, 7 18 C7 22, 14 22, 15 17"
+            stroke="var(--ink-faint)" stroke-width="2" stroke-linecap="round" fill="none"/>
+    </svg>
+  </div>
+
+</main>
+
+<!-- ============================ GLOSS SLIP ============================ -->
+<div class="scrim" id="scrim"></div>
+<div class="slip" id="slip" role="dialog" aria-modal="false" aria-label="Word gloss"></div>
+
+<script>
+/* ============================================================
+   DATA — verbatim from specs/_content.json
+   ============================================================ */
+const CONTENT = {
+  meta: {
+    title_zh: "山中的客棧",
+    title_hv: "Sơn trung đích khách sạn",
+    title_vi: "Quán trọ trong núi",
+    title_en: "The Inn in the Mountains",
+    band: "B1 · TOCFL 3",
+    binding: "當代中文課程 · B4 L3",
+    origin_vi: "nguyên tác",
+    origin_en: "AI-original",
+    newWords: 3,
+    minutes: 2
+  },
+  sentences: [
+    [
+      {zh:"他",py:"tā",hv:"tha",vi:"anh ấy",en:"he",st:"known"},
+      {zh:"抬起",py:"táiqǐ",hv:"đài khởi",vi:"ngẩng (lên)",en:"to raise",st:"known"},
+      {zh:"頭",py:"tóu",hv:"đầu",vi:"đầu",en:"head",st:"known"},
+      {zh:"，",py:"",hv:"",vi:"",en:"",st:"punct"},
+      {zh:"望",py:"wàng",hv:"vọng",vi:"nhìn ra xa",en:"to gaze",st:"new",nw:true},
+      {zh:"向",py:"xiàng",hv:"hướng",vi:"về phía",en:"toward",st:"known"},
+      {zh:"那",py:"nà",hv:"na",vi:"kia",en:"that",st:"known"},
+      {zh:"座",py:"zuò",hv:"tọa",vi:"(lượng từ)",en:"(measure word)",st:"learning"},
+      {zh:"高",py:"gāo",hv:"cao",vi:"cao",en:"tall",st:"known"},
+      {zh:"山",py:"shān",hv:"sơn",vi:"núi",en:"mountain",st:"known"},
+      {zh:"。",py:"",hv:"",vi:"",en:"",st:"punct"}
+    ],
+    [
+      {zh:"山",py:"shān",hv:"sơn",vi:"núi",en:"mountain",st:"known"},
+      {zh:"中",py:"zhōng",hv:"trung",vi:"trong",en:"in",st:"known"},
+      {zh:"有",py:"yǒu",hv:"hữu",vi:"có",en:"there is",st:"known"},
+      {zh:"一",py:"yī",hv:"nhất",vi:"một",en:"one",st:"known"},
+      {zh:"間",py:"jiān",hv:"gian",vi:"(lượng từ)",en:"(measure word)",st:"known"},
+      {zh:"古老",py:"gǔlǎo",hv:"cổ lão",vi:"cổ kính",en:"ancient",st:"learning",nw:true},
+      {zh:"的",py:"de",hv:"đích",vi:"(trợ từ)",en:"(particle)",st:"known"},
+      {zh:"客棧",py:"kèzhàn",hv:"khách sạn",vi:"quán trọ",en:"inn",st:"learning",nw:true},
+      {zh:"，",py:"",hv:"",vi:"",en:"",st:"punct"},
+      {zh:"燈",py:"dēng",hv:"đăng",vi:"đèn",en:"lamp",st:"known"},
+      {zh:"還",py:"hái",hv:"hoàn",vi:"vẫn",en:"still",st:"known"},
+      {zh:"亮",py:"liàng",hv:"lượng",vi:"sáng",en:"bright",st:"learning"},
+      {zh:"著",py:"zhe",hv:"trước",vi:"(đang)",en:"(aspect)",st:"known"},
+      {zh:"。",py:"",hv:"",vi:"",en:"",st:"punct"}
+    ]
+  ],
+  bridge: {
+    char:"望", hv:"vọng", py:"wàng", zhuyin:"ㄨㄤˋ",
+    pos_vi:"động từ", pos_en:"verb",
+    gloss_vi:"nhìn ra xa; ngóng trông",
+    gloss_en:"to gaze into the distance; to look toward",
+    eyebrow_vi:"Bạn đã biết âm này rồi",
+    eyebrow_en:"you already know this morpheme",
+    cognates:[
+      {vi:"hy vọng", zh:"希望", en:"to hope", shared:"vọng"},
+      {vi:"thất vọng", zh:"失望", en:"disappointed", shared:"vọng"},
+      {vi:"nguyện vọng", zh:"願望", en:"aspiration", shared:"vọng"}
+    ],
+    closing_vi:"cùng chữ 望 vọng — âm bạn đã nói hằng ngày",
+    closing_en:"all the same 望 vọng you already say",
+    en_rail_note:"望 phonetic series 亡 (wáng) → 望 / 忘 / 茫 — the same 亡 sound element threading through ‘gaze’, ‘forget’, ‘vast’.",
+    dict_link_vi:"Mở trang chữ đầy đủ →",
+    dict_link_en:"Open full entry →"
+  }
+};
+
+/* Traditional → Simplified map for the glyphs in this passage */
+const T2S = {
+  "頭":"头","望":"望","座":"座","間":"间","古老":"古老","客棧":"客栈",
+  "燈":"灯","還":"还","亮":"亮","著":"着","抬起":"抬起","山":"山","中":"中","的":"的"
+};
+function toSimp(zh){
+  if(T2S[zh]) return T2S[zh];
+  // per-char fallback
+  return zh.split("").map(c=>T2S[c]||c).join("");
+}
+
+/* Zhuyin fallbacks for the bridge char + a couple others (mockup-scale) */
+const ZHUYIN = {
+  "他":"ㄊㄚ","抬起":"ㄊㄞˊ ㄑㄧˇ","頭":"ㄊㄡˊ","望":"ㄨㄤˋ","向":"ㄒㄧㄤˋ",
+  "那":"ㄋㄚˋ","座":"ㄗㄨㄛˋ","高":"ㄍㄠ","山":"ㄕㄢ","中":"ㄓㄨㄥ","有":"ㄧㄡˇ",
+  "一":"ㄧ","間":"ㄐㄧㄢ","古老":"ㄍㄨˇ ㄌㄠˇ","的":"˙ㄉㄜ","客棧":"ㄎㄜˋ ㄓㄢˋ",
+  "燈":"ㄉㄥ","還":"ㄏㄞˊ","亮":"ㄌㄧㄤˋ","著":"˙ㄓㄜ"
+};
+
+const root = document.documentElement;
+const $ = (s,el=document)=>el.querySelector(s);
+const $$ = (s,el=document)=>Array.from(el.querySelectorAll(s));
+
+/* ============================================================
+   STATE
+   ============================================================ */
+function getState(){
+  return {
+    rail: root.dataset.rail,        // 'vi' | 'en'
+    script: root.dataset.script,    // 'trad' | 'simp'
+    reading: root.dataset.reading,  // 'hv' | 'py' | 'zh'
+    gloss: root.dataset.gloss,      // 'on' | 'off'
+    theme: root.dataset.theme
+  };
+}
+
+/* ruby text for a token under current reading axis */
+function rubyFor(tok){
+  const s = getState();
+  if(s.reading === "py") return tok.py;
+  if(s.reading === "zh") return ZHUYIN[tok.zh] || tok.py;
+  // hv
+  return tok.hv;
+}
+function glyphFor(zh){
+  return getState().script === "simp" ? toSimp(zh) : zh;
+}
+function glossFor(tok){
+  return getState().rail === "vi" ? tok.vi : tok.en;
+}
+
+/* ============================================================
+   RENDER PASSAGE
+   ============================================================ */
+function renderPassage(){
+  const wrap = $("#passage");
+  wrap.innerHTML = "";
+  CONTENT.sentences.forEach((sent, si)=>{
+    const line = document.createElement("div");
+    line.className = "sentence";
+
+    let glossPieces = [];
+
+    sent.forEach((tok, ti)=>{
+      if(tok.st === "punct"){
+        const p = document.createElement("span");
+        p.className = "punct";
+        p.textContent = glyphFor(tok.zh);
+        line.appendChild(p);
+        return;
+      }
+      const w = document.createElement("button");
+      w.className = "w";
+      w.type = "button";
+      w.dataset.st = tok.st;
+      if(tok.nw) w.dataset.nw = "1";
+      w.dataset.si = si;
+      w.dataset.ti = ti;
+      w.setAttribute("aria-label", tok.zh + " — " + glossFor(tok));
+
+      const ruby = document.createElement("span");
+      ruby.className = "ruby";
+      ruby.textContent = rubyFor(tok);
+
+      const han = document.createElement("span");
+      han.className = "han";
+      han.textContent = glyphFor(tok.zh);
+
+      w.appendChild(ruby);
+      w.appendChild(han);
+      w.addEventListener("click", (e)=>{ e.stopPropagation(); openSlip(tok, w); });
+      line.appendChild(w);
+
+      // collect plain gloss for the inline translation line
+      const g = glossFor(tok);
+      if(g && !g.startsWith("(")) glossPieces.push(g);
+    });
+
+    wrap.appendChild(line);
+
+    // inline at-a-glance gloss line under the sentence
+    const gl = document.createElement("div");
+    gl.className = "gloss-line";
+    const s = getState();
+    // use a natural translation per sentence (rail-aware)
+    gl.textContent = s.rail === "vi"
+      ? (si === 0 ? "Anh ấy ngẩng đầu, nhìn ra xa về phía ngọn núi cao kia."
+                  : "Trong núi có một quán trọ cổ kính, ngọn đèn vẫn còn sáng.")
+      : (si === 0 ? "He raised his head and gazed toward that tall mountain."
+                  : "In the mountains stood an ancient inn, its lamp still glowing.");
+    wrap.appendChild(gl);
+  });
+}
+
+/* ============================================================
+   GLOSS SLIP — bridge on VI, series-note on EN
+   ============================================================ */
+let lastFocus = null;
+
+function openSlip(tok, anchorEl){
+  const s = getState();
+  const slip = $("#slip");
+  const scrim = $("#scrim");
+  const isBridge = (tok.zh === CONTENT.bridge.char);
+  const b = CONTENT.bridge;
+  lastFocus = anchorEl;
+
+  const reading = rubyFor(tok);
+  const py = s.reading === "zh" ? (ZHUYIN[tok.zh]||tok.py) : tok.py;
+  const pos = s.rail === "vi" ? b.pos_vi : b.pos_en;
+  const gloss = glossFor(tok);
+
+  let bridgeHTML = "";
+
+  if(isBridge && s.rail === "vi"){
+    // THE MOAT — leads with the cognate, not the definition
+    const cogs = b.cognates.map(c=>{
+      // split the VI compound into faint + shared(violet)
+      const parts = c.vi.split(" ");
+      const html = parts.map(p=>{
+        const isShared = p.toLowerCase() === b.cognates[0].shared;
+        return isShared
+          ? `<span class="shared">${p}</span>`
+          : `<span>${p}</span>`;
+      }).join(" ");
+      return `<div class="cog">
+                <span>${html}</span>
+                <span class="cog-zh">${glyphFor(c.zh)}</span>
+                <span class="cog-en">${c.en}</span>
+              </div>`;
+    }).join("");
+
+    bridgeHTML = `
+      <div class="bridge">
+        <div class="bridge-eyebrow">
+          <svg class="knot-tie" width="13" height="13" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+            <path d="M5 9 C5 4, 12 4, 13 9 C14 14, 7 14, 7 18 C7 22, 14 22, 15 17"
+                  stroke="var(--violet)" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+          </svg>
+          ◆ ${b.eyebrow_vi} <span class="en">· ${b.eyebrow_en}</span>
+        </div>
+        <div class="cognates">${cogs}</div>
+        <div class="bridge-closing">
+          — <span class="em">cùng chữ <span class="han">${glyphFor(b.char)}</span> ${b.hv}</span>, âm bạn đã nói hằng ngày.
+        </div>
+      </div>`;
+  } else if(isBridge && s.rail === "en"){
+    // quieter sibling — phonetic-series / component note (NO 'you already know' claim)
+    bridgeHTML = `
+      <div class="series-note">
+        <div class="sn-label">Phonetic series</div>
+        <div class="sn-body">
+          <span class="han">${glyphFor("望")}</span> shares the sound element
+          <span class="phon">亡 (wáng)</span> with
+          <span class="han">忘</span> &amp; <span class="han">茫</span> —
+          gaze, forget, vast all thread through one component.
+        </div>
+      </div>`;
+  }
+
+  const dictLabel = s.rail === "vi" ? b.dict_link_vi : b.dict_link_en;
+  const addLabel = s.rail === "vi" ? "+ Thêm thẻ" : "+ Add card";
+  const knownLabel = s.rail === "vi" ? "✓ Đã biết" : "✓ Known";
+
+  slip.innerHTML = `
+    <div class="slip-body">
+      <div class="slip-head">
+        <span class="slip-glyph">${glyphFor(tok.zh)}</span>
+        <span class="slip-reading">${reading}</span>
+        <span class="slip-py">${py || ""}</span>
+      </div>
+      <div class="slip-pos">${pos}</div>
+      <p class="slip-gloss">${gloss}</p>
+      ${bridgeHTML}
+      <div class="slip-actions">
+        <button class="act" data-act="add">${addLabel}</button>
+        <button class="act known" data-act="known">${knownLabel}</button>
+        <button class="act dict" data-act="dict">${glyphFor("字")} &nbsp;${dictLabel}</button>
+      </div>
+    </div>`;
+
+  // position the slip anchored under the word (lifted slip of paper)
+  scrim.classList.add("open");
+  slip.style.visibility = "hidden";
+  slip.classList.add("show"); // measure with final layout, then place
+  positionSlip(slip, anchorEl);
+  slip.style.visibility = "visible";
+
+  // wire actions
+  $$(".act", slip).forEach(btn=>{
+    btn.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      const a = btn.dataset.act;
+      if(a === "dict"){
+        // "walk into the reference library" — warm + densify, then close
+        slip.classList.add("dive");
+        setTimeout(closeSlip, 520);
+      } else if(a === "known"){
+        anchorEl.dataset.st = "known";
+        delete anchorEl.dataset.nw;
+        closeSlip();
+      } else {
+        closeSlip();
+      }
+    });
+  });
+
+  // focus first action for keyboard users
+  const firstAct = $(".act", slip);
+  if(firstAct) firstAct.focus();
+}
+
+function positionSlip(slip, anchorEl){
+  const r = anchorEl.getBoundingClientRect();
+  const sw = slip.offsetWidth;
+  const sh = slip.offsetHeight;
+  const margin = 12;
+  const vw = document.documentElement.clientWidth;
+
+  // horizontal: center under word, clamp to viewport
+  let left = r.left + r.width/2 - sw/2 + window.scrollX;
+  left = Math.max(margin + window.scrollX, Math.min(left, window.scrollX + vw - sw - margin));
+
+  // vertical: below the word; flip above if it would go off-screen bottom
+  let top = r.bottom + 10 + window.scrollY;
+  const vh = document.documentElement.clientHeight;
+  if(r.bottom + 10 + sh > vh && r.top - 10 - sh > 0){
+    top = r.top - sh - 10 + window.scrollY;
+  }
+  slip.style.left = left + "px";
+  slip.style.top = top + "px";
+}
+
+function closeSlip(){
+  const slip = $("#slip");
+  const scrim = $("#scrim");
+  slip.classList.remove("show","dive");
+  scrim.classList.remove("open");
+  setTimeout(()=>{ slip.innerHTML = ""; slip.style.visibility=""; }, 180);
+  if(lastFocus){ lastFocus.focus(); lastFocus = null; }
+}
+
+/* tap outside / Esc closes; page never darkens */
+$("#scrim").addEventListener("click", closeSlip);
+document.addEventListener("keydown", (e)=>{
+  if(e.key === "Escape"){ closeSlip(); $("#paletteMenu").classList.remove("open"); }
+});
+
+/* ============================================================
+   RAIL SWITCHER — sets reading + gloss together
+   ============================================================ */
+function setRail(rail){
+  root.dataset.rail = rail;
+  // VI rail → reading=hv default; EN rail → reading=py default (keep zhuyin if chosen)
+  if(rail === "vi"){
+    if(root.dataset.reading === "py") root.dataset.reading = "hv";
+  } else {
+    if(root.dataset.reading === "hv") root.dataset.reading = "py";
+  }
+  // primary reading button relabels by rail
+  $("#readPrimary").textContent = rail === "vi" ? "Hán" : "拼";
+  $("#readPrimary").dataset.val = rail === "vi" ? "hv" : "py";
+  // hide the redundant pinyin option on EN rail (primary already pinyin); keep on VI
+  $("#readPinyin").style.display = rail === "vi" ? "" : "none";
+  $("#readPinyin").previousElementSibling.style.display = rail === "vi" ? "" : "none";
+
+  // rail pill aria
+  $$(".rail-pill").forEach(p=>p.setAttribute("aria-selected", p.dataset.railSet === rail));
+  // mini rail text
+  $("#miniRailText").textContent = rail === "vi" ? "Tiếng Việt" : "English";
+  // provenance + counts localize
+  $("#provText").textContent = rail === "vi" ? CONTENT.meta.origin_vi : CONTENT.meta.origin_en;
+  $("#titleRom").textContent = rail === "vi" ? CONTENT.meta.title_hv : CONTENT.meta.title_vi;
+  $("#newCount").textContent = rail === "vi" ? (CONTENT.meta.newWords + " từ mới") : (CONTENT.meta.newWords + " new");
+  $("#minRead").textContent = rail === "vi" ? (CONTENT.meta.minutes + " phút") : (CONTENT.meta.minutes + " min");
+
+  syncReadingButtons();
+  renderPassage();
+}
+
+$$(".rail-pill").forEach(p=>{
+  p.addEventListener("click", ()=> crossfadeRender(()=> setRail(p.dataset.railSet)) );
+});
+$("#miniRail").addEventListener("click", ()=>{
+  // scrolled-state quick flip
+  window.scrollTo({top:0, behavior:"smooth"});
+  crossfadeRender(()=> setRail(root.dataset.rail === "vi" ? "en" : "vi"));
+});
+$("#miniRail").addEventListener("keydown", (e)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); $("#miniRail").click(); }});
+
+/* gentle 120ms cross-fade of the reading/gloss layer on rail switch */
+function crossfadeRender(fn){
+  const pass = $("#passage");
+  pass.style.transition = "opacity 120ms ease";
+  pass.style.opacity = "0";
+  setTimeout(()=>{
+    fn();
+    pass.style.opacity = "1";
+  }, 120);
+}
+
+/* ============================================================
+   AXIS TOGGLES
+   ============================================================ */
+function syncReadingButtons(){
+  const r = root.dataset.reading;
+  $$('#readingToggle .topt').forEach(b=> b.setAttribute("aria-pressed", b.dataset.val === r));
+}
+function syncToggle(axis){
+  const val = root.dataset[axis];
+  $$(`.topt[data-axis="${axis}"]`).forEach(b=> b.setAttribute("aria-pressed", b.dataset.val === val));
+}
+
+$$(".topt").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const axis = btn.dataset.axis;
+    const val = btn.dataset.val;
+    root.dataset[axis] = val;
+    syncToggle(axis);
+    if(axis === "gloss"){
+      // gloss toggle just shows/hides inline gloss line (CSS) — no re-render needed,
+      // but re-render keeps aria labels honest
+      return;
+    }
+    renderPassage();
+  });
+});
+
+/* ============================================================
+   THEME
+   ============================================================ */
+$("#themeBtn").addEventListener("click", ()=>{
+  const dark = root.dataset.theme === "dark";
+  root.dataset.theme = dark ? "light" : "dark";
+  $("#themeIcon").textContent = dark ? "☾" : "☀";
+  $("#themeText").textContent = dark ? "Tối" : "Sáng";
+});
+
+/* ============================================================
+   PALETTE SWITCHER
+   ============================================================ */
+const PAL_NAMES = { loom:"Loom", foxed:"Foxed", slate:"Slate Press", vellum:"Vellum" };
+const palBtn = $("#paletteBtn");
+const palMenu = $("#paletteMenu");
+palBtn.addEventListener("click", (e)=>{
+  e.stopPropagation();
+  const open = palMenu.classList.toggle("open");
+  palBtn.setAttribute("aria-expanded", open);
+});
+$$(".palette-opt").forEach(opt=>{
+  opt.addEventListener("click", ()=>{
+    const pal = opt.dataset.pal;
+    root.dataset.palette = pal;
+    $("#paletteName").textContent = PAL_NAMES[pal];
+    $$(".palette-opt").forEach(o=> o.setAttribute("aria-checked", o === opt));
+    palMenu.classList.remove("open");
+    palBtn.setAttribute("aria-expanded", false);
+  });
+});
+document.addEventListener("click", ()=> palMenu.classList.remove("open"));
+
+/* tap outside any word closes slip (page never darkens) */
+document.addEventListener("click", (e)=>{
+  const slip = $("#slip");
+  if(slip.classList.contains("show") && !slip.contains(e.target) && !e.target.closest(".w")){
+    closeSlip();
+  }
+});
+
+/* ============================================================
+   SCROLL — header collapse to 4px violet thread + progress
+   ============================================================ */
+let ticking = false;
+function onScroll(){
+  if(!ticking){
+    requestAnimationFrame(()=>{
+      const y = window.scrollY;
+      root.dataset.scrolled = y > 40 ? "1" : "0";
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - doc.clientHeight;
+      const pct = max > 0 ? Math.min(100, (y / max) * 100) : 0;
+      document.documentElement.style.setProperty("--progress", pct + "%");
+      ticking = false;
+    });
+    ticking = true;
+  }
+}
+window.addEventListener("scroll", onScroll, {passive:true});
+
+/* ============================================================
+   INIT — default VI rail so the moat shows
+   ============================================================ */
+setRail("vi");
+syncToggle("script");
+syncToggle("gloss");
+syncReadingButtons();
+onScroll();
+</script>
+</body>
+</html>

@@ -1,0 +1,1149 @@
+[
+  {
+    "unit": "B1L01",
+    "title": "Welcome to Taiwan!",
+    "theme": "Introducing Myself",
+    "grammar": [
+      {
+        "name": "A-not-A questions"
+      },
+      {
+        "name": "Questions with 嗎"
+      },
+      {
+        "name": "Affirmative answers"
+      },
+      {
+        "name": "Negative replies with 不"
+      },
+      {
+        "name": "Modification marker 很"
+      },
+      {
+        "name": "Contrastive questions with 呢"
+      }
+    ]
+  },
+  {
+    "unit": "B1L02",
+    "title": "My Family",
+    "theme": "Family Members",
+    "grammar": [
+      {
+        "name": "的 — possessive"
+      },
+      {
+        "name": "的 — modifier marker"
+      },
+      {
+        "name": "有 — possessive"
+      },
+      {
+        "name": "都 — totality"
+      },
+      {
+        "name": "Measures 個 · 張"
+      }
+    ]
+  },
+  {
+    "unit": "B1L03",
+    "title": "What Are You Doing Over the Weekend?",
+    "theme": "Hobbies",
+    "grammar": [
+      {
+        "name": "Placement of time words"
+      },
+      {
+        "name": "去 + VP (go do something)"
+      },
+      {
+        "name": "Topic sentences"
+      },
+      {
+        "name": "Adverb order: 也 · 都 · 常"
+      },
+      {
+        "name": "Making suggestions with 吧"
+      }
+    ]
+  },
+  {
+    "unit": "B1L04",
+    "title": "Excuse Me. How Much Does That Cost in Total?",
+    "theme": "Shopping",
+    "grammar": [
+      {
+        "name": "Measures 塊 · 杯 · 支 · 種"
+      },
+      {
+        "name": "Preposition 幫 (on behalf of)"
+      },
+      {
+        "name": "的 de-phrase, head noun omitted"
+      },
+      {
+        "name": "太…了 (overly)"
+      },
+      {
+        "name": "能 néng (capability)"
+      },
+      {
+        "name": "多 (…and more)"
+      }
+    ]
+  },
+  {
+    "unit": "B1L05",
+    "title": "Beef Noodles Are Really Delicious",
+    "theme": "Food and Drink",
+    "grammar": [
+      {
+        "name": "有一點 (slightly)"
+      },
+      {
+        "name": "Complement marker 得"
+      },
+      {
+        "name": "Acquired skills 會"
+      },
+      {
+        "name": "Destination marker 到"
+      }
+    ]
+  },
+  {
+    "unit": "B1L06",
+    "title": "Their School Is Up in the Mountains",
+    "theme": "Locations and Positions",
+    "grammar": [
+      {
+        "name": "Locative marker 在"
+      },
+      {
+        "name": "Existential sentence with 有"
+      },
+      {
+        "name": "Softened action V (一) V"
+      },
+      {
+        "name": "不是 negation"
+      },
+      {
+        "name": "Location of an activity 在…V"
+      }
+    ]
+  },
+  {
+    "unit": "B1L07",
+    "title": "Going to KTV at 9 O'clock in the Morning",
+    "theme": "Time (Time-When and Time-Duration) 時間（時點、時段）",
+    "grammar": [
+      {
+        "name": "從…到 — from A to B"
+      },
+      {
+        "name": "在 — progressive / on-going action"
+      },
+      {
+        "name": "每 — each and every"
+      },
+      {
+        "name": "可以 — permission"
+      }
+    ]
+  },
+  {
+    "unit": "B1L08",
+    "title": "Taking a Train to Tainan",
+    "theme": "Transportation 交通工具",
+    "grammar": [
+      {
+        "name": "跟 — companionship (with)"
+      },
+      {
+        "name": "怎麼 — asking how"
+      },
+      {
+        "name": "比較 — implicit comparison (relatively / -er)"
+      },
+      {
+        "name": "又…又… — both A and B"
+      },
+      {
+        "name": "比 — explicit comparison (A 比 B + state verb)"
+      }
+    ]
+  },
+  {
+    "unit": "B1L09",
+    "title": "Where Will You Go for the Holidays?",
+    "theme": "Leisure 休閒",
+    "grammar": [
+      {
+        "name": "…的時候 — when (at the time of)"
+      },
+      {
+        "name": "有時候…有時候… — sometimes…, and sometimes…"
+      },
+      {
+        "name": "要是…就… — condition and consequence (if…then…)"
+      }
+    ]
+  },
+  {
+    "unit": "B1L10",
+    "title": "The Fruit in Taiwan Tastes Really Good",
+    "theme": "The Appearance of People and Things (Topic: 人或物件外貌)",
+    "grammar": [
+      {
+        "name": "VV看 — to try and see (tentative attempt)"
+      },
+      {
+        "name": "Change in Situation with Sentential 了"
+      },
+      {
+        "name": "Cause and Effect with 因為…，所以…"
+      }
+    ]
+  },
+  {
+    "unit": "B1L11",
+    "title": "I Would Like to Rent a Place",
+    "theme": "Renting a Place (Topic: 租房子)",
+    "grammar": [
+      {
+        "name": "To Come to Do Something with 來 (來 + VP)"
+      },
+      {
+        "name": "Sooner Than Expected with 就"
+      },
+      {
+        "name": "Existential Subject with 有 (有 + indefinite NP + VP)"
+      },
+      {
+        "name": "Different Types of 會 (acquired skill 會1 / likelihood 會2)"
+      }
+    ]
+  },
+  {
+    "unit": "B1L12",
+    "title": "How Long Will You Be Studying Chinese in Taiwan?",
+    "theme": "Study, Work (Topic: 學習、工作)",
+    "grammar": [
+      {
+        "name": "先…，再… — first…, and then… (event sequence)"
+      },
+      {
+        "name": "以後 — after… / in the future"
+      },
+      {
+        "name": "Special Meanings of 好/難 + Verb (好 = easy/good-to, 難 = hard-to)"
+      }
+    ]
+  },
+  {
+    "unit": "B1L13",
+    "title": "Happy Birthday",
+    "theme": "社交生活 Social Life",
+    "grammar": [
+      {
+        "name": "一…就 — as soon as"
+      },
+      {
+        "name": "了 — completed action (verbal 了)"
+      },
+      {
+        "name": "不 vs 沒 negation"
+      },
+      {
+        "name": "Question words as all-inclusive (都/也)"
+      },
+      {
+        "name": "多/少 + Verb — more/less than planned"
+      },
+      {
+        "name": "是不是 — confirmation question"
+      },
+      {
+        "name": "跟…一樣 — equal comparison"
+      }
+    ]
+  },
+  {
+    "unit": "B1L14",
+    "title": "It's So Cold!",
+    "theme": "天氣 The Weather",
+    "grammar": [
+      {
+        "name": "V了 + time-duration"
+      },
+      {
+        "name": "Double 了 — completion to date"
+      },
+      {
+        "name": "快…了 — about to"
+      },
+      {
+        "name": "比…更 — even more so"
+      },
+      {
+        "name": "沒有…(那麼/這麼) — inferior comparison"
+      }
+    ]
+  },
+  {
+    "unit": "B1L15",
+    "title": "I Don't Feel Well",
+    "theme": "生病 Falling Sick",
+    "grammar": [
+      {
+        "name": "Question words — non-committal stance"
+      },
+      {
+        "name": "把 — disposal"
+      },
+      {
+        "name": "V了…就 — right after doing"
+      },
+      {
+        "name": "一點 — a bit"
+      },
+      {
+        "name": "V得…比 — comparing actions (得 complement)"
+      },
+      {
+        "name": "Degree complements in comparison (一點/得多/多了)"
+      }
+    ]
+  },
+  {
+    "unit": "B2L01",
+    "title": "Excuse Me. How Do You Get to Shida?",
+    "theme": "問路 Asking Directions",
+    "grammar": [
+      {
+        "name": "Going from / toward with 從 cóng…往 wǎng…"
+      },
+      {
+        "name": "Judgmental V-起來 qǐlái (it's my assessment that…)"
+      },
+      {
+        "name": "Ongoing Action with 著 zhe"
+      },
+      {
+        "name": "Two Simultaneous Actions with 一邊 yìbiān…一邊 yìbiān…"
+      },
+      {
+        "name": "Distance from with 離 lí…"
+      }
+    ]
+  },
+  {
+    "unit": "B2L02",
+    "title": "Take the MRT Instead!",
+    "theme": "交通 Transportation",
+    "grammar": [
+      {
+        "name": "Emphatic Negation with 一點也不 yìdiǎn yě bù V…"
+      },
+      {
+        "name": "還是 háishì…吧 ba！ (it will be better if…)"
+      },
+      {
+        "name": "Form Adverbials with 一點 yìdiǎn (post-verbal, V Vs 一點)"
+      },
+      {
+        "name": "不太 bútài (not very)"
+      },
+      {
+        "name": "Locations with 部 bù / 邊 biān (directional locative suffix)"
+      }
+    ]
+  },
+  {
+    "unit": "B2L03",
+    "title": "Your Chinese Has Improved!",
+    "theme": "學習 Studying",
+    "grammar": [
+      {
+        "name": "Various Functions of 差不多 chàbùduō"
+      },
+      {
+        "name": "Experience Particle 過 guò"
+      },
+      {
+        "name": "才 cái (merely, only)"
+      },
+      {
+        "name": "想起來 xiǎng qǐlái (to have remembered)"
+      },
+      {
+        "name": "Longer/Later Than Expected with 才 cái"
+      }
+    ]
+  },
+  {
+    "unit": "B2L04",
+    "title": "I Work Part-time. I Teach French.",
+    "theme": "工作 Work",
+    "grammar": [
+      {
+        "name": "除了…，還… — in addition to…"
+      },
+      {
+        "name": "按照 ànzhào — in accordance with"
+      },
+      {
+        "name": "Various meanings of the preposition 跟 gēn (to/with/from)"
+      },
+      {
+        "name": "Various meanings of 給 gěi (to/for)"
+      },
+      {
+        "name": "對 duì… — towards…"
+      }
+    ]
+  },
+  {
+    "unit": "B2L05",
+    "title": "Attending a Wedding Reception",
+    "theme": "人際關係 Inter-personal Relationships",
+    "grammar": [
+      {
+        "name": "還 hái — still / yet (situation unchanged)"
+      },
+      {
+        "name": "Manner of an action with V 著 zhe (do B while doing A)"
+      },
+      {
+        "name": "When A comes, then B… with 等 děng… 就 jiù…"
+      },
+      {
+        "name": "While doing A, B happens — V 著 V 著，就…了"
+      }
+    ]
+  },
+  {
+    "unit": "B2L06",
+    "title": "I Plan to Move Closer to School",
+    "theme": "搬家 Moving Home",
+    "grammar": [
+      {
+        "name": "Destination marker 到 dào (post-verbal V+到+place)"
+      },
+      {
+        "name": "Indirect object marker 給 gěi (V+給+IO+DO)"
+      },
+      {
+        "name": "Resultant location with V + 在 zài (post-verbal V+在+place)"
+      },
+      {
+        "name": "Moving an object to a location with 把 bǎ (A 把 B V 到/在/給 Loc)"
+      },
+      {
+        "name": "而且 érqiě — furthermore / and also"
+      }
+    ]
+  },
+  {
+    "unit": "B2L07",
+    "title": "The Garbage Truck Is Here!",
+    "theme": "居家環境 Living Environment",
+    "grammar": [
+      {
+        "name": "Directional Constructions V1V2 and V1V2V3"
+      },
+      {
+        "name": "把 bǎ with V1V2V3"
+      },
+      {
+        "name": "Confrontation with 嗎 ma"
+      },
+      {
+        "name": "Existential Sentences with Posture Verbs"
+      },
+      {
+        "name": "為了 wèile in order to"
+      }
+    ]
+  },
+  {
+    "unit": "B2L08",
+    "title": "Learning Kungfu",
+    "theme": "休閒活動 Leisure Activities",
+    "grammar": [
+      {
+        "name": "見 jiàn as a Perceptual Result"
+      },
+      {
+        "name": "懂 dǒng as a Cognitive Result"
+      },
+      {
+        "name": "會 huì as an Achievement Result"
+      },
+      {
+        "name": "Potential Capability with -得 de- or -不 bù-"
+      },
+      {
+        "name": "Capability Complement 了 liǎo"
+      },
+      {
+        "name": "Vs + 得 de + complement (so...that...)"
+      },
+      {
+        "name": "To Keep on Doing Something with 下去 xiàqù"
+      },
+      {
+        "name": "Completion of an Action with V + 完 wán"
+      }
+    ]
+  },
+  {
+    "unit": "B2L09",
+    "title": "That City Is Really Beautiful",
+    "theme": "國家環境 National Environment",
+    "grammar": [
+      {
+        "name": "All set and ready with Verb complement 好 hǎo"
+      },
+      {
+        "name": "To be successful in... with Verb complement 到 dào"
+      },
+      {
+        "name": "Comparison with 比起來 bǐ qǐlái"
+      },
+      {
+        "name": "像 xiàng…一樣 yíyàng… is just like..."
+      },
+      {
+        "name": "Adverbial Complements 極了 jí le, 得不得了 de bùdéliǎo, 得很 de hěn (terribly, extremely)"
+      },
+      {
+        "name": "Verb complement 起 qǐ (to be able to afford)"
+      }
+    ]
+  },
+  {
+    "unit": "B2L10",
+    "title": "Come to My Place to Make Dumplings",
+    "theme": "Socializing 交際",
+    "grammar": [
+      {
+        "name": "To figure out with the Complement 出來 chūlái"
+      },
+      {
+        "name": "Enough space to accommodate with Verb Complement 下 xià"
+      },
+      {
+        "name": "Disposal Construction 把 bǎ with Verb Reduplication 把…V(一)V"
+      },
+      {
+        "name": "Disposal Construction 把 bǎ with Resultative Complements"
+      },
+      {
+        "name": "趁 chèn seize the moment"
+      }
+    ]
+  },
+  {
+    "unit": "B2L11",
+    "title": "Taiwan Really Has Lots of Fun Places",
+    "theme": "Traveling 旅行",
+    "grammar": [
+      {
+        "name": "The Others 其他的 vs. Other 別的 vs. Another 另外的"
+      },
+      {
+        "name": "Verb Classifiers 下 xià, 趟 tàng, 遍 biàn, 次 cì"
+      },
+      {
+        "name": "Expressing next in sequence with 然後 / 後來 / 以後"
+      },
+      {
+        "name": "才 cái then and only then"
+      },
+      {
+        "name": "Passive Sentences with 被 bèi"
+      },
+      {
+        "name": "Verb Reduplication in V 了 le V"
+      },
+      {
+        "name": "Verb Particle (Complement) 上 shàng coming into contact"
+      }
+    ]
+  },
+  {
+    "unit": "B2L12",
+    "title": "How to Have a Healthy Diet?",
+    "theme": "Food Culture 飲食文化",
+    "grammar": [
+      {
+        "name": "讓 ràng to let someone do something"
+      },
+      {
+        "name": "快一點 kuài yìdiǎn hurry up"
+      },
+      {
+        "name": "Verb Particle 起 qǐ to touch upon"
+      },
+      {
+        "name": "只要 zhǐyào…就 jiù… as long as…"
+      },
+      {
+        "name": "越 yuè…越 yuè… the more…, the more…"
+      }
+    ]
+  },
+  {
+    "unit": "B2L13",
+    "title": "I Lost My Cell Phone",
+    "theme": "網路與生活 The Internet and Life",
+    "grammar": [
+      {
+        "name": "Completion of Action with V + 過"
+      },
+      {
+        "name": "Verb Particle 走 (away)"
+      },
+      {
+        "name": "Imperative Sentences with 叫 (tell sb to do)"
+      },
+      {
+        "name": "別再…了 (stop doing it)"
+      },
+      {
+        "name": "Offering assurance with 會…的"
+      },
+      {
+        "name": "透過… (by means of)"
+      },
+      {
+        "name": "才…就… (only just…, and…already)"
+      },
+      {
+        "name": "Frequency with 每 + Time Expression"
+      },
+      {
+        "name": "只有…才… (only if / cannot…unless)"
+      }
+    ]
+  },
+  {
+    "unit": "B2L14",
+    "title": "I Am Going to Start Looking for a Job",
+    "theme": "未來計畫 Plans for the Future",
+    "grammar": [
+      {
+        "name": "就要…了 (will soon)"
+      },
+      {
+        "name": "說到 / 談到… (talking of / speaking of)"
+      },
+      {
+        "name": "對 A 有 B (to be B in/about A)"
+      },
+      {
+        "name": "連…都… (even)"
+      },
+      {
+        "name": "不但…，而且… (not only…but also)"
+      },
+      {
+        "name": "Unintentional 把 construction"
+      }
+    ]
+  },
+  {
+    "unit": "B2L15",
+    "title": "Lunar New Year",
+    "theme": "節日 Holidays",
+    "grammar": [
+      {
+        "name": "Post-verbal Preposition 到 (up to, till)"
+      },
+      {
+        "name": "Manner 一 M 一 M (one at a time / one by one)"
+      },
+      {
+        "name": "Intensifying a State with 一 M 比 一 M (more and more X)"
+      },
+      {
+        "name": "Inchoative Meaning with 起來 (begin to)"
+      },
+      {
+        "name": "Four-Character Phrases 四字格 (大A大B / 有A有B)"
+      }
+    ]
+  },
+  {
+    "unit": "B3L01",
+    "title": "School Starts",
+    "theme": "校園生活 School Life",
+    "grammar": [
+      {
+        "name": "…的話 dehuà — if, supposing"
+      },
+      {
+        "name": "不到 búdào — less than"
+      },
+      {
+        "name": "差一點（就）chàyìdiǎn — almost"
+      },
+      {
+        "name": "恐怕 kǒngpà — probably, I'm afraid"
+      },
+      {
+        "name": "好不容易 hǎobùróngyì — finally managed to"
+      },
+      {
+        "name": "Instantly without prior warning with 說…就… (說V就V)"
+      },
+      {
+        "name": "不管…都/也… bùguǎn — regardless of whether or not"
+      }
+    ]
+  },
+  {
+    "unit": "B3L02",
+    "title": "Up to 20% Off",
+    "theme": "購物 Shopping",
+    "grammar": [
+      {
+        "name": "一般來說 yìbān láishuō — generally speaking"
+      },
+      {
+        "name": "General Verb 弄 nòng — to do / handle / make"
+      },
+      {
+        "name": "再說 zàishuō — besides, moreover"
+      },
+      {
+        "name": "V + 成 chéng — to become, to turn into"
+      },
+      {
+        "name": "Contrary to expectation with 並 bìng (並不/並沒)"
+      },
+      {
+        "name": "尤其（是）yóuqí — especially"
+      },
+      {
+        "name": "Concession with 只好 zhǐhǎo — could only, have no choice but to"
+      }
+    ]
+  },
+  {
+    "unit": "B3L03",
+    "title": "Did You Bring Your Coat?",
+    "theme": "氣候與節慶 Climate and Holidays",
+    "grammar": [
+      {
+        "name": "受到（…的）影響 shòudào…yǐngxiǎng — to be influenced / affected by"
+      },
+      {
+        "name": "幸虧 xìngkuī — fortunately, luckily"
+      },
+      {
+        "name": "算是 suànshì — can be considered"
+      },
+      {
+        "name": "是… (it is indeed true that…) — 的確 / 確實 / 真是"
+      },
+      {
+        "name": "難怪 nánguài — no wonder"
+      },
+      {
+        "name": "A post-verbal intensifier 死了 sǐle — terribly"
+      },
+      {
+        "name": "幾乎 jīhū — almost"
+      },
+      {
+        "name": "多少 duōshǎo — somewhat"
+      },
+      {
+        "name": "再…也… zài…yě… — no matter how…, still…"
+      }
+    ]
+  },
+  {
+    "unit": "B3L04",
+    "title": "I Love Taiwanese Hospitality",
+    "theme": "社會環境 Social Environment",
+    "grammar": [
+      {
+        "name": "不但…還/也… búdàn…hái… — not only…, but also…"
+      },
+      {
+        "name": "Speak 說 shuō vs. Talk 談 tán"
+      },
+      {
+        "name": "不是…而是… búshì…érshì… — not…; rather…"
+      },
+      {
+        "name": "從來 + negation cónglái — never"
+      },
+      {
+        "name": "Various meanings of the verb 上 shàng"
+      },
+      {
+        "name": "非…不可 fēi…bùkě — it is imperative that…"
+      },
+      {
+        "name": "對…來說 duì…láishuō — as far as… is concerned, for…"
+      },
+      {
+        "name": "對…講究 duì…jiǎngjiu — to be discerning / particular about"
+      }
+    ]
+  },
+  {
+    "unit": "B3L05",
+    "title": "What Are the Trends Now?",
+    "theme": "流行文化 Popular Culture",
+    "grammar": [
+      {
+        "name": "Verb plus complement V + 滿 mǎn — crowded / packed with"
+      },
+      {
+        "name": "Verb particle 出 chū — to have emerged"
+      },
+      {
+        "name": "不如 bùrú — not as good as"
+      },
+      {
+        "name": "Urgent conditional with 再…就…了 zài…jiù…le"
+      },
+      {
+        "name": "Verb particle 掉 diào — separated from / away"
+      },
+      {
+        "name": "居然 jūrán — to one's surprise"
+      },
+      {
+        "name": "Concession with 既然…（就）jìrán — since… (then)…"
+      },
+      {
+        "name": "V + 個不停 ge bùtíng — keep on V-ing"
+      }
+    ]
+  },
+  {
+    "unit": "B3L06",
+    "title": "Spending the Night in the Countryside",
+    "theme": "台灣農業 Taiwan's Agricultural Industry",
+    "grammar": [
+      {
+        "name": "因為…才… yīnwèi…cái… — only because…"
+      },
+      {
+        "name": "Complaining with S1…不說，S2也… — not merely…, but also…"
+      },
+      {
+        "name": "再加上 zài jiāshàng — furthermore"
+      },
+      {
+        "name": "什麼…，就是… shénme…jiùshì… — everything but…"
+      },
+      {
+        "name": "寧可…，也要… nìngkě…yěyào… — would rather…, in order to…"
+      },
+      {
+        "name": "像…的 + noun xiàng — such (nouns) as…"
+      },
+      {
+        "name": "一方面…，一方面… yìfāngmiàn — on the one hand…, on the other…"
+      },
+      {
+        "name": "隨著 S1…，S2也… suízhe — as a consequence of…"
+      }
+    ]
+  },
+  {
+    "unit": "B3L07",
+    "title": "My Closest 「Family」",
+    "theme": "家庭 Family",
+    "grammar": [
+      {
+        "name": "亂 + V luàn — to do something in an irresponsible manner"
+      },
+      {
+        "name": "各 V 各的 gè V gè de — each doing his/her own…"
+      },
+      {
+        "name": "就算…，也… jiùsuàn…yě… — even if…, (still)…"
+      },
+      {
+        "name": "因為 NP，S… yīnwèi — because of NP, S…"
+      },
+      {
+        "name": "一來…，二來… yìlái…èrlái… — on the one hand / first…, on the other / second…"
+      },
+      {
+        "name": "Repetitively, back and forth with V 來 V 去"
+      },
+      {
+        "name": "不再…了 búzài…le — not… any more"
+      }
+    ]
+  },
+  {
+    "unit": "B3L08",
+    "title": "I Just Want to Be Myself",
+    "theme": "教育 Education",
+    "grammar": [
+      {
+        "name": "不是…就是… búshì…jiùshì… — if it's not…, then it's…"
+      },
+      {
+        "name": "算了 suànle — forget it, drop it"
+      },
+      {
+        "name": "這樣一來 zhèyàng yìlái — that being the case, that way"
+      },
+      {
+        "name": "早就…了 zǎojiù…le — long since…"
+      },
+      {
+        "name": "從…起 cóng…qǐ — starting from…"
+      },
+      {
+        "name": "卻 què — however, yet"
+      },
+      {
+        "name": "因為…而… yīnwèi…ér… — therefore, consequently"
+      },
+      {
+        "name": "經過 jīngguò — after, through"
+      }
+    ]
+  },
+  {
+    "unit": "B3L09",
+    "title": "The Age of Online Shopping",
+    "theme": "網路經濟 The Internet Economy",
+    "grammar": [
+      {
+        "name": "靠 kào — to rely on, by means of"
+      },
+      {
+        "name": "既…又… jì…yòu… — not merely…, but… as well"
+      },
+      {
+        "name": "…以內 yǐnèi — within…"
+      },
+      {
+        "name": "占 zhàn — to constitute, to make up"
+      },
+      {
+        "name": "（在）NP 上 — regarding NP / in the realm of NP"
+      },
+      {
+        "name": "給…帶來 gěi…dàilái — to bring… to…"
+      },
+      {
+        "name": "結果 jiéguǒ — consequently, in the end"
+      }
+    ]
+  },
+  {
+    "unit": "B3L10",
+    "title": "I'm Staying in the Hospital",
+    "theme": "醫療保健 Health Care",
+    "grammar": [
+      {
+        "name": "Introducing a new topic with 至於… zhìyú — as to, as far as… is concerned"
+      },
+      {
+        "name": "看 kàn — depends on (要看 / 得看 / 就看)"
+      },
+      {
+        "name": "一向 yíxiàng — all along, has always…"
+      },
+      {
+        "name": "拿…來說 ná…láishuō — take… as an example"
+      },
+      {
+        "name": "Passive sentences with 受 shòu (受傷 / 受影響 / 受不了)"
+      },
+      {
+        "name": "動不動就… dòngbudòng jiù — to do something impetuously / at the slightest provocation"
+      }
+    ]
+  },
+  {
+    "unit": "B3L11",
+    "title": "The Story of Taiwan",
+    "theme": "歷史 History",
+    "grammar": [
+      {
+        "name": "到底 dàodǐ — after all? how on earth…?"
+      },
+      {
+        "name": "甚至 shènzhì — even"
+      },
+      {
+        "name": "這麼說 zhème shuō — that being the case, in that case"
+      },
+      {
+        "name": "跟 B 有關的 A — A is related to B"
+      },
+      {
+        "name": "不得不 bùdébù — have no choice but to"
+      },
+      {
+        "name": "以及 yǐjí — as well as"
+      }
+    ]
+  },
+  {
+    "unit": "B3L12",
+    "title": "I'm Going to Cast My Vote",
+    "theme": "政治 Politics",
+    "grammar": [
+      {
+        "name": "只不過…（而已）zhǐ búguò — merely…; nothing more than…"
+      },
+      {
+        "name": "Introducing an agent with 由 yóu"
+      },
+      {
+        "name": "難道… nándào — how could it possibly be true…?"
+      },
+      {
+        "name": "To reach a ceiling with 滿 mǎn (年滿 / 未滿 / 滿…歲)"
+      },
+      {
+        "name": "Beneficiary marker 為 wèi (為…服務 / 為…著想)"
+      },
+      {
+        "name": "（在）…方面 fāngmiàn — with respect to; regarding"
+      }
+    ]
+  },
+  {
+    "unit": "B4L01",
+    "title": "Seventeen or Twenty-five?",
+    "theme": "網路 The Internet",
+    "grammar": [
+      {
+        "name": "與其 A…不如 B… yǔqí — B rather than A"
+      },
+      {
+        "name": "就 jiù — on the contrary"
+      },
+      {
+        "name": "A summary of the various usages of 就 jiù"
+      },
+      {
+        "name": "別說 A，就是 B 也… biéshuō — never mind A, even B is the case…"
+      },
+      {
+        "name": "簡直 jiǎnzhí — to put it simply / it seems as if"
+      },
+      {
+        "name": "不至於 búzhìyú — would not be so bad as to…"
+      },
+      {
+        "name": "往往 wǎngwǎng — usually, tend to"
+      },
+      {
+        "name": "Do something just for fun — V 著玩 zhe wán"
+      }
+    ]
+  },
+  {
+    "unit": "B4L02",
+    "title": "A Feast for the Eyes and Ears",
+    "theme": "藝術活動 Arts Activities",
+    "grammar": [
+      {
+        "name": "Verb complement 成 chéng — successful(ly)"
+      },
+      {
+        "name": "萬一 wànyī — supposing, in the event of something negative"
+      },
+      {
+        "name": "以為 yǐwéi — to have wrongly thought that…"
+      },
+      {
+        "name": "Adverb 可 kě — emphatic (可真 / 可別 / 可不是)"
+      },
+      {
+        "name": "免得 miǎnde — lest, so as to avoid"
+      },
+      {
+        "name": "曾經 céngjīng — experience in the past, V'ed before"
+      },
+      {
+        "name": "Enumeration particle 等 děng — etc."
+      },
+      {
+        "name": "Marking a verb with the particle 所 suǒ (所 + V + 的)"
+      }
+    ]
+  },
+  {
+    "unit": "B4L03",
+    "title": "Cloud Technology",
+    "theme": "科技 Technology",
+    "grammar": [
+      {
+        "name": "何必 hébì — why must"
+      },
+      {
+        "name": "不見得 bújiànde — not necessarily"
+      },
+      {
+        "name": "嘛 ma — isn't it obvious that…"
+      },
+      {
+        "name": "Verb particle 慣 guàn — accustomed to V-ing"
+      },
+      {
+        "name": "Verb complement 動 dòng — capable of causing movement"
+      },
+      {
+        "name": "無形中 wúxíngzhōng — without knowing it"
+      },
+      {
+        "name": "此外 cǐwài — in addition, furthermore"
+      },
+      {
+        "name": "總而言之 zǒng'éryánzhī — in short"
+      }
+    ]
+  },
+  {
+    "unit": "B4L04",
+    "title": "Where Should the Bed Go?",
+    "theme": "風水 Feng Shui",
+    "grammar": [
+      {
+        "name": "總算 zǒngsuàn — finally, speaking roughly"
+      },
+      {
+        "name": "還不就是 hái bù jiùshì — nothing more than"
+      },
+      {
+        "name": "Outright denial with 才 cái (才不…)"
+      },
+      {
+        "name": "A summary of the various usages of 才 cái"
+      },
+      {
+        "name": "所謂（的）A 是指 B suǒwèi — so-called A refers to B"
+      },
+      {
+        "name": "一口氣 yìkǒuqì — in one breath / all at once"
+      },
+      {
+        "name": "光 A 就… guāng — just A alone…"
+      },
+      {
+        "name": "Expressing displeasure or annoyance with 都 dōu (都…了)"
+      }
+    ]
+  }
+]

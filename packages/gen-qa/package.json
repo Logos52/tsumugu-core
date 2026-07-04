@@ -1,0 +1,20 @@
+{
+  "name": "@tsumugu/gen-qa",
+  "version": "0.0.0",
+  "description": "Tsumugu generation QA gate — data-free band verification, content verify, bridge helpers, and CLI primitives.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@tsumugu/engine": "workspace:*",
+    "jieba-wasm": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0"
+  }
+}

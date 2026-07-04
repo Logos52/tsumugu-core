@@ -1,0 +1,38 @@
+{
+  "schema": "tsumugu/prepared-content@2",
+  "lang": "zh-Hant",
+  "title": "Length spread violation",
+  "tokens": [
+    { "text": "今天", "isWord": true },
+    { "text": "去", "isWord": true },
+    { "text": "散步", "isWord": true },
+    { "text": "。", "isWord": false },
+    { "text": "今天", "isWord": true },
+    { "text": "去", "isWord": true },
+    { "text": "散步", "isWord": true },
+    { "text": "。", "isWord": false },
+    { "text": "今天", "isWord": true },
+    { "text": "去", "isWord": true },
+    { "text": "散步", "isWord": true },
+    { "text": "。", "isWord": false },
+    { "text": "今天", "isWord": true },
+    { "text": "去", "isWord": true },
+    { "text": "散步", "isWord": true },
+    { "text": "。", "isWord": false }
+  ],
+  "glossary": {
+    "散步": {
+      "term": "散步",
+      "gloss": "to take a walk",
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "etymon": "散步",
+        "bridgeReading": "tán bộ",
+        "morphemes": [
+          { "surface": "散", "etymon": "散", "reading": "tán" },
+          { "surface": "步", "etymon": "步", "reading": "bộ" }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "tsumugu/prepared-content@2",
+  "lang": "zh-Hant",
+  "title": "Clean reading fixture",
+  "tokens": [
+    { "text": "今天", "isWord": true },
+    { "text": "天氣", "isWord": true },
+    { "text": "很", "isWord": true },
+    { "text": "好", "isWord": true },
+    { "text": "，", "isWord": false },
+    { "text": "我", "isWord": true },
+    { "text": "想", "isWord": true },
+    { "text": "去", "isWord": true },
+    { "text": "散步", "isWord": true },
+    { "text": "。", "isWord": false },
+    { "text": "我", "isWord": true },
+    { "text": "打算", "isWord": true },
+    { "text": "去", "isWord": true },
+    { "text": "公園", "isWord": true },
+    { "text": "散步", "isWord": true },
+    { "text": "，", "isWord": false },
+    { "text": "因為", "isWord": true },
+    { "text": "散步", "isWord": true },
+    { "text": "讓", "isWord": true },
+    { "text": "心情", "isWord": true },
+    { "text": "變", "isWord": true },
+    { "text": "好", "isWord": true },
+    { "text": "。", "isWord": false },
+    { "text": "後來", "isWord": true },
+    { "text": "遇到", "isWord": true },
+    { "text": "朋友", "isWord": true },
+    { "text": "，", "isWord": false },
+    { "text": "我們", "isWord": true },
+    { "text": "一起", "isWord": true },
+    { "text": "聊天", "isWord": true },
+    { "text": "，", "isWord": false },
+    { "text": "聊", "isWord": true },
+    { "text": "了", "isWord": true },
+    { "text": "很", "isWord": true },
+    { "text": "久", "isWord": true },
+    { "text": "。", "isWord": false },
+    { "text": "我", "isWord": true },
+    { "text": "很", "isWord": true },
+    { "text": "開心", "isWord": true },
+    { "text": "了", "isWord": true },
+    { "text": "。", "isWord": false }
+  ],
+  "glossary": {
+    "散步": {
+      "term": "散步",
+      "gloss": "to take a walk",
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "etymon": "散步",
+        "bridgeReading": "tán bộ",
+        "morphemes": [
+          { "surface": "散", "etymon": "散", "reading": "tán" },
+          { "surface": "步", "etymon": "步", "reading": "bộ" }
+        ]
+      }
+    }
+  }
+}

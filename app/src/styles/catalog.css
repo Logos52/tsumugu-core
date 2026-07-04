@@ -1,0 +1,660 @@
+.tsg-catalog-host {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+.tsg-shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 3rem;
+}
+
+.tsg-chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--tsg-border);
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.brand .word {
+  color: var(--tsg-accent);
+  font-family: var(--display);
+  font-weight: 600;
+}
+
+.brand .core {
+  font-size: 0.8rem;
+  color: var(--tsg-faint);
+}
+
+.spacer {
+  flex: 1;
+}
+
+.chip {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--tsg-border);
+  color: var(--tsg-muted);
+  background: var(--tsg-surface);
+  white-space: nowrap;
+}
+
+.chip.band {
+  color: var(--tsg-accent);
+  border-color: color-mix(in oklab, var(--tsg-accent) 45%, var(--tsg-border));
+}
+
+.chip.bind {
+  color: var(--tsg-ink);
+  font-family: var(--read);
+  font-weight: 400;
+}
+
+.seg {
+  display: flex;
+  border: 1px solid var(--tsg-border);
+  border-radius: 9px;
+  overflow: hidden;
+  background: var(--tsg-surface);
+  flex-wrap: wrap;
+}
+
+.seg .lbl {
+  display: flex;
+  align-items: center;
+  padding: 0 0.55rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--tsg-faint);
+  border-right: 1px solid var(--tsg-border);
+  background: var(--tsg-sunk);
+  font-family: var(--read);
+}
+
+.seg button {
+  background: none;
+  border: none;
+  color: var(--tsg-muted);
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-family: var(--ui);
+}
+
+.seg button.on {
+  background: var(--tsg-accent);
+  color: var(--tsg-accent-ink);
+  font-weight: 600;
+}
+
+.iconbtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  border: 1px solid var(--tsg-border);
+  background: var(--tsg-surface);
+  color: var(--tsg-muted);
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.iconbtn:hover {
+  color: var(--tsg-ink);
+  border-color: var(--tsg-border-strong);
+}
+
+.tsg-view-hidden {
+  display: none;
+}
+
+.tsg-cat-facets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.tsg-cat-bind-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tsg-cat-bind-input {
+  width: 5rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--tsg-border);
+  border-radius: 8px;
+  background: var(--tsg-surface);
+  color: var(--tsg-ink);
+}
+
+.tsg-cat-rung {
+  margin-bottom: 2rem;
+}
+
+.tsg-cat-rung-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.tsg-cat-rung-title {
+  font-family: var(--display);
+  font-size: 1.25rem;
+  color: var(--tsg-ink);
+}
+
+.tsg-cat-rung-count {
+  font-size: 0.85rem;
+  color: var(--tsg-muted);
+}
+
+.tsg-cat-rung-sub {
+  font-size: 0.85rem;
+  color: var(--tsg-faint);
+  margin-bottom: 0.75rem;
+}
+
+.tsg-cat-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.tsg-cat-card {
+  border: 1px solid var(--tsg-border);
+  border-radius: 12px;
+  background: var(--tsg-surface);
+}
+
+.tsg-cat-card-main {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.tsg-cat-card-main:hover {
+  background: color-mix(in oklab, var(--tsg-sunk) 60%, transparent);
+}
+
+.tsg-cat-stats {
+  font-size: 0.85rem;
+  color: var(--tsg-muted);
+  margin-top: 0.5rem;
+}
+
+.tsg-cat-coverage {
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+.metarow {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.titlerow .title-zh {
+  font-family: var(--read);
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.tsg-switcher-backdrop {
+  position: fixed;
+  inset: 0;
+  background: color-mix(in oklab, var(--tsg-ink) 25%, transparent);
+  display: grid;
+  place-items: start center;
+  padding-top: 12vh;
+  z-index: 100;
+}
+
+.tsg-switcher-hidden {
+  display: none;
+}
+
+.tsg-switcher {
+  width: min(520px, 92vw);
+  background: var(--tsg-surface);
+  border: 1px solid var(--tsg-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.tsg-switcher-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-bottom: 1px solid var(--tsg-border);
+  background: var(--tsg-sunk);
+  color: var(--tsg-ink);
+  font-size: 1rem;
+}
+
+.tsg-switcher-list {
+  max-height: 50vh;
+  overflow: auto;
+}
+
+.tsg-switcher-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--tsg-ink);
+}
+
+.tsg-switcher-row--active,
+.tsg-switcher-row:hover {
+  background: var(--tsg-sunk);
+}
+
+.tsg-switcher-meta {
+  font-size: 0.8rem;
+  color: var(--tsg-muted);
+}
+
+.tsg-import-backdrop {
+  position: fixed;
+  inset: 0;
+  background: color-mix(in oklab, var(--tsg-ink) 30%, transparent);
+  display: grid;
+  place-items: center;
+  z-index: 110;
+}
+
+.tsg-import-hidden {
+  display: none;
+}
+
+.tsg-import-panel {
+  width: min(560px, 92vw);
+  background: var(--tsg-surface);
+  border: 1px solid var(--tsg-border);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.tsg-import-title {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.tsg-import-notice {
+  font-size: 0.85rem;
+  color: var(--tsg-muted);
+  margin-bottom: 0.35rem;
+}
+
+.tsg-import-caption {
+  font-size: 0.8rem;
+  color: var(--tsg-faint);
+  margin-bottom: 0.75rem;
+}
+
+.tsg-import-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--tsg-border);
+  border-radius: 8px;
+  background: var(--tsg-bg);
+  color: var(--tsg-ink);
+  font-family: var(--read);
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.tsg-import-error {
+  color: var(--tsg-st-new);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.tsg-import-error-hidden {
+  display: none;
+}
+
+.tsg-import-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.tsg-import-btn {
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid var(--tsg-border);
+  background: var(--tsg-surface);
+  color: var(--tsg-ink);
+  cursor: pointer;
+}
+
+.tsg-import-submit {
+  background: var(--tsg-accent);
+  color: var(--tsg-accent-ink);
+  border-color: var(--tsg-accent);
+  font-weight: 600;
+}
+
+.tsg-import-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* Library surface additions */
+.tsg-lib-controls {
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+.tsg-lib-search {
+  flex: 1;
+  min-width: 160px;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--tsg-border);
+  border-radius: 8px;
+  background: var(--tsg-surface);
+  color: var(--tsg-ink);
+  font-size: 0.9rem;
+}
+.tsg-cat-continue {
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px dashed var(--tsg-border);
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--tsg-sunk) 40%, transparent);
+}
+.tsg-cat-empty {
+  color: var(--tsg-muted);
+  font-style: italic;
+  padding: 1rem 0;
+}
+.chip.audio {
+  background: var(--tsg-sunk);
+  color: var(--tsg-muted);
+}
+.titlerow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.titlerow .title-rom {
+  font-family: var(--display);
+  font-size: 0.85rem;
+  color: var(--tsg-faint);
+  font-style: italic;
+}
+/* ════════════════════════════════════════════════════════════════════════
+   冊 BOUND VOLUME LIBRARY (2026-07-02, §8 final) — replaces the Seal-red
+   Reading Wall. Ported from mockups/explorations-2026-07/unified/library.html;
+   the mockup's local vars are mapped onto the app's semantic --tsg-* tokens
+   (green = D Verdigris = --tsg-accent). Green + ink are the only saturated
+   voices; kraft / obi / borders / status sit one step quieter. Backgrounds
+   stay plain. When density and minimalism conflict, minimalism wins.
+   ════════════════════════════════════════════════════════════════════════ */
+.lib{padding:8px 0}
+
+/* ── 書腰 obi band (signature one-line fact band) ── */
+.lib .obi,.comp-shelf .obi{font-family:var(--display);font-size:12.5px;color:var(--tsg-muted);
+  background:var(--tsg-sunk);border-top:1px solid var(--tsg-border);border-bottom:1px solid var(--tsg-border);
+  padding:7px 15px;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lib .obi b,.comp-shelf .obi b{font-weight:600;color:var(--tsg-ink)}
+
+/* ── 一盞 glow (scarce, information-bearing: continue strip, lit picture cards) ── */
+.lib .glow,.comp-shelf .glow{box-shadow:0 0 0 1px var(--halo),0 12px 46px -26px var(--halo)}
+
+/* ── ruby + status marks (reader tokens on excerpt cells); status = underline
+      channel only: new = solid clay, learning = dotted amber, known = no mark ── */
+.lib ruby{ruby-position:over}
+.lib rt{font-family:var(--ui);font-weight:400;font-size:.44em;letter-spacing:.02em;color:var(--tsg-py)}
+.lib .w{cursor:pointer;border-radius:3px}
+.lib .w.k rt{color:color-mix(in oklab,var(--tsg-py) 55%,transparent)}
+.lib .mn,.lib .w.n{border-bottom:2px solid var(--tsg-st-new);padding-bottom:1px}
+.lib .ml,.lib .w.l{border-bottom:1.5px dotted var(--tsg-st-l1);padding-bottom:1px}
+.lib .cont-ex .w.n,.lib .pcard-ex .w.n{border-bottom-width:2.5px}
+
+/* ── masthead (one line) ── */
+.masthead{margin:4px 0 24px}
+.masthead p{margin:0;font-size:14px;color:var(--tsg-muted)}
+.masthead p b{font-weight:600;color:var(--tsg-ink)}
+
+/* ── section head (shared by shelf, catalog, cards) ── */
+.lib .sec-head{display:flex;align-items:baseline;gap:12px;margin:0 0 14px;flex-wrap:wrap}
+.lib .sec-head h2{font-family:var(--display);font-weight:700;font-size:20px;margin:0;color:var(--tsg-ink)}
+.lib .sec-en{font-size:13px;color:var(--tsg-faint)}
+.lib .sec-cnt{margin-left:auto;font-size:12.5px;color:var(--tsg-muted)}
+
+/* ── continue strip (one quiet row, faint green border glow) ── */
+.lib-continue{margin-bottom:32px}
+.cont-card{position:relative;display:block;background:var(--tsg-surface);border:1px solid var(--tsg-border);
+  border-radius:14px;overflow:hidden;color:inherit;cursor:pointer}
+.cont-card:hover{border-color:var(--tsg-border-strong)}
+.cont-row{display:flex;align-items:center;gap:24px;padding:18px 20px 16px}
+.cont-main{flex:1;min-width:0}
+.cont-top{display:flex;align-items:baseline;gap:10px;margin-bottom:9px;flex-wrap:wrap}
+.cont-zh{font-family:var(--display);font-weight:700;font-size:17px;color:var(--tsg-ink)}
+.cont-en{font-size:12.5px;color:var(--tsg-faint)}
+.cont-pos{margin-left:auto;font-size:12.5px;color:var(--tsg-muted);font-family:var(--display)}
+.cont-ex{font-family:var(--read);font-size:19px;line-height:2.05;margin:0;color:var(--tsg-ink);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cont-ex rt{font-size:.5em}
+.cont-go{flex:0 0 auto;align-self:center;background:var(--tsg-accent);color:var(--tsg-accent-ink);
+  border-radius:9px;padding:9px 18px;font-weight:600;font-size:13.5px;white-space:nowrap;font-family:var(--ui)}
+.cont-go .en{font-weight:500;opacity:.85;margin-left:4px;font-size:12px}
+.cont-card .obi{display:block;border-bottom:none}
+.cat-first-fallback{color:var(--tsg-muted)}
+
+/* ── 課本架 companion shelf (Book spines → lesson set-cards) ── */
+.comp-shelf{margin-bottom:42px}
+.shelf{display:flex;gap:20px;align-items:stretch;padding-bottom:14px;border-bottom:1px solid var(--tsg-border)}
+.spines{display:flex;gap:8px}
+.spine{width:54px;border:1px solid var(--tsg-border);border-radius:5px 5px 3px 3px;background:var(--tsg-surface);
+  display:flex;flex-direction:column;align-items:center;padding:12px 0 8px;gap:8px;position:relative;cursor:pointer}
+.spine:hover{border-color:var(--tsg-border-strong)}
+.spine .vt{writing-mode:vertical-rl;font-family:var(--display);font-weight:500;font-size:15px;
+  letter-spacing:.18em;color:var(--tsg-muted);flex:1}
+.spine .no{font-size:11px;color:var(--tsg-faint)}
+.spine.empty{opacity:.5}
+.spine.open{border-color:var(--tsg-accent)}
+.spine.open .vt{color:var(--tsg-ink)}
+.spine.open::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--tsg-accent);border-radius:4px 4px 0 0}
+.lessons{flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(214px,1fr));gap:14px;align-content:start}
+.lcard{background:var(--tsg-surface);border:1px solid var(--tsg-border);border-radius:10px;overflow:hidden;
+  display:flex;flex-direction:column;min-width:0;cursor:pointer}
+.lcard:hover{border-color:var(--tsg-border-strong)}
+.lcard.now{border-color:var(--tsg-accent)}
+.lc-body{padding:13px 15px 11px;flex:1}
+.lcard h3{font-family:var(--display);font-weight:700;font-size:16px;margin:0 0 8px;color:var(--tsg-ink)}
+.lcard h3 .en{font-weight:400;font-size:12px;color:var(--tsg-faint);margin-left:6px}
+.lrow{display:flex;gap:8px;font-size:12.5px;color:var(--tsg-muted);padding:2.5px 0;text-decoration:none}
+.lrow.link{cursor:pointer}
+.lrow .fmtg{font-family:var(--display);color:var(--tsg-ink)}
+.lrow .st{margin-left:auto;color:var(--tsg-faint)}
+.lrow .st.here{color:var(--tsg-accent);font-weight:600}
+.lcard .obi{border-bottom:none;margin-top:2px}
+.shelf-note{font-size:12.5px;color:var(--tsg-faint);margin-top:12px;font-family:var(--read)}
+.comp-shelf .lessons .lib-empty{padding:26px 20px;text-align:center;margin:0}
+
+/* ── 目錄 catalog spreadsheet (thin hairline rules, one fact per row, no zebra) ── */
+.catalog-sec{margin-bottom:46px}
+.cat-hint{font-size:12.5px;color:var(--tsg-muted);margin:0 0 12px}
+.cat-scroll{overflow-x:auto;border:1px solid var(--tsg-border);border-radius:12px}
+table.catalog{width:100%;border-collapse:collapse;font-size:12.5px;min-width:760px;background:var(--tsg-surface)}
+.catalog thead th{text-align:left;font-weight:600;color:var(--tsg-muted);padding:9px 13px;
+  border-bottom:1px solid var(--tsg-border);white-space:nowrap;cursor:pointer;user-select:none;background:var(--tsg-surface)}
+.catalog thead th.nosort{cursor:default;text-align:center;color:var(--tsg-faint)}
+.catalog thead th.num{text-align:right}
+.catalog thead th .hen{font-weight:400;color:var(--tsg-faint);font-size:11px;margin-left:4px}
+.catalog thead th .ind{color:var(--tsg-accent);font-size:11px;margin-left:3px}
+.catalog thead th[aria-sort="ascending"],.catalog thead th[aria-sort="descending"]{color:var(--tsg-accent)}
+.catalog thead th:hover{color:var(--tsg-ink)}
+.catalog thead th.nosort:hover{color:var(--tsg-faint)}
+.catalog tbody td{padding:8px 13px;border-bottom:1px solid color-mix(in oklab,var(--tsg-border) 55%,var(--tsg-surface));vertical-align:baseline}
+.catalog tbody tr:last-child td{border-bottom:none}
+.catalog .grp td{background:var(--tsg-sunk);font-family:var(--display);font-weight:600;font-size:12px;
+  color:var(--tsg-muted);padding:7px 13px;letter-spacing:.02em}
+.catalog tbody.sorted .grp{display:none}
+.cat-first{font-family:var(--read);font-size:14px;color:var(--tsg-ink);white-space:nowrap}
+.cat-first rt{font-family:var(--ui);font-weight:400;font-size:.44em;color:var(--tsg-py);letter-spacing:.02em}
+.cat-lesson{font-family:var(--display);color:var(--tsg-muted);white-space:nowrap}
+.cat-fmt{font-family:var(--display);color:var(--tsg-ink);white-space:nowrap}
+.cat-band{color:var(--tsg-muted)}
+.catalog td.num{text-align:right;font-variant-numeric:tabular-nums;color:var(--tsg-muted)}
+.cat-resume{text-align:center;color:var(--tsg-accent);font-weight:600;white-space:nowrap;font-family:var(--display)}
+.catalog tbody tr.rd{cursor:pointer}
+.catalog tbody tr.rd:hover td{background:color-mix(in oklab,var(--tsg-accent) 6%,var(--tsg-surface))}
+.catalog tbody tr.rd.here .cat-first{color:var(--tsg-ink)}
+
+/* ── 卡 card studies (planned picture cards) ── */
+.cards-sec{margin-top:6px}
+.cards-fact{font-size:12.5px;color:var(--tsg-muted);margin:0 0 16px}
+.cardrow{display:grid;grid-template-columns:repeat(auto-fill,minmax(244px,1fr));gap:16px}
+.pcard{background:var(--tsg-surface);border:1px solid var(--tsg-border);border-radius:12px;overflow:hidden;
+  display:flex;flex-direction:column}
+.pcard-img{aspect-ratio:16/10;background:var(--tsg-sunk);display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:4px;border-bottom:1px solid var(--tsg-border);color:var(--tsg-faint)}
+.pcard-img .mk{font-family:var(--display);font-size:22px}
+.pcard-img .mklab{font-size:10.5px;letter-spacing:.08em}
+.pcard-body{padding:14px 16px 4px;flex:1}
+.pcard-ex{font-family:var(--read);font-size:17px;line-height:2.05;margin:0;color:var(--tsg-ink)}
+.pcard-ex rt{font-size:.5em}
+.pcard .obi{border-bottom:none;margin-top:11px}
+
+/* ── shared library states (demo banner, skeleton, empties, note) ── */
+.lib-demo-banner{display:flex;align-items:center;gap:8px;margin-bottom:16px;padding:9px 14px;border-radius:11px;
+  font-size:13px;font-weight:500;color:var(--tsg-st-l1);
+  background:color-mix(in oklab,var(--tsg-st-l1) 9%,var(--tsg-surface));
+  border:1px solid color-mix(in oklab,var(--tsg-st-l1) 32%,var(--tsg-border))}
+.lib-empty{padding:44px 20px;text-align:center;color:var(--tsg-faint);font-size:14px;
+  border:1px dashed var(--tsg-border);border-radius:14px}
+.lib-empty b{color:var(--tsg-muted);font-weight:600}
+.lib-empty-catalog{color:var(--tsg-muted)}
+.lib-note{margin-top:30px;text-align:center;font-size:12.5px;color:var(--tsg-faint)}
+.lib-skeleton{display:grid;grid-template-columns:repeat(auto-fill,minmax(244px,1fr));gap:16px}
+.lib-skeleton .sk{height:150px;border-radius:12px;border:1px solid var(--tsg-border);background:var(--tsg-surface);
+  position:relative;overflow:hidden}
+.lib-skeleton .sk::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,color-mix(in oklab,var(--tsg-sunk) 70%,transparent),transparent);
+  transform:translateX(-100%);animation:lib-shimmer 1.3s infinite}
+@keyframes lib-shimmer{to{transform:translateX(100%)}}
+
+/* ── responsive ── */
+@media(max-width:860px){
+  .shelf{flex-direction:column}
+  .spines{overflow-x:auto;padding-bottom:6px}
+  .cont-row{flex-direction:column;align-items:flex-start;gap:12px}
+  .cont-pos{margin-left:0}
+  .cont-go{align-self:stretch;text-align:center}
+}
+@media(max-width:640px){
+  .cardrow{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .lib-skeleton .sk::after{animation:none}
+}
+
+/* ============================================================================
+   LIBRARY PAGE (.lp-*) — the settled 2026-07 design. Contract: mockups/
+   explorations-2026-07/unified/library-columns.html + DESIGN-PRINCIPLES.md.
+   Slim shelf left · part columns right · title-led scoped table below.
+   One teal accent; faint --tsg-fmt-* signifier dots; no glows.
+   ========================================================================= */
+.lp{max-width:960px;margin:0 auto;padding:36px 22px 110px}
+
+.lp-tabs{display:flex;align-items:baseline;gap:16px;margin:0 0 16px 2px}
+.lp-tab{font-family:var(--ui);font-size:13px;font-weight:600;color:var(--tsg-faint);background:none;border:none;cursor:pointer;padding:0;display:flex;gap:8px;align-items:baseline}
+.lp-tab .en{font-weight:500;font-size:11.5px;color:var(--tsg-faint);opacity:.8}
+.lp-tab:hover{color:var(--tsg-ink)}
+.lp-tab.on{color:var(--tsg-muted)}
+
+/* the band: slim short shelf left, columns right — a stable navigator */
+.lp-band{display:flex;gap:22px;align-items:flex-start}
+.lp-shelf{display:flex;gap:6px;flex:none}
+.lp-cover{width:34px;flex:none;height:var(--lp-shelf-h,168px);border:none;cursor:pointer;border-radius:2px 4px 4px 2px;background:var(--tsg-surface);box-shadow:var(--shadow-sm);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:10px 2px;transition:box-shadow .14s ease}
+.lp-cover:hover{box-shadow:var(--shadow),0 0 0 1px var(--tsg-border)}
+.lp-cover .vt{writing-mode:vertical-rl;font-family:var(--ui);font-weight:600;font-size:12.5px;letter-spacing:.12em;color:var(--tsg-ink)}
+.lp-cover .lv{font-size:8.5px;color:var(--tsg-faint);font-weight:600}
+.lp-cover.lvl .vt{writing-mode:horizontal-tb;font-size:11.5px;letter-spacing:.02em}
+.lp-cover.on{background:color-mix(in srgb,var(--tsg-accent) 5%,var(--tsg-surface))}
+.lp-cover.on::before{content:"";position:absolute;top:0;left:0;right:0;height:2.5px;background:var(--tsg-accent);border-radius:2px 4px 0 0}
+.lp-cover.dim{opacity:.5}
+
+.lp-cols{flex:1;min-width:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.lp-col{min-width:0}
+.lp-colh{display:flex;align-items:baseline;width:100%;padding:0 2px 7px;border:none;border-bottom:1px solid var(--tsg-border);background:none;cursor:pointer;text-align:left}
+.lp-colh .pn{font-family:var(--ui);font-weight:600;font-size:12.5px;color:var(--tsg-ink)}
+.lp-colh .rg{font-size:10.5px;color:var(--tsg-faint);font-weight:500;margin-left:auto}
+.lp-colh:hover .pn,.lp-colh.on .pn{color:var(--tsg-accent)}
+.lp-les{display:flex;align-items:baseline;gap:8px;width:100%;padding:8px 4px;border:none;background:none;cursor:pointer;text-align:left;border-radius:7px}
+.lp-les:hover{background:color-mix(in srgb,var(--tsg-accent) 4%,var(--tsg-bg))}
+.lp-les .lnum{font-family:var(--ui);font-size:11px;color:var(--tsg-faint);flex:none;min-width:26px;font-variant-numeric:tabular-nums}
+.lp-les .ltitle{font-size:13.5px;font-weight:500;color:var(--tsg-ink);line-height:1.35}
+.lp-les.on{background:color-mix(in srgb,var(--tsg-accent) 5%,var(--tsg-surface))}
+.lp-les.on .lnum{color:var(--tsg-accent);font-weight:600}
+.lp-soon{padding:16px 4px;color:var(--tsg-faint);font-size:12px}
+.lp-soon span{font-size:10.5px;margin-left:6px;opacity:.85}
+
+/* below everything: sort + in-place filter + the readings */
+.lp-sortbar{display:flex;align-items:center;gap:6px;margin:26px 2px 0}
+.lp-sortbar .sl{font-size:10.5px;color:var(--tsg-faint);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-right:4px}
+.lp-sortbar .sb{font-size:12.5px;color:var(--tsg-muted);padding:5px 11px;border:none;background:none;cursor:pointer;border-radius:8px}
+.lp-sortbar .sb:hover{color:var(--tsg-ink);background:var(--tsg-border)}
+.lp-sortbar .sb.on{background:color-mix(in srgb,var(--tsg-accent) 10%,transparent);color:var(--tsg-accent);font-weight:600}
+.lp-filter{margin-left:auto;display:flex;align-items:center;gap:7px;background:var(--tsg-surface);border:1px solid var(--tsg-border);border-radius:8px;padding:4px 11px;min-width:210px;color:var(--tsg-faint)}
+.lp-filter:focus-within{border-color:color-mix(in srgb,var(--tsg-accent) 45%,var(--tsg-border))}
+.lp-filter input{border:none;outline:none;background:none;color:var(--tsg-ink);font:inherit;font-size:12.5px;width:100%;padding:1px 0}
+.lp-filter input::placeholder{color:var(--tsg-faint);opacity:.7}
+
+.lp-card{background:var(--tsg-surface);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-top:10px}
+table.lp-cat{width:100%;border-collapse:collapse}
+.lp-cat td{padding:13px 14px;border-top:1px solid var(--tsg-border);vertical-align:baseline}
+.lp-cat tr:first-child td{border-top:none}
+.lp-cat tbody tr{cursor:pointer}
+.lp-cat tbody tr:hover td{background:color-mix(in srgb,var(--tsg-accent) 4%,var(--tsg-surface))}
+.lp-title{display:flex;align-items:baseline;gap:10px}
+.lp-d{width:7px;height:7px;border-radius:2px;flex:none;align-self:center;background:var(--tsg-fmt-sty)}
+.lp-d.dlg{background:var(--tsg-fmt-dlg)}.lp-d.slf{background:var(--tsg-fmt-slf)}.lp-d.sty{background:var(--tsg-fmt-sty)}
+.lp-d.dia{background:var(--tsg-fmt-dia)}.lp-d.qa{background:var(--tsg-fmt-qa)}.lp-d.rep{background:var(--tsg-fmt-rep)}.lp-d.exp{background:var(--tsg-fmt-exp)}
+.lp-title .lead{font-size:15.5px;font-weight:500;color:var(--tsg-ink);letter-spacing:-.01em}
+.lp-zh{font-family:var(--read);color:var(--tsg-muted);font-size:14px;white-space:nowrap;text-align:right}
+.lp-lesson{font-family:var(--ui);color:var(--tsg-faint);font-size:12px;white-space:nowrap;width:64px;text-align:right}
+.lp-empty{padding:22px 16px;color:var(--tsg-faint);font-size:13px}
+
+@media(max-width:680px){
+  .lp{padding:26px 16px 80px}
+  .lp-band{flex-direction:column}
+  .lp-shelf{width:100%}
+  .lp-cover{flex:1;height:88px}
+  .lp-cols{grid-template-columns:1fr}
+  .lp-zh{display:none}
+  .lp-filter{min-width:0;flex:1}
+}

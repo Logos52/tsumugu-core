@@ -1,0 +1,968 @@
+{
+  "b1l01-r1": {
+    "zh": "接機的第一杯烏龍茶",
+    "en": "The First Cup of Oolong",
+    "vi": "Tách trà Ô Long đầu tiên",
+    "lesson": "B1L01",
+    "format": "對話"
+  },
+  "b1l01-r2": {
+    "zh": "一個日本人愛上烏龍茶",
+    "en": "A Japanese Student Falls for Oolong",
+    "vi": "Du học sinh Nhật yêu trà Ô Long",
+    "lesson": "B1L01",
+    "format": "自述"
+  },
+  "b1l01-r3": {
+    "zh": "周先生第一次來臺灣",
+    "en": "Mr. Zhou's First Day in Taiwan",
+    "vi": "Ngày đầu tiên của ông Chu ở Đài Loan",
+    "lesson": "B1L01",
+    "format": "短文"
+  },
+  "b1l02-r1": {
+    "zh": "照片牆上的人是誰",
+    "en": "Who's in the Photo?",
+    "vi": "Người trong bức ảnh là ai?",
+    "lesson": "B1L02",
+    "format": "對話"
+  },
+  "b1l02-r2": {
+    "zh": "我家有五個人",
+    "en": "Five of Us at Home",
+    "vi": "Năm người trong nhà tôi",
+    "lesson": "B1L02",
+    "format": "story"
+  },
+  "b1l02-r3": {
+    "zh": "學生來看全家福",
+    "en": "When a Student Came to Visit",
+    "vi": "Khi học sinh đến thăm nhà",
+    "lesson": "B1L02",
+    "format": "短文"
+  },
+  "b1l03-r1": {
+    "zh": "明天早上打籃球",
+    "en": "Basketball Tomorrow Morning",
+    "vi": "Sáng mai chơi bóng rổ",
+    "lesson": "B1L03",
+    "format": "dialogue"
+  },
+  "b1l03-r2": {
+    "zh": "電影散場後的河粉",
+    "en": "Pho After the Movie",
+    "vi": "Phở sau buổi xem phim",
+    "lesson": "B1L03",
+    "format": "日記"
+  },
+  "b1l03-r3": {
+    "zh": "週末相約去河邊游泳",
+    "en": "A Swim by the River",
+    "vi": "Bơi bên bờ sông cuối tuần",
+    "lesson": "B1L03",
+    "format": "story"
+  },
+  "b1l04-r1": {
+    "zh": "三個包子兩杯茶",
+    "en": "Three Buns, Two Teas",
+    "vi": "Ba cái bánh bao, hai ly trà",
+    "lesson": "B1L04",
+    "format": "dialogue"
+  },
+  "b1l04-r2": {
+    "zh": "終於換了新手機",
+    "en": "Finally, a New Phone",
+    "vi": "Cuối cùng cũng đổi điện thoại mới",
+    "lesson": "B1L04",
+    "format": "story"
+  },
+  "b1l04-r3": {
+    "zh": "週末逛市場比價",
+    "en": "Comparing Prices at the Market",
+    "vi": "So giá ở chợ cuối tuần",
+    "lesson": "B1L04",
+    "format": "story"
+  },
+  "b1l05-r1": {
+    "zh": "這條街最好吃的牛肉麵",
+    "en": "The Best Beef Noodles on the Street",
+    "vi": "Mì bò ngon nhất phố này",
+    "lesson": "B1L05",
+    "format": "dialogue"
+  },
+  "b1l05-r2": {
+    "zh": "媽媽教我下廚房",
+    "en": "Mom Taught Me the Kitchen",
+    "vi": "Mẹ dạy tôi vào bếp",
+    "lesson": "B1L05",
+    "format": "story"
+  },
+  "b1l05-r3": {
+    "zh": "老闆做一碗不辣的麵",
+    "en": "A Bowl Made Just for Her",
+    "vi": "Tô mì riêng cho cô ấy",
+    "lesson": "B1L05",
+    "format": "短文"
+  },
+  "b1l06-r1": {
+    "zh": "前面海後面山",
+    "en": "Sea in Front, Mountain Behind",
+    "vi": "Trước biển, sau núi",
+    "lesson": "B1L06",
+    "format": "dialogue"
+  },
+  "b1l06-r2": {
+    "zh": "住在五樓的宿舍生活",
+    "en": "Living on the Fifth Floor",
+    "vi": "Sống ở tầng năm ký túc xá",
+    "lesson": "B1L06",
+    "format": "story"
+  },
+  "b1l06-r3": {
+    "zh": "坐火車去花蓮看海",
+    "en": "Train Ride to the Hualien Coast",
+    "vi": "Tàu đi Hoa Liên ngắm biển",
+    "lesson": "B1L06",
+    "format": "短文"
+  },
+  "b1l07-r1": {
+    "zh": "早上九點去唱歌",
+    "en": "Karaoke at Nine in the Morning",
+    "vi": "Hát karaoke lúc chín giờ sáng",
+    "lesson": "B1L07",
+    "format": "dialogue"
+  },
+  "b1l07-r2": {
+    "zh": "七月一日很忙",
+    "en": "A Packed First of July",
+    "vi": "Ngày mùng một tháng bảy bận rộn",
+    "lesson": "B1L07",
+    "format": "日記"
+  },
+  "b1l07-r3": {
+    "zh": "週末下午的籃球賽",
+    "en": "A Saturday Afternoon Game",
+    "vi": "Trận bóng rổ cuối tuần",
+    "lesson": "B1L07",
+    "format": "story"
+  },
+  "b1l08-r1": {
+    "zh": "坐火車去臺南",
+    "en": "Taking the Train to Tainan",
+    "vi": "Đi Tainan bằng tàu hỏa",
+    "lesson": "B1L08",
+    "format": "dialogue"
+  },
+  "b1l08-r2": {
+    "zh": "騎機車換捷運",
+    "en": "Scooter to the MRT",
+    "vi": "Xe máy rồi lên tàu điện",
+    "lesson": "B1L08",
+    "format": "story"
+  },
+  "b1l08-r3": {
+    "zh": "班遊去故宮",
+    "en": "Class Trip to the Palace Museum",
+    "vi": "Cả lớp đi Bảo tàng Cố cung",
+    "lesson": "B1L08",
+    "format": "story"
+  },
+  "b1l09-r1": {
+    "zh": "七月去臺東看海",
+    "en": "Taitung by the Sea",
+    "vi": "Đài Đông ngắm biển",
+    "lesson": "B1L09",
+    "format": "dialogue"
+  },
+  "b1l09-r2": {
+    "zh": "帶女兒上貓空",
+    "en": "Tea on Maokong with My Daughter",
+    "vi": "Uống trà Maokong cùng con gái",
+    "lesson": "B1L09",
+    "format": "story"
+  },
+  "b1l09-r3": {
+    "zh": "捨不得走的臺灣",
+    "en": "Not Ready to Leave Taiwan",
+    "vi": "Không nỡ rời Đài Loan",
+    "lesson": "B1L09",
+    "format": "問答"
+  },
+  "b1l10-r1": {
+    "zh": "這家的芒果和西瓜",
+    "en": "Mangoes and Watermelon at the Shop",
+    "vi": "Xoài và dưa hấu ở cửa hàng",
+    "lesson": "B1L10",
+    "format": "對話"
+  },
+  "b1l10-r2": {
+    "zh": "公園裡的全家福",
+    "en": "Family Photos in the Park",
+    "vi": "Ảnh gia đình trong công viên",
+    "lesson": "B1L10",
+    "format": "story"
+  },
+  "b1l10-r3": {
+    "zh": "旅館窗外的大海",
+    "en": "The Sea Outside the Window",
+    "vi": "Biển ngoài cửa sổ khách sạn",
+    "lesson": "B1L10",
+    "format": "日記"
+  },
+  "b1l11-r1": {
+    "zh": "來看這間套房",
+    "en": "A Tour of the Studio",
+    "vi": "Xem căn phòng trọ",
+    "lesson": "B1L11",
+    "format": "dialogue"
+  },
+  "b1l11-r2": {
+    "zh": "小小的套房剛好",
+    "en": "A Small Place That Fits",
+    "vi": "Căn phòng nhỏ vừa đủ",
+    "lesson": "B1L11",
+    "format": "story"
+  },
+  "b1l11-r3": {
+    "zh": "熱水器壞了之後",
+    "en": "After the Water Heater Broke",
+    "vi": "Sau khi bình nước nóng hỏng",
+    "lesson": "B1L11",
+    "format": "story"
+  },
+  "b1l12-r1": {
+    "zh": "先念好中文再說",
+    "en": "Chinese First, Plans Later",
+    "vi": "Học tiếng Trung trước đã",
+    "lesson": "B1L12",
+    "format": "對話"
+  },
+  "b1l12-r2": {
+    "zh": "中文沒有那麼難了",
+    "en": "Chinese Isn't So Hard Anymore",
+    "vi": "Tiếng Trung không còn khó",
+    "lesson": "B1L12",
+    "format": "自述"
+  },
+  "b1l12-r3": {
+    "zh": "停下工作去念書",
+    "en": "Leaving Work to Study",
+    "vi": "Nghỉ việc để đi học",
+    "lesson": "B1L12",
+    "format": "短文"
+  },
+  "b1l13-r1": {
+    "zh": "幫她過一個生日",
+    "en": "Planning Her Birthday Surprise",
+    "vi": "Lên kế hoạch bất ngờ sinh nhật",
+    "lesson": "B1L13",
+    "format": "dialogue"
+  },
+  "b1l13-r2": {
+    "zh": "生日吃豬腳麵線",
+    "en": "Birthday Noodles, Not Cake",
+    "vi": "Mì chân giò ngày sinh nhật",
+    "lesson": "B1L13",
+    "format": "自述"
+  },
+  "b1l13-r3": {
+    "zh": "開門的生日驚喜",
+    "en": "Surprise at the Door",
+    "vi": "Bất ngờ sau cánh cửa",
+    "lesson": "B1L13",
+    "format": "日記"
+  },
+  "b1l14-r1": {
+    "zh": "紐約下雪的冬天",
+    "en": "A Snowy Winter in New York",
+    "vi": "Mùa đông có tuyết ở New York",
+    "lesson": "B1L14",
+    "format": "dialogue"
+  },
+  "b1l14-r2": {
+    "zh": "玉山上的紅葉",
+    "en": "Autumn Leaves on Yushan",
+    "vi": "Lá đỏ trên núi Ngọc Sơn",
+    "lesson": "B1L14",
+    "format": "短文"
+  },
+  "b1l14-r3": {
+    "zh": "颱風擋住了門",
+    "en": "The Typhoon at the Door",
+    "vi": "Cơn bão chặn cửa nhà",
+    "lesson": "B1L14",
+    "format": "story"
+  },
+  "b1l15-r1": {
+    "zh": "陪你去健康中心",
+    "en": "I'll Walk You to the Clinic",
+    "vi": "Tôi đưa bạn đến y tế",
+    "lesson": "B1L15",
+    "format": "dialogue"
+  },
+  "b1l15-r2": {
+    "zh": "半夜肚子痛",
+    "en": "Stomachache at Midnight",
+    "vi": "Đau bụng nửa đêm",
+    "lesson": "B1L15",
+    "format": "日記"
+  },
+  "b1l15-r3": {
+    "zh": "發燒還在上班",
+    "en": "Fever but Still at Work",
+    "vi": "Sốt mà vẫn đi làm",
+    "lesson": "B1L15",
+    "format": "短文"
+  },
+  "b2l01-r1": {
+    "zh": "迷路在和平東路",
+    "en": "Lost on Heping East Road",
+    "vi": "Lạc đường Hòa Bình Đông",
+    "lesson": "B2L01",
+    "format": "對話"
+  },
+  "b2l01-r2": {
+    "zh": "手機地圖救了我",
+    "en": "Saved by the Map App",
+    "vi": "Ứng dụng bản đồ cứu tôi",
+    "lesson": "B2L01",
+    "format": "自述"
+  },
+  "b2l01-r3": {
+    "zh": "找到師大的麵店",
+    "en": "Finding the Noodle Shop",
+    "vi": "Tìm quán mì gần Đại Sư",
+    "lesson": "B2L01",
+    "format": "短文"
+  },
+  "b2l02-r1": {
+    "zh": "一張悠遊卡就夠",
+    "en": "One EasyCard Is Enough",
+    "vi": "Một thẻ EasyCard là đủ",
+    "lesson": "B2L02",
+    "format": "dialogue"
+  },
+  "b2l02-r2": {
+    "zh": "法國的地鐵迷路記",
+    "en": "Lost on the Paris Metro",
+    "vi": "Lạc tàu điện ngầm ở Pháp",
+    "lesson": "B2L02",
+    "format": "story"
+  },
+  "b2l02-r3": {
+    "zh": "火車往花蓮去",
+    "en": "Train to Hualien",
+    "vi": "Chuyến tàu đi Hoa Liên",
+    "lesson": "B2L02",
+    "format": "story"
+  },
+  "b2l03-r1": {
+    "zh": "聽寫幾乎全對",
+    "en": "Almost Perfect on the Dictation",
+    "vi": "Đọc chính tả gần như đúng hết",
+    "lesson": "B2L03",
+    "format": "dialogue"
+  },
+  "b2l03-r2": {
+    "zh": "在台灣學中文",
+    "en": "Learning Chinese in Taiwan",
+    "vi": "Học tiếng Trung ở Đài Loan",
+    "lesson": "B2L03",
+    "format": "story"
+  },
+  "b2l03-r3": {
+    "zh": "語言和文化",
+    "en": "Language and Culture",
+    "vi": "Ngôn ngữ và văn hóa",
+    "lesson": "B2L03",
+    "format": "dialogue"
+  },
+  "b2l04-r1": {
+    "zh": "五百塊一鐘頭",
+    "en": "Five Hundred an Hour",
+    "vi": "Năm trăm đồng một giờ",
+    "lesson": "B2L04",
+    "format": "對話"
+  },
+  "b2l04-r2": {
+    "zh": "語言就是我的優勢",
+    "en": "Languages Are My Edge",
+    "vi": "Ngôn ngữ là lợi thế của tôi",
+    "lesson": "B2L04",
+    "format": "自述"
+  },
+  "b2l04-r3": {
+    "zh": "暑假的工讀生",
+    "en": "Summer Help at the Café",
+    "vi": "Sinh viên làm hè ở quán cà phê",
+    "lesson": "B2L04",
+    "format": "問答"
+  },
+  "b2l05-r1": {
+    "zh": "紅包準備好了嗎",
+    "en": "Is the Red Envelope Ready?",
+    "vi": "Bao lì xì đã sẵn chưa?",
+    "lesson": "B2L05",
+    "format": "對話"
+  },
+  "b2l05-r2": {
+    "zh": "敬酒一桌一桌",
+    "en": "Table by Table, Cheers",
+    "vi": "Mời rượu từng bàn một",
+    "lesson": "B2L05",
+    "format": "短文"
+  },
+  "b2l05-r3": {
+    "zh": "百年好合",
+    "en": "May You Live in Harmony",
+    "vi": "Trăm năm hạnh phúc",
+    "lesson": "B2L05",
+    "format": "問答"
+  },
+  "b2l06-r1": {
+    "zh": "合約到期之前",
+    "en": "Before the Lease Ends",
+    "vi": "Trước khi hết hạn hợp đồng",
+    "lesson": "B2L06",
+    "format": "dialogue"
+  },
+  "b2l06-r2": {
+    "zh": "跟鄰居小狗說再見",
+    "en": "Goodbye to the Neighbor's Dog",
+    "vi": "Tạm biệt chú chó hàng xóm",
+    "lesson": "B2L06",
+    "format": "自述"
+  },
+  "b2l06-r3": {
+    "zh": "搬家別急，慢慢來",
+    "en": "Slow Down Before You Move",
+    "vi": "Chuyển nhà cứ từ từ",
+    "lesson": "B2L06",
+    "format": "問答"
+  },
+  "b2l07-r1": {
+    "zh": "門口的垃圾放了三天",
+    "en": "Three Days of Trash at the Door",
+    "vi": "Ba ngày rác ở cửa",
+    "lesson": "B2L07",
+    "format": "對話"
+  },
+  "b2l07-r2": {
+    "zh": "追垃圾車",
+    "en": "Chasing the Garbage Truck",
+    "vi": "Đuổi theo xe rác",
+    "lesson": "B2L07",
+    "format": "story"
+  },
+  "b2l07-r3": {
+    "zh": "為什麼要垃圾分類",
+    "en": "Why Sort the Trash?",
+    "vi": "Vì sao phải phân loại rác?",
+    "lesson": "B2L07",
+    "format": "explainer"
+  },
+  "b2l08-r1": {
+    "zh": "八點的太極拳",
+    "en": "Tai Chi at Eight O'Clock",
+    "vi": "Thái cực lúc tám giờ",
+    "lesson": "B2L08",
+    "format": "dialogue"
+  },
+  "b2l08-r2": {
+    "zh": "半年學會第一套拳",
+    "en": "Six Months to One Form",
+    "vi": "Nửa năm học một bài quyền",
+    "lesson": "B2L08",
+    "format": "story"
+  },
+  "b2l08-r3": {
+    "zh": "天分不是最重要的",
+    "en": "Talent Isn't the Point",
+    "vi": "Tài năng không phải điều quan trọng nhất",
+    "lesson": "B2L08",
+    "format": "問答"
+  },
+  "b2l09-r1": {
+    "zh": "泰國春假潛水記",
+    "en": "Diving in Thailand Over Spring Break",
+    "vi": "Lặn biển Thái Lan kỳ nghỉ xuân",
+    "lesson": "B2L09",
+    "format": "dialogue"
+  },
+  "b2l09-r2": {
+    "zh": "想念看得到星星的日子",
+    "en": "Missing the Stars Back Home",
+    "vi": "Nhớ những đêm trông thấy sao",
+    "lesson": "B2L09",
+    "format": "story"
+  },
+  "b2l09-r3": {
+    "zh": "巴黎路邊的咖啡店",
+    "en": "An Afternoon at a Paris Café",
+    "vi": "Buổi chiều ở quán cà phê Paris",
+    "lesson": "B2L09",
+    "format": "story"
+  },
+  "b2l10-r1": {
+    "zh": "雨天一起包水餃",
+    "en": "Wrapping Dumplings on a Rainy Day",
+    "vi": "Gói bánh bao ngày mưa",
+    "lesson": "B2L10",
+    "format": "dialogue"
+  },
+  "b2l10-r2": {
+    "zh": "在餐桌上認識一個國家",
+    "en": "Getting to Know a Country at the Table",
+    "vi": "Hiểu một đất nước qua mâm cơm",
+    "lesson": "B2L10",
+    "format": "自述"
+  },
+  "b2l10-r3": {
+    "zh": "每人帶走一罐辣椒",
+    "en": "A Jar of Pickled Peppers Each",
+    "vi": "Mỗi người một lọ ớt ngâm",
+    "lesson": "B2L10",
+    "format": "dialogue"
+  },
+  "b2l11-r1": {
+    "zh": "這次就去墾丁吧",
+    "en": "Let's Go to Kenting",
+    "vi": "Lần này đi Kenting thôi",
+    "lesson": "B2L11",
+    "format": "對話"
+  },
+  "b2l11-r2": {
+    "zh": "墾丁的黃昏",
+    "en": "Golden Hour in Kenting",
+    "vi": "Hoàng hôn ở Kenting",
+    "lesson": "B2L11",
+    "format": "自述"
+  },
+  "b2l11-r3": {
+    "zh": "海邊丟了錢包",
+    "en": "The Wallet Lost at the Beach",
+    "vi": "Mất ví ở bãi biển",
+    "lesson": "B2L11",
+    "format": "日記"
+  },
+  "b2l12-r1": {
+    "zh": "一週吃一兩餐就好",
+    "en": "Once a Week Is Fine",
+    "vi": "Một tuần một hai bữa thôi",
+    "lesson": "B2L12",
+    "format": "dialogue"
+  },
+  "b2l12-r2": {
+    "zh": "吃了二十幾年的素",
+    "en": "Twenty Years Without Meat",
+    "vi": "Hai mươi năm ăn chay",
+    "lesson": "B2L12",
+    "format": "自述"
+  },
+  "b2l12-r3": {
+    "zh": "高先生的有機小店",
+    "en": "Mr. Gao's Organic Kitchen",
+    "vi": "Tiệm ăn hữu cơ của ông Cao",
+    "lesson": "B2L12",
+    "format": "dialogue"
+  },
+  "b2l13-r1": {
+    "zh": "手機又丟在健身房",
+    "en": "Lost at the Gym Again",
+    "vi": "Lại để mất điện thoại ở gym",
+    "lesson": "B2L13",
+    "format": "對話"
+  },
+  "b2l13-r2": {
+    "zh": "出國前手機只剩百分之一",
+    "en": "One Percent Before the Flight",
+    "vi": "Chỉ còn một phần trăm pin trước chuyến bay",
+    "lesson": "B2L13",
+    "format": "自述"
+  },
+  "b2l13-r3": {
+    "zh": "放下手機，面對面說話",
+    "en": "Put the Phone Down",
+    "vi": "Hãy buông điện thoại ra",
+    "lesson": "B2L13",
+    "format": "問答"
+  },
+  "b2l14-r1": {
+    "zh": "畢業前的那場面試",
+    "en": "The Interview Before Graduation",
+    "vi": "Buổi phỏng vấn trước khi tốt nghiệp",
+    "lesson": "B2L14",
+    "format": "對話"
+  },
+  "b2l14-r2": {
+    "zh": "從企管系到中文教室",
+    "en": "From Business School to the Classroom",
+    "vi": "Từ khoa kinh doanh đến lớp học tiếng Trung",
+    "lesson": "B2L14",
+    "format": "自述"
+  },
+  "b2l14-r3": {
+    "zh": "在外交部工作的學長",
+    "en": "A Senior at the Foreign Ministry",
+    "vi": "Anh khóa làm ở Bộ Ngoại giao",
+    "lesson": "B2L14",
+    "format": "問答"
+  },
+  "b2l15-r1": {
+    "zh": "張伯伯講年夜飯",
+    "en": "Uncle Zhang on New Year's Eve",
+    "vi": "Chú Trương kể về bữa tất niên",
+    "lesson": "B2L15",
+    "format": "對話"
+  },
+  "b2l15-r2": {
+    "zh": "初五開門迎財神",
+    "en": "Opening for the God of Wealth",
+    "vi": "Mở cửa đón thần tài mùng năm",
+    "lesson": "B2L15",
+    "format": "自述"
+  },
+  "b2l15-r3": {
+    "zh": "走進年貨大街",
+    "en": "Walking the New Year Market",
+    "vi": "Dạo chợ tết",
+    "lesson": "B2L15",
+    "format": "報導"
+  },
+  "b3l01-r1": {
+    "zh": "開學週的選課煩惱",
+    "en": "Course Selection Chaos",
+    "vi": "Rối ren chọn môn tuần đầu học",
+    "lesson": "B3L01",
+    "format": "對話"
+  },
+  "b3l01-r2": {
+    "zh": "怡君轉進外語系",
+    "en": "Switching to Foreign Languages",
+    "vi": "Di Quân chuyển sang ngành ngoại ngữ",
+    "lesson": "B3L01",
+    "format": "自述"
+  },
+  "b3l01-r3": {
+    "zh": "教務處排隊的人潮",
+    "en": "Lines at the Registrar",
+    "vi": "Hàng dài ở phòng hành chính",
+    "lesson": "B3L01",
+    "format": "報導"
+  },
+  "b3l02-r1": {
+    "zh": "週年慶裡挑外套",
+    "en": "Browsing the Anniversary Sale",
+    "vi": "Chọn áo khoác ngày khuyến mãi",
+    "lesson": "B3L02",
+    "format": "對話"
+  },
+  "b3l02-r2": {
+    "zh": "電信帳單比想像貴",
+    "en": "A Bill Higher Than Promised",
+    "vi": "Hóa đơn đắt hơn lời hứa",
+    "lesson": "B3L02",
+    "format": "自述"
+  },
+  "b3l02-r3": {
+    "zh": "經理怎麼看週年慶",
+    "en": "What the Manager Says About Sales",
+    "vi": "Giám đốc nói về đợt sale",
+    "lesson": "B3L02",
+    "format": "問答"
+  },
+  "b3l03-r1": {
+    "zh": "冷氣團來襲的週末",
+    "en": "A Cold Front Weekend",
+    "vi": "Cuối tuần gió lạnh ập tới",
+    "lesson": "B3L03",
+    "format": "對話"
+  },
+  "b3l03-r2": {
+    "zh": "端午節一定要回家",
+    "en": "Always Home for Dragon Boat",
+    "vi": "Tết Đoan Ngọ phải về nhà",
+    "lesson": "B3L03",
+    "format": "自述"
+  },
+  "b3l03-r3": {
+    "zh": "中秋節怎麼來的",
+    "en": "How Mid-Autumn Began",
+    "vi": "Tết Trung Thu bắt nguồn thế nào",
+    "lesson": "B3L03",
+    "format": "問答"
+  },
+  "b3l04-r1": {
+    "zh": "平溪放天燈的約定",
+    "en": "A Date for Sky Lanterns",
+    "vi": "Hẹn thả đèn trời ở Bình Khê",
+    "lesson": "B3L04",
+    "format": "對話"
+  },
+  "b3l04-r2": {
+    "zh": "擔仔麵湯頭不將就",
+    "en": "No Shortcuts in the Broth",
+    "vi": "Nước dùng không được qua loa",
+    "lesson": "B3L04",
+    "format": "自述"
+  },
+  "b3l04-r3": {
+    "zh": "慢慢逛台南",
+    "en": "Seeing Tainan Slowly",
+    "vi": "Khám phá Đài Nam từ từ",
+    "lesson": "B3L04",
+    "format": "問答"
+  },
+  "b3l05-r1": {
+    "zh": "演唱會的魔力",
+    "en": "The Magic of a Live Show",
+    "vi": "Sức hút của concert trực tiếp",
+    "lesson": "B3L05",
+    "format": "對話"
+  },
+  "b3l05-r2": {
+    "zh": "關門前的租書店",
+    "en": "Before the Bookshop Closed",
+    "vi": "Trước ngày tiệm sách đóng cửa",
+    "lesson": "B3L05",
+    "format": "自述"
+  },
+  "b3l05-r3": {
+    "zh": "跟風買的衣服",
+    "en": "Chasing What's in Style",
+    "vi": "Theo đuổi mốt thời trang",
+    "lesson": "B3L05",
+    "format": "報導"
+  },
+  "b3l06-r1": {
+    "zh": "鄉下過一夜",
+    "en": "Spending the Night in the Countryside",
+    "vi": "Đêm ở nông thôn",
+    "lesson": "B3L06",
+    "format": "dialogue"
+  },
+  "b3l06-r2": {
+    "zh": "一顆番茄的故事",
+    "en": "The Story Behind a Tomato",
+    "vi": "Câu chuyện sau quả cà chua",
+    "lesson": "B3L06",
+    "format": "自述"
+  },
+  "b3l06-r3": {
+    "zh": "農村與觀光",
+    "en": "Farming Meets Tourism",
+    "vi": "Nông thôn gặp du lịch",
+    "lesson": "B3L06",
+    "format": "報導"
+  },
+  "b3l07-r1": {
+    "zh": "為了一隻狗分手",
+    "en": "Breaking Up Over a Dog",
+    "vi": "Chia tay vì một con chó",
+    "lesson": "B3L07",
+    "format": "對話"
+  },
+  "b3l07-r2": {
+    "zh": "領養來的家人",
+    "en": "Family by Adoption",
+    "vi": "Người thân từ trại cứu hộ",
+    "lesson": "B3L07",
+    "format": "自述"
+  },
+  "b3l07-r3": {
+    "zh": "家的四種模樣",
+    "en": "Four Ways to Be a Family",
+    "vi": "Bốn kiểu gia đình",
+    "lesson": "B3L07",
+    "format": "比較"
+  },
+  "b3l08-r1": {
+    "zh": "公職還是設計",
+    "en": "Civil Service or Design",
+    "vi": "Công chức hay thiết kế",
+    "lesson": "B3L08",
+    "format": "對話"
+  },
+  "b3l08-r2": {
+    "zh": "我只是想做自己",
+    "en": "I Just Want to Be Myself",
+    "vi": "Tôi chỉ muốn là chính mình",
+    "lesson": "B3L08",
+    "format": "story"
+  },
+  "b3l08-r3": {
+    "zh": "從學徒到冠軍",
+    "en": "From Apprentice to Champion",
+    "vi": "Từ học việc đến vô địch",
+    "lesson": "B3L08",
+    "format": "報導"
+  },
+  "b3l09-r1": {
+    "zh": "網購入門課",
+    "en": "A Lesson in Online Shopping",
+    "vi": "Bài học mua hàng online",
+    "lesson": "B3L09",
+    "format": "對話"
+  },
+  "b3l09-r2": {
+    "zh": "阿嬤上網賣喜餅",
+    "en": "Grandma Sells Pastries Online",
+    "vi": "Bà bán bánh cưới trên mạng",
+    "lesson": "B3L09",
+    "format": "自述"
+  },
+  "b3l09-r3": {
+    "zh": "鳳梨的新出路",
+    "en": "A New Future for Pineapples",
+    "vi": "Con đường mới cho dứa",
+    "lesson": "B3L09",
+    "format": "報導"
+  },
+  "b3l10-r1": {
+    "zh": "闖紅燈的教訓",
+    "en": "A Lesson from Running a Red",
+    "vi": "Bài học từ vượt đèn đỏ",
+    "lesson": "B3L10",
+    "format": "對話"
+  },
+  "b3l10-r2": {
+    "zh": "深夜的外科醫生",
+    "en": "The Surgeon on Night Call",
+    "vi": "Bác sĩ ngoại khoa đêm khuya",
+    "lesson": "B3L10",
+    "format": "自述"
+  },
+  "b3l10-r3": {
+    "zh": "為自信做的微整",
+    "en": "A Small Change for Confidence",
+    "vi": "Chỉnh nhẹ để tự tin hơn",
+    "lesson": "B3L10",
+    "format": "問答"
+  },
+  "b3l11-r1": {
+    "zh": "紅毛城從哪說起",
+    "en": "Where to Start with Red Hair Fort",
+    "vi": "Bắt đầu kể về thành Hồng Mao",
+    "lesson": "B3L11",
+    "format": "對話"
+  },
+  "b3l11-r2": {
+    "zh": "巷口早餐攤三十年",
+    "en": "Thirty Years at the Corner Stall",
+    "vi": "Ba mươi năm quán sáng ở đầu hẻm",
+    "lesson": "B3L11",
+    "format": "自述"
+  },
+  "b3l11-r3": {
+    "zh": "客家阿伯的遷徙記",
+    "en": "A Hakka Elder's Crossing to Taiwan",
+    "vi": "Câu chuyện di cư của một cụ Hakka",
+    "lesson": "B3L11",
+    "format": "問答"
+  },
+  "b3l12-r1": {
+    "zh": "表妹要去反核遊行",
+    "en": "My Cousin Wants to March",
+    "vi": "Em họ muốn đi biểu tình phản hạt nhân",
+    "lesson": "B3L12",
+    "format": "對話"
+  },
+  "b3l12-r2": {
+    "zh": "退休編輯競選里長",
+    "en": "The Retired Editor Runs for Office",
+    "vi": "Biên tập viên về hư ra tranh cử",
+    "lesson": "B3L12",
+    "format": "自述"
+  },
+  "b3l12-r3": {
+    "zh": "連任議員的功課",
+    "en": "A Legislator on Re-election",
+    "vi": "Nghị sĩ tranh cử tái nhiệm nói gì",
+    "lesson": "B3L12",
+    "format": "問答"
+  },
+  "b4l01-r1": {
+    "zh": "今晚看愛情片就好",
+    "en": "Skip the Horror Tonight",
+    "vi": "Tối nay xem phim tình cảm thôi",
+    "lesson": "B4L01",
+    "format": "對話"
+  },
+  "b4l01-r2": {
+    "zh": "業務經理下班以後",
+    "en": "After the Office Closes",
+    "vi": "Sau giờ làm của giám đốc kinh doanh",
+    "lesson": "B4L01",
+    "format": "自述"
+  },
+  "b4l01-r3": {
+    "zh": "聊天室交友怎麼拿捏",
+    "en": "Chatroom Friends, With Care",
+    "vi": "Kết bạn qua phòng chat cần cẩn thận",
+    "lesson": "B4L01",
+    "format": "問答"
+  },
+  "b4l02-r1": {
+    "zh": "去看雲門之前",
+    "en": "Before the Cloud Gate Show",
+    "vi": "Trước buổi biểu diễn Vân Môn",
+    "lesson": "B4L02",
+    "format": "對話"
+  },
+  "b4l02-r2": {
+    "zh": "藝術填不飽肚子",
+    "en": "Art Won't Fill Your Stomach",
+    "vi": "Nghệ thuật không nuôi sống cái bụng",
+    "lesson": "B4L02",
+    "format": "自述"
+  },
+  "b4l02-r3": {
+    "zh": "街頭藝術節三日記",
+    "en": "Three Days of Street Art",
+    "vi": "Ba ngày lễ hội nghệ thuật đường phố",
+    "lesson": "B4L02",
+    "format": "報導"
+  },
+  "b4l03-r1": {
+    "zh": "模特兒穿得比較好看",
+    "en": "The Model Wore It Better",
+    "vi": "Người mẫu mặc đẹp hơn thực tế",
+    "lesson": "B4L03",
+    "format": "對話"
+  },
+  "b4l03-r2": {
+    "zh": "教外婆用手機購物",
+    "en": "Teaching Grandma to Shop Online",
+    "vi": "Dạy bà mua sắm trên điện thoại",
+    "lesson": "B4L03",
+    "format": "自述"
+  },
+  "b4l03-r3": {
+    "zh": "雲端改變了日常生活",
+    "en": "What the Cloud Changed",
+    "vi": "Đám mây đã thay đổi cuộc sống",
+    "lesson": "B4L03",
+    "format": "報導"
+  },
+  "b4l04-r1": {
+    "zh": "衣櫥到底擺哪裡",
+    "en": "Where the Wardrobe Goes",
+    "vi": "Tủ quần áo để chỗ nào cho đúng",
+    "lesson": "B4L04",
+    "format": "對話"
+  },
+  "b4l04-r2": {
+    "zh": "一命二運三風水",
+    "en": "Fate, Fortune, Then Feng Shui",
+    "vi": "Mệnh, vận, rồi mới đến phong thủy",
+    "lesson": "B4L04",
+    "format": "自述"
+  },
+  "b4l04-r3": {
+    "zh": "信義區的風水巧思",
+    "en": "Feng Shui Hidden in Xinyi Towers",
+    "vi": "Phong thủy ẩn trong các toà nhà Xinyi",
+    "lesson": "B4L04",
+    "format": "報導"
+  }
+}

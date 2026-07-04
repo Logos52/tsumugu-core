@@ -1,0 +1,1294 @@
+<!-- @dsCard group="Tsumugu Core · Reader" -->
+<!DOCTYPE html>
+<html lang="vi" data-theme="light" data-palette="lamphouse" data-rail="vi" data-script="trad" data-reading="hv" data-gloss="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lamphouse — Tsumugu Core Reader</title>
+
+<!-- Display + gloss serifs (book feel) + tiny sans for printer's marks -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Chinese reading face: LXGW WenKai TC, with graceful CJK fallback -->
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@latest/style.css" rel="stylesheet">
+
+<style>
+/* ============================================================
+   LAMPHOUSE — the binder's reading table
+   Two-layer tokens: RAW palette → SEMANTIC. Swap by [data-palette]
+   × [data-theme]. Light/dark orthogonal to palette.
+   ============================================================ */
+
+/* ---------- RAW PALETTES ---------- */
+
+/* NATIVE: Lamphouse (aged ledger + warm walnut / oiled-walnut ember) */
+:root[data-palette="lamphouse"][data-theme="light"]{
+  --raw-base:#f4ecdc; --raw-page:#fbf6ea; --raw-card:#fffdf6;
+  --raw-ink:#241d14; --raw-muted:#6b5f4d; --raw-faint:#9a8c72;
+  --raw-rule:#ddd2bb; --raw-rule-soft:#e7ddc7;
+  --raw-thread:#6a4fb0; --raw-thread-soft:rgba(106,79,176,.10); --raw-thread-wash:rgba(106,79,176,.07);
+  --raw-lamp:#e8a13c; --raw-lamp-soft:rgba(232,161,60,.20);
+  --raw-rail:#3f5a8c; --raw-seal:#b25a44;
+  --raw-new:#c0556a; --raw-learn:#cf9a3e;
+  --raw-shadow:38 28 16;
+}
+:root[data-palette="lamphouse"][data-theme="dark"]{
+  --raw-base:#191510; --raw-page:#211b14; --raw-card:#2a2218;
+  --raw-ink:#efe6d4; --raw-muted:#a99c84; --raw-faint:#6f644f;
+  --raw-rule:#3a3022; --raw-rule-soft:#332a1d;
+  --raw-thread:#a98be6; --raw-thread-soft:rgba(169,139,230,.12); --raw-thread-wash:rgba(169,139,230,.09);
+  --raw-lamp:#e8a13c; --raw-lamp-soft:rgba(232,161,60,.16);
+  --raw-rail:#8fb0dd; --raw-seal:#cd7a62;
+  --raw-new:#d97a8c; --raw-learn:#e0b257;
+  --raw-shadow:0 0 0;
+}
+
+/* ALT 1: Ember Lantern — deeper, redder lamp, foxed paper */
+:root[data-palette="ember"][data-theme="light"]{
+  --raw-base:#efe3cf; --raw-page:#f9f1e0; --raw-card:#fffbf2;
+  --raw-ink:#2a1c13; --raw-muted:#705641; --raw-faint:#a08868;
+  --raw-rule:#e0cfb1; --raw-rule-soft:#e9dbc1;
+  --raw-thread:#7a4dad; --raw-thread-soft:rgba(122,77,173,.11); --raw-thread-wash:rgba(122,77,173,.07);
+  --raw-lamp:#dd8a2e; --raw-lamp-soft:rgba(221,138,46,.22);
+  --raw-rail:#4a5d80; --raw-seal:#bb4f37;
+  --raw-new:#c24c4c; --raw-learn:#c98a2e;
+  --raw-shadow:46 30 14;
+}
+:root[data-palette="ember"][data-theme="dark"]{
+  --raw-base:#150f0a; --raw-page:#1d160e; --raw-card:#271d12;
+  --raw-ink:#f3e7d0; --raw-muted:#b39a78; --raw-faint:#766647;
+  --raw-rule:#3d2f1c; --raw-rule-soft:#352818;
+  --raw-thread:#b390ee; --raw-thread-soft:rgba(179,144,238,.13); --raw-thread-wash:rgba(179,144,238,.09);
+  --raw-lamp:#ef9a36; --raw-lamp-soft:rgba(239,154,54,.18);
+  --raw-rail:#93b1da; --raw-seal:#da7c5c;
+  --raw-new:#e07a76; --raw-learn:#e6b455;
+  --raw-shadow:0 0 0;
+}
+
+/* ALT 2: Green Banker — sage-leather desk, oxidized brass lamp */
+:root[data-palette="banker"][data-theme="light"]{
+  --raw-base:#e9e7d3; --raw-page:#f6f3e3; --raw-card:#fcfbf1;
+  --raw-ink:#1f2418; --raw-muted:#566050; --raw-faint:#8a917a;
+  --raw-rule:#d2d3ba; --raw-rule-soft:#dde0c8;
+  --raw-thread:#675098; --raw-thread-soft:rgba(103,80,152,.10); --raw-thread-wash:rgba(103,80,152,.07);
+  --raw-lamp:#c79a3e; --raw-lamp-soft:rgba(199,154,62,.22);
+  --raw-rail:#3c6353; --raw-seal:#a85c3e;
+  --raw-new:#b15568; --raw-learn:#bb9337;
+  --raw-shadow:30 34 18;
+}
+:root[data-palette="banker"][data-theme="dark"]{
+  --raw-base:#10130d; --raw-page:#171b12; --raw-card:#1f2417;
+  --raw-ink:#e7e8d6; --raw-muted:#929c82; --raw-faint:#5f6850;
+  --raw-rule:#2c331f; --raw-rule-soft:#262d1b;
+  --raw-thread:#a48fda; --raw-thread-soft:rgba(164,143,218,.12); --raw-thread-wash:rgba(164,143,218,.09);
+  --raw-lamp:#dcab4c; --raw-lamp-soft:rgba(220,171,76,.17);
+  --raw-rail:#74b39a; --raw-seal:#cd7e5d;
+  --raw-new:#d27d8e; --raw-learn:#deb157;
+  --raw-shadow:0 0 0;
+}
+
+/* ALT 3: Indigo Vellum — cool ivory paper, deep blue-night dark */
+:root[data-palette="vellum"][data-theme="light"]{
+  --raw-base:#ece9df; --raw-page:#f8f6ef; --raw-card:#fffefa;
+  --raw-ink:#21201c; --raw-muted:#5e5b51; --raw-faint:#8e8a7d;
+  --raw-rule:#dad6c8; --raw-rule-soft:#e3e0d3;
+  --raw-thread:#5a4fb0; --raw-thread-soft:rgba(90,79,176,.10); --raw-thread-wash:rgba(90,79,176,.07);
+  --raw-lamp:#d99a3a; --raw-lamp-soft:rgba(217,154,58,.20);
+  --raw-rail:#3a5694; --raw-seal:#a85c50;
+  --raw-new:#bb5466; --raw-learn:#c79238;
+  --raw-shadow:28 28 36;
+}
+:root[data-palette="vellum"][data-theme="dark"]{
+  --raw-base:#0f1118; --raw-page:#161824; --raw-card:#1d2030;
+  --raw-ink:#e7e6f0; --raw-muted:#9b9bb0; --raw-faint:#646479;
+  --raw-rule:#2a2d3e; --raw-rule-soft:#242636;
+  --raw-thread:#a394ee; --raw-thread-soft:rgba(163,148,238,.13); --raw-thread-wash:rgba(163,148,238,.09);
+  --raw-lamp:#e6a648; --raw-lamp-soft:rgba(230,166,72,.16);
+  --raw-rail:#8aa8e0; --raw-seal:#cf8068;
+  --raw-new:#dc7e90; --raw-learn:#e3b259;
+  --raw-shadow:0 0 0;
+}
+
+/* ---------- SEMANTIC TOKENS ---------- */
+:root{
+  --surface:var(--raw-base);
+  --page:var(--raw-page);
+  --card:var(--raw-card);
+  --ink:var(--raw-ink);
+  --muted:var(--raw-muted);
+  --faint:var(--raw-faint);
+  --rule:var(--raw-rule);
+  --rule-soft:var(--raw-rule-soft);
+  --thread:var(--raw-thread);
+  --thread-soft:var(--raw-thread-soft);
+  --thread-wash:var(--raw-thread-wash);
+  --lamp:var(--raw-lamp);
+  --lamp-soft:var(--raw-lamp-soft);
+  --rail:var(--raw-rail);
+  --seal:var(--raw-seal);
+  --st-new:var(--raw-new);
+  --st-learn:var(--raw-learn);
+  --shadow-rgb:var(--raw-shadow);
+
+  --serif-display:"Newsreader", Georgia, "Times New Roman", serif;
+  --serif-body:"Source Serif 4", Georgia, serif;
+  --sans:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --cjk:"LXGW WenKai TC", "Songti TC", "Noto Serif TC", "PingFang TC", serif;
+  --cjk-kai:"Kaiti TC", "BiauKai", "DFKai-SB", "LXGW WenKai TC", "Songti TC", serif;
+
+  --measure: 60ch;
+  --ease: cubic-bezier(.2,.7,.2,1);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:
+    radial-gradient(120% 80% at 50% -10%, color-mix(in srgb, var(--lamp-soft) 60%, transparent) 0%, transparent 46%),
+    var(--surface);
+  color:var(--ink);
+  font-family:var(--serif-body);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  transition:background-color .5s var(--ease), color .4s var(--ease);
+}
+:root[data-theme="dark"] body{
+  background:
+    radial-gradient(120% 70% at 50% -8%, color-mix(in srgb, var(--lamp-soft) 90%, transparent) 0%, transparent 50%),
+    var(--surface);
+}
+
+button{font-family:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--thread); outline-offset:2px; border-radius:3px}
+
+/* =========================================================
+   HEADER  (the running head of a book)
+   ========================================================= */
+.head{
+  position:sticky; top:0; z-index:40;
+  background:color-mix(in srgb, var(--surface) 86%, transparent);
+  backdrop-filter:saturate(1.1) blur(8px);
+  -webkit-backdrop-filter:saturate(1.1) blur(8px);
+  border-bottom:1px solid var(--rule);
+  transition:opacity .5s var(--ease), border-color .5s var(--ease);
+}
+.head.dim{opacity:.5}
+.head.dim:hover{opacity:1}
+.head-in{
+  max-width:1320px; margin:0 auto; padding:11px 28px;
+  display:flex; align-items:center; gap:22px;
+}
+.brand{display:flex; align-items:center; gap:11px; flex:0 0 auto}
+.knot{width:30px; height:30px; flex:0 0 auto}
+.brand-name{
+  font-family:var(--serif-display); font-weight:600; font-size:20px;
+  letter-spacing:.01em; font-variant:small-caps; line-height:1;
+}
+.brand-name .core{
+  font-family:var(--sans); font-weight:500; font-size:9.5px;
+  letter-spacing:.22em; text-transform:uppercase; color:var(--faint);
+  display:block; margin-top:3px;
+}
+
+.head-spacer{flex:1 1 auto}
+
+/* tiny printer's-mark labels */
+.mark{
+  font-family:var(--sans); font-size:9.5px; font-weight:600;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--faint);
+}
+
+/* Aa affordance opens the granular toggle drawer */
+.aa-btn{
+  font-family:var(--serif-display); font-size:17px; font-weight:500;
+  background:transparent; border:1px solid var(--rule);
+  border-radius:8px; padding:5px 12px 6px; line-height:1;
+  color:var(--muted);
+  transition:border-color .2s, color .2s, background .2s;
+}
+.aa-btn[aria-expanded="true"], .aa-btn:hover{
+  border-color:var(--thread); color:var(--ink);
+  background:var(--thread-wash);
+}
+
+/* RAIL SWITCH = two facing book-tabs */
+.rail{
+  display:flex; align-items:stretch; gap:0;
+  border:1px solid var(--rule); border-radius:9px;
+  padding:3px; background:color-mix(in srgb, var(--page) 60%, transparent);
+  position:relative;
+}
+.rail button{
+  position:relative; z-index:1;
+  background:transparent; border:0; border-radius:6px;
+  padding:6px 16px 7px; line-height:1;
+  font-family:var(--serif-display); font-size:14px; font-weight:500;
+  color:var(--muted); transition:color .22s var(--ease);
+  display:flex; flex-direction:column; align-items:center; gap:2px;
+}
+.rail button .sub{
+  font-family:var(--sans); font-size:8px; font-weight:600;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--faint);
+  transition:color .22s;
+}
+.rail button[aria-pressed="true"]{color:var(--ink)}
+.rail button[aria-pressed="true"] .sub{color:var(--lamp)}
+/* lit tab indicator */
+.rail-glow{
+  position:absolute; top:3px; bottom:3px; z-index:0;
+  border-radius:6px;
+  background:
+    radial-gradient(120% 130% at 50% 120%, var(--lamp-soft), transparent 70%),
+    color-mix(in srgb, var(--card) 70%, transparent);
+  box-shadow:0 1px 0 var(--rule-soft) inset;
+  transition:left .26s var(--ease), width .26s var(--ease);
+}
+/* violet stitch along the lit tab base */
+.rail-glow::after{
+  content:""; position:absolute; left:8px; right:8px; bottom:-1px; height:2px;
+  background:var(--thread);
+  border-radius:2px;
+  box-shadow:0 0 6px color-mix(in srgb, var(--thread) 60%, transparent);
+}
+
+/* theme + palette controls */
+.ctl{
+  background:transparent; border:1px solid var(--rule); border-radius:8px;
+  padding:6px 9px; line-height:1; color:var(--muted);
+  display:flex; align-items:center; gap:6px;
+  transition:border-color .2s, color .2s, background .2s;
+}
+.ctl:hover{border-color:var(--thread); color:var(--ink); background:var(--thread-wash)}
+.ctl svg{width:15px; height:15px; display:block}
+
+.palette-wrap{position:relative}
+.palette-menu{
+  position:absolute; right:0; top:calc(100% + 8px);
+  background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  box-shadow:0 18px 40px -18px rgb(var(--shadow-rgb) / .55), 0 2px 6px rgb(var(--shadow-rgb) / .2);
+  padding:7px; width:226px; z-index:60;
+  display:none; flex-direction:column; gap:2px;
+}
+.palette-menu.open{display:flex}
+.palette-menu .pm-h{
+  font-family:var(--sans); font-size:9px; font-weight:600; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--faint); padding:5px 9px 6px;
+}
+.pal-opt{
+  display:flex; align-items:center; gap:10px; width:100%;
+  background:transparent; border:0; border-radius:8px; padding:8px 9px;
+  text-align:left; transition:background .15s;
+}
+.pal-opt:hover{background:var(--thread-wash)}
+.pal-opt[aria-current="true"]{background:var(--thread-soft)}
+.pal-opt .dots{display:flex; gap:3px; flex:0 0 auto}
+.pal-opt .dots i{width:13px; height:13px; border-radius:50%; display:block; border:1px solid rgb(var(--shadow-rgb)/.12)}
+.pal-opt .pal-name{font-family:var(--serif-body); font-size:13.5px; font-weight:500}
+.pal-opt .pal-sub{font-family:var(--sans); font-size:9.5px; color:var(--faint); display:block; margin-top:1px; letter-spacing:.02em}
+.pal-opt .pal-txt{flex:1 1 auto}
+.pal-opt .pal-check{color:var(--thread); font-size:13px; opacity:0}
+.pal-opt[aria-current="true"] .pal-check{opacity:1}
+
+/* =========================================================
+   TOGGLE DRAWER (granular axes) — inline, never a modal
+   ========================================================= */
+.drawer{
+  max-height:0; overflow:hidden;
+  border-bottom:1px solid transparent;
+  background:color-mix(in srgb, var(--surface) 92%, transparent);
+  transition:max-height .3s var(--ease), border-color .3s;
+}
+.drawer.open{max-height:80px; border-bottom-color:var(--rule)}
+.drawer-in{
+  max-width:1320px; margin:0 auto; padding:13px 28px;
+  display:flex; align-items:center; gap:28px; flex-wrap:wrap;
+}
+.axis{display:flex; align-items:center; gap:10px}
+.axis-label{font-family:var(--sans); font-size:9px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--faint)}
+/* segmented control drawn as ruled ticks */
+.seg{display:inline-flex; border:1px solid var(--rule); border-radius:7px; overflow:hidden; background:var(--page)}
+.seg button{
+  background:transparent; border:0; padding:6px 13px; line-height:1;
+  font-family:var(--serif-body); font-size:13.5px; color:var(--muted);
+  position:relative; transition:color .18s, background .18s;
+}
+.seg button + button{border-left:1px solid var(--rule)}
+.seg button[aria-pressed="true"]{
+  color:var(--ink); background:var(--thread-wash);
+}
+.seg button[aria-pressed="true"]::after{
+  content:""; position:absolute; left:6px; right:6px; bottom:0; height:2px;
+  background:var(--thread); border-radius:2px;
+}
+
+/* =========================================================
+   DESK + LIT READING COLUMN
+   Single lit page centered on the wide desk; violet VI thread-spine
+   in the right margin.
+   ========================================================= */
+.desk{
+  position:relative;
+  display:grid;
+  grid-template-columns: 1fr minmax(auto, 760px) 1fr;
+  align-items:start;
+  padding:48px 28px 140px;
+  gap:0;
+}
+
+/* the lit page */
+.page{
+  grid-column:2;
+  position:relative;
+  background:
+    linear-gradient(var(--page), var(--page)) padding-box,
+    radial-gradient(140% 60% at 50% -6%, color-mix(in srgb, var(--lamp-soft) 75%, transparent), transparent 60%);
+  background-color:var(--page);
+  border:1px solid var(--rule-soft);
+  border-radius:6px;
+  padding:64px clamp(34px,5vw,72px) 72px;
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--card) 70%, transparent) inset,
+    0 28px 60px -28px rgb(var(--shadow-rgb) / .55),
+    0 4px 14px -8px rgb(var(--shadow-rgb) / .3);
+  transition:background-color .5s var(--ease), box-shadow .5s var(--ease), border-color .5s;
+}
+/* faint page-edge gradients (top/bottom) */
+.page::before, .page::after{
+  content:""; position:absolute; left:0; right:0; height:42px; pointer-events:none;
+}
+.page::before{top:0; background:linear-gradient(var(--page), transparent); border-radius:6px 6px 0 0}
+.page::after{bottom:0; background:linear-gradient(transparent, var(--page)); border-radius:0 0 6px 6px}
+
+/* VI rail thread-spine in the right margin (between page and right gutter) */
+.spine{
+  grid-column:2;
+  position:absolute;
+  top:120px; bottom:140px;
+  right:calc(50% - 760px/2 - 30px);
+  width:24px;
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  opacity:0; transition:opacity .3s var(--ease);
+  pointer-events:none;
+}
+:root[data-rail="vi"] .spine{opacity:1}
+.spine-thread{
+  position:relative; flex:1 1 auto; width:2px;
+  background:repeating-linear-gradient(var(--thread) 0 7px, transparent 7px 13px);
+  background-size:100% 200%;
+  background-position:0 0;
+  border-radius:2px;
+  opacity:.55;
+}
+:root[data-rail="vi"] .spine-thread{ animation:spineWipe .26s var(--ease) }
+@keyframes spineWipe{ from{clip-path:inset(0 0 100% 0)} to{clip-path:inset(0 0 0 0)} }
+.spine-label{
+  writing-mode:vertical-rl; text-orientation:mixed;
+  font-family:var(--sans); font-size:9px; font-weight:600; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--thread); opacity:.8;
+  white-space:nowrap;
+}
+.spine-knot{width:14px; height:14px; opacity:.85}
+
+/* ---- reading header ---- */
+.r-head{margin-bottom:34px; position:relative}
+.r-title{
+  font-family:var(--cjk); font-weight:400;
+  font-size:clamp(30px,3.4vw,40px); line-height:1.2; margin:0 0 6px;
+  letter-spacing:.02em;
+}
+.r-romanized{
+  font-family:var(--serif-display); font-style:italic; font-weight:400;
+  font-size:17px; color:var(--muted); margin:0 0 18px;
+}
+.chips{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+.chip{
+  font-family:var(--sans); font-size:10.5px; font-weight:500;
+  letter-spacing:.03em;
+  padding:4px 10px; border-radius:20px;
+  border:1px solid var(--rule); color:var(--muted);
+  background:color-mix(in srgb, var(--card) 50%, transparent);
+  white-space:nowrap;
+}
+.chip.band{border-color:color-mix(in srgb, var(--lamp) 55%, var(--rule)); color:color-mix(in srgb, var(--lamp) 65%, var(--ink))}
+.chip.binding{font-family:var(--cjk); font-size:12px; letter-spacing:0}
+.chip.origin{color:var(--faint)}
+.chip.neww{
+  border-color:color-mix(in srgb, var(--thread) 45%, var(--rule));
+  color:color-mix(in srgb, var(--thread) 70%, var(--ink));
+  background:var(--thread-wash);
+}
+.r-rule{height:1px; background:var(--rule); margin:26px 0 4px; border:0}
+
+/* ---- the passage ---- */
+.passage{ font-family:var(--cjk); }
+.para{
+  font-size:23px; line-height:2.45;
+  margin:0 0 1.1em;
+  /* ruby air handled by line-height */
+}
+
+/* word = ruby above + base glyph; status underline only */
+.w{
+  display:inline-flex; flex-direction:column; align-items:center;
+  vertical-align:bottom;
+  position:relative; cursor:pointer;
+  padding:0 .5px;
+  border-radius:6px;
+  transition:background .14s var(--ease);
+}
+.w:hover{ background:var(--thread-wash) }
+.w .ruby{
+  font-family:var(--serif-body);
+  font-size:11.5px; line-height:1.15;
+  color:var(--muted); letter-spacing:.01em;
+  height:15px; margin-bottom:1px;
+  white-space:nowrap;
+  transition:opacity .22s var(--ease), color .22s;
+}
+:root[data-rail="vi"] .w .ruby{color:var(--rail)}
+.w .base{
+  position:relative;
+  padding-bottom:2px;
+}
+/* status underline (drawn, so it can "unstitch") */
+.w .base::after{
+  content:""; position:absolute; left:2%; right:2%; bottom:-1px; height:2px;
+  border-radius:2px;
+  background:currentColor;
+  color:transparent;
+  transform-origin:left center;
+  transition:transform .26s var(--ease), opacity .26s var(--ease), background-color .3s;
+}
+.w[data-st="new"] .base::after{ background:var(--st-new) }
+.w[data-st="learning"] .base::after{
+  background:var(--st-learn);
+  /* learning literally glows, faintly */
+  box-shadow:0 0 5px color-mix(in srgb, var(--st-learn) 40%, transparent);
+}
+.w[data-st="known"] .base::after{ opacity:0 }
+/* unstitch on mark-known */
+.w.unstitch .base::after{ transform:scaleX(0); opacity:0 }
+
+/* new-target (nw:true) subtle highlight: a faint amber tick under the ruby, not a fill */
+.w[data-nw="true"] .ruby{ color:color-mix(in srgb, var(--rail) 75%, var(--lamp)) }
+.w[data-nw="true"] .base{
+  text-shadow:0 0 .5px color-mix(in srgb, var(--lamp) 30%, transparent);
+}
+
+/* punctuation: plain, not tappable */
+.p{ font-family:var(--cjk); cursor:default; padding:0 1px }
+
+/* the lamp focus halo on the active word */
+.w.active{ background:transparent }
+.w.active .base{
+  color:inherit;
+}
+.w.active .base::before{
+  content:""; position:absolute; inset:-6px -8px -2px;
+  border-radius:50%;
+  background:radial-gradient(60% 60% at 50% 60%, var(--lamp-soft), transparent 72%);
+  z-index:-1;
+  animation:bloom .12s var(--ease);
+  pointer-events:none;
+}
+@keyframes bloom{ from{opacity:0; transform:scale(.7)} to{opacity:1; transform:scale(1)} }
+
+/* status legend footnote */
+.legend{
+  margin-top:46px; padding-top:18px; border-top:1px solid var(--rule);
+  display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+  font-family:var(--sans); font-size:10.5px; color:var(--faint);
+  position:relative;
+}
+.legend .lg{display:flex; align-items:center; gap:7px}
+.legend .swatch{width:20px; height:2px; border-radius:2px; display:inline-block}
+.legend .dismiss{
+  margin-left:auto; background:transparent; border:0; color:var(--faint);
+  font-family:var(--sans); font-size:14px; line-height:1; padding:4px;
+}
+.legend .dismiss:hover{color:var(--ink)}
+.legend.hidden{display:none}
+
+/* =========================================================
+   BRIDGE / WORD CARD — slip pinned by a violet stitch
+   ========================================================= */
+.card-layer{ position:fixed; inset:0; z-index:80; display:none; }
+.card-layer.open{ display:block; }
+.card-scrim{
+  position:absolute; inset:0;
+  background:rgb(var(--shadow-rgb) / .26);
+  opacity:0; transition:opacity .22s var(--ease);
+}
+.card-layer.open .card-scrim{opacity:1}
+
+/* SVG stitch overlay (word → card corner) */
+.stitch-svg{ position:absolute; inset:0; pointer-events:none; z-index:1; overflow:visible }
+.stitch-path{
+  fill:none; stroke:var(--thread); stroke-width:2; stroke-linecap:round;
+  filter:drop-shadow(0 0 4px color-mix(in srgb, var(--thread) 55%, transparent));
+}
+
+.slip{
+  position:absolute; z-index:2;
+  width:min(380px, calc(100vw - 36px));
+  background:var(--card);
+  border:1px solid var(--rule);
+  border-radius:14px;
+  box-shadow:
+    0 24px 60px -22px rgb(var(--shadow-rgb) / .6),
+    0 4px 14px -8px rgb(var(--shadow-rgb) / .35);
+  padding:20px 22px 18px;
+  opacity:0; transform:translateY(6px);
+  transition:opacity .2s var(--ease), transform .2s var(--ease);
+}
+.card-layer.open .slip{ opacity:1; transform:translateY(0) }
+/* the pin knot where the thread meets the slip */
+.slip::before{
+  content:""; position:absolute; width:9px; height:9px; border-radius:50%;
+  background:var(--thread); box-shadow:0 0 8px color-mix(in srgb, var(--thread) 60%, transparent);
+  z-index:3;
+}
+.slip[data-pin="left"]::before{ left:-4px; top:26px }
+.slip[data-pin="right"]::before{ right:-4px; top:26px }
+.slip[data-pin="top"]::before{ left:50%; top:-4px; transform:translateX(-50%) }
+
+/* card header */
+.slip-head{ display:flex; align-items:flex-start; gap:16px; }
+.slip-glyph{
+  font-family:var(--cjk-kai); font-weight:400;
+  font-size:58px; line-height:.92; color:var(--ink);
+  flex:0 0 auto;
+}
+.slip-hv{
+  font-family:var(--serif-display); font-weight:600;
+  font-size:25px; line-height:1.1; color:var(--rail);
+  letter-spacing:.01em;
+}
+.slip-meta{ display:flex; align-items:baseline; gap:8px; margin-top:4px; flex-wrap:wrap }
+.slip-py{ font-family:var(--serif-body); font-style:italic; font-size:14px; color:var(--muted) }
+.slip-pos{
+  font-family:var(--sans); font-size:9px; font-weight:600; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--faint);
+  border:1px solid var(--rule); border-radius:12px; padding:2px 7px;
+}
+.slip-gloss{
+  font-family:var(--serif-body); font-size:15px; line-height:1.5;
+  color:var(--ink); margin:13px 0 0;
+}
+
+/* the bridge block (VI only) */
+.bridge{
+  margin-top:15px; padding:14px 15px 15px;
+  background:var(--thread-wash);
+  border:1px solid var(--thread-soft);
+  border-left:2px solid var(--thread);
+  border-radius:10px;
+}
+.bridge-eyebrow{
+  display:flex; align-items:center; gap:8px;
+  font-family:var(--serif-display); font-weight:600; font-size:14.5px;
+  color:var(--ink); margin-bottom:3px;
+}
+.bridge-eyebrow .knotb{width:14px; height:14px; flex:0 0 auto}
+.bridge-eyebrow .en{
+  font-family:var(--sans); font-size:9px; font-weight:600; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--faint); margin-left:2px;
+}
+.cognates{ display:flex; flex-direction:column; gap:7px; margin:11px 0 10px }
+.cog{
+  display:flex; align-items:baseline; gap:10px;
+  font-family:var(--serif-body); font-size:14.5px;
+}
+.cog .cog-vi{ flex:0 0 116px; color:var(--ink) }
+.cog .cog-zh{ font-family:var(--cjk); font-size:17px; color:var(--muted) }
+.cog .cog-en{ font-family:var(--sans); font-size:11px; color:var(--faint); margin-left:auto }
+/* shared morpheme: bold; other syllable faint */
+.sh{ font-weight:700; color:var(--thread) }
+.fa{ color:var(--faint); font-weight:400 }
+.bridge-close{
+  font-family:var(--serif-body); font-style:italic; font-size:13px;
+  color:var(--muted); line-height:1.45; margin:0; padding-top:9px;
+  border-top:1px dashed var(--thread-soft);
+}
+
+/* EN-rail component note (no bridge claim) */
+.ennote{
+  margin-top:15px; padding:13px 15px;
+  background:color-mix(in srgb, var(--page) 60%, transparent);
+  border:1px solid var(--rule); border-radius:10px;
+}
+.ennote-h{
+  font-family:var(--sans); font-size:9px; font-weight:600; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--faint); margin-bottom:6px;
+}
+.ennote-body{ font-family:var(--serif-body); font-size:13.5px; line-height:1.55; color:var(--muted) }
+.ennote-body .ph{ font-family:var(--cjk); font-size:16px; color:var(--ink); padding:0 1px }
+
+/* actions */
+.slip-actions{
+  display:flex; align-items:center; gap:8px; margin-top:16px;
+  padding-top:14px; border-top:1px solid var(--rule);
+}
+.act{
+  font-family:var(--sans); font-size:12px; font-weight:500;
+  border:1px solid var(--rule); border-radius:8px;
+  background:transparent; padding:8px 12px; line-height:1;
+  color:var(--muted); display:inline-flex; align-items:center; gap:5px;
+  transition:border-color .18s, color .18s, background .18s;
+}
+.act:hover{ border-color:var(--thread); color:var(--ink); background:var(--thread-wash) }
+.act.known{ color:color-mix(in srgb, var(--thread) 70%, var(--ink)) }
+.act.dict{
+  margin-left:auto; border:0; padding:8px 4px;
+  color:var(--seal); font-family:var(--serif-display); font-style:italic; font-size:13.5px;
+}
+.act.dict:hover{ background:transparent; text-decoration:underline; text-underline-offset:3px }
+.act.dict .arrow{font-style:normal; font-family:var(--sans)}
+
+/* =========================================================
+   RESPONSIVE — collapse to mobile
+   ========================================================= */
+@media (max-width: 1080px){
+  .spine{ right:14px; top:96px; bottom:120px }
+}
+@media (max-width: 900px){
+  .desk{ grid-template-columns:1fr; padding:30px 16px 120px }
+  .page{ grid-column:1; padding:44px 22px 52px }
+  .spine{ display:none }
+  :root[data-rail="vi"] .page{ border-right:2px solid var(--thread) }
+  .head-in{ padding:10px 16px; gap:12px; flex-wrap:wrap }
+  .brand-name{ font-size:18px }
+  .para{ font-size:21px; line-height:2.35 }
+  .r-title{ font-size:27px }
+  .head .mark.hidem{ display:none }
+  .rail button{ padding:6px 12px }
+}
+@media (max-width: 560px){
+  .drawer-in{ gap:16px; padding:12px 16px }
+  .slip{ width:calc(100vw - 28px) }
+  .head-spacer{ flex-basis:100%; height:0 }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.001ms !important; transition-duration:.001ms !important }
+  .w.active .base::before{ background:none; box-shadow:0 0 0 1px var(--lamp) }
+  .stitch-path{ stroke-dasharray:none !important; stroke-dashoffset:0 !important }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="head" id="head">
+  <div class="head-in">
+    <div class="brand">
+      <svg class="knot" viewBox="0 0 32 32" aria-hidden="true">
+        <g fill="none" stroke="var(--thread)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 9 C9 18, 23 14, 23 23 C23 27, 18 27, 17 23 C16 19, 22 18, 22 14"/>
+          <path d="M23 9 C23 18, 9 14, 9 23 C9 27, 14 27, 15 23 C16 19, 10 18, 10 14"/>
+        </g>
+        <circle cx="16" cy="16" r="2.1" fill="var(--lamp)"/>
+      </svg>
+      <div class="brand-name">Lamphouse<span class="core">Tsumugu Core</span></div>
+    </div>
+
+    <div class="head-spacer"></div>
+
+    <span class="mark hidem">繁體 · B1</span>
+
+    <button class="aa-btn" id="aaBtn" aria-expanded="false" aria-controls="drawer" title="Text settings">Aa</button>
+
+    <!-- RAIL SWITCH: two facing book-tabs -->
+    <div class="rail" id="rail" role="group" aria-label="Learner rail">
+      <span class="rail-glow" id="railGlow"></span>
+      <button id="railEN" aria-pressed="false" data-rail="en">English<span class="sub">pinyin · EN</span></button>
+      <button id="railVI" aria-pressed="true" data-rail="vi">Tiếng Việt<span class="sub">Hán-Việt · VI</span></button>
+    </div>
+
+    <button class="ctl" id="themeBtn" title="Light / dark" aria-label="Toggle light/dark">
+      <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <circle cx="12" cy="12" r="4.2"/>
+        <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/>
+      </svg>
+    </button>
+
+    <div class="palette-wrap">
+      <button class="ctl" id="palBtn" title="Color template" aria-haspopup="true" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3a9 9 0 1 0 0 18 2.4 2.4 0 0 0 2.4-2.4 2.3 2.3 0 0 1 2.3-2.3H18a3 3 0 0 0 3-3A9 9 0 0 0 12 3Z"/>
+          <circle cx="7.5" cy="11" r="1"/><circle cx="11" cy="7.5" r="1"/><circle cx="15.5" cy="9" r="1"/>
+        </svg>
+      </button>
+      <div class="palette-menu" id="palMenu" role="menu" aria-label="Color templates">
+        <div class="pm-h">Color template</div>
+        <button class="pal-opt" role="menuitemradio" data-pal="lamphouse" aria-current="true">
+          <span class="dots"><i style="background:#241d14"></i><i style="background:#fbf6ea"></i><i style="background:#6a4fb0"></i><i style="background:#e8a13c"></i></span>
+          <span class="pal-txt"><span class="pal-name">Lamphouse</span><span class="pal-sub">aged ledger · walnut · native</span></span>
+          <span class="pal-check">✓</span>
+        </button>
+        <button class="pal-opt" role="menuitemradio" data-pal="ember">
+          <span class="dots"><i style="background:#2a1c13"></i><i style="background:#f9f1e0"></i><i style="background:#7a4dad"></i><i style="background:#dd8a2e"></i></span>
+          <span class="pal-txt"><span class="pal-name">Ember Lantern</span><span class="pal-sub">foxed paper · red lamp</span></span>
+          <span class="pal-check">✓</span>
+        </button>
+        <button class="pal-opt" role="menuitemradio" data-pal="banker">
+          <span class="dots"><i style="background:#1f2418"></i><i style="background:#f6f3e3"></i><i style="background:#675098"></i><i style="background:#c79a3e"></i></span>
+          <span class="pal-txt"><span class="pal-name">Green Banker</span><span class="pal-sub">sage leather · brass</span></span>
+          <span class="pal-check">✓</span>
+        </button>
+        <button class="pal-opt" role="menuitemradio" data-pal="vellum">
+          <span class="dots"><i style="background:#21201c"></i><i style="background:#f8f6ef"></i><i style="background:#5a4fb0"></i><i style="background:#d99a3a"></i></span>
+          <span class="pal-txt"><span class="pal-name">Indigo Vellum</span><span class="pal-sub">ivory · blue-night dark</span></span>
+          <span class="pal-check">✓</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- granular axis drawer -->
+  <div class="drawer" id="drawer">
+    <div class="drawer-in">
+      <div class="axis">
+        <span class="axis-label">Script</span>
+        <div class="seg" id="segScript" role="group" aria-label="Script">
+          <button data-v="trad" aria-pressed="true">繁</button>
+          <button data-v="simp" aria-pressed="false">简</button>
+        </div>
+      </div>
+      <div class="axis">
+        <span class="axis-label">Reading</span>
+        <div class="seg" id="segReading" role="group" aria-label="Reading">
+          <button data-v="hv" aria-pressed="true">Hán-Việt</button>
+          <button data-v="py" aria-pressed="false">Pinyin</button>
+          <button data-v="zh" aria-pressed="false">注音</button>
+        </div>
+      </div>
+      <div class="axis">
+        <span class="axis-label">Gloss</span>
+        <div class="seg" id="segGloss" role="group" aria-label="Gloss">
+          <button data-v="vi" aria-pressed="true">Tiếng Việt</button>
+          <button data-v="en" aria-pressed="false">English</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ DESK ============ -->
+<main class="desk" id="desk">
+  <div class="page" id="page">
+
+    <header class="r-head">
+      <h1 class="r-title" id="rTitle">山中的客棧</h1>
+      <p class="r-romanized" id="rRoman">Sơn trung đích khách sạn</p>
+      <div class="chips">
+        <span class="chip band">B1 · TOCFL 3</span>
+        <span class="chip binding">當代中文課程 · B4 L3</span>
+        <span class="chip origin" id="chipOrigin">nguyên tác</span>
+        <span class="chip neww" id="chipNew">3 từ mới</span>
+        <span class="chip" id="chipMin">~2 phút</span>
+      </div>
+      <hr class="r-rule">
+    </header>
+
+    <div class="passage" id="passage"><!-- rendered by JS --></div>
+
+    <div class="legend" id="legend">
+      <span class="lg"><span class="swatch" style="background:var(--st-new)"></span> mới · new</span>
+      <span class="lg"><span class="swatch" style="background:var(--st-learn);box-shadow:0 0 5px var(--st-learn)"></span> đang học · learning</span>
+      <span class="lg"><span class="swatch" style="background:transparent;border-bottom:1px dotted var(--faint)"></span> đã biết · known (no mark)</span>
+      <span class="lg"><span class="swatch" style="background:var(--thread)"></span> chữ bài học · lesson target</span>
+      <button class="dismiss" id="legendX" aria-label="Dismiss legend">×</button>
+    </div>
+
+  </div>
+
+  <!-- violet VI rail thread-spine in the right margin -->
+  <aside class="spine" aria-hidden="true">
+    <svg class="spine-knot" viewBox="0 0 32 32"><g fill="none" stroke="var(--thread)" stroke-width="2.4" stroke-linecap="round"><path d="M9 9 C9 18, 23 14, 23 23"/><path d="M23 9 C23 18, 9 14, 9 23"/></g></svg>
+    <span class="spine-label">cầu nối Hán-Việt</span>
+    <span class="spine-thread"></span>
+  </aside>
+</main>
+
+<!-- ============ BRIDGE / WORD CARD LAYER ============ -->
+<div class="card-layer" id="cardLayer" role="dialog" aria-modal="true" aria-label="Word card">
+  <div class="card-scrim" id="cardScrim"></div>
+  <svg class="stitch-svg" id="stitchSvg"><path class="stitch-path" id="stitchPath" d=""/></svg>
+  <div class="slip" id="slip" data-pin="left"><!-- filled by JS --></div>
+</div>
+
+<script>
+/* =========================================================
+   DATA (verbatim from specs/_content.json)
+   ========================================================= */
+const CONTENT = {
+  meta:{ title_zh:"山中的客棧", title_hv:"Sơn trung đích khách sạn",
+    title_vi:"Quán trọ trong núi", title_en:"The Inn in the Mountains",
+    band:"B1 · TOCFL 3", binding:"當代中文課程 · B4 L3",
+    origin_vi:"nguyên tác", origin_en:"AI-original", newWords:3, minutes:2 },
+  sentences:[
+    [
+      {zh:"他",py:"tā",hv:"tha",vi:"anh ấy",en:"he",st:"known"},
+      {zh:"抬起",py:"táiqǐ",hv:"đài khởi",vi:"ngẩng (lên)",en:"to raise",st:"known"},
+      {zh:"頭",py:"tóu",hv:"đầu",vi:"đầu",en:"head",st:"known"},
+      {zh:"，",py:"",hv:"",vi:"",en:"",st:"punct"},
+      {zh:"望",py:"wàng",hv:"vọng",vi:"nhìn ra xa",en:"to gaze",st:"new",nw:true},
+      {zh:"向",py:"xiàng",hv:"hướng",vi:"về phía",en:"toward",st:"known"},
+      {zh:"那",py:"nà",hv:"na",vi:"kia",en:"that",st:"known"},
+      {zh:"座",py:"zuò",hv:"tọa",vi:"(lượng từ)",en:"(measure word)",st:"learning"},
+      {zh:"高",py:"gāo",hv:"cao",vi:"cao",en:"tall",st:"known"},
+      {zh:"山",py:"shān",hv:"sơn",vi:"núi",en:"mountain",st:"known"},
+      {zh:"。",py:"",hv:"",vi:"",en:"",st:"punct"}
+    ],
+    [
+      {zh:"山",py:"shān",hv:"sơn",vi:"núi",en:"mountain",st:"known"},
+      {zh:"中",py:"zhōng",hv:"trung",vi:"trong",en:"in",st:"known"},
+      {zh:"有",py:"yǒu",hv:"hữu",vi:"có",en:"there is",st:"known"},
+      {zh:"一",py:"yī",hv:"nhất",vi:"một",en:"one",st:"known"},
+      {zh:"間",py:"jiān",hv:"gian",vi:"(lượng từ)",en:"(measure word)",st:"known"},
+      {zh:"古老",py:"gǔlǎo",hv:"cổ lão",vi:"cổ kính",en:"ancient",st:"learning",nw:true},
+      {zh:"的",py:"de",hv:"đích",vi:"(trợ từ)",en:"(particle)",st:"known"},
+      {zh:"客棧",py:"kèzhàn",hv:"khách sạn",vi:"quán trọ",en:"inn",st:"learning",nw:true},
+      {zh:"，",py:"",hv:"",vi:"",en:"",st:"punct"},
+      {zh:"燈",py:"dēng",hv:"đăng",vi:"đèn",en:"lamp",st:"known"},
+      {zh:"還",py:"hái",hv:"hoàn",vi:"vẫn",en:"still",st:"known"},
+      {zh:"亮",py:"liàng",hv:"lượng",vi:"sáng",en:"bright",st:"learning"},
+      {zh:"著",py:"zhe",hv:"trước",vi:"(đang)",en:"(aspect)",st:"known"},
+      {zh:"。",py:"",hv:"",vi:"",en:"",st:"punct"}
+    ]
+  ],
+  bridge:{ char:"望", hv:"vọng", py:"wàng", zhuyin:"ㄨㄤˋ",
+    pos_vi:"động từ", pos_en:"verb",
+    gloss_vi:"nhìn ra xa; ngóng trông",
+    gloss_en:"to gaze into the distance; to look toward",
+    eyebrow_vi:"Bạn đã biết âm này rồi", eyebrow_en:"you already know this morpheme",
+    cognates:[
+      {vi:"hy vọng",zh:"希望",en:"to hope",shared:"vọng"},
+      {vi:"thất vọng",zh:"失望",en:"disappointed",shared:"vọng"},
+      {vi:"nguyện vọng",zh:"願望",en:"aspiration",shared:"vọng"}
+    ],
+    closing_vi:"cùng chữ 望 vọng — âm bạn đã nói hằng ngày",
+    closing_en:"all the same 望 vọng you already say",
+    en_rail_note:"phonetic-series",
+    dict_link_vi:"Mở trang chữ đầy đủ →", dict_link_en:"Open full entry →" }
+};
+
+/* Minimal Trad→Simp map for the characters in this passage */
+const T2S = { "頭":"头","間":"间","客棧":"客栈","棧":"栈","燈":"灯","還":"还","著":"着","願":"愿","願望":"愿望","當":"当","當代":"当代","課":"课","課程":"课程","國":"国" };
+function toSimp(zh){
+  if(T2S[zh]) return T2S[zh];
+  return zh.split('').map(c=>T2S[c]||c).join('');
+}
+
+/* Zhuyin for the few non-bridge words is not in data; we synthesize for ruby
+   only on words we have it for, else fall back to pinyin (kept honest). */
+const ZHUYIN = {
+  "他":"ㄊㄚ","抬起":"ㄊㄞˊ ㄑㄧˇ","頭":"ㄊㄡˊ","望":"ㄨㄤˋ","向":"ㄒㄧㄤˋ","那":"ㄋㄚˋ",
+  "座":"ㄗㄨㄛˋ","高":"ㄍㄠ","山":"ㄕㄢ","中":"ㄓㄨㄥ","有":"ㄧㄡˇ","一":"ㄧ","間":"ㄐㄧㄢ",
+  "古老":"ㄍㄨˇ ㄌㄠˇ","的":"ㄉㄜ˙","客棧":"ㄎㄜˋ ㄓㄢˋ","燈":"ㄉㄥ","還":"ㄏㄞˊ","亮":"ㄌㄧㄤˋ","著":"ㄓㄜ˙"
+};
+
+/* =========================================================
+   STATE
+   ========================================================= */
+const root = document.documentElement;
+const S = {
+  rail: root.dataset.rail,        // en | vi
+  script: root.dataset.script,    // trad | simp
+  reading: root.dataset.reading,  // hv | py | zh
+  gloss: root.dataset.gloss,      // vi | en
+  theme: root.dataset.theme,
+  palette: root.dataset.palette
+};
+const known = new Set(); // words user marks known this session
+
+/* =========================================================
+   RENDER PASSAGE
+   ========================================================= */
+const passageEl = document.getElementById('passage');
+
+function rubyFor(tok){
+  if(S.reading==='hv') return tok.hv;
+  if(S.reading==='zh') return ZHUYIN[tok.zh] || tok.py;
+  return tok.py;
+}
+
+function renderPassage(){
+  passageEl.innerHTML='';
+  CONTENT.sentences.forEach(sentence=>{
+    const para=document.createElement('p');
+    para.className='para';
+    sentence.forEach(tok=>{
+      if(tok.st==='punct'){
+        const s=document.createElement('span');
+        s.className='p'; s.textContent=tok.zh;
+        para.appendChild(s); return;
+      }
+      const w=document.createElement('span');
+      w.className='w';
+      w.tabIndex=0;
+      let st = known.has(tok.zh) ? 'known' : tok.st;
+      w.dataset.st=st;
+      if(tok.nw) w.dataset.nw='true';
+      w._tok=tok;
+
+      const ruby=document.createElement('span');
+      ruby.className='ruby';
+      ruby.textContent = rubyFor(tok);
+
+      const base=document.createElement('span');
+      base.className='base';
+      base.textContent = S.script==='simp' ? toSimp(tok.zh) : tok.zh;
+
+      w.appendChild(ruby); w.appendChild(base);
+      w.addEventListener('click', ()=>openCard(tok, w));
+      w.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openCard(tok,w);} });
+      para.appendChild(w);
+    });
+    passageEl.appendChild(para);
+  });
+}
+
+/* re-render just ruby (reading change) and base (script change) without full rebuild,
+   but full rebuild is cheap here */
+function rerender(){ renderPassage(); }
+
+/* =========================================================
+   READING HEADER localization (rail-driven)
+   ========================================================= */
+function syncHeader(){
+  const m=CONTENT.meta;
+  document.getElementById('rTitle').textContent = S.script==='simp'? toSimp(m.title_zh): m.title_zh;
+  document.getElementById('rRoman').textContent = (S.gloss==='vi')? m.title_hv : m.title_en;
+  document.getElementById('chipOrigin').textContent = (S.gloss==='vi')? m.origin_vi : m.origin_en;
+  document.getElementById('chipNew').textContent = (S.gloss==='vi')? (m.newWords+' từ mới') : (m.newWords+' new');
+  document.getElementById('chipMin').textContent = (S.gloss==='vi')? ('~'+m.minutes+' phút') : ('~'+m.minutes+' min');
+  // ACCC binding chip converts script too
+  document.querySelector('.chip.binding').textContent = S.script==='simp'? '当代中文课程 · B4 L3' : '當代中文課程 · B4 L3';
+}
+
+/* =========================================================
+   CARD (bridge / word)
+   ========================================================= */
+const layer=document.getElementById('cardLayer');
+const scrim=document.getElementById('cardScrim');
+const slip=document.getElementById('slip');
+const stitchSvg=document.getElementById('stitchSvg');
+const stitchPath=document.getElementById('stitchPath');
+let activeWordEl=null;
+
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+
+function cognateRow(c){
+  // bold shared morpheme, faint the other syllable, in BOTH vi reading
+  const parts = c.vi.split(' ');
+  let viHtml;
+  if(parts.length===2){
+    const [a,b]=parts;
+    if(b===c.shared) viHtml=`<span class="fa">${esc(a)}</span> <span class="sh">${esc(b)}</span>`;
+    else if(a===c.shared) viHtml=`<span class="sh">${esc(a)}</span> <span class="fa">${esc(b)}</span>`;
+    else viHtml=esc(c.vi);
+  } else viHtml=esc(c.vi);
+  const zh = S.script==='simp'? toSimp(c.zh): c.zh;
+  // bold the shared hanzi (望) faint the other
+  let zhHtml = zh.split('').map(ch=>{
+    const isShared = (ch==='望'|| ch===toSimp('望'));
+    return isShared? `<span class="sh">${esc(ch)}</span>`:`<span class="fa">${esc(ch)}</span>`;
+  }).join('');
+  return `<div class="cog"><span class="cog-vi">${viHtml}</span><span class="cog-zh">${zhHtml}</span><span class="cog-en">${esc(c.en)}</span></div>`;
+}
+
+function buildSlip(tok){
+  const isBridge = (tok.zh===CONTENT.bridge.char);
+  const b=CONTENT.bridge;
+  const reading = (S.reading==='hv')? tok.hv : (S.reading==='zh' ? (ZHUYIN[tok.zh]||tok.py) : tok.py);
+  const glyph = S.script==='simp'? toSimp(tok.zh): tok.zh;
+
+  // header reading: VI rail shows Hán-Việt proud; EN rail shows pinyin proud
+  const heroReading = (S.rail==='vi') ? tok.hv : tok.py;
+  const subReading  = (S.rail==='vi') ? tok.py : (ZHUYIN[tok.zh]||tok.py);
+  const pos = (S.gloss==='vi') ? (isBridge? b.pos_vi : '—') : (isBridge? b.pos_en : '—');
+  const gloss = (S.gloss==='vi') ? tok.vi : tok.en;
+
+  let html = `
+    <div class="slip-head">
+      <div class="slip-glyph">${esc(glyph)}</div>
+      <div>
+        <div class="slip-hv">${esc(heroReading)}</div>
+        <div class="slip-meta">
+          <span class="slip-py">${esc(subReading)}</span>
+          ${ pos!=='—' ? `<span class="slip-pos">${esc(pos)}</span>` : '' }
+        </div>
+      </div>
+    </div>
+    <p class="slip-gloss">${esc(gloss)}</p>
+  `;
+
+  if(isBridge && S.rail==='vi'){
+    // THE MOAT — bridge block
+    const eyebrow = b.eyebrow_vi;
+    const eyebrowEn = b.eyebrow_en;
+    const closing = (S.gloss==='vi')? b.closing_vi : b.closing_en;
+    html += `
+      <div class="bridge">
+        <div class="bridge-eyebrow">
+          <svg class="knotb" viewBox="0 0 32 32"><g fill="none" stroke="var(--thread)" stroke-width="2.6" stroke-linecap="round"><path d="M9 9 C9 18, 23 14, 23 23"/><path d="M23 9 C23 18, 9 14, 9 23"/></g></svg>
+          ${esc(eyebrow)} <span class="en">${esc(eyebrowEn)}</span>
+        </div>
+        <div class="cognates">
+          ${b.cognates.map(cognateRow).join('')}
+        </div>
+        <p class="bridge-close">${closing.replace('望','<span class="sh" style="font-family:var(--cjk)">望</span>')}</p>
+      </div>`;
+  } else if(isBridge && S.rail==='en'){
+    // EN rail: NO bridge claim — phonetic-series / component note
+    html += `
+      <div class="ennote">
+        <div class="ennote-h">Phonetic series · component note</div>
+        <div class="ennote-body">
+          <span class="ph">望</span> takes its sound from the phonetic
+          <span class="ph">亡</span> (wáng): the series <span class="ph">望</span> / <span class="ph">忘</span> / <span class="ph">茫</span> all carry it.
+          <span class="ph">月</span> (moon) + <span class="ph">王</span> sit beneath — gazing up at the moon.
+        </div>
+      </div>`;
+  }
+
+  // actions
+  const a1 = (S.gloss==='vi')? '+ Thêm thẻ' : '+ Add card';
+  const a2 = (S.gloss==='vi')? '✓ Đã biết' : '✓ I know this';
+  const dict = (S.gloss==='vi')? b.dict_link_vi : b.dict_link_en;
+  html += `
+    <div class="slip-actions">
+      <button class="act" id="actCard">${esc(a1)}</button>
+      <button class="act known" id="actKnown">${esc(a2)}</button>
+      <button class="act dict" id="actDict">${esc(glyph)} <span class="arrow">→</span></button>
+    </div>`;
+
+  slip.innerHTML=html;
+
+  // wire actions
+  slip.querySelector('#actKnown').addEventListener('click', ()=>{
+    markKnown(tok);
+  });
+  slip.querySelector('#actDict').addEventListener('click', ()=>{
+    // affordance only — flash the seal link
+    const d=slip.querySelector('#actDict'); d.textContent = (S.gloss==='vi')?'→ tsumugu-ed':'→ tsumugu-ed';
+    setTimeout(closeCard, 520);
+  });
+  slip.querySelector('#actCard').addEventListener('click', (e)=>{
+    e.currentTarget.textContent = (S.gloss==='vi')?'✓ Đã thêm':'✓ Added';
+  });
+}
+
+function positionSlip(wordEl){
+  const r = wordEl.getBoundingClientRect();
+  const vw = window.innerWidth, vh=window.innerHeight;
+  const sw = Math.min(380, vw-36);
+  // approximate slip height after it's in DOM
+  const sh = slip.offsetHeight || 360;
+
+  let left, top, pin;
+  // prefer to the right of the word; if no room, to the left; mobile = bottom-ish under word
+  if(vw <= 640){
+    left = Math.max(14, Math.min(vw - sw - 14, r.left + r.width/2 - sw/2));
+    top  = Math.min(vh - sh - 14, r.bottom + 22);
+    pin='top';
+  } else if(r.right + 30 + sw < vw){
+    left = r.right + 30;
+    top  = Math.max(76, Math.min(vh - sh - 14, r.top - 18));
+    pin='left';
+  } else {
+    left = Math.max(14, r.left - 30 - sw);
+    top  = Math.max(76, Math.min(vh - sh - 14, r.top - 18));
+    pin='right';
+  }
+  slip.style.left = left+'px';
+  slip.style.top  = top+'px';
+  slip.dataset.pin = pin;
+
+  // draw the violet stitch from the word to the pin
+  drawStitch(r, {left, top, w:sw, h:sh}, pin);
+}
+
+function drawStitch(wordRect, slipBox, pin){
+  // start: top-center of word's base glyph
+  const sx = wordRect.left + wordRect.width/2;
+  const sy = wordRect.bottom - 2;
+  let ex, ey;
+  if(pin==='left'){ ex = slipBox.left - 4; ey = slipBox.top + 26; }
+  else if(pin==='right'){ ex = slipBox.left + slipBox.w + 4; ey = slipBox.top + 26; }
+  else { ex = slipBox.left + slipBox.w/2; ey = slipBox.top - 4; }
+
+  // gentle curve
+  const mx=(sx+ex)/2, my=(sy+ey)/2;
+  const cx1 = sx, cy1 = my;
+  const cx2 = ex, cy2 = my;
+  const d=`M ${sx} ${sy} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${ex} ${ey}`;
+  stitchPath.setAttribute('d', d);
+
+  const len = stitchPath.getTotalLength();
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){
+    stitchPath.style.strokeDasharray='none';
+    stitchPath.style.strokeDashoffset='0';
+  }else{
+    stitchPath.style.strokeDasharray = len;
+    stitchPath.style.strokeDashoffset = len;
+    // force reflow then animate draw-on ~180ms
+    stitchPath.getBoundingClientRect();
+    stitchPath.style.transition='stroke-dashoffset .18s var(--ease)';
+    requestAnimationFrame(()=>{ stitchPath.style.strokeDashoffset='0'; });
+  }
+}
+
+function openCard(tok, wordEl){
+  if(activeWordEl) activeWordEl.classList.remove('active');
+  activeWordEl=wordEl;
+  wordEl.classList.add('active');
+
+  buildSlip(tok);
+  layer.classList.add('open');
+  // position after layout
+  requestAnimationFrame(()=> positionSlip(wordEl));
+}
+
+function closeCard(){
+  layer.classList.remove('open');
+  if(activeWordEl){ activeWordEl.classList.remove('active'); }
+  activeWordEl=null;
+  stitchPath.setAttribute('d','');
+}
+
+function markKnown(tok){
+  known.add(tok.zh);
+  // unstitch animation on the live word(s), then close
+  document.querySelectorAll('.w').forEach(w=>{
+    if(w._tok && w._tok.zh===tok.zh){
+      w.classList.add('unstitch');
+      setTimeout(()=>{ w.dataset.st='known'; w.classList.remove('unstitch'); }, 280);
+    }
+  });
+  const lbl = (S.gloss==='vi')?'✓ Đã thuộc':'✓ Marked known';
+  const btn = slip.querySelector('#actKnown'); if(btn) btn.textContent=lbl;
+  setTimeout(closeCard, 360);
+}
+
+scrim.addEventListener('click', closeCard);
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeCard(); closeMenus(); } });
+window.addEventListener('resize', ()=>{ if(layer.classList.contains('open') && activeWordEl) positionSlip(activeWordEl); });
+
+/* =========================================================
+   RAIL SWITCH (binds reading+gloss together)
+   ========================================================= */
+const railVI=document.getElementById('railVI');
+const railEN=document.getElementById('railEN');
+const railGlow=document.getElementById('railGlow');
+
+function moveRailGlow(){
+  const active = (S.rail==='vi')? railVI : railEN;
+  railGlow.style.left = active.offsetLeft+'px';
+  railGlow.style.width = active.offsetWidth+'px';
+}
+
+function setRail(rail){
+  S.rail=rail; root.dataset.rail=rail;
+  railVI.setAttribute('aria-pressed', rail==='vi');
+  railEN.setAttribute('aria-pressed', rail==='en');
+  // rail binds reading+gloss (proven substrate); Aa can split later
+  if(rail==='vi'){ setReading('hv',true); setGloss('vi',true); }
+  else { setReading('py',true); setGloss('en',true); }
+  moveRailGlow();
+  syncHeader(); rerender();
+}
+railVI.addEventListener('click', ()=>setRail('vi'));
+railEN.addEventListener('click', ()=>setRail('en'));
+
+/* =========================================================
+   AXIS TOGGLES
+   ========================================================= */
+function pressSeg(group, val){
+  group.querySelectorAll('button').forEach(b=> b.setAttribute('aria-pressed', b.dataset.v===val));
+}
+function setScript(v){ S.script=v; root.dataset.script=v; pressSeg(segScript,v); syncHeader(); rerender(); }
+function setReading(v, silent){ S.reading=v; root.dataset.reading=v; pressSeg(segReading,v); if(!silent) rerender(); else rerender(); }
+function setGloss(v, silent){ S.gloss=v; root.dataset.gloss=v; pressSeg(segGloss,v); syncHeader(); if(!silent) rerender(); }
+
+const segScript=document.getElementById('segScript');
+const segReading=document.getElementById('segReading');
+const segGloss=document.getElementById('segGloss');
+segScript.addEventListener('click', e=>{ const b=e.target.closest('button'); if(b) setScript(b.dataset.v); });
+segReading.addEventListener('click', e=>{ const b=e.target.closest('button'); if(b) setReading(b.dataset.v); });
+segGloss.addEventListener('click', e=>{ const b=e.target.closest('button'); if(b) setGloss(b.dataset.v); });
+
+/* Aa drawer */
+const aaBtn=document.getElementById('aaBtn');
+const drawer=document.getElementById('drawer');
+aaBtn.addEventListener('click', ()=>{
+  const open=drawer.classList.toggle('open');
+  aaBtn.setAttribute('aria-expanded', open);
+});
+
+/* =========================================================
+   THEME + PALETTE
+   ========================================================= */
+const themeBtn=document.getElementById('themeBtn');
+const themeIcon=document.getElementById('themeIcon');
+function setTheme(t){
+  S.theme=t; root.dataset.theme=t;
+  themeIcon.innerHTML = (t==='dark')
+    ? '<path d="M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5Z"/>'
+    : '<circle cx="12" cy="12" r="4.2"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/>';
+  if(layer.classList.contains('open') && activeWordEl) positionSlip(activeWordEl);
+}
+themeBtn.addEventListener('click', ()=> setTheme(S.theme==='dark'?'light':'dark'));
+
+const palBtn=document.getElementById('palBtn');
+const palMenu=document.getElementById('palMenu');
+function closeMenus(){ palMenu.classList.remove('open'); palBtn.setAttribute('aria-expanded','false'); }
+palBtn.addEventListener('click', e=>{
+  e.stopPropagation();
+  const open=palMenu.classList.toggle('open');
+  palBtn.setAttribute('aria-expanded', open);
+});
+document.addEventListener('click', e=>{ if(!palMenu.contains(e.target) && e.target!==palBtn) closeMenus(); });
+palMenu.querySelectorAll('.pal-opt').forEach(opt=>{
+  opt.addEventListener('click', ()=>{
+    const p=opt.dataset.pal;
+    S.palette=p; root.dataset.palette=p;
+    palMenu.querySelectorAll('.pal-opt').forEach(o=> o.setAttribute('aria-current', o===opt));
+    closeMenus();
+    if(layer.classList.contains('open') && activeWordEl) positionSlip(activeWordEl);
+  });
+});
+
+/* legend dismiss */
+document.getElementById('legendX').addEventListener('click', ()=> document.getElementById('legend').classList.add('hidden'));
+
+/* =========================================================
+   CHROME RECEDE on scroll-stillness
+   ========================================================= */
+const head=document.getElementById('head');
+let stillTimer=null;
+function nudgeChrome(){
+  head.classList.remove('dim');
+  clearTimeout(stillTimer);
+  stillTimer=setTimeout(()=>{ if(window.scrollY>120) head.classList.add('dim'); }, 2000);
+}
+window.addEventListener('scroll', nudgeChrome, {passive:true});
+window.addEventListener('mousemove', ()=> head.classList.remove('dim'), {passive:true});
+
+/* =========================================================
+   INIT
+   ========================================================= */
+renderPassage();
+syncHeader();
+setTheme(S.theme);
+window.addEventListener('load', moveRailGlow);
+requestAnimationFrame(moveRailGlow);
+setTimeout(moveRailGlow, 300); // after webfonts settle tab widths
+</script>
+</body>
+</html>

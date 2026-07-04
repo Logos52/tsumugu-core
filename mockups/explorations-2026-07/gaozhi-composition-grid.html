@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tsumugu 紡 · 稿紙 Composition Grid</title>
+<!--
+  ═══════════════════════════════════════════════════════════════════════
+  DIRECTION · 稿紙 Gǎozhǐ · Composition Grid
+  ═══════════════════════════════════════════════════════════════════════
+  THESIS
+    Counting borrows the one surface where every Taiwan-track learner has
+    already counted characters: 稿紙 composition-grid paper. Measurement
+    reads as material fact; prose flows ungridded. The apparatus wears the
+    grid; the reading never does. Coverage stops being a claim and becomes
+    an inspectable object the learner can literally count.
+
+  PALETTE (light / manuscript)          PALETTE (dark / 黑板 blackboard)
+    paper        #FAFBF5                  paper        #14201A
+    ink          #26251E                  chalk ink    #EAEFE9
+    grid-green   #3D7A5F  STRUCTURE ONLY  grid         #3A554A base / #6FAE8C labels
+      (cells, hairlines, apparatus labels; never a status, never a fill)
+    cell wash    #EAF1EC                  cell wash    #1B2B23
+    status: new  #AF5742 brick (solid underline + empty cell outline)
+    status: learn#B08A33 ochre (dotted underline + dotted cell)
+    seal chop    #B25A44  sole brand-color moment + the one deliberate
+                          action (Continue) + bridge shared syllables
+
+  TYPE ROLES
+    reading   Iansui 芫荽 (Taiwan schoolbook hand, MOE forms), 30px/2.4
+              fallback "LXGW WenKai TC","Kaiti TC","Songti TC",serif
+    chrome    IBM Plex Sans (+ PingFang TC / Noto Sans TC for Han)
+    counts    IBM Plex Mono, tabular; EVERY numeral is measurement
+    ruby rt   IBM Plex Sans at 0.42em (Vietnamese tone stacks safe)
+
+  SIGNATURE
+    The counted block and the grid that falls away. Each reading carries a
+    block of squares, one per lesson word: empty clay outline = new,
+    dotted ochre = learning, quiet fill = known. The same mark grammar as
+    the underlines. In the word popup, the glyph sits in a 米字格 practice
+    square that fades with status: full at new, half at learning, gone at
+    known. Prose itself NEVER sits on a grid.
+
+  LOOK FIRST
+    1) Reader: 音樂 popup, the half-faded 米字格 pair and the Hán-Việt
+       bridge; 2) Library: the counted blocks on the Reading Wall, and how
+       the Starter shelf has gone quiet (no marks, no ruby, filled cells);
+    3) The 黑板 dark theme (☾), where the grid becomes chalk lines.
+  ═══════════════════════════════════════════════════════════════════════
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Iansui&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/style.css" rel="stylesheet">
+<style>
+:root{
+  --f-read:'Iansui','LXGW WenKai TC','Kaiti TC','Songti TC',serif;
+  --f-ui:'IBM Plex Sans','PingFang TC','Noto Sans TC',sans-serif;
+  --f-mono:'IBM Plex Mono','PingFang TC','Noto Sans TC',monospace;
+}
+[data-theme="light"]{
+  --paper:#FAFBF5; --card:#FEFEFB; --ink:#26251E; --ink2:#5C5B4F; --dim:#8A897B;
+  --grid:#3D7A5F; --hair:rgba(61,122,95,.36); --hair2:rgba(61,122,95,.18);
+  --cellwash:#EAF1EC; --cellfill:#D9E5DC;
+  --new:#AF5742; --learn:#B08A33; --seal:#B25A44; --onseal:#FFFFFF;
+  --shadow:0 12px 34px rgba(38,37,30,.13);
+}
+[data-theme="dark"]{
+  --paper:#14201A; --card:#182620; --ink:#EAEFE9; --ink2:#B9C4B8; --dim:#8C9B8D;
+  --grid:#6FAE8C; --hair:rgba(111,174,140,.42); --hair2:rgba(111,174,140,.20);
+  --cellwash:#1B2B23; --cellfill:#2A3E32;
+  --new:#D08165; --learn:#CBA24E; --seal:#C97457; --onseal:#14201A;
+  --shadow:0 12px 34px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-ui);
+  -webkit-font-smoothing:antialiased;font-size:15px;line-height:1.5}
+::selection{background:var(--cellwash)}
+button{font-family:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:2px solid var(--grid);outline-offset:2px;border-radius:2px}
+a{color:inherit}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+
+/* ── header ─────────────────────────────────────────── */
+header.hd{position:sticky;top:0;z-index:50;background:var(--paper);
+  border-bottom:1px solid var(--hair2)}
+.hd-in{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:14px;
+  padding:10px 20px;flex-wrap:wrap}
+.chop{width:27px;height:27px;background:var(--seal);color:var(--onseal);
+  font-family:var(--f-read);display:grid;place-items:center;border-radius:5px;
+  font-size:16px;flex:none}
+.brand{font-weight:600;font-size:16px;letter-spacing:.01em}
+.tabs{display:flex;gap:4px;margin-left:10px}
+.tab{font-size:14px;color:var(--ink2);padding:6px 13px;border:1px solid transparent;
+  border-radius:7px;background:none;transition:background .15s}
+.tab:hover{background:var(--cellwash)}
+.tab[aria-selected="true"]{border-color:var(--grid);background:var(--cellwash);
+  color:var(--ink);font-weight:500}
+.hd-r{margin-left:auto;display:flex;align-items:center;gap:8px}
+.kbd{font-family:var(--f-mono);font-size:12px;border:1px solid var(--hair2);
+  border-radius:6px;padding:4px 9px;color:var(--ink2);background:none;transition:background .15s}
+.kbd:hover{background:var(--cellwash)}
+.thm{font-size:14px;border:1px solid var(--hair2);border-radius:6px;padding:4px 9px;
+  background:none;color:var(--ink2);transition:background .15s}
+.thm:hover{background:var(--cellwash)}
+
+/* ── shared apparatus vocabulary ────────────────────── */
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.15em;color:var(--grid);
+  text-transform:uppercase}
+.cells{display:inline-flex;flex-wrap:wrap;gap:3px;max-width:236px;align-content:flex-start}
+.cell{width:11px;height:11px;border-radius:1.5px;flex:none}
+.cells.sm .cell{width:9px;height:9px}
+.cell.n{border:1.5px solid var(--new);background:transparent}
+.cell.l{border:1.5px dotted var(--learn);background:transparent}
+.cell.k{border:1.5px solid transparent;background:var(--cellfill)}
+.cnt{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:12px;
+  color:var(--ink2);white-space:nowrap}
+.facts{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:12px;
+  color:var(--ink2);letter-spacing:.01em}
+.note{font-family:var(--f-mono);font-size:11px;color:var(--grid);margin-left:8px}
+.chip{display:inline-block;border:1px solid var(--hair);border-radius:4px;
+  padding:1px 8px;font-family:var(--f-mono);font-size:12px;color:var(--ink2)}
+
+/* status word-marks: underline channel only */
+.w{cursor:pointer;border-radius:2px;transition:background .15s}
+.w:hover{background:var(--cellwash)}
+.w.n{text-decoration-line:underline;text-decoration-style:solid;
+  text-decoration-color:var(--new);text-decoration-thickness:2.5px;text-underline-offset:.2em}
+.w.l{text-decoration-line:underline;text-decoration-style:dotted;
+  text-decoration-color:var(--learn);text-decoration-thickness:2px;text-underline-offset:.2em}
+ruby{ruby-align:center}
+rt{font-family:var(--f-ui);font-weight:500;font-size:.42em;letter-spacing:.02em;
+  color:var(--ink2);ruby-align:center}
+.w.k rt{opacity:.34}
+.w.sel{outline:1.5px solid var(--grid);outline-offset:3px}
+
+/* 米字格 practice square: full at new, half at learning, gone at known */
+.mz{position:relative;width:56px;height:56px;border:1.5px solid var(--hair);
+  display:inline-grid;place-items:center;flex:none}
+.mz::before{content:"";position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(to bottom,transparent calc(50% - .5px),var(--hair2) calc(50% - .5px) calc(50% + .5px),transparent calc(50% + .5px)),
+  linear-gradient(to right,transparent calc(50% - .5px),var(--hair2) calc(50% - .5px) calc(50% + .5px),transparent calc(50% + .5px)),
+  linear-gradient(45deg,transparent calc(50% - .6px),var(--hair2) calc(50% - .6px) calc(50% + .6px),transparent calc(50% + .6px)),
+  linear-gradient(135deg,transparent calc(50% - .6px),var(--hair2) calc(50% - .6px) calc(50% + .6px),transparent calc(50% + .6px))}
+.mz span{font-family:var(--f-read);font-size:38px;line-height:1;position:relative}
+.mz.half{border-color:var(--hair2)}
+.mz.half::before{opacity:.45}
+.mz.gone{border-color:transparent}
+.mz.gone::before{opacity:0}
+.mz.mini{width:30px;height:30px}
+.mz.mini span{font-size:19px}
+
+/* ── views ──────────────────────────────────────────── */
+main[hidden]{display:none}
+.subline{color:var(--ink2);font-size:13px;margin:18px 0 0}
+
+/* continue strip */
+.continue{margin-top:16px;background:var(--card);border:1px solid var(--hair);
+  border-radius:12px;padding:20px 22px;display:flex;gap:24px;align-items:center;
+  justify-content:space-between;flex-wrap:wrap}
+.cont-l{min-width:230px}
+.cont-ttl{font-family:var(--f-read);font-size:27px;margin:6px 0 8px}
+.cont-r{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.btn-seal{border:1.5px solid var(--seal);color:var(--seal);background:none;
+  border-radius:8px;padding:10px 20px;font-size:14px;font-weight:600;
+  transition:background .15s,color .15s}
+.btn-seal:hover{background:var(--seal);color:var(--onseal)}
+
+/* section headers */
+.sect{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--hair);
+  padding-bottom:8px;margin:40px 0 16px;flex-wrap:wrap}
+.sect .facts{margin-left:auto}
+
+/* companion shelf */
+.companion{display:grid;grid-template-columns:auto 1fr;gap:20px}
+.spines{display:flex;gap:8px;align-items:stretch}
+.spine{writing-mode:vertical-rl;text-orientation:mixed;padding:14px 9px;
+  border:1px solid var(--hair2);border-radius:6px;font-size:13px;color:var(--ink2);
+  background:var(--card);display:flex;align-items:center;gap:10px;min-height:150px;
+  transition:background .15s}
+.spine:hover{background:var(--cellwash)}
+.spine .bnum{font-family:var(--f-mono);font-size:11px;color:var(--dim)}
+.spine.on{border-color:var(--grid);background:var(--cellwash);color:var(--ink)}
+.lessons{display:flex;flex-direction:column;justify-content:center}
+.lhead{font-family:var(--f-mono);font-size:12px;color:var(--ink2);padding:0 10px 8px}
+.lesson{display:grid;grid-template-columns:70px 250px 1fr auto;gap:16px;
+  align-items:center;padding:12px 10px;border-bottom:1px solid var(--hair2)}
+.lesson:last-child{border-bottom:none}
+.lesson.on{background:var(--cellwash);border:1px solid var(--hair);border-radius:8px}
+.lno{font-family:var(--f-read);font-size:17px}
+.marks{font-family:var(--f-mono);font-size:12px;color:var(--ink2)}
+.ufacts{font-family:var(--f-mono);font-size:12px;color:var(--ink2);white-space:nowrap}
+.lesson .cells{max-width:260px}
+
+/* reading wall */
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--hair2);border-radius:10px;
+  padding:18px 18px 14px;display:flex;flex-direction:column;gap:10px;min-height:230px}
+.thead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.ttl{font-family:var(--f-read);font-size:21px;font-weight:400;margin:0}
+.fmt{font-size:11.5px;font-weight:600;letter-spacing:.06em;color:var(--grid);white-space:nowrap}
+.ex{font-family:var(--f-read);font-size:19px;line-height:2.2;margin:0;color:var(--ink)}
+.ex rt{font-size:.42em}
+.plainrun{}
+.ledger{margin-top:auto;border-top:1px solid var(--hair2);padding-top:10px;
+  display:flex;flex-direction:column;gap:8px}
+.lrow{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+
+/* ── reader ─────────────────────────────────────────── */
+.rwrap{max-width:680px;margin:0 auto;padding:0 20px}
+.rhead{margin-top:34px}
+.rttl{font-family:var(--f-read);font-size:40px;font-weight:400;margin:10px 0 10px}
+.appar{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
+  align-items:center;border:1px solid var(--hair2);background:var(--cellwash);
+  border-radius:10px;padding:10px 14px;margin:20px 0 8px}
+.segs{display:flex;gap:10px;flex-wrap:wrap}
+.seg{display:inline-flex;border:1px solid var(--hair);border-radius:7px;overflow:hidden}
+.seg button{font-size:12px;padding:5px 11px;background:none;border:none;
+  color:var(--ink2);transition:background .15s}
+.seg button:hover{background:var(--card)}
+.seg button[aria-pressed="true"]{background:var(--card);color:var(--ink);font-weight:600}
+.seg .seglbl{font-size:11px;color:var(--dim);align-self:center;padding:0 2px 0 9px;
+  font-family:var(--f-mono)}
+.legend{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.lg-i{display:flex;flex-direction:column;align-items:center;gap:3px}
+.lg-i .mz{background:var(--paper)}
+.lg-t{font-size:10px;color:var(--ink2);font-family:var(--f-mono)}
+.lg-cap{font-size:11px;color:var(--ink2);max-width:130px;line-height:1.45}
+.stw{font-family:var(--f-read)}
+.stw.n{text-decoration:underline solid var(--new) 2.5px;text-underline-offset:.2em}
+.stw.l{text-decoration:underline dotted var(--learn) 2px;text-underline-offset:.2em}
+.stw.k{color:var(--ink2)}
+
+.prose{font-family:var(--f-read);font-size:30px;line-height:2.4;margin-top:26px}
+.prose p{text-indent:2em;margin:0 0 .5em}
+.punc{color:var(--ink)}
+.more{font-family:var(--f-mono);font-size:12px;color:var(--ink2);text-align:center;
+  text-indent:0;border-top:1px solid var(--hair2);padding-top:14px;margin-top:20px}
+
+/* word popup (anchored, open demo state; span-based: it lives inside a <p>) */
+.anchor{position:relative}
+.pop,.pop span{display:block;text-indent:0}
+.pop{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
+  width:342px;background:var(--card);border:1px solid var(--hair);border-radius:12px;
+  box-shadow:var(--shadow);padding:16px;z-index:40;font-family:var(--f-ui);
+  font-size:14px;line-height:1.5;text-align:left;color:var(--ink);cursor:default;
+  font-weight:400;text-decoration:none}
+.pop::before{content:"";position:absolute;top:-6px;left:50%;width:10px;height:10px;
+  background:var(--card);border-left:1px solid var(--hair);border-top:1px solid var(--hair);
+  transform:translateX(-50%) rotate(45deg)}
+.pop-head{display:flex !important;gap:14px;align-items:center}
+.mzrow{display:flex !important;gap:6px}
+.pop-readings{display:flex !important;flex-direction:column;gap:2px}
+.ppy{font-size:17px;font-weight:600}
+.pzy{font-size:13px;color:var(--ink2)}
+.phv{font-size:13px;color:var(--ink)}
+.phv-l{display:inline !important;font-family:var(--f-mono);font-size:10.5px;color:var(--grid);
+  letter-spacing:.06em;margin-right:4px}
+.pgloss{font-size:15px;margin-top:10px}
+.pstat{font-size:12px;color:var(--ink2);margin-top:6px}
+.pstat .stw{display:inline !important;font-size:13px;margin-right:2px}
+.pbridge{margin-top:12px;border:1px solid var(--hair2);background:var(--cellwash);
+  border-radius:8px;padding:10px 12px}
+.peye{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.05em;color:var(--grid);
+  margin-bottom:8px}
+.pcog{display:flex !important;gap:10px;align-items:baseline;padding:3px 0}
+.pzh{display:inline !important;font-family:var(--f-read);font-size:19px;flex:none}
+.pvi{display:inline !important;font-size:13.5px}
+.pen{display:inline !important;color:var(--ink2);font-size:12px}
+.sh{color:var(--seal);font-weight:600}
+.pgrades{display:flex !important;gap:6px;align-items:center;margin-top:13px;flex-wrap:wrap}
+.plbl{display:inline !important;font-family:var(--f-mono);font-size:10.5px;color:var(--dim);
+  margin-right:2px}
+.key{width:30px;height:30px;border:1px solid var(--hair);border-radius:6px;
+  font-family:var(--f-mono);font-size:13px;font-weight:500;background:none;
+  transition:background .15s;padding:0}
+.key:hover{background:var(--cellwash)}
+.gact{border:1px solid var(--hair2);border-radius:6px;background:none;font-size:11.5px;
+  padding:5px 8px;color:var(--ink);transition:background .15s;white-space:nowrap}
+.gact:hover{background:var(--cellwash)}
+.pacts{display:flex !important;gap:5px;margin-top:8px;flex-wrap:wrap}
+
+/* ── footer ─────────────────────────────────────────── */
+footer{border-top:1px solid var(--hair2);margin-top:56px;padding:22px 0 34px}
+.ft{display:flex;flex-direction:column;gap:6px}
+.ft-brand{font-size:13px;color:var(--ink2)}
+.ft-fact{font-family:var(--f-mono);font-size:11.5px;color:var(--dim)}
+
+/* ── responsive ─────────────────────────────────────── */
+@media (max-width:900px){
+  .lesson{grid-template-columns:64px 1fr;grid-auto-rows:auto;row-gap:8px}
+  .lesson .cells{grid-column:1 / -1}
+  .ufacts{grid-column:1 / -1}
+}
+@media (max-width:720px){
+  .companion{grid-template-columns:1fr}
+  .spines{flex-wrap:wrap}
+  .spine{writing-mode:horizontal-tb;min-height:0;padding:8px 12px}
+  .prose{font-size:26px}
+  .rttl{font-size:32px}
+  .pop{position:fixed;left:12px;right:12px;bottom:12px;top:auto;width:auto;transform:none}
+  .pop::before{display:none}
+  .continue{flex-direction:column;align-items:flex-start}
+  .legend{gap:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none !important;animation:none !important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <div class="hd-in">
+    <span class="chop" aria-hidden="true">紡</span>
+    <span class="brand">Tsumugu</span>
+    <nav class="tabs" aria-label="views">
+      <button class="tab" id="tab-library" aria-selected="true" aria-controls="v-library">書庫 Library</button>
+      <button class="tab" id="tab-reader" aria-selected="false" aria-controls="v-reader">閱讀 Reader</button>
+    </nav>
+    <div class="hd-r">
+      <button class="kbd" type="button">搜尋 ⌘K</button>
+      <button class="thm" id="thm" type="button" aria-label="theme">☾</button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ LIBRARY ═══════════ -->
+<main id="v-library" class="wrap" aria-label="書庫 Library">
+
+  <p class="subline">Graded Traditional Chinese readings. Read with pinyin, zhuyin, or Hán-Việt.</p>
+
+  <!-- continue -->
+  <section aria-label="續讀 Continue">
+    <div class="continue">
+      <div class="cont-l">
+        <span class="eyebrow">續讀 · Continue</span>
+        <h2 class="cont-ttl">追垃圾車</h2>
+        <div class="facts">當代 B2·L07 · 短文 story · ¶ 2 / 5 · 剩 278字</div>
+      </div>
+      <div class="cont-r">
+        <div>
+          <span class="cells" role="img" aria-label="7 new, 6 learning, 4 known"><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span></span>
+          <div class="cnt" style="margin-top:6px">17 詞 · 7 新 · 93% known</div>
+        </div>
+        <button class="btn-seal" id="cont-btn" type="button">繼續閱讀 Continue</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- companion shelf -->
+  <section aria-label="課本架 Companion">
+    <div class="sect">
+      <span class="eyebrow">課本架 · Companion</span>
+      <span class="facts">當代中文課程 · 每課 3 篇 · 覆蓋本課詞彙語法 100%</span>
+    </div>
+    <div class="companion">
+      <div class="spines" aria-label="冊">
+        <span class="spine">第一冊 <span class="bnum">15課 · A1</span></span>
+        <span class="spine on">第二冊 <span class="bnum">15課 · A2</span></span>
+        <span class="spine">第三冊 <span class="bnum">12課 · B1</span></span>
+        <span class="spine">第四冊 <span class="bnum">12課 · B1</span></span>
+        <span class="spine">第五冊 <span class="bnum">10課 · B2</span></span>
+      </div>
+      <div class="lessons">
+        <div class="lhead">第二冊 · 顯示 第五課 至 第八課 · 共 15 課</div>
+        <div class="lesson"><span class="lno">第五課</span><span class="marks">對話 ✓ · 短文 ✓ · 問答 ✓</span><span class="cells sm" role="img" aria-label="0 new, 6 learning, 34 known"><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span></span><span class="ufacts">40 詞 · 0 新</span></div><div class="lesson"><span class="lno">第六課</span><span class="marks">對話 ✓ · 自述 ✓ · 問答 ✓</span><span class="cells sm" role="img" aria-label="2 new, 8 learning, 30 known"><span class="cell n"></span><span class="cell n"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span></span><span class="ufacts">40 詞 · 2 新</span></div><div class="lesson on"><span class="lno">第七課</span><span class="marks">對話 ✓ · 短文 ¶ 2/5 · 廣播 未讀</span><span class="cells sm" role="img" aria-label="11 new, 11 learning, 18 known"><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span></span><span class="ufacts">40 詞 · 11 新</span></div><div class="lesson"><span class="lno">第八課</span><span class="marks">對話 未讀 · 自述 未讀 · 問答 未讀</span><span class="cells sm" role="img" aria-label="27 new, 5 learning, 8 known"><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span></span><span class="ufacts">40 詞 · 27 新</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- reading wall -->
+  <section aria-label="讀物牆 Reading Wall">
+    <div class="sect">
+      <span class="eyebrow">讀物牆 · Reading Wall</span>
+    </div>
+
+    <div class="sect" style="margin-top:8px">
+      <span class="eyebrow">入門 · Starter</span>
+      <span class="facts">A1 · 當代中文課程 第一冊 · 45 篇</span>
+    </div>
+    <div class="wall"><article class="card"><div class="thead"><h3 class="ttl">歡迎你來臺灣</h3><span class="fmt">對話 dialogue</span></div><p class="ex"><span class="w k"><ruby>林小姐<rt>ㄌㄧㄣˊ ㄒㄧㄠˇ ㄐㄧㄝˇ</rt></ruby></span><span class="punc">：</span><span class="w k"><ruby>你好<rt>ㄋㄧˇ ㄏㄠˇ</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>請問<rt>ㄑㄧㄥˇ ㄨㄣˋ</rt></ruby></span><span class="w k"><ruby>你<rt>ㄋㄧˇ</rt></ruby></span><span class="w k"><ruby>是<rt>ㄕˋ</rt></ruby></span><span class="w k"><ruby>高先生<rt>ㄍㄠ ㄒㄧㄢ ˙ㄕㄥ</rt></ruby></span><span class="w k"><ruby>嗎<rt>˙ㄇㄚ</rt></ruby></span><span class="punc">？</span><span class="w k"><ruby>高先生<rt>ㄍㄠ ㄒㄧㄢ ˙ㄕㄥ</rt></ruby></span><span class="punc">：</span><span class="w k"><ruby>你好<rt>ㄋㄧˇ ㄏㄠˇ</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>是的<rt>ㄕˋ ˙ㄉㄜ</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>我<rt>ㄨㄛˇ</rt></ruby></span><span class="w k"><ruby>姓<rt>ㄒㄧㄥˋ</rt></ruby></span><span class="w k"><ruby>高<rt>ㄍㄠ</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>叫<rt>ㄐㄧㄠˋ</rt></ruby></span><span class="w k"><ruby>高文<rt>ㄍㄠ ㄨㄣˊ</rt></ruby></span><span class="punc">。</span></p><div class="ledger"><div class="lrow"><span class="cells sm" role="img" aria-label="0 new, 0 learning, 12 known"><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span></span><span class="cnt">0 新 · 100% known</span></div><div class="facts">當代 B1·L01 · 對話 dialogue · 317字 · ≈4分<span class="note">注音 rail</span></div></div></article><article class="card"><div class="thead"><h3 class="ttl">我叫周大同</h3><span class="fmt">自述 narrative</span></div><p class="ex"><span class="plainrun">你們好！我姓周，叫周大同，我是日本人，不是美國人。我來臺灣學中文。</span></p><div class="ledger"><div class="lrow"><span class="cells sm" role="img" aria-label="0 new, 0 learning, 10 known"><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span></span><span class="cnt">0 新 · 100% known</span></div><div class="facts">當代 B1·L01 · 自述 narrative · 278字 · ≈3分</div></div></article><article class="card"><div class="thead"><h3 class="ttl">第一次來臺灣</h3><span class="fmt">短文 story</span></div><p class="ex"><span class="plainrun">周先生是美國人，這是他第一次來臺灣。今天林小姐到機場接他。</span></p><div class="ledger"><div class="lrow"><span class="cells sm" role="img" aria-label="0 new, 0 learning, 11 known"><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span></span><span class="cnt">0 新 · 100% known</span></div><div class="facts">當代 B1·L01 · 短文 story · 267字 · ≈3分</div></div></article></div>
+
+    <div class="sect">
+      <span class="eyebrow">基礎 · Elementary</span>
+      <span class="facts">A2 · 當代中文課程 第二冊 · 45 篇</span>
+    </div>
+    <div class="wall"><article class="card"><div class="thead"><h3 class="ttl">倒垃圾的規定</h3><span class="fmt">對話 dialogue</span></div><p class="ex"><span class="w k"><ruby>林太太<rt>Lín tàitai</rt></ruby></span><span class="punc">：</span><span class="w k"><ruby>高先生<rt>Gāo xiānshēng</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>你<rt>nǐ</rt></ruby></span><span class="w k"><ruby>搬來<rt>bānlái</rt></ruby></span><span class="w k"><ruby>我們<rt>wǒmen</rt></ruby></span><span class="w k"><ruby>這個<rt>zhège</rt></ruby></span><span class="w k"><ruby>城市<rt>chéngshì</rt></ruby></span><span class="w k"><ruby>才<rt>cái</rt></ruby></span><span class="w k"><ruby>幾天<rt>jǐ tiān</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>住得<rt>zhù de</rt></ruby></span><span class="w k"><ruby>還<rt>hái</rt></ruby></span><span class="w l"><ruby>習慣<rt>xíguàn</rt></ruby></span><span class="w k"><ruby>嗎<rt>ma</rt></ruby></span><span class="punc">？</span></p><div class="ledger"><div class="lrow"><span class="cells sm" role="img" aria-label="4 new, 5 learning, 6 known"><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span></span><span class="cnt">4 新 · 95% known</span></div><div class="facts">當代 B2·L07 · 對話 dialogue · 488字 · ≈5分</div></div></article><article class="card"><div class="thead"><h3 class="ttl">追垃圾車</h3><span class="fmt">短文 story</span></div><p class="ex"><span class="w k"><ruby>那天<rt>nàtiān</rt></ruby></span><span class="w k"><ruby>晚上<rt>wǎnshang</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>周小姐<rt>Zhōu xiǎojiě</rt></ruby></span><span class="w k"><ruby>正<rt>zhèng</rt></ruby></span><span class="w k"><ruby>坐在<rt>zuòzài</rt></ruby></span><span class="w k"><ruby>客廳<rt>kètīng</rt></ruby></span><span class="w k"><ruby>的<rt>de</rt></ruby></span><span class="w k"><ruby>沙發<rt>shāfā</rt></ruby></span><span class="w k"><ruby>上<rt>shàng</rt></ruby></span><span class="w k"><ruby>看<rt>kàn</rt></ruby></span><span class="w k"><ruby>電視<rt>diànshì</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>窗外<rt>chuāngwài</rt></ruby></span><span class="w l"><ruby>忽然<rt>hūrán</rt></ruby></span><span class="w k"><ruby>傳來<rt>chuánlái</rt></ruby></span><span class="w l"><ruby>一陣<rt>yízhèn</rt></ruby></span><span class="w n"><ruby>熟悉<rt>shúxī</rt></ruby></span><span class="w k"><ruby>的<rt>de</rt></ruby></span><span class="w l"><ruby>音樂<rt>yīnyuè</rt></ruby></span><span class="punc">。</span></p><div class="ledger"><div class="lrow"><span class="cells sm" role="img" aria-label="7 new, 6 learning, 4 known"><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span></span><span class="cnt">7 新 · 93% known</span></div><div class="facts">當代 B2·L07 · 短文 story · 470字 · ≈5分 · ¶ 2/5</div></div></article><article class="card"><div class="thead"><h3 class="ttl">綠色城市</h3><span class="fmt">廣播 radio</span></div><p class="ex"><span class="w k"><ruby>各位<rt>gèwèi</rt></ruby></span><span class="w n"><ruby>市民<rt>shìmín</rt></ruby></span><span class="w k"><ruby>朋友<rt>péngyǒu</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>大家好<rt>dàjiā hǎo</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>歡迎<rt>huānyíng</rt></ruby></span><span class="w l"><ruby>收聽<rt>shōutīng</rt></ruby></span><span class="w k"><ruby>今天<rt>jīntiān</rt></ruby></span><span class="w k"><ruby>的<rt>de</rt></ruby></span><span class="punc">「</span><span class="w k"><ruby>綠色<rt>lǜsè</rt></ruby></span><span class="w k"><ruby>城市<rt>chéngshì</rt></ruby></span><span class="punc">」</span><span class="w l"><ruby>廣播<rt>guǎngbò</rt></ruby></span><span class="punc">。</span></p><div class="ledger"><div class="lrow"><span class="cells sm" role="img" aria-label="5 new, 5 learning, 6 known"><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span></span><span class="cnt">5 新 · 94% known</span></div><div class="facts">當代 B2·L07 · 廣播 radio · 468字 · ≈5分</div></div></article></div>
+
+    <div class="sect">
+      <span class="eyebrow">中級 · Intermediate</span>
+      <span class="facts">B1 · 當代中文課程 第三冊、第四冊 · 72 篇</span>
+    </div>
+    <div class="wall"><article class="card"><div class="thead"><h3 class="ttl">開學季的教務處</h3><span class="fmt">報導 report</span></div><p class="ex"><span class="w k"><ruby>又<rt>yòu</rt></ruby></span><span class="w k"><ruby>到了<rt>dàole</rt></ruby></span><span class="w n"><ruby>一年一度<rt>yì nián yí dù</rt></ruby></span><span class="w k"><ruby>的<rt>de</rt></ruby></span><span class="w l"><ruby>開學季<rt>kāixué jì</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>各<rt>gè</rt></ruby></span><span class="w k"><ruby>大學<rt>dàxué</rt></ruby></span><span class="w n"><ruby>教務處<rt>jiàowùchù</rt></ruby></span><span class="w k"><ruby>這<rt>zhè</rt></ruby></span><span class="w k"><ruby>幾天<rt>jǐ tiān</rt></ruby></span><span class="w n"><ruby>湧進<rt>yǒngjìn</rt></ruby></span><span class="w l"><ruby>大批<rt>dàpī</rt></ruby></span><span class="w k"><ruby>新生<rt>xīnshēng</rt></ruby></span><span class="punc">。</span></p><div class="ledger"><div class="lrow"><span class="cells sm" role="img" aria-label="12 new, 6 learning, 4 known"><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span></span><span class="cnt">12 新 · 88% known</span></div><div class="facts">當代 B3·L01 · 報導 report · 855字 · ≈10分</div></div></article><article class="card"><div class="thead"><h3 class="ttl">換一個科系</h3><span class="fmt">自述 narrative</span></div><p class="ex"><span class="w k"><ruby>我<rt>wǒ</rt></ruby></span><span class="w k"><ruby>叫<rt>jiào</rt></ruby></span><span class="w k"><ruby>周怡君<rt>Zhōu Yíjūn</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>是<rt>shì</rt></ruby></span><span class="w k"><ruby>家裡<rt>jiālǐ</rt></ruby></span><span class="w k"><ruby>的<rt>de</rt></ruby></span><span class="w n"><ruby>獨生女<rt>dúshēngnǚ</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>從小<rt>cóngxiǎo</rt></ruby></span><span class="w k"><ruby>爸媽<rt>bàmā</rt></ruby></span><span class="w k"><ruby>就<rt>jiù</rt></ruby></span><span class="w k"><ruby>希望<rt>xīwàng</rt></ruby></span><span class="w k"><ruby>我<rt>wǒ</rt></ruby></span><span class="w k"><ruby>念<rt>niàn</rt></ruby></span><span class="w k"><ruby>一個<rt>yí ge</rt></ruby></span><span class="w l"><ruby>出社會<rt>chū shèhuì</rt></ruby></span><span class="w k"><ruby>好<rt>hǎo</rt></ruby></span><span class="w k"><ruby>找<rt>zhǎo</rt></ruby></span><span class="w k"><ruby>工作<rt>gōngzuò</rt></ruby></span><span class="w k"><ruby>的<rt>de</rt></ruby></span><span class="w n"><ruby>科系<rt>kēxì</rt></ruby></span><span class="punc">。</span></p><div class="ledger"><div class="lrow"><span class="cells sm" role="img" aria-label="10 new, 6 learning, 4 known"><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span></span><span class="cnt">10 新 · 89% known</span></div><div class="facts">當代 B3·L01 · 自述 narrative · 797字 · ≈9分</div></div></article><article class="card"><div class="thead"><h3 class="ttl">衣櫥該擺哪裡</h3><span class="fmt">對話 dialogue</span></div><p class="ex"><span class="w k"><ruby>甲<rt>jiǎ</rt></ruby></span><span class="punc">：</span><span class="w k"><ruby>欸<rt>éi</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>妳<rt>nǐ</rt></ruby></span><span class="w k"><ruby>來<rt>lái</rt></ruby></span><span class="w k"><ruby>看一下<rt>kàn yíxià</rt></ruby></span><span class="punc">，</span><span class="w n"><ruby>衣櫥<rt>yīchú</rt></ruby></span><span class="w k"><ruby>到底<rt>dàodǐ</rt></ruby></span><span class="w k"><ruby>該<rt>gāi</rt></ruby></span><span class="w l"><ruby>擺在<rt>bǎi zài</rt></ruby></span><span class="w k"><ruby>哪裡<rt>nǎlǐ</rt></ruby></span><span class="w k"><ruby>比較<rt>bǐjiào</rt></ruby></span><span class="w k"><ruby>好<rt>hǎo</rt></ruby></span><span class="punc">？</span></p><div class="ledger"><div class="lrow"><span class="cells sm" role="img" aria-label="14 new, 6 learning, 4 known"><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell n"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell l"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span><span class="cell k"></span></span><span class="cnt">14 新 · 86% known</span></div><div class="facts">當代 B4·L04 · 對話 dialogue · 1005字 · ≈11分</div></div></article></div>
+  </section>
+
+</main>
+
+<!-- ═══════════ READER ═══════════ -->
+<main id="v-reader" class="rwrap" aria-label="閱讀 Reader" hidden>
+
+  <div class="rhead">
+    <span class="eyebrow">短文 · Story</span>
+    <h1 class="rttl">追垃圾車</h1>
+    <div class="facts">A2 · <span class="chip">當代 B2·L07</span> · 470字 · 93% known · 7 新 · ≈5分</div>
+  </div>
+
+  <div class="appar" aria-label="讀音與標記 apparatus">
+    <div class="segs">
+      <span class="seg" role="group" aria-label="讀音 rail">
+        <span class="seglbl">讀音</span>
+        <button type="button" aria-pressed="true">拼音</button>
+        <button type="button" aria-pressed="false">注音</button>
+        <button type="button" aria-pressed="false">Hán-Việt</button>
+      </span>
+      <span class="seg" role="group" aria-label="釋義 gloss">
+        <span class="seglbl">釋義</span>
+        <button type="button" aria-pressed="false">EN</button>
+        <button type="button" aria-pressed="true">VI</button>
+      </span>
+    </div>
+    <div class="legend" aria-label="標記 legend">
+      <span class="lg-i"><span class="mz mini"><span class="stw n">新</span></span><span class="lg-t">new</span></span>
+      <span class="lg-i"><span class="mz mini half"><span class="stw l">學</span></span><span class="lg-t">learning</span></span>
+      <span class="lg-i"><span class="mz mini gone"><span class="stw k">熟</span></span><span class="lg-t">known</span></span>
+      <span class="lg-cap">米字格隨狀態淡出 · grid fades by status</span>
+    </div>
+  </div>
+
+  <div class="prose" lang="zh-Hant">
+    <p><span class="w k"><ruby>那天<rt>nàtiān</rt></ruby></span><span class="w k"><ruby>晚上<rt>wǎnshang</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>周小姐<rt>Zhōu xiǎojiě</rt></ruby></span><span class="w k"><ruby>正<rt>zhèng</rt></ruby></span><span class="w k"><ruby>坐在<rt>zuòzài</rt></ruby></span><span class="w k"><ruby>客廳<rt>kètīng</rt></ruby></span><span class="w k"><ruby>的<rt>de</rt></ruby></span><span class="w k"><ruby>沙發<rt>shāfā</rt></ruby></span><span class="w k"><ruby>上<rt>shàng</rt></ruby></span><span class="w k"><ruby>看<rt>kàn</rt></ruby></span><span class="w k"><ruby>電視<rt>diànshì</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>窗外<rt>chuāngwài</rt></ruby></span><span class="w l"><ruby>忽然<rt>hūrán</rt></ruby></span><span class="w k"><ruby>傳來<rt>chuánlái</rt></ruby></span><span class="w l"><ruby>一陣<rt>yízhèn</rt></ruby></span><span class="w n"><ruby>熟悉<rt>shúxī</rt></ruby></span><span class="w k"><ruby>的<rt>de</rt></ruby></span><span class="w l anchor sel"><ruby>音樂<rt>yīnyuè</rt></ruby><span class="pop" role="dialog" aria-label="音樂 entry"><span class="pop-head"><span class="mzrow" aria-hidden="true"><span class="mz half"><span>音</span></span><span class="mz half"><span>樂</span></span></span><span class="pop-readings"><span class="ppy">yīnyuè</span><span class="pzy">ㄧㄣ ㄩㄝˋ</span><span class="phv"><span class="phv-l">Hán-Việt</span> âm nhạc</span></span></span><span class="pgloss">music</span><span class="pstat"><span class="stw l">學習中</span> learning</span><span class="pbridge"><span class="peye">Âm Hán-Việt dùng chung · shared Sino-Vietnamese reading</span><span class="pcog"><span class="pzh">音</span><span class="pvi"><b class="sh">âm</b> · <b class="sh">âm</b> thanh <span class="pen">(sound)</span></span></span><span class="pcog"><span class="pzh">樂</span><span class="pvi"><b class="sh">nhạc</b> · <b class="sh">nhạc</b> sĩ <span class="pen">(musician)</span></span></span></span><span class="pgrades"><span class="plbl">分級 grade</span><button class="key" type="button">1</button><button class="key" type="button">2</button><button class="key" type="button">3</button><button class="key" type="button">4</button></span><span class="pacts"><button class="gact" type="button">✓ 熟 known</button><button class="gact" type="button">✕ 略 ignore</button><button class="gact" type="button">＋ 卡 card</button><button class="gact" type="button">字 → dict</button></span></span></span><span class="punc">。</span><span class="w k"><ruby>她<rt>tā</rt></ruby></span><span class="w k"><ruby>跳了起來<rt>tiàole qǐlái</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>心想<rt>xīnxiǎng</rt></ruby></span><span class="punc">：</span><span class="w n"><ruby>糟糕<rt>zāogāo</rt></ruby></span><span class="punc">，</span><span class="w l"><ruby>垃圾車<rt>lèsèchē</rt></ruby></span><span class="w k"><ruby>已經<rt>yǐjīng</rt></ruby></span><span class="w k"><ruby>開到<rt>kāidào</rt></ruby></span><span class="w k"><ruby>路上<rt>lùshang</rt></ruby></span><span class="w k"><ruby>了<rt>le</rt></ruby></span><span class="punc">！</span><span class="w k"><ruby>她<rt>tā</rt></ruby></span><span class="w k"><ruby>趕快<rt>gǎnkuài</rt></ruby></span><span class="w k"><ruby>把<rt>bǎ</rt></ruby></span><span class="w k"><ruby>廚房<rt>chúfáng</rt></ruby></span><span class="w k"><ruby>裡<rt>lǐ</rt></ruby></span><span class="w k"><ruby>的<rt>de</rt></ruby></span><span class="w k"><ruby>兩個<rt>liǎng ge</rt></ruby></span><span class="w l"><ruby>袋子<rt>dàizi</rt></ruby></span><span class="w k"><ruby>提好<rt>tí hǎo</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>又<rt>yòu</rt></ruby></span><span class="w k"><ruby>抓起<rt>zhuāqǐ</rt></ruby></span><span class="w k"><ruby>放在<rt>fàngzài</rt></ruby></span><span class="w k"><ruby>桌上<rt>zhuōshàng</rt></ruby></span><span class="w k"><ruby>的<rt>de</rt></ruby></span><span class="w k"><ruby>皮包<rt>píbāo</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>連<rt>lián</rt></ruby></span><span class="w k"><ruby>拖鞋<rt>tuōxié</rt></ruby></span><span class="w k"><ruby>都<rt>dōu</rt></ruby></span><span class="w k"><ruby>來不及<rt>láibují</rt></ruby></span><span class="w k"><ruby>換<rt>huàn</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>就<rt>jiù</rt></ruby></span><span class="w k"><ruby>急急忙忙<rt>jíjí mángmáng</rt></ruby></span><span class="w k"><ruby>地<rt>de</rt></ruby></span><span class="w k"><ruby>走出來<rt>zǒu chūlái</rt></ruby></span><span class="punc">。</span></p>
+    <p><span class="w k"><ruby>她<rt>tā</rt></ruby></span><span class="w k"><ruby>跑到<rt>pǎodào</rt></ruby></span><span class="w k"><ruby>巷子口<rt>xiàngzikǒu</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>那輛<rt>nà liàng</rt></ruby></span><span class="w l"><ruby>垃圾車<rt>lèsèchē</rt></ruby></span><span class="w k"><ruby>卻<rt>què</rt></ruby></span><span class="w k"><ruby>剛好<rt>gānghǎo</rt></ruby></span><span class="w k"><ruby>開走了<rt>kāizǒule</rt></ruby></span><span class="punc">。</span><span class="w k"><ruby>周小姐<rt>Zhōu xiǎojiě</rt></ruby></span><span class="w k"><ruby>沒有<rt>méiyǒu</rt></ruby></span><span class="w l"><ruby>放棄<rt>fàngqì</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>提著<rt>tízhe</rt></ruby></span><span class="w k"><ruby>沉沉<rt>chénchén</rt></ruby></span><span class="w k"><ruby>的<rt>de</rt></ruby></span><span class="w l"><ruby>袋子<rt>dàizi</rt></ruby></span><span class="w k"><ruby>在<rt>zài</rt></ruby></span><span class="w k"><ruby>後面<rt>hòumiàn</rt></ruby></span><span class="w k"><ruby>追<rt>zhuī</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>一邊<rt>yìbiān</rt></ruby></span><span class="w k"><ruby>跑<rt>pǎo</rt></ruby></span><span class="w k"><ruby>一邊<rt>yìbiān</rt></ruby></span><span class="w k"><ruby>喊<rt>hǎn</rt></ruby></span><span class="punc">：</span><span class="w k"><ruby>等一下<rt>děng yíxià</rt></ruby></span><span class="punc">！</span><span class="w k"><ruby>等一下<rt>děng yíxià</rt></ruby></span><span class="punc">！</span><span class="w k"><ruby>路上<rt>lùshang</rt></ruby></span><span class="w k"><ruby>的<rt>de</rt></ruby></span><span class="w k"><ruby>人<rt>rén</rt></ruby></span><span class="w k"><ruby>看著<rt>kànzhe</rt></ruby></span><span class="w k"><ruby>她<rt>tā</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>大概<rt>dàgài</rt></ruby></span><span class="w k"><ruby>都<rt>dōu</rt></ruby></span><span class="w k"><ruby>覺得<rt>juéde</rt></ruby></span><span class="w k"><ruby>這個<rt>zhège</rt></ruby></span><span class="w n"><ruby>畫面<rt>huàmiàn</rt></ruby></span><span class="w k"><ruby>很<rt>hěn</rt></ruby></span><span class="w k"><ruby>有趣<rt>yǒuqù</rt></ruby></span><span class="w k"><ruby>吧<rt>ba</rt></ruby></span><span class="punc">。</span><span class="w k"><ruby>有<rt>yǒu</rt></ruby></span><span class="w k"><ruby>個<rt>ge</rt></ruby></span><span class="w k"><ruby>騎<rt>qí</rt></ruby></span><span class="w k"><ruby>機車<rt>jīchē</rt></ruby></span><span class="w k"><ruby>的<rt>de</rt></ruby></span><span class="w k"><ruby>先生<rt>xiānsheng</rt></ruby></span><span class="w k"><ruby>還<rt>hái</rt></ruby></span><span class="w n"><ruby>特地<rt>tèdì</rt></ruby></span><span class="w k"><ruby>停下來<rt>tíng xiàlái</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>以為<rt>yǐwéi</rt></ruby></span><span class="w k"><ruby>她<rt>tā</rt></ruby></span><span class="w k"><ruby>掉了<rt>diàole</rt></ruby></span><span class="w k"><ruby>什麼<rt>shénme</rt></ruby></span><span class="w k"><ruby>重要<rt>zhòngyào</rt></ruby></span><span class="w k"><ruby>的<rt>de</rt></ruby></span><span class="w k"><ruby>東西<rt>dōngxi</rt></ruby></span><span class="punc">，</span><span class="w k"><ruby>問<rt>wèn</rt></ruby></span><span class="w k"><ruby>她<rt>tā</rt></ruby></span><span class="w k"><ruby>要不要<rt>yào bú yào</rt></ruby></span><span class="w k"><ruby>幫忙<rt>bāngmáng</rt></ruby></span><span class="punc">。</span></p>
+    <p class="more">預覽顯示前 2 段 · 全文 5 段 470 字</p>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap ft">
+    <span class="ft-brand">Tsumugu 紡 · Graded Traditional Chinese readings. Read with pinyin, zhuyin, or Hán-Việt.</span>
+    <span class="ft-fact">預覽 preview · 原創草稿語料 original draft corpus · 靜態頁 static mockup · 2026-07</span>
+  </div>
+</footer>
+
+<script>
+"use strict";
+var tabs = { library: document.getElementById("tab-library"), reader: document.getElementById("tab-reader") };
+var views = { library: document.getElementById("v-library"), reader: document.getElementById("v-reader") };
+function show(which){
+  Object.keys(views).forEach(function(k){
+    views[k].hidden = (k !== which);
+    tabs[k].setAttribute("aria-selected", k === which ? "true" : "false");
+  });
+  window.scrollTo(0, 0);
+}
+tabs.library.addEventListener("click", function(){ show("library"); });
+tabs.reader.addEventListener("click", function(){ show("reader"); });
+document.getElementById("cont-btn").addEventListener("click", function(){ show("reader"); });
+
+var thm = document.getElementById("thm");
+function setTheme(mode){
+  document.documentElement.setAttribute("data-theme", mode);
+  thm.textContent = mode === "dark" ? "☀" : "☾";
+}
+thm.addEventListener("click", function(){
+  setTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark");
+});
+
+/* deep link: #reader, #dark, #reader-dark */
+if (location.hash.indexOf("reader") !== -1) show("reader");
+if (location.hash.indexOf("dark") !== -1) setTheme("dark");
+</script>
+</body>
+</html>

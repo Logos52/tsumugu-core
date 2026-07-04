@@ -1,0 +1,54 @@
+{
+  "scores": [
+    {
+      "name": "Loom & Lamplight",
+      "fitForProduct": 9,
+      "distinctiveness": 8,
+      "feasibility": 7,
+      "longSession": 9,
+      "total": 33,
+      "note": "Strongest single articulation of the moat: the bridge card leads with the cognate, not the definition, and the stitch-pull draw-on makes 紡ぐ functional rather than decorative. Sticky rail-switcher-as-choice (not setting) is the right surfacing of the four data-* axes. Warm-grey paper + Newsreader/WenKai pairing reads as a press journal, clearly NOT the navy app and NOT the warmer Paper&Ink dict. Feasibility docked: adds a 3rd font (Newsreader) needing a new --tsg-font-* token + retargeting many UI rules, AND requires the underline-status component pass (current reader uses per-word bg fills, lines 457-478). Terracotta-not-violet status reservation is exactly right — keeps violet meaning one thing."
+    },
+    {
+      "name": "絹 Silk-Seam",
+      "fitForProduct": 9,
+      "distinctiveness": 7,
+      "feasibility": 9,
+      "longSession": 8,
+      "total": 33,
+      "note": "Most BUILDABLE of the four and the cleanest fit to the substrate: keeps Inter for ALL chrome (no 3rd display font on the critical path — Newsreader only for chips/numerals, optional), keeps WenKai reading hero, maps 1:1 onto the --wnac→--tsg two-layer token model with a single light/dark swap. The bridge as a thumb-reachable bottom-sheet with a woven 45° hatch edge is mobile-correct and the stagger (chips land a half-beat after the field) is a smart, cheap recognition beat. 'EN rail has no bridge field, and its absence IS the proof VI is the moat' is the sharpest strategic read of any direction. Inter renders VI tone stacks safely — load-bearing for the moat. Slightly less distinctive than Lamphouse/L&L because 'bright premium WeChat-Read' is a more crowded reference space; pale-silk can feel app-generic vs the bookish two."
+    },
+    {
+      "name": "Lamphouse",
+      "fitForProduct": 8,
+      "distinctiveness": 9,
+      "feasibility": 6,
+      "longSession": 8,
+      "total": 31,
+      "note": "Most DISTINCTIVE and most ownable mood — lit-page-on-dark-desk depth, the violet thread literally drawn from word to pinned slip, the 'unstitch' on mark-known. The lamp-amber focus halo doubling as the learning-status color is an elegant economy. But feasibility is the real cost: depth/shadow/lifted-column + warm walnut dark is a heavier deviation from the flat wnac surfaces (more than a token swap — new shadow tokens, page-edge gradients, lifted-column layout), it adds Newsreader+Source Serif (TWO net-new Latin faces), and the lamp-glow risk on long sessions is real (a persistent warm halo + amber-on-amber learning underline can muddy at reading speed). Gorgeous, but the most engineering and the highest taste-risk."
+    },
+    {
+      "name": "Loom & Signal",
+      "fitForProduct": 7,
+      "distinctiveness": 6,
+      "feasibility": 8,
+      "longSession": 7,
+      "total": 28,
+      "note": "Cleanest engineering story after Silk-Seam (cool tokens map straight onto the two-layer model; Geist only for display, Inter for everything else; explicitly drops the per-word bg fills for underline-only — the change every direction needs anyway) and the loom-as-STRUCTURE thesis (two threads woven over one Chinese warp, shuttle-line load animation) is intellectually the tightest weave metaphor. But it loses on the two axes that matter most here: it reads as a dev-tool/instrument (Linear/Vercel), which actively fights 'a thing worth reading for hours' — cool-gray + grotesque is the register of dashboards, not sustained prose; and it's the LEAST distinctive from a learner's POV because cool-gray-one-accent is now the default SaaS look. It's also the explicit sibling of KB Slate & Signal, so it risks the two products looking like the same template. Right instincts, wrong room for a reading product."
+    }
+  ],
+  "recommendedPrimary": "絹 Silk-Seam (Tsumugu Core)",
+  "recommendedRunnerUp": "Loom & Lamplight",
+  "graftIdeas": [
+    "From Loom & Lamplight: the bridge-card 'stitch-pull' draw-on (violet underline draws left-to-right under the shared morpheme over ~240ms) as THE single signature animation — graft onto Silk-Seam's bottom-sheet so the moat moment has one expressive beat, not just a spring.",
+    "From Loom & Lamplight: reserve status to terracotta/clay + amber and keep violet exclusively for recognition/brand/known-confirm — Silk-Seam already does this; make it a hard rule (violet is never a status, never a fill behind prose).",
+    "From Loom & Lamplight: on scroll-down collapse the chrome to a thin violet reading-progress thread at the top edge (doubles as progress + the loom motif) instead of just hiding the toggle row.",
+    "From Lamphouse: the violet thread literally DRAWN from the tapped word up to the pinned bridge slip — pin the bottom-sheet to its word with a short violet stitch so the 'weave' is visible, not just a generic sheet rise.",
+    "From Lamphouse: the 'unstitch' on mark-known (underline dashoffsets out left-to-right) — a tiny dopamine beat that reinforces 紡ぐ and rewards the calm endpoint.",
+    "From Lamphouse: the tap-down handshake — borrow tsumugu-ed's Kaiti glyph + terracotta seal tint in the popup so crossing from Core (violet) into the dictionary (vermillion) feels like walking into a deeper room; all four directions converged on this, keep it as a house rule.",
+    "From Loom & Signal: the shuttle-line load animation (a 1px violet line drawing across the top edge when a new reading streams in) instead of a spinner — perfect for the generate-and-read / Textbook Companion flow where readings are generated on demand.",
+    "From Loom & Signal: bold the recurring Hán-Việt syllable in the cognate list and faint the other syllable (hy **vọng** 希望 · kỳ **vọng** 期望) so the eye instantly catches the repeated morpheme stitched through words the learner already owns — this is the cheapest, highest-impact moat detail and Silk-Seam should adopt the explicit bold/faint treatment.",
+    "From Loom & Signal: explicitly retire blue and drop ALL per-word background fills in favor of underline-only status — this is required regardless of winner (current reader uses bg fills at styles.css 457-478)."
+  ],
+  "synthesisNotes": "Silk-Seam and Loom & Lamplight tie at 33; I split them on feasibility and risk, which is where Wedge's stated constraint ('buildable as a token-swap + component pass over the existing reader') is binding. Silk-Seam is the safest path to a shippable, distinctive product: it keeps Inter for all chrome (critical — Inter renders Vietnamese tone stacks cleanly, and the VI rail IS the moat, so a 'pretty' display serif on gloss/ruby would actively hurt the thing that matters), keeps the self-hosted WenKai reading hero (zero new font cost, offline parity preserved), and maps 1:1 onto the verified --wnac→--tsg two-layer token model with one light/dark swap. Loom & Lamplight is the better PROSE surface and has the single best moat articulation (lead with the cognate, terracotta-not-violet status), but it adds a 3rd font on the critical reading path and leans harder on serif-everywhere, which is more rework. My recommendation: ship Silk-Seam's structure (Inter chrome, WenKai hero, two-layer tokens, bottom-sheet bridge, EN-rail-has-no-bridge-by-design) and graft Loom & Lamplight's soul onto it (stitch-pull draw-on, violet-reserved-for-recognition, scroll-collapse-to-violet-thread). That combination is the cheapest route to a product that reads paid-grade, is unmistakably its own thing vs the navy reader / Paper&Ink dict / Du Chinese, and makes the Hán-Việt bridge the visible weave. THREE feasibility facts Wedge should know regardless of pick: (1) NO direction is a pure token swap — all four require swapping the current per-word background-fill status (styles.css 457-478) to underline-only, so budget one component pass on word-status rules; (2) the directions that add Newsreader/Source Serif (L&L, Lamphouse) carry a real net-new font + token + rule-retargeting cost the other two avoid; (3) light+dark parity is genuinely one swap given the existing architecture, so all four are honest about that claim. STRATEGIC FLAG (surfacing, not reconciling, per your rule): the design brief and three of four directions optimize for MOBILE-FIRST long-session reading, but the NEWEST PRD (PRD-Tsumugu-Core.md, 2026-06-23) reframes v1 as a DESKTOP-FIRST super-app ('Pleco for computers') centered on the Textbook Companion (per-lesson generation), while the older MANAGEMENT-PLAN.md still centers a mobile reading-wall catalog. The reading SURFACE is identical either way so this doesn't change the design ranking, but if desktop-first is now the real target, evaluate each direction's chrome at a wide multi-column layout too (Silk-Seam's translucent receding chrome and Loom & Signal's instrument-strip both scale to desktop more naturally than Lamphouse's single lit-column-on-a-desk, which is conceived for one narrow page). Recommend you confirm desktop-first vs mobile-first before locking, since it slightly re-weights the runner-up."
+}

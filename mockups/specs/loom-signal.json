@@ -1,0 +1,151 @@
+{
+  "name": "Loom & Signal",
+  "oneLiner": "A crisp cool-gray reading instrument where the Chinese stream is the whole page and the only color is meaning — violet is the rail/brand signal, status is a quiet underline ramp, and one tap surfaces the Hán-Việt \"you already know this\" bridge.",
+  "mood": "Utilitarian-confident and quiet. Linear/Vercel calm with a CJK reading core. Reads like a precision instrument, not a textbook and not a novel app: lots of cool-gray air, hairline rules, one accent. The \"loom/thread\" idea shows up structurally (a single vertical thread rail, weave-of-two-rails) rather than as decoration. Nothing glows, nothing is warm, nothing is ornamented.",
+  "paletteLight": [
+    {
+      "role": "base / reading surface",
+      "hex": "#FBFCFD"
+    },
+    {
+      "role": "sunk (chrome wells, header)",
+      "hex": "#F2F5F8"
+    },
+    {
+      "role": "card / popover surface",
+      "hex": "#FFFFFF"
+    },
+    {
+      "role": "hairline border",
+      "hex": "#E2E8EF"
+    },
+    {
+      "role": "border-strong",
+      "hex": "#CBD4DE"
+    },
+    {
+      "role": "ink (reading + headings)",
+      "hex": "#1B2530"
+    },
+    {
+      "role": "ink-muted (gloss, UI labels)",
+      "hex": "#5A6675"
+    },
+    {
+      "role": "ink-faint (meta, pinyin)",
+      "hex": "#8B97A6"
+    },
+    {
+      "role": "signal violet (brand + active rail)",
+      "hex": "#6D4AE0"
+    },
+    {
+      "role": "signal violet-tint (active well)",
+      "hex": "#EEE9FC"
+    },
+    {
+      "role": "on-signal text",
+      "hex": "#FFFFFF"
+    },
+    {
+      "role": "VI rail ink (Hán-Việt ruby)",
+      "hex": "#3E6E8C"
+    },
+    {
+      "role": "status new (underline)",
+      "hex": "#C2410C"
+    },
+    {
+      "role": "status learning (underline)",
+      "hex": "#B7791F"
+    },
+    {
+      "role": "status known (no mark; ink only)",
+      "hex": "#1B2530"
+    }
+  ],
+  "paletteDark": [
+    {
+      "role": "base / reading surface",
+      "hex": "#0E1217"
+    },
+    {
+      "role": "sunk (chrome wells, header)",
+      "hex": "#141A21"
+    },
+    {
+      "role": "card / popover surface",
+      "hex": "#1A2129"
+    },
+    {
+      "role": "hairline border",
+      "hex": "#283139"
+    },
+    {
+      "role": "border-strong",
+      "hex": "#384450"
+    },
+    {
+      "role": "ink (reading + headings)",
+      "hex": "#E6EBF1"
+    },
+    {
+      "role": "ink-muted (gloss, UI labels)",
+      "hex": "#A2AEBB"
+    },
+    {
+      "role": "ink-faint (meta, pinyin)",
+      "hex": "#6C7884"
+    },
+    {
+      "role": "signal violet (brand + active rail)",
+      "hex": "#9B82F5"
+    },
+    {
+      "role": "signal violet-tint (active well)",
+      "hex": "#221C3A"
+    },
+    {
+      "role": "on-signal text",
+      "hex": "#0E1217"
+    },
+    {
+      "role": "VI rail ink (Hán-Việt ruby)",
+      "hex": "#7FB0CC"
+    },
+    {
+      "role": "status new (underline)",
+      "hex": "#F08A4B"
+    },
+    {
+      "role": "status learning (underline)",
+      "hex": "#E0B05A"
+    },
+    {
+      "role": "status known (no mark; ink only)",
+      "hex": "#E6EBF1"
+    }
+  ],
+  "typography": {
+    "display": "Geist (or Inter Display as fallback) for the wordmark, rail labels, and section headers — geometric-grotesque, tight tracking at large sizes (-0.02em), feels like modern dev-tooling not a school workbook.",
+    "body": "Inter for all UI chrome, glosses, bridge-card copy, English rail. -0.006em tracking, 15px base on mobile. Tabular-nums on level/count chips so they don't jitter.",
+    "chinese": "Reading face: keep LXGW WenKai TC (霞鶩文楷) — it is the shared house hand across all three repos and the offline OFL fonts already ship; on Loom & Signal it sits on a cool-gray ground so it reads as ink-on-paper-stock rather than handwriting-on-navy. Trad and Simp both covered. Dictionary tap-cards inherit tsumugu-ed's Kaiti for the big glyph so the down-link feels native to that surface.",
+    "rationale": "One grotesque (Geist/Inter) for everything Latin keeps the chrome invisible and product-grade; pairing it against the single warm-neutral brush CJK face is the entire type story — cool sans instrument frame around a calm hand-rendered reading core. No serif (that would drift back toward Paper&Ink); no second display face (that would drift toward ornament)."
+  },
+  "dualRailTreatment": "First sight, mobile: a single sticky header bar (52px) on the cool sunk surface with a hairline bottom rule. Left: the knot-loop mark (16px) + \"Tsumugu\" wordmark. Right: ONE segmented control — the rail switcher — reading EN | VI, where the active half is filled with signal-violet-tint and a violet underline-thread; this is the only colored thing in the chrome. Directly under the header, a second 40px \"instrument strip\" holds three tiny segmented toggles flush-left, all sharing one pill-rail style: [简 繁] · [拼 ㄅ / Hán-Việt] · [中 EN/VI gloss]. The reading toggle's middle option is reading-rail-aware (shows 拼/ㄅ when EN rail is active, shows Hán-Việt when VI rail is active), so the rail switcher is the master and the three toggles are its facets — exactly the data-script / data-reading / data-gloss / data-theme substrate, surfaced not buried. Tapping the rail switcher animates the whole reading body's ruby + gloss in place (no reload) and the instrument strip's options relabel. The strip can be swiped up to recede (collapses to a 6px violet thread you tap to re-expand) — chrome that gets out of the way but is always one tap back. Theme toggle (sun/moon) lives in an overflow \"···\" so it doesn't compete with the language controls, which are the product.",
+  "bridgeCard": "The moat interaction. Tap any word in the VI rail → a bottom-sheet card rises (mobile) / popover anchors (desktop) on the white/#1A2129 card surface. Top row: the big glyph (Kaiti, inherits dictionary face) + Hán-Việt reading in VI-rail ink (#3E6E8C / #7FB0CC) as the hero line, pinyin small + faint beneath, POS chip. Then the gloss in ink. Then the SIGNATURE block: the bridge card. It is set off not by a colored fill but by a 2px VI-rail-ink left thread (the \"loom thread\" motif literalized) and a faint violet-tint wash so it reads as \"this is the special one.\" Eyebrow label in VI-rail ink, uppercase, tracked: \"BẠN ĐÃ BIẾT ÂM NÀY RỒI · you already know this morpheme.\" Body: the shared-morpheme proof — e.g. for 望 vọng: hy vọng (希望) · tham vọng (貪望) · kỳ vọng (期望) — cùng chữ 望 vọng, with the recurring Hán-Việt syllable bolded in ink and the other syllable faint, so the eye instantly catches the repeated \"vọng\" stitched through words the learner already owns. A one-line mechanism note sits below on a thinner faint thread. Two actions: a filled-violet \"+ Thẻ\" (add to cards) and a ghost \"✓ Đã biết\" (mark known) that tints VI-rail-ink on hover. The card's whole rhetorical job: the learner sees Chinese vocabulary as already-Vietnamese, and the design makes that the literal visual weave — repeated thread, pulled bright. On the EN rail the same slot degrades gracefully to an etymology/component \"you've seen this piece\" note, never empty.",
+  "calmReadingSurface": "The reading IS the page: max-width ~38rem reading column centered on the bare cool-gray base, generous line-height (~2.1 for ruby room), no card, no border, no panel — text floats on stock. Source meta (title · chapter · \"N new\") is one faint hairline-separated line above the prose; legend collapses into a single faint sentence. Ruby (pinyin or Hán-Việt) sits above each word in ink-faint / VI-rail-ink at ~62% size — meaning-bearing, so it STAYS even in calm mode. Chrome recede: on scroll-down the header + instrument strip slide away to a 6px violet thread at the top edge; scroll-up or tap-thread brings them back. No background tint blocks behind known words (unlike the wnac reader's per-status bg fills) — known text is just clean ink, the calmest possible state. Reading width, ruby, status underline, and the VI rail are the only persistent ink; everything else is air.",
+  "statusColoring": "Status lives ENTIRELY in the underline channel, never as a background fill or a glyph color — so it informs without fighting the monochrome reading. new = a 2px solid underline in burnt-orange (#C2410C light / #F08A4B dark) at 6px offset; learning = 2px solid amber (#B7791F / #E0B05A); known = NO underline, NO color — the word is just ink, the reward is calm (same philosophy as the wnac ramp's \"known=NONE,\" but here the loud end is a single warm orange instead of alarm-red, because on a cool-gray instrument one warm hue reads as the only \"attention\" signal and never clashes with the violet brand). ignored = a faint dotted ink-faint underline. Crucially: the two status warms (orange/amber) and the one brand cool (violet) and the one VI-rail mid (teal-slate) are the entire chromatic vocabulary — four hues, each with exactly one job, on gray. A tiny stacked count chip in the meta row (new/learning) uses the same two warms as small dots, tabular-nums, no fill.",
+  "motion": "Restrained, functional, ~160ms standard ease; one spring (cubic-bezier(.34,1.56,.64,1)) reserved for the bridge bottom-sheet rise so the moat interaction feels physical. Rail switch = in-place crossfade of ruby+gloss (140ms), no layout jump, because the substrate is attribute-driven not re-rendered. Chrome recede = transform-slide of header/strip to the 6px thread (200ms). Word tap = 2px underline-to-fill micro-flash then card. The \"thread\" loading/seam motif: when a new reading streams in, a 1px violet line draws left-to-right across the top edge (the loom shuttle) instead of a spinner. No parallax, no glow, no decorative motion — every animation maps to a state change.",
+  "divergesFrom": "vs the current dark-navy wnac reader: that surface is DARK-default deep-navy #000610 with blue (#5089d8) as the workhorse accent, a red→orange→amber status ramp WITH per-word background tint fills, and brand-gradient flourishes. Loom & Signal is LIGHT-default cool-near-white #FBFCFD (dark is the alt, charcoal #0E1217 not navy), drops ALL per-word background fills (status is underline-only), retires blue as the accent entirely, and makes the status loud-end a single burnt-orange not alarm-red. No gradients in chrome. vs the warm Paper&Ink dictionary: that is warm cream #f7f3ea paper, terracotta seal #b25a44, serif/Kaiti editorial voice — a document. Loom & Signal is deliberately COOL gray with zero warm paper, a grotesque (Geist/Inter) product voice, hairline-rule structure instead of editorial rules, and reads as a tool/instrument not a reference book. The tap-down card is the one place the two meet: the big glyph borrows the dictionary's Kaiti and the down-link page IS Paper&Ink, so the seam is intentional — instrument hands you to the document. VIOLET brand: EVOLVE + REPOSITION. The stitched-knot-loop logo stays (it's decided + on-brand for 紡ぐ/weave), but violet stops being a decorative gradient and becomes the single functional signal accent — active rail, primary action, the \"loom thread\" structural line, the brand mark. The weave/thread metaphor moves from ornament to STRUCTURE: the dual rails are literally two threads woven over one Chinese warp; the bridge card's left-thread and the repeated bold morpheme are the visible stitch; the shuttle-line load animation is the loom in motion. Violet earns its place by meaning something, matching \"color only as signal.\"",
+  "references": [
+    "Linear — cool-gray neutrals, hairline rules, one accent, calm product chrome",
+    "Vercel / Geist — grotesque display + near-monochrome surfaces, instrument-grade clarity",
+    "Notion reading surface — content-first column floating on near-white, recede-the-chrome",
+    "LXGW WenKai TC (霞鶩文楷) — the shared offline house reading hand, kept across all three repos",
+    "Migaku / LingQ — ruby-above + status-underline reading mechanic (the encoding that must stay)",
+    "KB 'Slate & Signal' direction — cool neutrals + charcoal dark + color-as-domain-signal, this is its sibling",
+    "Catppuccin Latte/Frappé — disciplined cool token ramps for light/dark parity"
+  ],
+  "asciiPreview": "┌────────────────────────────────────────┐\n│ ◬ Tsumugu            [ EN │▟VI▙ ]        │ ← rail switch (violet = active)\n├────────────────────────────────────────┤\n│ [简│繁] · [拼│Hán-Việt] · [中│VI]   ··· │ ← instrument strip (swipe ↑ to hide)\n├────────────────────────────────────────┤\n│  《凡人修仙传》· ch.1      ●2 new ●1 learn│ ← faint meta, warm dots\n│                                          │\n│     vọng        nhìn   tòa    cao  sơn   │ ← Hán-Việt ruby (teal-slate)\n│      望   向     那座   雲霧   高 山      │ ← reading on bare gray stock\n│      ‾‾‾‾‾                  ‾‾‾‾         │   orange=new  amber=learning\n│   (known = plain ink, no mark — calm)    │\n│                                          │\n│   …chạm vào một từ để xem nghĩa          │\n└────────────────────────────────────────┘\n            ↓ tap 望\n   ╭──────────────────────────────────────╮ ← bottom-sheet (spring rise)\n   │  望     vọng                          │   big glyph (Kaiti, dict face)\n   │  4望    wàng · động từ                 │\n   │  nhìn ra xa; ngóng trông              │\n   │ ┃ BẠN ĐÃ BIẾT ÂM NÀY RỒI · you know  │ ← violet-tint wash,\n   │ ┃ hy **vọng**(希望)· tham **vọng**(貪望)│   2px VI-thread left rule,\n   │ ┃ kỳ **vọng**(期望) — cùng chữ 望 vọng │   repeated morpheme pulled bright\n   │ │ 望 = 亡(âm) + 月 + 王 …               │ ← faint mechanism thread\n   │  [ + Thẻ ]   [ ✓ Đã biết ]   tra từ→  │ ← violet action · tap-down to dict\n   ╰──────────────────────────────────────╯"
+}

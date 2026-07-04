@@ -1,0 +1,340 @@
+<!doctype html>
+<!--
+  ════════════════════════════════════════════════════════════════════════════
+  Library — tech-forward / Apple-like minimal · spectral teal-blue
+  Tsumugu Beta · 2026-07-03
+  ════════════════════════════════════════════════════════════════════════════
+  Cool neutral palette (Apple greys), clean sans for interface Chinese
+  (PingFang / Noto Sans TC), LXGW WenKai reserved for reading content, one
+  spectral teal-blue accent, soft-depth rounded surfaces + Apple grouped lists.
+  Progressive depth: a Beginner ⇄ Advanced control previews how the library
+  opens up as the reader travels — shallow "start here" → full two-shelf + catalog.
+  Accent hue is a knob: bluer → Apple blue, tealer → cyan. Shown mid: #0C8DAF.
+-->
+<html lang="zh-Hant" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem("tsu-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Tsumugu · Library</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/style.css" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --f-ui:"Inter",-apple-system,"SF Pro Text","PingFang TC","Noto Sans TC",sans-serif;
+  --f-han:"PingFang TC","Noto Sans TC","Inter",sans-serif;
+  --f-read:"LXGW WenKai TC","Songti TC","Noto Serif TC",serif;
+  --bg:#F5F6F8; --surface:#FFFFFF; --ink:#1C1C1E; --read:#2C2C30;
+  --muted:#6E6E76; --faint:#A2A2AA; --ghost:#C7C7CE; --hair:#E9E9ED;
+  --a:#0C8DAF; --a-lift:#13AAce; --a-wash:rgba(15,160,196,.10);
+  --shadow:0 1px 2px rgba(20,22,28,.05), 0 10px 26px -14px rgba(20,22,28,.18);
+  --radius:15px;
+}
+[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0B0B0D; --surface:#1A1A1D; --ink:#F2F2F5; --read:#E9E9EE;
+  --muted:#98989F; --faint:#68686F; --ghost:#48484E; --hair:#2A2A2E;
+  --a:#3FC8E6; --a-lift:#5AD4EE; --a-wash:rgba(63,200,230,.13);
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 12px 30px -14px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--a);outline-offset:2px;border-radius:6px}
+::selection{background:var(--a-wash)}
+
+/* header */
+.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(1.8) blur(20px);-webkit-backdrop-filter:saturate(1.8) blur(20px);border-bottom:1px solid var(--hair)}
+.top .in{max-width:960px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:9px}
+.brand .seal{width:27px;height:27px;border-radius:8px;background:linear-gradient(150deg,var(--a-lift),var(--a));color:#fff;font-family:var(--f-read);font-weight:600;font-size:15px;display:grid;place-items:center;box-shadow:0 2px 8px -2px var(--a)}
+.brand .word{font-weight:600;font-size:16px;letter-spacing:-.02em}
+.brand .beta{font-size:9.5px;font-weight:600;letter-spacing:.04em;color:var(--a);background:var(--a-wash);border-radius:6px;padding:2px 6px}
+.nav{display:flex;gap:1px;margin-left:6px}
+.nav a{padding:6px 11px;border-radius:8px;font-size:13px;color:var(--muted);font-weight:500}
+.nav a:hover{color:var(--ink);background:var(--hair)}
+.nav a[aria-current]{color:var(--a)}
+.grow{flex:1}
+.srch{display:flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--hair);border-radius:9px;padding:6px 11px;font-size:12.5px;color:var(--faint)}
+.srch:hover{color:var(--muted)}
+.srch kbd{font:inherit;font-weight:600;color:var(--ghost)}
+.icon{width:30px;height:30px;border-radius:8px;color:var(--muted);display:grid;place-items:center;font-size:14px}
+.icon:hover{color:var(--ink);background:var(--hair)}
+
+main{max-width:960px;margin:0 auto;padding:34px 22px 110px}
+
+/* title row + depth control */
+.pagehead{display:flex;align-items:flex-end;gap:16px;margin-bottom:30px;flex-wrap:wrap}
+.pagehead h1{font-size:30px;font-weight:700;letter-spacing:-.03em;margin:0}
+.pagehead .sub{color:var(--muted);font-size:14px;margin:5px 0 0}
+.seg{margin-left:auto;display:inline-flex;background:var(--hair);border-radius:10px;padding:3px}
+.seg button{padding:6px 14px;border-radius:8px;font-size:13px;font-weight:500;color:var(--muted);display:flex;align-items:baseline;gap:5px}
+.seg button .han{font-family:var(--f-han)}
+.seg button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(20,22,28,.14)}
+[data-theme="dark"] .seg button[aria-selected="true"]{box-shadow:0 1px 3px rgba(0,0,0,.5)}
+.seg-note{font-size:11.5px;color:var(--faint);margin:-18px 0 30px;text-align:right}
+
+/* ── surfaces / grouped lists (Apple inset) ── */
+.card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.sect{margin-bottom:38px}
+.sect > h2{font-family:var(--f-han);font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.01em;margin:0 0 11px 4px;text-transform:none;display:flex;align-items:baseline;gap:8px}
+.sect > h2 .en{font-family:var(--f-ui);font-weight:500;color:var(--faint);font-size:11.5px;letter-spacing:0}
+.sect > h2 .cnt{margin-left:auto;color:var(--ghost);font-weight:500}
+
+/* start-here hero (beginner) */
+.hero{padding:26px 26px 24px}
+.hero .kick{font-size:12px;font-weight:600;color:var(--a);letter-spacing:.02em;margin-bottom:10px}
+.hero .zh{font-family:var(--f-read);font-size:21px;line-height:2.1;color:var(--read);margin:0 0 20px}
+.hero .cta{display:inline-flex;align-items:center;gap:7px;background:var(--a);color:#fff;font-weight:600;font-size:14px;padding:10px 18px;border-radius:11px}
+.hero .cta:hover{background:var(--a-lift)}
+.hero .meta{color:var(--faint);font-size:12.5px;margin-left:14px}
+
+/* resume line (advanced) */
+.resume{display:flex;align-items:center;gap:11px;padding:14px 18px;font-size:13px;color:var(--muted)}
+.resume .zh{font-family:var(--f-read);color:var(--ink);font-size:15px}
+.resume .code{color:var(--faint);font-size:12px}
+.resume a{margin-left:auto;color:var(--a);font-weight:600}
+
+/* rows */
+.row{display:flex;align-items:center;gap:14px;padding:13px 18px;border-top:1px solid var(--hair)}
+.row:first-child{border-top:none}
+.row.tap{cursor:pointer}
+.row.tap:hover{background:color-mix(in srgb,var(--a) 4%,var(--surface))}
+.row .num{font-family:var(--f-han);font-weight:500;font-size:14px;color:var(--muted);min-width:52px}
+.row.now .num{color:var(--a)}
+.row .nm{flex:1;min-width:0;color:var(--faint);font-size:13px}
+.row .nm .zh{font-family:var(--f-read);color:var(--read);font-size:15px;margin-right:9px}
+.row .st{font-size:12px;color:var(--ghost);white-space:nowrap}
+.row .st.here{color:var(--a);font-weight:600}
+.row .chev{color:var(--ghost);font-size:15px;margin-left:2px}
+.grp-lbl{font-family:var(--f-han);font-size:11.5px;font-weight:600;color:var(--faint);padding:14px 18px 6px;background:color-mix(in srgb,var(--hair) 40%,var(--surface))}
+
+/* the shelf of clean book chips */
+.shelf{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 16px 2px}
+.chip{min-width:52px;padding:10px 12px;border-radius:12px;background:var(--surface);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:3px;transition:transform .14s cubic-bezier(.2,.7,.3,1)}
+.chip:hover{transform:translateY(-2px)}
+.chip .h{font-family:var(--f-han);font-weight:600;font-size:14px;color:var(--ink)}
+.chip .s{font-size:10.5px;color:var(--faint);font-weight:500}
+.chip.on{background:var(--a);box-shadow:0 4px 14px -4px var(--a)}
+.chip.on .h,.chip.on .s{color:#fff}
+.chip.on .s{opacity:.85}
+
+/* catalog table */
+.catwrap{padding:6px 6px 4px}
+table.cat{width:100%;border-collapse:collapse;font-size:14px}
+.cat thead th{text-align:left;font-family:var(--f-ui);font-weight:500;font-size:11.5px;color:var(--faint);padding:10px 12px;cursor:pointer;white-space:nowrap;letter-spacing:.01em}
+.cat thead th.num{text-align:right}
+.cat thead th:hover{color:var(--muted)}
+.cat tbody td{padding:11px 12px;border-top:1px solid var(--hair);vertical-align:baseline}
+.cat tbody tr{cursor:pointer}
+.cat tbody tr:hover td{background:color-mix(in srgb,var(--a) 4%,var(--surface))}
+.c-first{font-family:var(--f-read);color:var(--read);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:340px}
+.c-first .mn{border-bottom:2px solid var(--a);padding-bottom:1px}.c-first .ml{border-bottom:1.5px dotted var(--ghost)}
+.c-code{font-family:var(--f-han);color:var(--faint);white-space:nowrap;font-size:12.5px}
+.c-fmt{color:var(--muted);font-size:12.5px}.c-band{color:var(--faint);font-size:12.5px}
+.cat td.num{text-align:right;color:var(--faint);font-variant-numeric:tabular-nums;font-size:12.5px}
+
+.hint{font-size:12.5px;color:var(--faint);margin:12px 4px 0}
+.hint a{color:var(--a);font-weight:600}
+
+footer{border-top:1px solid var(--hair)}
+.ft{max-width:960px;margin:0 auto;padding:22px;font-size:11.5px;color:var(--ghost);display:flex;gap:6px 16px;flex-wrap:wrap}
+
+[hidden]{display:none!important}
+@media (max-width:560px){main{padding:26px 16px 80px}.pagehead h1{font-size:25px}.c-first{max-width:190px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="in">
+    <a class="brand" href="#"><span class="seal">紡</span><span class="word">Tsumugu</span><span class="beta">Beta</span></a>
+    <nav class="nav"><a href="#" aria-current="page">Library</a><a href="reader.html">Reader</a><a href="#">Blog</a><a href="#">About</a></nav>
+    <span class="grow"></span>
+    <span class="srch">Search <kbd>⌘K</kbd></span>
+    <button class="icon" id="themeBtn" title="Theme">☾</button>
+  </div>
+</header>
+
+<main>
+
+  <div class="pagehead">
+    <div>
+      <h1>Library</h1>
+      <p class="sub">Graded Traditional Chinese, built on modern reading science.</p>
+    </div>
+    <div class="seg" id="depth" role="tablist" aria-label="Depth preview">
+      <button role="tab" aria-selected="true" data-d="beginner"><span class="han">初學</span>Beginner</button>
+      <button role="tab" aria-selected="false" data-d="advanced"><span class="han">進階</span>Advanced</button>
+    </div>
+  </div>
+  <p class="seg-note">Preview — the library opens up as you progress; it doesn't show everyone the whole map.</p>
+
+  <!-- ════ BEGINNER: shallow, guided "start here" ════ -->
+  <div id="view-beginner">
+    <section class="sect">
+      <h2>開始 <span class="en">Start here</span></h2>
+      <div class="card">
+        <div class="hero">
+          <div class="kick">Your first reading · 當代 B1 · 第一課</div>
+          <p class="zh" lang="zh-Hant">你好，請問你是高先生嗎？我姓高，叫高文。很高興認識你。</p>
+          <a class="cta" href="reader.html">Start reading →</a>
+          <span class="meta">A1 · 對話 · 317 字 · ≈ 3 min</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sect">
+      <h2>接下來 <span class="en">Next up</span><span class="cnt">第一冊</span></h2>
+      <div class="card">
+        <div class="row tap now"><span class="num">第一課</span><span class="nm"><span class="zh">你好</span>3 readings · dialogue, self-intro, story</span><span class="st here">start</span><span class="chev">›</span></div>
+        <div class="row tap"><span class="num">第二課</span><span class="nm"><span class="zh">你忙不忙</span>3 readings</span><span class="st"> </span><span class="chev">›</span></div>
+        <div class="row tap"><span class="num">第三課</span><span class="nm"><span class="zh">我喜歡臺灣</span>3 readings</span><span class="st"> </span><span class="chev">›</span></div>
+      </div>
+      <p class="hint">Reading at A1. <a href="#" id="toAdv">Explore the whole library →</a></p>
+    </section>
+  </div>
+
+  <!-- ════ ADVANCED: the full explorable library ════ -->
+  <div id="view-advanced" hidden>
+
+    <section class="sect">
+      <div class="card"><div class="resume"><span class="zh">追垃圾車</span><span class="code">當代 B2 · L07 · ¶ 3/5</span><a href="reader.html">Resume →</a></div></div>
+    </section>
+
+    <section class="sect" aria-label="By textbook">
+      <h2>課本架 <span class="en">By textbook · 當代中文課程</span><span class="cnt">5 volumes · 64 lessons</span></h2>
+      <div class="shelf" id="shelfBook">
+        <button class="chip" data-i="0"><span class="h">第一冊</span><span class="s">B1 · A1</span></button>
+        <button class="chip on" data-i="1"><span class="h">第二冊</span><span class="s">B2 · A2</span></button>
+        <button class="chip" data-i="2"><span class="h">第三冊</span><span class="s">B3 · B1</span></button>
+        <button class="chip" data-i="3"><span class="h">第四冊</span><span class="s">B4 · B1</span></button>
+        <button class="chip" data-i="4"><span class="h">第五冊</span><span class="s">B5 · B1</span></button>
+      </div>
+      <div class="card" id="panelBook"></div>
+    </section>
+
+    <section class="sect" aria-label="By level">
+      <h2>分級 <span class="en">By level · TOCFL</span><span class="cnt">same readings, sorted by level</span></h2>
+      <div class="shelf" id="shelfBand">
+        <button class="chip" data-i="0"><span class="h">入門</span><span class="s">A1</span></button>
+        <button class="chip" data-i="1"><span class="h">基礎</span><span class="s">A2</span></button>
+        <button class="chip" data-i="2"><span class="h">進階</span><span class="s">B1</span></button>
+        <button class="chip" data-i="3"><span class="h">高階</span><span class="s">B2</span></button>
+        <button class="chip" data-i="4"><span class="h">流利</span><span class="s">C1</span></button>
+        <button class="chip" data-i="5"><span class="h">精通</span><span class="s">C2</span></button>
+      </div>
+      <div class="card" id="panelBand" hidden></div>
+    </section>
+
+    <section class="sect" aria-label="All readings">
+      <h2>目錄 <span class="en">All readings</span><span class="cnt">45 published</span></h2>
+      <div class="card catwrap">
+        <table class="cat">
+          <thead><tr><th>首行 first line</th><th>課 lesson</th><th>體 format</th><th>級</th><th class="num">字</th></tr></thead>
+          <tbody>
+            <tr><td class="c-first" lang="zh-Hant">高先生，你搬來我們這個城市才幾天，住得還<span class="ml">習慣</span>嗎？</td><td class="c-code">當代 B2·L07</td><td class="c-fmt">對話</td><td class="c-band">A2</td><td class="num">488</td></tr>
+            <tr><td class="c-first" lang="zh-Hant">那天晚上，周小姐正坐在客廳的沙發上看電視。</td><td class="c-code">當代 B2·L07</td><td class="c-fmt">短文</td><td class="c-band">A2</td><td class="num">470</td></tr>
+            <tr><td class="c-first" lang="zh-Hant">各位市民朋友，歡迎<span class="mn">收聽</span>今天的「綠色城市」廣播。</td><td class="c-code">當代 B2·L07</td><td class="c-fmt">廣播</td><td class="c-band">A2</td><td class="num">468</td></tr>
+            <tr><td class="c-first" lang="zh-Hant">欸，江<span class="ml">學弟</span>，今天開學你怎麼那麼晚才到教室？</td><td class="c-code">當代 B3·L01</td><td class="c-fmt">對話</td><td class="c-band">B1</td><td class="num">961</td></tr>
+            <tr><td class="c-first" lang="zh-Hant">又到了一年一度的開學季，各大學<span class="mn">教務處</span>這幾天<span class="mn">湧進</span>大批新生。</td><td class="c-code">當代 B3·L01</td><td class="c-fmt">報導</td><td class="c-band">B1</td><td class="num">855</td></tr>
+            <tr><td class="c-first" lang="zh-Hant">欸，妳來看一下，<span class="mn">衣櫥</span>到底該<span class="ml">擺</span>在哪裡比較好？</td><td class="c-code">當代 B4·L04</td><td class="c-fmt">對話</td><td class="c-band">B1</td><td class="num">1005</td></tr>
+            <tr><td class="c-first" lang="zh-Hant">你好，請問你是高先生嗎？我姓高，叫高文。</td><td class="c-code">當代 B1·L01</td><td class="c-fmt">對話</td><td class="c-band">A1</td><td class="num">317</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+</main>
+
+<footer><div class="ft"><span>紡 Tsumugu Beta</span><span>Graded Traditional Chinese readings</span><span>preview · 2026-07</span></div></footer>
+
+<script>
+"use strict";
+var CN=["","一","二","三","四","五","六","七","八","九","十","十一","十二","十三","十四","十五"];
+(function(){var r=document.documentElement,b=document.getElementById("themeBtn");
+  function s(){b.textContent=r.getAttribute("data-theme")==="dark"?"☀":"☾";}s();
+  b.addEventListener("click",function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";r.setAttribute("data-theme",n);try{localStorage.setItem("tsu-theme",n);}catch(e){}s();});})();
+
+/* depth preview */
+(function(){
+  var tabs=document.querySelectorAll("#depth button");
+  function set(d){tabs.forEach(function(t){t.setAttribute("aria-selected",String(t.dataset.d===d));});
+    document.getElementById("view-beginner").hidden=d!=="beginner";
+    document.getElementById("view-advanced").hidden=d!=="advanced";window.scrollTo({top:0,behavior:"smooth"});}
+  tabs.forEach(function(t){t.addEventListener("click",function(){set(t.dataset.d);});});
+  var a=document.getElementById("toAdv");if(a)a.addEventListener("click",function(e){e.preventDefault();set("advanced");});
+})();
+
+/* 當代 volumes → lessons */
+(function(){
+  var VOL=[
+    {vol:"第一冊",code:"B1",band:"A1",lessons:15,read:15},
+    {vol:"第二冊",code:"B2",band:"A2",lessons:15,read:6,here:7,names:{7:"追垃圾車"}},
+    {vol:"第三冊",code:"B3",band:"B1",lessons:12,read:0},
+    {vol:"第四冊",code:"B4",band:"B1",lessons:12,read:0},
+    {vol:"第五冊",code:"B5",band:"B1",lessons:10,read:0}
+  ];
+  var shelf=document.getElementById("shelfBook"),panel=document.getElementById("panelBook");
+  function render(v){
+    var h="";
+    for(var i=1;i<=v.lessons;i++){
+      var here=i===v.here,done=i<=v.read;
+      var nm=here&&v.names&&v.names[i]?'<span class="zh">'+v.names[i]+'</span>in progress':'3 readings';
+      var st=here?'<span class="st here">¶ 3/5</span>':done?'<span class="st">read</span>':'<span class="st"> </span>';
+      h+='<div class="row tap '+(here?"now":"")+'"><span class="num">第'+(CN[i]||i)+'課</span><span class="nm">'+nm+'</span>'+st+'<span class="chev">›</span></div>';
+    }
+    panel.innerHTML=h;
+  }
+  function open(i){shelf.querySelectorAll(".chip").forEach(function(c,idx){c.classList.toggle("on",idx===i);});render(VOL[i]);panel.hidden=false;}
+  shelf.querySelectorAll(".chip").forEach(function(c,idx){c.addEventListener("click",function(){open(idx);});});
+  open(1);
+})();
+
+/* TOCFL bands → readings (overlap via 當代 codes) */
+(function(){
+  var BAND=[
+    {han:"入門",band:"A1",lv:"Novice 1",groups:[{code:"當代 第一冊",items:[["L01","dialogue · self-intro · story"],["L02","3 readings"],["…",""]]}]},
+    {han:"基礎",band:"A2",lv:"Novice 2",groups:[{code:"當代 第二冊",items:[["L06","3 readings"],["L07","追垃圾車 · in progress"],["L08","3 readings"],["…",""]]}]},
+    {han:"進階",band:"B1",lv:"Level 3",groups:[{code:"當代 第三冊",items:[["L01","3 readings"],["…",""]]},{code:"當代 第四冊",items:[["L04","3 readings"],["…",""]]}]},
+    {han:"高階",band:"B2",lv:"Level 4",groups:[]},{han:"流利",band:"C1",lv:"Level 5",groups:[]},{han:"精通",band:"C2",lv:"Level 6",groups:[]}
+  ];
+  var shelf=document.getElementById("shelfBand"),panel=document.getElementById("panelBand");
+  function render(x){
+    if(!x.groups.length){panel.innerHTML='<div class="row"><span class="nm">Not yet published at this level.</span></div>';return;}
+    var h="";
+    x.groups.forEach(function(g){
+      h+='<div class="grp-lbl">'+g.code+'</div>';
+      g.items.forEach(function(it){
+        var zh=/[一-鿿]/.test(it[1])?'<span class="zh">'+it[1].split(" · ")[0]+'</span>'+(it[1].split(" · ")[1]||''):it[1];
+        h+='<div class="row tap"><span class="num">'+it[0]+'</span><span class="nm">'+zh+'</span><span class="chev">›</span></div>';
+      });
+    });
+    panel.innerHTML=h;
+  }
+  function toggle(i){
+    var on=shelf.querySelectorAll(".chip")[i].classList.contains("on");
+    shelf.querySelectorAll(".chip").forEach(function(c,idx){c.classList.toggle("on",idx===i&&!on);});
+    if(on){panel.hidden=true;return;}render(BAND[i]);panel.hidden=false;
+  }
+  shelf.querySelectorAll(".chip").forEach(function(c,idx){c.addEventListener("click",function(){toggle(idx);});});
+})();
+
+/* catalog sort */
+(function(){
+  var t=document.querySelector("table.cat");if(!t)return;var tb=t.tBodies[0],rows=[].slice.call(tb.rows),st={k:-1,d:0},coll=new Intl.Collator("zh-Hant",{numeric:true});
+  [].slice.call(t.tHead.rows[0].cells).forEach(function(th,k){th.addEventListener("click",function(){
+    st.d=st.k===k?(st.d===1?-1:st.d===-1?0:1):1;st.k=st.d?k:-1;
+    if(!st.d){rows.forEach(function(r){tb.appendChild(r);});return;}
+    rows.slice().sort(function(a,b){var x=a.cells[k].textContent.trim(),y=b.cells[k].textContent.trim();return (th.classList.contains("num")?(parseFloat(x)||0)-(parseFloat(y)||0):coll.compare(x,y))*st.d;}).forEach(function(r){tb.appendChild(r);});
+  });});
+})();
+</script>
+</body>
+</html>

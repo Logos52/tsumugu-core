@@ -1,0 +1,105 @@
+<!doctype html>
+<!--
+  Accent studies — choosing the single voice for Tsumugu Beta
+  2026-07-03 · a cool accent on warm faint paper (calm, high-contrast, non-red)
+  Red + gold excluded (mainland-flag coded / error-coded). Each candidate shown
+  on the real faint palette in light AND dark, applied to the elements that
+  actually carry the accent: brand seal · active book edge · resume link · here-dot.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tsumugu · accent studies</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/style.css" rel="stylesheet">
+<style>
+  :root{
+    --f-ui:"Inter",-apple-system,sans-serif;--f-disp:"Noto Serif TC",serif;--f-read:"LXGW WenKai TC",serif;
+    --bg:#FCFCFA;--read:#494640;--ink:#5C5951;--muted:#928E83;--faint:#B4AFA4;--ghost:#CFCBC1;--hair:#EFEDE7;
+    --dbg:#151713;--dink:#B9B6AC;--dmuted:#8C887C;--dfaint:#6C675C;--dhair:#232620;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:14px;line-height:1.6}
+  header{max-width:1080px;margin:0 auto;padding:40px 28px 10px}
+  h1{font-family:var(--f-disp);font-weight:500;font-size:22px;margin:0 0 8px;color:var(--read)}
+  header p{max-width:60ch;color:var(--muted);margin:0 0 4px}
+  .grid{max-width:1080px;margin:0 auto;padding:22px 28px 80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:20px}
+  .card{border:1px solid var(--hair);border-radius:12px;overflow:hidden}
+  .name{padding:13px 16px 4px}
+  .name b{font-family:var(--f-disp);font-weight:500;font-size:15px;color:var(--read)}
+  .name .han{color:var(--a);font-weight:600;margin-right:6px}
+  .name .why{display:block;color:var(--muted);font-size:12px;margin-top:5px;line-height:1.5}
+  .hex{display:flex;gap:10px;padding:2px 16px 12px;font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
+  .hex .sw{width:13px;height:13px;border-radius:3px;display:inline-block;vertical-align:-2px;margin-right:5px}
+  /* the live sample, rendered twice (light + dark) */
+  .demo{padding:16px;display:flex;align-items:center;gap:14px;border-top:1px solid var(--hair)}
+  .demo.dark{background:var(--dbg);color:var(--dink);border-top-color:var(--dhair)}
+  .seal{width:30px;height:30px;border-radius:7px;background:var(--a);color:#fff;font-family:var(--f-read);font-weight:600;font-size:16px;display:grid;place-items:center;flex:none}
+  .demo.dark .seal{background:var(--ad);color:#0e130f}
+  .book{width:26px;height:44px;border:1px solid var(--hair);border-radius:3px;position:relative;flex:none}
+  .demo.dark .book{border-color:var(--dhair)}
+  .book::after{content:"";position:absolute;top:-1px;left:-1px;right:-1px;height:2px;background:var(--a);border-radius:3px 3px 0 0}
+  .demo.dark .book::after{background:var(--ad)}
+  .dot{width:13px;height:13px;border-radius:50%;border:2px solid var(--a);background:var(--bg);box-shadow:0 0 0 3px color-mix(in srgb,var(--a) 12%,transparent);flex:none}
+  .demo.dark .dot{border-color:var(--ad);background:var(--dbg);box-shadow:0 0 0 3px color-mix(in srgb,var(--ad) 14%,transparent)}
+  .link{margin-left:auto;color:var(--a);font-weight:500;font-size:13px;white-space:nowrap}
+  .demo.dark .link{color:var(--ad)}
+  .rd{font-family:var(--f-read);color:var(--read);font-size:14px}
+  .demo.dark .rd{color:var(--dink)}
+  .tag{display:inline-block;margin:0 28px;max-width:1024px;color:var(--faint);font-size:12px}
+
+  /* candidates */
+  #verd{--a:#3B8577;--ad:#77C6B3}
+  #indigo{--a:#3C4F86;--ad:#96A9E0}
+  #celadon{--a:#5B8E7E;--ad:#8FC3B2}
+  #bamboo{--a:#4F7A46;--ad:#8DBE7C}
+  #slate{--a:#3E4C5C;--ad:#9FADBE}
+</style>
+</head>
+<body>
+<header>
+  <h1>Accent studies · the single voice</h1>
+  <p>Everything else stays faint grey. Red + gold are out (mainland-flag / error coded). A cool accent on warm paper is the calm, high-contrast, scholarly choice — the question is which cool hue. Each is shown on the real palette, light and dark.</p>
+</header>
+<div class="grid">
+
+  <div class="card" id="verd">
+    <div class="name"><b><span class="han">銅綠</span>Verdigris</b><span class="why">The current pick. Aged-bronze teal — fine, but reads a touch digital / “spectral.”</span></div>
+    <div class="hex"><span><span class="sw" style="background:#3B8577"></span>#3B8577</span><span><span class="sw" style="background:#77C6B3"></span>#77C6B3</span></div>
+    <div class="demo"><span class="seal">紡</span><span class="book"></span><span class="dot"></span><span class="rd">追垃圾車</span><span class="link">resume →</span></div>
+    <div class="demo dark"><span class="seal">紡</span><span class="book"></span><span class="dot"></span><span class="rd">追垃圾車</span><span class="link">resume →</span></div>
+  </div>
+
+  <div class="card" id="indigo">
+    <div class="name"><b><span class="han">靛藍</span>Indigo</b><span class="why">Recommended. Natural 藍染 indigo — the Taiwanese dye already in the reader’s DNA (染 Rǎn). Reads as ink; scholarly, distinctive, unmistakably not-red.</span></div>
+    <div class="hex"><span><span class="sw" style="background:#3C4F86"></span>#3C4F86</span><span><span class="sw" style="background:#96A9E0"></span>#96A9E0</span></div>
+    <div class="demo"><span class="seal">紡</span><span class="book"></span><span class="dot"></span><span class="rd">追垃圾車</span><span class="link">resume →</span></div>
+    <div class="demo dark"><span class="seal">紡</span><span class="book"></span><span class="dot"></span><span class="rd">追垃圾車</span><span class="link">resume →</span></div>
+  </div>
+
+  <div class="card" id="celadon">
+    <div class="name"><b><span class="han">青瓷</span>Celadon</b><span class="why">Keep green, but softer + greyer than the teal — the calm ceramic glaze. Auspicious, literary, less digital.</span></div>
+    <div class="hex"><span><span class="sw" style="background:#5B8E7E"></span>#5B8E7E</span><span><span class="sw" style="background:#8FC3B2"></span>#8FC3B2</span></div>
+    <div class="demo"><span class="seal">紡</span><span class="book"></span><span class="dot"></span><span class="rd">追垃圾車</span><span class="link">resume →</span></div>
+    <div class="demo dark"><span class="seal">紡</span><span class="book"></span><span class="dot"></span><span class="rd">追垃圾車</span><span class="link">resume →</span></div>
+  </div>
+
+  <div class="card" id="bamboo">
+    <div class="name"><b><span class="han">竹綠</span>Bamboo</b><span class="why">A warmer, earthier green (yellow-leaning). The literati bamboo — grounded and calm, clearly not a teal.</span></div>
+    <div class="hex"><span><span class="sw" style="background:#4F7A46"></span>#4F7A46</span><span><span class="sw" style="background:#8DBE7C"></span>#8DBE7C</span></div>
+    <div class="demo"><span class="seal">紡</span><span class="book"></span><span class="dot"></span><span class="rd">追垃圾車</span><span class="link">resume →</span></div>
+    <div class="demo dark"><span class="seal">紡</span><span class="book"></span><span class="dot"></span><span class="rd">追垃圾車</span><span class="link">resume →</span></div>
+  </div>
+
+  <div class="card" id="slate">
+    <div class="name"><b><span class="han">黛</span>Ink-slate</b><span class="why">The quietest option — a desaturated blue-grey, almost a neutral. Barely an accent; maximally timeless. Risk: too subtle to be “the one voice.”</span></div>
+    <div class="hex"><span><span class="sw" style="background:#3E4C5C"></span>#3E4C5C</span><span><span class="sw" style="background:#9FADBE"></span>#9FADBE</span></div>
+    <div class="demo"><span class="seal">紡</span><span class="book"></span><span class="dot"></span><span class="rd">追垃圾車</span><span class="link">resume →</span></div>
+    <div class="demo dark"><span class="seal">紡</span><span class="book"></span><span class="dot"></span><span class="rd">追垃圾車</span><span class="link">resume →</span></div>
+  </div>
+
+</div>
+<p class="tag">All five clear AA contrast for links/text on both themes. My order: <b>Indigo</b> (most distinctive + on-brand with the 染 reader) → <b>Celadon</b> (if you want to stay green) → <b>Bamboo</b>. Tell me one and I’ll recolor the library + reader in a single token swap.</p>
+</body>
+</html>

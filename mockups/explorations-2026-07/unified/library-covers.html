@@ -1,0 +1,211 @@
+<!doctype html>
+<!--
+  Library — Covers (v4) · Apple-minimal, spectral teal-blue · cold-start first
+  2026-07-03 · Built for a fresh visitor (nothing logged): no resume, no progress
+  bars, no "continue". Default = 第一冊, all unread; detail invites with a taste of
+  the reading + Start. Lessons = themed table of contents with a faint dot leader
+  (whitespace with a job) + three reading-dots. No redundant tagline/headings
+  (show, don't tell). Book mark = top rule + faint wash, title in ink. Dark toned.
+  Follows docs/DESIGN-PRINCIPLES.md. (Lesson topics are placeholders → highlights.)
+-->
+<html lang="zh-Hant" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem("tsu-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Tsumugu · Library</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/style.css" rel="stylesheet">
+<style>
+:root{
+  --f-ui:"Inter",-apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+  --f-han:"PingFang TC","Noto Sans TC","Inter",sans-serif;
+  --f-read:"LXGW WenKai TC","Songti TC",serif;
+  --bg:#F5F6F8;--surface:#FFFFFF;--ink:#1C1C1E;--read:#2C2C30;
+  --muted:#6E6E76;--faint:#A2A2AA;--ghost:#C7C7CE;--hair:#E9E9ED;
+  --a:#0C8DAF;--a-wash:rgba(15,160,196,.10);
+  --shadow:0 1px 2px rgba(20,22,28,.05),0 8px 22px -14px rgba(20,22,28,.16);
+  --cover:0 1px 2px rgba(20,22,28,.08),0 6px 16px -10px rgba(20,22,28,.22);
+  --sel-wash:color-mix(in srgb,var(--a) 5%,var(--surface));
+}
+[data-theme="dark"]{
+  --bg:#0B0B0D;--surface:#1A1A1D;--ink:#F2F2F5;--read:#E9E9EE;
+  --muted:#98989F;--faint:#68686F;--ghost:#48484E;--hair:#2A2A2E;
+  --a:#43ADC6;--a-wash:rgba(67,173,198,.13);
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 26px -16px rgba(0,0,0,.6);
+  --cover:0 1px 2px rgba(0,0,0,.5),0 6px 16px -8px rgba(0,0,0,.7);
+  --sel-wash:color-mix(in srgb,var(--a) 7%,var(--surface));
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.55;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;padding:0}a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--a);outline-offset:2px;border-radius:6px}::selection{background:var(--a-wash)}
+
+.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(1.8) blur(20px);-webkit-backdrop-filter:saturate(1.8) blur(20px);border-bottom:1px solid var(--hair)}
+.top .in{max-width:900px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;gap:15px}
+.brand{display:flex;align-items:center;gap:9px}
+.brand .seal{width:26px;height:26px;border-radius:8px;background:var(--a);color:#fff;font-family:var(--f-read);font-weight:600;font-size:14px;display:grid;place-items:center}
+.brand .word{font-weight:600;font-size:16px;letter-spacing:-.02em}
+.brand .beta{font-size:9.5px;font-weight:600;color:var(--a);background:var(--a-wash);border-radius:6px;padding:2px 6px}
+.nav{display:flex;gap:1px;margin-left:6px}.nav a{padding:6px 11px;border-radius:8px;font-size:13px;color:var(--muted);font-weight:500}
+.nav a:hover{color:var(--ink);background:var(--hair)}.nav a[aria-current]{color:var(--a)}
+.grow{flex:1}.icon{width:30px;height:30px;border-radius:8px;color:var(--muted);display:grid;place-items:center;font-size:14px}.icon:hover{color:var(--ink);background:var(--hair)}
+
+main{max-width:900px;margin:0 auto;padding:38px 22px 110px}
+.sect{margin-bottom:44px}
+.sect > h2{font-family:var(--f-han);font-size:13px;font-weight:600;color:var(--muted);margin:0 0 16px 2px;display:flex;align-items:baseline;gap:8px}
+.sect > h2 .en{font-family:var(--f-ui);font-weight:500;color:var(--faint);font-size:11.5px}
+.sect > h2 .cnt{margin-left:auto;color:var(--ghost);font-weight:500;font-size:11.5px}
+
+/* band: covers stretch to the detail-box height, tight to the left */
+.band{display:flex;gap:22px;align-items:stretch;margin-bottom:24px}
+.shelf{display:flex;gap:9px;align-items:stretch;flex:none}
+.cover{width:56px;flex:none;min-height:98px;border-radius:2px 5px 5px 2px;background:var(--surface);box-shadow:var(--cover);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px 3px;transition:box-shadow .14s ease}
+.cover:hover{box-shadow:var(--shadow),0 0 0 1px var(--hair)}
+.cover .v{writing-mode:vertical-rl;font-family:var(--f-han);font-weight:600;font-size:13.5px;letter-spacing:.1em;color:var(--ink)}
+.cover .lv{font-size:9px;color:var(--faint);font-weight:600}
+.cover.on{background:var(--sel-wash)}
+.cover.on::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--a);border-radius:2px 5px 0 0}
+
+.detail{flex:1;min-width:0;background:var(--surface);border-radius:14px;box-shadow:var(--shadow);padding:18px 22px;display:flex;flex-direction:column;gap:9px;justify-content:center}
+.detail .t{display:flex;align-items:baseline;gap:10px}
+.detail .t b{font-family:var(--f-han);font-weight:700;font-size:19px}
+.detail .t .m{color:var(--faint);font-size:12.5px}
+.detail .p{font-family:var(--f-read);color:var(--read);font-size:15px;line-height:1.9}
+.detail .go{align-self:flex-start;margin-top:2px;color:var(--a);font-weight:600;font-size:13.5px}
+.detail .go:hover{opacity:.75}
+
+/* lessons — themed table of contents with a dot leader */
+.card{background:var(--surface);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.row{display:flex;align-items:center;padding:13px 18px;border-top:1px solid var(--hair);cursor:pointer}
+.row:first-child{border-top:none}
+.row:hover .nm .zh{color:var(--a)}
+.row .num{font-family:var(--f-han);font-weight:500;font-size:14.5px;color:var(--muted);min-width:52px}
+.row .nm{flex:none;display:flex;align-items:baseline;gap:9px;margin-left:14px}
+.row .nm .zh{font-family:var(--f-read);color:var(--read);font-size:15.5px}
+.row .nm .en{color:var(--faint);font-size:12px}
+.row .lead{flex:1;height:0;border-top:1px dotted var(--ghost);opacity:.55;margin:0 16px}
+.dots{display:inline-flex;gap:5px;flex:none}
+.dots i{width:6px;height:6px;border-radius:50%;border:1px solid var(--ghost);box-sizing:border-box}
+.dots i.on{background:var(--muted);border-color:var(--muted)}
+.dots i.cur{background:var(--a);border-color:var(--a)}
+.chev{color:var(--ghost);font-size:15px;margin-left:14px}
+
+/* catalog + level filters */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.fchip{font-family:var(--f-han);font-size:12.5px;padding:6px 12px;border-radius:9px;background:var(--surface);box-shadow:var(--shadow);color:var(--muted);display:flex;gap:6px;align-items:baseline}
+.fchip .s{font-family:var(--f-ui);font-size:10px;color:var(--faint)}.fchip:hover{color:var(--ink)}
+.fchip.on{background:var(--a);color:#fff}.fchip.on .s{color:#fff;opacity:.85}
+[data-theme="dark"] .fchip.on{background:var(--a-wash);color:var(--a);box-shadow:inset 0 0 0 1px var(--a)}[data-theme="dark"] .fchip.on .s{color:var(--a)}
+.catwrap{padding:6px 6px 4px}
+table.cat{width:100%;border-collapse:collapse;font-size:14px}
+.cat thead th{text-align:left;font-weight:500;font-size:11.5px;color:var(--faint);padding:10px 12px;cursor:pointer;white-space:nowrap}
+.cat thead th.num{text-align:right}.cat thead th:hover{color:var(--muted)}
+.cat tbody td{padding:11px 12px;border-top:1px solid var(--hair)}
+.cat tbody tr{cursor:pointer}.cat tbody tr:hover td{background:color-mix(in srgb,var(--a) 4%,var(--surface))}
+.c-first{font-family:var(--f-read);color:var(--read);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:330px}
+.c-first .mn{border-bottom:2px solid var(--a);padding-bottom:1px}.c-first .ml{border-bottom:1.5px dotted var(--ghost)}
+.c-code{font-family:var(--f-han);color:var(--faint);font-size:12.5px;white-space:nowrap}.c-fmt{color:var(--muted);font-size:12.5px}.c-band{color:var(--faint);font-size:12.5px}
+.cat td.num{text-align:right;color:var(--faint);font-variant-numeric:tabular-nums;font-size:12.5px}
+
+footer{border-top:1px solid var(--hair)}.ft{max-width:900px;margin:0 auto;padding:22px;font-size:11.5px;color:var(--ghost);display:flex;gap:6px 16px;flex-wrap:wrap}
+[hidden]{display:none!important}
+@media (max-width:640px){.band{flex-direction:column;align-items:stretch}.shelf{align-self:flex-start}.cover{min-height:92px}}
+@media (max-width:520px){main{padding:28px 16px 80px}.c-first{max-width:180px}.row .nm .en{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="brand" href="#"><span class="seal">紡</span><span class="word">Tsumugu</span><span class="beta">Beta</span></a>
+  <nav class="nav"><a href="#" aria-current="page">Library</a><a href="reader.html">Reader</a><a href="#">Blog</a><a href="#">About</a></nav>
+  <span class="grow"></span><button class="icon" title="Search">⌘K</button><button class="icon" id="themeBtn" title="Theme">☾</button>
+</div></header>
+
+<main>
+  <section class="sect" aria-label="By textbook">
+    <h2>課本架 <span class="en">Textbook · 當代中文課程</span></h2>
+    <div class="band">
+      <div class="shelf" id="shelf">
+        <button class="cover on" data-i="0"><span class="v">第一冊</span><span class="lv">A1</span></button>
+        <button class="cover" data-i="1"><span class="v">第二冊</span><span class="lv">A2</span></button>
+        <button class="cover" data-i="2"><span class="v">第三冊</span><span class="lv">B1</span></button>
+        <button class="cover" data-i="3"><span class="v">第四冊</span><span class="lv">B1</span></button>
+        <button class="cover" data-i="4"><span class="v">第五冊</span><span class="lv">B1</span></button>
+      </div>
+      <div class="detail" id="detail"></div>
+    </div>
+    <div class="card" id="panelBook"></div>
+  </section>
+
+  <section class="sect" aria-label="All readings">
+    <h2>目錄 <span class="en">All readings</span><span class="cnt">45</span></h2>
+    <div class="filters" id="filters">
+      <button class="fchip on" data-b="all">全部 <span class="s">All</span></button>
+      <button class="fchip" data-b="A1">入門 <span class="s">A1</span></button>
+      <button class="fchip" data-b="A2">基礎 <span class="s">A2</span></button>
+      <button class="fchip" data-b="B1">進階 <span class="s">B1</span></button>
+      <button class="fchip" data-b="B2">高階 <span class="s">B2</span></button>
+      <button class="fchip" data-b="C1">流利 <span class="s">C1</span></button>
+    </div>
+    <div class="card catwrap">
+      <table class="cat"><thead><tr><th>首行 first line</th><th>課</th><th>體</th><th>級</th><th class="num">字</th></tr></thead>
+      <tbody>
+        <tr data-band="A1"><td class="c-first" lang="zh-Hant">你好，請問你是高先生嗎？我姓高，叫高文。</td><td class="c-code">當代 B1·L01</td><td class="c-fmt">對話</td><td class="c-band">A1</td><td class="num">317</td></tr>
+        <tr data-band="A2"><td class="c-first" lang="zh-Hant">高先生，你搬來我們這個城市才幾天，住得還<span class="ml">習慣</span>嗎？</td><td class="c-code">當代 B2·L07</td><td class="c-fmt">對話</td><td class="c-band">A2</td><td class="num">488</td></tr>
+        <tr data-band="A2"><td class="c-first" lang="zh-Hant">那天晚上，周小姐正坐在客廳的沙發上看電視。</td><td class="c-code">當代 B2·L07</td><td class="c-fmt">短文</td><td class="c-band">A2</td><td class="num">470</td></tr>
+        <tr data-band="B1"><td class="c-first" lang="zh-Hant">欸，江<span class="ml">學弟</span>，今天開學你怎麼那麼晚才到教室？</td><td class="c-code">當代 B3·L01</td><td class="c-fmt">對話</td><td class="c-band">B1</td><td class="num">961</td></tr>
+        <tr data-band="B1"><td class="c-first" lang="zh-Hant">欸，妳來看一下，<span class="mn">衣櫥</span>到底該<span class="ml">擺</span>在哪裡比較好？</td><td class="c-code">當代 B4·L04</td><td class="c-fmt">對話</td><td class="c-band">B1</td><td class="num">1005</td></tr>
+      </tbody></table>
+    </div>
+  </section>
+</main>
+
+<footer><div class="ft"><span>紡 Tsumugu Beta</span><span>Graded Traditional Chinese readings</span><span>preview · 2026-07</span></div></footer>
+
+<script>
+"use strict";
+var CN=["","一","二","三","四","五","六","七","八","九","十","十一","十二","十三","十四","十五"];
+(function(){var r=document.documentElement,b=document.getElementById("themeBtn");if(!r.getAttribute("data-theme"))r.setAttribute("data-theme","light");
+  function s(){b.textContent=r.getAttribute("data-theme")==="dark"?"☀":"☾";}s();
+  b.addEventListener("click",function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";r.setAttribute("data-theme",n);try{localStorage.setItem("tsu-theme",n);}catch(e){}s();});})();
+
+(function(){
+  // topics + samples are placeholders; the app fills them from lesson highlights + readings
+  var T1=[null,["認識朋友","Meeting people"],["我的家人","Family"],["你是哪國人","Where you're from"],["現在幾點","Telling time"],["吃飯了嗎","Meals"],["買東西","Shopping"],["在哪裡","Places & directions"],["今天幾號","Days & dates"],["天氣","Weather"],["我的興趣","Hobbies"],["怎麼去","Getting around"],["在學校","At school"],["約時間","Making plans"],["打電話","On the phone"],["去拜訪","A visit"]];
+  var T2=[null,["認識新鄰居","New neighbours"],["每天的生活","Daily routine"],["週末的計畫","Weekend plans"],["上市場","At the market"],["怎麼去","Getting around"],["出去吃飯","Eating out"],["都市生活","City living"],["看醫生","Seeing a doctor"],["找房子","Renting a place"],["寄東西","The post office"],["打電話","Making calls"],["天氣與季節","Weather & seasons"],["我的興趣","Hobbies"],["一日遊","A day trip"],["過節","Festivals"]];
+  var VOL=[
+    {vol:"第一冊",code:"B1",band:"A1",lessons:15,topics:T1,sample:"你好，請問你是高先生嗎？我姓高，叫高文。"},
+    {vol:"第二冊",code:"B2",band:"A2",lessons:15,topics:T2,sample:"那天晚上，周小姐正坐在客廳的沙發上看電視…"},
+    {vol:"第三冊",code:"B3",band:"B1",lessons:12},{vol:"第四冊",code:"B4",band:"B1",lessons:12},{vol:"第五冊",code:"B5",band:"B1",lessons:10}
+  ];
+  var shelf=document.getElementById("shelf"),panel=document.getElementById("panelBook"),detail=document.getElementById("detail");
+  function render(v){
+    detail.innerHTML='<div class="t"><b>'+v.vol+'</b><span class="m">Book '+v.code.slice(1)+' · '+v.band+'</span></div>'+
+      (v.sample?'<div class="p" lang="zh-Hant">'+v.sample+'</div>':'')+
+      '<a class="go" href="reader.html">Start reading →</a>';
+    var h="";
+    for(var i=1;i<=v.lessons;i++){
+      var t=v.topics&&v.topics[i];
+      var nm=t?'<span class="zh">'+t[0]+'</span><span class="en">'+t[1]+'</span>':'<span class="zh">第'+(CN[i]||i)+'課</span>';
+      h+='<div class="row"><span class="num">第'+(CN[i]||i)+'課</span><span class="nm">'+nm+'</span>'+
+         '<span class="lead"></span><span class="dots"><i></i><i></i><i></i></span><span class="chev">›</span></div>';
+    }
+    panel.innerHTML=h;
+  }
+  function open(i){shelf.querySelectorAll(".cover").forEach(function(c,idx){c.classList.toggle("on",idx===i);});render(VOL[i]);}
+  shelf.querySelectorAll(".cover").forEach(function(c,idx){c.addEventListener("click",function(){open(idx);});});
+  open(0);
+})();
+
+(function(){var chips=document.querySelectorAll("#filters .fchip"),rows=document.querySelectorAll("table.cat tbody tr");
+  chips.forEach(function(ch){ch.addEventListener("click",function(){chips.forEach(function(x){x.classList.toggle("on",x===ch);});
+    var b=ch.dataset.b;rows.forEach(function(r){r.hidden=!(b==="all"||r.dataset.band===b);});});});})();
+
+(function(){var t=document.querySelector("table.cat");if(!t)return;var tb=t.tBodies[0],rows=[].slice.call(tb.rows),st={k:-1,d:0},coll=new Intl.Collator("zh-Hant",{numeric:true});
+  [].slice.call(t.tHead.rows[0].cells).forEach(function(th,k){th.addEventListener("click",function(){
+    st.d=st.k===k?(st.d===1?-1:st.d===-1?0:1):1;st.k=st.d?k:-1;
+    if(!st.d){rows.forEach(function(r){tb.appendChild(r);});return;}
+    rows.slice().sort(function(a,b){var x=a.cells[k].textContent.trim(),y=b.cells[k].textContent.trim();return (th.classList.contains("num")?(parseFloat(x)||0)-(parseFloat(y)||0):coll.compare(x,y))*st.d;}).forEach(function(r){tb.appendChild(r);});});});})();
+</script>
+</body>
+</html>

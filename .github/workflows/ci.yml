@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Link monorepo packages
+        run: |
+          test -d ../tsumugu/packages/engine || (echo "Checkout tsumugu monorepo beside tsumugu-core for CI" && exit 1)
+      - run: pnpm install
+      # WO-D D11 gates: dict-search freshness (fails loudly on an absent/stale
+      # ed source — requires tsumugu-ed checked out beside this repo, like the
+      # monorepo link above) + shell-contract artifact drift.
+      - run: npx tsx scripts/dict-sync.ts --check
+      - run: npx tsx scripts/build-shell-contract.ts --check app/public/shell
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build

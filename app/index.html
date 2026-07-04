@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" data-rail="en" data-script="trad" data-reading="py" data-gloss="en" data-theme="light" data-palette="seal" data-page="home">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tsumugu Beta · Read Traditional Chinese</title>
+  <meta name="description" content="Graded readings for Traditional Chinese. EN or VI rail with ruby and the cognate bridge.">
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  <link rel="stylesheet" href="/src/styles/tokens.css">
+  <link rel="stylesheet" href="/src/styles/base.css">
+  <link rel="stylesheet" href="/src/styles/catalog.css">
+</head>
+<body>
+  <div id="app">
+    <!-- New persistent shell header injected by AppShell / router -->
+    <header id="topnav"></header>
+
+    <!-- Multi-surface host. Router swaps content here or toggles sections. -->
+    <main id="surface" tabindex="-1" hidden></main>
+
+    <!-- Legacy reader host kept for compatibility during transition.
+         The reader surface mounts into .work / #prose when active.
+         Old direct controls may be moved into shell. -->
+    <div id="reader-host" hidden>
+      <!-- Reader-local controls (script/reading/gloss + actions). Rail/palette global in topnav. -->
+      <div class="reader-controls" style="max-width:680px;margin:8px auto 4px;padding:0 24px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <div class="seg" id="scriptSeg" title="Script">
+          <span class="lbl">字</span>
+          <button data-script="trad" class="on">繁</button>
+          <button data-script="simp">简</button>
+        </div>
+        <div class="seg" id="readingSeg" title="Reading">
+          <span class="lbl">音</span>
+          <button data-reading="hv" class="on">Hán-Việt</button>
+          <button data-reading="py">Pinyin</button>
+          <button data-reading="zh">注音</button>
+        </div>
+        <div class="seg" id="glossSeg" title="Gloss language">
+          <span class="lbl">譯</span>
+          <button data-gloss="vi" class="on">VI</button>
+          <button data-gloss="en">EN</button>
+        </div>
+        <div style="flex:1"></div>
+        <button class="iconbtn" id="catalogBtn" title="Reading catalog" type="button">☰</button>
+        <button class="iconbtn tsg-paste-btn" id="pasteBtn" title="Paste text" type="button">📋</button>
+        <!-- theme moved to top shell -->
+      </div>
+
+      <div class="work">
+      <div class="col">
+        <div class="readhead">
+          <div class="titlerow">
+            <span class="title-zh" id="titleZh"></span>
+            <span class="title-rom" id="titleRom"></span>
+          </div>
+          <div class="metarow">
+            <span class="chip band" id="bandChip"></span>
+            <span class="chip bind" id="bindChip"></span>
+            <span class="chip new" id="newChip"></span>
+          </div>
+        </div>
+
+        <p class="prose" id="prose"></p>
+      </div>
+
+      <div class="rail">
+        <div class="rh">Hôm nay · Today</div>
+        <div class="stat"><div class="n due">0</div><div class="s vi-only">từ đến hạn ôn tập →</div><div class="s en-only">words due to review →</div></div>
+        <div class="stat">
+          <div class="mini"><span class="vi-only">Từ đã biết</span><span class="en-only">Known words</span><b>0</b></div>
+          <div class="mini"><span class="vi-only">Đánh dấu lần đọc này</span><span class="en-only">Flagged this read</span><b>0</b></div>
+        </div>
+        <div class="rh vi-only">Bài này giới thiệu</div>
+        <div class="rh en-only">This passage introduces</div>
+        <div class="tagrow" id="tagrow"></div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Catalog host injected/used by catalogView -->
+    <div id="catalog" class="tsg-catalog-host" hidden></div>
+  </div>
+
+  <footer class="site-footer tsg-footer" id="app-footer">
+    <div class="inner">
+      <div class="fbrand">
+        <div class="wm"><span class="knot">紡</span><span class="word">Tsumugu</span> <span class="beta-pill">Beta</span></div>
+        <div class="tagline">
+          <span class="en-only">紡ぐ (tsumugu): to spin thread. A graded reader for Traditional Chinese.</span>
+          <span class="vi-only">紡ぐ (tsumugu): kéo sợi chỉ. Trình đọc phân cấp cho tiếng Trung phồn thể.</span>
+        </div>
+      </div>
+      <div class="fcol">
+        <span class="h"><span class="en-only">Read</span><span class="vi-only">Đọc</span></span>
+        <a href="#home"><span class="en-only">Home</span><span class="vi-only">Trang chủ</span></a>
+        <a href="#library"><span class="en-only">Library</span><span class="vi-only">Thư viện</span></a>
+        <a href="#library"><span class="en-only">Reader</span><span class="vi-only">Đọc</span></a>
+        <a href="#method"><span class="en-only">Method</span><span class="vi-only">Phương pháp</span></a>
+      </div>
+      <div class="fcol">
+        <span class="h"><span class="en-only">About</span><span class="vi-only">Giới thiệu</span></span>
+        <a href="#about"><span class="en-only">About</span><span class="vi-only">Giới thiệu</span></a>
+        <a href="#privacy"><span class="en-only">Privacy</span><span class="vi-only">Riêng tư</span></a>
+        <a href="#feedback"><span class="en-only">Feedback</span><span class="vi-only">Phản hồi</span></a>
+        <a href="#colophon"><span class="en-only">Colophon</span><span class="vi-only">Ấn bản</span></a>
+      </div>
+      <div class="legal">
+        <span class="en-only">Preview build.</span><span class="vi-only">Bản xem trước.</span><br>
+        <span class="en-only">紡ぐ (tsumugu): to spin thread.</span><span class="vi-only">紡ぐ (tsumugu): kéo sợi chỉ.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div id="scrim"></div>
+  <div id="card" role="dialog" aria-modal="true">
+    <div class="top">
+      <div class="glyph" id="cGlyph"></div>
+      <div class="head">
+        <div class="hv" id="cReading"></div>
+        <div class="ipa" id="cIpa"></div>
+        <div class="pos" id="cPos"></div>
+      </div>
+    </div>
+    <div class="body">
+      <div class="gloss" id="cGloss"></div>
+      <div class="bridge vi-only" id="cBridge">
+        <div class="eye"><span class="di">◆</span><span>Bạn đã biết âm này rồi</span></div>
+        <div class="cogs" id="cCogs"></div>
+        <div class="close" id="cClose"></div>
+      </div>
+      <div class="ennote en-only" id="cEnNote"></div>
+      <div class="ex" id="cEx"></div>
+      <div class="acts">
+        <button class="add" id="aAdd" type="button"><span class="en-only">+ Add card</span><span class="vi-only">+ Thêm thẻ</span></button>
+        <button class="known" id="aKnown" type="button"><span class="en-only">✓ Known</span><span class="vi-only">✓ Đã biết</span></button>
+        <a class="dict" id="aDict" href="#" target="_blank" rel="noopener">字 →</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

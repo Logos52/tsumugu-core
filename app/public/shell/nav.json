@@ -1,0 +1,20 @@
+{
+  "version": "v3",
+  "nav": [
+    {
+      "href": "home.html",
+      "nav": "home",
+      "label": "Home"
+    },
+    {
+      "href": "library.html",
+      "nav": "library",
+      "label": "Library"
+    },
+    {
+      "href": "reader.html",
+      "nav": "reader",
+      "label": "Reader"
+    }
+  ]
+}

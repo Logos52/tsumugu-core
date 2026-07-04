@@ -1,0 +1,244 @@
+<!doctype html>
+<!-- Library — 6 layout options · 2026-07-03 · low-fi sketches, same content in each.
+     Judge arrangement only. Each borrows a timeless structure (shelf / TOC / obi /
+     index / catalog). Light theme only for comparison. Follows DESIGN-PRINCIPLES.md. -->
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Library — layout options</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/style.css" rel="stylesheet">
+<style>
+:root{
+  --ui:"Inter",-apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+  --han:"PingFang TC","Noto Sans TC",sans-serif;
+  --read:"LXGW WenKai TC","Songti TC",serif;
+  --bg:#EDEEF1;--surface:#FFFFFF;--ink:#1C1C1E;--muted:#6E6E76;--faint:#A2A2AA;--ghost:#CFCFD5;--hair:#E9E9ED;
+  --a:#0C8DAF;--aw:rgba(15,160,196,.10);
+  --sh:0 1px 2px rgba(20,22,28,.05),0 8px 22px -14px rgba(20,22,28,.14);
+  --cover:0 1px 2px rgba(20,22,28,.10),0 5px 14px -9px rgba(20,22,28,.28);
+  --dlg:#5A8CA6;--slf:#7C79B0;--sty:#5E9E86;--rep:#8C8A96;--exp:#B0904E;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:14px;line-height:1.5;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;padding:44px 22px 90px}
+.wrap{max-width:900px;margin:0 auto}
+h1{font-size:19px;font-weight:600;letter-spacing:-.02em;margin:0 0 4px}
+.sub{color:var(--muted);font-size:13px;margin:0 0 30px}
+.opt{margin-bottom:30px}
+.lab{display:flex;align-items:baseline;gap:10px;margin:0 2px 9px}
+.lab .n{font-size:11px;font-weight:700;color:var(--a);background:var(--aw);border-radius:20px;padding:2px 9px;letter-spacing:.02em}
+.lab .nm{font-weight:600;font-size:14.5px}
+.lab .why{color:var(--muted);font-size:12.5px}
+.screen{background:var(--surface);border-radius:14px;box-shadow:var(--sh);overflow:hidden}
+
+/* shared bits */
+.spine{writing-mode:vertical-rl;font-family:var(--han);font-weight:600;font-size:12px;letter-spacing:.08em;color:var(--ink);background:var(--surface);box-shadow:var(--cover);border-radius:2px 4px 4px 2px;display:flex;align-items:center;justify-content:center;padding:12px 5px;position:relative}
+.spine .lv{writing-mode:horizontal-tb;position:absolute;bottom:5px;font-size:8px;color:var(--faint);font-weight:600}
+.spine.sel{background:var(--aw)}
+.spine.sel::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--a);border-radius:2px 4px 0 0}
+.spine.dim{opacity:.45}
+.rr{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--hair);font-size:13px}
+.rr:first-child{border-top:none}
+.d{width:7px;height:7px;border-radius:2px;flex:none}
+.d.dlg{background:var(--dlg)}.d.slf{background:var(--slf)}.d.sty{background:var(--sty)}.d.rep{background:var(--rep)}.d.exp{background:var(--exp)}
+.t{color:var(--ink);font-weight:500;white-space:nowrap}
+.z{font-family:var(--read);color:var(--muted);font-size:12.5px;white-space:nowrap}
+.m{margin-left:auto;color:var(--faint);font-size:11px;font-family:var(--han);white-space:nowrap}
+.cap{color:var(--faint);font-size:11.5px;padding:9px 16px;border-top:1px solid var(--hair)}
+
+/* 1 · left rail */
+.o1{display:flex;min-height:230px}
+.o1 .rail{flex:none;width:190px;border-right:1px solid var(--hair);padding:14px 12px;background:#FBFBFC}
+.o1 .bkrow{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:8px;font-size:13px;color:var(--muted)}
+.o1 .bkrow.sel{background:var(--aw);color:var(--a);font-weight:600}
+.o1 .bkrow .lv{margin-left:auto;font-size:10px;color:var(--faint)}
+.o1 .sub2{padding:2px 8px 8px 20px}
+.o1 .sub2 .p{font-family:var(--han);font-size:12px;color:var(--muted);padding:4px 0}
+.o1 .sub2 .p.sel{color:var(--a);font-weight:600}
+.o1 .main{flex:1;padding:14px 18px}
+
+/* 2 · TOC dot leaders */
+.o2{padding:14px 18px}
+.o2 .pick{display:flex;gap:6px;margin-bottom:12px}
+.o2 .pick b{font-family:var(--han);font-size:12px;padding:4px 9px;border-radius:7px;color:var(--muted);background:#F3F3F5;font-weight:500}
+.o2 .pick b.sel{background:var(--a);color:#fff}
+.o2 .head{font-family:var(--han);font-size:12px;color:var(--faint);margin:2px 2px 6px;letter-spacing:.02em}
+.tl{display:flex;align-items:baseline;padding:7px 0;font-size:13px}
+.tl .t{white-space:nowrap}.tl .z{margin-left:8px}
+.tl .ld{flex:1;border-bottom:1px dotted var(--ghost);margin:0 9px;position:relative;top:-3px}
+.tl .mm{color:var(--faint);font-size:11.5px;font-family:var(--han);white-space:nowrap}
+
+/* 3 · obi band */
+.o3{padding:14px 16px}
+.o3 .shelf{display:flex;gap:8px;height:96px;margin-bottom:12px}
+.o3 .obi{display:flex;align-items:center;gap:14px;background:var(--aw);border-radius:10px;padding:11px 16px;margin-bottom:6px}
+.o3 .obi .bn{font-family:var(--han);font-weight:600;font-size:14px;color:var(--a)}
+.o3 .obi .fact{font-size:12px;color:var(--muted)}
+.o3 .obi .segs{margin-left:auto;display:flex;gap:5px}
+.o3 .obi .seg{font-family:var(--han);font-size:11px;color:var(--muted);background:var(--surface);border-radius:6px;padding:4px 9px;box-shadow:var(--sh)}
+.o3 .obi .seg.sel{color:var(--a);font-weight:600}
+.o3 .list{padding:2px 2px}
+
+/* 4 · spreadsheet + filters */
+.o4{padding:0}
+.o4 .filt{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--hair);flex-wrap:wrap}
+.o4 .fc{font-size:12px;color:var(--muted);background:#F3F3F5;border-radius:7px;padding:5px 10px}
+.o4 .fc.on{background:var(--aw);color:var(--a);font-weight:600}
+.o4 .srt{margin-left:auto;font-size:11.5px;color:var(--faint)}
+.o4 table{width:100%;border-collapse:collapse}
+.o4 th{text-align:left;font-size:10.5px;color:var(--faint);font-weight:500;padding:9px 16px;border-bottom:1px solid var(--hair)}
+.o4 td{padding:9px 16px;border-top:1px solid var(--hair);font-size:12.5px;white-space:nowrap}
+.o4 td:first-child{font-weight:500}
+.o4 .zc{font-family:var(--read);color:var(--muted)}
+.o4 .gc{color:var(--faint)}
+
+/* 5 · part columns */
+.o5{padding:14px 16px}
+.o5 .shelf{display:flex;gap:7px;margin-bottom:13px}
+.o5 .cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.o5 .col h4{font-family:var(--han);font-size:12.5px;font-weight:600;margin:0 0 8px;color:var(--ink);display:flex;align-items:baseline;gap:6px}
+.o5 .col h4 .rg{font-family:var(--ui);font-weight:500;font-size:11px;color:var(--faint)}
+.o5 .col.sel h4{color:var(--a)}
+.o5 .ci{display:flex;align-items:center;gap:7px;padding:6px 0;font-size:12.5px;border-top:1px solid var(--hair)}
+.o5 .ci:first-of-type{border-top:none}
+.o5 .ci .t{white-space:normal;line-height:1.3}
+
+/* 6 · shelf → volume */
+.o6{padding:20px 16px}
+.o6 .grid{display:flex;gap:12px;justify-content:space-between}
+.o6 .cv{flex:1;aspect-ratio:3/4;max-width:120px;border-radius:3px 7px 7px 3px;background:var(--surface);box-shadow:var(--cover);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:relative}
+.o6 .cv .vt{writing-mode:vertical-rl;font-family:var(--han);font-weight:600;font-size:16px;letter-spacing:.12em}
+.o6 .cv .lv{font-size:10px;color:var(--faint);font-weight:600}
+.o6 .cv.sel{outline:2px solid var(--a);outline-offset:2px}
+.o6 .cv.dim{opacity:.45}
+.o6 .cap{border-top:none;text-align:center;padding-top:16px}
+@media (max-width:640px){.o1{flex-direction:column}.o1 .rail{width:auto;border-right:none;border-bottom:1px solid var(--hair)}.o5 .cols{grid-template-columns:1fr}.z,.tl .z{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Library — six layouts</h1>
+<p class="sub">Same content in each. Low-fi sketches — judge the arrangement, then we build the one you pick.</p>
+
+<!-- 1 -->
+<div class="opt">
+  <div class="lab"><span class="n">1</span><span class="nm">Left rail</span><span class="why">a contents sidebar — books never sit in a top band, so no whitespace beside them</span></div>
+  <div class="screen"><div class="o1">
+    <div class="rail">
+      <div class="bkrow sel">第一冊<span class="lv">A1</span></div>
+      <div class="sub2">
+        <div class="p sel">第一部分 · L1–5</div><div class="p">第二部分 · L6–10</div><div class="p">第三部分 · L11–15</div>
+      </div>
+      <div class="bkrow">第二冊<span class="lv">A2</span></div>
+      <div class="bkrow">第三冊<span class="lv">B1</span></div>
+      <div class="bkrow">第四冊<span class="lv">B1</span></div>
+    </div>
+    <div class="main">
+      <div class="rr"><i class="d dlg"></i><span class="t">The First Cup of Oolong</span><span class="z">接機的第一杯烏龍茶</span><span class="m">課1</span></div>
+      <div class="rr"><i class="d slf"></i><span class="t">A Japanese Falls for Oolong</span><span class="z">一個日本人愛上烏龍茶</span><span class="m">課1</span></div>
+      <div class="rr"><i class="d dlg"></i><span class="t">Who's in the Photo?</span><span class="z">照片牆上的人是誰</span><span class="m">課2</span></div>
+      <div class="rr"><i class="d sty"></i><span class="t">Five of Us at Home</span><span class="z">我家有五個人</span><span class="m">課2</span></div>
+    </div>
+  </div></div>
+</div>
+
+<!-- 2 -->
+<div class="opt">
+  <div class="lab"><span class="n">2</span><span class="nm">Table of contents</span><span class="why">the page IS a TOC; dot leaders bridge each title to its place — the void does a real job</span></div>
+  <div class="screen"><div class="o2">
+    <div class="pick"><b class="sel">一</b><b>二</b><b>三</b><b>四</b><b>五</b></div>
+    <div class="head">第一冊 · 第一部分 · L1–5</div>
+    <div class="tl"><span class="t">The First Cup of Oolong</span><span class="z">接機的第一杯烏龍茶</span><span class="ld"></span><span class="mm">課1 · 對話</span></div>
+    <div class="tl"><span class="t">A Japanese Falls for Oolong</span><span class="z">一個日本人愛上烏龍茶</span><span class="ld"></span><span class="mm">課1 · 自述</span></div>
+    <div class="tl"><span class="t">Who's in the Photo?</span><span class="z">照片牆上的人是誰</span><span class="ld"></span><span class="mm">課2 · 對話</span></div>
+    <div class="tl"><span class="t">Five of Us at Home</span><span class="z">我家有五個人</span><span class="ld"></span><span class="mm">課2 · 短文</span></div>
+  </div></div>
+</div>
+
+<!-- 3 -->
+<div class="opt">
+  <div class="lab"><span class="n">3</span><span class="nm">Obi band</span><span class="why">the shelf on top; the selected book wears a paper band across the full width carrying its facts + parts</span></div>
+  <div class="screen"><div class="o3">
+    <div class="shelf">
+      <div class="spine sel">第一冊<span class="lv">A1</span></div>
+      <div class="spine">第二冊<span class="lv">A2</span></div>
+      <div class="spine">第三冊<span class="lv">B1</span></div>
+      <div class="spine">第四冊<span class="lv">B1</span></div>
+      <div class="spine dim">第五冊<span class="lv">B1</span></div>
+    </div>
+    <div class="obi"><span class="bn">第一冊</span><span class="fact">A1 · 15 課 · 45 篇</span>
+      <span class="segs"><span class="seg sel">第一部分</span><span class="seg">第二部分</span><span class="seg">第三部分</span></span></div>
+    <div class="list">
+      <div class="rr"><i class="d dlg"></i><span class="t">The First Cup of Oolong</span><span class="z">接機的第一杯烏龍茶</span><span class="m">課1</span></div>
+      <div class="rr"><i class="d dlg"></i><span class="t">Who's in the Photo?</span><span class="z">照片牆上的人是誰</span><span class="m">課2</span></div>
+      <div class="rr"><i class="d sty"></i><span class="t">Five of Us at Home</span><span class="z">我家有五個人</span><span class="m">課2</span></div>
+    </div>
+  </div></div>
+</div>
+
+<!-- 4 -->
+<div class="opt">
+  <div class="lab"><span class="n">4</span><span class="nm">Spreadsheet</span><span class="why">one big sortable table; book, part, level become filters — "books &amp; spreadsheets" taken literally</span></div>
+  <div class="screen"><div class="o4">
+    <div class="filt"><span class="fc on">第一冊</span><span class="fc">第一部分</span><span class="fc">A1</span><span class="fc">體 ▾</span><span class="srt">Sort · 課</span></div>
+    <table>
+      <thead><tr><th>Title</th><th>中文</th><th>冊</th><th>課</th><th>級</th></tr></thead>
+      <tbody>
+        <tr><td>The First Cup of Oolong</td><td class="zc">接機的第一杯烏龍茶</td><td class="gc">一</td><td class="gc">1</td><td class="gc">A1</td></tr>
+        <tr><td>Who's in the Photo?</td><td class="zc">照片牆上的人是誰</td><td class="gc">一</td><td class="gc">2</td><td class="gc">A1</td></tr>
+        <tr><td>Chasing the Garbage Truck</td><td class="zc">追垃圾車</td><td class="gc">二</td><td class="gc">7</td><td class="gc">A2</td></tr>
+        <tr><td>Fate, Fortune, Then Feng Shui</td><td class="zc">一命二運三風水</td><td class="gc">四</td><td class="gc">4</td><td class="gc">B1</td></tr>
+      </tbody>
+    </table>
+  </div></div>
+</div>
+
+<!-- 5 -->
+<div class="opt">
+  <div class="lab"><span class="n">5</span><span class="nm">Part columns</span><span class="why">pick a book, its three parts open as three columns of titles — a printed index, no gaps to fill</span></div>
+  <div class="screen"><div class="o5">
+    <div class="shelf">
+      <div class="spine sel" style="min-height:74px">第一冊<span class="lv">A1</span></div>
+      <div class="spine" style="min-height:74px">第二冊<span class="lv">A2</span></div>
+      <div class="spine" style="min-height:74px">第三冊<span class="lv">B1</span></div>
+      <div class="spine" style="min-height:74px">第四冊<span class="lv">B1</span></div>
+      <div class="spine dim" style="min-height:74px">第五冊<span class="lv">B1</span></div>
+    </div>
+    <div class="cols">
+      <div class="col sel"><h4>第一部分 <span class="rg">L1–5</span></h4>
+        <div class="ci"><i class="d dlg"></i><span class="t">The First Cup of Oolong</span></div>
+        <div class="ci"><i class="d dlg"></i><span class="t">Who's in the Photo?</span></div>
+        <div class="ci"><i class="d sty"></i><span class="t">Five of Us at Home</span></div>
+      </div>
+      <div class="col"><h4>第二部分 <span class="rg">L6–10</span></h4>
+        <div class="ci"><i class="d dlg"></i><span class="t">Sea in Front, Mountain Behind</span></div>
+        <div class="ci"><i class="d sty"></i><span class="t">Scooter to the MRT</span></div>
+        <div class="ci"><i class="d dlg"></i><span class="t">Taitung by the Sea</span></div>
+      </div>
+      <div class="col"><h4>第三部分 <span class="rg">L11–15</span></h4>
+        <div class="ci"><i class="d dlg"></i><span class="t">A Tour of the Studio</span></div>
+        <div class="ci"><i class="d slf"></i><span class="t">Chinese Isn't So Hard</span></div>
+        <div class="ci"><i class="d dlg"></i><span class="t">A Snowy Winter in New York</span></div>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<!-- 6 -->
+<div class="opt">
+  <div class="lab"><span class="n">6</span><span class="nm">Shelf → volume</span><span class="why">covers lead and fill the width; pick one to open its parts &amp; readings — progressive depth</span></div>
+  <div class="screen"><div class="o6">
+    <div class="grid">
+      <div class="cv sel"><span class="vt">第一冊</span><span class="lv">A1</span></div>
+      <div class="cv"><span class="vt">第二冊</span><span class="lv">A2</span></div>
+      <div class="cv"><span class="vt">第三冊</span><span class="lv">B1</span></div>
+      <div class="cv"><span class="vt">第四冊</span><span class="lv">B1</span></div>
+      <div class="cv dim"><span class="vt">第五冊</span><span class="lv">B1</span></div>
+    </div>
+    <div class="cap">Open 第一冊 → its three parts and reading list fill the next screen.</div>
+  </div></div>
+</div>
+
+</div>
+</body>
+</html>

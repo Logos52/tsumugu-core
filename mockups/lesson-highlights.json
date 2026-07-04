@@ -1,0 +1,2005 @@
+{
+  "_meta": {
+    "what": "Curated 'Highlights of Lessons' — title / theme / learning objectives / grammar points, keyed by unit (B1L01 .. B6L10). Drives the lesson viewer and any objective-shaped generation.",
+    "source": "Each book's textbook PDF front matter, 'Highlights of Lessons' table. CORRECTED 2026-07-01: B1=PDF p19; B3=PDF p19-23 (verified directly via Read tool pages= on the table images — the old 'p7' note was wrong, p7 is just the table of contents; raw-bN.txt's extract heuristic grabs the TOC hit, not the real table). B2 presumably also ~p19+ (its 15 lessons were already curated+verified separately). B4 = Highlights at PDF pp.20-21 (printed XVIII-XIX); NO text layer, vision-read off page images; L01-04 done; B5 page unverified — re-check before trusting 'p7'; B6 = textbook PDF absent from private/dangdai-pdfs/.",
+    "extract": "raw-bN.txt from extract_highlights.py is unreliable (locates the TOC, not the table) — go straight to Read tool with pages=19,20,21... on the real (non-Workbook) textbook PDF and verify the 'Highlights of Lessons' / 各課重點 banner before transcribing.",
+    "vocab_note": "Vocab is NOT here — it comes from the dangdai deck (private/dangdai-vocab/dangdai.csv) and already spans all 6 books (74 lessons).",
+    "grammar_shape": "Each grammar point: {title, g} plus a detector — m (single marker substring) | any (present if any listed) | re (regex, for two-blank patterns like 不但...還...) | pat ('anota' = A-not-A regex, 'v1v' = V-one-V regex).",
+    "verified": [
+      "B1L01",
+      "B1L02",
+      "B1L03",
+      "B1L07",
+      "B1L08",
+      "B1L09",
+      "B1L10",
+      "B1L11",
+      "B1L12",
+      "B1L13",
+      "B1L14",
+      "B1L15",
+      "B2L01",
+      "B2L02",
+      "B2L03",
+      "B2L04",
+      "B2L05",
+      "B2L06",
+      "B2L07",
+      "B2L08",
+      "B2L09",
+      "B2L10",
+      "B2L11",
+      "B2L12",
+      "B2L13",
+      "B2L14",
+      "B2L15",
+      "B3L01",
+      "B3L02",
+      "B3L03",
+      "B3L04",
+      "B3L05",
+      "B3L06",
+      "B3L07",
+      "B3L08",
+      "B3L09",
+      "B3L10",
+      "B3L11",
+      "B3L12",
+      "B4L01",
+      "B4L02",
+      "B4L03",
+      "B4L04"
+    ],
+    "todo": "Promote B4 (locate Highlights page) + B5 (re-verify page) from the textbook PDFs; obtain B6 textbook PDF. B1-B3 verified."
+  },
+  "B1L01": {
+    "title": "Welcome to Taiwan!",
+    "theme": "Introducing Myself",
+    "objectives": [
+      "Learning simple greetings.",
+      "Learning simple phrases to introduce people.",
+      "Learning simple phrases to discuss likes / dislikes.",
+      "Learning simple phrases to express gratitude."
+    ],
+    "grammar": [
+      {
+        "title": "A-not-A questions",
+        "pat": "anota",
+        "g": "neutral yes/no (要不要 · 是不是)"
+      },
+      {
+        "title": "Questions with 嗎",
+        "m": "嗎",
+        "py": "ma",
+        "g": "yes/no question particle"
+      },
+      {
+        "title": "Affirmative answers",
+        "m": "是的",
+        "py": "shìde",
+        "g": "repeat the verb · 是的"
+      },
+      {
+        "title": "Negative replies with 不",
+        "m": "不",
+        "py": "bù",
+        "g": "不 + verb"
+      },
+      {
+        "title": "Modification marker 很",
+        "m": "很",
+        "py": "hěn",
+        "g": "很 + stative verb"
+      },
+      {
+        "title": "Contrastive questions with 呢",
+        "m": "呢",
+        "py": "ne",
+        "g": "…呢？(and you?)"
+      }
+    ]
+  },
+  "B1L02": {
+    "title": "My Family",
+    "theme": "Family Members",
+    "objectives": [
+      "Learning to talk about people in my family and their names.",
+      "Learning to describe people, places, and possessions.",
+      "Learning to talk about the number of people in a family."
+    ],
+    "grammar": [
+      {
+        "title": "的 — possessive",
+        "m": "的",
+        "py": "de",
+        "g": "possessor 的 thing"
+      },
+      {
+        "title": "的 — modifier marker",
+        "m": "的",
+        "py": "de",
+        "g": "modifier 的 noun"
+      },
+      {
+        "title": "有 — possessive",
+        "m": "有",
+        "py": "yǒu",
+        "g": "有 · 有沒有 (A-not-A)"
+      },
+      {
+        "title": "都 — totality",
+        "m": "都",
+        "py": "dōu",
+        "g": "都 = all / both"
+      },
+      {
+        "title": "Measures 個 · 張",
+        "any": [
+          "個",
+          "張"
+        ],
+        "g": "number + measure + noun"
+      }
+    ]
+  },
+  "B1L03": {
+    "title": "What Are You Doing Over the Weekend?",
+    "theme": "Hobbies",
+    "objectives": [
+      "Learning to describe likes / dislikes (e.g., sports and movies).",
+      "Learning to express what two groups have in common.",
+      "Learning to politely ask others their opinions and make simple suggestions.",
+      "Learning to form choice questions."
+    ],
+    "grammar": [
+      {
+        "title": "Placement of time words",
+        "any": [
+          "今天",
+          "明天",
+          "晚上",
+          "早上",
+          "週末"
+        ],
+        "g": "time word after the subject"
+      },
+      {
+        "title": "去 + VP (go do something)",
+        "m": "去",
+        "py": "qù",
+        "g": "去 + verb phrase"
+      },
+      {
+        "title": "Topic sentences",
+        "any": [
+          "都"
+        ],
+        "g": "fronted topic resumed by 都"
+      },
+      {
+        "title": "Adverb order: 也 · 都 · 常",
+        "any": [
+          "也",
+          "都",
+          "常"
+        ],
+        "g": "adverbs sit before the verb"
+      },
+      {
+        "title": "Making suggestions with 吧",
+        "m": "吧",
+        "py": "ba",
+        "g": "…吧！(let's…)"
+      }
+    ]
+  },
+  "B1L04": {
+    "title": "Excuse Me. How Much Does That Cost in Total?",
+    "theme": "Shopping",
+    "objectives": [
+      "Learning to ask and talk about prices.",
+      "Learning to ask for reasons.",
+      "Learning to use simple phrases to describe the size and function of common objects."
+    ],
+    "grammar": [
+      {
+        "title": "Measures 塊 · 杯 · 支 · 種",
+        "any": [
+          "塊",
+          "杯",
+          "支",
+          "種"
+        ],
+        "g": "money/cups/phones/kinds"
+      },
+      {
+        "title": "Preposition 幫 (on behalf of)",
+        "m": "幫",
+        "py": "bāng",
+        "g": "幫 + person + V"
+      },
+      {
+        "title": "的 de-phrase, head noun omitted",
+        "m": "的",
+        "py": "de",
+        "g": "大的 / 便宜的 (the big one)"
+      },
+      {
+        "title": "太…了 (overly)",
+        "m": "太",
+        "py": "tài",
+        "g": "太 + Vs + 了"
+      },
+      {
+        "title": "能 néng (capability)",
+        "m": "能",
+        "py": "néng",
+        "g": "能 + V (be able to)"
+      },
+      {
+        "title": "多 (…and more)",
+        "m": "多",
+        "py": "duō",
+        "g": "多少 / Number + 多"
+      }
+    ]
+  },
+  "B1L05": {
+    "title": "Beef Noodles Are Really Delicious",
+    "theme": "Food and Drink",
+    "objectives": [
+      "Learning the names of common foods and describing their taste.",
+      "Learning to express likes for and make simple comments about food.",
+      "Learning to describe what somebody can / can't do and how well one does it.",
+      "Learning to ask for help."
+    ],
+    "grammar": [
+      {
+        "title": "有一點 (slightly)",
+        "m": "一點",
+        "py": "yìdiǎn",
+        "g": "有一點 + Vs (negative nuance)"
+      },
+      {
+        "title": "Complement marker 得",
+        "m": "得",
+        "py": "de",
+        "g": "V 得 + complement (how well)"
+      },
+      {
+        "title": "Acquired skills 會",
+        "m": "會",
+        "py": "huì",
+        "g": "會 + V (a learned skill)"
+      },
+      {
+        "title": "Destination marker 到",
+        "m": "到",
+        "py": "dào",
+        "g": "到 + place"
+      }
+    ]
+  },
+  "B1L06": {
+    "title": "Their School Is Up in the Mountains",
+    "theme": "Locations and Positions",
+    "objectives": [
+      "Learning to describe locations (e.g., near or far).",
+      "Learning to talk about place in the vicinity of other places.",
+      "Learning to make simple comments about the appearance of a place."
+    ],
+    "grammar": [
+      {
+        "title": "Locative marker 在",
+        "m": "在",
+        "py": "zài",
+        "g": "在 + place (located at)"
+      },
+      {
+        "title": "Existential sentence with 有",
+        "m": "有",
+        "py": "yǒu",
+        "g": "place + 有 + thing"
+      },
+      {
+        "title": "Softened action V (一) V",
+        "pat": "v1v",
+        "g": "找一找 / 看一看 (have a quick …)"
+      },
+      {
+        "title": "不是 negation",
+        "m": "不是",
+        "py": "búshì",
+        "g": "不是 … (it is not)"
+      },
+      {
+        "title": "Location of an activity 在…V",
+        "m": "在",
+        "py": "zài",
+        "g": "在 + place + V"
+      }
+    ]
+  },
+  "B1L07": {
+    "title": "Going to KTV at 9 O'clock in the Morning",
+    "theme": "Time (Time-When and Time-Duration) 時間（時點、時段）",
+    "objectives": [
+      "Learning to tell and ask about time.",
+      "Learning to describe an activity that takes place at a point in time (time-when) or during a certain frame (time-duration).",
+      "Learning to make appointments with friends.",
+      "Learning to talk about habitual activities."
+    ],
+    "grammar": [
+      {
+        "title": "從…到 — from A to B",
+        "m": "從"
+      },
+      {
+        "title": "在 — progressive / on-going action",
+        "m": "在"
+      },
+      {
+        "title": "每 — each and every",
+        "m": "每"
+      },
+      {
+        "title": "可以 — permission",
+        "m": "可以"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (markers loose where grammar is a high-freq function word)"
+  },
+  "B1L08": {
+    "title": "Taking a Train to Tainan",
+    "theme": "Transportation 交通工具",
+    "objectives": [
+      "Learning the names of different types of transportation and talking about getting to destinations.",
+      "Learning to talk about some one's plans for their free time.",
+      "Learning to make simple comparisons about various modes of transportation.",
+      "Learning to explain likes and dislikes."
+    ],
+    "grammar": [
+      {
+        "title": "跟 — companionship (with)",
+        "m": "跟"
+      },
+      {
+        "title": "怎麼 — asking how",
+        "m": "怎麼"
+      },
+      {
+        "title": "比較 — implicit comparison (relatively / -er)",
+        "m": "比較"
+      },
+      {
+        "title": "又…又… — both A and B",
+        "m": "又"
+      },
+      {
+        "title": "比 — explicit comparison (A 比 B + state verb)",
+        "m": "比"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (markers loose where grammar is a high-freq function word)"
+  },
+  "B1L09": {
+    "title": "Where Will You Go for the Holidays?",
+    "theme": "Leisure 休閒",
+    "objectives": [
+      "Learning to use time expressions to describe events.",
+      "Learning to discuss travel plans with friends.",
+      "Learning to talk about hypothetical situations.",
+      "Learning to give suggestions about leisure activities."
+    ],
+    "grammar": [
+      {
+        "title": "…的時候 — when (at the time of)",
+        "m": "的時候"
+      },
+      {
+        "title": "有時候…有時候… — sometimes…, and sometimes…",
+        "m": "有時候"
+      },
+      {
+        "title": "要是…就… — condition and consequence (if…then…)",
+        "m": "要是"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (markers loose where grammar is a high-freq function word)"
+  },
+  "B1L10": {
+    "title": "The Fruit in Taiwan Tastes Really Good",
+    "theme": "The Appearance of People and Things (Topic: 人或物件外貌)",
+    "objectives": [
+      "Learning to give simple descriptions of someone's appearance.",
+      "Learning to describe the color, smell, and taste of food.",
+      "Learning to briefly explain and give reasons.",
+      "Learning to describe tentative activities and changeable states."
+    ],
+    "grammar": [
+      {
+        "title": "VV看 — to try and see (tentative attempt)",
+        "any": [
+          "吃吃看",
+          "喝喝看",
+          "聽聽看",
+          "做做看",
+          "寫寫看",
+          "學學看",
+          "穿穿看",
+          "打打看",
+          "唱唱看",
+          "逛逛看",
+          "住住看",
+          "問問看",
+          "找找看"
+        ]
+      },
+      {
+        "title": "Change in Situation with Sentential 了",
+        "m": "了"
+      },
+      {
+        "title": "Cause and Effect with 因為…，所以…",
+        "any": [
+          "因為",
+          "所以"
+        ]
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (markers loose where grammar is a high-freq function word)"
+  },
+  "B1L11": {
+    "title": "I Would Like to Rent a Place",
+    "theme": "Renting a Place (Topic: 租房子)",
+    "objectives": [
+      "Learning to talk about renting a place to live.",
+      "Learning to talk about environment of a room or a house.",
+      "Learning to make requests, e.g., to one's landlord."
+    ],
+    "grammar": [
+      {
+        "title": "To Come to Do Something with 來 (來 + VP)",
+        "m": "來"
+      },
+      {
+        "title": "Sooner Than Expected with 就",
+        "m": "就"
+      },
+      {
+        "title": "Existential Subject with 有 (有 + indefinite NP + VP)",
+        "m": "有"
+      },
+      {
+        "title": "Different Types of 會 (acquired skill 會1 / likelihood 會2)",
+        "m": "會"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (markers loose where grammar is a high-freq function word)"
+  },
+  "B1L12": {
+    "title": "How Long Will You Be Studying Chinese in Taiwan?",
+    "theme": "Study, Work (Topic: 學習、工作)",
+    "objectives": [
+      "Learning to discuss study plans and future plans.",
+      "Learning to talk about sequences of events.",
+      "Learning to describe past actions and experience."
+    ],
+    "grammar": [
+      {
+        "title": "先…，再… — first…, and then… (event sequence)",
+        "m": "先"
+      },
+      {
+        "title": "以後 — after… / in the future",
+        "m": "以後"
+      },
+      {
+        "title": "Special Meanings of 好/難 + Verb (好 = easy/good-to, 難 = hard-to)",
+        "any": [
+          "好吃",
+          "難吃",
+          "好喝",
+          "難喝",
+          "好看",
+          "難看",
+          "好聽",
+          "難聽",
+          "好學",
+          "難學",
+          "好寫",
+          "難寫",
+          "好做",
+          "難做",
+          "好找",
+          "難找"
+        ]
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (markers loose where grammar is a high-freq function word)"
+  },
+  "B1L13": {
+    "title": "Happy Birthday",
+    "theme": "社交生活 Social Life",
+    "objectives": [
+      "Learning to make appointments on the phone.",
+      "Learning to ask friends about their dietary preferences.",
+      "Learning to compare cultures.",
+      "Learning to express wishes to others on special occasions and to respond appropriately when others offer you wishes on special occasions."
+    ],
+    "grammar": [
+      {
+        "title": "一…就 — as soon as",
+        "m": "就"
+      },
+      {
+        "title": "了 — completed action (verbal 了)",
+        "m": "了"
+      },
+      {
+        "title": "不 vs 沒 negation",
+        "any": [
+          "不",
+          "沒"
+        ]
+      },
+      {
+        "title": "Question words as all-inclusive (都/也)",
+        "m": "都"
+      },
+      {
+        "title": "多/少 + Verb — more/less than planned",
+        "any": [
+          "多",
+          "少"
+        ]
+      },
+      {
+        "title": "是不是 — confirmation question",
+        "m": "是不是"
+      },
+      {
+        "title": "跟…一樣 — equal comparison",
+        "m": "一樣"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (markers loose where grammar is a high-freq function word)"
+  },
+  "B1L14": {
+    "title": "It's So Cold!",
+    "theme": "天氣 The Weather",
+    "objectives": [
+      "Learning to talk about weather conditions, including typhoons.",
+      "Learning to talk about the four seasons and explain why you like or dislike them.",
+      "Learning to compare events.",
+      "Learning to make simple statements about experiences, e.g., trips."
+    ],
+    "grammar": [
+      {
+        "title": "V了 + time-duration",
+        "m": "了"
+      },
+      {
+        "title": "Double 了 — completion to date",
+        "m": "了"
+      },
+      {
+        "title": "快…了 — about to",
+        "m": "快"
+      },
+      {
+        "title": "比…更 — even more so",
+        "m": "更"
+      },
+      {
+        "title": "沒有…(那麼/這麼) — inferior comparison",
+        "m": "沒有"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (markers loose where grammar is a high-freq function word)"
+  },
+  "B1L15": {
+    "title": "I Don't Feel Well",
+    "theme": "生病 Falling Sick",
+    "objectives": [
+      "Learning to ask someone how they are feeling.",
+      "Learning to describe symptoms in simple terms.",
+      "Learning to give suggestions to somebody who is sick.",
+      "Learning to reject or accept suggestions."
+    ],
+    "grammar": [
+      {
+        "title": "Question words — non-committal stance",
+        "any": [
+          "什麼",
+          "哪裡",
+          "多少",
+          "幾"
+        ]
+      },
+      {
+        "title": "把 — disposal",
+        "m": "把"
+      },
+      {
+        "title": "V了…就 — right after doing",
+        "m": "就"
+      },
+      {
+        "title": "一點 — a bit",
+        "m": "一點"
+      },
+      {
+        "title": "V得…比 — comparing actions (得 complement)",
+        "m": "得"
+      },
+      {
+        "title": "Degree complements in comparison (一點/得多/多了)",
+        "any": [
+          "一點",
+          "得多",
+          "多了"
+        ]
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (markers loose where grammar is a high-freq function word)"
+  },
+  "B2L01": {
+    "title": "Excuse Me. How Do You Get to Shida?",
+    "theme": "問路 Asking Directions",
+    "objectives": [
+      "Learning to ask for directions.",
+      "Learning to talk about locations and give directions.",
+      "Learning to describe events that involve two concurrent actions.",
+      "Learning to express sensory feelings."
+    ],
+    "grammar": [
+      {
+        "title": "Going from / toward with 從 cóng…往 wǎng…",
+        "m": "往"
+      },
+      {
+        "title": "Judgmental V-起來 qǐlái (it's my assessment that…)",
+        "m": "起來"
+      },
+      {
+        "title": "Ongoing Action with 著 zhe",
+        "m": "著"
+      },
+      {
+        "title": "Two Simultaneous Actions with 一邊 yìbiān…一邊 yìbiān…",
+        "m": "一邊"
+      },
+      {
+        "title": "Distance from with 離 lí…",
+        "m": "離"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (Book 2)"
+  },
+  "B2L02": {
+    "title": "Take the MRT Instead!",
+    "theme": "交通 Transportation",
+    "objectives": [
+      "Learning to describe public transportation in Taiwan.",
+      "Learning to ask and answer questions about modes of transportation to designated places.",
+      "Learning to compare, explain, and choose suitable means of transportation.",
+      "Learning to express comparisons, warnings, and suggestions."
+    ],
+    "grammar": [
+      {
+        "title": "Emphatic Negation with 一點也不 yìdiǎn yě bù V…",
+        "m": "一點也不"
+      },
+      {
+        "title": "還是 háishì…吧 ba！ (it will be better if…)",
+        "m": "還是"
+      },
+      {
+        "title": "Form Adverbials with 一點 yìdiǎn (post-verbal, V Vs 一點)",
+        "m": "一點"
+      },
+      {
+        "title": "不太 bútài (not very)",
+        "m": "不太"
+      },
+      {
+        "title": "Locations with 部 bù / 邊 biān (directional locative suffix)",
+        "any": [
+          "部",
+          "邊"
+        ]
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (Book 2)"
+  },
+  "B2L03": {
+    "title": "Your Chinese Has Improved!",
+    "theme": "學習 Studying",
+    "objectives": [
+      "Learning to talk about past experiences.",
+      "Learning to talk about my language learning experience.",
+      "Learning to express my views on language learning.",
+      "Learning to talk about my daily schedule and what I do on holidays."
+    ],
+    "grammar": [
+      {
+        "title": "Various Functions of 差不多 chàbùduō",
+        "m": "差不多"
+      },
+      {
+        "title": "Experience Particle 過 guò",
+        "m": "過"
+      },
+      {
+        "title": "才 cái (merely, only)",
+        "m": "才"
+      },
+      {
+        "title": "想起來 xiǎng qǐlái (to have remembered)",
+        "m": "想起來"
+      },
+      {
+        "title": "Longer/Later Than Expected with 才 cái",
+        "m": "才"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (Book 2)"
+  },
+  "B2L04": {
+    "title": "I Work Part-time. I Teach French.",
+    "theme": "工作 Work",
+    "objectives": [
+      "Learning to talk about my education background and working experiences.",
+      "Learning to talk about the ideal job, its responsibilities and salary.",
+      "Learning to ask questions related to job responsibilities.",
+      "Learning to list at least two things or areas of expertise."
+    ],
+    "grammar": [
+      {
+        "title": "除了…，還… — in addition to…",
+        "m": "除了"
+      },
+      {
+        "title": "按照 ànzhào — in accordance with",
+        "m": "按照"
+      },
+      {
+        "title": "Various meanings of the preposition 跟 gēn (to/with/from)",
+        "m": "跟"
+      },
+      {
+        "title": "Various meanings of 給 gěi (to/for)",
+        "m": "給"
+      },
+      {
+        "title": "對 duì… — towards…",
+        "m": "對"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (Book 2)"
+  },
+  "B2L05": {
+    "title": "Attending a Wedding Reception",
+    "theme": "人際關係 Inter-personal Relationships",
+    "objectives": [
+      "Learning to understand Taiwanese wedding traditions.",
+      "Learning to describe the way people dress and appear at a wedding reception.",
+      "Learning to introduce people to others.",
+      "Learning to congratulate newlyweds."
+    ],
+    "grammar": [
+      {
+        "title": "還 hái — still / yet (situation unchanged)",
+        "m": "還"
+      },
+      {
+        "title": "Manner of an action with V 著 zhe (do B while doing A)",
+        "m": "著"
+      },
+      {
+        "title": "When A comes, then B… with 等 děng… 就 jiù…",
+        "m": "等"
+      },
+      {
+        "title": "While doing A, B happens — V 著 V 著，就…了",
+        "pat": "v1v"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (Book 2)"
+  },
+  "B2L06": {
+    "title": "I Plan to Move Closer to School",
+    "theme": "搬家 Moving Home",
+    "objectives": [
+      "Learning to talk about living environments.",
+      "Learning to talk about and negotiate rent.",
+      "Learning to describe moving objects.",
+      "Learning to ask and answer hypothetical questions."
+    ],
+    "grammar": [
+      {
+        "title": "Destination marker 到 dào (post-verbal V+到+place)",
+        "m": "到"
+      },
+      {
+        "title": "Indirect object marker 給 gěi (V+給+IO+DO)",
+        "m": "給"
+      },
+      {
+        "title": "Resultant location with V + 在 zài (post-verbal V+在+place)",
+        "m": "在"
+      },
+      {
+        "title": "Moving an object to a location with 把 bǎ (A 把 B V 到/在/給 Loc)",
+        "m": "把"
+      },
+      {
+        "title": "而且 érqiě — furthermore / and also",
+        "m": "而且"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (Book 2)"
+  },
+  "B2L07": {
+    "title": "The Garbage Truck Is Here!",
+    "theme": "居家環境 Living Environment",
+    "objectives": [
+      "Learning to express my views on new things and events.",
+      "Learning to express my understanding of cultural differences.",
+      "Learning to give advice and inform of possible consequences.",
+      "Learning to use directional verbs in expressions."
+    ],
+    "grammar": [
+      {
+        "title": "Directional Constructions V1V2 and V1V2V3",
+        "any": [
+          "出去",
+          "出來",
+          "進去",
+          "進來",
+          "上來",
+          "下來",
+          "上去",
+          "回去",
+          "回來",
+          "過去",
+          "過來",
+          "起來"
+        ]
+      },
+      {
+        "title": "把 bǎ with V1V2V3",
+        "m": "把"
+      },
+      {
+        "title": "Confrontation with 嗎 ma",
+        "m": "嗎"
+      },
+      {
+        "title": "Existential Sentences with Posture Verbs",
+        "any": [
+          "站著",
+          "坐著",
+          "躺著",
+          "跪著",
+          "蹲著",
+          "站了",
+          "坐了"
+        ]
+      },
+      {
+        "title": "為了 wèile in order to",
+        "m": "為了"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (Book 2)"
+  },
+  "B2L08": {
+    "title": "Learning Kungfu",
+    "theme": "休閒活動 Leisure Activities",
+    "objectives": [
+      "Learning how to talk about my hobbies.",
+      "Learning how to give and understand an invitation.",
+      "Learning how to accept or decline invitations.",
+      "Learning how to express how I feel."
+    ],
+    "grammar": [
+      {
+        "title": "見 jiàn as a Perceptual Result",
+        "m": "見"
+      },
+      {
+        "title": "懂 dǒng as a Cognitive Result",
+        "m": "懂"
+      },
+      {
+        "title": "會 huì as an Achievement Result",
+        "m": "會"
+      },
+      {
+        "title": "Potential Capability with -得 de- or -不 bù-",
+        "any": [
+          "看得懂",
+          "看不懂",
+          "聽得見",
+          "聽不見",
+          "起得來",
+          "起不來",
+          "學得會",
+          "學不會",
+          "想得起來",
+          "想不起來"
+        ]
+      },
+      {
+        "title": "Capability Complement 了 liǎo",
+        "any": [
+          "得了",
+          "不了"
+        ]
+      },
+      {
+        "title": "Vs + 得 de + complement (so...that...)",
+        "m": "得"
+      },
+      {
+        "title": "To Keep on Doing Something with 下去 xiàqù",
+        "m": "下去"
+      },
+      {
+        "title": "Completion of an Action with V + 完 wán",
+        "m": "完"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (Book 2)"
+  },
+  "B2L09": {
+    "title": "That City Is Really Beautiful",
+    "theme": "國家環境 National Environment",
+    "objectives": [
+      "Learning to compare two different places.",
+      "Learning to describe things I have seen in my travels.",
+      "Learning to express my understanding of cultural differences.",
+      "Learning to narrate unforgettable experiences or people."
+    ],
+    "grammar": [
+      {
+        "title": "All set and ready with Verb complement 好 hǎo",
+        "m": "好"
+      },
+      {
+        "title": "To be successful in... with Verb complement 到 dào",
+        "m": "到"
+      },
+      {
+        "title": "Comparison with 比起來 bǐ qǐlái",
+        "m": "比起來"
+      },
+      {
+        "title": "像 xiàng…一樣 yíyàng… is just like...",
+        "m": "一樣"
+      },
+      {
+        "title": "Adverbial Complements 極了 jí le, 得不得了 de bùdéliǎo, 得很 de hěn (terribly, extremely)",
+        "any": [
+          "極了",
+          "得不得了",
+          "得很"
+        ]
+      },
+      {
+        "title": "Verb complement 起 qǐ (to be able to afford)",
+        "any": [
+          "得起",
+          "不起"
+        ]
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (Book 2)"
+  },
+  "B2L10": {
+    "title": "Come to My Place to Make Dumplings",
+    "theme": "Socializing 交際",
+    "objectives": [
+      "Learning to explain how to make a dish.",
+      "Learning to talk about ingredients.",
+      "Learning to introduce the cuisines found in my country.",
+      "Learning to express surprise."
+    ],
+    "grammar": [
+      {
+        "title": "To figure out with the Complement 出來 chūlái",
+        "m": "出來"
+      },
+      {
+        "title": "Enough space to accommodate with Verb Complement 下 xià",
+        "any": [
+          "得下",
+          "不下"
+        ]
+      },
+      {
+        "title": "Disposal Construction 把 bǎ with Verb Reduplication 把…V(一)V",
+        "pat": "v1v"
+      },
+      {
+        "title": "Disposal Construction 把 bǎ with Resultative Complements",
+        "m": "把"
+      },
+      {
+        "title": "趁 chèn seize the moment",
+        "m": "趁"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (Book 2)"
+  },
+  "B2L11": {
+    "title": "Taiwan Really Has Lots of Fun Places",
+    "theme": "Traveling 旅行",
+    "objectives": [
+      "Learning to talk about travel plans.",
+      "Learning to talk about scenic spots, their locations, and surroundings.",
+      "Learning to describe the scenery and what is special about it.",
+      "Learning to express satisfaction and disappointment."
+    ],
+    "grammar": [
+      {
+        "title": "The Others 其他的 vs. Other 別的 vs. Another 另外的",
+        "any": [
+          "其他",
+          "別的",
+          "另外"
+        ]
+      },
+      {
+        "title": "Verb Classifiers 下 xià, 趟 tàng, 遍 biàn, 次 cì",
+        "any": [
+          "趟",
+          "遍",
+          "次",
+          "下"
+        ]
+      },
+      {
+        "title": "Expressing next in sequence with 然後 / 後來 / 以後",
+        "any": [
+          "然後",
+          "後來",
+          "以後"
+        ]
+      },
+      {
+        "title": "才 cái then and only then",
+        "m": "才"
+      },
+      {
+        "title": "Passive Sentences with 被 bèi",
+        "m": "被"
+      },
+      {
+        "title": "Verb Reduplication in V 了 le V",
+        "pat": "v1v"
+      },
+      {
+        "title": "Verb Particle (Complement) 上 shàng coming into contact",
+        "any": [
+          "愛上",
+          "看上",
+          "追上",
+          "穿上",
+          "寫上"
+        ]
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (Book 2)"
+  },
+  "B2L12": {
+    "title": "How to Have a Healthy Diet?",
+    "theme": "Food Culture 飲食文化",
+    "objectives": [
+      "Learning to talk about my eating habits and the eating customs in my country.",
+      "Learning to talk about the good and bad aspects of an event or situation.",
+      "Learning to give suggestions on healthy eating.",
+      "Learning to talk about the different flavors of food and how to make food."
+    ],
+    "grammar": [
+      {
+        "title": "讓 ràng to let someone do something",
+        "m": "讓"
+      },
+      {
+        "title": "快一點 kuài yìdiǎn hurry up",
+        "any": [
+          "快一點",
+          "快點"
+        ]
+      },
+      {
+        "title": "Verb Particle 起 qǐ to touch upon",
+        "any": [
+          "說起",
+          "談起",
+          "聊起",
+          "想起"
+        ]
+      },
+      {
+        "title": "只要 zhǐyào…就 jiù… as long as…",
+        "m": "只要"
+      },
+      {
+        "title": "越 yuè…越 yuè… the more…, the more…",
+        "m": "越"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (Book 2)"
+  },
+  "B2L13": {
+    "title": "I Lost My Cell Phone",
+    "theme": "網路與生活 The Internet and Life",
+    "objectives": [
+      "Learning to express and respond to dissuasion.",
+      "Learning to express the frequency of events.",
+      "Learning to offer solutions for problems.",
+      "Learning to make imperative and command statements."
+    ],
+    "grammar": [
+      {
+        "title": "Completion of Action with V + 過",
+        "m": "過"
+      },
+      {
+        "title": "Verb Particle 走 (away)",
+        "m": "走"
+      },
+      {
+        "title": "Imperative Sentences with 叫 (tell sb to do)",
+        "m": "叫"
+      },
+      {
+        "title": "別再…了 (stop doing it)",
+        "m": "別再"
+      },
+      {
+        "title": "Offering assurance with 會…的",
+        "re": "會.{1,12}的"
+      },
+      {
+        "title": "透過… (by means of)",
+        "m": "透過"
+      },
+      {
+        "title": "才…就… (only just…, and…already)",
+        "re": "才.{1,12}就"
+      },
+      {
+        "title": "Frequency with 每 + Time Expression",
+        "m": "每"
+      },
+      {
+        "title": "只有…才… (only if / cannot…unless)",
+        "re": "只有.{1,16}才"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (Book 2)"
+  },
+  "B2L14": {
+    "title": "I Am Going to Start Looking for a Job",
+    "theme": "未來計畫 Plans for the Future",
+    "objectives": [
+      "Learning to talk about my studies and lifestyle.",
+      "Learning to talk about my future and my plans for the future.",
+      "Learning to talk about my career plans and expectations.",
+      "Learning to talk about my friends' educational background and plans for the future."
+    ],
+    "grammar": [
+      {
+        "title": "就要…了 (will soon)",
+        "m": "就要"
+      },
+      {
+        "title": "說到 / 談到… (talking of / speaking of)",
+        "any": [
+          "說到",
+          "談到"
+        ]
+      },
+      {
+        "title": "對 A 有 B (to be B in/about A)",
+        "re": "對.{1,14}有"
+      },
+      {
+        "title": "連…都… (even)",
+        "re": "連.{1,14}[都也]"
+      },
+      {
+        "title": "不但…，而且… (not only…but also)",
+        "re": "不但.{1,20}而且"
+      },
+      {
+        "title": "Unintentional 把 construction",
+        "m": "把"
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (Book 2)"
+  },
+  "B2L15": {
+    "title": "Lunar New Year",
+    "theme": "節日 Holidays",
+    "objectives": [
+      "Learning to express welcome and carry on conversations with visiting guests.",
+      "Learning to explain Lunar New Year traditions.",
+      "Learning to say and understand Lunar New Year's greetings.",
+      "Learning to use complements to express the beginning or result of an action."
+    ],
+    "grammar": [
+      {
+        "title": "Post-verbal Preposition 到 (up to, till)",
+        "m": "到"
+      },
+      {
+        "title": "Manner 一 M 一 M (one at a time / one by one)",
+        "pat": "v1v"
+      },
+      {
+        "title": "Intensifying a State with 一 M 比 一 M (more and more X)",
+        "pat": "v1v"
+      },
+      {
+        "title": "Inchoative Meaning with 起來 (begin to)",
+        "m": "起來"
+      },
+      {
+        "title": "Four-Character Phrases 四字格 (大A大B / 有A有B)",
+        "any": [
+          "大吉大利",
+          "大魚大肉",
+          "大吵大鬧",
+          "大吃大喝",
+          "大紅大綠",
+          "有山有水",
+          "有名有姓",
+          "有說有笑",
+          "有吃有喝",
+          "有好有壞",
+          "步步高升",
+          "年年有餘",
+          "恭喜發財"
+        ]
+      }
+    ],
+    "_curated": "2026-07-01 agent-curated from PDF (Book 2)"
+  },
+  "B3L01": {
+    "title": "School Starts",
+    "theme": "校園生活 School Life",
+    "objectives": [
+      "Learning to discuss topics frequently encountered on campus.",
+      "Learning to discuss learning experiences in detail.",
+      "Learning to try to persuade others.",
+      "Learning to discuss school-related services and procedures."
+    ],
+    "grammar": [
+      {
+        "title": "…的話 dehuà — if, supposing",
+        "m": "的話"
+      },
+      {
+        "title": "不到 búdào — less than",
+        "m": "不到"
+      },
+      {
+        "title": "差一點（就）chàyìdiǎn — almost",
+        "any": [
+          "差一點",
+          "差點"
+        ]
+      },
+      {
+        "title": "恐怕 kǒngpà — probably, I'm afraid",
+        "m": "恐怕"
+      },
+      {
+        "title": "好不容易 hǎobùróngyì — finally managed to",
+        "any": [
+          "好不容易",
+          "好不簡單"
+        ]
+      },
+      {
+        "title": "Instantly without prior warning with 說…就… (說V就V)",
+        "re": "說(.{1,2})就\\1"
+      },
+      {
+        "title": "不管…都/也… bùguǎn — regardless of whether or not",
+        "re": "不管.{1,14}[都也]"
+      }
+    ],
+    "_curated": "2026-07-01 Opus-curated from PDF Book 3 (table pp.XVIII-XXIII, verified on images)"
+  },
+  "B3L02": {
+    "title": "Up to 20% Off",
+    "theme": "購物 Shopping",
+    "objectives": [
+      "Learning to talk about shopping.",
+      "Learning to understand simple regulations and contracts.",
+      "Learning to refute arguments.",
+      "Learning to offer clear reasons for why you like or dislike certain things."
+    ],
+    "grammar": [
+      {
+        "title": "一般來說 yìbān láishuō — generally speaking",
+        "m": "一般來說"
+      },
+      {
+        "title": "General Verb 弄 nòng — to do / handle / make",
+        "m": "弄"
+      },
+      {
+        "title": "再說 zàishuō — besides, moreover",
+        "m": "再說"
+      },
+      {
+        "title": "V + 成 chéng — to become, to turn into",
+        "re": "(變|換|改|分|當|看|說|做|寫|算|翻|拆|剪|切|搬|畫|包|捲|組|當)成"
+      },
+      {
+        "title": "Contrary to expectation with 並 bìng (並不/並沒)",
+        "re": "並[不沒]"
+      },
+      {
+        "title": "尤其（是）yóuqí — especially",
+        "m": "尤其"
+      },
+      {
+        "title": "Concession with 只好 zhǐhǎo — could only, have no choice but to",
+        "m": "只好"
+      }
+    ],
+    "_curated": "2026-07-01 Opus-curated from PDF Book 3 (table pp.XVIII-XXIII, verified on images)"
+  },
+  "B3L03": {
+    "title": "Did You Bring Your Coat?",
+    "theme": "氣候與節慶 Climate and Holidays",
+    "objectives": [
+      "Learning to describe changes in climate and weather.",
+      "Learning to talk about the seasons and activities particular to each.",
+      "Learning to talk about traditional Chinese New Year, Dragon Boat Festival, and Mid-Autumn Moon Festival customs.",
+      "Learning to read about the origins of important festivals."
+    ],
+    "grammar": [
+      {
+        "title": "受到（…的）影響 shòudào…yǐngxiǎng — to be influenced / affected by",
+        "m": "受到"
+      },
+      {
+        "title": "幸虧 xìngkuī — fortunately, luckily",
+        "any": [
+          "幸虧",
+          "幸好"
+        ]
+      },
+      {
+        "title": "算是 suànshì — can be considered",
+        "m": "算是"
+      },
+      {
+        "title": "是… (it is indeed true that…) — 的確 / 確實 / 真是",
+        "any": [
+          "的確",
+          "確實",
+          "倒是",
+          "還真",
+          "真是"
+        ]
+      },
+      {
+        "title": "難怪 nánguài — no wonder",
+        "m": "難怪"
+      },
+      {
+        "title": "A post-verbal intensifier 死了 sǐle — terribly",
+        "m": "死了"
+      },
+      {
+        "title": "幾乎 jīhū — almost",
+        "m": "幾乎"
+      },
+      {
+        "title": "多少 duōshǎo — somewhat",
+        "m": "多少"
+      },
+      {
+        "title": "再…也… zài…yě… — no matter how…, still…",
+        "re": "再.{1,12}也"
+      }
+    ],
+    "_curated": "2026-07-01 Opus-curated from PDF Book 3 (table pp.XVIII-XXIII, verified on images)"
+  },
+  "B3L04": {
+    "title": "I Love Taiwanese Hospitality",
+    "theme": "社會環境 Social Environment",
+    "objectives": [
+      "Learning to discuss with your friends leisure activities that you enjoy.",
+      "Learning to tell others about Taiwan's culture and provide travel information for different destinations.",
+      "Learning to emphasize, give examples, and provide further information.",
+      "Learning to talk about the unique characteristics and culture of small towns."
+    ],
+    "grammar": [
+      {
+        "title": "不但…還/也… búdàn…hái… — not only…, but also…",
+        "re": "不但.{1,20}[還也]"
+      },
+      {
+        "title": "Speak 說 shuō vs. Talk 談 tán",
+        "m": "談"
+      },
+      {
+        "title": "不是…而是… búshì…érshì… — not…; rather…",
+        "re": "不是.{1,20}而是"
+      },
+      {
+        "title": "從來 + negation cónglái — never",
+        "re": "從來[不沒]"
+      },
+      {
+        "title": "Various meanings of the verb 上 shàng",
+        "any": [
+          "上網",
+          "上班",
+          "上課",
+          "上車",
+          "上山",
+          "上來",
+          "上去",
+          "愛上",
+          "趕上",
+          "考上"
+        ]
+      },
+      {
+        "title": "非…不可 fēi…bùkě — it is imperative that…",
+        "re": "非.{1,12}不可"
+      },
+      {
+        "title": "對…來說 duì…láishuō — as far as… is concerned, for…",
+        "re": "對.{1,12}來說"
+      },
+      {
+        "title": "對…講究 duì…jiǎngjiu — to be discerning / particular about",
+        "m": "講究"
+      }
+    ],
+    "_curated": "2026-07-01 Opus-curated from PDF Book 3 (table pp.XVIII-XXIII, verified on images)"
+  },
+  "B3L05": {
+    "title": "What Are the Trends Now?",
+    "theme": "流行文化 Popular Culture",
+    "objectives": [
+      "Learning to talk about trends.",
+      "Learning to explain in detail the merits of your hobbies and activities.",
+      "Learning to provide various reasons refuting the views of others.",
+      "Learning to describe a live concert."
+    ],
+    "grammar": [
+      {
+        "title": "Verb plus complement V + 滿 mǎn — crowded / packed with",
+        "re": "(站|坐|擺|長|開|裝|塞|寫|住|掛|貼|堆|排|圍|擠|爬|住)滿"
+      },
+      {
+        "title": "Verb particle 出 chū — to have emerged",
+        "re": "(想|看|做|長|拿|認|聽|找|說|寫|畫|生|傳|冒|跳|走|選|挑|推|拉|搬|讀)出"
+      },
+      {
+        "title": "不如 bùrú — not as good as",
+        "m": "不如"
+      },
+      {
+        "title": "Urgent conditional with 再…就…了 zài…jiù…le",
+        "re": "再.{1,10}就.{1,10}了"
+      },
+      {
+        "title": "Verb particle 掉 diào — separated from / away",
+        "re": "(忘|丟|賣|關|去|改|戒|甩|擦|洗|拿|吃|喝|花|用|賠|跑|逃|壞|減|脫|刪|扔|倒|拆)掉"
+      },
+      {
+        "title": "居然 jūrán — to one's surprise",
+        "m": "居然"
+      },
+      {
+        "title": "Concession with 既然…（就）jìrán — since… (then)…",
+        "re": "既然.{1,20}[就也]"
+      },
+      {
+        "title": "V + 個不停 ge bùtíng — keep on V-ing",
+        "re": "個不停"
+      }
+    ],
+    "_curated": "2026-07-01 Opus-curated from PDF Book 3 (table pp.XVIII-XXIII, verified on images)"
+  },
+  "B3L06": {
+    "title": "Spending the Night in the Countryside",
+    "theme": "台灣農業 Taiwan's Agricultural Industry",
+    "objectives": [
+      "Learning to discuss the cultivation of agricultural crops.",
+      "Learning to explain your reasons for choosing something.",
+      "Learning to talk about changes in society, including values and lifestyle.",
+      "Learning to discuss food safety issues with friends."
+    ],
+    "grammar": [
+      {
+        "title": "因為…才… yīnwèi…cái… — only because…",
+        "re": "因為.{1,20}才"
+      },
+      {
+        "title": "Complaining with S1…不說，S2也… — not merely…, but also…",
+        "re": "不說.{1,20}也"
+      },
+      {
+        "title": "再加上 zài jiāshàng — furthermore",
+        "m": "再加上"
+      },
+      {
+        "title": "什麼…，就是… shénme…jiùshì… — everything but…",
+        "re": "什麼.{1,14}就是"
+      },
+      {
+        "title": "寧可…，也要… nìngkě…yěyào… — would rather…, in order to…",
+        "re": "寧可.{1,20}也"
+      },
+      {
+        "title": "像…的 + noun xiàng — such (nouns) as…",
+        "re": "像.{1,14}的"
+      },
+      {
+        "title": "一方面…，一方面… yìfāngmiàn — on the one hand…, on the other…",
+        "re": "一方面.{1,34}一方面"
+      },
+      {
+        "title": "隨著 S1…，S2也… suízhe — as a consequence of…",
+        "m": "隨著"
+      }
+    ],
+    "_curated": "2026-07-01 Opus-curated from PDF Book 3 (table pp.XVIII-XXIII, verified on images)"
+  },
+  "B3L07": {
+    "title": "My Closest 「Family」",
+    "theme": "家庭 Family",
+    "objectives": [
+      "Learning to talk about the merits and shortcomings of different family makeups.",
+      "Learning to describe in detail the various family makeups of your friends and relatives.",
+      "Learning to state reasons and arguments methodically and sum up your thoughts.",
+      "Learning to talk about the relationship between people and pets in modern society."
+    ],
+    "grammar": [
+      {
+        "title": "亂 + V luàn — to do something in an irresponsible manner",
+        "re": "亂(跑|叫|花|買|說|吃|丟|放|寫|畫|想|動|做|按|碰|摸|講|猜|配|穿|停)"
+      },
+      {
+        "title": "各 V 各的 gè V gè de — each doing his/her own…",
+        "re": "各.各的"
+      },
+      {
+        "title": "就算…，也… jiùsuàn…yě… — even if…, (still)…",
+        "re": "就算.{1,20}也"
+      },
+      {
+        "title": "因為 NP，S… yīnwèi — because of NP, S…",
+        "m": "因為"
+      },
+      {
+        "title": "一來…，二來… yìlái…èrlái… — on the one hand / first…, on the other / second…",
+        "re": "一來.{1,34}二來"
+      },
+      {
+        "title": "Repetitively, back and forth with V 來 V 去",
+        "re": "(.)來\\1去"
+      },
+      {
+        "title": "不再…了 búzài…le — not… any more",
+        "re": "不再.{1,14}了"
+      }
+    ],
+    "_curated": "2026-07-01 Opus-curated from PDF Book 3 (table pp.XVIII-XXIII, verified on images)"
+  },
+  "B3L08": {
+    "title": "I Just Want to Be Myself",
+    "theme": "教育 Education",
+    "objectives": [
+      "Learning to explain in detail classes that you are currently taking and your future plans.",
+      "Learning to talk about study and work experience.",
+      "Learning to discuss differences in traditional and modern ideas and values.",
+      "Learning the names of university departments and graduate school programs."
+    ],
+    "grammar": [
+      {
+        "title": "不是…就是… búshì…jiùshì… — if it's not…, then it's…",
+        "re": "不是.{1,20}就是"
+      },
+      {
+        "title": "算了 suànle — forget it, drop it",
+        "m": "算了"
+      },
+      {
+        "title": "這樣一來 zhèyàng yìlái — that being the case, that way",
+        "m": "這樣一來"
+      },
+      {
+        "title": "早就…了 zǎojiù…le — long since…",
+        "re": "早就.{1,14}了"
+      },
+      {
+        "title": "從…起 cóng…qǐ — starting from…",
+        "re": "從.{1,14}起"
+      },
+      {
+        "title": "卻 què — however, yet",
+        "m": "卻"
+      },
+      {
+        "title": "因為…而… yīnwèi…ér… — therefore, consequently",
+        "re": "因為.{1,20}而"
+      },
+      {
+        "title": "經過 jīngguò — after, through",
+        "m": "經過"
+      }
+    ],
+    "_curated": "2026-07-01 Opus-curated from PDF Book 3 (table pp.XVIII-XXIII, verified on images)"
+  },
+  "B3L09": {
+    "title": "The Age of Online Shopping",
+    "theme": "網路經濟 The Internet Economy",
+    "objectives": [
+      "Learning to talk about online shopping methods and processes.",
+      "Learning to explain the pros and cons of different shopping methods.",
+      "Learning to talk about traditional foods that best represent local cultures.",
+      "Learning to discuss product manufacturing, market share, and market ranking."
+    ],
+    "grammar": [
+      {
+        "title": "靠 kào — to rely on, by means of",
+        "m": "靠"
+      },
+      {
+        "title": "既…又… jì…yòu… — not merely…, but… as well",
+        "re": "既.{1,14}又"
+      },
+      {
+        "title": "…以內 yǐnèi — within…",
+        "m": "以內"
+      },
+      {
+        "title": "占 zhàn — to constitute, to make up",
+        "any": [
+          "占",
+          "佔"
+        ]
+      },
+      {
+        "title": "（在）NP 上 — regarding NP / in the realm of NP",
+        "re": "(網路|網|世界|理論|實際|基本|事實|歷史|市場|數字|表面|身|手|報|書|電視|手機|價格|品質|生活)上"
+      },
+      {
+        "title": "給…帶來 gěi…dàilái — to bring… to…",
+        "re": "給.{1,14}帶來"
+      },
+      {
+        "title": "結果 jiéguǒ — consequently, in the end",
+        "m": "結果"
+      }
+    ],
+    "_curated": "2026-07-01 Opus-curated from PDF Book 3 (table pp.XVIII-XXIII, verified on images)"
+  },
+  "B3L10": {
+    "title": "I'm Staying in the Hospital",
+    "theme": "醫療保健 Health Care",
+    "objectives": [
+      "Learning to describe what happened in an automobile accident.",
+      "Learning to explain injuries and discuss treatment with doctors.",
+      "Learning to discuss issues related to cosmetic surgery.",
+      "Learning to provide data and real-life examples supporting your views."
+    ],
+    "grammar": [
+      {
+        "title": "Introducing a new topic with 至於… zhìyú — as to, as far as… is concerned",
+        "m": "至於"
+      },
+      {
+        "title": "看 kàn — depends on (要看 / 得看 / 就看)",
+        "any": [
+          "要看",
+          "得看",
+          "就看",
+          "看情況",
+          "看你",
+          "看天氣"
+        ]
+      },
+      {
+        "title": "一向 yíxiàng — all along, has always…",
+        "m": "一向"
+      },
+      {
+        "title": "拿…來說 ná…láishuō — take… as an example",
+        "re": "拿.{1,14}來說"
+      },
+      {
+        "title": "Passive sentences with 受 shòu (受傷 / 受影響 / 受不了)",
+        "any": [
+          "受傷",
+          "受不了",
+          "受歡迎",
+          "受影響",
+          "受感動",
+          "受了傷",
+          "受到"
+        ]
+      },
+      {
+        "title": "動不動就… dòngbudòng jiù — to do something impetuously / at the slightest provocation",
+        "m": "動不動"
+      }
+    ],
+    "_curated": "2026-07-01 Opus-curated from PDF Book 3 (table pp.XVIII-XXIII, verified on images)"
+  },
+  "B3L11": {
+    "title": "The Story of Taiwan",
+    "theme": "歷史 History",
+    "objectives": [
+      "Learning to understand stories on the history of Taiwan.",
+      "Learning to give a rough introduction of your own country's history.",
+      "Learning to discuss the relationship between food and culture.",
+      "Learning to explain the origins and narrate the details of an event."
+    ],
+    "grammar": [
+      {
+        "title": "到底 dàodǐ — after all? how on earth…?",
+        "m": "到底"
+      },
+      {
+        "title": "甚至 shènzhì — even",
+        "m": "甚至"
+      },
+      {
+        "title": "這麼說 zhème shuō — that being the case, in that case",
+        "m": "這麼說"
+      },
+      {
+        "title": "跟 B 有關的 A — A is related to B",
+        "m": "有關"
+      },
+      {
+        "title": "不得不 bùdébù — have no choice but to",
+        "m": "不得不"
+      },
+      {
+        "title": "以及 yǐjí — as well as",
+        "m": "以及"
+      }
+    ],
+    "_curated": "2026-07-01 Opus-curated from PDF Book 3 (table pp.XVIII-XXIII, verified on images)"
+  },
+  "B3L12": {
+    "title": "I'm Going to Cast My Vote",
+    "theme": "政治 Politics",
+    "objectives": [
+      "Learning to discuss issues related to elections for elected representatives.",
+      "Learning to analyze logic and offer various possibilities.",
+      "Learning to express your views and reasons for opposing something.",
+      "Learning to introduce candidates and their experience in politics."
+    ],
+    "grammar": [
+      {
+        "title": "只不過…（而已）zhǐ búguò — merely…; nothing more than…",
+        "m": "只不過"
+      },
+      {
+        "title": "Introducing an agent with 由 yóu",
+        "re": "由.{1,10}(負責|決定|舉辦|主辦|處理|完成|選出|提供|組成|擔任|管理|主持|來)"
+      },
+      {
+        "title": "難道… nándào — how could it possibly be true…?",
+        "m": "難道"
+      },
+      {
+        "title": "To reach a ceiling with 滿 mǎn (年滿 / 未滿 / 滿…歲)",
+        "re": "(年滿|未滿|滿了|坐滿|站滿|擠滿|住滿|裝滿|滿.{0,1}歲|滿.{0,1}年|滿.{0,1}個月|滿.{0,1}票)"
+      },
+      {
+        "title": "Beneficiary marker 為 wèi (為…服務 / 為…著想)",
+        "re": "為.{1,8}(服務|著想|付出|爭取|犧牲|努力|加油|打拼|做事|投票|拉票|站台)"
+      },
+      {
+        "title": "（在）…方面 fāngmiàn — with respect to; regarding",
+        "m": "方面"
+      }
+    ],
+    "_curated": "2026-07-01 Opus-curated from PDF Book 3 (table pp.XVIII-XXIII, verified on images)"
+  },
+  "B4L01": {
+    "title": "Seventeen or Twenty-five?",
+    "theme": "網路 The Internet",
+    "objectives": [
+      "Learning to discuss the difference between the real and the virtual.",
+      "Learning to discuss the different online traps found in various places.",
+      "Learning to discuss the functions of the internet.",
+      "Learning to discuss ways to relieve stress."
+    ],
+    "grammar": [
+      {
+        "title": "與其 A…不如 B… yǔqí — B rather than A",
+        "re": "與其.{1,24}不如"
+      },
+      {
+        "title": "就 jiù — on the contrary",
+        "m": "就"
+      },
+      {
+        "title": "A summary of the various usages of 就 jiù",
+        "m": "就"
+      },
+      {
+        "title": "別說 A，就是 B 也… biéshuō — never mind A, even B is the case…",
+        "re": "別說.{1,24}也"
+      },
+      {
+        "title": "簡直 jiǎnzhí — to put it simply / it seems as if",
+        "m": "簡直"
+      },
+      {
+        "title": "不至於 búzhìyú — would not be so bad as to…",
+        "m": "不至於"
+      },
+      {
+        "title": "往往 wǎngwǎng — usually, tend to",
+        "m": "往往"
+      },
+      {
+        "title": "Do something just for fun — V 著玩 zhe wán",
+        "re": "著玩"
+      }
+    ],
+    "_curated": "2026-07-01 Opus-curated from PDF Book 4 pp.XVIII-XIX (no text layer — vision-read off page images)"
+  },
+  "B4L02": {
+    "title": "A Feast for the Eyes and Ears",
+    "theme": "藝術活動 Arts Activities",
+    "objectives": [
+      "Learning to discuss types of arts activities with classmates.",
+      "Learning to discuss what to be mindful of when attending events.",
+      "Learning to introduce the activities people in your own country commonly take part in.",
+      "Learning to introduce the arts activities you enjoy."
+    ],
+    "grammar": [
+      {
+        "title": "Verb complement 成 chéng — successful(ly)",
+        "re": "(辦|談|做|促|寫|畫|拍|建|蓋|練|換|養|當|完|學|租|買|賣|組|裝|合)成"
+      },
+      {
+        "title": "萬一 wànyī — supposing, in the event of something negative",
+        "m": "萬一"
+      },
+      {
+        "title": "以為 yǐwéi — to have wrongly thought that…",
+        "m": "以為"
+      },
+      {
+        "title": "Adverb 可 kě — emphatic (可真 / 可別 / 可不是)",
+        "re": "可(真|別|不是?|好|得|要|算)"
+      },
+      {
+        "title": "免得 miǎnde — lest, so as to avoid",
+        "m": "免得"
+      },
+      {
+        "title": "曾經 céngjīng — experience in the past, V'ed before",
+        "m": "曾經"
+      },
+      {
+        "title": "Enumeration particle 等 děng — etc.",
+        "m": "等"
+      },
+      {
+        "title": "Marking a verb with the particle 所 suǒ (所 + V + 的)",
+        "re": "所.{1,3}的"
+      }
+    ],
+    "_curated": "2026-07-01 Opus-curated from PDF Book 4 pp.XVIII-XIX (no text layer — vision-read off page images)"
+  },
+  "B4L03": {
+    "title": "Cloud Technology",
+    "theme": "科技 Technology",
+    "objectives": [
+      "Learning to introduce the changes brought about by technology.",
+      "Learning to talk about your own experience using cloud technology.",
+      "Learning to explain how you make use of technology.",
+      "Learning to discuss the positive and negative impacts of technology with others."
+    ],
+    "grammar": [
+      {
+        "title": "何必 hébì — why must",
+        "m": "何必"
+      },
+      {
+        "title": "不見得 bújiànde — not necessarily",
+        "m": "不見得"
+      },
+      {
+        "title": "嘛 ma — isn't it obvious that…",
+        "m": "嘛"
+      },
+      {
+        "title": "Verb particle 慣 guàn — accustomed to V-ing",
+        "re": "(用|住|穿|吃|看|聽|過|做|寫|走|睡|喝|玩|開)(不|得)?慣"
+      },
+      {
+        "title": "Verb complement 動 dòng — capable of causing movement",
+        "re": "(搬|拿|提|抬|推|拉|走|跑|背|扛|抱|帶|買|吃|喝|追)(得|不)動"
+      },
+      {
+        "title": "無形中 wúxíngzhōng — without knowing it",
+        "m": "無形中"
+      },
+      {
+        "title": "此外 cǐwài — in addition, furthermore",
+        "m": "此外"
+      },
+      {
+        "title": "總而言之 zǒng'éryánzhī — in short",
+        "any": [
+          "總而言之",
+          "總之"
+        ]
+      }
+    ],
+    "_curated": "2026-07-01 Opus-curated from PDF Book 4 pp.XVIII-XIX (no text layer — vision-read off page images)"
+  },
+  "B4L04": {
+    "title": "Where Should the Bed Go?",
+    "theme": "風水 Feng Shui",
+    "objectives": [
+      "Learning to describe the arrangement of a home.",
+      "Learning to briefly explain what feng shui is.",
+      "Learning to discuss superstition and state your own views.",
+      "Learning to discuss the relationship and differences between feng shui and superstition."
+    ],
+    "grammar": [
+      {
+        "title": "總算 zǒngsuàn — finally, speaking roughly",
+        "m": "總算"
+      },
+      {
+        "title": "還不就是 hái bù jiùshì — nothing more than",
+        "re": "(還不就是|不就是)"
+      },
+      {
+        "title": "Outright denial with 才 cái (才不…)",
+        "re": "才不"
+      },
+      {
+        "title": "A summary of the various usages of 才 cái",
+        "m": "才"
+      },
+      {
+        "title": "所謂（的）A 是指 B suǒwèi — so-called A refers to B",
+        "m": "所謂"
+      },
+      {
+        "title": "一口氣 yìkǒuqì — in one breath / all at once",
+        "m": "一口氣"
+      },
+      {
+        "title": "光 A 就… guāng — just A alone…",
+        "re": "光.{1,14}就"
+      },
+      {
+        "title": "Expressing displeasure or annoyance with 都 dōu (都…了)",
+        "re": "都.{1,8}了"
+      }
+    ],
+    "_curated": "2026-07-01 Opus-curated from PDF Book 4 pp.XVIII-XIX (no text layer — vision-read off page images)"
+  }
+}

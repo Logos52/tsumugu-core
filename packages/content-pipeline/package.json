@@ -1,0 +1,31 @@
+{
+  "name": "content-pipeline",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Fail-closed prose QA gate (reading_checks) for Tsumugu Core.",
+  "exports": {
+    ".": "./src/readingChecks.ts",
+    "./lessonTarget": "./src/lessonTarget.ts",
+    "./hanviet": "./src/hanviet.ts"
+  },
+  "bin": {
+    "reading-checks": "./src/cli.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsc -b",
+    "reading-checks": "tsx src/cli.ts"
+  },
+  "dependencies": {
+    "@tsumugu/engine": "workspace:*",
+    "@tsumugu/gen-qa": "workspace:*",
+    "opencc-js": "^1.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

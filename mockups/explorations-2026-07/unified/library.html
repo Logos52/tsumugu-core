@@ -1,0 +1,544 @@
+<!doctype html>
+<!--
+  ════════════════════════════════════════════════════════════════════════════
+  Bound Volume convergence · unified pages — library.html
+  Tsumugu Core, 2026-07-02 (owner-decided direction, refined)
+  ════════════════════════════════════════════════════════════════════════════
+
+  FUSION RECIPE
+  ─ 課本架 Companion layout + obi band + header bones .......... 冊 Bound Volume
+  ─ reader typography / ruby / status / word popup / wash ...... 染 Rǎn Resist Dye
+  ─ border-glow recipe (box-shadow quality only) .............. 一盞 One Lamp
+  ─ Verdigris accent (candidate D) ........................... 冊 Green Studies
+  The Reading Wall is scrapped. In its place: a dense, sortable spreadsheet of
+  the catalog. Non-green colours are faded one step toward minimal; the green
+  is the only saturated colour on the page.
+
+  TOKEN TABLE (binding)
+                    light                         dark
+    bg              #FBFBF9                       #141613  (Bound Volume green-black)
+    surface         #FFFFFF                       #1B1E19
+    ink             #1D1B17                       #E9E7DF
+    muted           #6A655A                       #A8A294
+    faint           #757060 (AA-adj)              #857F6E
+    border          #ECEAE4                       #2A2D26
+    accent  (green) #3B8577  on #F2FBF9           #77C6B3  on #0B1713
+    accent-text     #38806F (AA small text)       #77C6B3  (same as accent)
+      wash          rgba(59,133,119,.07)          rgba(119,198,179,.10)
+      halo (glow)   rgba(59,133,119,.11)          rgba(119,198,179,.17)
+    kraft (faded)   #CDC9BF                       #57544B
+    obi ground      #F5F4F0                       #20231E
+    new  (clay)     #B26179 solid                 #C98BA0
+    learning(amber) #B08942 dotted (AA)           #C9A25E
+    known           no mark · dimmed ruby
+    TYPE  reader prose = LXGW WenKai TC · display/titles/obi = Noto Serif TC
+          chrome/ruby/Viet = Inter
+
+  LOOK FIRST
+    1. The 課本架 Companion shelf opens as the primary view (B2 open, L07 in
+       progress), restyled to the muted tokens.
+    2. The Continue strip: one quiet row with a barely-there green border glow.
+    3. The catalog spreadsheet: click any column header to sort (asc → desc →
+       shelf order). Thin hairline rules, one fact per row (新 count), no zebra.
+    4. Bottom: 卡 Card studies — planned picture-card mockups, some lit.
+  ════════════════════════════════════════════════════════════════════════════
+-->
+<html lang="zh-Hant" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* set theme before first paint so a returning dark-mode visitor gets no light flash (FOUC) */
+(function(){try{var t=localStorage.getItem("tsu-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Tsumugu 紡 · 課本架 Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/style.css" rel="stylesheet">
+<style>
+/* ═══════════ tokens ═══════════ */
+:root{
+  color-scheme:light;
+  --f-read:"LXGW WenKai TC","Kaiti TC","Songti TC","Noto Serif TC",serif;
+  --f-disp:"Noto Serif TC","Songti TC","Kaiti TC",serif;
+  --f-ui:"Inter","Be Vietnam Pro",-apple-system,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+  --bg:#FBFBF9; --surface:#FFFFFF; --ink:#1D1B17; --muted:#6A655A; --faint:#757060;
+  --border:#ECEAE4; --line:#F0EEE9;
+  --kraft:#CDC9BF;
+  --obi-bg:#F5F4F0; --obi-ink:#6A655A;
+  --g:#3B8577; --g-text:#38806F; --on-g:#F2FBF9; --g-wash:rgba(59,133,119,.07); --halo:rgba(59,133,119,.11);
+  --new:#B26179; --learn:#B08942;
+  --rt:#6E6A5E; --rt-dim:#B7B2A6;
+  --shadow:0 1px 2px rgba(29,27,23,.05), 0 8px 26px rgba(29,27,23,.05);
+}
+[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#141613; --surface:#1B1E19; --ink:#E9E7DF; --muted:#A8A294; --faint:#857F6E;
+  --border:#2A2D26; --line:#23261F;
+  --kraft:#57544B;
+  --obi-bg:#20231E; --obi-ink:#A8A294;
+  --g:#77C6B3; --g-text:#77C6B3; --on-g:#0B1713; --g-wash:rgba(119,198,179,.10); --halo:rgba(119,198,179,.17);
+  --new:#C98BA0; --learn:#C9A25E;
+  --rt:#9A9482; --rt-dim:#6B6656;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+}
+
+/* ═══════════ base ═══════════ */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--g);outline-offset:2px;border-radius:4px}
+button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+[hidden]{display:none!important}
+
+/* ═══════════ shared header ═══════════ */
+.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.top .in{max-width:1240px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .seal{width:28px;height:28px;border-radius:8px;background:var(--g);color:var(--on-g);font-family:var(--f-read);font-weight:700;font-size:17px;display:grid;place-items:center;box-shadow:0 0 10px var(--halo)}
+.brand .word{font-family:var(--f-disp);font-weight:700;font-size:17px;letter-spacing:.01em}
+.nav{display:flex;gap:2px;margin-left:6px}
+.nav a{padding:6px 13px;border-radius:8px;font-size:13.5px;font-weight:500;color:var(--muted);display:flex;align-items:baseline;gap:5px}
+.nav a .en{font-size:12px;color:var(--faint)}
+.nav a:hover{color:var(--ink);background:var(--line)}
+.nav a[aria-current="page"]{color:var(--g-text);background:var(--g-wash)}
+.nav a[aria-current="page"] .en{color:var(--g-text)}
+.top .grow{flex:1}
+.khint{font-size:12px;color:var(--faint);border:1px solid var(--border);border-radius:8px;padding:5px 10px;white-space:nowrap}
+.khint kbd{font-family:var(--f-ui);font-weight:600;color:var(--muted)}
+.khint:hover{color:var(--muted);border-color:var(--kraft)}
+.theme{width:32px;height:32px;border:1px solid var(--border);border-radius:8px;font-size:14px;color:var(--muted);display:grid;place-items:center}
+.theme:hover{color:var(--ink);border-color:var(--kraft)}
+
+main{max-width:1240px;margin:0 auto;padding:24px 24px 72px}
+
+/* ═══════════ obi band (signature) ═══════════ */
+.obi{font-family:var(--f-disp);font-size:12.5px;color:var(--obi-ink);background:var(--obi-bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:7px 15px;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.obi b{font-weight:600}
+
+/* ═══════════ ruby + status (shared) ═══════════ */
+ruby{ruby-position:over}
+rt{font-family:var(--f-ui);font-weight:400;font-size:.42em;letter-spacing:.02em;color:var(--rt)}
+.w{cursor:pointer;border-radius:3px}
+.w:hover{background:var(--g-wash)}
+.w.k rt{color:var(--rt-dim);opacity:.75}
+.w.n{border-bottom:2.5px solid var(--new);padding-bottom:1px}
+.w.n rt{color:var(--rt)}
+.w.l{border-bottom:2px dotted var(--learn);padding-bottom:1px}
+
+/* ═══════════ glow (scarce, information-bearing) ═══════════ */
+.glow{box-shadow:0 0 0 1px var(--halo), 0 12px 46px -26px var(--halo)}
+
+/* ═══════════ masthead ═══════════ */
+.masthead{margin:4px 0 24px}
+.masthead p{margin:0;font-size:14px;color:var(--muted)}
+.masthead p b{font-weight:600;color:var(--ink)}
+
+/* ═══════════ section head ═══════════ */
+.sec-head{display:flex;align-items:baseline;gap:12px;margin:0 0 14px}
+.sec-head h2{font-family:var(--f-disp);font-weight:700;font-size:20px;margin:0}
+.sec-en{font-size:13px;color:var(--faint)}
+.sec-cnt{margin-left:auto;font-size:12.5px;color:var(--muted)}
+
+/* ═══════════ continue strip ═══════════ */
+.continue{margin-bottom:32px}
+.cont-card{position:relative;display:block;background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.cont-card:hover{border-color:var(--kraft)}
+.cont-row{display:flex;align-items:center;gap:24px;padding:18px 20px 16px}
+.cont-main{flex:1;min-width:0}
+.cont-top{display:flex;align-items:baseline;gap:10px;margin-bottom:9px}
+.cont-zh{font-family:var(--f-disp);font-weight:700;font-size:17px}
+.cont-en{font-size:12.5px;color:var(--faint)}
+.cont-pos{margin-left:auto;font-size:12.5px;color:var(--muted);font-family:var(--f-disp)}
+.cont-ex{font-family:var(--f-read);font-size:19px;line-height:2.05;margin:0;color:var(--ink)}
+.cont-ex rt{font-size:.5em}
+.cont-go{flex:0 0 auto;align-self:center;background:var(--g);color:var(--on-g);border-radius:9px;padding:9px 18px;font-weight:600;font-size:13.5px;white-space:nowrap}
+.cont-go .en{font-weight:500;opacity:.85;margin-left:4px;font-size:12px}
+.cont-card .obi{display:block;border-bottom:none}
+
+/* ═══════════ companion shelf ═══════════ */
+.selvage{margin-bottom:42px}
+.shelf{display:flex;gap:20px;align-items:stretch;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.spines{display:flex;gap:8px}
+.spine{width:54px;border:1px solid var(--border);border-radius:5px 5px 3px 3px;background:var(--surface);display:flex;flex-direction:column;align-items:center;padding:12px 0 8px;gap:8px;position:relative}
+.spine:hover{border-color:var(--kraft)}
+.spine .vt{writing-mode:vertical-rl;font-family:var(--f-disp);font-weight:500;font-size:15px;letter-spacing:.18em;color:var(--muted);flex:1}
+.spine .no{font-size:11px;color:var(--faint)}
+.spine.open{border-color:var(--g)}
+.spine.open .vt{color:var(--ink)}
+.spine.open::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--g);border-radius:4px 4px 0 0}
+.lessons{flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(214px,1fr));gap:14px;align-content:start}
+.lcard{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.lcard.now{border-color:var(--g)}
+.lc-body{padding:13px 15px 11px;flex:1}
+.lcard h3{font-family:var(--f-disp);font-weight:700;font-size:16px;margin:0 0 8px}
+.lcard h3 .en{font-weight:400;font-size:12px;color:var(--faint);margin-left:6px}
+.lrow{display:flex;gap:8px;font-size:12.5px;color:var(--muted);padding:2.5px 0}
+.lrow.link{cursor:pointer}
+.lrow .fmtg{font-family:var(--f-disp);color:var(--ink)}
+.lrow .st{margin-left:auto;color:var(--faint)}
+.lrow .st.here{color:var(--g-text);font-weight:600}
+.lcard .obi{border-bottom:none;margin-top:2px}
+.shelf-note{font-size:12.5px;color:var(--faint);margin-top:12px}
+
+/* ═══════════ catalog spreadsheet ═══════════ */
+.catalog-sec{margin-bottom:46px}
+.cat-hint{font-size:12.5px;color:var(--muted);margin:0 0 12px}
+.cat-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:12px}
+table.catalog{width:100%;border-collapse:collapse;font-size:12.5px;min-width:760px}
+.catalog thead th{text-align:left;font-weight:600;color:var(--muted);padding:9px 13px;border-bottom:1px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none;background:var(--surface)}
+.catalog thead th.nosort{cursor:default;text-align:center;color:var(--faint)}
+.catalog thead th.num{text-align:right}
+.catalog thead th .hen{font-weight:400;color:var(--faint);font-size:11px;margin-left:4px}
+.catalog thead th .ind{color:var(--g-text);font-size:11px;margin-left:3px}
+.catalog thead th[aria-sort="ascending"],
+.catalog thead th[aria-sort="descending"]{color:var(--g-text)}
+.catalog thead th:hover{color:var(--ink)}
+.catalog thead th.nosort:hover{color:var(--faint)}
+.catalog tbody td{padding:8px 13px;border-bottom:1px solid var(--line);vertical-align:baseline}
+.catalog tbody tr:last-child td{border-bottom:none}
+.catalog .grp td{background:var(--obi-bg);font-family:var(--f-disp);font-weight:600;font-size:12px;color:var(--muted);padding:7px 13px;letter-spacing:.02em}
+.catalog tbody.sorted .grp{display:none}
+/* excerpt cell: no hard clip (marked word must never be cut); nowrap keeps one calm line.
+   Marked new/learning words carry compact ruby + underline, same excerpt-is-the-sell
+   pattern as the continue strip and picture cards. */
+.cat-first{font-family:var(--f-read);font-size:14px;color:var(--ink);white-space:nowrap}
+.cat-first ruby{ruby-position:over}
+.cat-first rt{font-family:var(--f-ui);font-weight:400;font-size:.44em;color:var(--rt);letter-spacing:.02em}
+.cat-first .mn{border-bottom:2px solid var(--new)}
+.cat-first .ml{border-bottom:1.5px dotted var(--learn)}
+.cat-lesson{font-family:var(--f-disp);color:var(--muted);white-space:nowrap}
+.cat-fmt{font-family:var(--f-disp);color:var(--ink);white-space:nowrap}
+.cat-band{color:var(--muted)}
+.catalog td.num{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.cat-resume{text-align:center;color:var(--g-text);font-weight:600;white-space:nowrap;font-family:var(--f-disp)}
+.catalog tbody tr.rd:hover td{background:var(--g-wash)}
+.catalog tbody tr.rd.here .cat-first{color:var(--ink)}
+
+/* ═══════════ card studies ═══════════ */
+.cards-sec{margin-top:6px}
+.cards-fact{font-size:12.5px;color:var(--muted);margin:0 0 16px}
+.cardrow{display:grid;grid-template-columns:repeat(auto-fill,minmax(244px,1fr));gap:16px}
+.pcard{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.pcard-img{aspect-ratio:16/10;background:var(--obi-bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border-bottom:1px solid var(--border);color:var(--faint)}
+.pcard-img .mk{font-family:var(--f-disp);font-size:22px}
+.pcard-img .mklab{font-size:10.5px;letter-spacing:.08em}
+.pcard-body{padding:14px 16px 4px;flex:1}
+.pcard-ex{font-family:var(--f-read);font-size:17px;line-height:2.05;margin:0;color:var(--ink)}
+.pcard-ex rt{font-size:.5em}
+.pcard .obi{border-bottom:none;margin-top:11px}
+
+/* ═══════════ footer ═══════════ */
+footer{border-top:1px solid var(--border)}
+.ft{max-width:1240px;margin:0 auto;padding:18px 24px 30px;font-family:var(--f-ui);font-size:12px;color:var(--faint);display:flex;gap:6px 18px;flex-wrap:wrap}
+.ft .fbrand{color:var(--muted)}
+
+/* ═══════════ responsive ═══════════ */
+@media (max-width:860px){
+  .shelf{flex-direction:column}
+  .spines{overflow-x:auto;padding-bottom:6px}
+  .cont-row{flex-direction:column;align-items:flex-start;gap:12px}
+}
+@media (max-width:640px){
+  .top .in{padding:8px 14px;gap:10px}
+  .khint{display:none}
+  main{padding:20px 14px 56px}
+  .nav a .en{display:none}
+  .cardrow{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="in">
+    <a class="brand" href="library.html" aria-label="Tsumugu 課本架 Library">
+      <span class="seal">紡</span>
+      <span class="word">Tsumugu</span>
+    </a>
+    <nav class="nav" aria-label="檢視 View">
+      <a href="library.html" aria-current="page">課本架 <span class="en">Library</span></a>
+      <a href="reader.html">讀 <span class="en">Reader</span></a>
+    </nav>
+    <span class="grow"></span>
+    <button class="khint" type="button"><kbd>⌘K</kbd> 搜尋 search</button>
+    <button class="theme" id="themeBtn" type="button" aria-label="主題 theme">☾</button>
+  </div>
+</header>
+
+<main>
+
+  <div class="masthead">
+    <p><b>Graded Traditional Chinese readings.</b> Read with pinyin, zhuyin, or Hán-Việt.</p>
+  </div>
+
+  <!-- ─────────── continue strip (one quiet row, faint glow) ─────────── -->
+  <section class="continue" aria-label="續讀 Continue">
+    <a class="cont-card glow" href="reader.html" aria-label="續讀 追垃圾車 Resume">
+      <div class="cont-row">
+        <div class="cont-main">
+          <div class="cont-top">
+            <span class="cont-zh">續讀</span><span class="cont-en">Continue</span>
+            <span class="cont-pos">追垃圾車 · ¶ 3 / 5</span>
+          </div>
+          <p class="cont-ex" lang="zh-Hant">追了大半條街，車子<span class="w l"><ruby>總算<rt>zǒngsuàn</rt></ruby></span>停了下來。司機從車上<span class="w n"><ruby>探出<rt>tànchū</rt></ruby></span>頭，笑著問她…</p>
+        </div>
+        <span class="cont-go">續讀 <span class="en">Resume</span></span>
+      </div>
+      <span class="obi"><b>A2</b> · 當代 B2 L07 · 短文 · 470字 · 94% known · 7 new · ≈5 min</span>
+    </a>
+  </section>
+
+  <!-- ─────────── 課本架 Companion (default primary view) ─────────── -->
+  <section class="selvage" aria-label="課本架 Companion shelf">
+    <div class="sec-head">
+      <h2>課本架</h2><span class="sec-en">Companion · 當代中文課程</span>
+      <span class="sec-cnt">Books 1 to 5 · 64 lessons</span>
+    </div>
+    <div class="shelf">
+      <div class="spines" role="list">
+        <button class="spine" role="listitem"><span class="vt">第一冊</span><span class="no">B1</span></button>
+        <button class="spine open" role="listitem" aria-current="true"><span class="vt">第二冊</span><span class="no">B2</span></button>
+        <button class="spine" role="listitem"><span class="vt">第三冊</span><span class="no">B3</span></button>
+        <button class="spine" role="listitem"><span class="vt">第四冊</span><span class="no">B4</span></button>
+        <button class="spine" role="listitem"><span class="vt">第五冊</span><span class="no">B5</span></button>
+      </div>
+      <div class="lessons">
+        <div class="lcard">
+          <div class="lc-body">
+            <h3>第六課<span class="en">L06</span></h3>
+            <div class="lrow"><span class="fmtg">對話</span><span>526字</span><span class="st">已讀</span></div>
+            <div class="lrow"><span class="fmtg">自述</span><span>498字</span><span class="st">已讀</span></div>
+            <div class="lrow"><span class="fmtg">短文</span><span>481字</span><span class="st">已讀</span></div>
+          </div>
+          <div class="obi"><b>A2</b> · 當代 B2 L06 · 3篇 · 已讀 3 / 3</div>
+        </div>
+        <div class="lcard now">
+          <div class="lc-body">
+            <h3>第七課<span class="en">L07</span></h3>
+            <div class="lrow"><span class="fmtg">對話</span><span>488字</span><span class="st">已讀</span></div>
+            <a class="lrow link" href="reader.html"><span class="fmtg">短文</span><span>470字</span><span class="st here">¶ 3 / 5</span></a>
+            <div class="lrow"><span class="fmtg">廣播</span><span>468字</span><span class="st">未讀</span></div>
+          </div>
+          <div class="obi"><b>A2</b> · 當代 B2 L07 · 詞彙與語法 100%</div>
+        </div>
+        <div class="lcard">
+          <div class="lc-body">
+            <h3>第八課<span class="en">L08</span></h3>
+            <div class="lrow"><span class="fmtg">對話</span><span>512字</span><span class="st">未讀</span></div>
+            <div class="lrow"><span class="fmtg">自述</span><span>455字</span><span class="st">未讀</span></div>
+            <div class="lrow"><span class="fmtg">報導</span><span>503字</span><span class="st">未讀</span></div>
+          </div>
+          <div class="obi"><b>A2</b> · 當代 B2 L08 · 3篇 · 未讀 0 / 3</div>
+        </div>
+      </div>
+    </div>
+    <p class="shelf-note">每課 3 篇，聯集涵蓋該課 100% 詞彙與語法。 Each lesson: 3 articles; their union covers all lesson vocabulary and grammar.</p>
+  </section>
+
+  <!-- ─────────── catalog spreadsheet (replaces the Reading Wall) ─────────── -->
+  <section class="catalog-sec" aria-label="目錄 Catalog">
+    <div class="sec-head">
+      <h2>目錄</h2><span class="sec-en">Catalog</span>
+      <span class="sec-cnt">12 readings</span>
+    </div>
+    <p class="cat-hint">點欄位標題排序 · click a column header to sort (asc, desc, shelf order).</p>
+    <div class="cat-scroll">
+      <table class="catalog" id="catalog" aria-label="讀物目錄 catalog of readings">
+        <thead>
+          <tr>
+            <th data-key="first" data-type="text" scope="col">首行 <span class="hen">first line</span><span class="ind" aria-hidden="true"></span></th>
+            <th data-key="lesson" data-type="num" scope="col">課 <span class="hen">lesson</span><span class="ind" aria-hidden="true"></span></th>
+            <th data-key="fmt" data-type="text" scope="col">體 <span class="hen">format</span><span class="ind" aria-hidden="true"></span></th>
+            <th data-key="band" data-type="num" scope="col">級 <span class="hen">band</span><span class="ind" aria-hidden="true"></span></th>
+            <th data-key="len" data-type="num" class="num" scope="col">字 <span class="hen">chars</span><span class="ind" aria-hidden="true"></span></th>
+            <th data-key="new" data-type="num" class="num" scope="col">新 <span class="hen">new</span><span class="ind" aria-hidden="true"></span></th>
+            <th class="nosort" scope="col">續</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- group: B2 L07 -->
+          <tr class="grp"><td colspan="7">當代 第二冊 · 第七課 · A2 · 3 篇</td></tr>
+          <tr class="rd" data-idx="0" data-first="高先生你搬來我們這個城市才幾天住得還習慣嗎" data-lesson="207" data-fmt="對話" data-band="2" data-len="488" data-new="6">
+            <td class="cat-first" lang="zh-Hant">高先生，你搬來我們這個城市才幾天，住得還<span class="ml"><ruby>習慣<rt>xíguàn</rt></ruby></span>嗎？</td>
+            <td class="cat-lesson">當代 B2·L07</td><td class="cat-fmt">對話</td><td class="cat-band">A2</td><td class="num">488</td><td class="num">6</td><td class="cat-resume"></td>
+          </tr>
+          <tr class="rd here" data-idx="1" data-first="那天晚上周小姐正坐在客廳的沙發上看電視" data-lesson="207" data-fmt="短文" data-band="2" data-len="470" data-new="7">
+            <td class="cat-first" lang="zh-Hant">那天晚上，周小姐正坐在客廳的沙發上看電視。</td>
+            <td class="cat-lesson">當代 B2·L07</td><td class="cat-fmt">短文</td><td class="cat-band">A2</td><td class="num">470</td><td class="num">7</td><td class="cat-resume">● ¶3</td>
+          </tr>
+          <tr class="rd" data-idx="2" data-first="各位市民朋友大家好歡迎收聽今天的綠色城市廣播" data-lesson="207" data-fmt="廣播" data-band="2" data-len="468" data-new="8">
+            <td class="cat-first" lang="zh-Hant">各位市民朋友，大家好，歡迎<span class="mn"><ruby>收聽<rt>shōutīng</rt></ruby></span>今天的「綠色城市」廣播。</td>
+            <td class="cat-lesson">當代 B2·L07</td><td class="cat-fmt">廣播</td><td class="cat-band">A2</td><td class="num">468</td><td class="num">8</td><td class="cat-resume"></td>
+          </tr>
+          <!-- group: B3 L01 -->
+          <tr class="grp"><td colspan="7">當代 第三冊 · 第一課 · B1 · 3 篇</td></tr>
+          <tr class="rd" data-idx="3" data-first="欸江學弟今天開學你怎麼那麼晚才到教室" data-lesson="301" data-fmt="對話" data-band="3" data-len="961" data-new="15">
+            <td class="cat-first" lang="zh-Hant">欸，江<span class="ml"><ruby>學弟<rt>xuédì</rt></ruby></span>，今天開學你怎麼那麼晚才到教室？</td>
+            <td class="cat-lesson">當代 B3·L01</td><td class="cat-fmt">對話</td><td class="cat-band">B1</td><td class="num">961</td><td class="num">15</td><td class="cat-resume"></td>
+          </tr>
+          <tr class="rd" data-idx="4" data-first="我叫周怡君是家裡的獨生女" data-lesson="301" data-fmt="自述" data-band="3" data-len="797" data-new="13">
+            <td class="cat-first" lang="zh-Hant">我叫周怡君，是家裡的<span class="mn"><ruby>獨生女<rt>dúshēngnǚ</rt></ruby></span>。</td>
+            <td class="cat-lesson">當代 B3·L01</td><td class="cat-fmt">自述</td><td class="cat-band">B1</td><td class="num">797</td><td class="num">13</td><td class="cat-resume"></td>
+          </tr>
+          <tr class="rd" data-idx="5" data-first="又到了一年一度的開學季各大學教務處這幾天湧進大批新生" data-lesson="301" data-fmt="報導" data-band="3" data-len="855" data-new="16">
+            <td class="cat-first" lang="zh-Hant">又到了一年一度的開學季，各大學<span class="mn"><ruby>教務處<rt>jiàowùchù</rt></ruby></span>這幾天<span class="mn"><ruby>湧進<rt>yǒngjìn</rt></ruby></span>大批新生。</td>
+            <td class="cat-lesson">當代 B3·L01</td><td class="cat-fmt">報導</td><td class="cat-band">B1</td><td class="num">855</td><td class="num">16</td><td class="cat-resume"></td>
+          </tr>
+          <!-- group: B4 L04 -->
+          <tr class="grp"><td colspan="7">當代 第四冊 · 第四課 · B1 · 3 篇</td></tr>
+          <tr class="rd" data-idx="6" data-first="欸妳來看一下衣櫥到底該擺在哪裡比較好" data-lesson="404" data-fmt="對話" data-band="3" data-len="1005" data-new="24">
+            <td class="cat-first" lang="zh-Hant">欸，妳來看一下，<span class="mn"><ruby>衣櫥<rt>yīchú</rt></ruby></span>到底該<span class="ml"><ruby>擺<rt>bǎi</rt></ruby></span>在哪裡比較好？</td>
+            <td class="cat-lesson">當代 B4·L04</td><td class="cat-fmt">對話</td><td class="cat-band">B1</td><td class="num">1005</td><td class="num">24</td><td class="cat-resume"></td>
+          </tr>
+          <tr class="rd" data-idx="7" data-first="我從小住在一棟蓋了快五十年的老公寓裡" data-lesson="404" data-fmt="自述" data-band="3" data-len="1030" data-new="26">
+            <td class="cat-first" lang="zh-Hant">我從小住在一棟蓋了快五十年的老<span class="ml"><ruby>公寓<rt>gōngyù</rt></ruby></span>裡。</td>
+            <td class="cat-lesson">當代 B4·L04</td><td class="cat-fmt">自述</td><td class="cat-band">B1</td><td class="num">1030</td><td class="num">26</td><td class="cat-resume"></td>
+          </tr>
+          <tr class="rd" data-idx="8" data-first="信義計畫區是台北這幾年發展最快的地標之一" data-lesson="404" data-fmt="報導" data-band="3" data-len="1104" data-new="25">
+            <td class="cat-first" lang="zh-Hant">信義計畫區是台北這幾年發展最快的<span class="ml"><ruby>地標<rt>dìbiāo</rt></ruby></span>之一。</td>
+            <td class="cat-lesson">當代 B4·L04</td><td class="cat-fmt">報導</td><td class="cat-band">B1</td><td class="num">1104</td><td class="num">25</td><td class="cat-resume"></td>
+          </tr>
+          <!-- group: free readings by band -->
+          <tr class="grp"><td colspan="7">免 Free readings · 入門 Starter · A1 · 3 篇</td></tr>
+          <tr class="rd" data-idx="9" data-first="你好請問你是高先生嗎我姓高叫高文" data-lesson="101" data-fmt="對話" data-band="1" data-len="317" data-new="0">
+            <td class="cat-first" lang="zh-Hant">你好，請問你是高先生嗎？我姓高，叫高文。</td>
+            <td class="cat-lesson">當代 B1·L01</td><td class="cat-fmt">對話</td><td class="cat-band">A1</td><td class="num">317</td><td class="num">0</td><td class="cat-resume"></td>
+          </tr>
+          <tr class="rd" data-idx="10" data-first="你們好我姓周叫周大同我是日本人不是美國人" data-lesson="101" data-fmt="自述" data-band="1" data-len="278" data-new="0">
+            <td class="cat-first" lang="zh-Hant">你們好！我姓周，叫周大同，我是日本人，不是美國人。</td>
+            <td class="cat-lesson">當代 B1·L01</td><td class="cat-fmt">自述</td><td class="cat-band">A1</td><td class="num">278</td><td class="num">0</td><td class="cat-resume"></td>
+          </tr>
+          <tr class="rd" data-idx="11" data-first="周先生是美國人這是他第一次來臺灣" data-lesson="101" data-fmt="短文" data-band="1" data-len="267" data-new="0">
+            <td class="cat-first" lang="zh-Hant">周先生是美國人，這是他第一次來臺灣。</td>
+            <td class="cat-lesson">當代 B1·L01</td><td class="cat-fmt">短文</td><td class="cat-band">A1</td><td class="num">267</td><td class="num">0</td><td class="cat-resume"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ─────────── 卡 Card studies (planned picture cards) ─────────── -->
+  <section class="cards-sec" aria-label="卡 Card studies">
+    <div class="sec-head">
+      <h2>卡</h2><span class="sec-en">Card studies · planned picture cards</span>
+    </div>
+    <p class="cards-fact">Planned. Cards return when readings carry pictures.</p>
+    <div class="cardrow">
+      <article class="pcard glow">
+        <div class="pcard-img" aria-hidden="true"><span class="mk">圖</span><span class="mklab">圖卡 image</span></div>
+        <div class="pcard-body">
+          <p class="pcard-ex" lang="zh-Hant"><span class="w n"><ruby>糟糕<rt>zāogāo</rt></ruby></span>，<span class="w l"><ruby>垃圾車<rt>lèsèchē</rt></ruby></span>已經開到路上了！</p>
+        </div>
+        <div class="obi"><b>A2</b> · 當代 B2 L07 · 短文 · 470字 · 7 new</div>
+      </article>
+      <article class="pcard">
+        <div class="pcard-img" aria-hidden="true"><span class="mk">圖</span><span class="mklab">圖卡 image</span></div>
+        <div class="pcard-body">
+          <p class="pcard-ex" lang="zh-Hant">各大學<span class="w n"><ruby>教務處<rt>jiàowùchù</rt></ruby></span>這幾天<span class="w n"><ruby>湧進<rt>yǒngjìn</rt></ruby></span>大批新生。</p>
+        </div>
+        <div class="obi"><b>B1</b> · 當代 B3 L01 · 報導 · 855字 · 16 new</div>
+      </article>
+      <article class="pcard glow">
+        <div class="pcard-img" aria-hidden="true"><span class="mk">圖</span><span class="mklab">圖卡 image</span></div>
+        <div class="pcard-body">
+          <p class="pcard-ex" lang="zh-Hant"><span class="w n"><ruby>衣櫥<rt>yīchú</rt></ruby></span>到底該<span class="w l"><ruby>擺<rt>bǎi</rt></ruby></span>在哪裡比較好？</p>
+        </div>
+        <div class="obi"><b>B1</b> · 當代 B4 L04 · 對話 · 1005字 · 24 new</div>
+      </article>
+      <article class="pcard">
+        <div class="pcard-img" aria-hidden="true"><span class="mk">圖</span><span class="mklab">圖卡 image</span></div>
+        <div class="pcard-body">
+          <p class="pcard-ex" lang="zh-Hant">歡迎<span class="w n"><ruby>收聽<rt>shōutīng</rt></ruby></span>今天的「綠色城市」廣播。</p>
+        </div>
+        <div class="obi"><b>A2</b> · 當代 B2 L07 · 廣播 · 468字 · 8 new</div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="ft">
+    <span class="fbrand">紡 Tsumugu</span>
+    <span>Graded Traditional Chinese readings.</span>
+    <span>預覽 preview · 原創語料 original corpus · 2026-07</span>
+    <span>LXGW WenKai TC · Noto Serif TC · Inter</span>
+  </div>
+</footer>
+
+<script>
+"use strict";
+/* ─── theme (shared, persists across the two pages) ─── */
+(function(){
+  var root=document.documentElement, btn=document.getElementById("themeBtn");
+  var saved=null; try{saved=localStorage.getItem("tsu-theme");}catch(e){}
+  if(saved==="dark"||saved==="light"){ root.setAttribute("data-theme",saved); }
+  function sync(){ btn.textContent = root.getAttribute("data-theme")==="dark" ? "☀" : "☾"; }
+  sync();
+  btn.addEventListener("click",function(){
+    var next = root.getAttribute("data-theme")==="dark" ? "light" : "dark";
+    root.setAttribute("data-theme",next);
+    try{localStorage.setItem("tsu-theme",next);}catch(e){}
+    sync();
+  });
+})();
+
+/* ─── catalog sort: vanilla, stable, three-state (asc → desc → shelf order) ─── */
+(function(){
+  var table=document.getElementById("catalog");
+  if(!table) return;
+  var tbody=table.tBodies[0];
+  var natural=Array.prototype.slice.call(tbody.rows);          /* group + data, original order */
+  var ths=table.querySelectorAll("th[data-key]");
+  var coll=new Intl.Collator("zh-Hant",{numeric:true});
+  var state={key:null,dir:0};                                  /* dir: 1 asc, -1 desc, 0 off */
+
+  function restore(){
+    natural.forEach(function(r){ tbody.appendChild(r); });
+    tbody.classList.remove("sorted");
+  }
+  function sortBy(key,type,dir){
+    var rows=natural.filter(function(r){ return r.classList.contains("rd"); });
+    rows.sort(function(a,b){
+      var c;
+      if(type==="num"){ c=(parseFloat(a.dataset[key])||0)-(parseFloat(b.dataset[key])||0); }
+      else{ c=coll.compare(a.dataset[key]||"", b.dataset[key]||""); }
+      if(c===0){ c=(+a.dataset.idx)-(+b.dataset.idx); }      /* stable tiebreak */
+      return c*dir;
+    });
+    tbody.classList.add("sorted");                            /* CSS hides .grp while sorted */
+    rows.forEach(function(r){ tbody.appendChild(r); });
+  }
+  function indicators(){
+    ths.forEach(function(th){
+      var active = th.dataset.key===state.key && state.dir!==0;
+      th.setAttribute("aria-sort", !active ? "none" : (state.dir===1 ? "ascending" : "descending"));
+      var ind=th.querySelector(".ind");
+      if(ind) ind.textContent = !active ? "" : (state.dir===1 ? "↑" : "↓");
+    });
+  }
+  ths.forEach(function(th){
+    th.setAttribute("tabindex","0");
+    th.setAttribute("role","columnheader");
+    th.setAttribute("aria-sort","none");
+    function go(){
+      var key=th.dataset.key, type=th.dataset.type||"text";
+      if(state.key===key){
+        state.dir = state.dir===1 ? -1 : (state.dir===-1 ? 0 : 1);
+        if(state.dir===0){ state.key=null; }
+      }else{ state.key=key; state.dir=1; }
+      indicators();
+      if(state.key===null || state.dir===0){ restore(); }
+      else{ sortBy(key,type,state.dir); }
+    }
+    th.addEventListener("click",go);
+    th.addEventListener("keydown",function(e){
+      if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

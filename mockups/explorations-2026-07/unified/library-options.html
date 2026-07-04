@@ -1,0 +1,168 @@
+<!doctype html>
+<!--
+  Library — layout OPTIONS (Basecamp-informed) · 2026-07-03
+  Three distinct directions to choose from. Basecamp lesson applied: fill space
+  with content + clear cards + colored iconography, never decoration. Warm-neutral
+  palette (Basecamp), spectral teal accent, faint functional signifier icons.
+    A · Home base   — a grid of entry cards, each with an icon + a live preview
+    B · Volume cards— the textbooks as content-rich cards + a compact catalog
+    C · Reading shelves — content-forward rows of reading cards by level
+-->
+<html lang="zh-Hant" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem("tsu-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Tsumugu · Library options</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/style.css" rel="stylesheet">
+<style>
+:root{
+  --f-ui:"Inter",-apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+  --f-han:"PingFang TC","Noto Sans TC","Inter",sans-serif;
+  --f-read:"LXGW WenKai TC","Songti TC",serif;
+  --bg:#F4F3F0;--surface:#FFFFFF;--ink:#28251F;--read:#33302A;
+  --muted:#6E6A62;--faint:#A19C91;--ghost:#C9C4BA;--hair:#E7E4DE;
+  --a:#0C8DAF;--a-wash:rgba(15,160,196,.10);
+  --sh:0 1px 2px rgba(30,26,20,.06),0 8px 22px -14px rgba(30,26,20,.20);
+  /* faint functional signifiers (format identity) */
+  --dlg:#5A8CA6;--slf:#7C79B0;--sty:#5E9E86;--rep:#8C8A96;--bro:#B0904E;
+}
+[data-theme="dark"]{
+  --bg:#1D1C1A;--surface:#282623;--ink:#EDEBE6;--read:#E4E1DA;
+  --muted:#A6A199;--faint:#726D64;--ghost:#4A463F;--hair:#34302A;
+  --a:#43ADC6;--a-wash:rgba(67,173,198,.13);
+  --sh:0 1px 2px rgba(0,0,0,.5),0 10px 26px -16px rgba(0,0,0,.6);
+  --dlg:#7FA6BC;--slf:#9B98CB;--sty:#7FBBA2;--rep:#A8A6B0;--bro:#C9AC72;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.5;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;padding:0}
+.wrap{max-width:860px;margin:0 auto;padding:26px 22px 100px}
+.head{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.head h1{font-size:20px;font-weight:700;letter-spacing:-.02em;margin:0}
+.themebtn{margin-left:auto;color:var(--muted);font-size:14px}
+.lede{color:var(--muted);font-size:13px;margin:0 0 30px}
+.opt{margin-bottom:34px}
+.olabel{display:flex;align-items:baseline;gap:9px;margin:0 2px 12px}
+.olabel .n{font-weight:700;font-size:15px}.olabel .w{color:var(--faint);font-size:12px}
+.frame{border:1px solid var(--hair);border-radius:16px;padding:18px;background:color-mix(in srgb,var(--surface) 40%,var(--bg))}
+.card{background:var(--surface);border-radius:13px;box-shadow:var(--sh)}
+
+/* small format icons (faint, functional) */
+.fi{width:15px;height:15px;flex:none;display:inline-block;vertical-align:-2px}
+.fi.dlg{color:var(--dlg)}.fi.slf{color:var(--slf)}.fi.sty{color:var(--sty)}.fi.rep{color:var(--rep)}.fi.bro{color:var(--bro)}
+
+/* ── A · home base: entry cards ── */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.entry{display:flex;gap:14px;padding:16px 17px;align-items:flex-start}
+.eicon{width:38px;height:38px;border-radius:10px;flex:none;display:grid;place-items:center;color:#fff}
+.eicon svg{width:20px;height:20px}
+.e1{background:#0C8DAF}.e2{background:#7C79B0}.e3{background:#5E9E86}.e4{background:#B0904E}
+.ebody{min-width:0}
+.ebody .et{font-family:var(--f-han);font-weight:700;font-size:15.5px}
+.ebody .et small{font-family:var(--f-ui);font-weight:500;color:var(--faint);font-size:11px;margin-left:6px}
+.ebody .ep{color:var(--muted);font-size:12.5px;margin-top:3px}
+.ebody .ep .zh{font-family:var(--f-read);color:var(--read)}
+
+/* ── B · volume cards ── */
+.vrow{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+.vcard{padding:15px 16px 14px;display:flex;flex-direction:column;gap:8px}
+.vtop{display:flex;align-items:center;gap:10px}
+.vspine{width:26px;height:36px;border-radius:2px 4px 4px 2px;background:linear-gradient(var(--a),color-mix(in srgb,var(--a) 70%,#000));flex:none;position:relative;box-shadow:var(--sh)}
+.vcard.g2 .vspine{background:linear-gradient(var(--slf),color-mix(in srgb,var(--slf) 70%,#000))}
+.vcard.g3 .vspine{background:linear-gradient(var(--sty),color-mix(in srgb,var(--sty) 70%,#000))}
+.vtitle{font-family:var(--f-han);font-weight:700;font-size:16px}
+.vtitle small{display:block;font-family:var(--f-ui);font-weight:500;color:var(--faint);font-size:10.5px;margin-top:1px}
+.vsample{font-family:var(--f-read);color:var(--read);font-size:14px;line-height:1.85;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.vfoot{display:flex;align-items:center;justify-content:space-between;color:var(--faint);font-size:11.5px}
+.vfoot .go{color:var(--a);font-weight:600}
+.minicat{padding:4px 6px}
+.mrow{display:flex;align-items:center;gap:12px;padding:11px 12px;border-top:1px solid var(--hair)}
+.mrow:first-child{border-top:none}
+.mrow .zh{font-family:var(--f-read);color:var(--read);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mrow .mm{color:var(--faint);font-size:12px;white-space:nowrap;display:flex;align-items:center;gap:6px}
+
+/* ── C · reading shelves ── */
+.shelfhead{font-family:var(--f-han);font-weight:600;font-size:13px;color:var(--muted);margin:2px 2px 10px;display:flex;align-items:baseline;gap:8px}
+.shelfhead .en{font-family:var(--f-ui);font-weight:500;color:var(--faint);font-size:11px}
+.scroller{display:flex;gap:13px;overflow-x:auto;padding-bottom:6px}
+.rcard{flex:none;width:210px;padding:14px 15px 12px;display:flex;flex-direction:column;gap:9px}
+.rcard .rx{font-family:var(--f-read);color:var(--read);font-size:15px;line-height:1.9;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.rcard .rm{display:flex;align-items:center;gap:8px;color:var(--faint);font-size:11.5px}
+.rcard .rm .code{font-family:var(--f-han)}
+.dotlv{width:7px;height:7px;border-radius:50%;flex:none}
+.lvA1{background:var(--sty)}.lvA2{background:var(--dlg)}.lvB1{background:var(--slf)}
+@media (max-width:640px){.grid,.vrow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head"><h1>Library — three directions</h1><button class="themebtn" id="themeBtn">☾</button></div>
+  <p class="lede">Basecamp lesson: space is filled with content and clear cards, not decoration. Colored icons carry identity. Pick a direction; toggle dark (☾).</p>
+
+  <!-- A -->
+  <section class="opt">
+    <div class="olabel"><span class="n">A · Home base</span><span class="w">Basecamp project-home: a grid of entry cards, each an icon + a live preview of what's inside. You choose a way in.</span></div>
+    <div class="frame">
+      <div class="grid">
+        <div class="card entry"><div class="eicon e1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg></div>
+          <div class="ebody"><div class="et">課本架 <small>Textbook</small></div><div class="ep">當代中文課程 · <span class="zh">第一冊</span> → start</div></div></div>
+        <div class="card entry"><div class="eicon e2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 19V9M12 19V5M19 19v-7"/></svg></div>
+          <div class="ebody"><div class="et">分級 <small>By level</small></div><div class="ep">A1 – C2 · begin where you are</div></div></div>
+        <div class="card entry"><div class="eicon e3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg></div>
+          <div class="ebody"><div class="et">目錄 <small>All readings</small></div><div class="ep">45 readings · browse &amp; sort</div></div></div>
+        <div class="card entry"><div class="eicon e4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 19l2-6 9-9 4 4-9 9-6 2zM14 6l4 4"/></svg></div>
+          <div class="ebody"><div class="et">誌 <small>Blog</small></div><div class="ep"><span class="zh">先詞後字</span> Word first, character later</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section class="opt">
+    <div class="olabel"><span class="n">B · Volume cards</span><span class="w">The textbooks as content-rich cards (a taste of the reading, not a spine) + a compact catalog below.</span></div>
+    <div class="frame">
+      <div class="vrow">
+        <div class="card vcard"><div class="vtop"><span class="vspine"></span><span class="vtitle">第一冊<small>Book 1 · A1</small></span></div>
+          <p class="vsample" lang="zh-Hant">你好，請問你是高先生嗎？我姓高，叫高文。</p>
+          <div class="vfoot"><span>15 lessons</span><span class="go">Start →</span></div></div>
+        <div class="card vcard g2"><div class="vtop"><span class="vspine"></span><span class="vtitle">第二冊<small>Book 2 · A2</small></span></div>
+          <p class="vsample" lang="zh-Hant">那天晚上，周小姐正坐在客廳的沙發上看電視。</p>
+          <div class="vfoot"><span>15 lessons</span><span class="go">Open →</span></div></div>
+        <div class="card vcard g3"><div class="vtop"><span class="vspine"></span><span class="vtitle">第三冊<small>Book 3 · B1</small></span></div>
+          <p class="vsample" lang="zh-Hant">又到了一年一度的開學季，各大學教務處這幾天湧進大批新生。</p>
+          <div class="vfoot"><span>12 lessons</span><span class="go">Open →</span></div></div>
+      </div>
+      <div class="card minicat">
+        <div class="mrow"><svg class="fi dlg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h11v8H8l-4 3zM17 9h3v7l-3-2h-4"/></svg><span class="zh" lang="zh-Hant">高先生，你搬來我們這個城市才幾天…</span><span class="mm">當代 B2·L07 · 488</span></div>
+        <div class="mrow"><svg class="fi sty" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5h14M5 10h14M5 15h9"/></svg><span class="zh" lang="zh-Hant">那天晚上，周小姐正坐在客廳的沙發上看電視。</span><span class="mm">當代 B2·L07 · 470</span></div>
+        <div class="mrow"><svg class="fi bro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v8M8 6a8 8 0 000 12M16 6a8 8 0 010 12"/></svg><span class="zh" lang="zh-Hant">各位市民朋友，歡迎收聽今天的「綠色城市」廣播。</span><span class="mm">當代 B2·L07 · 468</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- C -->
+  <section class="opt">
+    <div class="olabel"><span class="n">C · Reading shelves</span><span class="w">Content-forward: rows of reading cards by level, each a taste of the text with a format icon. Explore first.</span></div>
+    <div class="frame">
+      <div class="shelfhead">入門 <span class="en">Starter · A1</span></div>
+      <div class="scroller">
+        <div class="card rcard"><p class="rx" lang="zh-Hant">你好，請問你是高先生嗎？我姓高，叫高文。</p><div class="rm"><span class="dotlv lvA1"></span><svg class="fi dlg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h11v8H8l-4 3zM17 9h3v7l-3-2h-4"/></svg><span class="code">當代 B1·L01</span></div></div>
+        <div class="card rcard"><p class="rx" lang="zh-Hant">你們好！我姓周，叫周大同，我是日本人。</p><div class="rm"><span class="dotlv lvA1"></span><svg class="fi slf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M6 19a6 6 0 0112 0"/></svg><span class="code">當代 B1·L01</span></div></div>
+        <div class="card rcard"><p class="rx" lang="zh-Hant">周先生是美國人，這是他第一次來臺灣。</p><div class="rm"><span class="dotlv lvA1"></span><svg class="fi sty" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5h14M5 10h14M5 15h9"/></svg><span class="code">當代 B1·L01</span></div></div>
+      </div>
+      <div class="shelfhead" style="margin-top:16px">基礎 <span class="en">Elementary · A2</span></div>
+      <div class="scroller">
+        <div class="card rcard"><p class="rx" lang="zh-Hant">高先生，你搬來我們這個城市才幾天，住得還習慣嗎？</p><div class="rm"><span class="dotlv lvA2"></span><svg class="fi dlg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h11v8H8l-4 3zM17 9h3v7l-3-2h-4"/></svg><span class="code">當代 B2·L07</span></div></div>
+        <div class="card rcard"><p class="rx" lang="zh-Hant">各位市民朋友，歡迎收聽今天的「綠色城市」廣播。</p><div class="rm"><span class="dotlv lvA2"></span><svg class="fi bro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v8M8 6a8 8 0 000 12M16 6a8 8 0 010 12"/></svg><span class="code">當代 B2·L07</span></div></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+<script>
+var r=document.documentElement,b=document.getElementById("themeBtn");if(!r.getAttribute("data-theme"))r.setAttribute("data-theme","light");
+function s(){b.textContent=r.getAttribute("data-theme")==="dark"?"☀":"☾";}s();
+b.addEventListener("click",function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";r.setAttribute("data-theme",n);try{localStorage.setItem("tsu-theme",n);}catch(e){}s();});
+</script>
+</body>
+</html>

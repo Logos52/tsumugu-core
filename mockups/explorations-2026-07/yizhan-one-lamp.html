@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tsumugu · 一盞 One Lamp</title>
+<!-- ═══════════════════════════════════════════════════════════════════════
+  一盞 YI ZHAN · ONE LAMP
+  Direction mockup, Tsumugu Core design exploration 2026-07.
+
+  THESIS
+  The hub IS a reading: one text at 100% presence, N texts at 10%.
+  A learner opening the site at 9:40pm is reading within ten seconds.
+  The library opens as the learner's next reading, already typeset, live
+  ruby, live status marks, subtly lit; the Companion shelf and the Reading
+  Wall wait below as a dim ledger that lights up under hover/focus.
+  Dark-native: graded reading is commute-and-evening reading. Light theme
+  ships fully, as the honest secondary face.
+
+  PALETTE (dark = native face)
+    bg 茶墨 brown-black  #17110B      surface        #211A10
+    lamp surface         #261D11      ink warm-paper #EDE4D5
+    lamp ink             #F3EBDC      ink2           #C6B99F
+    faint                #8A7F6C      rules          #2E2617 / #43371F
+    accent 燈 persimmon  #E0664E   (brand + continue thread + the action)
+    status: new clay #E0809A · learning amber #E0AD5B · jade confirm #54C79E
+    ruby #A79A80 · ruby on new words #C9BB9E
+  PALETTE (light, secondary)
+    bg #FBFAF8 · surface #F7F4EE · lamp #FFFFFF · ink #23201A
+    ink2 #5C5546 · faint #6E675A · rules #E8E4DA / #D6CFC0
+    accent #C23A2A · new #B04A64 · learning #9C731D · jade #27825C
+    ruby #6F6759 · ruby on new words #6A614F
+
+  TYPE (the locked trio, untouched; novelty spent on hierarchy, not faces)
+    reading   LXGW WenKai TC → Kaiti TC → Noto Serif TC
+    chrome    Inter (also all ruby, all Vietnamese: tone-stack safe)
+    numerals  Newsreader (counts only, quarantined from prose)
+
+  SIGNATURE
+    The hub-is-a-reading inversion itself: one lit page, a dim room of
+    shelves behind it. The one motion: on load the lamp block's text fades
+    up from the dark in a single ~500ms breath (reduced-motion: instant).
+
+  LOOK FIRST
+    1. First paint: the lamp block. You are already inside 垃圾車來了,
+       ruby live, one fact line above it, nothing asking anything.
+    2. Scroll: the dim ledger. Hover/focus any row: it lights and opens
+       into its own excerpt with live ruby and status marks.
+    3. Tap the lamp (or the Reader tab): same column, chrome at whisper,
+       word popup open on 音樂 with the Hán-Việt bridge.
+═══════════════════════════════════════════════════════════════════════ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/lxgwwenkaitc-regular.css" rel="stylesheet">
+<style>
+/* ───────── tokens ───────── */
+:root{
+  --f-han:"LXGW WenKai TC","Kaiti TC","Songti TC","Noto Serif TC",serif;
+  --f-ui:Inter,"Helvetica Neue","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --f-num:"Newsreader",Georgia,serif;
+  /* chrome type scale: three steps under body 15px */
+  --fs-1:14px; --fs-2:12.5px; --fs-3:11px;
+}
+html[data-theme="dark"]{
+  --bg:#17110B; --surface:#211A10; --surface2:#2A2114;
+  --lampbg:#261D11; --lampring:rgba(224,102,78,.16); --lampglow:rgba(224,102,78,.22);
+  --ink:#EDE4D5; --ink-lamp:#F3EBDC; --ink2:#C6B99F; --faint:#8A7F6C;
+  --rule:#2E2617; --rule-strong:#43371F;
+  --accent:#E0664E; --new:#E0809A; --lrn:#E0AD5B; --jade:#54C79E;
+  --ruby:#A79A80; --ruby-new:#C9BB9E;
+  --popshadow:0 24px 64px -18px rgba(0,0,0,.65), 0 0 0 1px rgba(237,228,213,.05);
+  color-scheme:dark;
+}
+html[data-theme="light"]{
+  --bg:#FBFAF8; --surface:#F7F4EE; --surface2:#F1EDE4;
+  --lampbg:#FFFFFF; --lampring:rgba(194,58,42,.16); --lampglow:rgba(194,58,42,.10);
+  --ink:#23201A; --ink-lamp:#23201A; --ink2:#5C5546; --faint:#6E675A;
+  --rule:#E8E4DA; --rule-strong:#D6CFC0;
+  --accent:#C23A2A; --new:#B04A64; --lrn:#9C731D; --jade:#27825C;
+  --ruby:#6F6759; --ruby-new:#6A614F;
+  --popshadow:0 22px 56px -18px rgba(35,32,26,.28), 0 0 0 1px rgba(35,32,26,.05);
+  color-scheme:light;
+}
+
+/* ───────── base ───────── */
+*{box-sizing:border-box}
+html{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--f-ui); font-size:15px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh; display:flex; flex-direction:column;
+}
+main.view{flex:1 0 auto}
+button{font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+.n{font-family:var(--f-num); font-size:1.06em; line-height:1}
+ruby{ruby-position:over}
+rt{
+  font-family:var(--f-ui); font-size:.42em; font-weight:400;
+  letter-spacing:.02em; color:var(--ruby); padding-bottom:.25em;
+}
+
+/* word status: the underline channel only */
+.w{cursor:pointer; padding-bottom:2px}
+.w.new{border-bottom:2.5px solid var(--new)}
+.w.new rt{color:var(--ruby-new)}
+.w.lrn{border-bottom:2px dotted var(--lrn)}
+.w:hover{background:none}
+.w.new:hover{border-bottom-color:color-mix(in srgb,var(--new) 80%,var(--ink))}
+.w.lrn:hover{border-bottom-color:color-mix(in srgb,var(--lrn) 80%,var(--ink))}
+
+/* ───────── header ───────── */
+header.top{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; gap:26px;
+  padding:12px 28px;
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--rule);
+}
+.brand{display:flex; align-items:center; gap:9px; font-weight:600; letter-spacing:.01em}
+.bglyph{font-family:var(--f-han); font-weight:400; font-size:21px; color:var(--accent); transform:translateY(-1px)}
+.tabs{display:flex; gap:4px}
+.tabs button{
+  padding:7px 13px 8px; border-radius:8px; color:var(--faint); font-size:var(--fs-1);
+  border-bottom:2px solid transparent; border-radius:8px 8px 0 0;
+}
+.tabs button:hover{color:var(--ink2)}
+.tabs button[aria-selected="true"]{color:var(--ink); border-bottom-color:var(--ink)}
+.tools{margin-left:auto; display:flex; align-items:center; gap:10px}
+.khint{
+  display:flex; align-items:center; gap:7px; font-size:var(--fs-2); color:var(--faint);
+  border:1px solid var(--rule); border-radius:8px; padding:5px 10px;
+}
+.khint kbd{font-family:var(--f-ui); font-size:var(--fs-3); border:1px solid var(--rule-strong); border-radius:4px; padding:1px 5px; color:var(--ink2)}
+.khint:hover{color:var(--ink2); border-color:var(--rule-strong)}
+.themebtn{
+  width:32px; height:32px; border:1px solid var(--rule); border-radius:8px;
+  font-size:15px; color:var(--ink2); display:grid; place-items:center;
+}
+.themebtn:hover{border-color:var(--rule-strong); color:var(--ink)}
+
+/* ───────── shared column ───────── */
+.col{max-width:680px; margin:0 auto; padding:0 24px}
+.view[hidden]{display:none}
+
+/* ───────── hub: the lamp ───────── */
+.lampzone{padding-top:44px}
+.factline{
+  margin:0 0 14px; font-size:var(--fs-2); color:var(--faint); letter-spacing:.015em;
+  line-height:1.9; text-autospace:no-autospace;
+}
+.factline .cont{color:var(--accent); font-weight:600; white-space:nowrap}
+.fact{white-space:nowrap}
+.chip{
+  display:inline-block; border:1px solid var(--rule-strong); border-radius:999px;
+  padding:0 8px; font-size:var(--fs-3); color:var(--ink2); line-height:1.7; white-space:nowrap;
+}
+.lamp{
+  /* the box extends outside .col by its own padding+border, so the inner
+     text column === the reader measure: the tap is chrome falling away
+     around unmoving text */
+  display:block; width:calc(100% + 48px); margin:0 -24px; text-align:left; cursor:pointer;
+  background:var(--lampbg);
+  border:1px solid var(--rule-strong); border-radius:16px;
+  padding:38px 23px 30px;
+  box-shadow:0 0 0 1px var(--lampring), 0 10px 60px -22px var(--lampglow);
+  color:var(--ink-lamp);
+}
+.lamp:hover{box-shadow:0 0 0 1px var(--lampring), 0 12px 70px -20px var(--lampglow), 0 0 24px -8px var(--lampglow)}
+.lampin{animation:lampup .5s ease-out both}
+@keyframes lampup{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none}}
+.rtitle{
+  display:block; font-family:var(--f-han); font-weight:400; font-size:30px; line-height:1.3;
+  margin:0 0 18px; letter-spacing:.02em;
+}
+.prose{
+  font-family:var(--f-han); font-size:29px; line-height:2.35; letter-spacing:.015em;
+  margin:0; text-align:justify;
+}
+.lamp .prose{display:block}
+.lampfoot{
+  margin:26px 0 0; padding-top:16px; border-top:1px solid var(--rule);
+  font-family:var(--f-ui); font-size:var(--fs-2); color:var(--accent); font-weight:600;
+  display:flex; align-items:center; gap:8px;
+}
+.lampfoot .rest{color:var(--faint); font-weight:400; margin-left:auto}
+
+/* ───────── hub: the dim ledger ───────── */
+.ledger{padding:52px 0 40px}
+.lhead{
+  font-size:12px; font-weight:600; letter-spacing:.08em; color:var(--faint);
+  margin:38px 0 6px; text-transform:none;
+}
+.lhead:first-child{margin-top:0}
+.shelf,.wall{list-style:none; margin:0; padding:0}
+.book{
+  display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
+  padding:11px 14px; border-bottom:1px solid var(--rule);
+}
+.book .bt{font-family:var(--f-han); font-size:17px; color:var(--ink2)}
+.book .bmeta{font-size:12px; color:var(--faint)}
+.book .bstate{margin-left:auto; font-size:12px; color:var(--faint); white-space:nowrap}
+.book.done .bt,.book.done .bmeta,.book.done .bstate{color:color-mix(in srgb,var(--faint) 62%,var(--bg))}
+.book.current .bt{color:var(--ink)}
+.book.current .bstate{color:var(--ink2)}
+.thread{color:var(--accent); font-weight:600}
+.shelfnote{font-size:12px; color:var(--faint); margin:10px 14px 0}
+
+.rung{
+  display:flex; align-items:baseline; gap:10px;
+  font-size:12.5px; font-weight:600; color:var(--ink2);
+  margin:26px 0 2px; padding:0 14px;
+}
+.rung .rcount{font-weight:400; color:var(--faint)}
+.row{
+  position:relative; padding:13px 14px; border-bottom:1px solid var(--rule);
+  border-radius:10px; cursor:pointer;
+}
+.row:hover,.row:focus-within{background:var(--surface)}
+.rowline{display:flex; align-items:baseline; gap:14px; min-width:0}
+.wtitle{font-family:var(--f-han); font-size:19px; color:var(--ink2); white-space:nowrap}
+.row:hover .wtitle,.row:focus-within .wtitle{color:var(--ink)}
+.prev{
+  flex:1 1 10ch; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  font-family:var(--f-han); font-size:14.5px; color:var(--faint);
+}
+.row:hover .prev,.row:focus-within .prev{visibility:hidden}
+.rmeta{margin-left:auto; font-size:11.5px; color:var(--faint); white-space:nowrap}
+.ex{display:grid; grid-template-rows:0fr; transition:grid-template-rows .16s ease}
+.row:hover .ex,.row:focus-within .ex{grid-template-rows:1fr}
+.exin{overflow:hidden; min-height:0}
+.exin p{
+  font-family:var(--f-han); font-size:21px; line-height:2.25; letter-spacing:.015em;
+  color:var(--ink); margin:12px 0 6px; text-align:justify;
+}
+.morerow{padding:10px 14px 22px; font-size:12px; color:var(--faint)}
+
+/* ───────── reader ───────── */
+.rchrome{padding-top:36px}
+.eyebrow{
+  margin:0; font-size:var(--fs-2); color:var(--faint); letter-spacing:.015em;
+  line-height:1.9; text-autospace:no-autospace;
+}
+.rails{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:16px 0 0}
+.rl{font-size:11.5px; color:var(--faint)}
+.seg{display:inline-flex; border:1px solid var(--rule); border-radius:9px; overflow:hidden}
+.seg button{padding:4px 11px 5px; font-size:12px; color:var(--faint); border-right:1px solid var(--rule)}
+.seg button:last-child{border-right:0}
+.seg button:hover{color:var(--ink2); background:var(--surface)}
+.seg button.on{color:var(--ink); background:var(--surface2)}
+.reading{padding:34px 0 8px}
+.reading h1{
+  font-family:var(--f-han); font-weight:400; font-size:34px; line-height:1.3;
+  margin:0 0 26px; letter-spacing:.02em;
+}
+.reading .prose{margin-bottom:18px}
+.restline{font-size:12.5px; color:var(--faint); margin:26px 0 0; padding-top:14px; border-top:1px solid var(--rule)}
+.legend{
+  display:flex; gap:20px; flex-wrap:wrap; align-items:baseline;
+  margin:18px 0 60px; font-size:12px; color:var(--faint);
+}
+.legend .sw{font-family:var(--f-han); font-size:15px; color:var(--ink2); padding-bottom:1px}
+.legend .sw.new{border-bottom:2.5px solid var(--new)}
+.legend .sw.lrn{border-bottom:2px dotted var(--lrn)}
+
+/* ───────── word popup ───────── */
+.anchor{position:relative}
+.anchor>ruby{border-radius:4px; box-shadow:0 0 0 2px color-mix(in srgb,var(--lrn) 40%,transparent)}
+.pop{
+  position:absolute; top:calc(100% + 16px); left:50%; transform:translateX(-50%);
+  width:min(344px, calc(100vw - 40px)); z-index:40;
+  display:block; background:var(--surface); border:1px solid var(--rule-strong);
+  border-radius:14px; padding:18px 18px 16px; box-shadow:var(--popshadow);
+  font-family:var(--f-ui); font-size:13.5px; line-height:1.5; letter-spacing:0;
+  color:var(--ink); text-align:left; cursor:default; white-space:normal;
+}
+.pop::before{
+  content:""; position:absolute; top:-6.5px; left:50%;
+  width:12px; height:12px; transform:translateX(-50%) rotate(45deg);
+  background:var(--surface); border-left:1px solid var(--rule-strong); border-top:1px solid var(--rule-strong);
+}
+.pophead{display:flex; align-items:flex-start; gap:14px}
+.popzh{font-family:var(--f-han); font-size:40px; line-height:1.15}
+.popreads{display:flex; flex-direction:column; gap:1px; padding-top:2px}
+.popreads .pr{font-size:13px; color:var(--ink2)}
+.popreads .zy{font-family:var(--f-han); font-size:12.5px; color:var(--faint); letter-spacing:.06em}
+.popreads .hv{color:var(--faint)}
+.popgloss{display:block; margin:10px 0 0; font-size:14px}
+.popgloss .vi{font-weight:600}
+.popgloss .en{color:var(--ink2)}
+.bridge{display:block; margin:13px 0 0; padding:11px 12px 12px; border:1px solid var(--rule); border-radius:10px}
+.beyebrow{display:block; font-size:10.5px; letter-spacing:.05em; color:var(--faint); margin-bottom:8px}
+.brow{display:flex; align-items:baseline; gap:10px; padding:2px 0}
+.bzh{font-family:var(--f-han); font-size:19px}
+.bhv{font-weight:600; color:var(--accent); min-width:3.2em}
+.bex{color:var(--ink2); font-size:12.5px}
+.bex b{color:var(--accent); font-weight:600}
+.grade{display:flex; align-items:center; gap:6px; margin:14px 0 0; flex-wrap:wrap}
+.grade kbd{
+  font-family:var(--f-ui); font-size:12px; color:var(--ink2);
+  border:1px solid var(--rule-strong); border-radius:6px; padding:3px 8px; cursor:pointer;
+}
+.grade kbd:hover{color:var(--ink); border-color:var(--faint)}
+.gbtn{border:1px solid var(--rule-strong); border-radius:6px; padding:3px 9px; font-size:12px; color:var(--ink2)}
+.gbtn:hover{color:var(--ink); border-color:var(--faint)}
+.gbtn.known:hover{color:var(--jade); border-color:var(--jade)}
+.popacts{display:flex; gap:6px; margin:8px 0 0}
+.popacts .gbtn{color:var(--faint)}
+.popacts .gbtn:hover{color:var(--ink2); border-color:var(--faint)}
+
+/* ───────── footer ───────── */
+footer{
+  border-top:1px solid var(--rule); margin-top:30px;
+  padding:22px 28px 34px; font-size:12px; color:var(--faint);
+  display:flex; flex-wrap:wrap; gap:6px 22px;
+}
+footer .fbrand{color:var(--ink2)}
+
+/* ───────── responsive ───────── */
+@media (max-width:900px){
+  header.top{padding:10px 18px; gap:16px}
+  .lamp{padding:28px 26px 24px}
+}
+@media (max-width:600px){
+  .khint span{display:none}
+  .col{padding:0 16px}
+  .lampzone{padding-top:28px}
+  .lamp{padding:22px 18px 18px; border-radius:13px}
+  .prose{font-size:25px; line-height:2.3}
+  .lamp .prose{font-size:24px}
+  .rtitle{font-size:25px}
+  .reading h1{font-size:28px}
+  .rowline{flex-wrap:wrap; gap:4px 12px}
+  .rmeta{margin-left:0; width:100%; white-space:normal}
+  .prev{flex-basis:100%}
+  .exin p{font-size:19px}
+  .pop{
+    position:fixed; top:auto; bottom:12px; left:12px; right:12px;
+    transform:none; width:auto;
+  }
+  .pop::before{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important; transition:none !important}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand"><span class="bglyph">紡</span>Tsumugu</div>
+  <nav class="tabs" role="tablist" aria-label="views">
+    <button role="tab" id="tab-hub" aria-selected="true" data-v="hub">書庫 Library</button>
+    <button role="tab" id="tab-reader" aria-selected="false" data-v="reader">閱讀 Reader</button>
+  </nav>
+  <div class="tools">
+    <button class="khint" type="button"><kbd>⌘K</kbd><span>搜尋 search</span></button>
+    <button class="themebtn" type="button" id="themeBtn" aria-label="切換主題 theme">☀</button>
+  </div>
+</header>
+
+<!-- ═══════════ HUB · one lit page, a dim room behind it ═══════════ -->
+<main id="hub" class="view">
+  <div class="col lampzone">
+    <p class="factline">
+      <span class="cont">繼續 Continue</span> ·
+      <span class="chip">當代 B2 L07</span> ·
+      第七課 · 第 <span class="n">2</span> 篇 / <span class="n">3</span> · 短文 ·
+      <span class="n">470</span>字 ·
+      <span class="n">94</span>% known · <span class="n">7</span> new
+    </p>
+
+    <button class="lamp" id="lampBlock" type="button" aria-label="繼續閱讀 垃圾車來了">
+      <span class="lampin" style="display:block">
+        <span class="rtitle">垃圾車來了</span>
+        <span class="prose">那天晚上，周小姐正坐在客廳的沙發上看電視，窗外忽然傳來一陣熟悉的<span class="w lrn"><ruby>音樂<rt>yīnyuè</rt></ruby></span>。她跳了起來，心想：<span class="w lrn"><ruby>糟糕<rt>zāogāo</rt></ruby></span>，垃圾車已經開到路上了！她趕快把廚房裡的兩個袋子提好，又抓起放在桌上的皮包，連<span class="w new"><ruby>拖鞋<rt>tuōxié</rt></ruby></span>都來不及換，就<span class="w lrn"><ruby>急急忙忙<rt>jí jí máng máng</rt></ruby></span>地走出來。</span>
+        <span class="lampfoot">繼續閱讀 · Continue reading →
+          <span class="rest">全文 <span class="n">5</span> 段 · ≈<span class="n">5</span> min</span>
+        </span>
+      </span>
+    </button>
+  </div>
+
+  <div class="col ledger">
+    <h2 class="lhead">讀本架 Companion shelf · 當代中文課程</h2>
+    <ul class="shelf">
+      <li class="book done">
+        <span class="bt">第一冊</span>
+        <span class="bmeta">Book 1 · <span class="n">15</span> 課 · <span class="n">45</span> 篇</span>
+        <span class="bstate">讀完 finished</span>
+      </li>
+      <li class="book current">
+        <span class="bt">第二冊</span>
+        <span class="bmeta">Book 2 · <span class="n">15</span> 課 · <span class="n">45</span> 篇</span>
+        <span class="bstate"><span class="thread">●</span> 第七課 · 第 <span class="n">2</span> 篇 / <span class="n">3</span></span>
+      </li>
+      <li class="book">
+        <span class="bt">第三冊</span>
+        <span class="bmeta">Book 3 · <span class="n">12</span> 課 · <span class="n">36</span> 篇</span>
+      </li>
+      <li class="book">
+        <span class="bt">第四冊</span>
+        <span class="bmeta">Book 4 · <span class="n">12</span> 課 · <span class="n">36</span> 篇</span>
+      </li>
+      <li class="book">
+        <span class="bt">第五冊</span>
+        <span class="bmeta">Book 5 · <span class="n">10</span> 課 · <span class="n">30</span> 篇</span>
+      </li>
+    </ul>
+    <p class="shelfnote">每課 <span class="n">3</span> 篇，合計涵蓋該課詞彙與語法 <span class="n">100</span>% · 3 readings per lesson, together covering 100% of lesson vocabulary and grammar</p>
+
+    <h2 class="lhead">書牆 Reading Wall</h2>
+
+    <h3 class="rung">入門 Starter · A1 <span class="rcount">· <span class="n">12</span> readings</span></h3>
+    <ul class="wall">
+      <li class="row" tabindex="0">
+        <span class="rowline">
+          <span class="wtitle">歡迎你來臺灣</span>
+          <span class="prev">你好，請問你是高先生嗎？你好，是的，我姓高，叫高文。</span>
+          <span class="rmeta">對話 · <span class="chip">當代 B1 L01</span> · <span class="n">317</span>字 · <span class="n">100</span>% known</span>
+        </span>
+        <span class="ex"><span class="exin"><p>你好，請問你是高先生嗎？你好，是的，我姓高，叫高文。請問你是林小姐嗎？是的，我是林小姐。我來接你，歡迎你來臺灣！</p></span></span>
+      </li>
+      <li class="row" tabindex="0">
+        <span class="rowline">
+          <span class="wtitle">我來臺灣學中文</span>
+          <span class="prev">你們好！我姓周，叫周大同，我是日本人，不是美國人。</span>
+          <span class="rmeta">自述 · <span class="chip">當代 B1 L01</span> · <span class="n">278</span>字 · <span class="n">100</span>% known</span>
+        </span>
+        <span class="ex"><span class="exin"><p>你們好！我姓周，叫周大同，我是日本人，不是美國人。我來臺灣學中文。臺灣人都很好，很歡迎我，我也很喜歡臺灣。</p></span></span>
+      </li>
+      <li class="row" tabindex="0">
+        <span class="rowline">
+          <span class="wtitle">第一次來臺灣</span>
+          <span class="prev">周先生是美國人，這是他第一次來臺灣。</span>
+          <span class="rmeta">短文 · <span class="chip">當代 B1 L01</span> · <span class="n">267</span>字 · <span class="n">100</span>% known</span>
+        </span>
+        <span class="ex"><span class="exin"><p>周先生是美國人，這是他第一次來臺灣。今天林小姐到機場接他。林小姐看見他，先問他是不是周先生。</p></span></span>
+      </li>
+    </ul>
+    <p class="morerow">另外 <span class="n">9</span> 篇 · 9 more</p>
+
+    <h3 class="rung">基礎 Elementary · A2 <span class="rcount">· <span class="n">9</span> readings</span></h3>
+    <ul class="wall">
+      <li class="row" tabindex="0">
+        <span class="rowline">
+          <span class="wtitle">一門大學問</span>
+          <span class="prev">高先生，你搬來我們這個城市才幾天，住得還習慣嗎？</span>
+          <span class="rmeta">對話 · <span class="chip">當代 B2 L07</span> · <span class="n">488</span>字 · <span class="n">96</span>% known · <span class="n">4</span> new</span>
+        </span>
+        <span class="ex"><span class="exin"><p>高先生，你搬來我們這個城市才幾天，住得還<span class="w lrn"><ruby>習慣<rt>xíguàn</rt></ruby></span>嗎？謝謝您，大致上都不錯，可是有一件事我到現在還是覺得很奇怪。</p></span></span>
+      </li>
+      <li class="row" tabindex="0">
+        <span class="rowline">
+          <span class="wtitle">綠色城市</span>
+          <span class="prev">各位市民朋友，大家好，歡迎收聽今天的「綠色城市」廣播。</span>
+          <span class="rmeta">廣播 · <span class="chip">當代 B2 L07</span> · <span class="n">468</span>字 · <span class="n">95</span>% known · <span class="n">5</span> new</span>
+        </span>
+        <span class="ex"><span class="exin"><p>各位<span class="w lrn"><ruby>市民<rt>shìmín</rt></ruby></span>朋友，大家好，歡迎<span class="w new"><ruby>收聽<rt>shōutīng</rt></ruby></span>今天的「綠色城市」廣播，我是主持人小林。</p></span></span>
+      </li>
+    </ul>
+    <p class="morerow">另外 <span class="n">7</span> 篇 · 7 more</p>
+
+    <h3 class="rung">中級 Intermediate · B1 <span class="rcount">· <span class="n">14</span> readings</span></h3>
+    <ul class="wall">
+      <li class="row" tabindex="0">
+        <span class="rowline">
+          <span class="wtitle">差一點就遲到</span>
+          <span class="prev">欸，江學弟，今天開學你怎麼那麼晚才到教室？</span>
+          <span class="rmeta">對話 · <span class="chip">當代 B3 L01</span> · <span class="n">961</span>字 · <span class="n">90</span>% known · <span class="n">21</span> new</span>
+        </span>
+        <span class="ex"><span class="exin"><p>欸，江學弟，今天開學你怎麼那麼晚才到教室？差一點就<span class="w lrn"><ruby>遲到<rt>chídào</rt></ruby></span>了吧？別提了，我從宿舍出來的時候，公車剛好開走。</p></span></span>
+      </li>
+      <li class="row" tabindex="0">
+        <span class="rowline">
+          <span class="wtitle">不合我的個性</span>
+          <span class="prev">我叫周怡君，是家裡的獨生女。</span>
+          <span class="rmeta">自述 · <span class="chip">當代 B3 L01</span> · <span class="n">797</span>字 · <span class="n">89</span>% known · <span class="n">18</span> new</span>
+        </span>
+        <span class="ex"><span class="exin"><p>我叫周怡君，是家裡的<span class="w new"><ruby>獨生女<rt>dúshēngnǚ</rt></ruby></span>，從小爸媽就希望我念一個出社會好找工作的<span class="w lrn"><ruby>科系<rt>kēxì</rt></ruby></span>。</p></span></span>
+      </li>
+      <li class="row" tabindex="0">
+        <span class="rowline">
+          <span class="wtitle">開學季</span>
+          <span class="prev">又到了一年一度的開學季，各大學教務處這幾天湧進大批新生。</span>
+          <span class="rmeta">報導 · <span class="chip">當代 B3 L01</span> · <span class="n">855</span>字 · <span class="n">88</span>% known · <span class="n">19</span> new</span>
+        </span>
+        <span class="ex"><span class="exin"><p>又到了一年一度的開學季，各大學<span class="w new"><ruby>教務處<rt>jiàowùchù</rt></ruby></span>這幾天<span class="w new"><ruby>湧進<rt>yǒngjìn</rt></ruby></span>大批新生，準備辦理註冊相關手續。</p></span></span>
+      </li>
+      <li class="row" tabindex="0">
+        <span class="rowline">
+          <span class="wtitle">風水的問題</span>
+          <span class="prev">欸，妳來看一下，衣櫥到底該擺在哪裡比較好？</span>
+          <span class="rmeta">對話 · <span class="chip">當代 B4 L04</span> · <span class="n">1005</span>字 · <span class="n">85</span>% known · <span class="n">32</span> new</span>
+        </span>
+        <span class="ex"><span class="exin"><p>欸，妳來看一下，<span class="w new"><ruby>衣櫥<rt>yīchú</rt></ruby></span>到底該擺在哪裡比較好？我們都搬進來三個禮拜了，東西還堆在客廳中間。</p></span></span>
+      </li>
+      <li class="row" tabindex="0">
+        <span class="rowline">
+          <span class="wtitle">老公寓</span>
+          <span class="prev">我從小住在一棟蓋了快五十年的老公寓裡。</span>
+          <span class="rmeta">自述 · <span class="chip">當代 B4 L04</span> · <span class="n">1030</span>字 · <span class="n">84</span>% known · <span class="n">35</span> new</span>
+        </span>
+        <span class="ex"><span class="exin"><p>我從小住在一棟蓋了快五十年的老<span class="w lrn"><ruby>公寓<rt>gōngyù</rt></ruby></span>裡，附近的巷子又<span class="w new"><ruby>窄<rt>zhǎi</rt></ruby></span>又彎。</p></span></span>
+      </li>
+      <li class="row" tabindex="0">
+        <span class="rowline">
+          <span class="wtitle">聚寶盆</span>
+          <span class="prev">信義計畫區是台北這幾年發展最快的地標之一。</span>
+          <span class="rmeta">報導 · <span class="chip">當代 B4 L04</span> · <span class="n">1104</span>字 · <span class="n">83</span>% known · <span class="n">38</span> new</span>
+        </span>
+        <span class="ex"><span class="exin"><p>信義計畫區是台北這幾年發展最快的<span class="w new"><ruby>地標<rt>dìbiāo</rt></ruby></span>之一，從信義路一路走到松智路，沿線蓋了不少高樓大廈。</p></span></span>
+      </li>
+    </ul>
+    <p class="morerow">另外 <span class="n">8</span> 篇 · 8 more</p>
+  </div>
+</main>
+
+<!-- ═══════════ READER · same column, chrome at whisper ═══════════ -->
+<main id="reader" class="view" hidden>
+  <div class="col rchrome">
+    <p class="eyebrow">
+      短文 essay ·
+      <span class="chip">當代 B2 L07</span> ·
+      第 <span class="n">2</span> 篇 / <span class="n">3</span> ·
+      <span class="n">470</span>字 · ≈<span class="n">5</span> min ·
+      <span class="n">94</span>% known · <span class="n">7</span> new
+    </p>
+    <div class="rails">
+      <span class="rl">標音</span>
+      <span class="seg" role="group" aria-label="標音 annotation rail">
+        <button type="button" class="on" aria-pressed="true">拼音</button>
+        <button type="button" aria-pressed="false">注音</button>
+        <button type="button" aria-pressed="false">Hán Việt</button>
+      </span>
+      <span class="rl">釋義</span>
+      <span class="seg" role="group" aria-label="釋義 gloss rail">
+        <button type="button" aria-pressed="false">EN</button>
+        <button type="button" class="on" aria-pressed="true">VI</button>
+      </span>
+    </div>
+  </div>
+
+  <article class="col reading">
+    <h1>垃圾車來了</h1>
+
+    <p class="prose">那天晚上，周小姐正坐在客廳的沙發上看電視，窗外忽然傳來一陣熟悉的<span class="w lrn anchor"><ruby>音樂<rt>yīnyuè</rt></ruby><span class="pop" role="dialog" aria-label="音樂 word card"><span class="pophead"><span class="popzh">音樂</span><span class="popreads"><span class="pr">yīnyuè</span><span class="pr zy">ㄧㄣ ㄩㄝˋ</span><span class="pr hv">Hán Việt · âm nhạc</span></span></span><span class="popgloss"><span class="vi">âm nhạc</span> · <span class="en">music</span></span><span class="bridge"><span class="beyebrow">Âm Hán-Việt dùng chung · shared Sino-Vietnamese reading</span><span class="brow"><span class="bzh">音</span><span class="bhv">âm</span><span class="bex">như trong <b>âm</b> thanh</span></span><span class="brow"><span class="bzh">樂</span><span class="bhv">nhạc</span><span class="bex">như trong <b>nhạc</b> sĩ</span></span></span><span class="grade"><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd><button type="button" class="gbtn known">✓ known</button><button type="button" class="gbtn">✕ ignore</button></span><span class="popacts"><button type="button" class="gbtn">+ card</button><button type="button" class="gbtn">字 → dict</button></span></span></span>。她跳了起來，心想：<span class="w lrn"><ruby>糟糕<rt>zāogāo</rt></ruby></span>，垃圾車已經開到路上了！她趕快把廚房裡的兩個袋子提好，又抓起放在桌上的皮包，連<span class="w new"><ruby>拖鞋<rt>tuōxié</rt></ruby></span>都來不及換，就<span class="w lrn"><ruby>急急忙忙<rt>jí jí máng máng</rt></ruby></span>地走出來。</p>
+
+    <p class="prose">她跑到<span class="w lrn"><ruby>巷子<rt>xiàngzi</rt></ruby></span>口，那輛垃圾車卻剛好開走了。周小姐沒有<span class="w lrn"><ruby>放棄<rt>fàngqì</rt></ruby></span>，提著<span class="w new"><ruby>沉沉<rt>chénchén</rt></ruby></span>的袋子在後面追，一邊跑一邊喊：等一下！等一下！路上的人看著她，大概都覺得這個<span class="w new"><ruby>畫面<rt>huàmiàn</rt></ruby></span>很有趣吧。有個騎機車的先生還<span class="w new"><ruby>特地<rt>tèdì</rt></ruby></span>停下來，以為她掉了什麼重要的東西，問她要不要幫忙。</p>
+
+    <p class="restline">後續 <span class="n">3</span> 段 · 3 more paragraphs</p>
+
+    <div class="legend">
+      <span><span class="sw new">新</span> new · solid</span>
+      <span><span class="sw lrn">學</span> learning · dotted</span>
+      <span><span class="sw">會</span> known · no mark, no ruby</span>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <span class="fbrand">紡 Tsumugu</span>
+  <span>Graded Traditional Chinese readings. Read with pinyin, zhuyin, or Hán-Việt.</span>
+  <span>預覽 preview · 草稿語料 draft corpus · 2026-07</span>
+</footer>
+
+<script>
+(function(){
+  var html=document.documentElement;
+  var hub=document.getElementById("hub"), reader=document.getElementById("reader");
+  var tabs=document.querySelectorAll(".tabs button");
+
+  function show(v){
+    hub.hidden = v!=="hub";
+    reader.hidden = v!=="reader";
+    tabs.forEach(function(t){ t.setAttribute("aria-selected", String(t.dataset.v===v)); });
+    window.scrollTo(0,0);
+  }
+  tabs.forEach(function(t){ t.addEventListener("click", function(){ show(t.dataset.v); }); });
+  document.getElementById("lampBlock").addEventListener("click", function(){ show("reader"); });
+
+  var btn=document.getElementById("themeBtn");
+  btn.addEventListener("click", function(){
+    var next = html.getAttribute("data-theme")==="dark" ? "light" : "dark";
+    html.setAttribute("data-theme", next);
+    btn.textContent = next==="dark" ? "☀" : "☾";
+  });
+})();
+</script>
+</body>
+</html>

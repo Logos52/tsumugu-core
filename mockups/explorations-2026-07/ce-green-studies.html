@@ -1,0 +1,196 @@
+<!doctype html>
+<!--
+  冊 Cè Bound Volume · GREEN STUDIES — 2026-07-02
+  Wedge picked Bound Volume and its green ("a Spirited Away type of green").
+  Ask: candidates near that green, with a blue-green tint for the light version
+  and a glowing blue-green quality like the dark version's #6FA893.
+  Five candidates, A = the shipped pine baseline. Each panel renders the same
+  real card anatomy (obi band, B2L07 excerpt, ruby + status underlines) in the
+  candidate's light and dark tokens. Global ☀/☾ toggle, top right.
+  Glow engineering: the light themes reach for the dark theme's luminous quality
+  three ways — a cool blue-green cast in the paper itself, higher-chroma accents,
+  and a whisper halo behind accent elements (kept scarce: brand mark + coverage
+  figure only). B-E cool the kraft toward driftwood; D keeps warm copper kraft
+  as the bridge option if the bookshop warmth should survive the cooling.
+-->
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>冊 Bound Volume · Green studies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --f-read:"Noto Serif TC","Songti TC","Kaiti TC",serif;
+  --f-lit:"Literata",Georgia,serif;
+  --f-ui:"Inter",-apple-system,"PingFang TC",sans-serif;
+  --page:#F4F3EF; --page-ink:#232119; --page-mut:#6B6557;
+}
+html[data-theme="dark"]{ --page:#101210; --page-ink:#E7E5DC; --page-mut:#98917F; }
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--page-ink);font-family:var(--f-ui);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+:focus-visible{outline:2px solid currentColor;outline-offset:2px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding:36px 24px 72px}
+.top{display:flex;align-items:baseline;gap:16px;margin-bottom:6px}
+h1{font-family:var(--f-lit);font-size:21px;font-weight:600;margin:0}
+h1 .han{font-family:var(--f-read);font-weight:700;margin-right:6px}
+.sub{color:var(--page-mut);max-width:640px;margin:0 0 26px}
+#themeBtn{margin-left:auto;font-size:15px;border:1px solid color-mix(in srgb,currentColor 25%,transparent);border-radius:8px;padding:6px 12px;background:none;color:inherit;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:18px}
+
+/* ——— candidate tokens (light on the panel, dark under html[data-theme=dark]) ——— */
+.panel{border-radius:14px;padding:20px 20px 18px;background:var(--paper);color:var(--ink);border:1px solid var(--border);transition:background .25s,color .25s}
+.panel[data-v="a"]{--paper:#FCFBF8;--surface:#FFFFFF;--ink:#1D1B17;--muted:#5F594B;--faint:#7E7765;--border:#E6E0D1;
+  --kraft:#C7B08A;--obi-bg:#EDE3CB;--obi-ink:#40382A;
+  --g:#2E5E4E;--on-g:#F6FAF8;--g-wash:rgba(46,94,78,.08);--halo:transparent;
+  --clay:#C0506E;--amber:#C98A2B;--rt:#6E6754}
+html[data-theme="dark"] .panel[data-v="a"]{--paper:#141613;--surface:#1B1E19;--ink:#E9E7DF;--muted:#B4AD9D;--faint:#867F6E;--border:#2E312A;
+  --kraft:#7A6A50;--obi-bg:#272215;--obi-ink:#CDBF9C;
+  --g:#6FA893;--on-g:#0E1713;--g-wash:rgba(111,168,147,.12);--halo:rgba(111,168,147,.18);
+  --clay:#D4738E;--amber:#D9A34D;--rt:#9F9885}
+
+.panel[data-v="b"]{--paper:#F3F7F5;--surface:#FCFEFD;--ink:#1B211D;--muted:#59645E;--faint:#78847D;--border:#DCE6E1;
+  --kraft:#AEBDB4;--obi-bg:#E4EDE8;--obi-ink:#33403A;
+  --g:#2E7A67;--on-g:#F2FBF8;--g-wash:rgba(46,122,103,.09);--halo:rgba(46,122,103,.14);
+  --clay:#BC5070;--amber:#B98A31;--rt:#6D7A72}
+html[data-theme="dark"] .panel[data-v="b"]{--paper:#0F1A16;--surface:#16221D;--ink:#E4EDE8;--muted:#A6B5AC;--faint:#7C8B82;--border:#27352E;
+  --kraft:#5F7268;--obi-bg:#1B2823;--obi-ink:#BBCCC2;
+  --g:#6EC4AC;--on-g:#0A1712;--g-wash:rgba(110,196,172,.13);--halo:rgba(110,196,172,.22);
+  --clay:#D4738E;--amber:#D9A34D;--rt:#8FA096}
+
+.panel[data-v="c"]{--paper:#F2F8F6;--surface:#FBFEFD;--ink:#1A211E;--muted:#57645E;--faint:#76847D;--border:#D9E6E0;
+  --kraft:#A9BBB1;--obi-bg:#E1EEE8;--obi-ink:#2F3E37;
+  --g:#1F8A70;--on-g:#F0FCF8;--g-wash:rgba(31,138,112,.10);--halo:rgba(31,138,112,.16);
+  --clay:#BC5070;--amber:#B98A31;--rt:#6C7A73}
+html[data-theme="dark"] .panel[data-v="c"]{--paper:#0D1B17;--surface:#14231E;--ink:#E2EEE8;--muted:#A3B5AB;--faint:#788B81;--border:#25372F;
+  --kraft:#5C7167;--obi-bg:#192923;--obi-ink:#B8CCC1;
+  --g:#4FCDAF;--on-g:#08160F;--g-wash:rgba(79,205,175,.13);--halo:rgba(79,205,175,.26);
+  --clay:#D4738E;--amber:#D9A34D;--rt:#8CA096}
+
+.panel[data-v="d"]{--paper:#F7F9F6;--surface:#FEFFFE;--ink:#1C1F1A;--muted:#5E6157;--faint:#7D8076;--border:#E1E4DA;
+  --kraft:#BE9F76;--obi-bg:#EBE2CC;--obi-ink:#3E372A;
+  --g:#3B8577;--on-g:#F2FBF9;--g-wash:rgba(59,133,119,.09);--halo:rgba(59,133,119,.13);
+  --clay:#C0506E;--amber:#C08A2E;--rt:#6F6F60}
+html[data-theme="dark"] .panel[data-v="d"]{--paper:#131B18;--surface:#1A241F;--ink:#E7EBE4;--muted:#ADB6A9;--faint:#808A7D;--border:#2B362F;
+  --kraft:#8A7452;--obi-bg:#252115;--obi-ink:#CDBF9C;
+  --g:#77C6B3;--on-g:#0B1713;--g-wash:rgba(119,198,179,.13);--halo:rgba(119,198,179,.20);
+  --clay:#D4738E;--amber:#D9A34D;--rt:#98A093}
+
+.panel[data-v="e"]{--paper:#F1F7F7;--surface:#FBFEFE;--ink:#1A2022;--muted:#566468;--faint:#758488;--border:#D8E5E6;
+  --kraft:#A9BCBB;--obi-bg:#E0EDED;--obi-ink:#2F3E41;
+  --g:#2B7386;--on-g:#F0FAFC;--g-wash:rgba(43,115,134,.09);--halo:rgba(43,115,134,.14);
+  --clay:#BC5070;--amber:#B98A31;--rt:#6B7A7E}
+html[data-theme="dark"] .panel[data-v="e"]{--paper:#0E191C;--surface:#152225;--ink:#E2ECEE;--muted:#A2B4B8;--faint:#778A8E;--border:#243539;
+  --kraft:#5C7275;--obi-bg:#18282B;--obi-ink:#B6CBCE;
+  --g:#64BCC8;--on-g:#081418;--g-wash:rgba(100,188,200,.13);--halo:rgba(100,188,200,.24);
+  --clay:#D4738E;--amber:#D9A34D;--rt:#8B9FA3}
+
+/* ——— panel anatomy ——— */
+.phead{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.pmark{width:26px;height:26px;border-radius:7px;background:var(--g);color:var(--on-g);display:grid;place-items:center;font-family:var(--f-read);font-weight:700;font-size:15px;box-shadow:0 0 14px var(--halo)}
+.pname{font-family:var(--f-lit);font-weight:600;font-size:16px}
+.pname .han{font-family:var(--f-read);margin-right:4px}
+.phex{margin-left:auto;font-size:11.5px;color:var(--faint);font-variant-numeric:tabular-nums}
+.pnote{font-size:12.5px;color:var(--muted);margin:0 0 12px}
+.sw{display:flex;gap:5px;margin:0 0 14px}
+.sw i{height:16px;flex:1;border-radius:4px;border:1px solid var(--border)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.chead{display:flex;align-items:baseline;gap:8px;padding:12px 14px 8px}
+.fmt{font-family:var(--f-read);font-size:13px;color:var(--muted)}
+.bind{font-size:11.5px;color:var(--faint)}
+.ex{padding:2px 14px 12px;font-family:var(--f-read);font-size:19px;line-height:2.15;letter-spacing:.01em}
+.ex rt{font-family:var(--f-ui);font-size:9.5px;font-weight:500;color:var(--rt)}
+.w-new{border-bottom:2.5px solid var(--clay);padding-bottom:1px}
+.w-learn{border-bottom:2.5px dotted var(--amber);padding-bottom:1px}
+.obi{display:flex;align-items:center;gap:10px;background:var(--obi-bg);color:var(--obi-ink);border-top:1px solid var(--kraft);padding:7px 14px;font-size:12px}
+.obi b{font-weight:600;color:var(--g);text-shadow:0 0 10px var(--halo);font-variant-numeric:tabular-nums}
+.crow{display:flex;align-items:center;gap:10px;padding:10px 2px 0}
+.cont{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:8px;background:var(--g-wash);color:var(--g);font-weight:600;font-size:13.5px;border:1px solid color-mix(in srgb,var(--g) 25%,transparent)}
+.cont .han{font-family:var(--f-read)}
+.meta{font-size:12px;color:var(--faint)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:720px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1><span class="han">冊</span>Bound Volume · green studies</h1>
+    <button id="themeBtn" aria-label="Toggle light and dark theme">☀ / ☾</button>
+  </div>
+  <p class="sub">Five accent-green candidates on the Bound Volume card anatomy. A is the shipped pine. B through E move the light theme onto blue-green paper and raise the accent's glow; D keeps the warm copper kraft. The same tokens render below in both themes.</p>
+
+  <div class="grid">
+
+    <section class="panel" data-v="a" aria-label="Candidate A">
+      <div class="phead"><span class="pmark">紡</span><span class="pname"><span class="han">松</span>A · Pine</span><span class="phex">#2E5E4E · #6FA893</span></div>
+      <p class="pnote">The shipped baseline. Warm near-white paper, forest pine, warm kraft.</p>
+      <div class="sw"><i style="background:var(--paper)"></i><i style="background:var(--surface)"></i><i style="background:var(--kraft)"></i><i style="background:var(--g)"></i><i style="background:var(--clay)"></i><i style="background:var(--amber)"></i></div>
+      <div class="card">
+        <div class="chead"><span class="fmt">短文</span><span class="bind">當代 B2 · L07</span></div>
+        <div class="ex">窗外<ruby class="w-new">忽然<rt>hūrán</rt></ruby>傳來一陣<ruby class="w-learn">熟悉<rt>shúxī</rt></ruby>的<ruby>音樂<rt>yīnyuè</rt></ruby>。</div>
+        <div class="obi">A2 · 518字 · <b>94% known</b> · 7 new · ≈6 min</div>
+      </div>
+      <div class="crow"><span class="cont"><span class="han">繼續</span>Continue · ¶3</span><span class="meta">12 readings at your level</span></div>
+    </section>
+
+    <section class="panel" data-v="b" aria-label="Candidate B">
+      <div class="phead"><span class="pmark">紡</span><span class="pname"><span class="han">青磁</span>B · Celadon Glow</span><span class="phex">#2E7A67 · #6EC4AC</span></div>
+      <p class="pnote">Light paper takes a celadon cast; kraft cools to driftwood; accent one step brighter.</p>
+      <div class="sw"><i style="background:var(--paper)"></i><i style="background:var(--surface)"></i><i style="background:var(--kraft)"></i><i style="background:var(--g)"></i><i style="background:var(--clay)"></i><i style="background:var(--amber)"></i></div>
+      <div class="card">
+        <div class="chead"><span class="fmt">短文</span><span class="bind">當代 B2 · L07</span></div>
+        <div class="ex">窗外<ruby class="w-new">忽然<rt>hūrán</rt></ruby>傳來一陣<ruby class="w-learn">熟悉<rt>shúxī</rt></ruby>的<ruby>音樂<rt>yīnyuè</rt></ruby>。</div>
+        <div class="obi">A2 · 518字 · <b>94% known</b> · 7 new · ≈6 min</div>
+      </div>
+      <div class="crow"><span class="cont"><span class="han">繼續</span>Continue · ¶3</span><span class="meta">12 readings at your level</span></div>
+    </section>
+
+    <section class="panel" data-v="c" aria-label="Candidate C">
+      <div class="phead"><span class="pmark">紡</span><span class="pname"><span class="han">翠</span>C · Viridian Lantern</span><span class="phex">#1F8A70 · #4FCDAF</span></div>
+      <p class="pnote">The most luminous pair. The dark accent sits close to spirit-fire teal; the light accent carries the same chroma.</p>
+      <div class="sw"><i style="background:var(--paper)"></i><i style="background:var(--surface)"></i><i style="background:var(--kraft)"></i><i style="background:var(--g)"></i><i style="background:var(--clay)"></i><i style="background:var(--amber)"></i></div>
+      <div class="card">
+        <div class="chead"><span class="fmt">短文</span><span class="bind">當代 B2 · L07</span></div>
+        <div class="ex">窗外<ruby class="w-new">忽然<rt>hūrán</rt></ruby>傳來一陣<ruby class="w-learn">熟悉<rt>shúxī</rt></ruby>的<ruby>音樂<rt>yīnyuè</rt></ruby>。</div>
+        <div class="obi">A2 · 518字 · <b>94% known</b> · 7 new · ≈6 min</div>
+      </div>
+      <div class="crow"><span class="cont"><span class="han">繼續</span>Continue · ¶3</span><span class="meta">12 readings at your level</span></div>
+    </section>
+
+    <section class="panel" data-v="d" aria-label="Candidate D">
+      <div class="phead"><span class="pmark">紡</span><span class="pname"><span class="han">銅綠</span>D · Verdigris</span><span class="phex">#3B8577 · #77C6B3</span></div>
+      <p class="pnote">Patina blue-green with the warm copper kraft kept, so the bookshop warmth survives the cooling.</p>
+      <div class="sw"><i style="background:var(--paper)"></i><i style="background:var(--surface)"></i><i style="background:var(--kraft)"></i><i style="background:var(--g)"></i><i style="background:var(--clay)"></i><i style="background:var(--amber)"></i></div>
+      <div class="card">
+        <div class="chead"><span class="fmt">短文</span><span class="bind">當代 B2 · L07</span></div>
+        <div class="ex">窗外<ruby class="w-new">忽然<rt>hūrán</rt></ruby>傳來一陣<ruby class="w-learn">熟悉<rt>shúxī</rt></ruby>的<ruby>音樂<rt>yīnyuè</rt></ruby>。</div>
+        <div class="obi">A2 · 518字 · <b>94% known</b> · 7 new · ≈6 min</div>
+      </div>
+      <div class="crow"><span class="cont"><span class="han">繼續</span>Continue · ¶3</span><span class="meta">12 readings at your level</span></div>
+    </section>
+
+    <section class="panel" data-v="e" aria-label="Candidate E">
+      <div class="phead"><span class="pmark">紡</span><span class="pname"><span class="han">湖</span>E · Lake Teal</span><span class="phex">#2B7386 · #64BCC8</span></div>
+      <p class="pnote">The bluest probe. Marks where blue-green stops reading green; a boundary post for the choice.</p>
+      <div class="sw"><i style="background:var(--paper)"></i><i style="background:var(--surface)"></i><i style="background:var(--kraft)"></i><i style="background:var(--g)"></i><i style="background:var(--clay)"></i><i style="background:var(--amber)"></i></div>
+      <div class="card">
+        <div class="chead"><span class="fmt">短文</span><span class="bind">當代 B2 · L07</span></div>
+        <div class="ex">窗外<ruby class="w-new">忽然<rt>hūrán</rt></ruby>傳來一陣<ruby class="w-learn">熟悉<rt>shúxī</rt></ruby>的<ruby>音樂<rt>yīnyuè</rt></ruby>。</div>
+        <div class="obi">A2 · 518字 · <b>94% known</b> · 7 new · ≈6 min</div>
+      </div>
+      <div class="crow"><span class="cont"><span class="han">繼續</span>Continue · ¶3</span><span class="meta">12 readings at your level</span></div>
+    </section>
+
+  </div>
+</div>
+<script>
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const h=document.documentElement;
+  h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';
+});
+</script>
+</body>
+</html>

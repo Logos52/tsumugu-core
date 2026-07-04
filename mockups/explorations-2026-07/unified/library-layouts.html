@@ -1,0 +1,166 @@
+<!doctype html>
+<!--
+  Library — small layout studies (Apple-minimal, spectral teal-blue)
+  2026-07-03 · three compositions to choose a direction. Dark accent toned down
+  and colour-glows removed so the accent stops overpowering. Minimal, not crazy.
+-->
+<html lang="zh-Hant" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem("tsu-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Tsumugu · library layouts</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/style.css" rel="stylesheet">
+<style>
+:root{
+  --f-ui:"Inter",-apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+  --f-han:"PingFang TC","Noto Sans TC","Inter",sans-serif;
+  --f-read:"LXGW WenKai TC","Songti TC",serif;
+  --bg:#F5F6F8; --surface:#FFFFFF; --ink:#1C1C1E; --read:#2C2C30;
+  --muted:#6E6E76; --faint:#A2A2AA; --ghost:#C7C7CE; --hair:#E9E9ED;
+  --a:#0C8DAF; --a-wash:rgba(15,160,196,.10);
+  --shadow:0 1px 2px rgba(20,22,28,.05), 0 8px 22px -14px rgba(20,22,28,.16);
+}
+[data-theme="dark"]{
+  --bg:#0B0B0D; --surface:#1A1A1D; --ink:#F2F2F5; --read:#E9E9EE;
+  --muted:#98989F; --faint:#68686F; --ghost:#48484E; --hair:#2A2A2E;
+  --a:#43ADC6;                 /* toned down: less bright, no glow */
+  --a-wash:rgba(67,173,198,.14);
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 10px 26px -16px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:14px;line-height:1.5;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;padding:0}
+.wrap{max-width:760px;margin:0 auto;padding:26px 22px 90px}
+.head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.seal{width:24px;height:24px;border-radius:7px;background:var(--a);color:#fff;font-family:var(--f-read);font-weight:600;font-size:13px;display:grid;place-items:center}
+.head b{font-weight:600;font-size:15px}
+.head .beta{font-size:9px;font-weight:600;color:var(--a);background:var(--a-wash);border-radius:5px;padding:1.5px 5px}
+.themebtn{margin-left:auto;width:28px;height:28px;border-radius:7px;color:var(--muted);font-size:13px}
+.themebtn:hover{background:var(--hair);color:var(--ink)}
+.lede{color:var(--muted);font-size:13px;margin:0 0 30px}
+
+.study{margin-bottom:34px}
+.slabel{display:flex;align-items:baseline;gap:9px;margin:0 2px 10px}
+.slabel .n{font-weight:600;font-size:14px}
+.slabel .w{color:var(--faint);font-size:12px}
+.frame{border:1px solid var(--hair);border-radius:16px;padding:16px;background:color-mix(in srgb,var(--surface) 45%,var(--bg))}
+
+/* shared bits */
+.card{background:var(--surface);border-radius:13px;box-shadow:var(--shadow);overflow:hidden}
+.row{display:flex;align-items:center;gap:12px;padding:11px 15px;border-top:1px solid var(--hair)}
+.row:first-child{border-top:none}
+.row .num{font-family:var(--f-han);font-size:13px;color:var(--muted);min-width:46px}
+.row .nm{flex:1;min-width:0;color:var(--faint);font-size:12.5px}
+.row .nm .zh{font-family:var(--f-read);color:var(--read);font-size:14.5px;margin-right:8px}
+.row .st{font-size:11.5px;color:var(--ghost)}
+.row.now .num{color:var(--a)} .row .st.here{color:var(--a);font-weight:600}
+.chev{color:var(--ghost)}
+.mini-h{font-family:var(--f-han);font-size:11px;font-weight:600;color:var(--faint);margin:0 0 9px 3px}
+
+/* chips */
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{padding:7px 12px;border-radius:10px;background:var(--surface);box-shadow:var(--shadow);font-family:var(--f-han);font-size:12.5px;color:var(--ink);display:flex;gap:6px;align-items:baseline}
+.chip .s{font-family:var(--f-ui);font-size:10px;color:var(--faint)}
+.chip.on{background:var(--a);color:#fff}.chip.on .s{color:#fff;opacity:.85}
+[data-theme="dark"] .chip.on{background:var(--a-wash);color:var(--a);box-shadow:inset 0 0 0 1px var(--a)}
+[data-theme="dark"] .chip.on .s{color:var(--a);opacity:.8}
+
+/* ── A: sidebar (two-pane) ── */
+.two{display:grid;grid-template-columns:150px 1fr;gap:14px}
+.side{display:flex;flex-direction:column;gap:2px}
+.side .grp{font-family:var(--f-han);font-size:10.5px;font-weight:600;color:var(--faint);padding:8px 8px 4px}
+.side button{text-align:left;padding:7px 10px;border-radius:9px;font-family:var(--f-han);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.side button .s{font-family:var(--f-ui);font-size:10px;color:var(--ghost)}
+.side button:hover{background:var(--hair);color:var(--ink)}
+.side button.on{background:var(--a-wash);color:var(--a);font-weight:600}
+.side button.on .s{color:var(--a)}
+
+/* ── C: covers ── */
+.covers{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}
+.cover{aspect-ratio:3/4;border-radius:10px;background:var(--surface);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;position:relative}
+.cover .v{font-family:var(--f-han);font-weight:600;font-size:14px;writing-mode:vertical-rl;letter-spacing:.1em}
+.cover .s{font-size:9.5px;color:var(--faint)}
+.cover.on{outline:2px solid var(--a);outline-offset:-2px}
+.cover.on .v{color:var(--a)}
+.cover .bar{position:absolute;left:8px;right:8px;bottom:7px;height:2px;border-radius:2px;background:var(--hair)}
+.cover .bar i{display:block;height:100%;background:var(--a);border-radius:2px}
+@media (max-width:520px){.covers{grid-template-columns:repeat(5,1fr)}.two{grid-template-columns:120px 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head"><span class="seal">紡</span><b>Tsumugu</b><span class="beta">Beta</span><button class="themebtn" id="themeBtn">☾</button></div>
+  <p class="lede">Three small layout directions for the Library — same minimal system, different composition. Toggle dark (☾) to check the toned-down accent.</p>
+
+  <!-- A -->
+  <section class="study">
+    <div class="slabel"><span class="n">A · Sidebar</span><span class="w">Mac-style source list — index on the left, readings on the right. Calmest for exploring.</span></div>
+    <div class="frame">
+      <div class="two">
+        <nav class="side">
+          <div class="grp">課本 Textbook</div>
+          <button><span>第一冊</span><span class="s">A1</span></button>
+          <button class="on"><span>第二冊</span><span class="s">A2</span></button>
+          <button><span>第三冊</span><span class="s">B1</span></button>
+          <div class="grp">分級 Level</div>
+          <button><span>入門</span><span class="s">A1</span></button>
+          <button><span>基礎</span><span class="s">A2</span></button>
+        </nav>
+        <div class="card">
+          <div class="row now"><span class="num">第七課</span><span class="nm"><span class="zh">追垃圾車</span>in progress</span><span class="st here">¶3/5</span><span class="chev">›</span></div>
+          <div class="row"><span class="num">第八課</span><span class="nm"><span class="zh">看醫生</span>3 readings</span><span class="chev">›</span></div>
+          <div class="row"><span class="num">第九課</span><span class="nm"><span class="zh">租房子</span>3 readings</span><span class="chev">›</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section class="study">
+    <div class="slabel"><span class="n">B · Chips + one list</span><span class="w">A single surface. Filter by level or volume; one clean list responds. Most reduced.</span></div>
+    <div class="frame">
+      <div class="chips" style="margin-bottom:14px">
+        <span class="chip on">基礎 <span class="s">A2</span></span>
+        <span class="chip">入門 <span class="s">A1</span></span>
+        <span class="chip">進階 <span class="s">B1</span></span>
+        <span class="chip">高階 <span class="s">B2</span></span>
+        <span class="chip">流利 <span class="s">C1</span></span>
+      </div>
+      <div class="card">
+        <div class="row"><span class="num">當代 B2·L07</span><span class="nm"><span class="zh">高先生，你搬來我們這個城市…</span></span><span class="st">對話 · 488</span></div>
+        <div class="row now"><span class="num">當代 B2·L07</span><span class="nm"><span class="zh">那天晚上，周小姐正坐在客廳…</span></span><span class="st here">¶3/5</span></div>
+        <div class="row"><span class="num">當代 B2·L07</span><span class="nm"><span class="zh">各位市民朋友，歡迎收聽…</span></span><span class="st">廣播 · 468</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- C -->
+  <section class="study">
+    <div class="slabel"><span class="n">C · Covers</span><span class="w">Volumes as a quiet cover shelf (progress on the spine), a short list below. More visual.</span></div>
+    <div class="frame">
+      <p class="mini-h">當代中文課程</p>
+      <div class="covers">
+        <div class="cover"><span class="v">第一冊</span><span class="s">A1</span><span class="bar"><i style="width:100%"></i></span></div>
+        <div class="cover on"><span class="v">第二冊</span><span class="s">A2</span><span class="bar"><i style="width:40%"></i></span></div>
+        <div class="cover"><span class="v">第三冊</span><span class="s">B1</span><span class="bar"><i style="width:0"></i></span></div>
+        <div class="cover"><span class="v">第四冊</span><span class="s">B1</span><span class="bar"><i style="width:0"></i></span></div>
+        <div class="cover"><span class="v">第五冊</span><span class="s">B1</span><span class="bar"><i style="width:0"></i></span></div>
+      </div>
+      <div class="card">
+        <div class="row now"><span class="num">第七課</span><span class="nm"><span class="zh">追垃圾車</span>in progress</span><span class="st here">¶3/5</span><span class="chev">›</span></div>
+        <div class="row"><span class="num">第八課</span><span class="nm"><span class="zh">看醫生</span>3 readings</span><span class="chev">›</span></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+<script>
+var r=document.documentElement,b=document.getElementById("themeBtn");
+function s(){b.textContent=r.getAttribute("data-theme")==="dark"?"☀":"☾";}
+if(!r.getAttribute("data-theme"))r.setAttribute("data-theme","light");s();
+b.addEventListener("click",function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";r.setAttribute("data-theme",n);try{localStorage.setItem("tsu-theme",n);}catch(e){}s();});
+</script>
+</body>
+</html>

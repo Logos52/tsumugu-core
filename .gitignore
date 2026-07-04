@@ -1,0 +1,13 @@
+# Money/strategy specifics live in the KB private note (gitignored there), never here.
+# Local agent copy of vault writing standards (canonical: llm-knowledge-base/02 - System/Writing Standards.md).
+Writing-Standards.md
+private/
+out/
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+*.log
+coverage/
+.vite/
+app/public/fonts/

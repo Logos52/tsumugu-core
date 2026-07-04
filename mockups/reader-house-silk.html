@@ -1,0 +1,871 @@
+<!-- @dsCard group="Tsumugu Core · Reader" -->
+<!doctype html>
+<html lang="vi" data-rail="vi" data-script="trad" data-reading="hv" data-gloss="vi" data-theme="light" data-palette="silk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tsumugu Core — Reader (House layout · Silk-Seam theme)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@latest/style.css" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────────────────────────────────
+   Tsumugu Core — HOUSE LAYOUT, dressed in the SILK-SEAM COLOR THEME.
+
+   Convergence build (Wedge's pick): House's structure verbatim — header/chrome,
+   wordmark placement, reading column + token rendering, right rail, segmented
+   toggles + swatch palette switcher, gloss/bridge card, grade actions, all the
+   House JS and interactions, House's Kaiti/LXGW WenKai reading face + Inter chrome.
+
+   Everything is recolored to Silk-Seam's palette and color discipline:
+     · light/paper-pale is the hero (silk base #FBFAF7, ink #222019, card #FFF)
+     · violet #6B4BD6 is RESERVED — brand, the bridge, the "known" confirm only
+     · status lives in the UNDERLINE channel (clay-new #C0506E, amber-learning
+       #C98A2B) + a scarce violet-soft new-target highlight (House's dark box
+       glow adapted to read on paper)
+     · Hán-Việt ruby #3A4BA0 / pinyin ruby #3F51B5; jade #2F9E7D = known confirm
+     · House's heavy dark shadows softened to Silk-Seam's lighter sheets
+
+   Two-layer token model (House's mechanism, Silk-Seam's hues):
+     RAW palette  --raw-*   (swapped per [data-palette] AND [data-theme])
+     SEMANTIC     --tsg-*   (reference the raw layer — theming = one swap)
+   Palette switch and light/dark are orthogonal axes on <html>.
+   絹 Silk-Seam is the DEFAULT template. Alternates keep House Dark-navy + two
+   more Silk-family looks (Celadon, Sumi-Slate) and House's Mauve Spool.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* ===== RAW PALETTE — 絹 SILK-SEAM (default / hero), LIGHT ================== */
+:root,
+:root[data-palette="silk"][data-theme="light"]{
+  --raw-bg:#FBFAF7; --raw-bg2:#F4F2EC; --raw-card:#FFFFFF; --raw-rule:#E7E3DA;
+  --raw-rule-strong:#D8D2C5;
+  --raw-ink:#222019; --raw-ink2:#5B574D; --raw-faint:#8B8576;
+  --raw-violet:#6B4BD6; --raw-violet-soft:#EFEAFD; --raw-violet-edge:#C9BDF4;
+  --raw-on-violet:#ffffff;
+  --raw-hv:#3A4BA0; --raw-py:#3F51B5;
+  --raw-new:#C0506E; --raw-learning:#C98A2B; --raw-jade:#2F9E7D;
+  --grad:linear-gradient(135deg,#6B4BD6 0%,#7d5fe0 60%,#8a6df0 100%);
+  --shadow:0 8px 26px rgba(34,32,25,.10);
+  --shadow-sm:0 1px 3px rgba(34,32,25,.07);
+  --shadow-pop:0 16px 48px rgba(20,16,40,.16);
+  --halo:rgba(107,75,214,.05);
+  color-scheme:light;
+}
+/* ===== 絹 SILK-SEAM, DARK ================================================= */
+:root[data-palette="silk"][data-theme="dark"]{
+  --raw-bg:#14130F; --raw-bg2:#1B1A15; --raw-card:#1F1D18; --raw-rule:#2C2A22;
+  --raw-rule-strong:#3A382E;
+  --raw-ink:#ECEAE2; --raw-ink2:#B3AEA0; --raw-faint:#8B8678;
+  --raw-violet:#A991F5; --raw-violet-soft:#241F3A; --raw-violet-edge:#4A3F7A;
+  --raw-on-violet:#14130F;
+  --raw-hv:#9FB0EE; --raw-py:#9FB0EE;
+  --raw-new:#E0809A; --raw-learning:#E0AD5B; --raw-jade:#54C79E;
+  --grad:linear-gradient(135deg,#A991F5 0%,#b6a0fa 60%,#c4b3ff 100%);
+  --shadow:inset 0 1px 0 rgba(255,255,255,.03),0 8px 26px rgba(0,0,0,.5);
+  --shadow-sm:inset 0 1px 0 rgba(255,255,255,.03),0 2px 8px rgba(0,0,0,.4);
+  --shadow-pop:0 18px 54px rgba(0,0,0,.6);
+  --halo:rgba(169,145,245,.09);
+  color-scheme:dark;
+}
+
+/* ===== ALTERNATE — 青磁 CELADON (cool jade-grey), LIGHT =================== */
+:root[data-palette="celadon"][data-theme="light"]{
+  --raw-bg:#F6F8F6; --raw-bg2:#EBF0EC; --raw-card:#FFFFFF; --raw-rule:#DCE4DD;
+  --raw-rule-strong:#CBD6CD;
+  --raw-ink:#1C2420; --raw-ink2:#566159; --raw-faint:#84908A;
+  --raw-violet:#5E54C9; --raw-violet-soft:#EAE8FA; --raw-violet-edge:#C2BCEE;
+  --raw-on-violet:#ffffff;
+  --raw-hv:#2F6E66; --raw-py:#357C72;
+  --raw-new:#B65066; --raw-learning:#B7842F; --raw-jade:#2C9B73;
+  --grad:linear-gradient(135deg,#5E54C9 0%,#6c63d6 60%,#7a72e2 100%);
+  --shadow:0 8px 26px rgba(28,36,32,.10);
+  --shadow-sm:0 1px 3px rgba(28,36,32,.07);
+  --shadow-pop:0 16px 48px rgba(28,36,32,.16);
+  --halo:rgba(94,84,201,.05);
+  color-scheme:light;
+}
+:root[data-palette="celadon"][data-theme="dark"]{
+  --raw-bg:#101512; --raw-bg2:#161C18; --raw-card:#1A211D; --raw-rule:#283029;
+  --raw-rule-strong:#364036;
+  --raw-ink:#E6EDE7; --raw-ink2:#9FAEA3; --raw-faint:#7C8A80;
+  --raw-violet:#9F92F2; --raw-violet-soft:#221F38; --raw-violet-edge:#473E72;
+  --raw-on-violet:#101512;
+  --raw-hv:#74C2B4; --raw-py:#74C2B4;
+  --raw-new:#DE8197; --raw-learning:#DDAA5A; --raw-jade:#52C495;
+  --grad:linear-gradient(135deg,#9F92F2 0%,#aca0f6 60%,#b9aefb 100%);
+  --shadow:inset 0 1px 0 rgba(255,255,255,.03),0 8px 26px rgba(0,0,0,.5);
+  --shadow-sm:inset 0 1px 0 rgba(255,255,255,.03),0 2px 8px rgba(0,0,0,.4);
+  --shadow-pop:0 18px 54px rgba(0,0,0,.6);
+  --halo:rgba(159,146,242,.09);
+  color-scheme:dark;
+}
+
+/* ===== ALTERNATE — 墨 SUMI-SLATE (cool neutral graphite), LIGHT ========== */
+:root[data-palette="sumi"][data-theme="light"]{
+  --raw-bg:#F8F8FA; --raw-bg2:#EEEFF3; --raw-card:#FFFFFF; --raw-rule:#E1E3EA;
+  --raw-rule-strong:#D0D3DC;
+  --raw-ink:#1A1C22; --raw-ink2:#565A66; --raw-faint:#858997;
+  --raw-violet:#5B4BD6; --raw-violet-soft:#EAE8FB; --raw-violet-edge:#C3BCF1;
+  --raw-on-violet:#ffffff;
+  --raw-hv:#3A4BA0; --raw-py:#3F51B5;
+  --raw-new:#BB4F6C; --raw-learning:#B98330; --raw-jade:#2E9B7B;
+  --grad:linear-gradient(135deg,#5B4BD6 0%,#6a5be0 60%,#796bea 100%);
+  --shadow:0 8px 26px rgba(26,28,34,.10);
+  --shadow-sm:0 1px 3px rgba(26,28,34,.07);
+  --shadow-pop:0 16px 48px rgba(26,28,34,.16);
+  --halo:rgba(91,75,214,.05);
+  color-scheme:light;
+}
+:root[data-palette="sumi"][data-theme="dark"]{
+  --raw-bg:#0F1014; --raw-bg2:#15171D; --raw-card:#191B22; --raw-rule:#262932;
+  --raw-rule-strong:#343845;
+  --raw-ink:#E9EBF1; --raw-ink2:#A3A8B6; --raw-faint:#7E8492;
+  --raw-violet:#A593F6; --raw-violet-soft:#211F38; --raw-violet-edge:#473F75;
+  --raw-on-violet:#0F1014;
+  --raw-hv:#9FB0EE; --raw-py:#9FB0EE;
+  --raw-new:#DF809A; --raw-learning:#E0AD5B; --raw-jade:#54C79E;
+  --grad:linear-gradient(135deg,#A593F6 0%,#b2a2f9 60%,#bfb1fd 100%);
+  --shadow:inset 0 1px 0 rgba(255,255,255,.03),0 8px 26px rgba(0,0,0,.5);
+  --shadow-sm:inset 0 1px 0 rgba(255,255,255,.03),0 2px 8px rgba(0,0,0,.4);
+  --shadow-pop:0 18px 54px rgba(0,0,0,.6);
+  --halo:rgba(165,147,246,.09);
+  color-scheme:dark;
+}
+
+/* ===== ALTERNATE — HOUSE DARK-NAVY (original wnac), DARK ================== */
+:root[data-palette="navy"][data-theme="dark"]{
+  --raw-bg:#000610; --raw-bg2:#03101f; --raw-card:#0a1a30; --raw-rule:#1f375c;
+  --raw-rule-strong:#2e466b;
+  --raw-ink:#dae5f3; --raw-ink2:#9ab0cf; --raw-faint:#7e91ad;
+  --raw-violet:#66aaf7; --raw-violet-soft:#102240; --raw-violet-edge:#2e466b;
+  --raw-on-violet:#000610;
+  --raw-hv:#9bc1f7; --raw-py:#9bc1f7;
+  --raw-new:#f3241a; --raw-learning:#f5a623; --raw-jade:#00bb36;
+  --grad:linear-gradient(135deg,#66aaf7 0%,#b36ef5 58%,#f34ad8 100%);
+  --shadow:inset 0 1px 0 rgba(255,255,255,.06),0 8px 24px rgba(0,0,0,.45);
+  --shadow-sm:inset 0 1px 0 rgba(255,255,255,.05),0 2px 8px rgba(0,0,0,.40);
+  --shadow-pop:inset 0 1px 0 rgba(255,255,255,.06),0 22px 60px rgba(0,0,0,.62);
+  --halo:rgba(102,170,247,.10);
+  color-scheme:dark;
+}
+/* House Dark-navy in light (Catppuccin Latte cousin) for orthogonality */
+:root[data-palette="navy"][data-theme="light"]{
+  --raw-bg:#eff1f5; --raw-bg2:#e6e9ef; --raw-card:#ffffff; --raw-rule:#ccd0da;
+  --raw-rule-strong:#bcc0cc;
+  --raw-ink:#4c4f69; --raw-ink2:#5c5f73; --raw-faint:#73768a;
+  --raw-violet:#1e66f5; --raw-violet-soft:#dbe6ff; --raw-violet-edge:#a9c4ff;
+  --raw-on-violet:#ffffff;
+  --raw-hv:#1a5ce0; --raw-py:#1a5ce0;
+  --raw-new:#d20f39; --raw-learning:#df8e1d; --raw-jade:#40a02b;
+  --grad:linear-gradient(135deg,#1e66f5 0%,#8839ef 58%,#ea76cb 100%);
+  --shadow:0 6px 24px rgba(76,79,105,.14);
+  --shadow-sm:0 1px 2px rgba(76,79,105,.10);
+  --shadow-pop:0 20px 56px rgba(76,79,105,.22);
+  --halo:rgba(30,102,245,.06);
+  color-scheme:light;
+}
+
+/* ===== ALTERNATE — MAUVE SPOOL (House's violet-forward), DARK ============ */
+:root[data-palette="mauve"][data-theme="dark"]{
+  --raw-bg:#0a0512; --raw-bg2:#140a22; --raw-card:#1d1133; --raw-rule:#3a2a5e;
+  --raw-rule-strong:#523c80;
+  --raw-ink:#ece4f6; --raw-ink2:#c2add9; --raw-faint:#9c87bb;
+  --raw-violet:#c89bff; --raw-violet-soft:#271640; --raw-violet-edge:#523c80;
+  --raw-on-violet:#0a0512;
+  --raw-hv:#c4b0ee; --raw-py:#c4b0ee;
+  --raw-new:#ff4d6d; --raw-learning:#ffcf5c; --raw-jade:#41d18a;
+  --grad:linear-gradient(135deg,#a98be6 0%,#c89bff 50%,#f368e0 100%);
+  --shadow:inset 0 1px 0 rgba(255,255,255,.06),0 8px 26px rgba(0,0,0,.5);
+  --shadow-sm:inset 0 1px 0 rgba(255,255,255,.05),0 2px 8px rgba(0,0,0,.42);
+  --shadow-pop:inset 0 1px 0 rgba(255,255,255,.07),0 22px 60px rgba(0,0,0,.66);
+  --halo:rgba(200,155,255,.12);
+  color-scheme:dark;
+}
+:root[data-palette="mauve"][data-theme="light"]{
+  --raw-bg:#f6f2fb; --raw-bg2:#efe7f7; --raw-card:#ffffff; --raw-rule:#ddd0ec;
+  --raw-rule-strong:#cbb9e4;
+  --raw-ink:#3d2f52; --raw-ink2:#574669; --raw-faint:#7a6890;
+  --raw-violet:#6d44d6; --raw-violet-soft:#ece1fb; --raw-violet-edge:#c9b5ee;
+  --raw-on-violet:#ffffff;
+  --raw-hv:#6d44d6; --raw-py:#7c54e0;
+  --raw-new:#d63163; --raw-learning:#c98a13; --raw-jade:#3a9a4f;
+  --grad:linear-gradient(135deg,#6d44d6 0%,#8839ef 55%,#cf52b8 100%);
+  --shadow:0 6px 24px rgba(61,47,82,.14);
+  --shadow-sm:0 1px 2px rgba(61,47,82,.10);
+  --shadow-pop:0 20px 56px rgba(61,47,82,.22);
+  --halo:rgba(136,57,239,.06);
+  color-scheme:light;
+}
+
+/* ===== ALTERNATE — 燈 LOOM & LAMPLIGHT (warm-grey editorial), LIGHT ====== */
+:root[data-palette="loom"][data-theme="light"]{
+  --raw-bg:#F4F1EB; --raw-bg2:#ECE8DF; --raw-card:#FBF9F4; --raw-rule:#DBD5C8;
+  --raw-rule-strong:#C9C2B2;
+  --raw-ink:#23211C; --raw-ink2:#5E594F; --raw-faint:#938C7E;
+  --raw-violet:#6D5AE0; --raw-violet-soft:#EFEBFB; --raw-violet-edge:#CABFF2;
+  --raw-on-violet:#ffffff;
+  --raw-hv:#4C6B86; --raw-py:#4C6B86;
+  --raw-new:#C2603F; --raw-learning:#C79A3A; --raw-jade:#2F9E7D;
+  --grad:linear-gradient(135deg,#6D5AE0 0%,#7c6be6 60%,#8a7cee 100%);
+  --shadow:0 8px 26px rgba(35,33,28,.10);
+  --shadow-sm:0 1px 3px rgba(35,33,28,.07);
+  --shadow-pop:0 16px 48px rgba(35,33,28,.16);
+  --halo:rgba(109,90,224,.05);
+  color-scheme:light;
+}
+:root[data-palette="loom"][data-theme="dark"]{
+  --raw-bg:#16161A; --raw-bg2:#121215; --raw-card:#1E1E24; --raw-rule:#2C2B30;
+  --raw-rule-strong:#3A393F;
+  --raw-ink:#E9E5DC; --raw-ink2:#A39E92; --raw-faint:#6E6A60;
+  --raw-violet:#A99BF2; --raw-violet-soft:#211F33; --raw-violet-edge:#4A4276;
+  --raw-on-violet:#16161A;
+  --raw-hv:#8AA9C6; --raw-py:#8AA9C6;
+  --raw-new:#D98763; --raw-learning:#D3AE5C; --raw-jade:#54C79E;
+  --grad:linear-gradient(135deg,#A99BF2 0%,#b6a9f6 60%,#c4b9fa 100%);
+  --shadow:inset 0 1px 0 rgba(255,255,255,.03),0 8px 26px rgba(0,0,0,.5);
+  --shadow-sm:inset 0 1px 0 rgba(255,255,255,.03),0 2px 8px rgba(0,0,0,.4);
+  --shadow-pop:0 18px 54px rgba(0,0,0,.6);
+  --halo:rgba(169,155,242,.09);
+  color-scheme:dark;
+}
+
+/* ===== SEMANTIC TOKENS — House's --tsg-* names, pointed at the raw layer == */
+:root{
+  --tsg-bg:var(--raw-bg); --tsg-sunk:var(--raw-bg2);
+  --tsg-surface:var(--raw-card); --tsg-surface-alt:var(--raw-bg2);
+  --tsg-border:var(--raw-rule); --tsg-border-strong:var(--raw-rule-strong);
+  --tsg-ink:var(--raw-ink); --tsg-muted:var(--raw-ink2); --tsg-faint:var(--raw-faint);
+  --tsg-accent:var(--raw-violet); --tsg-accent-ink:var(--raw-on-violet);
+  /* reserved violet for brand + bridge + known-confirm; topic uses violet too */
+  --tsg-topic:var(--raw-violet);
+  /* reading rubies: HV navy-indigo, pinyin indigo */
+  --tsg-hv:var(--raw-hv); --tsg-py:var(--raw-py);
+  /* status: clay-new → amber-learning → jade known-confirm (underline channel) */
+  --tsg-st-new:var(--raw-new); --tsg-st-l1:var(--raw-learning); --tsg-st-l3:var(--raw-learning);
+  --tsg-st-known:var(--raw-jade);
+  --read:"LXGW WenKai TC","Kaiti TC","STKaiti","BiauKai","Songti TC","Noto Serif TC","PingFang TC",serif;
+  --ui:"Inter",-apple-system,"Segoe UI",system-ui,"PingFang TC",sans-serif;
+  --display:"Newsreader",Georgia,"Songti TC",serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--tsg-bg)}
+body{
+  font-family:var(--ui);color:var(--tsg-ink);line-height:1.5;min-height:100vh;
+  background:radial-gradient(1100px 480px at 50% -160px,var(--halo),transparent 60%) no-repeat,var(--tsg-bg);
+  transition:background .3s ease,color .3s ease;
+}
+
+/* ===== HEADER / CHROME (House arrangement) =============================== */
+header{
+  position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:14px;
+  flex-wrap:wrap;padding:11px 22px;border-bottom:1px solid var(--tsg-border);
+  background:color-mix(in oklab,var(--tsg-sunk) 86%,transparent);
+  backdrop-filter:saturate(1.3) blur(12px);
+}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:21px;letter-spacing:-.01em}
+.brand .knot{
+  width:25px;height:25px;flex:0 0 auto;border-radius:8px;display:grid;place-items:center;
+  background:var(--tsg-accent);color:var(--tsg-accent-ink);font-size:15px;font-weight:700;
+  box-shadow:var(--shadow-sm);font-family:var(--read);
+}
+/* wordmark: House placement, clean RESERVED violet (no fuchsia gradient on paper) */
+.brand .word{color:var(--tsg-accent);font-family:var(--display);font-weight:600;letter-spacing:.2px}
+.brand .core{font-weight:600;font-size:13px;color:var(--tsg-faint);align-self:flex-end;margin-bottom:2px;letter-spacing:.02em}
+.chip{
+  font-size:12px;font-weight:600;letter-spacing:.03em;padding:4px 10px;border-radius:999px;
+  border:1px solid var(--tsg-border);color:var(--tsg-muted);background:var(--tsg-surface);white-space:nowrap;
+}
+.spacer{flex:1}
+
+/* segmented control (toggles + rail + palette) */
+.seg{display:flex;border:1px solid var(--tsg-border);border-radius:9px;overflow:hidden;background:var(--tsg-surface)}
+.seg .lbl{display:flex;align-items:center;padding:0 9px;font-size:10.5px;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--tsg-faint);border-right:1px solid var(--tsg-border);background:var(--tsg-sunk);font-family:var(--read)}
+.seg button{
+  background:none;border:none;color:var(--tsg-muted);padding:6px 11px;cursor:pointer;
+  font-size:13px;font-family:var(--ui);font-weight:500;transition:background .14s,color .14s;white-space:nowrap;
+}
+.seg button:hover{color:var(--tsg-ink)}
+.seg button.on{background:var(--tsg-accent);color:var(--tsg-accent-ink);font-weight:600}
+/* rail switch: reserved violet fill, no gradient on paper */
+.seg.brandseg button.on{background:var(--tsg-accent);color:var(--tsg-accent-ink)}
+.iconbtn{
+  width:34px;height:34px;border-radius:9px;border:1px solid var(--tsg-border);background:var(--tsg-surface);
+  color:var(--tsg-muted);cursor:pointer;font-size:15px;display:grid;place-items:center;transition:.14s;
+}
+.iconbtn:hover{color:var(--tsg-ink);border-color:var(--tsg-border-strong)}
+
+/* swatch palette switcher (House mechanism) */
+.palettes{display:flex;gap:7px;align-items:center}
+.sw{
+  width:26px;height:26px;border-radius:8px;cursor:pointer;border:2px solid transparent;
+  position:relative;transition:transform .14s,border-color .14s;box-shadow:var(--shadow-sm);
+}
+.sw:hover{transform:translateY(-1px)}
+.sw.on{border-color:var(--tsg-accent)}
+.sw[data-p="silk"]{background:linear-gradient(135deg,#FBFAF7 0 50%,#6B4BD6 50% 100%)}
+.sw[data-p="celadon"]{background:linear-gradient(135deg,#EBF0EC 0 50%,#2F6E66 50% 100%)}
+.sw[data-p="sumi"]{background:linear-gradient(135deg,#EEEFF3 0 50%,#5B4BD6 50% 100%)}
+.sw[data-p="loom"]{background:linear-gradient(135deg,#ECE8DF 0 50%,#6D5AE0 50% 100%)}
+.sw[data-p="navy"]{background:linear-gradient(135deg,#0a1a30 0 50%,#66aaf7 50% 100%)}
+.sw[data-p="mauve"]{background:linear-gradient(135deg,#1d1133 0 50%,#c89bff 50% 100%)}
+.palettes .ttl{font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--tsg-faint);margin-right:1px;font-family:var(--read)}
+
+/* ===== WORK AREA (House two-column) ===================================== */
+.work{display:flex;max-width:1320px;margin:0 auto;min-height:calc(100vh - 60px)}
+.col{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;padding:34px 24px 120px}
+
+/* reading header */
+.readhead{width:680px;max-width:100%;margin-bottom:24px}
+.titlerow{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.title-zh{font-family:var(--read);font-size:34px;font-weight:400;letter-spacing:.01em;color:var(--tsg-ink)}
+.title-rom{font-family:var(--display);font-size:15px;color:var(--tsg-faint);font-style:italic}
+.metarow{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
+.chip.band{color:var(--tsg-accent);border-color:color-mix(in oklab,var(--tsg-accent) 45%,var(--tsg-border))}
+.chip.bind{color:var(--tsg-ink);font-family:var(--read);font-weight:400;
+  border-color:var(--tsg-border)}
+.chip.orig{color:var(--tsg-muted)}
+.chip.new{color:var(--tsg-st-new);border-color:color-mix(in oklab,var(--tsg-st-new) 42%,var(--tsg-border));
+  background:color-mix(in oklab,var(--tsg-st-new) 7%,var(--tsg-surface))}
+
+/* legend */
+.legend{display:flex;gap:7px;align-items:center;flex-wrap:wrap;width:680px;max-width:100%;
+  font-size:11.5px;color:var(--tsg-faint);margin-bottom:18px}
+.lg{display:flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;
+  border:1px solid var(--tsg-border);background:var(--tsg-sunk)}
+.lg i{display:inline-block;width:16px;height:0;border-bottom:2.5px solid;vertical-align:middle}
+.lg i.dot{border-bottom-style:dotted}
+.lg .box{width:11px;height:11px;border-radius:3px}
+
+/* prose */
+.prose{
+  width:680px;max-width:100%;font-family:var(--read);font-size:31px;line-height:2.45;
+  color:var(--tsg-ink);letter-spacing:.01em;
+}
+.prose .sent{display:inline}
+ruby{ruby-position:over}
+rt{font-family:var(--ui);font-size:12px;font-weight:500;letter-spacing:0;color:var(--tsg-hv)}
+:root[data-rail="en"] rt{color:var(--tsg-py)}
+.w{position:relative;cursor:pointer;border-radius:5px;padding:0 1px;transition:background .12s}
+.w:hover{background:color-mix(in oklab,var(--tsg-accent) 9%,transparent)}
+.punc{color:var(--tsg-muted)}
+/* status — SILK-SEAM treatment on paper: UNDERLINE channel only (clay/amber) */
+.w.known rt{color:color-mix(in oklab,var(--tsg-hv) 72%,var(--tsg-faint))}
+.w.learning{
+  text-decoration:underline;text-decoration-style:dotted;text-decoration-color:var(--tsg-st-l1);
+  text-decoration-thickness:2.5px;text-underline-offset:7px}
+.w.new{
+  text-decoration:underline;text-decoration-color:var(--tsg-st-new);
+  text-decoration-thickness:2.5px;text-underline-offset:7px}
+/* lesson new-target = the moat word: scarce violet-soft wash (Silk-Seam), no dark box */
+.w.nw{
+  background:color-mix(in oklab,var(--raw-violet-soft) 78%,transparent);
+  border-radius:6px;padding:0 3px;
+}
+.w.sel{
+  background:var(--tsg-accent);color:var(--tsg-accent-ink);
+  box-shadow:0 2px 12px color-mix(in oklab,var(--tsg-accent) 35%,transparent);
+  text-decoration:none;
+}
+.w.sel rt{color:var(--tsg-accent-ink)}
+
+/* ===== RIGHT RAIL (House) =============================================== */
+.rail{
+  flex:0 0 264px;border-left:1px solid var(--tsg-border);padding:30px 22px;
+  display:flex;flex-direction:column;gap:15px;
+  background:color-mix(in oklab,var(--tsg-sunk) 50%,var(--tsg-bg));
+}
+.rh{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--tsg-faint);margin-top:4px}
+.stat{background:var(--tsg-surface);border:1px solid var(--tsg-border);border-radius:13px;padding:14px 15px;box-shadow:var(--shadow-sm)}
+.stat .n{font-family:var(--display);font-size:27px;font-weight:600;line-height:1;color:var(--tsg-ink)}
+.stat .n.due{color:var(--tsg-st-l1)}
+.stat .s{font-size:12px;color:var(--tsg-muted);margin-top:5px}
+.mini{display:flex;justify-content:space-between;font-size:12.5px;color:var(--tsg-muted);padding:3px 0}
+.mini b{color:var(--tsg-ink);font-weight:700;font-family:var(--display)}
+.meter .track{height:7px;border-radius:99px;background:var(--tsg-surface-alt);overflow:hidden;margin-top:8px}
+.meter .fill{height:100%;width:91%;border-radius:99px;background:linear-gradient(90deg,var(--tsg-st-known),color-mix(in oklab,var(--tsg-st-known) 55%,var(--tsg-st-l3)))}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px}
+.tg{font-size:12px;font-family:var(--read);color:var(--tsg-topic);
+  background:color-mix(in oklab,var(--tsg-topic) 9%,var(--tsg-surface));
+  border:1px solid color-mix(in oklab,var(--tsg-topic) 26%,var(--tsg-border));border-radius:999px;padding:3px 10px}
+.foot{margin-top:auto;font-size:11.5px;color:var(--tsg-faint);line-height:1.65}
+.foot b{color:var(--tsg-muted)}
+
+/* ===== GLOSS / BRIDGE CARD (House anchored side popover) ================= */
+#scrim{position:fixed;inset:0;z-index:40;display:none;background:transparent}
+#card{
+  position:fixed;z-index:50;width:380px;max-width:calc(100vw - 24px);
+  background:var(--tsg-surface);border:1px solid var(--tsg-border-strong);border-radius:16px;
+  box-shadow:var(--shadow-pop);display:none;overflow:hidden;
+  animation:pop .18s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes pop{from{opacity:0;transform:translateY(6px) scale(.98)}to{opacity:1;transform:none}}
+#card .top{display:flex;gap:14px;padding:17px 18px 13px;border-bottom:1px solid var(--tsg-border)}
+#card .glyph{font-family:var(--read);font-size:54px;line-height:1;color:var(--tsg-ink);position:relative;flex:0 0 auto}
+/* violet self-seal dot (Silk-Seam) — only on the bridge headword */
+#card.is-bridge .glyph::after{
+  content:"";position:absolute;top:2px;right:-3px;width:9px;height:9px;border-radius:50%;
+  background:var(--tsg-accent);box-shadow:0 0 0 3px color-mix(in oklab,var(--tsg-accent) 18%,transparent);
+}
+#card .head{flex:1}
+#card .head .hv{font-size:24px;font-weight:600;color:var(--tsg-accent);font-family:var(--display);display:inline-block}
+#card .head .ipa{color:var(--tsg-muted);font-size:13.5px;margin-top:3px}
+#card .head .pos{color:var(--tsg-faint);font-size:12px;margin-top:6px}
+#card .au{width:32px;height:32px;flex:0 0 auto;border-radius:9px;border:1px solid var(--tsg-border);
+  display:grid;place-items:center;font-size:15px;color:var(--tsg-muted);cursor:pointer}
+#card .body{padding:14px 18px 16px}
+#card .gloss{font-size:16px;font-weight:600;color:var(--tsg-ink);margin-bottom:13px}
+
+/* the bridge — the moat (Silk-Seam violet-soft field + woven-thread left edge) */
+.bridge{
+  position:relative;overflow:hidden;
+  background:var(--raw-violet-soft);
+  border:1px solid color-mix(in oklab,var(--tsg-accent) 22%,var(--tsg-border));
+  border-radius:12px;padding:13px 14px 13px 18px;margin-bottom:13px;
+}
+.bridge::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:7px;
+  background-image:repeating-linear-gradient(45deg,var(--tsg-accent) 0 2px,transparent 2px 5px);
+  opacity:.85;
+}
+.bridge .eye{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em;color:var(--tsg-accent);margin-bottom:11px}
+.bridge .eye .di{font-size:9px}
+.bridge .eye .en{color:var(--tsg-faint);font-weight:600;text-transform:none;letter-spacing:0}
+.cogs{display:flex;flex-direction:column;gap:8px;margin-bottom:11px}
+.cog{display:flex;align-items:baseline;gap:11px;padding:7px 11px;border-radius:9px;
+  background:color-mix(in oklab,var(--tsg-surface) 65%,transparent);
+  border:1px solid color-mix(in oklab,var(--tsg-accent-ink) 0%,var(--tsg-violet-edge,var(--raw-violet-edge)))}
+.cog .zh{font-family:var(--read);font-size:21px;color:var(--tsg-ink);min-width:54px}
+.cog .zh .shared{color:var(--tsg-accent)}
+.cog .vi{font-size:14px}
+.cog .vi .shared{font-weight:800;color:var(--tsg-accent);position:relative;display:inline-block}
+/* the signature: a violet stitch-pull draws under the shared morpheme */
+.cog .vi .shared::after{
+  content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;border-radius:2px;
+  background:var(--tsg-accent);transform:scaleX(0);transform-origin:left;
+}
+.bridge.draw .cog .vi .shared::after{animation:stitch .42s ease forwards}
+.cog:nth-child(2) .vi .shared::after{animation-delay:.06s}
+.cog:nth-child(3) .vi .shared::after{animation-delay:.12s}
+@keyframes stitch{to{transform:scaleX(1)}}
+.cog .vi .faint{color:var(--tsg-faint);font-weight:400}
+.cog .en{margin-left:auto;font-size:12px;color:var(--tsg-faint);font-style:italic}
+.bridge .close{font-size:12.5px;color:var(--tsg-ink);line-height:1.5}
+.bridge .close b{color:var(--tsg-accent);font-family:var(--read);font-weight:400}
+
+/* EN-rail component note replaces bridge (Silk-Seam dashed note) */
+.ennote{
+  background:var(--tsg-sunk);border:1px dashed var(--tsg-border-strong);
+  border-radius:10px;padding:12px 14px;margin-bottom:13px;font-size:13px;color:var(--tsg-muted);line-height:1.55;
+}
+.ennote .lbl{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+  color:var(--tsg-faint);margin-bottom:6px}
+.ennote .ser{font-family:var(--read);font-size:17px;color:var(--tsg-ink)}
+.ennote .ser b{color:var(--tsg-accent)}
+.ennote .ph{color:var(--tsg-accent)}
+
+#card .ex{font-family:var(--read);font-size:15.5px;color:var(--tsg-muted);
+  background:var(--tsg-sunk);border:1px solid var(--tsg-border);border-radius:10px;padding:9px 12px;margin-bottom:13px;line-height:1.7}
+#card .ex em{color:var(--tsg-accent);font-style:normal;font-weight:600}
+.acts{display:flex;gap:8px}
+.acts button{flex:1;border:1px solid var(--tsg-border);background:var(--tsg-sunk);color:var(--tsg-ink);
+  border-radius:10px;padding:9px 8px;cursor:pointer;font-size:13px;font-family:var(--ui);font-weight:500;transition:.14s;white-space:nowrap}
+/* +Add card = reserved violet (the deliberate action) */
+.acts .add{background:var(--tsg-accent);border-color:var(--tsg-accent);color:var(--tsg-accent-ink);font-weight:600}
+.acts .add:hover{filter:brightness(1.06)}
+/* known confirm = jade hover (Silk-Seam) */
+.acts .known:hover{border-color:var(--tsg-st-known);background:var(--tsg-st-known);color:#fff}
+.acts .dict{flex:0 0 auto;color:var(--tsg-accent);font-weight:600;font-family:var(--read)}
+.acts .dict:hover{border-color:var(--tsg-accent)}
+
+/* hide rail-specific blocks per [data-rail] */
+:root[data-rail="en"] .vi-only{display:none!important}
+:root[data-rail="vi"] .en-only{display:none!important}
+
+/* ===== responsive collapse ============================================== */
+@media(max-width:980px){
+  .rail{display:none}
+  .work{display:block}
+}
+@media(max-width:720px){
+  .col{padding:22px 16px 110px}
+  .prose{font-size:26px;line-height:2.3}
+  .title-zh{font-size:28px}
+  header{gap:9px}
+}
+.kbd{font-size:11px;color:var(--tsg-faint)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="knot">紡</span>
+    <span class="word">Tsumugu</span>
+    <span class="core">Core · Đọc</span>
+  </div>
+
+  <!-- rail switcher: EN learner ⇄ VI learner (default VI so the moat shows) -->
+  <div class="seg brandseg" id="railSeg" title="English learner ⇄ Vietnamese learner">
+    <span class="lbl">Rail</span>
+    <button data-rail="vi" class="on">VI 越</button>
+    <button data-rail="en">EN 英</button>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="seg" id="scriptSeg" title="Script"><span class="lbl">字</span>
+    <button data-script="trad" class="on">繁</button>
+    <button data-script="simp">简</button>
+  </div>
+  <div class="seg" id="readingSeg" title="Reading"><span class="lbl">音</span>
+    <button data-reading="hv" class="on">Hán-Việt</button>
+    <button data-reading="py">Pinyin</button>
+    <button data-reading="zh">注音</button>
+  </div>
+  <div class="seg" id="glossSeg" title="Gloss language"><span class="lbl">譯</span>
+    <button data-gloss="vi" class="on">VI</button>
+    <button data-gloss="en">EN</button>
+  </div>
+
+  <div class="palettes" title="Color template">
+    <span class="ttl">Theme</span>
+    <span class="sw on" data-p="silk" title="絹 Silk-Seam (paper · native)"></span>
+    <span class="sw" data-p="celadon" title="青磁 Celadon (cool jade-grey)"></span>
+    <span class="sw" data-p="sumi" title="墨 Sumi-Slate (cool graphite)"></span>
+    <span class="sw" data-p="loom" title="燈 Loom &amp; Lamplight (warm-grey editorial)"></span>
+    <span class="sw" data-p="navy" title="House Dark-navy (original wnac)"></span>
+    <span class="sw" data-p="mauve" title="Mauve Spool (violet-forward)"></span>
+  </div>
+  <button class="iconbtn" id="themeBtn" title="Light / dark">☀</button>
+</header>
+
+<div class="work">
+  <div class="col">
+
+    <div class="readhead">
+      <div class="titlerow">
+        <span class="title-zh" id="titleZh">山中的客棧</span>
+        <span class="title-rom" id="titleRom">Sơn trung đích khách sạn</span>
+      </div>
+      <div class="metarow">
+        <span class="chip band">B1 · TOCFL 3</span>
+        <span class="chip bind">當代中文課程 · B4 L3</span>
+        <span class="chip orig" id="origChip">nguyên tác</span>
+        <span class="chip new" id="newChip">3 từ mới</span>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span class="lg"><i style="border-color:var(--tsg-st-new)"></i><span id="lgNew">chưa biết</span></span>
+      <span class="lg"><i class="dot" style="border-color:var(--tsg-st-l1)"></i><span id="lgLearn">đang học</span></span>
+      <span class="lg"><span class="box" style="background:color-mix(in oklab,var(--raw-violet-soft) 78%,transparent);box-shadow:inset 0 0 0 1px var(--tsg-accent)"></span><span id="lgNw">từ mới của bài</span></span>
+      <span class="lg"><i style="border-color:var(--tsg-border-strong)"></i><span id="lgKnown">đã biết</span></span>
+      <span class="kbd" id="lgHint">— chạm vào từ để xem nghĩa</span>
+    </div>
+
+    <p class="prose" id="prose"></p>
+  </div>
+
+  <!-- right rail (House) -->
+  <div class="rail">
+    <div class="rh">Hôm nay · Today</div>
+    <div class="stat"><div class="n due">9</div><div class="s vi-only">từ đến hạn ôn tập →</div><div class="s en-only">words due to review →</div></div>
+    <div class="stat">
+      <div class="mini"><span class="vi-only">Từ đã biết</span><span class="en-only">Known words</span><b>3,418</b></div>
+      <div class="mini"><span class="vi-only">Đánh dấu lần đọc này</span><span class="en-only">Flagged this read</span><b>3</b></div>
+      <div class="mini"><span class="vi-only">Xu hướng phủ</span><span class="en-only">Coverage trend</span><b>+1.2%</b></div>
+    </div>
+    <div class="rh vi-only">Mức hiểu</div><div class="rh en-only">Comprehension</div>
+    <div class="stat meter"><div class="mini"><span class="vi-only">理解 · ước tính</span><span class="en-only">理解 · estimate</span><b>91%</b></div><div class="track"><div class="fill"></div></div></div>
+    <div class="rh vi-only">Bài này giới thiệu</div><div class="rh en-only">This passage introduces</div>
+    <div class="tagrow">
+      <span class="tg">望</span><span class="tg">古老</span><span class="tg">客棧</span>
+    </div>
+    <div class="rh">Serena · 朗讀</div>
+    <div class="stat">
+      <div class="mini"><span>🔊 <span class="vi-only">đọc theo</span><span class="en-only">read-along</span></span><b>▶</b></div>
+      <div class="mini"><span>🌊 loop · 🐢 0.85×</span><b>▶</b></div>
+    </div>
+    <div class="foot">
+      <span class="vi-only">Ngoại tuyến · $0 · phía người dùng.<br><b>Dựng sẵn</b> bởi agent — chạm không gọi server.</span>
+      <span class="en-only">Offline · $0 · client-side.<br><b>Pre-baked</b> by your agent — taps never call out.</span>
+    </div>
+  </div>
+</div>
+
+<!-- gloss / bridge card -->
+<div id="scrim"></div>
+<div id="card" role="dialog" aria-modal="true">
+  <div class="top">
+    <div class="glyph" id="cGlyph">望</div>
+    <div class="head">
+      <div class="hv" id="cReading">vọng</div>
+      <div class="ipa" id="cIpa">wàng</div>
+      <div class="pos" id="cPos">động từ · verb</div>
+    </div>
+    <div class="au" title="Serena">🔊</div>
+  </div>
+  <div class="body">
+    <div class="gloss" id="cGloss"></div>
+
+    <!-- VI rail: the bridge (the moat) -->
+    <div class="bridge vi-only" id="cBridge">
+      <div class="eye"><span class="di">◆</span><span id="cEyeVi">Bạn đã biết âm này rồi</span> · <span class="en" id="cEyeEn">you already know this morpheme</span></div>
+      <div class="cogs" id="cCogs"></div>
+      <div class="close" id="cClose"></div>
+    </div>
+
+    <!-- EN rail: component / phonetic-series note (NO "you already know") -->
+    <div class="ennote en-only" id="cEnNote">
+      <span class="lbl">Phonetic series</span>
+      <span class="ser"><span class="ph">亡</span> (wáng) → 望 / 忘 / 茫.
+      望 takes its sound from <b>亡</b>; the same element runs through 忘 (forget) and 茫 (vast).
+      The man on tiptoe (𡈼) gazing under the moon (月) carries the meaning.</span>
+    </div>
+
+    <div class="ex" id="cEx"></div>
+
+    <div class="acts">
+      <button class="add" id="aAdd">+ Thêm thẻ</button>
+      <button class="known" id="aKnown">✓ Đã biết</button>
+      <button class="dict" id="aDict" title="Mở trang chữ đầy đủ → tsumugu-ed">字 →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+const DATA = {
+  meta:{title_zh:"山中的客棧",title_hv:"Sơn trung đích khách sạn",title_vi:"Quán trọ trong núi",title_en:"The Inn in the Mountains",
+    band:"B1 · TOCFL 3",binding:"當代中文課程 · B4 L3",origin_vi:"nguyên tác",origin_en:"AI-original",newWords:3,minutes:2},
+  // [trad zh] ; per-char simp map for swap
+  s2t:{"山":"山","中":"中","的":"的","客":"客","棧":"栈","他":"他","抬":"抬","起":"起","頭":"头","望":"望","向":"向","那":"那","座":"座","高":"高","有":"有","一":"一","間":"间","古":"古","老":"老","燈":"灯","還":"还","亮":"亮","著":"着","希":"希","失":"失","願":"愿"},
+  sentences:[
+    [
+      {zh:"他",py:"tā",hv:"tha",zhuyin:"ㄊㄚ",vi:"anh ấy",en:"he",st:"known"},
+      {zh:"抬起",py:"táiqǐ",hv:"đài khởi",zhuyin:"ㄊㄞˊ ㄑㄧˇ",vi:"ngẩng (lên)",en:"to raise",st:"known"},
+      {zh:"頭",py:"tóu",hv:"đầu",zhuyin:"ㄊㄡˊ",vi:"đầu",en:"head",st:"known"},
+      {zh:"，",st:"punct"},
+      {zh:"望",py:"wàng",hv:"vọng",zhuyin:"ㄨㄤˋ",vi:"nhìn ra xa",en:"to gaze",st:"new",nw:true,bridge:true},
+      {zh:"向",py:"xiàng",hv:"hướng",zhuyin:"ㄒㄧㄤˋ",vi:"về phía",en:"toward",st:"known"},
+      {zh:"那",py:"nà",hv:"na",zhuyin:"ㄋㄚˋ",vi:"kia",en:"that",st:"known"},
+      {zh:"座",py:"zuò",hv:"tọa",zhuyin:"ㄗㄨㄛˋ",vi:"(lượng từ)",en:"(measure word)",st:"learning"},
+      {zh:"高",py:"gāo",hv:"cao",zhuyin:"ㄍㄠ",vi:"cao",en:"tall",st:"known"},
+      {zh:"山",py:"shān",hv:"sơn",zhuyin:"ㄕㄢ",vi:"núi",en:"mountain",st:"known"},
+      {zh:"。",st:"punct"}
+    ],
+    [
+      {zh:"山",py:"shān",hv:"sơn",zhuyin:"ㄕㄢ",vi:"núi",en:"mountain",st:"known"},
+      {zh:"中",py:"zhōng",hv:"trung",zhuyin:"ㄓㄨㄥ",vi:"trong",en:"in",st:"known"},
+      {zh:"有",py:"yǒu",hv:"hữu",zhuyin:"ㄧㄡˇ",vi:"có",en:"there is",st:"known"},
+      {zh:"一",py:"yī",hv:"nhất",zhuyin:"ㄧ",vi:"một",en:"one",st:"known"},
+      {zh:"間",py:"jiān",hv:"gian",zhuyin:"ㄐㄧㄢ",vi:"(lượng từ)",en:"(measure word)",st:"known"},
+      {zh:"古老",py:"gǔlǎo",hv:"cổ lão",zhuyin:"ㄍㄨˇ ㄌㄠˇ",vi:"cổ kính",en:"ancient",st:"learning",nw:true},
+      {zh:"的",py:"de",hv:"đích",zhuyin:"˙ㄉㄜ",vi:"(trợ từ)",en:"(particle)",st:"known"},
+      {zh:"客棧",py:"kèzhàn",hv:"khách sạn",zhuyin:"ㄎㄜˋ ㄓㄢˋ",vi:"quán trọ",en:"inn",st:"learning",nw:true},
+      {zh:"，",st:"punct"},
+      {zh:"燈",py:"dēng",hv:"đăng",zhuyin:"ㄉㄥ",vi:"đèn",en:"lamp",st:"known"},
+      {zh:"還",py:"hái",hv:"hoàn",zhuyin:"ㄏㄞˊ",vi:"vẫn",en:"still",st:"known"},
+      {zh:"亮",py:"liàng",hv:"lượng",zhuyin:"ㄌㄧㄤˋ",vi:"sáng",en:"bright",st:"learning"},
+      {zh:"著",py:"zhe",hv:"trước",zhuyin:"˙ㄓㄜ",vi:"(đang)",en:"(aspect)",st:"known"},
+      {zh:"。",st:"punct"}
+    ]
+  ],
+  exampleByWord:{
+    "望":{zh:"他<em>望</em>向遠方的高山。",en:"He gazed toward the distant mountains.",vi:"Anh ấy nhìn về phía dãy núi xa."},
+    "古老":{zh:"這是一座<em>古老</em>的城市。",en:"This is an ancient city.",vi:"Đây là một thành phố cổ kính."},
+    "客棧":{zh:"山裡有一間小<em>客棧</em>。",en:"There is a small inn in the mountains.",vi:"Trong núi có một quán trọ nhỏ."},
+    "座":{zh:"那<em>座</em>山很高。",en:"That mountain is tall.",vi:"Ngọn núi kia rất cao."},
+    "亮":{zh:"窗戶裡的燈還<em>亮</em>著。",en:"The lamp in the window is still lit.",vi:"Đèn trong cửa sổ vẫn còn sáng."}
+  },
+  bridge:{
+    char:"望",hv:"vọng",py:"wàng",zhuyin:"ㄨㄤˋ",pos_vi:"động từ",pos_en:"verb",
+    gloss_vi:"nhìn ra xa; ngóng trông",gloss_en:"to gaze into the distance; to look toward",
+    eyebrow_vi:"Bạn đã biết âm này rồi",eyebrow_en:"you already know this morpheme",
+    cognates:[
+      {vi:"hy vọng",zh:"希望",en:"to hope",shared:"vọng",pre:"hy"},
+      {vi:"thất vọng",zh:"失望",en:"disappointed",shared:"vọng",pre:"thất"},
+      {vi:"nguyện vọng",zh:"願望",en:"aspiration",shared:"vọng",pre:"nguyện"}
+    ],
+    closing_vi:"cùng chữ 望 vọng — âm bạn đã nói hằng ngày",
+    closing_en:"all the same 望 vọng you already say",
+    en_rail_series:{phonetic:"亡",py:"wáng",members:["望","忘","茫"]}
+  }
+};
+
+const root = document.documentElement;
+const $ = s => document.querySelector(s);
+const T = {
+  rail:"vi", script:"trad", reading:"hv", gloss:"vi", theme:"light", palette:"silk"
+};
+
+/* ---- build prose token-by-token ---- */
+const prose = $("#prose");
+function readingOf(tok){
+  if(T.reading==="hv") return tok.hv;
+  if(T.reading==="py") return tok.py;
+  return tok.zhuyin;
+}
+function charsFor(zh){
+  if(T.script==="simp") return [...zh].map(c=>DATA.s2t[c]||c).join("");
+  return zh;
+}
+function buildProse(){
+  prose.innerHTML="";
+  DATA.sentences.forEach(sent=>{
+    const sp=document.createElement("span"); sp.className="sent";
+    sent.forEach(tok=>{
+      if(tok.st==="punct"){
+        const p=document.createElement("span"); p.className="punc"; p.textContent=tok.zh; sp.appendChild(p); return;
+      }
+      const w=document.createElement("span");
+      w.className="w "+tok.st+(tok.nw?" nw":"");
+      w.dataset.zh=tok.zh;
+      const txt=charsFor(tok.zh);
+      const ruby=document.createElement("ruby");
+      ruby.textContent=txt;
+      const rt=document.createElement("rt"); rt.textContent=readingOf(tok);
+      ruby.appendChild(rt);
+      w.appendChild(ruby);
+      w.addEventListener("click",e=>{e.stopPropagation();openCard(tok,w);});
+      sp.appendChild(w);
+    });
+    prose.appendChild(sp);
+  });
+}
+
+/* ---- localized chrome strings ---- */
+function applyChromeLang(){
+  const vi=T.gloss==="vi";
+  $("#titleRom").textContent = vi ? DATA.meta.title_hv : DATA.meta.title_en;
+  $("#origChip").textContent = vi ? DATA.meta.origin_vi : DATA.meta.origin_en;
+  $("#newChip").textContent  = vi ? DATA.meta.newWords+" từ mới" : DATA.meta.newWords+" new";
+  $("#lgNew").textContent    = vi ? "chưa biết" : "new";
+  $("#lgLearn").textContent  = vi ? "đang học" : "learning";
+  $("#lgNw").textContent     = vi ? "từ mới của bài" : "lesson target";
+  $("#lgKnown").textContent  = vi ? "đã biết" : "known";
+  $("#lgHint").textContent   = vi ? "— chạm vào từ để xem nghĩa" : "— tap a word for its meaning";
+  $("#aAdd").textContent     = vi ? "+ Thêm thẻ" : "+ Add card";
+  $("#aKnown").textContent   = vi ? "✓ Đã biết" : "✓ I know it";
+  $("#aDict").title          = vi ? "Mở trang chữ đầy đủ → tsumugu-ed" : "Open full entry → tsumugu-ed";
+}
+
+/* ---- gloss / bridge card ---- */
+const card=$("#card"), scrim=$("#scrim");
+function buildCogs(){
+  const box=$("#cCogs"); box.innerHTML="";
+  DATA.bridge.cognates.forEach(c=>{
+    const row=document.createElement("div"); row.className="cog";
+    const zhDisp = charsFor(c.zh);
+    const zhHtml = [...zhDisp].map(ch=> (ch===charsFor(DATA.bridge.char)) ? `<span class="shared">${ch}</span>` : ch).join("");
+    const zh=document.createElement("span"); zh.className="zh"; zh.innerHTML=zhHtml;
+    const vi=document.createElement("span"); vi.className="vi";
+    vi.innerHTML = `<span class="faint">${c.pre} </span><span class="shared">${c.shared}</span>`;
+    const en=document.createElement("span"); en.className="en"; en.textContent=c.en;
+    row.appendChild(zh); row.appendChild(vi); row.appendChild(en);
+    box.appendChild(row);
+  });
+}
+function openCard(tok,el){
+  document.querySelectorAll(".w.sel").forEach(x=>x.classList.remove("sel"));
+  if(el) el.classList.add("sel");
+  const vi=T.gloss==="vi";
+  $("#cGlyph").textContent = charsFor(tok.zh);
+  $("#cReading").textContent = readingOf(tok) || tok.hv;
+  // secondary reading line shows the OTHER romanizations for richness
+  const sec = [tok.hv?("HV "+tok.hv):"", tok.py?("· "+tok.py):"", tok.zhuyin?("· "+tok.zhuyin):""].join(" ");
+  $("#cIpa").textContent = sec.trim();
+  $("#cPos").textContent = "—";
+  $("#cGloss").textContent = vi ? tok.vi : tok.en;
+
+  const isBridge = !!tok.bridge;
+  card.classList.toggle("is-bridge", isBridge);
+  // pos: only the bridge headword carries POS in this sample
+  if(isBridge){ $("#cPos").textContent = vi ? (DATA.bridge.pos_vi+" · verb") : "verb · động từ"; }
+
+  // bridge content (VI rail only; CSS hides .vi-only on EN rail)
+  if(isBridge){
+    $("#cBridge").style.display="";
+    $("#cEnNote").style.display="";
+    $("#cReading").textContent = DATA.bridge[T.reading==="py"?"py":(T.reading==="zh"?"zhuyin":"hv")];
+    $("#cGloss").textContent = vi ? DATA.bridge.gloss_vi : DATA.bridge.gloss_en;
+    $("#cEyeVi").textContent = DATA.bridge.eyebrow_vi;
+    $("#cEyeEn").textContent = DATA.bridge.eyebrow_en;
+    buildCogs();
+    $("#cClose").innerHTML = vi?DATA.bridge.closing_vi:DATA.bridge.closing_en;
+    // retrigger stitch-draw animation
+    const b=$("#cBridge"); b.classList.remove("draw"); void b.offsetWidth; b.classList.add("draw");
+  } else {
+    $("#cBridge").style.display="none";
+    $("#cEnNote").style.display="none";
+  }
+
+  // example
+  const ex=DATA.exampleByWord[tok.zh];
+  if(ex){
+    $("#cEx").style.display="";
+    let zh=ex.zh;
+    if(T.script==="simp"){ zh = zh.replace(/[一-鿿]/g,c=>DATA.s2t[c]||c); }
+    $("#cEx").innerHTML = zh + (vi?`<br><span style="font-size:13px;color:var(--tsg-faint)">${ex.vi}</span>`:`<br><span style="font-size:13px;color:var(--tsg-faint)">${ex.en}</span>`);
+  } else { $("#cEx").style.display="none"; }
+
+  $("#aDict").textContent = "字 →";
+
+  // position: anchored side popover near the word (House)
+  card.style.display="block"; scrim.style.display="block";
+  const r=el.getBoundingClientRect();
+  let top=r.bottom+10, left=Math.min(r.left, window.innerWidth-card.offsetWidth-12);
+  if(top+card.offsetHeight>window.innerHeight-12) top=Math.max(12, r.top-card.offsetHeight-10);
+  card.style.top=Math.max(12,top)+"px"; card.style.left=Math.max(12,left)+"px";
+}
+function closeCard(){
+  card.style.display="none"; scrim.style.display="none";
+  document.querySelectorAll(".w.sel").forEach(x=>x.classList.remove("sel"));
+}
+scrim.addEventListener("click",closeCard);
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeCard(); });
+
+/* ---- segmented toggle wiring ---- */
+function wireSeg(sel,attr,onChange){
+  document.querySelectorAll(sel+" button").forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll(sel+" button").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on");
+    T[attr]=b.dataset[attr];
+    root.dataset[attr]=T[attr];
+    onChange&&onChange();
+  }));
+}
+wireSeg("#railSeg","rail",()=>{ closeCard(); });
+wireSeg("#scriptSeg","script",()=>{ buildProse(); });
+wireSeg("#readingSeg","reading",()=>{ buildProse(); });
+wireSeg("#glossSeg","gloss",()=>{ applyChromeLang(); });
+
+/* palette swatches (House mechanism) */
+document.querySelectorAll(".sw").forEach(s=>s.addEventListener("click",()=>{
+  document.querySelectorAll(".sw").forEach(x=>x.classList.remove("on"));
+  s.classList.add("on");
+  T.palette=s.dataset.p; root.dataset.palette=T.palette;
+  // House Dark-navy + Mauve Spool are dark-native; auto-flip theme for a faithful preview
+  if((T.palette==="navy"||T.palette==="mauve") && T.theme==="light"){ setTheme("dark"); }
+  else if((T.palette==="silk"||T.palette==="celadon"||T.palette==="sumi"||T.palette==="loom") && T.theme==="dark"){ setTheme("light"); }
+}));
+
+/* light/dark (orthogonal; light/paper is the hero) */
+function setTheme(mode){
+  T.theme=mode; root.dataset.theme=mode;
+  $("#themeBtn").textContent = mode==="dark" ? "☾" : "☀";
+}
+$("#themeBtn").addEventListener("click",()=>{ setTheme(T.theme==="dark"?"light":"dark"); });
+
+/* init */
+buildProse();
+applyChromeLang();
+setTheme("light");
+</script>
+</body>
+</html>

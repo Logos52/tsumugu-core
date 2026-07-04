@@ -1,0 +1,663 @@
+<!doctype html>
+<!--
+  ════════════════════════════════════════════════════════════════════════════
+  冊 Cè · BOUND VOLUME — Tsumugu Core design exploration, 2026-07
+  ════════════════════════════════════════════════════════════════════════════
+
+  THESIS
+  The learner browses and reads the same shelves a Taipei reader does. The site
+  wears Taiwan trade publishing (誠品 front table, 聯經/大塊 covers), so moving
+  from Tsumugu into real Taiwanese books is continuity, not a costume change.
+  Typographic adulthood is the genre's emptiest ground.
+
+  PALETTE
+  ─ light ────────────────────────────────────────────────────────────────────
+    paper   #FCFBF8  near-white page (NOT cream)
+    ink     #1D1B17  text
+    kraft   #C7B08A  material neutral: shelf rails, obi band ground, borders
+    pine    #2E5E4E  the one accent: brand, bridge, known-confirm, active
+    clay    #C0506E  status: new (solid underline only)
+    amber   #C98A2B  status: learning (dotted underline only)
+  ─ dark (bookshop at night) ─────────────────────────────────────────────────
+    paper   #141613  green-black
+    ink     #E9E7DF
+    kraft   #7A6A50  dimmed material
+    pine    #6FA893  lifted accent
+    clay    #D4738E · amber #D9A34D (lifted for contrast, underline only)
+
+  TYPE ROLES
+    Reading prose  — Noto Serif TC (明體 Ming) 30px / 2.4. THE EXPERIMENT THIS
+                     DIRECTION EXISTS TO RUN: what adult Taiwan actually reads.
+                     If Ming fails the test, the classroom kai face
+                     (LXGW WenKai TC) is a ONE-TOKEN SWAP at --f-read below.
+    Display Han    — Noto Serif TC 700/900 (titles, section heads, spines)
+    Latin + Viet   — Literata (bookish text serif, full Vietnamese diacritics;
+                     obi bands, catalog lines, glosses)
+    Chrome         — Inter (tabs, keycaps, ruby rt: safe Vietnamese tone stacks)
+
+  SIGNATURE — the 書腰 OBI BAND
+    Every card and lesson set carries one horizontal kraft fact-band at a fixed
+    position (like a Taiwanese book band): "A2 · 當代 B2 L07 · 470字 · 94% known
+    · ≈5 min". The can-I-read-this decision is one glance at one consistent
+    place. Catalog register made physical; it never sells.
+
+  ONE MOTION
+    Reader chrome recedes on scroll: the header slides away, the folio running
+    head takes the top of the page. Killed under prefers-reduced-motion.
+
+  LOOK FIRST
+    1. The obi band riding every card at the same height — read three obis and
+       notice you already trust them.
+    2. The Reading Wall's Starter rail: fully whitened for this mid-B2 learner
+       (progress is subtraction — the shelf itself has gone quiet).
+    3. Reader view: Ming prose at 30px/2.4 with ruby subtracted from known
+       words; the open word card on 音樂 with the Hán-Việt bridge.
+  ════════════════════════════════════════════════════════════════════════════
+-->
+<html lang="zh-Hant" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tsumugu 紡 · 冊 Bound Volume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=Noto+Serif+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ————————————————————— tokens ————————————————————— */
+:root{
+  --paper:#FCFBF8; --surface:#FFFFFF; --ink:#1D1B17; --muted:#5F594B; --faint:#7E7765;
+  --border:#E6E0D1; --line:#EFEADD;
+  --kraft:#C7B08A; --kraft-line:#D9CCAC; --obi-bg:#EDE3CB; --obi-ink:#40382A;
+  --pine:#2E5E4E; --on-pine:#F6FAF8; --pine-wash:rgba(46,94,78,.08);
+  --clay:#C0506E; --amber:#C98A2B;
+  --rt:#6E6754; --rt-dim:#ABA490;
+  --shadow:0 1px 2px rgba(29,27,23,.05),0 6px 18px rgba(29,27,23,.06);
+  /* type — swap --f-read to "LXGW WenKai TC" if the Ming experiment fails */
+  --f-read:"Noto Serif TC","Songti TC","Kaiti TC","Noto Serif CJK TC",serif;
+  --f-lit:"Literata",Georgia,"Times New Roman",serif;
+  --f-ui:"Inter","Be Vietnam Pro",-apple-system,"Segoe UI","PingFang TC",sans-serif;
+}
+[data-theme="dark"]{
+  --paper:#141613; --surface:#1B1E19; --ink:#E9E7DF; --muted:#B4AD9D; --faint:#867F6E;
+  --border:#2E312A; --line:#252821;
+  --kraft:#7A6A50; --kraft-line:#453D2C; --obi-bg:#272215; --obi-ink:#CDBF9C;
+  --pine:#6FA893; --on-pine:#0E1713; --pine-wash:rgba(111,168,147,.12);
+  --clay:#D4738E; --amber:#D9A34D;
+  --rt:#9F9885; --rt-dim:#69634F;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 22px rgba(0,0,0,.35);
+}
+/* ————————————————————— base ————————————————————— */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--f-ui); font-size:15px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+:focus-visible{outline:2px solid var(--pine); outline-offset:2px; border-radius:4px}
+button{font:inherit; color:inherit; background:none; border:none; cursor:pointer; padding:0}
+a{color:inherit}
+/* ————————————————————— header ————————————————————— */
+header{
+  position:sticky; top:0; z-index:50; background:var(--paper);
+  border-bottom:1px solid var(--border);
+  transition:transform .28s ease;
+}
+html.receded header{transform:translateY(-102%)}
+.hd{
+  max-width:1180px; margin:0 auto; padding:10px 24px;
+  display:flex; align-items:center; gap:22px;
+}
+.brand{display:flex; align-items:center; gap:10px}
+.bmark{
+  width:28px; height:28px; border-radius:7px; background:var(--pine); color:var(--on-pine);
+  display:grid; place-items:center; font-family:var(--f-read); font-weight:700; font-size:16px;
+}
+.bname{font-family:var(--f-lit); font-weight:600; font-size:17px; letter-spacing:.01em}
+.tabs{display:flex; gap:4px; margin-left:8px}
+.tab{
+  padding:7px 14px; border-radius:8px; border:1px solid transparent;
+  font-weight:500; font-size:14px; color:var(--muted);
+}
+.tab:hover{background:var(--line)}
+.tab[aria-selected="true"]{color:var(--pine); border-color:var(--border); background:var(--surface)}
+.tab .en{font-size:12px; color:var(--faint); margin-left:4px}
+.tab[aria-selected="true"] .en{color:var(--pine); opacity:.75}
+.hd-right{margin-left:auto; display:flex; align-items:center; gap:10px}
+.srch{
+  display:flex; align-items:center; gap:8px; padding:6px 12px; border-radius:8px;
+  border:1px solid var(--border); color:var(--faint); font-size:13px; background:var(--surface);
+}
+.srch:hover{border-color:var(--kraft)}
+.srch kbd{font:500 11px var(--f-ui); border:1px solid var(--border); border-radius:4px; padding:1px 5px; color:var(--muted)}
+.tgl{
+  width:32px; height:32px; border-radius:50%; border:1px solid var(--border);
+  display:grid; place-items:center; font-size:14px; color:var(--muted); background:var(--surface);
+}
+.tgl:hover{border-color:var(--kraft)}
+/* ————————————————————— shared bits ————————————————————— */
+main{max-width:1180px; margin:0 auto; padding:26px 24px 60px}
+.subline{font-family:var(--f-lit); font-size:13.5px; color:var(--muted); margin:2px 0 26px}
+.sec-head{display:flex; align-items:baseline; gap:12px; margin:34px 0 14px}
+.sec-head h2{font-family:var(--f-read); font-weight:700; font-size:20px; margin:0}
+.sec-head .en{font-family:var(--f-lit); font-size:13px; color:var(--faint)}
+.sec-head .cnt{margin-left:auto; font-family:var(--f-lit); font-size:13px; color:var(--muted)}
+/* the 書腰 obi band — fixed position: bottom of every card, sliver of cover below */
+.obi{
+  background:var(--obi-bg); border-top:1px solid var(--kraft-line); border-bottom:1px solid var(--kraft-line);
+  padding:7px 16px; margin:auto calc(-1 * var(--pad,18px)) calc(var(--pad-b,10px) - 10px);
+  font:500 12px/1.5 var(--f-lit); color:var(--obi-ink); letter-spacing:.02em;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.obi b{font-weight:600}
+/* word + status: UNDERLINE channel only */
+.w{cursor:pointer; border-radius:4px; transition:background .12s}
+.w:hover{background:var(--pine-wash)}
+ruby{ruby-position:over;ruby-align:center}
+rt{font:500 .42em/1.1 var(--f-ui); color:var(--rt-dim); letter-spacing:.015em}
+.st-l{ text-decoration:underline dotted var(--amber) 2.5px; text-underline-offset:.28em}
+.st-n{ text-decoration:underline solid var(--clay) 2.5px; text-underline-offset:.28em}
+.st-l rt,.st-n rt{color:var(--rt)}
+.sel{box-shadow:0 0 0 2px var(--pine); border-radius:5px; text-decoration:none}
+.sel rt{color:var(--rt)}
+/* ————————————————————— LIBRARY ————————————————————— */
+/* continue strip: the book left open on the counter */
+.cont-card{
+  --pad:22px; --pad-b:12px;
+  position:relative; background:var(--surface); border:1px solid var(--border);
+  border-radius:12px; box-shadow:var(--shadow); padding:18px var(--pad) var(--pad-b);
+  display:flex; flex-direction:column;
+}
+.ribbon{
+  position:absolute; top:-1px; right:172px; width:12px; height:46px; background:var(--pine);
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 84%,0 100%);
+}
+@media (max-width:860px){.ribbon{display:none}}
+.cont-row{display:flex; align-items:center; gap:26px; margin-bottom:14px}
+.cont-main{flex:1; min-width:0}
+.cont-top{display:flex; align-items:baseline; gap:12px; margin-bottom:10px}
+.cont-top h2{font-family:var(--f-read); font-weight:700; font-size:18px; margin:0}
+.cont-top .en{font-family:var(--f-lit); font-size:12.5px; color:var(--faint)}
+.cont-top .pos{margin-left:auto; font-family:var(--f-lit); font-size:13px; color:var(--muted); padding-right:56px}
+.cx{
+  font-family:var(--f-read); font-size:21px; line-height:2.05; margin:0; color:var(--ink);
+  letter-spacing:.01em;
+}
+.btn-resume{
+  flex:0 0 auto; background:var(--pine); color:var(--on-pine); border-radius:9px;
+  padding:10px 20px; font-weight:600; font-size:14px; letter-spacing:.02em;
+}
+.btn-resume:hover{filter:brightness(1.08)}
+.btn-resume .en{font-weight:500; opacity:.85; margin-left:5px; font-size:12.5px}
+/* companion shelf */
+.shelf{
+  display:flex; gap:20px; align-items:stretch;
+  padding-bottom:12px; border-bottom:8px solid var(--kraft-line);
+}
+.spines{display:flex; gap:8px}
+.spine{
+  width:56px; border:1px solid var(--border); border-radius:5px 5px 3px 3px;
+  background:var(--surface); display:flex; flex-direction:column; align-items:center;
+  padding:12px 0 8px; gap:8px; position:relative;
+}
+.spine:hover{border-color:var(--kraft)}
+.spine .vt{
+  writing-mode:vertical-rl; font-family:var(--f-read); font-weight:500; font-size:15px;
+  letter-spacing:.18em; color:var(--ink); flex:1;
+}
+.spine .no{font:500 11px var(--f-lit); color:var(--faint)}
+.spine.open{border-color:var(--pine)}
+.spine.open::before{content:""; position:absolute; top:0; left:0; right:0; height:4px; background:var(--pine); border-radius:4px 4px 0 0}
+.lessons{
+  flex:1; display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px;
+  align-content:start;
+}
+.lcard{
+  --pad:16px; --pad-b:10px;
+  background:var(--surface); border:1px solid var(--border); border-radius:10px;
+  padding:14px var(--pad) var(--pad-b); display:flex; flex-direction:column;
+  min-width:0; overflow:hidden;
+}
+.lcard.now{border-color:var(--pine)}
+.lcard h3{font-family:var(--f-read); font-weight:700; font-size:17px; margin:0 0 8px}
+.lcard h3 .en{font-family:var(--f-lit); font-weight:400; font-size:12px; color:var(--faint); margin-left:6px}
+.lrow{display:flex; gap:8px; font-size:12.5px; color:var(--muted); padding:2.5px 0}
+.lrow .fmtg{font-family:var(--f-read); color:var(--ink)}
+.lrow .st{margin-left:auto; font-family:var(--f-lit); color:var(--faint)}
+.lrow .st.here{color:var(--pine)}
+.lcard .lrow:last-of-type{margin-bottom:12px}
+.shelf-note{font-family:var(--f-lit); font-size:12.5px; color:var(--faint); margin-top:10px}
+/* reading wall */
+.rung-head{display:flex; align-items:baseline; gap:10px; margin:26px 0 12px}
+.rung-head h3{font-family:var(--f-read); font-weight:700; font-size:17px; margin:0}
+.rung-head .en{font-family:var(--f-lit); font-size:12.5px; color:var(--faint)}
+.rung-head .cnt{margin-left:auto; font-family:var(--f-lit); font-size:12.5px; color:var(--muted)}
+.rail-row{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:18px;
+  padding-bottom:12px; border-bottom:8px solid var(--kraft-line);
+}
+.card{
+  --pad:18px; --pad-b:10px;
+  background:var(--surface); border:1px solid var(--border); border-radius:10px;
+  box-shadow:var(--shadow); padding:14px var(--pad) var(--pad-b);
+  display:flex; flex-direction:column; cursor:pointer; transition:border-color .12s, transform .12s;
+  min-width:0; overflow:hidden;
+}
+.card:hover{border-color:var(--kraft); transform:translateY(-2px)}
+.card:focus-visible{outline:2px solid var(--pine); outline-offset:2px}
+.c-top{display:flex; margin-bottom:8px}
+.fmt{font-size:12px; color:var(--muted)}
+.fmt .g{font-family:var(--f-read); font-size:13px; color:var(--ink)}
+.fmt .en{font-family:var(--f-lit); color:var(--faint); margin-left:4px}
+.card .cx{
+  font-size:18px; line-height:2.1; flex:1; margin-bottom:12px;
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+}
+.card .cx rt,.cont-card .cx rt{font-size:.5em}
+/* ————————————————————— READER ————————————————————— */
+#view-reader{padding-top:10px}
+.folio{
+  position:sticky; top:0; z-index:40; background:var(--paper);
+  border-bottom:1px solid var(--line);
+  display:flex; gap:14px; align-items:baseline;
+  max-width:1180px; margin:0 auto; padding:9px 24px;
+  font-family:var(--f-lit); font-size:12.5px; color:var(--muted);
+}
+.folio .t{font-family:var(--f-read); font-weight:500; color:var(--ink); font-size:13.5px}
+.folio .r{margin-left:auto; color:var(--faint)}
+.page{
+  width:680px; max-width:100%; margin:0 auto; padding:34px 24px 40px; position:relative;
+}
+.rtitle{font-family:var(--f-read); font-weight:700; font-size:34px; margin:0 0 6px; letter-spacing:.02em}
+.rtitle-vi{font-family:var(--f-lit); font-size:15px; color:var(--muted); margin:0 0 14px}
+.rmeta{font-family:var(--f-lit); font-size:13px; color:var(--muted); margin:0 0 18px}
+.toolrow{
+  display:flex; flex-wrap:wrap; gap:10px 18px; align-items:center;
+  padding:10px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin-bottom:30px;
+}
+.toolrow .lab{font-size:11.5px; letter-spacing:.06em; color:var(--faint); text-transform:uppercase}
+.seg{display:flex; gap:4px}
+.seg button{
+  padding:4px 11px; border-radius:7px; border:1px solid var(--border);
+  font-size:12.5px; color:var(--muted); background:var(--surface);
+}
+.seg button:hover{border-color:var(--kraft)}
+.seg button[aria-pressed="true"]{border-color:var(--pine); color:var(--pine); font-weight:600}
+.legend{margin-left:auto; display:flex; gap:14px; align-items:center; font-size:12px; color:var(--muted)}
+.legend i{display:inline-block; width:18px; border-bottom:2.5px solid var(--clay); margin-right:5px; vertical-align:middle}
+.legend i.dt{border-bottom-style:dotted; border-bottom-color:var(--amber)}
+.prose{
+  font-family:var(--f-read); font-size:30px; line-height:2.4; letter-spacing:.015em;
+  font-weight:400;
+}
+.prose p{margin:0 0 34px}
+.endnote{font-family:var(--f-lit); font-size:13px; color:var(--faint); border-top:1px solid var(--line); padding-top:14px}
+/* word card (popup) — a bookmark laid on the page */
+.pop{
+  width:330px; max-width:100%; margin:6px 0 36px;
+  background:var(--surface); border:1px solid var(--kraft-line); border-radius:12px;
+  box-shadow:var(--shadow); padding:18px 20px 14px; position:relative;
+  font-family:var(--f-ui);
+}
+.pop .caret{display:none; position:absolute; top:64px; left:-7px; width:12px; height:12px;
+  background:var(--surface); border-left:1px solid var(--kraft-line); border-bottom:1px solid var(--kraft-line);
+  transform:rotate(45deg)}
+.pop-head{display:flex; gap:16px; align-items:flex-start}
+.pop-glyph{font-family:var(--f-read); font-weight:500; font-size:44px; line-height:1.15}
+.pop-readings{font-size:14px; color:var(--ink); display:grid; gap:3px; padding-top:4px}
+.pop-readings .py{font-weight:600; font-size:15px}
+.pop-readings .zy{color:var(--muted); font-family:var(--f-read); font-size:13.5px}
+.pop-readings .hv{font-family:var(--f-lit); color:var(--pine); font-weight:600}
+.pop-gloss{font-family:var(--f-lit); font-size:15px; margin:10px 0 0}
+.pop-gloss .pos{color:var(--faint); font-size:12.5px; margin-left:8px}
+.bridge{
+  margin:14px 0 0; padding:12px 14px; border-left:3px solid var(--pine);
+  background:var(--pine-wash); border-radius:0 8px 8px 0;
+}
+.bridge .eyebrow{
+  font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;
+}
+.brow{display:flex; align-items:baseline; gap:10px; padding:3px 0; font-size:14px}
+.brow .zi{font-family:var(--f-read); font-size:19px}
+.brow .sh{color:var(--pine); font-weight:600; font-family:var(--f-lit)}
+.brow .ex{font-family:var(--f-lit); color:var(--muted)}
+.brow .ex b{color:var(--pine); font-weight:600}
+.brow .eng{margin-left:auto; font-size:12px; color:var(--faint)}
+.grade{margin-top:14px; border-top:1px solid var(--line); padding-top:12px}
+.grade .lab{font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--faint); margin-bottom:8px}
+.grow{display:flex; gap:6px; align-items:center; flex-wrap:wrap}
+.key{
+  min-width:30px; height:30px; border-radius:7px; border:1px solid var(--border);
+  background:var(--paper); font:600 13px var(--f-ui); color:var(--ink); padding:0 8px;
+}
+.key:hover{border-color:var(--kraft)}
+.key.ok{color:var(--pine); border-color:var(--pine)}
+.key.ig{color:var(--muted)}
+.acts{display:flex; gap:14px; margin-top:10px}
+.acts button{font-size:12.5px; color:var(--muted)}
+.acts button:hover{color:var(--pine)}
+/* popup placement: margin card on wide screens, in-flow after ¶1 otherwise */
+@media (min-width:1160px){
+  .pop{position:absolute; left:calc(100% + 30px); top:210px; margin:0}
+  .pop .caret{display:block}
+  .page{margin:0 0 0 max(24px, calc(50vw - 540px))}
+}
+/* ————————————————————— footer ————————————————————— */
+footer{border-top:1px solid var(--border)}
+.ft{
+  max-width:1180px; margin:0 auto; padding:16px 24px 28px;
+  font-family:var(--f-lit); font-size:12.5px; color:var(--faint);
+  display:flex; gap:8px; flex-wrap:wrap;
+}
+/* ————————————————————— responsive ————————————————————— */
+@media (max-width:860px){
+  .shelf{flex-direction:column}
+  .spines{overflow-x:auto; padding-bottom:4px}
+  .spine{min-height:150px}
+  .cont-row{flex-direction:column; align-items:flex-start; gap:14px}
+  .cont-top .pos{padding-right:0}
+}
+@media (max-width:560px){
+  .hd{padding:10px 14px; gap:10px; flex-wrap:wrap}
+  .srch{display:none}
+  main{padding:20px 14px 48px}
+  .prose{font-size:26px}
+  .rtitle{font-size:28px}
+  .page{padding:24px 16px}
+  .folio{padding:8px 14px}
+  .legend{margin-left:0}
+  .pop{margin:6px 0 30px}
+}
+/* motion off */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none !important; animation:none !important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body data-view="lib">
+
+<header id="siteHead">
+  <div class="hd">
+    <div class="brand">
+      <span class="bmark">紡</span>
+      <span class="bname">Tsumugu</span>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="檢視 View">
+      <button class="tab" id="tabLib" role="tab" aria-selected="true">書架<span class="en">Library</span></button>
+      <button class="tab" id="tabRead" role="tab" aria-selected="false">閱讀<span class="en">Reader</span></button>
+    </nav>
+    <div class="hd-right">
+      <button class="srch">搜尋 <kbd>⌘K</kbd></button>
+      <button class="tgl" id="themeTgl" aria-label="主題 theme">☾</button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════ LIBRARY ═══════════════════ -->
+<main id="view-lib">
+  <p class="subline">Graded Traditional Chinese readings. Read with pinyin, zhuyin, or Hán-Việt.</p>
+
+  <!-- continue: the book left open on the counter -->
+  <section aria-label="續讀 Continue">
+    <div class="cont-card">
+      <span class="ribbon" aria-hidden="true"></span>
+      <div class="cont-row">
+        <div class="cont-main">
+          <div class="cont-top">
+            <h2>續讀</h2><span class="en">Continue</span>
+            <span class="pos">¶ 3 / 5</span>
+          </div>
+          <p class="cx">追了大半條街，車子<span class="w st-l"><ruby>總算<rt>zǒngsuàn</rt></ruby></span>停了下來。司機從車上<span class="w st-l"><ruby>探<rt>tàn</rt></ruby></span>出頭，笑著問她…</p>
+        </div>
+        <button class="btn-resume" id="resumeBtn">續讀<span class="en">Resume</span></button>
+      </div>
+      <div class="obi"><b>A2</b> · 當代 B2 L07 · 短文 · 470字 · 94% known · 7 new · ≈5 min</div>
+    </div>
+  </section>
+
+  <!-- companion shelf -->
+  <section aria-label="課本架 Companion shelf">
+    <div class="sec-head">
+      <h2>課本架</h2><span class="en">Companion · 當代中文課程</span>
+    </div>
+    <div class="shelf">
+      <div class="spines" role="list">
+        <button class="spine" role="listitem"><span class="vt">第一冊</span><span class="no">B1</span></button>
+        <button class="spine open" role="listitem" aria-current="true"><span class="vt">第二冊</span><span class="no">B2</span></button>
+        <button class="spine" role="listitem"><span class="vt">第三冊</span><span class="no">B3</span></button>
+        <button class="spine" role="listitem"><span class="vt">第四冊</span><span class="no">B4</span></button>
+        <button class="spine" role="listitem"><span class="vt">第五冊</span><span class="no">B5</span></button>
+      </div>
+      <div class="lessons">
+        <div class="lcard">
+          <h3>第六課<span class="en">L06</span></h3>
+          <div class="lrow"><span class="fmtg">對話</span><span>526字</span><span class="st">已讀</span></div>
+          <div class="lrow"><span class="fmtg">自述</span><span>498字</span><span class="st">已讀</span></div>
+          <div class="lrow"><span class="fmtg">短文</span><span>481字</span><span class="st">已讀</span></div>
+          <div class="obi"><b>A2</b> · 當代 B2 L06 · 3篇 · 已讀 3 / 3</div>
+        </div>
+        <div class="lcard now">
+          <h3>第七課<span class="en">L07</span></h3>
+          <div class="lrow"><span class="fmtg">對話</span><span>488字</span><span class="st">已讀</span></div>
+          <div class="lrow"><span class="fmtg">短文</span><span>470字</span><span class="st here">¶ 3 / 5</span></div>
+          <div class="lrow"><span class="fmtg">廣播</span><span>468字</span><span class="st">未讀</span></div>
+          <div class="obi"><b>A2</b> · 當代 B2 L07 · 詞彙與語法 100%</div>
+        </div>
+        <div class="lcard">
+          <h3>第八課<span class="en">L08</span></h3>
+          <div class="lrow"><span class="fmtg">對話</span><span>512字</span><span class="st">未讀</span></div>
+          <div class="lrow"><span class="fmtg">自述</span><span>455字</span><span class="st">未讀</span></div>
+          <div class="lrow"><span class="fmtg">報導</span><span>503字</span><span class="st">未讀</span></div>
+          <div class="obi"><b>A2</b> · 當代 B2 L08 · 3篇 · 未讀 0 / 3</div>
+        </div>
+      </div>
+    </div>
+    <p class="shelf-note">每課 3 篇，聯集涵蓋該課 100% 詞彙與語法。 Each lesson: 3 articles; their union covers all lesson vocabulary and grammar.</p>
+  </section>
+
+  <!-- reading wall -->
+  <section aria-label="讀物牆 Reading Wall">
+    <div class="sec-head">
+      <h2>讀物牆</h2><span class="en">Reading Wall</span>
+    </div>
+
+    <div class="rung-head">
+      <h3>入門</h3><span class="en">Starter · A1</span>
+      <span class="cnt">45篇 · 全部已知 all known</span>
+    </div>
+    <div class="rail-row">
+      <article class="card" tabindex="0">
+        <div class="c-top"><span class="fmt"><span class="g">對話</span><span class="en">Dialogue</span></span></div>
+        <p class="cx">「你好，請問你是高先生嗎？」「是的，我姓高，叫高文。請問你是林小姐嗎？」</p>
+        <div class="obi"><b>A1</b> · 當代 B1 L01 · 317字 · 100% known · ≈4 min</div>
+      </article>
+      <article class="card" tabindex="0">
+        <div class="c-top"><span class="fmt"><span class="g">自述</span><span class="en">Monologue</span></span></div>
+        <p class="cx">你們好！我姓周，叫周大同，我是日本人，不是美國人。我來臺灣學中文。</p>
+        <div class="obi"><b>A1</b> · 當代 B1 L01 · 278字 · 100% known · ≈3 min</div>
+      </article>
+      <article class="card" tabindex="0">
+        <div class="c-top"><span class="fmt"><span class="g">短文</span><span class="en">Essay</span></span></div>
+        <p class="cx">周先生是美國人，這是他第一次來臺灣。今天林小姐到機場接他。</p>
+        <div class="obi"><b>A1</b> · 當代 B1 L01 · 267字 · 100% known · ≈3 min</div>
+      </article>
+    </div>
+
+    <div class="rung-head">
+      <h3>基礎</h3><span class="en">Elementary · A2</span>
+      <span class="cnt">45篇</span>
+    </div>
+    <div class="rail-row">
+      <article class="card" tabindex="0">
+        <div class="c-top"><span class="fmt"><span class="g">對話</span><span class="en">Dialogue</span></span></div>
+        <p class="cx">沒想到那個袋子放了三天，還好好地<span class="w st-l"><ruby>擺<rt>bǎi</rt></ruby></span>在門口，根本沒人<span class="w st-l"><ruby>理<rt>lǐ</rt></ruby></span>。</p>
+        <div class="obi"><b>A2</b> · 當代 B2 L07 · 488字 · 96% known · 9 new · ≈5 min</div>
+      </article>
+      <article class="card" tabindex="0">
+        <div class="c-top"><span class="fmt"><span class="g">廣播</span><span class="en">Broadcast</span></span></div>
+        <p class="cx">各位市民朋友，大家好，歡迎<span class="w st-l"><ruby>收聽<rt>shōutīng</rt></ruby></span>今天的「綠色城市」廣播，我是<span class="w st-l"><ruby>主持人<rt>zhǔchírén</rt></ruby></span>小林。</p>
+        <div class="obi"><b>A2</b> · 當代 B2 L07 · 468字 · 95% known · 11 new · ≈5 min</div>
+      </article>
+    </div>
+
+    <div class="rung-head">
+      <h3>進階</h3><span class="en">Intermediate · B1</span>
+      <span class="cnt">72篇</span>
+    </div>
+    <div class="rail-row">
+      <article class="card" tabindex="0">
+        <div class="c-top"><span class="fmt"><span class="g">對話</span><span class="en">Dialogue</span></span></div>
+        <p class="cx">欸，江<span class="w st-l"><ruby>學弟<rt>xuédì</rt></ruby></span>，今天開學你怎麼那麼晚才到教室？差一點就遲到了吧？</p>
+        <div class="obi"><b>B1</b> · 當代 B3 L01 · 961字 · 91% known · 26 new · ≈11 min</div>
+      </article>
+      <article class="card" tabindex="0">
+        <div class="c-top"><span class="fmt"><span class="g">報導</span><span class="en">Report</span></span></div>
+        <p class="cx">又到了一年一度的開學季，各大學<span class="w st-l"><ruby>教務處<rt>jiàowùchù</rt></ruby></span>這幾天<span class="w st-n"><ruby>湧進<rt>yǒngjìn</rt></ruby></span>大批新生，準備<span class="w st-l"><ruby>辦理<rt>bànlǐ</rt></ruby></span><span class="w st-n"><ruby>註冊<rt>zhùcè</rt></ruby></span>相關手續。</p>
+        <div class="obi"><b>B1</b> · 當代 B3 L01 · 855字 · 89% known · 31 new · ≈10 min</div>
+      </article>
+      <article class="card" tabindex="0">
+        <div class="c-top"><span class="fmt"><span class="g">對話</span><span class="en">Dialogue</span></span></div>
+        <p class="cx">欸，妳來看一下，<span class="w st-n"><ruby>衣櫥<rt>yīchú</rt></ruby></span>到底該<span class="w st-l"><ruby>擺<rt>bǎi</rt></ruby></span>在哪裡比較好？我們都搬進來三個禮拜了，東西還<span class="w st-l"><ruby>堆<rt>duī</rt></ruby></span>在客廳中間。</p>
+        <div class="obi"><b>B1</b> · 當代 B4 L04 · 1005字 · 88% known · 38 new · ≈11 min</div>
+      </article>
+      <article class="card" tabindex="0">
+        <div class="c-top"><span class="fmt"><span class="g">報導</span><span class="en">Report</span></span></div>
+        <p class="cx">信義計畫區是台北這幾年發展最快的<span class="w st-l"><ruby>地標<rt>dìbiāo</rt></ruby></span>之一，從信義路一路走到松智路，<span class="w st-n"><ruby>沿線<rt>yánxiàn</rt></ruby></span>蓋了不少高樓<span class="w st-l"><ruby>大廈<rt>dàshà</rt></ruby></span>。</p>
+        <div class="obi"><b>B1</b> · 當代 B4 L04 · 1104字 · 86% known · 44 new · ≈12 min</div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<!-- ═══════════════════ READER ═══════════════════ -->
+<main id="view-reader" hidden>
+  <div class="folio">
+    <span class="t">追垃圾車</span>
+    <span>短文 · 當代 B2 L07</span>
+    <span class="r">¶ 1 / 5 · 470字</span>
+  </div>
+  <div class="page">
+    <h1 class="rtitle">追垃圾車</h1>
+    <p class="rtitle-vi">Đuổi theo xe rác</p>
+    <p class="rmeta">短文 Essay · 當代中文課程 第二冊 · 第七課 · 470字 · ≈5分鐘 · 94% known · 7 new</p>
+
+    <div class="toolrow">
+      <span class="lab">標註 Ruby</span>
+      <div class="seg" role="group" aria-label="標註 ruby rail">
+        <button aria-pressed="true">拼音</button>
+        <button aria-pressed="false">注音</button>
+        <button aria-pressed="false">Hán-Việt</button>
+      </div>
+      <span class="lab">釋義 Gloss</span>
+      <div class="seg" role="group" aria-label="釋義 gloss rail">
+        <button aria-pressed="false">EN</button>
+        <button aria-pressed="true">VI</button>
+      </div>
+      <div class="legend">
+        <span><i></i>新 new</span>
+        <span><i class="dt"></i>學習中 learning</span>
+        <span>無標記 已知 known</span>
+      </div>
+    </div>
+
+    <div class="prose" lang="zh-Hant">
+      <p><span class="w"><ruby>那天<rt>nàtiān</rt></ruby></span><span class="w"><ruby>晚上<rt>wǎnshàng</rt></ruby></span>，周小姐<span class="w"><ruby>正<rt>zhèng</rt></ruby></span><span class="w"><ruby>坐在<rt>zuòzài</rt></ruby></span><span class="w"><ruby>客廳<rt>kètīng</rt></ruby></span>的<span class="w"><ruby>沙發<rt>shāfā</rt></ruby></span>上<span class="w"><ruby>看<rt>kàn</rt></ruby></span><span class="w"><ruby>電視<rt>diànshì</rt></ruby></span>，<span class="w"><ruby>窗外<rt>chuāngwài</rt></ruby></span><span class="w"><ruby>忽然<rt>hūrán</rt></ruby></span><span class="w"><ruby>傳來<rt>chuánlái</rt></ruby></span><span class="w st-l"><ruby>一陣<rt>yízhèn</rt></ruby></span><span class="w st-n"><ruby>熟悉<rt>shúxī</rt></ruby></span>的<span class="w sel" tabindex="0" aria-describedby="wordCard"><ruby>音樂<rt>yīnyuè</rt></ruby></span>。她<span class="w"><ruby>跳<rt>tiào</rt></ruby></span>了<span class="w"><ruby>起來<rt>qǐlái</rt></ruby></span>，<span class="w"><ruby>心想<rt>xīnxiǎng</rt></ruby></span>：<span class="w st-n"><ruby>糟糕<rt>zāogāo</rt></ruby></span>，<span class="w st-l"><ruby>垃圾車<rt>lèsèchē</rt></ruby></span><span class="w"><ruby>已經<rt>yǐjīng</rt></ruby></span><span class="w"><ruby>開到<rt>kāidào</rt></ruby></span><span class="w"><ruby>路上<rt>lùshàng</rt></ruby></span>了！她<span class="w"><ruby>趕快<rt>gǎnkuài</rt></ruby></span>把<span class="w"><ruby>廚房<rt>chúfáng</rt></ruby></span>裡的兩個<span class="w"><ruby>袋子<rt>dàizi</rt></ruby></span><span class="w"><ruby>提好<rt>tíhǎo</rt></ruby></span>，又<span class="w"><ruby>抓起<rt>zhuāqǐ</rt></ruby></span><span class="w"><ruby>放在<rt>fàngzài</rt></ruby></span><span class="w"><ruby>桌上<rt>zhuōshàng</rt></ruby></span>的<span class="w"><ruby>皮包<rt>píbāo</rt></ruby></span>，連<span class="w st-l"><ruby>拖鞋<rt>tuōxié</rt></ruby></span>都<span class="w"><ruby>來不及<rt>láibùjí</rt></ruby></span><span class="w"><ruby>換<rt>huàn</rt></ruby></span>，就<span class="w"><ruby>急急忙忙<rt>jíjímángmáng</rt></ruby></span>地<span class="w"><ruby>走出來<rt>zǒuchūlái</rt></ruby></span>。</p>
+
+      <!-- word card: 音樂 (open demo state, anchored beside ¶1 on wide screens) -->
+      <aside class="pop" id="wordCard" aria-label="詞卡 word card · 音樂">
+        <span class="caret" aria-hidden="true"></span>
+        <div class="pop-head">
+          <span class="pop-glyph" lang="zh-Hant">音樂</span>
+          <div class="pop-readings">
+            <span class="py">yīnyuè</span>
+            <span class="zy" lang="zh-Hant">ㄧㄣ ㄩㄝˋ</span>
+            <span class="hv" lang="vi">âm nhạc</span>
+          </div>
+        </div>
+        <p class="pop-gloss">music<span class="pos">noun · danh từ</span></p>
+        <div class="bridge">
+          <div class="eyebrow" lang="vi">Âm Hán-Việt dùng chung · shared Sino-Vietnamese reading</div>
+          <div class="brow">
+            <span class="zi" lang="zh-Hant">音</span>
+            <span class="sh" lang="vi">âm</span>
+            <span class="ex" lang="vi"><b>âm</b> thanh</span>
+            <span class="eng">sound</span>
+          </div>
+          <div class="brow">
+            <span class="zi" lang="zh-Hant">樂</span>
+            <span class="sh" lang="vi">nhạc</span>
+            <span class="ex" lang="vi"><b>nhạc</b> sĩ</span>
+            <span class="eng">musician</span>
+          </div>
+        </div>
+        <div class="grade">
+          <div class="lab">評分 Grade</div>
+          <div class="grow">
+            <button class="key">1</button>
+            <button class="key">2</button>
+            <button class="key">3</button>
+            <button class="key">4</button>
+            <button class="key ok">✓ 已知</button>
+            <button class="key ig">✕ 略過</button>
+          </div>
+          <div class="acts">
+            <button>+ card</button>
+            <button>字 → dict</button>
+          </div>
+        </div>
+      </aside>
+
+      <p>她<span class="w"><ruby>跑到<rt>pǎodào</rt></ruby></span><span class="w"><ruby>巷子口<rt>xiàngzikǒu</rt></ruby></span>，<span class="w"><ruby>那輛<rt>nàliàng</rt></ruby></span><span class="w st-l"><ruby>垃圾車<rt>lèsèchē</rt></ruby></span><span class="w"><ruby>卻<rt>què</rt></ruby></span><span class="w"><ruby>剛好<rt>gānghǎo</rt></ruby></span><span class="w"><ruby>開走<rt>kāizǒu</rt></ruby></span>了。周小姐沒有<span class="w st-l"><ruby>放棄<rt>fàngqì</rt></ruby></span>，<span class="w"><ruby>提著<rt>tízhe</rt></ruby></span><span class="w st-n"><ruby>沉沉<rt>chénchén</rt></ruby></span>的<span class="w"><ruby>袋子<rt>dàizi</rt></ruby></span>在<span class="w"><ruby>後面<rt>hòumiàn</rt></ruby></span><span class="w"><ruby>追<rt>zhuī</rt></ruby></span>，<span class="w"><ruby>一邊<rt>yìbiān</rt></ruby></span><span class="w"><ruby>跑<rt>pǎo</rt></ruby></span><span class="w"><ruby>一邊<rt>yìbiān</rt></ruby></span><span class="w"><ruby>喊<rt>hǎn</rt></ruby></span>：<span class="w"><ruby>等一下<rt>děng yíxià</rt></ruby></span>！等一下！<span class="w"><ruby>路上<rt>lùshàng</rt></ruby></span>的人<span class="w"><ruby>看著<rt>kànzhe</rt></ruby></span>她，<span class="w"><ruby>大概<rt>dàgài</rt></ruby></span>都<span class="w"><ruby>覺得<rt>juéde</rt></ruby></span>這個<span class="w st-l"><ruby>畫面<rt>huàmiàn</rt></ruby></span>很<span class="w"><ruby>有趣<rt>yǒuqù</rt></ruby></span>吧。有個<span class="w"><ruby>騎<rt>qí</rt></ruby></span><span class="w"><ruby>機車<rt>jīchē</rt></ruby></span>的<span class="w"><ruby>先生<rt>xiānshēng</rt></ruby></span>還<span class="w st-n"><ruby>特地<rt>tèdì</rt></ruby></span><span class="w"><ruby>停下來<rt>tíngxiàlái</rt></ruby></span>，<span class="w"><ruby>以為<rt>yǐwéi</rt></ruby></span>她<span class="w"><ruby>掉<rt>diào</rt></ruby></span>了什麼<span class="w"><ruby>重要<rt>zhòngyào</rt></ruby></span>的<span class="w"><ruby>東西<rt>dōngxi</rt></ruby></span>，問她要不要<span class="w"><ruby>幫忙<rt>bāngmáng</rt></ruby></span>。</p>
+    </div>
+
+    <p class="endnote">預覽節錄 · 2 段 / 全 5 段 · 470字</p>
+  </div>
+</main>
+
+<footer>
+  <div class="ft">
+    <span>Tsumugu 紡</span> · <span>預覽 preview · 草稿語料 draft corpus · 2026-07</span> ·
+    <span>Noto Serif TC · Literata · Inter</span>
+  </div>
+</footer>
+
+<script>
+"use strict";
+const $=s=>document.querySelector(s);
+const html=document.documentElement;
+
+/* view tabs */
+const vLib=$("#view-lib"), vRead=$("#view-reader"),
+      tLib=$("#tabLib"), tRead=$("#tabRead");
+function show(view){
+  const lib=view==="lib";
+  vLib.hidden=!lib; vRead.hidden=lib;
+  tLib.setAttribute("aria-selected",lib);
+  tRead.setAttribute("aria-selected",!lib);
+  document.body.dataset.view=view;
+  html.classList.remove("receded");
+  window.scrollTo(0,0);
+}
+tLib.addEventListener("click",()=>show("lib"));
+tRead.addEventListener("click",()=>show("reader"));
+$("#resumeBtn").addEventListener("click",()=>show("reader"));
+
+/* theme */
+const tgl=$("#themeTgl");
+if(window.matchMedia("(prefers-color-scheme: dark)").matches){ html.dataset.theme="dark"; tgl.textContent="☀"; }
+tgl.addEventListener("click",()=>{
+  const dark=html.dataset.theme==="dark";
+  html.dataset.theme=dark?"light":"dark";
+  tgl.textContent=dark?"☾":"☀";
+});
+
+/* the one motion: reader chrome recedes on scroll */
+window.addEventListener("scroll",()=>{
+  const reading=document.body.dataset.view==="reader";
+  html.classList.toggle("receded", reading && window.scrollY>90);
+},{passive:true});
+</script>
+</body>
+</html>

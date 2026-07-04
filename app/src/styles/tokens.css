@@ -1,0 +1,113 @@
+/* ============================================================================
+   TSUMUGU — token system (two layers: raw palette + semantic --tsg-*).
+   Design direction (2026-07): Apple-minimal · cool neutrals · one spectral
+   teal accent · Inter/PingFang for the interface · LXGW WenKai reserved for
+   reading text · no colored glows. Contract: mockups/explorations-2026-07/
+   unified/library-columns.html + docs/DESIGN-PRINCIPLES.md.
+   The raw slot names (--raw-violet etc.) are historical and stable — only the
+   VALUES retarget. Retired palettes are recorded inert below; do not delete.
+
+   TOKEN TABLE (binding — matches library-columns.html)
+                     light                         dark
+     bg              #F5F6F8                       #0B0B0D
+     sunk            #EDEEF1                       #131316
+     surface         #FFFFFF                       #1A1A1D
+     ink             #1C1C1E                       #F2F2F5
+     muted           #6E6E76                       #98989F
+     faint           #A2A2AA                       #74747C
+     border (hair)   #E9E9ED                       #2A2A2E
+     accent (teal)   #0C8DAF  on #F3FAFC           #43ADC6  on #0B1418
+       wash          rgba(15,160,196,.10)          rgba(67,173,198,.13)
+     new  (clay)     #B26179                       #C98BA0
+     learning(amber) #B08942                       #C9A25E
+     known           teal (known-confirm) · no underline mark in reader
+   Teal and ink are the only full-strength voices; faint functional signifier
+   colours (format dots, level marks) ride small glyphs only. The accent marks
+   state and the one action — it never decorates and never glows.
+   ========================================================================= */
+
+/* ===== RETIRED — 冊 BOUND-VOLUME / D VERDIGRIS values, kept inert ==========
+   The retired Verdigris accent was  #3B8577 (light) / #77C6B3 (dark), washes
+   #E9F3F0 / #16302A, edges #BFDDD6 / #2E5E52, on warm paper neutrals
+   (bg #FBFBF9 / #141613 green-black, ink #1D1B17 / #E9E7DF, rules #ECEAE4 /
+   #2A2D26, kraft #CDC9BF / #57544B) with a Noto Serif TC display voice and a
+   one-lamp halo glow. Recorded only; none are applied.
+   ========================================================================= */
+
+/* ===== RETIRED — 朱 SEAL-RED values, kept inert (do not delete) ===========
+   The retired cinnabar accent was  #C23A2A  (light) /  #E0664E  (dark), on white.
+   Its supporting neutrals (paper #FBFAF8, ink #23201A), status clay #B23A6A,
+   amber #B8822C, jade #2F8F6F, and indigo ruby #3C4DA0 rode the same palette.
+   These are recorded here only; none are applied. The 霧 Mist / 絹 Silk /
+   青磁 Celadon / 墨 Sumi / House-navy / Mauve / 燈 Loom alternates and the
+   palette switcher are retired with the single-palette pick.
+   ========================================================================= */
+
+/* ===== RAW PALETTE — SPECTRAL TEAL, LIGHT (default) ======================= */
+:root{
+  --raw-bg:#F5F6F8; --raw-bg2:#EDEEF1; --raw-card:#FFFFFF; --raw-rule:#E9E9ED;
+  --raw-rule-strong:#D9D9DE;
+  --raw-ink:#1C1C1E; --raw-ink2:#6E6E76; --raw-faint:#A2A2AA;
+  /* accent slot (historical name) = spectral teal (full-strength voice) */
+  --raw-violet:#0C8DAF; --raw-violet-soft:#E7F4F8; --raw-violet-edge:#BBDEE9;
+  --raw-on-violet:#F3FAFC;
+  /* romanisation ruby = calm neutral (faded, not a colour voice) */
+  --raw-hv:#6E6E76; --raw-py:#6E6E76;
+  /* status: clay-new (solid) · amber-learning (dotted) · known-confirm = teal */
+  --raw-new:#B26179; --raw-learning:#B08942; --raw-jade:#0C8DAF;
+  --grad:linear-gradient(135deg,#0C8DAF 0%,#1697B8 60%,#22A2C2 100%);
+  --shadow:0 1px 2px rgba(20,22,28,.05),0 8px 22px -14px rgba(20,22,28,.16);
+  --shadow-sm:0 1px 3px rgba(20,22,28,.06);
+  --shadow-pop:0 16px 48px rgba(20,22,28,.14);
+  --halo:rgba(15,160,196,.10);
+  /* solid UI marks = cool neutral */
+  --tsg-ui:#3A3A3E; --tsg-on-ui:#F5F6F8;
+  color-scheme:light;
+}
+
+/* ===== RAW PALETTE — SPECTRAL TEAL, DARK ================================== */
+:root[data-theme="dark"]{
+  --raw-bg:#0B0B0D; --raw-bg2:#131316; --raw-card:#1A1A1D; --raw-rule:#2A2A2E;
+  --raw-rule-strong:#3A3A3F;
+  --raw-ink:#F2F2F5; --raw-ink2:#98989F; --raw-faint:#74747C;
+  --raw-violet:#43ADC6; --raw-violet-soft:#12262D; --raw-violet-edge:#2A5867;
+  --raw-on-violet:#0B1418;
+  --raw-hv:#98989F; --raw-py:#98989F;
+  --raw-new:#C98BA0; --raw-learning:#C9A25E; --raw-jade:#43ADC6;
+  --grad:linear-gradient(135deg,#43ADC6 0%,#4FB5CD 60%,#5BBDD4 100%);
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 10px 26px -16px rgba(0,0,0,.6);
+  --shadow-sm:inset 0 1px 0 rgba(255,255,255,.03),0 2px 8px rgba(0,0,0,.4);
+  --shadow-pop:0 18px 54px rgba(0,0,0,.6);
+  --halo:rgba(67,173,198,.13);
+  --tsg-ui:#D4D4D8; --tsg-on-ui:#0B0B0D;
+  color-scheme:dark;
+}
+
+/* ===== SEMANTIC TOKENS — app's --tsg-* names, pointed at the raw layer ==== */
+:root{
+  --tsg-bg:var(--raw-bg); --tsg-sunk:var(--raw-bg2);
+  --tsg-surface:var(--raw-card); --tsg-surface-alt:var(--raw-bg2);
+  --tsg-border:var(--raw-rule); --tsg-border-strong:var(--raw-rule-strong);
+  --tsg-ink:var(--raw-ink); --tsg-muted:var(--raw-ink2); --tsg-faint:var(--raw-faint);
+  --tsg-accent:var(--raw-violet); --tsg-accent-ink:var(--raw-on-violet);
+  /* reserved teal for brand + bridge + known-confirm; topic tags reuse it */
+  --tsg-topic:var(--raw-violet);
+  /* reading rubies: neutral (teal + ink are the only saturated voices) */
+  --tsg-hv:var(--raw-hv); --tsg-py:var(--raw-py);
+  /* status: clay-new → amber-learning → teal known-confirm (underline channel) */
+  --tsg-st-new:var(--raw-new); --tsg-st-l1:var(--raw-learning); --tsg-st-l3:var(--raw-learning);
+  --tsg-st-known:var(--raw-jade);
+  /* format signifiers (faint, small glyphs only — Basecamp/Ulysses nuance) */
+  --tsg-fmt-dlg:#5A8CA6; --tsg-fmt-slf:#7C79B0; --tsg-fmt-sty:#5E9E86;
+  --tsg-fmt-dia:#B07A8E; --tsg-fmt-qa:#8C8A96; --tsg-fmt-rep:#8C8A96;
+  --tsg-fmt-exp:#B0904E;
+  /* reading prose = LXGW WenKai TC · interface AND display = Inter/PingFang */
+  --read:"LXGW WenKai TC","Kaiti TC","STKaiti","BiauKai","Songti TC","Noto Serif TC","PingFang TC",serif;
+  --ui:"Inter",-apple-system,"Segoe UI",system-ui,"PingFang TC","Noto Sans TC",sans-serif;
+  --display:"Inter",-apple-system,"Segoe UI",system-ui,"PingFang TC","Noto Sans TC",sans-serif;
+}
+:root[data-theme="dark"]{
+  --tsg-fmt-dlg:#7FA6BC; --tsg-fmt-slf:#9B98CB; --tsg-fmt-sty:#7FBBA2;
+  --tsg-fmt-dia:#C99AAC; --tsg-fmt-qa:#A8A6B0; --tsg-fmt-rep:#A8A6B0;
+  --tsg-fmt-exp:#C9AC72;
+}

@@ -1,0 +1,98 @@
+{
+  "schema": "tsumugu/prepared-content@2",
+  "lang": "zh-Hant",
+  "title": "山中的客棧",
+  "source": "directed",
+  "tokens": [
+    { "text": "他", "isWord": true },
+    { "text": "抬起", "isWord": true },
+    { "text": "頭", "isWord": true },
+    { "text": "，", "isWord": false },
+    { "text": "望", "isWord": true },
+    { "text": "向", "isWord": true },
+    { "text": "那", "isWord": true },
+    { "text": "座", "isWord": true },
+    { "text": "高", "isWord": true },
+    { "text": "山", "isWord": true },
+    { "text": "。", "isWord": false },
+    { "text": "山", "isWord": true },
+    { "text": "中", "isWord": true },
+    { "text": "有", "isWord": true },
+    { "text": "一", "isWord": true },
+    { "text": "間", "isWord": true },
+    { "text": "古老", "isWord": true },
+    { "text": "的", "isWord": true },
+    { "text": "客棧", "isWord": true },
+    { "text": "，", "isWord": false },
+    { "text": "燈", "isWord": true },
+    { "text": "還", "isWord": true },
+    { "text": "亮", "isWord": true },
+    { "text": "著", "isWord": true },
+    { "text": "。", "isWord": false }
+  ],
+  "glossary": {
+    "望": {
+      "term": "望",
+      "gloss": "to gaze into the distance",
+      "definitions": {
+        "en": { "gloss": "to gaze into the distance; to look toward" },
+        "zh": { "gloss": "nhìn ra xa; ngóng trông" }
+      },
+      "reading": "vọng / wàng / ㄨㄤˋ",
+      "pos": "verb · động từ",
+      "examples": [{ "text": "他<em>望</em>向遠方的高山。", "translation": "Anh ấy nhìn về phía dãy núi xa." }],
+      "bridge": {
+        "bridgeLang": "vi",
+        "etymon": "亡",
+        "bridgeReading": "vọng",
+        "meaning": "cùng chữ 望 vọng — âm bạn đã nói hằng ngày",
+        "morphemes": [
+          { "surface": "hy vọng", "etymon": "希望", "reading": "vọng", "gloss": "to hope" },
+          { "surface": "thất vọng", "etymon": "失望", "reading": "vọng", "gloss": "disappointed" },
+          { "surface": "nguyện vọng", "etymon": "願望", "reading": "vọng", "gloss": "aspiration" }
+        ]
+      }
+    },
+    "客棧": {
+      "term": "客棧",
+      "gloss": "inn",
+      "definitions": {
+        "en": { "gloss": "inn; guesthouse" },
+        "zh": { "gloss": "quán trọ" }
+      },
+      "reading": "khách sạn / kèzhàn",
+      "examples": [{ "text": "山裡有一間小<em>客棧</em>。", "translation": "Trong núi có một quán trọ nhỏ." }]
+    },
+    "古老": {
+      "term": "古老",
+      "gloss": "ancient",
+      "definitions": {
+        "en": { "gloss": "ancient; old" },
+        "zh": { "gloss": "cổ kính" }
+      },
+      "reading": "cổ lão / gǔlǎo"
+    },
+    "座": {
+      "term": "座",
+      "gloss": "measure word for mountains",
+      "reading": "tọa / zuò"
+    },
+    "亮": {
+      "term": "亮",
+      "gloss": "bright; lit",
+      "reading": "lượng / liàng"
+    }
+  },
+  "core": {
+    "band": "B1",
+    "tocfl": 3,
+    "kind": "story",
+    "newWords": 3,
+    "binding": {
+      "textbook": "accc",
+      "book": 4,
+      "lesson": 3
+    },
+    "newWordList": ["望", "古老", "客棧"]
+  }
+}

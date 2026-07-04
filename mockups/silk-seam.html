@@ -1,0 +1,887 @@
+<!-- @dsCard group="Tsumugu Core · Reader" -->
+<!DOCTYPE html>
+<html lang="vi" data-theme="light" data-palette="silk" data-rail="vi" data-script="trad" data-reading="hv" data-gloss="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>絹 Silk-Seam · Tsumugu Core Reader</title>
+
+<!-- Display serif: Newsreader (titles/chips/numerals only). Chrome face: Inter. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Chinese reading hero: LXGW WenKai TC, with graceful CJK fallback stack. -->
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@latest/style.css" rel="stylesheet">
+
+<style>
+/* ============================================================
+   絹 SILK-SEAM — Tsumugu Core reader
+   Two-layer token model: RAW palette  ->  SEMANTIC tokens.
+   Palette swap = one attribute on <html data-palette>.
+   Light/dark = one attribute on <html data-theme>, orthogonal.
+   ============================================================ */
+
+/* ---------- RAW PALETTES (light) ---------- */
+:root,
+[data-palette="silk"][data-theme="light"]{
+  --raw-bg:#FBFAF7; --raw-bg2:#F4F2EC; --raw-card:#FFFFFF; --raw-rule:#E7E3DA;
+  --raw-ink:#222019; --raw-ink2:#5B574D;
+  --raw-violet:#6B4BD6; --raw-violet-soft:#EFEAFD; --raw-violet-edge:#C9BDF4;
+  --raw-hv:#3A4BA0; --raw-py:#3F51B5;
+  --raw-new:#C0506E; --raw-learning:#C98A2B; --raw-jade:#2F9E7D;
+}
+[data-palette="silk"][data-theme="dark"]{
+  --raw-bg:#14130F; --raw-bg2:#1B1A15; --raw-card:#1F1D18; --raw-rule:#2C2A22;
+  --raw-ink:#ECEAE2; --raw-ink2:#B3AEA0;
+  --raw-violet:#A991F5; --raw-violet-soft:#241F3A; --raw-violet-edge:#4A3F7A;
+  --raw-hv:#9FB0EE; --raw-py:#9FB0EE;
+  --raw-new:#E0809A; --raw-learning:#E0AD5B; --raw-jade:#54C79E;
+}
+
+/* ---------- ALTERNATE: 青磁 Celadon (cool jade-grey premium) ---------- */
+[data-palette="celadon"][data-theme="light"]{
+  --raw-bg:#F6F8F6; --raw-bg2:#EBF0EC; --raw-card:#FFFFFF; --raw-rule:#DCE4DD;
+  --raw-ink:#1C2420; --raw-ink2:#566159;
+  --raw-violet:#5E54C9; --raw-violet-soft:#EAE8FA; --raw-violet-edge:#C2BCEE;
+  --raw-hv:#2F6E66; --raw-py:#357C72;
+  --raw-new:#B65066; --raw-learning:#B7842F; --raw-jade:#2C9B73;
+}
+[data-palette="celadon"][data-theme="dark"]{
+  --raw-bg:#101512; --raw-bg2:#161C18; --raw-card:#1A211D; --raw-rule:#283029;
+  --raw-ink:#E6EDE7; --raw-ink2:#9FAEA3;
+  --raw-violet:#9F92F2; --raw-violet-soft:#221F38; --raw-violet-edge:#473E72;
+  --raw-hv:#74C2B4; --raw-py:#74C2B4;
+  --raw-new:#DE8197; --raw-learning:#DDAA5A; --raw-jade:#52C495;
+}
+
+/* ---------- ALTERNATE: 霞 Dawn-Rose (warm porcelain blush) ---------- */
+[data-palette="dawn"][data-theme="light"]{
+  --raw-bg:#FCF8F5; --raw-bg2:#F6EEE9; --raw-card:#FFFFFF; --raw-rule:#EBDDD4;
+  --raw-ink:#251D18; --raw-ink2:#6A5A50;
+  --raw-violet:#7048C9; --raw-violet-soft:#F2EAFB; --raw-violet-edge:#D2BFEF;
+  --raw-hv:#9A3D5C; --raw-py:#A8455E;
+  --raw-new:#BE4A52; --raw-learning:#C0822A; --raw-jade:#2F9E7D;
+}
+[data-palette="dawn"][data-theme="dark"]{
+  --raw-bg:#17120F; --raw-bg2:#1E1814; --raw-card:#221B16; --raw-rule:#322820;
+  --raw-ink:#F0E7E0; --raw-ink2:#B7A799;
+  --raw-violet:#B498F6; --raw-violet-soft:#291F38; --raw-violet-edge:#52416E;
+  --raw-hv:#E2A0B5; --raw-py:#E2A0B5;
+  --raw-new:#E78A8F; --raw-learning:#E0AD5B; --raw-jade:#56C79E;
+}
+
+/* ---------- ALTERNATE: 墨 Sumi-Slate (cool neutral graphite) ---------- */
+[data-palette="sumi"][data-theme="light"]{
+  --raw-bg:#F8F8FA; --raw-bg2:#EEEFF3; --raw-card:#FFFFFF; --raw-rule:#E1E3EA;
+  --raw-ink:#1A1C22; --raw-ink2:#565A66;
+  --raw-violet:#5B4BD6; --raw-violet-soft:#EAE8FB; --raw-violet-edge:#C3BCF1;
+  --raw-hv:#3A4BA0; --raw-py:#3F51B5;
+  --raw-new:#BB4F6C; --raw-learning:#B98330; --raw-jade:#2E9B7B;
+}
+[data-palette="sumi"][data-theme="dark"]{
+  --raw-bg:#0F1014; --raw-bg2:#15171D; --raw-card:#191B22; --raw-rule:#262932;
+  --raw-ink:#E9EBF1; --raw-ink2:#A3A8B6;
+  --raw-violet:#A593F6; --raw-violet-soft:#211F38; --raw-violet-edge:#473F75;
+  --raw-hv:#9FB0EE; --raw-py:#9FB0EE;
+  --raw-new:#DF809A; --raw-learning:#E0AD5B; --raw-jade:#54C79E;
+}
+
+/* ---------- SEMANTIC TOKENS (palette-agnostic) ---------- */
+:root{
+  --bg:var(--raw-bg); --bg2:var(--raw-bg2); --card:var(--raw-card); --rule:var(--raw-rule);
+  --ink:var(--raw-ink); --ink2:var(--raw-ink2);
+  --violet:var(--raw-violet); --violet-soft:var(--raw-violet-soft); --violet-edge:var(--raw-violet-edge);
+  --hv:var(--raw-hv); --py:var(--raw-py);
+  --st-new:var(--raw-new); --st-learning:var(--raw-learning); --jade:var(--raw-jade);
+
+  --measure:680px;
+  --font-display:"Newsreader", Georgia, "Songti TC", serif;
+  --font-ui:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-cjk:"LXGW WenKai TC", "Songti TC", "Noto Serif TC", "PingFang TC", serif;
+  --shadow-sheet:0 -2px 28px rgba(20,16,40,.10), 0 -1px 0 var(--rule);
+  --shadow-pop:0 14px 44px rgba(20,16,40,.18), 0 2px 0 var(--rule);
+}
+[data-theme="dark"]{
+  --shadow-sheet:0 -2px 30px rgba(0,0,0,.5), 0 -1px 0 var(--rule);
+  --shadow-pop:0 16px 48px rgba(0,0,0,.55), 0 2px 0 var(--rule);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--font-ui);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  line-height:1.5;
+  transition:background .35s ease, color .35s ease;
+}
+
+/* ============================================================
+   READING-PROGRESS THREAD (top edge) — graft: chrome collapses
+   to a thin violet thread on scroll. Always present, width = %read.
+   ============================================================ */
+#thread{
+  position:fixed; top:0; left:0; height:2px; width:0%;
+  background:var(--violet); z-index:120;
+  box-shadow:0 0 6px var(--violet);
+  transition:width .12s linear, opacity .3s ease;
+  opacity:.92;
+}
+
+/* ============================================================
+   HEADER / CHROME — two-tier sticky, translucent + blurred.
+   ============================================================ */
+header{
+  position:sticky; top:0; z-index:100;
+  background:color-mix(in srgb, var(--bg) 82%, transparent);
+  -webkit-backdrop-filter:saturate(1.4) blur(14px);
+  backdrop-filter:saturate(1.4) blur(14px);
+  border-bottom:1px solid color-mix(in srgb, var(--rule) 70%, transparent);
+  transition:background .35s ease, transform .3s ease;
+}
+.bar{
+  max-width:1180px; margin:0 auto; padding:0 28px;
+}
+
+/* Row 1: brand · rail switcher · theme + palette */
+.row1{
+  display:flex; align-items:center; gap:18px;
+  height:60px;
+}
+.brand{display:flex; align-items:center; gap:10px; user-select:none;}
+.knot{ width:26px; height:26px; flex:0 0 auto; }
+.knot path, .knot circle{ stroke:var(--violet); }
+.brand .wm{ display:flex; align-items:baseline; gap:7px; }
+.brand .cjk-mark{ font-family:var(--font-cjk); font-size:19px; color:var(--violet); line-height:1; }
+.brand .name{ font-family:var(--font-display); font-weight:600; font-size:19px; letter-spacing:.2px; }
+.brand .name small{ font-family:var(--font-ui); font-weight:500; font-size:11px; color:var(--ink2); letter-spacing:.6px; text-transform:uppercase; margin-left:2px; }
+
+.spacer{flex:1 1 auto;}
+
+/* Pill-segmented rail switcher (master gesture) */
+.railsw{
+  display:flex; align-items:center; background:var(--bg2);
+  border:1px solid var(--rule); border-radius:999px; padding:3px;
+  position:relative;
+}
+.railsw button{
+  font-family:var(--font-ui); font-weight:600; font-size:12.5px;
+  border:0; background:transparent; color:var(--ink2);
+  padding:7px 15px; border-radius:999px; cursor:pointer; white-space:nowrap;
+  transition:color .18s ease; z-index:1; position:relative;
+}
+.railsw .glider{
+  position:absolute; top:3px; bottom:3px; left:3px;
+  background:var(--violet); border-radius:999px; z-index:0;
+  transition:transform .26s cubic-bezier(.34,1.2,.64,1), width .26s cubic-bezier(.34,1.2,.64,1);
+  box-shadow:0 1px 6px color-mix(in srgb, var(--violet) 55%, transparent);
+}
+[data-rail="vi"] .railsw button.vi,
+[data-rail="en"] .railsw button.en{ color:#fff; }
+
+.iconbtn{
+  width:38px; height:38px; border-radius:10px; border:1px solid var(--rule);
+  background:var(--card); color:var(--ink); cursor:pointer;
+  font-size:16px; display:inline-flex; align-items:center; justify-content:center;
+  transition:background .18s ease, border-color .18s, transform .12s;
+}
+.iconbtn:hover{ border-color:var(--violet-edge); }
+.iconbtn:active{ transform:scale(.94); }
+
+/* Palette switcher */
+.palwrap{ position:relative; }
+.palmenu{
+  position:absolute; right:0; top:46px; background:var(--card);
+  border:1px solid var(--rule); border-radius:14px; padding:8px;
+  box-shadow:var(--shadow-pop); display:none; min-width:190px; z-index:130;
+}
+.palwrap.open .palmenu{ display:block; }
+.palmenu .ttl{ font-size:10.5px; text-transform:uppercase; letter-spacing:.8px; color:var(--ink2); padding:4px 8px 7px; font-weight:600;}
+.palmenu button{
+  display:flex; align-items:center; gap:10px; width:100%; text-align:left;
+  border:0; background:transparent; color:var(--ink); cursor:pointer;
+  padding:8px; border-radius:9px; font-family:var(--font-ui); font-size:13px; font-weight:500;
+}
+.palmenu button:hover{ background:var(--bg2); }
+.palmenu button.active{ color:var(--violet); }
+.swatches{ display:flex; gap:3px; }
+.swatches i{ width:13px; height:13px; border-radius:3px; display:block; border:1px solid rgba(0,0,0,.08); }
+
+/* Row 2: three labeled segmented axis controls. Hides on scroll-down. */
+.row2{
+  display:flex; align-items:center; gap:22px; flex-wrap:wrap;
+  padding:0 0 11px; max-height:60px; overflow:hidden;
+  transition:max-height .3s ease, opacity .25s ease, padding .3s ease;
+}
+header.compact .row2{ max-height:0; opacity:0; padding:0; }
+.axis{ display:flex; align-items:center; gap:9px; }
+.axis > .glyph{ font-family:var(--font-cjk); font-size:16px; color:var(--ink2); }
+.seg{
+  display:inline-flex; background:var(--bg2); border:1px solid var(--rule);
+  border-radius:9px; padding:2px;
+}
+.seg button{
+  font-family:var(--font-ui); font-size:11.5px; font-weight:600; color:var(--ink2);
+  border:0; background:transparent; cursor:pointer; padding:5px 11px; border-radius:7px;
+  transition:color .15s, background .15s; white-space:nowrap;
+}
+.seg button.on{ background:var(--card); color:var(--ink); box-shadow:0 1px 2px rgba(0,0,0,.06); }
+
+/* ============================================================
+   READING SURFACE — single column floating on silk.
+   ============================================================ */
+main{ max-width:var(--measure); margin:0 auto; padding:34px 24px 220px; }
+
+.r-meta{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
+.chip{
+  font-family:var(--font-display); font-weight:600; font-size:12.5px;
+  color:var(--ink); background:var(--bg2); border:1px solid var(--rule);
+  padding:3px 11px; border-radius:7px; letter-spacing:.2px;
+}
+.chip.bind{ font-family:var(--font-cjk); font-weight:400; }
+.meta-text{ font-size:12.5px; color:var(--ink2); }
+.meta-text b{ color:var(--ink); font-weight:600; }
+.meta-dot{ color:var(--rule); }
+
+.r-title{
+  font-family:var(--font-cjk); font-weight:400; font-size:34px; line-height:1.25;
+  margin:6px 0 2px; letter-spacing:1px;
+}
+.r-subtitle{ font-family:var(--font-display); font-size:16px; color:var(--ink2); font-weight:400; font-style:italic; }
+
+/* The single silk seam: hairline rule with a short violet thread on its left 46px */
+.seam{ position:relative; height:1px; background:var(--rule); margin:26px 0 30px; }
+.seam::before{
+  content:""; position:absolute; left:0; top:-.5px; height:2px; width:46px;
+  background:var(--violet); border-radius:2px;
+}
+
+/* Passage */
+.passage{ font-family:var(--font-cjk); }
+.sent{ font-size:26px; line-height:2.5; letter-spacing:.5px; }
+.sent + .sent{ margin-top:4px; }
+
+.w{
+  display:inline-flex; flex-direction:column; align-items:center;
+  vertical-align:bottom; cursor:pointer; position:relative;
+  padding:0 1px; border-radius:5px;
+  transition:background .12s ease;
+}
+.w .ruby{
+  font-family:var(--font-ui); font-size:11px; font-weight:500; line-height:1.1;
+  color:var(--hv); height:14px; margin-bottom:3px; letter-spacing:0;
+  white-space:nowrap; opacity:.92;
+  transition:color .16s ease, opacity .2s ease;
+}
+[data-rail="en"] .w .ruby{ color:var(--py); }
+[data-reading="off"] .w .ruby{ opacity:0; }
+.w .hz{ position:relative; padding-bottom:3px; }
+
+/* status = UNDERLINE only. known = nothing. */
+.w[data-st="new"] .hz::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:2px;
+  background:var(--st-new); border-radius:2px;
+}
+.w[data-st="learning"] .hz::after{
+  content:""; position:absolute; left:0; right:0; bottom:1px; height:0;
+  border-bottom:2px dotted var(--st-learning);
+}
+/* nw=true new-target word: a subtle violet wash behind the cell (the one allowed soft tint, scarce) */
+.w[data-nw="true"]{ background:color-mix(in srgb, var(--violet-soft) 70%, transparent); }
+.w:hover{ background:color-mix(in srgb, var(--violet) 9%, transparent); }
+.w.active{ background:color-mix(in srgb, var(--violet) 14%, transparent); }
+
+.w.punct{ cursor:default; }
+.w.punct .ruby{ visibility:hidden; }
+.w.punct:hover{ background:transparent; }
+.w.punct .hz::after{ display:none; }
+
+/* status legend */
+.legend{ display:flex; gap:18px; flex-wrap:wrap; margin-top:34px; font-size:12px; color:var(--ink2); }
+.legend span{ display:inline-flex; align-items:center; gap:7px; }
+.legend .ln{ width:22px; height:0; display:inline-block; }
+.legend .ln.new{ border-bottom:2px solid var(--st-new); }
+.legend .ln.learning{ border-bottom:2px dotted var(--st-learning); }
+.legend .ln.known{ border-bottom:1px solid var(--rule); }
+
+/* ============================================================
+   BRIDGE / WORD CARD — bottom-sheet (mobile) / anchored on desktop.
+   ============================================================ */
+#scrim{
+  position:fixed; inset:0; background:rgba(16,12,30,.28); z-index:150;
+  opacity:0; pointer-events:none; transition:opacity .3s ease;
+}
+#scrim.show{ opacity:1; pointer-events:auto; }
+
+#sheet{
+  position:fixed; left:0; right:0; bottom:0; z-index:160;
+  background:var(--card); border-top:1px solid var(--rule);
+  border-radius:22px 22px 0 0; box-shadow:var(--shadow-sheet);
+  transform:translateY(110%); transition:transform .32s cubic-bezier(.34,1.56,.64,1);
+  padding:0 0 26px;
+}
+#sheet.show{ transform:translateY(0); }
+.sheet-inner{ max-width:560px; margin:0 auto; padding:0 28px; }
+.grip{ width:38px; height:4px; border-radius:4px; background:var(--rule); margin:11px auto 4px; }
+
+/* desktop: anchored side-popover feel — centered card, capped width */
+@media(min-width:900px){
+  #sheet{
+    left:50%; right:auto; bottom:34px; transform:translate(-50%,140%);
+    width:520px; border-radius:20px; border:1px solid var(--rule);
+    box-shadow:var(--shadow-pop);
+  }
+  #sheet.show{ transform:translate(-50%,0); }
+}
+
+.sh-head{ display:flex; align-items:flex-start; gap:16px; padding-top:8px; }
+.sh-glyph{
+  font-family:var(--font-cjk); font-size:64px; line-height:1; position:relative;
+  flex:0 0 auto;
+}
+/* violet self-seal dot */
+.sh-glyph::after{
+  content:""; position:absolute; top:2px; right:-3px; width:9px; height:9px;
+  border-radius:50%; background:var(--violet);
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--violet) 18%, transparent);
+}
+.sh-readwrap{ padding-top:4px; }
+.sh-hv{ font-family:var(--font-display); font-size:28px; font-weight:600; color:var(--violet); line-height:1.1; }
+.sh-sub{ font-size:13.5px; color:var(--ink2); margin-top:5px; }
+.sh-sub b{ color:var(--ink); font-weight:600; }
+.sh-gloss{ font-size:15px; color:var(--ink); margin:14px 0 4px; line-height:1.5; }
+
+/* THE BRIDGE BLOCK — violet-soft field, 45° woven-thread left edge */
+.bridge{
+  position:relative; margin:18px 0 6px; padding:16px 18px 16px 22px;
+  background:var(--violet-soft); border-radius:13px; overflow:hidden;
+}
+.bridge::before{
+  content:""; position:absolute; left:0; top:0; bottom:0; width:8px;
+  background-image:repeating-linear-gradient(
+    45deg, var(--violet) 0 2px, transparent 2px 5px);
+  opacity:.85;
+}
+.bridge .eyebrow{
+  display:flex; align-items:center; gap:7px; font-size:11.5px; font-weight:700;
+  letter-spacing:.4px; text-transform:uppercase; color:var(--violet); margin-bottom:11px;
+}
+.bridge .eyebrow .en{ font-weight:500; text-transform:none; letter-spacing:0; color:var(--ink2); }
+.cogs{ display:flex; flex-direction:column; gap:7px; }
+.cog{
+  display:flex; align-items:baseline; gap:10px;
+  background:color-mix(in srgb, var(--card) 60%, transparent);
+  border:1px solid color-mix(in srgb, var(--violet-edge) 60%, transparent);
+  border-radius:9px; padding:8px 11px;
+}
+.cog .vi{ font-family:var(--font-ui); font-size:14px; font-weight:500; color:var(--ink); min-width:96px; }
+.cog .vi .shared{ color:var(--violet); font-weight:700; }
+.cog .vi .faint{ color:var(--ink2); font-weight:400; }
+.cog .zh{ font-family:var(--font-cjk); font-size:19px; }
+.cog .zh .shared{ color:var(--violet); }
+.cog .en{ font-size:12px; color:var(--ink2); margin-left:auto; }
+.bridge .closing{ margin-top:12px; font-size:13px; color:var(--ink); }
+.bridge .closing b{ font-family:var(--font-cjk); color:var(--violet); font-weight:400; }
+
+/* stitch-pull: violet underline draws left->right under the shared morpheme */
+.stitch{ position:relative; display:inline-block; }
+.stitch::after{
+  content:""; position:absolute; left:0; bottom:-2px; height:2px; width:100%;
+  background:var(--violet); transform:scaleX(0); transform-origin:left;
+  transition:transform .24s ease;
+}
+#sheet.show .stitch::after{ transform:scaleX(1); transition-delay:.34s; }
+
+/* EN-rail note replaces bridge block */
+.en-note{
+  margin:18px 0 6px; padding:14px 16px; border:1px dashed var(--rule);
+  border-radius:13px; background:var(--bg2);
+}
+.en-note .eyebrow{
+  font-size:11px; font-weight:700; letter-spacing:.5px; text-transform:uppercase;
+  color:var(--ink2); margin-bottom:8px;
+}
+.en-note .series{ font-family:var(--font-cjk); font-size:20px; line-height:1.6; }
+.en-note .series .ph{ color:var(--violet); }
+.en-note p{ margin:8px 0 0; font-size:13px; color:var(--ink2); }
+
+/* actions */
+.sh-actions{ display:flex; gap:9px; align-items:center; margin-top:16px; flex-wrap:wrap; }
+.btn{
+  font-family:var(--font-ui); font-size:13px; font-weight:600; cursor:pointer;
+  border-radius:10px; padding:9px 14px; border:1px solid var(--rule);
+  background:var(--card); color:var(--ink); transition:all .16s ease;
+}
+.btn.primary{ background:var(--violet); border-color:var(--violet); color:#fff; }
+.btn.primary:hover{ filter:brightness(1.06); }
+.btn.known:hover{ background:var(--jade); border-color:var(--jade); color:#fff; }
+.btn.glyph{ font-family:var(--font-cjk); padding:9px 13px; }
+.btn.glyph:hover{ border-color:var(--violet-edge); }
+.dict-link{
+  display:inline-block; margin-top:13px; font-size:12.5px; color:var(--violet);
+  text-decoration:none; font-weight:600;
+}
+.dict-link:hover{ text-decoration:underline; }
+
+/* footer note */
+.foot{ max-width:var(--measure); margin:0 auto; padding:0 24px 60px; color:var(--ink2); font-size:11.5px; }
+.foot .seam{ margin:8px 0 16px; }
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition-duration:.001s !important; }
+  #sheet{ transition:opacity .15s ease; }
+  .stitch::after{ transition:none; transform:scaleX(1); }
+}
+
+@media(max-width:720px){
+  .bar{ padding:0 16px; }
+  main{ padding:24px 16px 220px; }
+  .row1{ gap:10px; height:54px; }
+  .brand .name small{ display:none; }
+  .railsw button{ padding:7px 10px; font-size:11.5px; }
+  .r-title{ font-size:27px; }
+  .sent{ font-size:23px; line-height:2.45; }
+  .sh-glyph{ font-size:52px; }
+}
+</style>
+</head>
+<body>
+
+<div id="thread"></div>
+
+<header id="hdr">
+  <div class="bar">
+    <div class="row1">
+      <div class="brand" title="紡ぐ — spin / weave thread">
+        <svg class="knot" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+          <path d="M6 8c5 7 9 7 14 0M6 18c5-7 9-7 14 0" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="13" cy="13" r="2.3" stroke-width="1.8"/>
+        </svg>
+        <span class="wm">
+          <span class="cjk-mark">紡</span>
+          <span class="name">Tsumugu<small>Core</small></span>
+        </span>
+      </div>
+
+      <div class="spacer"></div>
+
+      <div class="railsw" role="tablist" aria-label="Learner rail">
+        <span class="glider" id="glider"></span>
+        <button class="en" data-rail="en" role="tab">EN learner</button>
+        <button class="vi" data-rail="vi" role="tab">VI learner</button>
+      </div>
+
+      <button class="iconbtn" id="themeBtn" title="Light / dark" aria-label="Toggle theme">◐</button>
+
+      <div class="palwrap" id="palwrap">
+        <button class="iconbtn" id="palBtn" title="Color template" aria-label="Color template">◑</button>
+        <div class="palmenu">
+          <div class="ttl">Color template</div>
+          <button data-pal="silk" class="active">
+            <span class="swatches"><i style="background:#FBFAF7"></i><i style="background:#6B4BD6"></i><i style="background:#3A4BA0"></i></span>
+            絹 Silk <span style="margin-left:auto;font-size:10px;color:var(--ink2)">native</span>
+          </button>
+          <button data-pal="celadon">
+            <span class="swatches"><i style="background:#F6F8F6"></i><i style="background:#5E54C9"></i><i style="background:#2F6E66"></i></span>
+            青磁 Celadon
+          </button>
+          <button data-pal="dawn">
+            <span class="swatches"><i style="background:#FCF8F5"></i><i style="background:#7048C9"></i><i style="background:#9A3D5C"></i></span>
+            霞 Dawn-Rose
+          </button>
+          <button data-pal="sumi">
+            <span class="swatches"><i style="background:#F8F8FA"></i><i style="background:#5B4BD6"></i><i style="background:#3A4BA0"></i></span>
+            墨 Sumi-Slate
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="axis">
+        <span class="glyph">字</span>
+        <div class="seg" data-axis="script">
+          <button data-val="trad" class="on">繁</button>
+          <button data-val="simp">简</button>
+        </div>
+      </div>
+      <div class="axis">
+        <span class="glyph">音</span>
+        <div class="seg" data-axis="reading">
+          <button data-val="hv" class="on">Hán-Việt</button>
+          <button data-val="py">Pinyin</button>
+          <button data-val="zh">ㄅㄆ</button>
+        </div>
+      </div>
+      <div class="axis">
+        <span class="glyph">解</span>
+        <div class="seg" data-axis="gloss">
+          <button data-val="en">EN</button>
+          <button data-val="vi" class="on">VI</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="r-meta">
+    <span class="chip" id="bandChip">B1 · TOCFL 3</span>
+    <span class="chip bind">當代中文課程 · B4 L3</span>
+    <span class="meta-text" id="originText"><b>nguyên tác</b></span>
+    <span class="meta-dot">·</span>
+    <span class="meta-text" id="newWordsText"><b>3</b> từ mới</span>
+    <span class="meta-dot">·</span>
+    <span class="meta-text">2′</span>
+  </div>
+
+  <h1 class="r-title" id="rTitle">山中的客棧</h1>
+  <div class="r-subtitle" id="rSubtitle">Sơn trung đích khách sạn</div>
+
+  <div class="seam"></div>
+
+  <div class="passage" id="passage"></div>
+
+  <div class="legend">
+    <span><i class="ln new"></i> chưa biết · new</span>
+    <span><i class="ln learning"></i> đang học · learning</span>
+    <span><i class="ln known"></i> đã biết · known (no mark)</span>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="seam"></div>
+  絹 Silk-Seam — Tsumugu Core reader mockup. Violet is reserved: brand, the bridge, the “known” confirm. Status lives in the underline channel only.
+</footer>
+
+<!-- ============ Bridge / word card ============ -->
+<div id="scrim"></div>
+<div id="sheet" role="dialog" aria-modal="true" aria-label="Word detail">
+  <div class="grip"></div>
+  <div class="sheet-inner">
+    <div class="sh-head">
+      <div class="sh-glyph" id="shGlyph">望</div>
+      <div class="sh-readwrap">
+        <div class="sh-hv" id="shHv">vọng</div>
+        <div class="sh-sub" id="shSub"></div>
+      </div>
+    </div>
+    <div class="sh-gloss" id="shGloss"></div>
+
+    <div id="bridgeBlock"></div>
+
+    <div class="sh-actions">
+      <button class="btn primary" id="addCard">+ Thêm thẻ</button>
+      <button class="btn known" id="knownBtn">✓ Đã biết</button>
+      <button class="btn glyph" id="dictBtn" title="Open full entry">字 →</button>
+    </div>
+    <a class="dict-link" id="dictLink" href="#">Mở trang chữ đầy đủ →</a>
+  </div>
+</div>
+
+<script>
+/* ===== Data (verbatim from specs/_content.json) ===== */
+const META = {
+  title_zh:"山中的客棧", title_hv:"Sơn trung đích khách sạn",
+  title_vi:"Quán trọ trong núi", title_en:"The Inn in the Mountains",
+  band:"B1 · TOCFL 3", binding:"當代中文課程 · B4 L3",
+  origin_vi:"nguyên tác", origin_en:"AI-original", newWords:3
+};
+const SENTENCES = [
+  [
+    {zh:"他",py:"tā",hv:"tha",vi:"anh ấy",en:"he",st:"known"},
+    {zh:"抬起",py:"táiqǐ",hv:"đài khởi",vi:"ngẩng (lên)",en:"to raise",st:"known"},
+    {zh:"頭",py:"tóu",hv:"đầu",vi:"đầu",en:"head",st:"known"},
+    {zh:"，",py:"",hv:"",vi:"",en:"",st:"punct"},
+    {zh:"望",py:"wàng",hv:"vọng",vi:"nhìn ra xa",en:"to gaze",st:"new",nw:true},
+    {zh:"向",py:"xiàng",hv:"hướng",vi:"về phía",en:"toward",st:"known"},
+    {zh:"那",py:"nà",hv:"na",vi:"kia",en:"that",st:"known"},
+    {zh:"座",py:"zuò",hv:"tọa",vi:"(lượng từ)",en:"(measure word)",st:"learning"},
+    {zh:"高",py:"gāo",hv:"cao",vi:"cao",en:"tall",st:"known"},
+    {zh:"山",py:"shān",hv:"sơn",vi:"núi",en:"mountain",st:"known"},
+    {zh:"。",py:"",hv:"",vi:"",en:"",st:"punct"}
+  ],
+  [
+    {zh:"山",py:"shān",hv:"sơn",vi:"núi",en:"mountain",st:"known"},
+    {zh:"中",py:"zhōng",hv:"trung",vi:"trong",en:"in",st:"known"},
+    {zh:"有",py:"yǒu",hv:"hữu",vi:"có",en:"there is",st:"known"},
+    {zh:"一",py:"yī",hv:"nhất",vi:"một",en:"one",st:"known"},
+    {zh:"間",py:"jiān",hv:"gian",vi:"(lượng từ)",en:"(measure word)",st:"known"},
+    {zh:"古老",py:"gǔlǎo",hv:"cổ lão",vi:"cổ kính",en:"ancient",st:"learning",nw:true},
+    {zh:"的",py:"de",hv:"đích",vi:"(trợ từ)",en:"(particle)",st:"known"},
+    {zh:"客棧",py:"kèzhàn",hv:"khách sạn",vi:"quán trọ",en:"inn",st:"learning",nw:true},
+    {zh:"，",py:"",hv:"",vi:"",en:"",st:"punct"},
+    {zh:"燈",py:"dēng",hv:"đăng",vi:"đèn",en:"lamp",st:"known"},
+    {zh:"還",py:"hái",hv:"hoàn",vi:"vẫn",en:"still",st:"known"},
+    {zh:"亮",py:"liàng",hv:"lượng",vi:"sáng",en:"bright",st:"learning"},
+    {zh:"著",py:"zhe",hv:"trước",vi:"(đang)",en:"(aspect)",st:"known"},
+    {zh:"。",py:"",hv:"",vi:"",en:"",st:"punct"}
+  ]
+];
+const BRIDGE = {
+  char:"望", hv:"vọng", py:"wàng", zhuyin:"ㄨㄤˋ",
+  pos_vi:"động từ", pos_en:"verb",
+  gloss_vi:"nhìn ra xa; ngóng trông", gloss_en:"to gaze into the distance; to look toward",
+  eyebrow_vi:"Bạn đã biết âm này rồi", eyebrow_en:"you already know this morpheme",
+  cognates:[
+    {vi:"hy vọng", zh:"希望", en:"to hope", shared:"vọng"},
+    {vi:"thất vọng", zh:"失望", en:"disappointed", shared:"vọng"},
+    {vi:"nguyện vọng", zh:"願望", en:"aspiration", shared:"vọng"}
+  ],
+  closing_vi:"cùng chữ 望 vọng — âm bạn đã nói hằng ngày",
+  closing_en:"all the same 望 vọng you already say",
+  en_rail_series:{ phonetic:"亡", py:"wáng", members:["望","忘","茫"] },
+  dict_link_vi:"Mở trang chữ đầy đủ →", dict_link_en:"Open full entry →"
+};
+
+/* Minimal Trad->Simp map for the script toggle (chars in this passage). */
+const T2S = { "頭":"头","間":"间","客棧":"客栈","燈":"灯","還":"还","著":"着","願望":"愿望","山中的客棧":"山中的客栈" };
+function toSimp(s){ if(T2S[s]) return T2S[s]; return s.split('').map(c=>T2S[c]||c).join(''); }
+
+/* Zhuyin map for ruby when reading=zhuyin (passage tokens). */
+const ZH = {
+  "tā":"ㄊㄚ","táiqǐ":"ㄊㄞˊㄑㄧˇ","tóu":"ㄊㄡˊ","wàng":"ㄨㄤˋ","xiàng":"ㄒㄧㄤˋ",
+  "nà":"ㄋㄚˋ","zuò":"ㄗㄨㄛˋ","gāo":"ㄍㄠ","shān":"ㄕㄢ","zhōng":"ㄓㄨㄥ","yǒu":"ㄧㄡˇ",
+  "yī":"ㄧ","jiān":"ㄐㄧㄢ","gǔlǎo":"ㄍㄨˇㄌㄠˇ","de":"˙ㄉㄜ","kèzhàn":"ㄎㄜˋㄓㄢˋ",
+  "dēng":"ㄉㄥ","hái":"ㄏㄞˊ","liàng":"ㄌㄧㄤˋ","zhe":"˙ㄓㄜ"
+};
+
+const html = document.documentElement;
+const get = a => html.getAttribute(a);
+
+/* ===== Render passage ===== */
+const passageEl = document.getElementById('passage');
+function rubyFor(tok){
+  const reading = get('data-reading');
+  if(reading==='off') return '';
+  if(reading==='hv') return tok.hv;
+  if(reading==='zh') return ZH[tok.py] || tok.py;
+  return tok.py; // pinyin
+}
+function rubyForByRail(tok){
+  // rail master gesture: VI rail -> Hán-Việt; EN rail -> pinyin (unless an explicit reading override)
+  const reading = get('data-reading');
+  if(reading==='zh') return ZH[tok.py]||tok.py;
+  if(get('data-rail')==='vi') return reading==='py' ? tok.py : tok.hv;
+  return reading==='hv' ? tok.hv : tok.py;
+}
+function zhText(tok){
+  return get('data-script')==='simp' ? toSimp(tok.zh) : tok.zh;
+}
+function renderPassage(){
+  passageEl.innerHTML='';
+  SENTENCES.forEach((sent, si)=>{
+    const p = document.createElement('div'); p.className='sent';
+    sent.forEach((tok, ti)=>{
+      const w = document.createElement('span');
+      if(tok.st==='punct'){
+        w.className='w punct';
+        w.innerHTML = `<span class="ruby"></span><span class="hz">${zhText(tok)}</span>`;
+        p.appendChild(w); return;
+      }
+      w.className='w';
+      w.setAttribute('data-st', tok.st);
+      if(tok.nw) w.setAttribute('data-nw','true');
+      w.setAttribute('tabindex','0');
+      w.innerHTML = `<span class="ruby">${rubyForByRail(tok)}</span><span class="hz">${zhText(tok)}</span>`;
+      const open = ()=>openCard(tok, w);
+      w.addEventListener('click', open);
+      w.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); }});
+      p.appendChild(w);
+    });
+    passageEl.appendChild(p);
+  });
+}
+
+/* ===== Word / bridge card ===== */
+const scrim=document.getElementById('scrim'), sheet=document.getElementById('sheet');
+const shGlyph=document.getElementById('shGlyph'), shHv=document.getElementById('shHv'),
+      shSub=document.getElementById('shSub'), shGloss=document.getElementById('shGloss'),
+      bridgeBlock=document.getElementById('bridgeBlock'),
+      knownBtn=document.getElementById('knownBtn'),
+      dictLink=document.getElementById('dictLink');
+let activeWord=null;
+
+function clearActive(){ if(activeWord){ activeWord.classList.remove('active'); activeWord=null; } }
+
+function openCard(tok, el){
+  clearActive();
+  activeWord = el; el && el.classList.add('active');
+  const rail=get('data-rail'), reading=get('data-reading');
+  const isVI = rail==='vi';
+  const isBridge = (tok.zh===BRIDGE.char);
+
+  shGlyph.textContent = zhText(tok);
+  // reading hero matches rail/reading axis
+  let hero;
+  if(reading==='zh') hero = ZH[tok.py]||tok.py;
+  else if(isVI) hero = (reading==='py'? tok.py : tok.hv);
+  else hero = (reading==='hv'? tok.hv : tok.py);
+  shHv.textContent = hero;
+
+  const pos = isVI ? (isBridge?BRIDGE.pos_vi:'') : (isBridge?BRIDGE.pos_en:'');
+  const subParts = [`<b>${tok.py}</b>`, ZH[tok.py]||'', isBridge?pos:''].filter(Boolean);
+  shSub.innerHTML = subParts.join(' · ');
+  shGloss.textContent = isVI ? tok.vi : tok.en;
+
+  bridgeBlock.innerHTML = '';
+  knownBtn.textContent = isVI ? '✓ Đã biết' : '✓ Known';
+  document.getElementById('addCard').textContent = isVI ? '+ Thêm thẻ' : '+ Add card';
+  dictLink.textContent = isVI ? BRIDGE.dict_link_vi : BRIDGE.dict_link_en;
+
+  if(isBridge && isVI){
+    bridgeBlock.appendChild(buildBridge());
+  } else if(isBridge && !isVI){
+    bridgeBlock.appendChild(buildEnNote());
+  }
+  // non-bridge words: lighter card, no extra block (gloss + actions only)
+
+  scrim.classList.add('show'); sheet.classList.add('show');
+}
+
+function buildBridge(){
+  const wrap=document.createElement('div'); wrap.className='bridge';
+  const cogs = BRIDGE.cognates.map(c=>{
+    // split the VI compound into shared morpheme (bold violet) + other syllable (faint)
+    const parts = c.vi.split(' ');
+    const viHtml = parts.map(p =>
+      p===c.shared ? `<span class="shared">${p}</span>` : `<span class="faint">${p}</span>`
+    ).join(' ');
+    // split the hanzi: emphasise the 望 glyph
+    const zhDisp = get('data-script')==='simp'? toSimp(c.zh): c.zh;
+    const zhHtml = zhDisp.split('').map(ch => ch===BRIDGE.char ? `<span class="shared">${ch}</span>` : ch).join('');
+    return `<div class="cog"><span class="vi">${viHtml}</span><span class="zh">${zhHtml}</span><span class="en">${c.en}</span></div>`;
+  }).join('');
+  wrap.innerHTML = `
+    <div class="eyebrow">◆ ${BRIDGE.eyebrow_vi}<span class="en">· ${BRIDGE.eyebrow_en}</span></div>
+    <div class="cogs">${cogs}</div>
+    <div class="closing">cùng chữ <b>${BRIDGE.char}</b> <span class="stitch">${BRIDGE.hv}</span> — âm bạn đã nói hằng ngày</div>
+  `;
+  return wrap;
+}
+
+function buildEnNote(){
+  const s = BRIDGE.en_rail_series;
+  const wrap=document.createElement('div'); wrap.className='en-note';
+  const members = s.members.map(m=>m===BRIDGE.char?`<b>${m}</b>`:m).join(' / ');
+  wrap.innerHTML = `
+    <div class="eyebrow">Phonetic series</div>
+    <div class="series"><span class="ph">${s.phonetic}</span> (${s.py}) → ${members}</div>
+    <p>望 takes its sound from the phonetic component 亡 (wáng); the same element runs through 忘 and 茫. The VI cognate bridge is intentionally absent here — English has no Sinitic substrate to recognize.</p>
+  `;
+  return wrap;
+}
+
+function closeCard(){
+  scrim.classList.remove('show'); sheet.classList.remove('show');
+  clearActive();
+}
+scrim.addEventListener('click', closeCard);
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeCard(); });
+knownBtn.addEventListener('click', ()=>{
+  if(activeWord){ activeWord.setAttribute('data-st','known'); activeWord.removeAttribute('data-nw'); }
+  closeCard();
+});
+document.getElementById('dictBtn').addEventListener('click', e=>e.preventDefault());
+dictLink.addEventListener('click', e=>e.preventDefault());
+
+/* ===== Rail switcher ===== */
+const glider=document.getElementById('glider');
+function positionGlider(){
+  const rail=get('data-rail');
+  const btn=document.querySelector('.railsw button.'+rail);
+  if(!btn) return;
+  glider.style.width = btn.offsetWidth+'px';
+  glider.style.transform = `translateX(${btn.offsetLeft-3}px)`;
+}
+document.querySelectorAll('.railsw button').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    html.setAttribute('data-rail', b.dataset.rail);
+    // rail flips reading + gloss together (master gesture)
+    if(b.dataset.rail==='vi'){ setAxis('reading','hv'); setAxis('gloss','vi'); }
+    else { setAxis('reading','py'); setAxis('gloss','en'); }
+    positionGlider(); softReRuby(); syncMeta();
+  });
+});
+
+/* ===== Axis segmented controls ===== */
+function setAxis(axis, val){
+  const map={script:'data-script', reading:'data-reading', gloss:'data-gloss'};
+  html.setAttribute(map[axis], val);
+  document.querySelectorAll(`.seg[data-axis="${axis}"] button`).forEach(btn=>{
+    btn.classList.toggle('on', btn.dataset.val===val);
+  });
+}
+document.querySelectorAll('.seg').forEach(seg=>{
+  const axis=seg.dataset.axis;
+  seg.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      setAxis(axis, btn.dataset.val);
+      if(axis==='script') renderPassage();
+      else softReRuby();
+    });
+  });
+});
+
+/* soft re-ruby = re-point ruby text without rebuilding nodes (rail-switch cross-fade feel) */
+function softReRuby(){
+  let flat=[]; SENTENCES.forEach(s=>s.forEach(t=>{ if(t.st!=='punct') flat.push(t); }));
+  const rubies=document.querySelectorAll('#passage .w:not(.punct) .ruby');
+  rubies.forEach((r,i)=>{ if(flat[i]) r.textContent = rubyForByRail(flat[i]); });
+}
+
+/* ===== Meta line follows rail/gloss ===== */
+function syncMeta(){
+  const isVI = get('data-rail')==='vi';
+  document.getElementById('originText').innerHTML = isVI ? `<b>${META.origin_vi}</b>` : `<b>${META.origin_en}</b>`;
+  document.getElementById('newWordsText').innerHTML = isVI ? `<b>${META.newWords}</b> từ mới` : `<b>${META.newWords}</b> new`;
+  document.getElementById('rSubtitle').textContent = isVI ? META.title_hv : META.title_en;
+}
+
+/* ===== Theme / palette ===== */
+document.getElementById('themeBtn').addEventListener('click', ()=>{
+  html.setAttribute('data-theme', get('data-theme')==='light'?'dark':'light');
+});
+const palwrap=document.getElementById('palwrap');
+document.getElementById('palBtn').addEventListener('click', e=>{ e.stopPropagation(); palwrap.classList.toggle('open'); });
+document.querySelectorAll('.palmenu button').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    html.setAttribute('data-palette', b.dataset.pal);
+    document.querySelectorAll('.palmenu button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    palwrap.classList.remove('open');
+  });
+});
+document.addEventListener('click', ()=>palwrap.classList.remove('open'));
+
+/* ===== Scroll: collapse chrome to thin violet thread + progress ===== */
+const hdr=document.getElementById('hdr'), thread=document.getElementById('thread');
+let lastY=0;
+function onScroll(){
+  const y=window.scrollY;
+  const max=document.documentElement.scrollHeight-window.innerHeight;
+  thread.style.width = (max>0 ? (y/max*100) : 0)+'%';
+  // collapse the fine row when scrolling down past 80px; restore on scroll up
+  if(y>80 && y>lastY){ hdr.classList.add('compact'); }
+  else if(y<lastY){ hdr.classList.remove('compact'); }
+  lastY=y;
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+window.addEventListener('resize', positionGlider);
+
+/* ===== Title follows script ===== */
+function syncTitle(){
+  document.getElementById('rTitle').textContent =
+    get('data-script')==='simp' ? toSimp(META.title_zh) : META.title_zh;
+}
+const _renderPassage = renderPassage;
+renderPassage = function(){ _renderPassage(); syncTitle(); };
+
+/* ===== Boot ===== */
+renderPassage();
+syncMeta();
+positionGlider();
+onScroll();
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{
+  "_comment": "Shared sample reading for ALL four mockups so they are directly comparable. Real Traditional Chinese, B1, AI-original, bound to ACCC B4L3 as metadata (the v1 synthesis: static catalog authored by the textbook-companion mechanism). Render ruby = hv (Han-Viet) on the VI rail, py (pinyin) on the EN rail, zhuyin if reading=zhuyin. Status = UNDERLINE only; known = no mark. nw=true means a lesson 'new target' word (subtle highlight).",
+  "meta": {
+    "title_zh": "山中的客棧",
+    "title_hv": "Sơn trung đích khách sạn",
+    "title_vi": "Quán trọ trong núi",
+    "title_en": "The Inn in the Mountains",
+    "band": "B1 · TOCFL 3",
+    "binding": "當代中文課程 · B4 L3",
+    "origin_vi": "nguyên tác",
+    "origin_en": "AI-original",
+    "newWords": 3,
+    "minutes": 2
+  },
+  "sentences": [
+    [
+      {"zh":"他","py":"tā","hv":"tha","vi":"anh ấy","en":"he","st":"known"},
+      {"zh":"抬起","py":"táiqǐ","hv":"đài khởi","vi":"ngẩng (lên)","en":"to raise","st":"known"},
+      {"zh":"頭","py":"tóu","hv":"đầu","vi":"đầu","en":"head","st":"known"},
+      {"zh":"，","py":"","hv":"","vi":"","en":"","st":"punct"},
+      {"zh":"望","py":"wàng","hv":"vọng","vi":"nhìn ra xa","en":"to gaze","st":"new","nw":true},
+      {"zh":"向","py":"xiàng","hv":"hướng","vi":"về phía","en":"toward","st":"known"},
+      {"zh":"那","py":"nà","hv":"na","vi":"kia","en":"that","st":"known"},
+      {"zh":"座","py":"zuò","hv":"tọa","vi":"(lượng từ)","en":"(measure word)","st":"learning"},
+      {"zh":"高","py":"gāo","hv":"cao","vi":"cao","en":"tall","st":"known"},
+      {"zh":"山","py":"shān","hv":"sơn","vi":"núi","en":"mountain","st":"known"},
+      {"zh":"。","py":"","hv":"","vi":"","en":"","st":"punct"}
+    ],
+    [
+      {"zh":"山","py":"shān","hv":"sơn","vi":"núi","en":"mountain","st":"known"},
+      {"zh":"中","py":"zhōng","hv":"trung","vi":"trong","en":"in","st":"known"},
+      {"zh":"有","py":"yǒu","hv":"hữu","vi":"có","en":"there is","st":"known"},
+      {"zh":"一","py":"yī","hv":"nhất","vi":"một","en":"one","st":"known"},
+      {"zh":"間","py":"jiān","hv":"gian","vi":"(lượng từ)","en":"(measure word)","st":"known"},
+      {"zh":"古老","py":"gǔlǎo","hv":"cổ lão","vi":"cổ kính","en":"ancient","st":"learning","nw":true},
+      {"zh":"的","py":"de","hv":"đích","vi":"(trợ từ)","en":"(particle)","st":"known"},
+      {"zh":"客棧","py":"kèzhàn","hv":"khách sạn","vi":"quán trọ","en":"inn","st":"learning","nw":true},
+      {"zh":"，","py":"","hv":"","vi":"","en":"","st":"punct"},
+      {"zh":"燈","py":"dēng","hv":"đăng","vi":"đèn","en":"lamp","st":"known"},
+      {"zh":"還","py":"hái","hv":"hoàn","vi":"vẫn","en":"still","st":"known"},
+      {"zh":"亮","py":"liàng","hv":"lượng","vi":"sáng","en":"bright","st":"learning"},
+      {"zh":"著","py":"zhe","hv":"trước","vi":"(đang)","en":"(aspect)","st":"known"},
+      {"zh":"。","py":"","hv":"","vi":"","en":"","st":"punct"}
+    ]
+  ],
+  "bridge": {
+    "char": "望",
+    "hv": "vọng",
+    "py": "wàng",
+    "zhuyin": "ㄨㄤˋ",
+    "pos_vi": "động từ",
+    "pos_en": "verb",
+    "gloss_vi": "nhìn ra xa; ngóng trông",
+    "gloss_en": "to gaze into the distance; to look toward",
+    "eyebrow_vi": "Bạn đã biết âm này rồi",
+    "eyebrow_en": "you already know this morpheme",
+    "cognates": [
+      {"vi":"hy vọng","zh":"希望","en":"to hope","shared":"vọng"},
+      {"vi":"thất vọng","zh":"失望","en":"disappointed","shared":"vọng"},
+      {"vi":"nguyện vọng","zh":"願望","en":"aspiration","shared":"vọng"}
+    ],
+    "closing_vi": "cùng chữ 望 vọng — âm bạn đã nói hằng ngày",
+    "closing_en": "all the same 望 vọng you already say",
+    "en_rail_note": "EN rail has NO bridge field (English has no Sinitic substrate). Show instead a phonetic-series / component note: 望 phonetic series 亡 (wáng) → 望/忘/茫; or simply omit the bridge block and show component story. The ABSENCE on the EN rail is itself the proof the bridge is the VI moat.",
+    "dict_link_vi": "Mở trang chữ đầy đủ →",
+    "dict_link_en": "Open full entry →"
+  }
+}

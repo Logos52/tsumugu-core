@@ -1,0 +1,132 @@
+{
+  "name": "絹 Silk-Seam (Tsumugu Core)",
+  "oneLiner": "A bright, paper-pale modern-CJK reading product where the violet brand survives only as a single woven seam and the morpheme-bridge thread — refined Kai type is the hero, the chrome is a whisper, and the page reads paid-grade while free.",
+  "mood": "Quiet premium. A high-end Taiwanese reading app, not a study tool: composed, airy, confident. The violet appears rarely and means something every time it does (brand + \"you already know this\"). Stillness with one warm thread running through it.",
+  "paletteLight": [
+    {
+      "role": "silk (base page)",
+      "hex": "#FBFAF7"
+    },
+    {
+      "role": "silk-2 (sunk / segmented track)",
+      "hex": "#F4F2EC"
+    },
+    {
+      "role": "card",
+      "hex": "#FFFFFF"
+    },
+    {
+      "role": "rule (hairline)",
+      "hex": "#E7E3DA"
+    },
+    {
+      "role": "ink (body)",
+      "hex": "#222019"
+    },
+    {
+      "role": "ink-2 (muted)",
+      "hex": "#5B574D"
+    },
+    {
+      "role": "violet (brand / bridge / known-active)",
+      "hex": "#6B4BD6"
+    },
+    {
+      "role": "violet-soft (bridge field)",
+      "hex": "#EFEAFD"
+    },
+    {
+      "role": "hv ruby (Hán-Việt)",
+      "hex": "#3A4BA0"
+    },
+    {
+      "role": "indigo ruby (pinyin, EN rail)",
+      "hex": "#3F51B5"
+    },
+    {
+      "role": "new underline",
+      "hex": "#C0506E"
+    },
+    {
+      "role": "learning underline",
+      "hex": "#C98A2B"
+    },
+    {
+      "role": "jade (known confirm)",
+      "hex": "#2F9E7D"
+    }
+  ],
+  "paletteDark": [
+    {
+      "role": "silk (base, warm near-black ink)",
+      "hex": "#14130F"
+    },
+    {
+      "role": "silk-2 (sunk)",
+      "hex": "#1B1A15"
+    },
+    {
+      "role": "card",
+      "hex": "#1F1D18"
+    },
+    {
+      "role": "rule",
+      "hex": "#2C2A22"
+    },
+    {
+      "role": "ink",
+      "hex": "#ECEAE2"
+    },
+    {
+      "role": "ink-2",
+      "hex": "#B3AEA0"
+    },
+    {
+      "role": "violet",
+      "hex": "#A991F5"
+    },
+    {
+      "role": "violet-soft (bridge field)",
+      "hex": "#241F3A"
+    },
+    {
+      "role": "hv ruby",
+      "hex": "#9FB0EE"
+    },
+    {
+      "role": "new underline",
+      "hex": "#E0809A"
+    },
+    {
+      "role": "learning underline",
+      "hex": "#E0AD5B"
+    },
+    {
+      "role": "jade",
+      "hex": "#54C79E"
+    }
+  ],
+  "typography": {
+    "display": "Newsreader (variable serif) for level chips, numerals, and the reading title — a literary, screen-tuned face that signals 'a thing worth reading,' set tight at 600.",
+    "body": "Inter for all chrome, gloss, labels, ruby — neutral, dense, bilingual-safe across Latin + Vietnamese diacritics (no clipped ◌̉ hỏi / ◌̃ ngã).",
+    "chinese": "LXGW WenKai TC (霞鶩文楷) as the reading hero at 26px / line-height 2.5, letter-spacing .5px — kept from the engine so fonts stay shared and offline, but given far more air than the wnac reader's cramped grid; Songti TC / PingFang TC fallbacks.",
+    "rationale": "Refined CJK is the product, so the Chinese face is the only large type on the page and everything else recedes to support it. Newsreader (not a high-contrast Didone, not the default cream-serif tic) gives editorial gravity to the few numerals/titles; Inter keeps the dual-rail chrome calm and renders Vietnamese tone stacks cleanly — the one place a 'pretty' display serif would actively hurt the VI moat."
+  },
+  "dualRailTreatment": "Two-tier sticky header that fits a 360px phone. Row 1: woven-knot mark + 紡 Tsumugu wordmark, then a pill-segmented RAIL SWITCHER ('EN learner / VI learner', active = violet fill) and a ◐ theme toggle. Flipping the rail is the master gesture — it re-points reading+gloss at once (VI→Hán-Việt ruby + VI gloss + indigo→hv ruby recolor; EN→pinyin ruby + EN gloss). Row 2 is three tiny labeled segmented controls with CJK glyph labels: 字 (繁/简), 音 (Hán-Việt / Pinyin / ㄅㄆ), 解 (EN / VI). All four data-* axes are one tap from first sight, none buried in a 設⚙ popover. The fine row hides on scroll-down and returns on scroll-up so the reading owns the screen mid-read.",
+  "bridgeCard": "A bottom-sheet (thumb-reachable on mobile) that slides up on tap. Header: large Kai glyph with a tiny violet 'self seal' dot, then Hán-Việt reading in violet + pinyin/zhuyin + POS. The signature block is the BRIDGE: a violet-soft field with a left edge rendered as a 45° woven-thread hatch (the stitch metaphor made literal, not a flat bar), eyebrow '◆ Bạn đã biết âm này rồi · you already know this morpheme', then 2–3 cognate chips each pairing the VI word the learner already says with its hanzi (hy vọng 希望 · tham vọng 貪望 · kỳ vọng 期望), closing 'cùng chữ 望 vọng — same morpheme you already say.' The emotional beat is recognition, not instruction: the card hands back something they own. Actions: + Thêm thẻ (violet), ✓ Đã biết (jade on hover), and a 字 button that taps down into the dictionary, plus a quiet 'Mở trang chữ đầy đủ →' link. On the EN rail the bridge field is absent (EN has no Sinitic substrate to bridge) — its absence is itself the proof that VI is the moat.",
+  "calmReadingSurface": "Single 680px column on pale silk, no card frame around the prose — the reading floats directly on the page. The only structural mark is one 'silk seam': a full-width hairline rule with a short 2px violet thread laid over its left 46px (brand + section divider in one stroke, replacing boxes/eyebrows). Meta line is minimal: a Newsreader level chip (B1), '原創 · nguyên tác Tsumugu', new-word count. Chrome is translucent + backdrop-blurred so it dissolves into the paper; the fine toggle row auto-hides while reading. What never recedes: status underlines, the ruby line, and the VI rail — meaning-bearing ink stays at full strength while everything decorative steps back.",
+  "statusColoring": "Status lives in the UNDERLINE channel only, never as text color or background fill, so it never competes with the Kai or the violet. new = solid 2px rose-clay underline (#C0506E), offset 7px below the glyph; learning = dotted amber underline (#C98A2B) — the dotted texture distinguishes it from new without a third hue; known = no mark at all (the calm default, the reward). This is a deliberate inversion of the wnac ramp's alarm-RED: the strongest state here is a muted clay, not a fire-engine red, because a premium reader shouldn't feel like a test. Jade appears once, on the '✓ Đã biết' confirm, so green = the act of mastering, consistent across reader and SRS.",
+  "motion": "Restrained, one orchestrated moment. Bridge card: bottom-sheet spring-up (cubic-bezier(.34,1.56,.64,1), ~320ms) with a 60ms stagger so the cognate chips settle in after the field — the recognition lands a half-beat after the card. Rail switch: ruby color cross-fades (~160ms) rather than re-rendering, reinforcing 'one stream, swappable scaffolding.' Word hover/tap: 9% violet wash, 120ms. The header's fine row uses a translate+fade on scroll. Everything else is still. prefers-reduced-motion drops the spring and stagger to a plain fade.",
+  "divergesFrom": "From the wnac reader: that surface is DARK-by-default deep-navy (#000610) with blue accents and an alarm-RED status ramp; this is LIGHT-by-default warm-pale silk (#FBFAF7) with violet as the sole brand accent and clay/amber/none status — opposite base, opposite temperature of urgency. From Paper&Ink dictionary: that is a warm cream + vermillion-SEAL editorial reference page (--paper/--seal/--kai) built to be browsed densely; this is cooler, brighter, more product-grade, single-column, content-floating-on-paper, tuned for sustained reading not reference scanning — and it uses VIOLET where the dictionary uses vermillion, so a tap-down visibly crosses from violet (Core) into vermillion (the dict) and you feel you've entered a different, deeper room. On the violet brand: EVOLVE, don't splash. The stitched-knot/紡 'spin thread' metaphor is demoted from a decorative logo to a structural primitive — it survives as (1) the one silk-seam thread on the divider, (2) the woven 45° hatch on the bridge card's edge, (3) the self-seal dot. Violet becomes scarce and load-bearing: brand, the bridge, and the 'known' confirm — never a gradient, never a fill behind text.",
+  "references": [
+    "微信读书 (WeChat Read) — translucent receding chrome, the reading floats on near-white paper, controls dissolve mid-read",
+    "Apple Books CJK reader — bottom-sheet dictionary lookup, single calm column, system-grade type discipline",
+    "Readmoo / 博客來 高端台灣閱讀器 — Taiwanese premium reading-app polish, zhuyin-aware, traditional-first",
+    "LXGW WenKai TC (霞鶩文楷) — the reading hero, shared with the engine for offline parity",
+    "Newsreader (Production Type, variable) — editorial serif for numerals/titles, the deliberate non-cream-serif choice",
+    "Inter — bilingual chrome face, clean Vietnamese diacritic stacks",
+    "Migaku ruby-above / status-underline reading layer — the meaning-bearing encodings that stay",
+    "Stripe / Linear docs restraint — scarce accent used only where it carries meaning"
+  ],
+  "asciiPreview": "┌───────────────────────────────────────┐\n│ ✦紡 Tsumugu      [EN learner│VI learner●] ◐│\n│ 字[繁 简●]  音[Hán-Việt● Pinyin ㄅㄆ] 解[EN VI●]│  ← all 4 axes, first sight\n├───────────────────────────────────────┤\n│ B1 · 原創 nguyên tác · 3 từ mới          │\n│ 山中的客棧 · Quán trọ trong núi           │\n│ ▬▬▬───────────────────────────────────  │  ← silk seam (violet thread)\n│                                         │\n│   tha   đài   đầu   vọng  ，  sơn       │  ← Hán-Việt ruby (indigo-blue)\n│    他    抬    頭    望        山        │  ← LXGW WenKai, big, airy\n│              ····· ═════                 │  ← learn=dotted amber, new=clay\n│   khách sạn   hoàn  lượng   đăng 。      │\n│    客棧        還    亮      燈          │\n│   ═════              ·····               │\n│                                         │\n│  ─ chưa biết  ····đang học  đã biết(none)│\n└───────────────────────────────────────┘\n        ▲ tap 望\n┌──────── bottom sheet ──────────────────┐\n│              ──                          │\n│  望•  vọng                               │  • = violet self-seal\n│      wàng · ㄨㄤˋ · động từ              │\n│  nhìn ra xa; ngóng trông · to gaze       │\n│ ╱┃ ◆ BẠN ĐÃ BIẾT ÂM NÀY RỒI             │  ╱┃ = woven thread edge\n│ ╱┃ [hy vọng 希望][tham vọng 貪望]        │     (violet-soft field)\n│ ╱┃ [kỳ vọng 期望]                        │\n│ ╱┃ cùng chữ 望 vọng — you already say it │\n│  [ + Thêm thẻ ]  [ ✓ Đã biết ]  [ 字 ]   │  字 → taps down to dict\n│      Mở trang chữ đầy đủ →               │\n└─────────────────────────────────────────┘"
+}

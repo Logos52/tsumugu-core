@@ -1,0 +1,816 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: var(--tsg-bg);
+}
+
+body {
+  font-family: var(--ui);
+  color: var(--tsg-ink);
+  line-height: 1.5;
+  min-height: 100vh;
+  background: var(--tsg-bg); /* plain — the accent never decorates (DESIGN-PRINCIPLES §5) */
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+#app {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.reading-title {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  color: var(--tsg-muted);
+  margin-bottom: 1.5rem;
+}
+
+.prose {
+  font-family: var(--read);
+  font-size: 1.75rem;
+  line-height: 2.2;
+  color: var(--tsg-ink);
+}
+
+ruby {
+  ruby-position: over;
+}
+
+rt {
+  font-family: var(--ui);
+  font-size: 0.42em;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--tsg-hv);
+}
+
+:root[data-rail="en"] rt {
+  color: var(--tsg-py);
+}
+
+.w {
+  position: relative;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0 1px;
+}
+
+.punc {
+  color: var(--tsg-muted);
+}
+
+/* Status — underline channel only (no background-fill from status colors). House/Silk exact. */
+.tsg-status-known rt,
+.w.known rt {
+  color: color-mix(in oklab, var(--tsg-hv) 72%, var(--tsg-faint));
+}
+
+.tsg-status-2,
+.tsg-status-3,
+.tsg-status-4,
+.w.learning {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--tsg-st-l1);
+  text-decoration-thickness: 2.5px;
+  text-underline-offset: 7px;
+}
+
+.tsg-status-1,
+.w.new {
+  text-decoration: underline;
+  text-decoration-color: var(--tsg-st-new);
+  text-decoration-thickness: 2.5px;
+  text-underline-offset: 7px;
+}
+
+/* Lesson new-target wash — only allowed status-related background. */
+.w.nw {
+  background: color-mix(in oklab, var(--raw-violet-soft) 78%, transparent);
+  border-radius: 6px;
+  padding: 0 3px;
+}
+
+/* ========== APP SHELL + TOPNAV (desktop-first) ========== */
+.tsg-topnav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 11px 22px;
+  border-bottom: 1px solid var(--tsg-border);
+  background: color-mix(in oklab, var(--tsg-sunk) 86%, transparent);
+  backdrop-filter: saturate(1.3) blur(12px);
+}
+
+.tsg-topnav .primary-nav {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  margin-left: 8px;
+}
+
+.tsg-topnav .navlink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 6px 11px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--tsg-muted);
+  text-decoration: none;
+  transition: background .12s, color .12s;
+}
+/* bilingual nav: Han primary + small faint English gloss (mockup .nav a .en) */
+.tsg-topnav .navlink .en { font-size: 12px; font-weight: 400; color: var(--tsg-faint); }
+.tsg-topnav .navlink:hover { color: var(--tsg-ink); background: var(--tsg-sunk); }
+/* active surface = quiet green wash (minimalism wins; green + ink are the only
+   full-strength voices, so the active tab is a wash, not a solid pill). */
+.tsg-topnav .navlink.active,
+.tsg-topnav .navlink[aria-current="page"] {
+  background: color-mix(in oklab, var(--tsg-accent) 11%, transparent);
+  color: var(--tsg-accent);
+  font-weight: 600;
+}
+.tsg-topnav .navlink.active .en,
+.tsg-topnav .navlink[aria-current="page"] .en { color: var(--tsg-accent); }
+
+.tsg-topnav .spacer { flex: 1; }
+
+.tsg-topnav .rail-switch { margin-right: 4px; }
+
+.tsg-topnav .auth-btn {
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--tsg-border);
+  background: var(--tsg-surface);
+  color: var(--tsg-ink);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tsg-topnav .auth-btn:hover { border-color: var(--tsg-accent); }
+
+/* compact palettes already styled via .palettes .sw from reader.css */
+.tsg-topnav .palettes.compact { gap: 4px; }
+.tsg-topnav .palettes.compact .ttl { margin-right: 2px; }
+
+/* ========== HOMEPAGE LANDING ========== */
+.tsg-home {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+
+.home-hero {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.home-hero .hero-head {
+  font-family: var(--display);
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+  color: var(--tsg-ink);
+}
+.home-hero .hero-sub {
+  max-width: 620px;
+  margin: 0 auto 18px;
+  font-size: 17px;
+  color: var(--tsg-muted);
+  line-height: 1.45;
+}
+
+/* Rail chooser (B9): card-style EN/VI pickers replacing the old pills. */
+.rail-chooser {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: stretch;
+  margin: 20px 0 14px;
+  flex-wrap: wrap;
+}
+.chooser-label {
+  flex-basis: 100%;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--tsg-faint);
+  text-align: center;
+  margin-bottom: 2px;
+}
+.chooser-btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  min-width: 230px;
+  max-width: 300px;
+  padding: 13px 16px 12px;
+  text-align: left;
+  border-radius: 13px;
+  border: 1px solid var(--tsg-border);
+  background: var(--tsg-surface);
+  color: var(--tsg-ink);
+  font: inherit;
+  cursor: pointer;
+  transition: border-color .12s, background .12s, box-shadow .12s;
+}
+.chooser-btn:hover {
+  border-color: color-mix(in oklab, var(--tsg-accent) 45%, var(--tsg-border));
+  box-shadow: var(--shadow-sm);
+}
+.chooser-btn.active {
+  border-color: var(--tsg-accent);
+  background: color-mix(in oklab, var(--tsg-accent) 7%, var(--tsg-surface));
+}
+.chooser-btn .ch-tick {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--tsg-accent);
+  opacity: 0;
+}
+.chooser-btn.active .ch-tick { opacity: 1; }
+.chooser-btn .ch-flag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  color: var(--tsg-faint);
+  text-transform: uppercase;
+}
+.chooser-btn .ch-title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.chooser-btn .moat-tag {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--tsg-accent);
+}
+.chooser-btn .ch-note {
+  font-size: 11.5px;
+  color: var(--tsg-muted);
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 10px 0 6px;
+  flex-wrap: wrap;
+}
+.hero-ctas .btn {
+  font-size: 14px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--tsg-border);
+  background: var(--tsg-surface);
+  color: var(--tsg-ink);
+  cursor: pointer;
+  font-weight: 500;
+}
+.hero-ctas .btn.primary {
+  background: var(--tsg-accent);
+  border-color: var(--tsg-accent);
+  color: var(--tsg-accent-ink);
+}
+.hero-ctas .btn.ghost {
+  background: transparent;
+  border-color: var(--tsg-border-strong);
+}
+.free-note {
+  font-size: 12px;
+  color: var(--tsg-faint);
+  margin-top: 6px;
+}
+
+.home-sample {
+  max-width: 700px;
+  margin: 32px auto 40px;
+  padding: 18px 22px;
+  background: var(--tsg-surface);
+  border: 1px solid var(--tsg-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+.sample-head {
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--tsg-faint);
+  margin-bottom: 10px;
+}
+.sample-prose {
+  font-size: 28px;
+  line-height: 1.95;
+  width: auto;
+  max-width: none;
+}
+
+/* value props */
+.value-props {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.value-card {
+  background: var(--tsg-surface);
+  border: 1px solid var(--tsg-border);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+.value-card h3 {
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: var(--tsg-accent);
+}
+.value-card p {
+  font-size: 13.5px;
+  color: var(--tsg-muted);
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .value-props { grid-template-columns: 1fr; }
+  .home-hero .hero-head { font-size: 32px; }
+}
+
+/* ========== FOOTER ========== */
+.tsg-footer {
+  border-top: 1px solid var(--tsg-border);
+  padding: 18px 22px;
+  font-size: 12px;
+  color: var(--tsg-faint);
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  max-width: 980px;
+  margin: 40px auto 0;
+}
+.tsg-footer a {
+  color: inherit;
+  text-decoration: none;
+}
+.tsg-footer a:hover { color: var(--tsg-ink); }
+
+.footer-lang-toggles {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+.footer-lang-btn {
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--tsg-border);
+  background: transparent;
+  color: var(--tsg-faint);
+  cursor: pointer;
+}
+.footer-lang-btn.on {
+  color: var(--tsg-accent);
+  border-color: color-mix(in oklab, var(--tsg-accent) 35%, var(--tsg-border));
+  background: color-mix(in oklab, var(--tsg-accent) 8%, transparent);
+}
+.footer-lang-btn:hover { color: var(--tsg-ink); }
+
+/* ========== SETTINGS PANEL ========== */
+.tsg-settings {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 24px 3rem;
+}
+.tsg-settings-title {
+  font-size: 22px;
+  margin-bottom: 1rem;
+}
+.tsg-settings-sub {
+  font-size: 14px;
+  margin: 1.25rem 0 0.5rem;
+  color: var(--tsg-muted);
+}
+.tsg-settings-block {
+  margin-bottom: 1rem;
+}
+.tsg-settings-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tsg-muted);
+  margin-bottom: 6px;
+}
+.tsg-settings-hint {
+  font-size: 12px;
+  color: var(--tsg-faint);
+  margin-top: 4px;
+}
+.tsg-settings-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.tsg-settings .settings-palettes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tsg-settings .settings-seg {
+  margin-bottom: 8px;
+}
+
+/* ========== STATIC PAGES ========== */
+.tsg-static-page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 24px 3rem;
+}
+.tsg-static-page h2 {
+  font-size: 22px;
+  margin-bottom: 0.75rem;
+}
+.tsg-static-body {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--tsg-muted);
+}
+
+/* bridge demo in home */
+.home-bridge {
+  max-width: 360px;
+  background: var(--raw-violet-soft);
+  border: 1px solid color-mix(in oklab, var(--tsg-accent) 22%, var(--tsg-border));
+  border-radius: 12px;
+  padding: 13px 14px 13px 18px;
+  box-shadow: var(--shadow-pop);
+}
+.home-bridge .eye { font-size: 11px; font-weight: 700; color: var(--tsg-accent); margin-bottom: 8px; }
+.home-bridge .cogs { display: flex; flex-direction: column; gap: 6px; }
+.home-bridge .cog { font-size: 13px; }
+.home-bridge .close { margin-top: 8px; font-size: 12px; }
+
+/* hide old rail-specific when using new surfaces if needed */
+.tsg-surface-hidden { display: none !important; }
+
+/* ========== ACCOUNT / LOGIN SURFACE (paper, clean, no gamification) ========== */
+.tsg-account-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.tsg-account-backdrop.tsg-account-hidden { display: none; }
+
+.tsg-account-panel {
+  width: 100%;
+  max-width: 520px;
+  background: var(--raw-card);
+  color: var(--raw-ink);
+  border: 1px solid var(--raw-rule);
+  border-radius: 12px;
+  box-shadow: var(--shadow-pop);
+  overflow: hidden;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.tsg-account-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--raw-rule);
+  background: var(--raw-bg2);
+}
+.tsg-account-title { margin: 0; font-size: 17px; font-weight: 600; }
+.tsg-account-close {
+  background: none; border: none; font-size: 22px; line-height: 1; cursor: pointer;
+  color: var(--raw-faint); padding: 2px 8px;
+}
+.tsg-account-close:hover { color: var(--raw-ink); }
+
+.tsg-account-body { padding: 18px; overflow: auto; flex: 1; }
+.tsg-account-sync {
+  font-size: 12px; color: var(--raw-faint); margin-bottom: 10px;
+  font-family: ui-monospace, monospace;
+}
+
+.tsg-auth-flow h3, .tsg-profile h3, .tsg-progress h3 { margin: 0 0 10px; font-size: 15px; font-weight: 600; }
+.tsg-auth-form, .tsg-profile-form { display: flex; flex-direction: column; gap: 8px; }
+.tsg-auth-input, .tsg-profile-form input, .tsg-profile-form select {
+  padding: 8px 10px; border: 1px solid var(--raw-rule); border-radius: 8px;
+  background: var(--raw-bg); color: var(--raw-ink); font-size: 14px;
+}
+.tsg-auth-actions, .tsg-profile-form .tsg-btn { margin-top: 6px; }
+.tsg-btn {
+  padding: 8px 14px; border-radius: 8px; border: 1px solid var(--raw-rule);
+  background: var(--raw-bg2); color: var(--raw-ink); font-size: 13px; cursor: pointer;
+}
+.tsg-btn:hover { border-color: var(--raw-violet-edge); }
+.tsg-btn-primary { background: var(--raw-violet); color: var(--raw-on-violet); border-color: var(--raw-violet); }
+.tsg-btn-danger { color: #9f3a4a; border-color: #d8a3ab; }
+.tsg-btn-danger:hover { background: #f8e9eb; }
+
+.tsg-auth-msg, .tsg-auth-hint { font-size: 12px; color: var(--raw-faint); margin: 4px 0; }
+.tsg-auth-confirm { margin-top: 8px; }
+
+.tsg-profile-form label { font-size: 12px; color: var(--raw-ink2); margin-bottom: -4px; }
+
+.tsg-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.tsg-stat { padding: 10px 12px; background: var(--raw-bg2); border: 1px solid var(--raw-rule); border-radius: 8px; }
+.tsg-stat .n { font-size: 22px; font-weight: 600; line-height: 1; }
+.tsg-stat .s { font-size: 11px; color: var(--raw-faint); margin-top: 2px; }
+
+.tsg-progress-note { font-size: 11px; color: var(--raw-faint); }
+
+.tsg-account-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.tsg-account-actions .tsg-btn { flex: 1 1 auto; min-width: 140px; }
+
+.tsg-devtools { margin-top: 16px; border: 1px dashed var(--raw-rule); border-radius: 8px; padding: 8px 10px; font-size: 12px; }
+.tsg-devtools summary { cursor: pointer; color: var(--raw-faint); }
+.tsg-dev-note { margin-top: 8px; font-size: 11px; color: var(--raw-faint); }
+
+.tsg-import-seed-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 210; display:flex; align-items:center; justify-content:center;
+}
+.tsg-import-seed { width: 92%; max-width: 420px; background: var(--raw-card); border:1px solid var(--raw-rule); border-radius:10px; padding:14px; }
+.tsg-import-seed textarea { width:100%; font-family: ui-monospace, monospace; font-size:12px; }
+/* ========== SHELL CHROME (integrator fill for Lane B markup) ========== */
+
+/* a11y skip link */
+.tsg-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 8px 14px;
+  border-radius: 0 0 8px 0;
+  background: var(--tsg-accent);
+  color: var(--tsg-accent-ink);
+  font-size: 13px;
+  z-index: 60;
+}
+.tsg-skip-link:focus { left: 0; }
+
+/* hero eyebrow */
+.home-hero .eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--tsg-accent);
+  margin-bottom: 10px;
+}
+
+/* topnav odds and ends */
+.tsg-topnav .brand { text-decoration: none; }
+/* Brand lockup: flat teal seal, no glow (DESIGN-PRINCIPLES §5 — the accent
+   never glows); "Tsumugu" word sits in the UI face at ink strength. */
+.tsg-topnav .brand .knot { box-shadow: none; }
+.tsg-topnav .brand .word {
+  color: var(--tsg-ink);
+  font-family: var(--display);
+  font-weight: 700;
+}
+
+/* ⌘K search hint — a labelled pill in the header (mockup .khint), not an icon. */
+.tsg-topnav .khint {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--tsg-border);
+  background: var(--tsg-surface);
+  color: var(--tsg-faint);
+  font-family: var(--ui);
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .12s, border-color .12s;
+}
+.tsg-topnav .khint kbd { font-family: var(--ui); font-weight: 600; color: var(--tsg-muted); }
+.tsg-topnav .khint .en { color: var(--tsg-faint); }
+.tsg-topnav .khint:hover { color: var(--tsg-muted); border-color: var(--tsg-border-strong); }
+
+/* Narrow screens: drop the English gloss + the search-hint label (mockup hides
+   the khint under 640px). The ⌘K key stays; the nav Han labels stay. */
+@media (max-width: 720px) {
+  .tsg-topnav .navlink .en { display: none; }
+  .tsg-topnav .khint .khint-tx { display: none; }
+}
+
+/* Brand "Beta" pill — small rounded green-tinted tag beside the wordmark.
+   Shared by the shell header brand lockup and the site-footer wordmark.
+   The scarce green glow lives on the seal, not here (see reader.css .brand .knot). */
+.beta-pill {
+  align-self: center;
+  font-family: var(--ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 999px;
+  color: var(--tsg-accent);
+  background: color-mix(in oklab, var(--tsg-accent) 12%, var(--tsg-surface));
+  border: 1px solid color-mix(in oklab, var(--tsg-accent) 34%, var(--tsg-border));
+}
+
+/* Homepage beta notice — temporary, under-construction */
+.beta-banner {
+  margin: 0 0 24px;
+  padding: 10px 16px;
+  border-radius: 11px;
+  border: 1px solid color-mix(in oklab, var(--tsg-accent) 28%, var(--tsg-border));
+  background: color-mix(in oklab, var(--tsg-accent) 6%, var(--tsg-surface));
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--tsg-muted);
+}
+.beta-banner strong { color: var(--tsg-ink); font-weight: 600; }
+.beta-banner a { color: var(--tsg-accent); font-weight: 600; }
+.beta-banner a:hover { text-decoration: underline; }
+
+.tsg-topnav .navlink.sync-link {
+  border: 1px solid var(--tsg-border);
+  margin-left: 2px;
+}
+.tsg-topnav .navlink.sync-link.active,
+.tsg-topnav .navlink.sync-link:hover {
+  border-color: var(--tsg-accent);
+}
+
+/* 設 settings popover (anchors under the sticky topnav) */
+.tsg-settings-pop {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 16px;
+  width: min(360px, calc(100vw - 24px));
+  max-height: min(72vh, 560px);
+  overflow: auto;
+  padding: 14px 16px;
+  border-radius: 13px;
+  border: 1px solid var(--tsg-border-strong, var(--tsg-border));
+  background: var(--tsg-surface);
+  color: var(--tsg-ink);
+  box-shadow: var(--shadow-pop, var(--shadow));
+  z-index: 50;
+}
+
+/* transient toast */
+.tsg-toast {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: min(460px, calc(100vw - 32px));
+  padding: 11px 18px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--tsg-accent) 30%, var(--tsg-border));
+  background: var(--tsg-surface);
+  color: var(--tsg-ink);
+  font-size: 13.5px;
+  box-shadow: var(--shadow-pop, var(--shadow));
+  z-index: 300;
+  animation: tsg-toast-in .18s ease-out;
+}
+@keyframes tsg-toast-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Seal-red site footer (index.html #app-footer) */
+.site-footer {
+  border-top: 1px solid var(--tsg-border);
+  background: color-mix(in oklab, var(--tsg-sunk) 60%, transparent);
+  margin-top: 48px;
+  padding: 30px 22px 34px;
+  font-size: 13px;
+  color: var(--tsg-muted);
+  display: block;
+  max-width: none;
+}
+.site-footer .inner {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.site-footer .fbrand { flex: 1 1 260px; min-width: 220px; }
+.site-footer .wm {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--tsg-ink);
+  margin-bottom: 8px;
+}
+.site-footer .wm .knot { color: var(--tsg-accent); }
+/* The footer wordmark's Beta pill is the shared `.beta-pill` (defined above). */
+.site-footer .wm .beta-pill { align-self: baseline; }
+.site-footer .tagline { font-size: 12.5px; color: var(--tsg-faint); line-height: 1.5; }
+.site-footer .fcol {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 120px;
+}
+.site-footer .fcol .h {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--tsg-faint);
+  margin-bottom: 2px;
+}
+.site-footer .fcol a {
+  color: var(--tsg-muted);
+  text-decoration: none;
+  font-size: 13px;
+}
+.site-footer .fcol a:hover { color: var(--tsg-accent); }
+.site-footer .legal {
+  flex: 1 1 100%;
+  margin-top: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--tsg-border);
+  font-size: 11.5px;
+  color: var(--tsg-faint);
+  line-height: 1.6;
+}
+
+/* Minimal shared footer band (shell/footer.ts renders .ft-min into #app-footer;
+   the multi-column .inner above is the no-JS static fallback in index.html).
+   One quiet line: brand · tagline · preview/original-corpus/date · type credit,
+   with a compact link row so secondary pages never dead-end (minimalism wins). */
+.site-footer .ft-min {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+  font-size: 12px;
+  color: var(--tsg-faint);
+}
+.site-footer .ft-brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--tsg-ink);
+}
+.site-footer .ft-brand .knot { color: var(--tsg-accent); font-family: var(--read); font-weight: 700; }
+.site-footer .ft-brand .word { letter-spacing: .01em; }
+.site-footer .ft-brand .beta-pill { align-self: baseline; }
+.site-footer .ft-dot { color: var(--tsg-border-strong); }
+.site-footer .ft-tagline,
+.site-footer .ft-meta,
+.site-footer .ft-type { color: var(--tsg-faint); }
+.site-footer .ft-links {
+  flex: 1 1 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--tsg-border);
+}
+.site-footer .ft-links a { color: var(--tsg-muted); text-decoration: none; }
+.site-footer .ft-links a:hover { color: var(--tsg-accent); }
+
+/* companion shelf slot inside the library hub */
+.lib-companion-slot { margin: 6px 0 10px; }
+.lib-companion-slot .comp-shelf { padding-top: 10px; }

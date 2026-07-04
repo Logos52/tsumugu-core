@@ -1,0 +1,60 @@
+<!doctype html>
+<!-- Design exploration 2026-07: neutral chooser for the six direction mockups.
+     Deliberately plain (system fonts, no palette) so it does not bias the comparison. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tsumugu Core · Design exploration 2026-07</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font: 15px/1.6 -apple-system, "Helvetica Neue", sans-serif; max-width: 860px; margin: 48px auto; padding: 0 20px; }
+  h1 { font-size: 20px; font-weight: 650; }
+  p.sub { opacity: .7; max-width: 640px; }
+  ol { list-style: none; padding: 0; display: grid; gap: 14px; margin-top: 28px; }
+  li { border: 1px solid color-mix(in srgb, currentColor 18%, transparent); border-radius: 10px; padding: 16px 18px; }
+  a.name { font-size: 17px; font-weight: 650; text-decoration: none; }
+  a.name:hover { text-decoration: underline; }
+  .han { font-family: "Kaiti TC", "Songti TC", serif; margin-right: 6px; }
+  .fam { font-size: 12px; opacity: .6; margin-left: 8px; }
+  p.t { margin: 6px 0 4px; }
+  p.look { margin: 0; font-size: 13px; opacity: .7; }
+</style>
+</head>
+<body>
+<h1>Design exploration · 2026-07</h1>
+<p class="sub">Six design personalities for the Tsumugu Core library and reader. Five are independent; one descends from the existing silk and seal family. Every mockup sets the same B2 L07 reading and real corpus excerpts, with a Library/Reader tab and a light/dark toggle in its header. <strong>Decided 2026-07-02: 冊 Bound Volume wins, refined into the convergence contract (PRD §7 and §8).</strong> The shipped outcome: <a href="unified/library.html">unified/library.html</a> and <a href="unified/reader.html">unified/reader.html</a> in Verdigris green. Green studies: <a href="ce-green-studies.html">ce-green-studies.html</a>. Record: <code>docs/PRD-Design-Direction-Bound-Volume.md</code>.</p>
+<ol>
+  <li>
+    <a class="name" href="ran-resist-dye.html"><span class="han">染</span>Rǎn · Resist Dye</a>
+    <p class="t">The library is one bolt of indigo cloth that pales as you learn; in resist dyeing the stitched places stay white, so known is literally undyed.</p>
+    <p class="look">Look first: card ground-tints on the Reading Wall, then the re-entry wash demo in the reader.</p>
+  </li>
+  <li>
+    <a class="name" href="ce-bound-volume.html"><span class="han">冊</span>Cè · Bound Volume<span class="fam">winner, 2026-07-02</span></a>
+    <p class="t">Taiwan trade publishing as the register: face-out excerpt cards on shelf rails, a 書腰 obi fact-band in one fixed position, and the Ming-prose experiment.</p>
+    <p class="look">Look first: the obi band on any card, then how Noto Serif TC prose reads against the kai incumbents.</p>
+  </li>
+  <li>
+    <a class="name" href="gaozhi-composition-grid.html"><span class="han">稿紙</span>Gǎozhǐ · Composition Grid</a>
+    <p class="t">Measurement wears Taiwan composition paper: coverage as countable character cells, a practice grid that fades as words are learned, prose never gridded.</p>
+    <p class="look">Look first: the counted block on a card, the 米字格 in the word popup, and the blackboard dark theme.</p>
+  </li>
+  <li>
+    <a class="name" href="yuetai-platform.html"><span class="han">月台</span>Yuètái · Platform</a>
+    <p class="t">Taipei wayfinding for self-location: the Companion spine as a route line with you-are-here, lesson codes as station codes, a warm paper reader beyond the signage.</p>
+    <p class="look">Look first: the route map, then how completely the signage register stays out of the prose room.</p>
+  </li>
+  <li>
+    <a class="name" href="yizhan-one-lamp.html"><span class="han">一盞</span>Yī Zhǎn · One Lamp</a>
+    <p class="t">Dark-native evening register: the hub is your next reading at full presence, live and tappable, with the whole library dimmed to a quiet ledger behind it.</p>
+    <p class="look">Look first: the opening screen itself, then the hover behavior on the dim ledger rows.</p>
+  </li>
+  <li>
+    <a class="name" href="zhuyin-seal-ledger.html"><span class="han">朱印</span>Zhū Yìn · Seal Ledger<span class="fam">family direction</span></a>
+    <p class="t">The existing seal and silk lineage distilled: authored text in print ink, everything your reading wrote in cinnabar, and a chop pressed when a lesson's coverage completes.</p>
+    <p class="look">Look first: sort any page's marks into the book's ink versus your ink, then the chop slots on the lesson registry.</p>
+  </li>
+</ol>
+</body>
+</html>

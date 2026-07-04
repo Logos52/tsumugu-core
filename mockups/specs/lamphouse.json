@@ -1,0 +1,128 @@
+{
+  "name": "Lamphouse — the binder's reading table",
+  "oneLiner": "A warm lamplit reading table where the Chinese stream is the only bright thing on the page and the Hán-Việt bridge arrives as a scholar's gloss stitched into the margin by a violet thread.",
+  "mood": "Cozy, late-evening, single-lamp study. Aged ledger paper and warm walnut ink in light; deep oiled-walnut and ember in dark. Quiet, unhurried, scholarly — the feeling of a borrowed book that someone before you annotated by hand. Not minimal-cold (that's KB Slate & Signal), not clinical-bright (that's a textbook). The chrome dims to a warm hush so a few words can glow.",
+  "paletteLight": [
+    {
+      "role": "surface / lamplit paper base",
+      "hex": "#f4ecdc"
+    },
+    {
+      "role": "reading column page (lifted, brighter than base — the lit page under the lamp)",
+      "hex": "#fbf6ea"
+    },
+    {
+      "role": "raised card / sheet (bridge card, popups)",
+      "hex": "#fffdf6"
+    },
+    {
+      "role": "primary ink (warm near-black, walnut)",
+      "hex": "#241d14"
+    },
+    {
+      "role": "muted ink (gloss / secondary)",
+      "hex": "#6b5f4d"
+    },
+    {
+      "role": "faint ink (metadata, hairlines text)",
+      "hex": "#9a8c72"
+    },
+    {
+      "role": "hairline rule (warm)",
+      "hex": "#ddd2bb"
+    },
+    {
+      "role": "thread accent — VIOLET stitch (brand, used as line/seam not fill)",
+      "hex": "#6a4fb0"
+    },
+    {
+      "role": "thread accent soft (violet wash for VI rail spine)",
+      "hex": "rgba(106,79,176,.10)"
+    },
+    {
+      "role": "lamp glow (warm amber halo behind active word / focus)",
+      "hex": "#e8a13c"
+    },
+    {
+      "role": "Hán-Việt rail ink (warm indigo, distinct from violet brand)",
+      "hex": "#3f5a8c"
+    },
+    {
+      "role": "seal tint carried from dictionary for tap-down link",
+      "hex": "#b25a44"
+    }
+  ],
+  "paletteDark": [
+    {
+      "role": "surface / oiled-walnut base",
+      "hex": "#191510"
+    },
+    {
+      "role": "reading column page (the lit page — warm, lifted off base)",
+      "hex": "#211b14"
+    },
+    {
+      "role": "raised card / sheet",
+      "hex": "#2a2218"
+    },
+    {
+      "role": "primary ink (warm parchment)",
+      "hex": "#efe6d4"
+    },
+    {
+      "role": "muted ink (gloss)",
+      "hex": "#a99c84"
+    },
+    {
+      "role": "faint ink (metadata)",
+      "hex": "#6f644f"
+    },
+    {
+      "role": "hairline rule (warm, low)",
+      "hex": "#3a3022"
+    },
+    {
+      "role": "thread accent — VIOLET stitch (brand)",
+      "hex": "#a98be6"
+    },
+    {
+      "role": "thread accent soft (violet wash for VI rail spine)",
+      "hex": "rgba(169,139,230,.12)"
+    },
+    {
+      "role": "lamp glow (ember amber halo behind active word)",
+      "hex": "#e8a13c"
+    },
+    {
+      "role": "Hán-Việt rail ink (lifted dusk blue)",
+      "hex": "#8fb0dd"
+    },
+    {
+      "role": "seal tint for tap-down link (carried, lifted)",
+      "hex": "#cd7a62"
+    }
+  ],
+  "typography": {
+    "display": "Newsreader (variable serif, Google/OFL) for titles, the rail switcher word-marks, and bridge-card headers — a literary 'book' serif with optical sizes; warmer and more humanist than the dictionary's geometric Inter chrome, so the reader reads as a *book*, not an app.",
+    "body": "iA Writer Quattro / or system 'ui-rounded'-free fallback: actually use 'Source Serif 4' for the VI and EN gloss prose so glosses feel like footnotes in the same book; sans (Inter) demoted to tiny metadata pills and toggles only.",
+    "chinese": "LXGW WenKai TC (霞鶩文楷) as the reading face — KEEP the engine's existing self-hosted offline OFL face; it is a handwriting-flavored kai that suits 'lamplit annotated book' far better than a screen sans. Headword glyph in popups uses Kaiti TC to echo the dictionary on tap-down (visual handshake between products).",
+    "rationale": "The dictionary pairs Kaiti + Inter (geometric, reference-tool feel). The wnac reader is LXGW + system-sans chrome. Lamphouse keeps LXGW for the Chinese (continuity, offline) but swaps the Latin chrome to a *book serif* (Newsreader/Source Serif) so the whole surface reads as long-form literature with marginalia. Sans survives only in 10–11px uppercase-tracked metadata and toggle labels — the 'printer's marks'. This is the single biggest tell that it is a reader, not a dictionary."
+  },
+  "dualRailTreatment": "First sight on mobile = a one-line warm header bar (~52px) that is itself a hairline-ruled strip, like the running head of a book. Left: the violet stitched-knot mark (28px) + 'Lamphouse' in Newsreader small-caps. Right edge: a single pill-segmented RAIL SWITCH reading 'EN | VI' — but rendered as two facing book-tabs, the active one lit with the lamp-amber underglow and a 1px violet stitch along its base. Tapping VI doesn't just translate: the whole right margin gains a faint violet thread-spine (the VI rail's visual identity) and ruby flips pinyin→Hán-Việt. The three micro-toggles (繁/简 · 注/拼 · 文/譯 i.e. script/reading/gloss) live in a second, even quieter sub-row that is *collapsed by default into a single ⚙-free 'Aa' affordance* on mobile — tap 'Aa' and it expands inline (no modal) into three two-state segmented controls drawn as tiny ruled ticks, not buttons. So first sight = rail switch always visible + 'Aa' always visible; the granular toggles are one tap away but never a buried settings menu. Crucially the rail switch is bound to reading+gloss together (EN = pinyin+English, VI = Hán-Việt+Vietnamese), matching the proven substrate, while 'Aa' lets a power user split them.",
+  "bridgeCard": "The moat. When a learner on the VI rail taps a word whose Sino-Vietnamese reading is a true cognate, the popup card does NOT open as a generic dictionary popup — it opens as a slip of paper pinned to the reading by a short VIOLET STITCH (a 2px violet thread literally drawn from the tapped word up to the card corner, the 'tsumugu' weave made literal). Card header in Newsreader: the headword glyph (Kaiti, large) + its Hán-Việt reading set in warm indigo, larger and prouder than the pinyin. Then the signature line, set apart on a violet-washed panel with a small knot-glyph bullet: 『Bạn đã biết âm này rồi』 in confident serif, and under it in muted ink the payoff — 'âm Hán-Việt: QUỐC · bạn đã gặp trong 國家 (quốc gia), 中國 (Trung Quốc)' — i.e. it names OTHER words the reader already knows that share the morpheme, turning recognition into a web. A second muted line gives the plain VI gloss. Bottom strip: a hairline 'mở từ điển →' (open dictionary) tap-down in seal terracotta. On the EN rail the same card appears but the violet bridge panel is replaced by a calmer pinyin+gloss block (no 'you already know this' claim — EN learners have no Sinitic substrate, so we don't fake it). The bridge is therefore VI-exclusive and visibly *earned*, which is the whole pitch.",
+  "calmReadingSurface": "The reading column is a centered single sheet (max ~62ch, ~21–23px LXGW at line-height 2.0–2.2 for ruby room) floating on the dimmer lamplit base with a soft warm drop-shadow and a faint top/bottom page-edge gradient — it reads as a lit page on a dark desk (works in both themes; in light the base is aged paper, the column is brighter cream). Everything that is not the text recedes: the header fades to ~55% opacity and shrinks its rule after 2s of scroll-stillness (returns on scroll/tap), no persistent footer, no sidebars. Meaning-bearing marks STAY at full strength: the status underline, the ruby line above each word, and — on VI — the violet thread-spine down the right margin that signals 'you are reading with the bridge on'. Paragraph rules are thin warm hairlines like a ledger; the only saturated color anywhere in the resting state is the lamp-amber glow that softly haloes the word your finger is on. Reading should feel like one warm pool of light with annotations breathing at the edges.",
+  "statusColoring": "Status never fills the glyph (filled highlights fight a warm palette and shout 'app'). It lives ONLY in the underline + a faint ruby tint, tuned warm so it never breaks the lamplit mood: new = a warm rose-clay underline (#c0556a light / #d97a8c dark) at 2px, 6px offset — present but not the navy reader's alarm-red; learning = lamp-amber underline (#cf9a3e / #e0b257), i.e. the same amber as the focus glow, so 'learning' literally glows; known = NO underline, NO tint (fully calm, dissolves into the prose) — the reward for knowing a word is that it stops asking for attention. Ignored = faint dotted hairline. A 4-swatch legend appears once as a dismissible footnote at the bottom of the first reading, not as persistent chrome. Because the marks are underlines on warm ink rather than colored fills, three status states coexist in one paragraph without ever looking like a heat-map.",
+  "motion": "Restrained and physical, like paper. (1) Bridge card: the violet thread 'draws' from word to card in ~180ms (stroke-dashoffset), then the slip fades+rises 4px — the weave being stitched. (2) Rail switch EN↔VI: the violet margin-spine wipes down the page top→bottom in ~240ms and ruby cross-fades; no layout jump (substrate is attribute-driven, zero re-render). (3) Lamp focus: the amber halo behind a tapped word blooms ~120ms ease-out, recedes slower. (4) Chrome recede: header opacity/scale eases over 500ms on scroll-stillness. (5) Known transition: when you mark a word known, its underline doesn't just vanish — it 'unstitches' (dashoffset out) left-to-right, a tiny dopamine beat that reinforces the thread metaphor. All motion respects prefers-reduced-motion → instant state swap, halo becomes a static 1px ring.",
+  "divergesFrom": "vs the dark-navy wnac reader: that is cool navy #000610 + blue/violet accents + status-as-alarm-red + sans chrome — an *app*. Lamphouse is warm walnut/amber, has NO navy anywhere, demotes status to warm underlines, and dresses the chrome in a book serif so it reads as literature. vs the Paper&Ink dictionary: that is flat cream #f7f3ea with a single terracotta seal accent, Kaiti+Inter, and a reference-tool/card-grid layout. Lamphouse keeps the *family warmth* (so tapping down feels continuous) but (a) lifts a lit reading-column off a dimmer base — depth and lamplight the flat dictionary never has, (b) introduces the violet thread as a living UI motif the dictionary lacks entirely, (c) uses LXGW WenKai (handwriting kai) for reading vs the dictionary's formal Kaiti, and (d) is long-form continuous prose, not entry cards. The handshake: tap-down popups borrow the dictionary's Kaiti glyph + terracotta seal so the two products clearly belong to one house while being unmistakably different rooms. THE VIOLET BRAND: embraced and *promoted to the hero interaction* — but repositioned. In current surfaces violet is an accent-fill (buttons, logo). Here violet is forbidden as a fill on resting chrome; it is reserved almost exclusively for the THREAD — the stitch that draws the bridge card, the VI rail's margin-spine, the knot-bullet — so 紡ぐ 'to spin thread' becomes the one thing violet ever means. This makes the brand color *signify* (the bridge / the weave) instead of just decorate, which is a stronger, more ownable use than either sibling.",
+  "references": [
+    "LXGW WenKai TC (霞鶩文楷) — kept as the reading face for offline + handwritten-book warmth",
+    "Newsreader (variable serif, OFL) — chrome + bridge headers, the 'this is a book' tell",
+    "Source Serif 4 — gloss/footnote prose so translations read as marginalia",
+    "Kaiti TC — popup headword glyph, deliberate handshake with the tsumugu-ed dictionary",
+    "Ulysses / iA Writer — recede-the-chrome, content-is-the-page discipline (already in Wedge's design vocabulary)",
+    "Migaku reader mockup (tsumugu/personal/migaku-style-overlay/reader-mockup-concept.html) — bridge-card + ruby-above + status-underline pattern, re-skinned warm",
+    "Marginalia / interlinear glossed manuscripts (the scholar's-gloss anchor) — annotations live in the margin, text stays sovereign",
+    "The existing 'tsumugu' violet stitched-knot logo — promoted from accent-fill to the literal thread motif (紡ぐ)"
+  ],
+  "asciiPreview": "┌────────────────────────────────────────────┐\n│ ✦knot Lamphouse        Aa    ⟨ EN │ ᴠɪ⟩      │  ← header: brand + Aa + rail switch\n│ ───────────────────────────────────────hair │     (VI tab lit amber, violet stitch base)\n│                                          ┊   │\n│        ╭──────── lit reading sheet ──────╮┊v │  ← right margin: violet thread-spine\n│        │  guó    jiā      de    rén     │┊i │     (VI rail ON)\n│        │  ﹝國﹞ ﹝家﹞       的    ﹝人﹞      │┊o │  ← ruby (Hán-Việt) above\n│        │   ════           ┄┄┄    ════        │┊l │  ← underlines: new(rose) learn(amber)\n│        │   國  家  的  人  是  一  個 …       │┊e │     known = NO mark (是 一 個)\n│        │                                  │┊t │\n│        ╰──────────────────────────────────╯┊  │\n│                                              │\n│   tap 國 ↓ violet stitch draws to slip:      │\n│   ╔══ slip (pinned by ⟍ violet thread) ════╗ │\n│   ║ 國  QUỐC          guó                  ║ │  ← Kaiti glyph + Hán-Việt proud\n│   ║ ┄┄┄┄┄┄┄ violet-wash panel ┄┄┄┄┄┄┄┄┄┄  ║ │\n│   ║ ✦ Bạn đã biết âm này rồi              ║ │  ← THE moat line\n│   ║   âm QUỐC · 國家(quốc gia)·中國(Trung) ║ │  ← morphemes you already know\n│   ║ nước, quốc gia                        ║ │  ← plain VI gloss\n│   ║ ───────────────────  mở từ điển → seal║ │  ← tap-down to tsumugu-ed\n│   ╚═══════════════════════════════════════╝ │\n└────────────────────────────────────────────┘\n light: aged-cream page on warm base │ dark: lit page on oiled walnut"
+}

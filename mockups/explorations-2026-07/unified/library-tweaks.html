@@ -1,0 +1,214 @@
+<!doctype html>
+<!-- Library — tweak studies · 2026-07-04 · each numbered tweak shown Now vs Tweaked,
+     real content, judge and pick numbers. Plus 7 = the inline search filter (no modal). -->
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Library — tweak studies</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/style.css" rel="stylesheet">
+<style>
+:root{
+  --ui:"Inter",-apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+  --han:"PingFang TC","Noto Sans TC",sans-serif;
+  --read:"LXGW WenKai TC","Songti TC",serif;
+  --bg:#EDEEF1;--surface:#FFF;--ink:#1C1C1E;--muted:#6E6E76;--faint:#A2A2AA;--ghost:#CFCFD5;--hair:#E9E9ED;
+  --a:#0C8DAF;--aw:rgba(15,160,196,.10);
+  --sh:0 1px 2px rgba(20,22,28,.05),0 8px 22px -14px rgba(20,22,28,.14);
+  --cover:0 1px 2px rgba(20,22,28,.10),0 5px 14px -9px rgba(20,22,28,.28);
+  --dlg:#5A8CA6;--sty:#5E9E86;--slf:#7C79B0;--dia:#B07A8E;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:14px;line-height:1.5;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;padding:44px 22px 90px}
+.wrap{max-width:860px;margin:0 auto}
+h1{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.02em}
+.sub{color:var(--muted);font-size:13px;margin:0 0 30px}
+.tw{margin-bottom:34px}
+.lab{display:flex;align-items:baseline;gap:10px;margin:0 2px 9px}
+.lab .n{font-size:11px;font-weight:700;color:var(--a);background:var(--aw);border-radius:20px;padding:2px 9px}
+.lab .nm{font-weight:600;font-size:14.5px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pane{background:var(--surface);border-radius:12px;box-shadow:var(--sh);overflow:hidden}
+.pane .tag{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ghost);padding:9px 14px 0}
+.pane .tag.aft{color:var(--a)}
+.pane .body{padding:8px 14px 13px}
+.d{width:7px;height:7px;border-radius:2px;flex:none}
+.d.dlg{background:var(--dlg)}.d.sty{background:var(--sty)}.d.slf{background:var(--slf)}.d.dia{background:var(--dia)}
+@media (max-width:640px){.duo{grid-template-columns:1fr}}
+
+/* — 1 · table row anatomy — */
+.trow{display:flex;align-items:baseline;gap:10px;padding:11px 0;border-top:1px solid var(--hair)}
+.trow:first-of-type{border-top:none}
+.trow .d{align-self:center}
+.lead{font-size:15px;font-weight:500}
+.zh-far{margin-left:auto;font-family:var(--read);color:var(--muted);font-size:14px;white-space:nowrap}
+.zh-pair{font-family:var(--read);color:var(--muted);font-size:14px;white-space:nowrap}
+.kk{font-family:var(--han);color:var(--faint);font-size:12px;white-space:nowrap;width:44px;text-align:right}
+.trow.paired .kk{margin-left:auto}
+
+/* — 2 · band lesson rows — */
+.les{display:flex;align-items:baseline;gap:8px;padding:7px 4px;border-radius:7px}
+.les .lnum{font-family:var(--han);font-size:10.5px;color:var(--faint);min-width:25px}
+.les .lt{font-size:13px;font-weight:500;line-height:1.35}
+.les2{padding:8px 4px}
+.les2 .lnum{font-size:11px}
+.les2 .lt{font-size:13.5px}
+.colhx{display:flex;align-items:baseline;padding:0 2px 7px;border-bottom:1px solid var(--hair);margin-bottom:3px}
+.colhx .pn{font-family:var(--han);font-weight:600;font-size:12.5px}
+.colhx .rg{font-size:10.5px;color:var(--faint);margin-left:auto}
+
+/* — 3 · table density — */
+.t3 .trow{padding:11px 0}
+.t3b .trow{padding:13px 0}
+.t3b .lead{font-size:15.5px}
+
+/* — 4 · dot tooltip — */
+.tipwrap{position:relative;display:inline-flex}
+.tip{position:absolute;bottom:16px;left:-8px;background:var(--ink);color:#fff;font-size:11px;font-family:var(--han);padding:4px 9px;border-radius:6px;white-space:nowrap}
+.tip::after{content:"";position:absolute;top:100%;left:12px;border:4px solid transparent;border-top-color:var(--ink)}
+
+/* — 5 · dark faint — */
+.darkp{background:#1A1A1D;border-radius:12px;box-shadow:var(--sh);overflow:hidden}
+.darkp .tag{color:#48484E}
+.darkp .les .lt{color:#F2F2F5}
+.darkp .trow{border-color:#2A2A2E}
+
+/* — 6 · spines — */
+.shelfx{display:flex;gap:6px;align-items:flex-end;padding:4px 0 2px}
+.cov{width:34px;height:150px;border-radius:2px 4px 4px 2px;background:var(--surface);box-shadow:var(--cover);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:10px 2px}
+.cov .v{writing-mode:vertical-rl;font-family:var(--han);font-weight:600;color:var(--ink)}
+.cov .lv{font-size:8.5px;color:var(--faint);font-weight:600}
+
+/* — 7 · inline filter — */
+.sortx{display:flex;align-items:center;gap:6px;padding:2px}
+.sortx .sl{font-size:10.5px;color:var(--faint);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-right:4px}
+.sortx .sb{font-size:12.5px;color:var(--muted);padding:5px 11px;border-radius:8px}
+.sortx .sb.on{background:var(--aw);color:var(--a);font-weight:600}
+.filter{margin-left:auto;display:flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--hair);border-radius:8px;padding:5px 11px;color:var(--faint);font-size:12.5px;min-width:190px}
+.filter .q{color:var(--ink)}
+.filter .caret{width:1px;height:13px;background:var(--a)}
+.mutedrow{opacity:.35}
+.note{color:var(--muted);font-size:12px;margin-top:8px;padding:0 2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Tweak studies</h1>
+<p class="sub">Each numbered tweak, current vs tweaked, real content. Pick numbers.</p>
+
+<!-- 1 -->
+<div class="tw">
+  <div class="lab"><span class="n">1</span><span class="nm">Pair 中文 with the title</span></div>
+  <div class="duo">
+    <div class="pane"><div class="tag">Now — 中文 across the row</div><div class="body">
+      <div class="trow"><i class="d dlg"></i><span class="lead">Three Buns, Two Teas</span><span class="zh-far">三個包子兩杯茶</span><span class="kk">課4</span></div>
+      <div class="trow"><i class="d sty"></i><span class="lead">Chasing the Garbage Truck</span><span class="zh-far">追垃圾車</span><span class="kk">課7</span></div>
+      <div class="trow"><i class="d slf"></i><span class="lead">Fate, Fortune, Then Feng Shui</span><span class="zh-far">一命二運三風水</span><span class="kk">課4</span></div>
+    </div></div>
+    <div class="pane"><div class="tag aft">Tweaked — one landmark, 課 holds the edge</div><div class="body">
+      <div class="trow paired"><i class="d dlg"></i><span class="lead">Three Buns, Two Teas</span><span class="zh-pair">三個包子兩杯茶</span><span class="kk">課4</span></div>
+      <div class="trow paired"><i class="d sty"></i><span class="lead">Chasing the Garbage Truck</span><span class="zh-pair">追垃圾車</span><span class="kk">課7</span></div>
+      <div class="trow paired"><i class="d slf"></i><span class="lead">Fate, Fortune, Then Feng Shui</span><span class="zh-pair">一命二運三風水</span><span class="kk">課4</span></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 2 -->
+<div class="tw">
+  <div class="lab"><span class="n">2</span><span class="nm">Band type up a notch</span></div>
+  <div class="duo">
+    <div class="pane"><div class="tag">Now — 13px titles, 10.5px 課</div><div class="body">
+      <div class="colhx"><span class="pn">第一部分</span><span class="rg">L1–5</span></div>
+      <div class="les"><span class="lnum">課1</span><span class="lt">The First Cup of Oolong</span></div>
+      <div class="les"><span class="lnum">課2</span><span class="lt">Who's in the Photo?</span></div>
+      <div class="les"><span class="lnum">課3</span><span class="lt">Basketball Tomorrow Morning</span></div>
+    </div></div>
+    <div class="pane"><div class="tag aft">Tweaked — 13.5px titles, 11px 課, +1px row air</div><div class="body">
+      <div class="colhx"><span class="pn">第一部分</span><span class="rg">L1–5</span></div>
+      <div class="les les2"><span class="lnum">課1</span><span class="lt">The First Cup of Oolong</span></div>
+      <div class="les les2"><span class="lnum">課2</span><span class="lt">Who's in the Photo?</span></div>
+      <div class="les les2"><span class="lnum">課3</span><span class="lt">Basketball Tomorrow Morning</span></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="tw">
+  <div class="lab"><span class="n">3</span><span class="nm">Table breathing room</span></div>
+  <div class="duo">
+    <div class="pane"><div class="tag">Now — 15px lead, 11px row padding</div><div class="body t3">
+      <div class="trow paired"><i class="d dlg"></i><span class="lead">Sea in Front, Mountain Behind</span><span class="zh-pair">前面海後面山</span><span class="kk">課6</span></div>
+      <div class="trow paired"><i class="d sty"></i><span class="lead">Scooter to the MRT</span><span class="zh-pair">騎機車換捷運</span><span class="kk">課8</span></div>
+    </div></div>
+    <div class="pane"><div class="tag aft">Tweaked — 15.5px lead, 13px padding (~44px rows)</div><div class="body t3b">
+      <div class="trow paired"><i class="d dlg"></i><span class="lead">Sea in Front, Mountain Behind</span><span class="zh-pair">前面海後面山</span><span class="kk">課6</span></div>
+      <div class="trow paired"><i class="d sty"></i><span class="lead">Scooter to the MRT</span><span class="zh-pair">騎機車換捷運</span><span class="kk">課8</span></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 4 -->
+<div class="tw">
+  <div class="lab"><span class="n">4</span><span class="nm">Decode the dots — hover tooltip</span></div>
+  <div class="duo">
+    <div class="pane"><div class="tag">Now — colour with no key</div><div class="body">
+      <div class="trow"><i class="d dia"></i><span class="lead">Stomachache at Midnight</span></div>
+      <div class="note">The diary-pink means nothing until you've guessed it.</div>
+    </div></div>
+    <div class="pane"><div class="tag aft">Tweaked — native tooltip on hover</div><div class="body" style="padding-top:30px">
+      <div class="trow"><span class="tipwrap"><span class="tip">日記 · diary</span><i class="d dia"></i></span><span class="lead">Stomachache at Midnight</span></div>
+      <div class="note">No legend on the page — the mark explains itself when asked.</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 5 -->
+<div class="tw">
+  <div class="lab"><span class="n">5</span><span class="nm">Dark-mode faint bump</span></div>
+  <div class="duo">
+    <div class="darkp pane"><div class="tag">Now — faint #68686F</div><div class="body">
+      <div class="les"><span class="lnum" style="color:#68686F">課12</span><span class="lt">Chinese First, Plans Later</span></div>
+      <div class="les"><span class="lnum" style="color:#68686F">課13</span><span class="lt">Planning Her Birthday Surprise</span></div>
+    </div></div>
+    <div class="darkp pane"><div class="tag aft">Tweaked — faint #74747C</div><div class="body">
+      <div class="les"><span class="lnum" style="color:#74747C">課12</span><span class="lt">Chinese First, Plans Later</span></div>
+      <div class="les"><span class="lnum" style="color:#74747C">課13</span><span class="lt">Planning Her Birthday Surprise</span></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- 6 -->
+<div class="tw">
+  <div class="lab"><span class="n">6</span><span class="nm">Spine legibility</span></div>
+  <div class="duo">
+    <div class="pane"><div class="tag">Now — 12px, .14em tracking</div><div class="body"><div class="shelfx">
+      <div class="cov"><span class="v" style="font-size:12px;letter-spacing:.14em">第一冊</span><span class="lv">A1</span></div>
+      <div class="cov"><span class="v" style="font-size:12px;letter-spacing:.14em">第二冊</span><span class="lv">A2</span></div>
+      <div class="cov"><span class="v" style="font-size:12px;letter-spacing:.14em">第三冊</span><span class="lv">B1</span></div>
+    </div></div></div>
+    <div class="pane"><div class="tag aft">Tweaked — 12.5px, .12em tracking</div><div class="body"><div class="shelfx">
+      <div class="cov"><span class="v" style="font-size:12.5px;letter-spacing:.12em">第一冊</span><span class="lv">A1</span></div>
+      <div class="cov"><span class="v" style="font-size:12.5px;letter-spacing:.12em">第二冊</span><span class="lv">A2</span></div>
+      <div class="cov"><span class="v" style="font-size:12.5px;letter-spacing:.12em">第三冊</span><span class="lv">B1</span></div>
+    </div></div></div>
+  </div>
+</div>
+
+<!-- 7 -->
+<div class="tw">
+  <div class="lab"><span class="n">7</span><span class="nm">Search as a filter — replaces the modal</span></div>
+  <div class="pane"><div class="tag aft">The field lives in the sort row; typing narrows the table in place</div><div class="body">
+    <div class="sortx"><span class="sl">Sort</span><span class="sb on">Lesson</span><span class="sb">Format</span><span class="sb">Title</span>
+      <span class="filter">⌕ <span class="q">tea</span><span class="caret"></span></span></div>
+    <div style="height:8px"></div>
+    <div class="trow paired"><i class="d dlg"></i><span class="lead">The First Cup of Oolong</span><span class="zh-pair">接機的第一杯烏龍茶</span><span class="kk">課1</span></div>
+    <div class="trow paired"><i class="d dlg"></i><span class="lead">Three Buns, Two Teas</span><span class="zh-pair">三個包子兩杯茶</span><span class="kk">課4</span></div>
+    <div class="trow paired"><i class="d sty"></i><span class="lead">Tea on Maokong with My Daughter</span><span class="zh-pair">帶女兒上貓空</span><span class="kk">課9</span></div>
+    <div class="trow paired mutedrow"><i class="d dia"></i><span class="lead">Pho After the Movie</span><span class="zh-pair">電影散場後的河粉</span><span class="kk">課3</span></div>
+    <div class="note">No overlay, no second list — the table you're reading is the result. ⌘K focuses the field. Matches EN, VI, and 中文. Non-matches drop out (shown fading here).</div>
+  </div></div>
+</div>
+
+</div>
+</body>
+</html>

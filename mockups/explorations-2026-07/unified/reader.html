@@ -1,0 +1,423 @@
+<!doctype html>
+<!--
+  ════════════════════════════════════════════════════════════════════════════
+  Bound Volume convergence · unified pages — reader.html
+  Tsumugu Core, 2026-07-02 (owner-decided direction, refined)
+  ════════════════════════════════════════════════════════════════════════════
+
+  FUSION RECIPE
+  The 染 Rǎn Resist Dye reader lifted wholesale — reading typography, prose
+  metrics, ruby, word popup, progress thread, legend, keyboard grading, and the
+  re-entry wash demo — RECOLORED to Verdigris green and set on the PLAIN
+  backgrounds (no dye grounds, no weave texture). The 書腰 obi appears once as
+  the reading's header fact line. The word popup border carries a whisper of the
+  一盞 One Lamp green glow. Inside the reader, Rǎn wins every conflict with 冊
+  Bound Volume: the title is in the reading face, not the display serif.
+
+  TOKEN TABLE (binding)
+                    light                         dark
+    bg              #FBFBF9                       #141613  (Bound Volume green-black)
+    surface         #FFFFFF                       #1B1E19
+    ink             #1D1B17                       #E9E7DF
+    muted           #6A655A                       #A8A294
+    faint           #757060 (AA-adj)              #857F6E
+    border          #ECEAE4                       #2A2D26
+    accent  (green) #3B8577  on #F2FBF9           #77C6B3  on #0B1713
+    accent-text     #38806F (AA small text)       #77C6B3  (same as accent)
+      wash          rgba(59,133,119,.07)          rgba(119,198,179,.10)
+      halo (glow)   rgba(59,133,119,.11)          rgba(119,198,179,.17)
+    obi ground      #F5F4F0                       #20231E
+    new  (clay)     #B26179 solid                 #C98BA0
+    learning(amber) #B08942 dotted (AA)           #C9A25E
+    known           no mark · dimmed ruby
+    TYPE  reader prose + title = LXGW WenKai TC · obi = Noto Serif TC
+          chrome/ruby/Viet = Inter
+
+  LOOK FIRST
+    1. Ming-free reading face (LXGW WenKai) at 29px / 2.4 on a plain page.
+    2. Press 重播 replay: the words learned since last visit fade from their
+       learning marks to plain ink, one staggered breath (the one motion).
+    3. The word card on 音樂: its border wears the whisper green glow; the
+       Hán-Việt bridge (âm / nhạc) marks the shared reading in green.
+  ════════════════════════════════════════════════════════════════════════════
+-->
+<html lang="zh-Hant" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* set theme before first paint so a returning dark-mode visitor gets no light flash (FOUC) */
+(function(){try{var t=localStorage.getItem("tsu-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Tsumugu 紡 · 讀 Reader · 追垃圾車</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/style.css" rel="stylesheet">
+<style>
+/* ═══════════ tokens (identical to library.html) ═══════════ */
+:root{
+  color-scheme:light;
+  --f-read:"LXGW WenKai TC","Kaiti TC","Songti TC","Noto Serif TC",serif;
+  --f-disp:"Noto Serif TC","Songti TC","Kaiti TC",serif;
+  --f-ui:"Inter","Be Vietnam Pro",-apple-system,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+  --bg:#FBFBF9; --surface:#FFFFFF; --ink:#1D1B17; --muted:#6A655A; --faint:#757060;
+  --border:#ECEAE4; --line:#F0EEE9;
+  --kraft:#CDC9BF;
+  --obi-bg:#F5F4F0; --obi-ink:#6A655A;
+  --g:#3B8577; --g-text:#38806F; --on-g:#F2FBF9; --g-wash:rgba(59,133,119,.07); --halo:rgba(59,133,119,.11);
+  --new:#B26179; --learn:#B08942;
+  --rt:#6E6A5E; --rt-dim:#B7B2A6;
+  --shadow:0 1px 2px rgba(29,27,23,.05), 0 8px 26px rgba(29,27,23,.05);
+}
+[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#141613; --surface:#1B1E19; --ink:#E9E7DF; --muted:#A8A294; --faint:#857F6E;
+  --border:#2A2D26; --line:#23261F;
+  --kraft:#57544B;
+  --obi-bg:#20231E; --obi-ink:#A8A294;
+  --g:#77C6B3; --g-text:#77C6B3; --on-g:#0B1713; --g-wash:rgba(119,198,179,.10); --halo:rgba(119,198,179,.17);
+  --new:#C98BA0; --learn:#C9A25E;
+  --rt:#9A9482; --rt-dim:#6B6656;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px rgba(0,0,0,.35);
+}
+
+/* ═══════════ base ═══════════ */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--g);outline-offset:2px;border-radius:4px}
+button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+[hidden]{display:none!important}
+
+/* ═══════════ shared header ═══════════ */
+.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.top .in{max-width:1240px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .seal{width:28px;height:28px;border-radius:8px;background:var(--g);color:var(--on-g);font-family:var(--f-read);font-weight:700;font-size:17px;display:grid;place-items:center;box-shadow:0 0 10px var(--halo)}
+.brand .word{font-family:var(--f-disp);font-weight:700;font-size:17px;letter-spacing:.01em}
+.nav{display:flex;gap:2px;margin-left:6px}
+.nav a{padding:6px 13px;border-radius:8px;font-size:13.5px;font-weight:500;color:var(--muted);display:flex;align-items:baseline;gap:5px}
+.nav a .en{font-size:12px;color:var(--faint)}
+.nav a:hover{color:var(--ink);background:var(--line)}
+.nav a[aria-current="page"]{color:var(--g-text);background:var(--g-wash)}
+.nav a[aria-current="page"] .en{color:var(--g-text)}
+.top .grow{flex:1}
+.khint{font-size:12px;color:var(--faint);border:1px solid var(--border);border-radius:8px;padding:5px 10px;white-space:nowrap}
+.khint kbd{font-family:var(--f-ui);font-weight:600;color:var(--muted)}
+.khint:hover{color:var(--muted);border-color:var(--kraft)}
+.theme{width:32px;height:32px;border:1px solid var(--border);border-radius:8px;font-size:14px;color:var(--muted);display:grid;place-items:center}
+.theme:hover{color:var(--ink);border-color:var(--kraft)}
+
+main{max-width:1240px;margin:0 auto;padding:26px 24px 80px}
+
+/* ═══════════ obi band (signature) ═══════════ */
+.obi{font-family:var(--f-disp);font-size:12.5px;color:var(--obi-ink);background:var(--obi-bg);border:1px solid var(--border);border-radius:8px;padding:8px 15px;letter-spacing:.01em}
+.obi b{font-weight:600}
+
+/* ═══════════ ruby + status (shared, lifted from Rǎn) ═══════════ */
+ruby{ruby-position:over}
+rt{font-family:var(--f-ui);font-weight:400;font-size:.42em;letter-spacing:.02em;color:var(--rt)}
+.w{cursor:pointer;border-radius:3px}
+.w:hover{background:var(--g-wash)}
+.w.k rt{color:var(--rt-dim);opacity:.75}                     /* known: dimmed ruby, no mark */
+.w.n{border-bottom:2.5px solid var(--new);padding-bottom:1px}
+.w.n rt{color:var(--rt)}
+.w.l{border-bottom:2px dotted var(--learn);padding-bottom:1px}
+.w.sel{box-shadow:0 0 0 2px color-mix(in srgb,var(--g) 55%,transparent)}
+/* the wash */
+.w.wash{transition:border-color .6s ease}
+.w.wash rt{transition:color .6s ease,opacity .6s ease}
+.w.wash.washed{border-color:transparent}
+.w.wash.washed rt{color:var(--rt-dim);opacity:.75}
+
+/* ═══════════ reader (lifted from Rǎn, recoloured) ═══════════ */
+.reader-grid{display:grid;grid-template-columns:minmax(0,680px) 340px;justify-content:center;gap:34px;align-items:start}
+.page{min-width:0}
+.obi-head{display:block;margin:0 0 24px}
+.rtitle{font-family:var(--f-read);font-weight:400;font-size:40px;margin:0 0 6px;letter-spacing:.02em}
+.rtitle-vi{font-family:var(--f-ui);font-size:14.5px;color:var(--muted);margin:0 0 22px}
+
+.threadrow{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.thread{position:relative;flex:1;height:2px;background:var(--g);border-radius:2px}
+.thread .undyed{position:absolute;left:0;top:0;bottom:0;width:45%;background:var(--border)}
+.thread .knot{position:absolute;left:45%;top:50%;width:9px;height:9px;border-radius:50%;transform:translate(-50%,-50%);background:var(--bg);border:2px solid var(--g)}
+.threadfact{font-size:12px;color:var(--muted);white-space:nowrap}
+.washrow{display:flex;align-items:center;gap:10px;margin:0 0 26px;font-size:12.5px;color:var(--muted)}
+.washbtn{border:1px solid var(--border);border-radius:999px;padding:4px 13px;font-size:12.5px;font-weight:500;color:var(--muted)}
+.washbtn:hover{color:var(--ink);border-color:var(--kraft)}
+
+.rails{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.railset{display:flex;align-items:center;gap:2px;border:1px solid var(--border);border-radius:999px;padding:2px}
+.railset .lbl{font-size:11.5px;color:var(--faint);padding:0 6px 0 10px}
+.railset button{padding:3px 11px;border-radius:999px;font-size:12.5px;color:var(--muted)}
+.railset button:hover{color:var(--ink)}
+.railset button[aria-pressed="true"]{background:var(--g-wash);color:var(--g-text);font-weight:600}
+.legend{display:flex;gap:16px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--muted);margin-bottom:30px}
+.legend .sw{display:inline-block;width:20px;height:0;vertical-align:middle;margin-right:6px}
+.legend .sw.n{border-bottom:2.5px solid var(--new)}
+.legend .sw.l{border-bottom:2px dotted var(--learn)}
+.legend .sw.k{border-bottom:2px solid transparent}
+
+.prose{font-family:var(--f-read);font-size:29px;line-height:2.4;margin:0}
+.prose p{margin:0 0 1.1em}
+.endnote{font-size:12.5px;color:var(--faint);margin:26px 0 0;padding-top:14px;border-top:1px solid var(--border)}
+
+/* HV rail demo */
+.hvdemo{margin-top:34px;border-top:1px solid var(--border);padding-top:18px}
+.hvdemo .lbl{font-size:12px;color:var(--muted);margin:0 0 10px}
+.hvdemo .lbl b{font-weight:600;color:var(--ink)}
+.hvline{font-family:var(--f-read);font-size:27px;line-height:2.5;margin:0}
+.hvline rt{color:var(--muted);opacity:1;font-size:.44em;padding-inline:3px}
+.hvline .far rt{opacity:.35}
+.hvdemo .decode{font-size:12px;color:var(--faint);margin:10px 0 0}
+
+/* word card (popup, open state) — border wears the whisper green glow */
+/* margin-top is a pre-JS fallback: the align script (below) sets the exact value so the
+   ::before caret meets 音樂 on prose line 2. Calibrated against the left-column stack
+   obi-head + rtitle + rtitle-vi + threadrow + washrow + rails + legend before the prose.
+   Recompute here if that stack changes and JS is disabled. */
+.wordcard{position:relative;margin-top:400px;background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:0 0 0 1px var(--halo), var(--shadow);padding:20px 22px 18px}
+.wordcard::before{content:"";position:absolute;left:-7px;top:56px;width:12px;height:12px;background:var(--surface);border-left:1px solid var(--border);border-bottom:1px solid var(--border);transform:rotate(45deg)}
+.wc-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:6px}
+.wc-glyph{font-family:var(--f-read);font-size:46px;line-height:1.15}
+.wc-readings{display:flex;flex-direction:column;gap:2px;padding-top:3px}
+.wc-py{font-size:15px;font-weight:500}
+.wc-zy{font-family:var(--f-read);font-size:13px;color:var(--muted);letter-spacing:.08em}
+.wc-hv{font-size:13px;color:var(--muted);font-weight:500}
+.wc-gloss{font-size:14px;color:var(--ink);margin:2px 0 14px}
+.wc-gloss .pos{color:var(--faint);font-size:12.5px;margin-left:6px}
+.bridge{border-left:3px solid var(--g);background:var(--g-wash);border-radius:0 8px 8px 0;padding:10px 14px 11px;margin-bottom:16px}
+.bridge .eye{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--g-text);font-weight:600;margin:0 0 8px}
+.cog{display:flex;align-items:baseline;gap:9px;font-size:13.5px;margin:4px 0;color:var(--muted)}
+.cog .zi{font-family:var(--f-read);font-size:19px;color:var(--ink)}
+.cog .shared{color:var(--g-text);font-weight:600}
+.cog i{font-style:normal}
+.grades{display:flex;gap:6px;align-items:stretch;margin-bottom:12px;flex-wrap:wrap}
+.gr{min-width:40px;padding:5px 7px 4px;border:1px solid var(--border);border-radius:8px;display:flex;flex-direction:column;align-items:center;gap:1px}
+.gr:hover{border-color:var(--kraft)}
+.gr b{font-size:14px;font-weight:600;line-height:1.1}
+.gr span{font-size:9.5px;color:var(--faint);letter-spacing:.02em}
+.gr.known b{color:var(--g-text)}
+.gr.known{border-color:color-mix(in srgb,var(--g) 45%,var(--border))}
+.wc-acts{display:flex;gap:8px;border-top:1px solid var(--border);padding-top:12px}
+.act{border:1px solid var(--border);border-radius:999px;padding:4px 13px;font-size:12.5px;font-weight:500;color:var(--muted)}
+.act:hover{color:var(--ink);border-color:var(--kraft)}
+.act .zi{font-family:var(--f-read)}
+.wc-keys{font-size:11px;color:var(--faint);margin:10px 0 0}
+
+/* ═══════════ footer ═══════════ */
+footer{border-top:1px solid var(--border)}
+.ft{max-width:1240px;margin:0 auto;padding:18px 24px 30px;font-family:var(--f-ui);font-size:12px;color:var(--faint);display:flex;gap:6px 18px;flex-wrap:wrap}
+.ft .fbrand{color:var(--muted)}
+
+/* ═══════════ responsive ═══════════ */
+@media (max-width:1120px){
+  .reader-grid{grid-template-columns:minmax(0,680px)}
+  .wordcard{margin:34px auto 0;max-width:520px}
+  .wordcard::before{display:none}
+}
+@media (max-width:640px){
+  .top .in{padding:8px 14px;gap:10px}
+  .khint{display:none}
+  main{padding:20px 14px 60px}
+  .nav a .en{display:none}
+  .prose{font-size:25px}
+  .hvline{font-size:24px}
+  .rtitle{font-size:30px}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="in">
+    <a class="brand" href="library.html" aria-label="Tsumugu 課本架 Library">
+      <span class="seal">紡</span>
+      <span class="word">Tsumugu</span>
+    </a>
+    <nav class="nav" aria-label="檢視 View">
+      <a href="library.html">課本架 <span class="en">Library</span></a>
+      <a href="reader.html" aria-current="page">讀 <span class="en">Reader</span></a>
+    </nav>
+    <span class="grow"></span>
+    <button class="khint" type="button"><kbd>⌘K</kbd> 搜尋 search</button>
+    <button class="theme" id="themeBtn" type="button" aria-label="主題 theme">☾</button>
+  </div>
+</header>
+
+<main>
+  <div class="reader-grid">
+    <article class="page">
+
+      <!-- 書腰 obi: the reading's header fact line, once, muted -->
+      <div class="obi obi-head"><b>A2</b> · 當代 B2 L07 · 短文 · 470字 · 94% known · 7 new · ≈5 min</div>
+
+      <h1 class="rtitle" lang="zh-Hant">追垃圾車</h1>
+      <p class="rtitle-vi" lang="vi">Đuổi theo xe rác</p>
+
+      <div class="threadrow" aria-label="位置 Position">
+        <div class="thread" role="img" aria-label="第 3 段，共 5 段">
+          <span class="undyed"></span><span class="knot"></span>
+        </div>
+        <span class="threadfact">¶ 3 / 5 · 未讀 2 段 · 2 paragraphs ahead</span>
+      </div>
+
+      <div class="washrow">
+        <span>自上次來訪：4 詞轉為已知 · since last visit: 4 words to known</span>
+        <button class="washbtn" id="washBtn" type="button">重播 replay</button>
+      </div>
+
+      <div class="rails" aria-label="標音與釋義 Rails">
+        <span class="railset" role="group" aria-label="標音 ruby rail">
+          <span class="lbl">標音 ruby</span>
+          <button type="button" aria-pressed="true">拼音</button>
+          <button type="button" aria-pressed="false">注音</button>
+          <button type="button" aria-pressed="false">漢越</button>
+        </span>
+        <span class="railset" role="group" aria-label="釋義 gloss rail">
+          <span class="lbl">釋義 gloss</span>
+          <button type="button" aria-pressed="true">EN</button>
+          <button type="button" aria-pressed="false">VI</button>
+        </span>
+      </div>
+
+      <div class="legend">
+        <span><span class="sw n"></span>新 new</span>
+        <span><span class="sw l"></span>學習中 learning</span>
+        <span><span class="sw k"></span>已知 known · 無標 no mark</span>
+        <span>點字看詞卡 · tap a word for its card</span>
+      </div>
+
+      <div class="prose" id="prose" lang="zh-Hant">
+        <p>那天晚上，周小姐正坐在<span class="w k"><ruby>客廳<rt>kètīng</rt></ruby></span>的<span class="w k"><ruby>沙發<rt>shāfā</rt></ruby></span>上看電視，<span class="w k"><ruby>窗外<rt>chuāngwài</rt></ruby></span><span class="w l wash"><ruby>忽然<rt>hūrán</rt></ruby></span><span class="w k"><ruby>傳來<rt>chuánlái</rt></ruby></span><span class="w k"><ruby>一陣<rt>yízhèn</rt></ruby></span><span class="w l"><ruby>熟悉<rt>shúxī</rt></ruby></span>的<span class="w k sel" id="anchorWord" tabindex="0" aria-describedby="wordCard"><ruby>音樂<rt>yīnyuè</rt></ruby></span>。她跳了起來，心想：<span class="w n"><ruby>糟糕<rt>zāogāo</rt></ruby></span>，<span class="w l"><ruby>垃圾車<rt>lèsèchē</rt></ruby></span>已經開到路上了！她<span class="w k"><ruby>趕快<rt>gǎnkuài</rt></ruby></span>把<span class="w k"><ruby>廚房<rt>chúfáng</rt></ruby></span>裡的兩個<span class="w k"><ruby>袋子<rt>dàizi</rt></ruby></span><span class="w k"><ruby>提<rt>tí</rt></ruby></span>好，又<span class="w k"><ruby>抓起<rt>zhuāqǐ</rt></ruby></span>放在桌上的<span class="w l wash"><ruby>皮包<rt>píbāo</rt></ruby></span>，連<span class="w n"><ruby>拖鞋<rt>tuōxié</rt></ruby></span>都<span class="w k"><ruby>來不及<rt>láibùjí</rt></ruby></span>換，就<span class="w k"><ruby>急急忙忙<rt>jíjímángmáng</rt></ruby></span>地走出來。</p>
+        <p>她跑到<span class="w n"><ruby>巷子口<rt>xiàngzikǒu</rt></ruby></span>，那<span class="w k"><ruby>輛<rt>liàng</rt></ruby></span><span class="w l"><ruby>垃圾車<rt>lèsèchē</rt></ruby></span>卻<span class="w k"><ruby>剛好<rt>gānghǎo</rt></ruby></span>開走了。周小姐沒有<span class="w n"><ruby>放棄<rt>fàngqì</rt></ruby></span>，提著<span class="w k"><ruby>沉沉<rt>chénchén</rt></ruby></span>的<span class="w k"><ruby>袋子<rt>dàizi</rt></ruby></span>在後面<span class="w k"><ruby>追<rt>zhuī</rt></ruby></span>，一邊跑一邊<span class="w k"><ruby>喊<rt>hǎn</rt></ruby></span>：等一下！等一下！路上的人看著她，<span class="w k"><ruby>大概<rt>dàgài</rt></ruby></span>都覺得這個<span class="w l wash"><ruby>畫面<rt>huàmiàn</rt></ruby></span>很<span class="w k"><ruby>有趣<rt>yǒuqù</rt></ruby></span>吧。有個騎<span class="w k"><ruby>機車<rt>jīchē</rt></ruby></span>的先生還<span class="w l wash"><ruby>特地<rt>tèdì</rt></ruby></span>停下來，<span class="w k"><ruby>以為<rt>yǐwéi</rt></ruby></span>她<span class="w k"><ruby>掉<rt>diào</rt></ruby></span>了什麼重要的東西，問她要不要<span class="w k"><ruby>幫忙<rt>bāngmáng</rt></ruby></span>。</p>
+      </div>
+
+      <div class="hvdemo">
+        <p class="lbl"><b>漢越軌 Hán-Việt rail</b> · ¶1 句 2 sentence 2</p>
+        <p class="hvline" lang="zh-Hant"><span class="far"><ruby>窗<rt lang="vi">song</rt></ruby></span><ruby>外<rt lang="vi">ngoại</rt></ruby><span class="far"><ruby>忽<rt lang="vi">hốt</rt></ruby></span><ruby>然<rt lang="vi">nhiên</rt></ruby><ruby>傳<rt lang="vi">truyền</rt></ruby><ruby>來<rt lang="vi">lai</rt></ruby><ruby>一<rt lang="vi">nhất</rt></ruby><ruby>陣<rt lang="vi">trận</rt></ruby><span class="far"><ruby>熟<rt lang="vi">thục</rt></ruby></span><span class="far"><ruby>悉<rt lang="vi">tất</rt></ruby></span><ruby>的<rt lang="vi">đích</rt></ruby><ruby>音<rt lang="vi">âm</rt></ruby><ruby>樂<rt lang="vi">nhạc</rt></ruby>。</p>
+        <p class="decode">深＝越南語常用漢越音節 full ink = Sino-Vietnamese syllable current in Vietnamese · 淺＝罕用 faint = rare</p>
+      </div>
+
+      <p class="endnote">預覽節錄 · 2 段 / 全 5 段 · 470字</p>
+
+    </article>
+
+    <!-- word card: open state, anchored to 音樂 -->
+    <aside class="wordcard" id="wordCard" role="dialog" aria-label="音樂 word card">
+      <div class="wc-head">
+        <span class="wc-glyph" lang="zh-Hant">音樂</span>
+        <span class="wc-readings">
+          <span class="wc-py">yīnyuè</span>
+          <span class="wc-zy" lang="zh-Hant">ㄧㄣ ㄩㄝˋ</span>
+          <span class="wc-hv" lang="vi">âm nhạc</span>
+        </span>
+      </div>
+      <p class="wc-gloss">music<span class="pos">名 noun</span></p>
+
+      <div class="bridge">
+        <p class="eye" lang="vi">Âm Hán-Việt dùng chung · shared Sino-Vietnamese reading</p>
+        <div class="cog"><span class="zi" lang="zh-Hant">音</span><span><span class="shared" lang="vi">âm</span> · <i lang="vi"><span class="shared">âm</span> thanh</i></span><span>sound</span></div>
+        <div class="cog"><span class="zi" lang="zh-Hant">樂</span><span><span class="shared" lang="vi">nhạc</span> · <i lang="vi"><span class="shared">nhạc</span> sĩ</i></span><span>musician</span></div>
+      </div>
+
+      <div class="grades" aria-label="評分 Grade">
+        <button class="gr" type="button"><b>1</b><span>again</span></button>
+        <button class="gr" type="button"><b>2</b><span>hard</span></button>
+        <button class="gr" type="button"><b>3</b><span>good</span></button>
+        <button class="gr" type="button"><b>4</b><span>easy</span></button>
+        <button class="gr known" type="button"><b>✓</b><span>已知 known</span></button>
+        <button class="gr" type="button"><b>✕</b><span>略過 ignore</span></button>
+      </div>
+
+      <div class="wc-acts">
+        <button class="act" type="button">+ card</button>
+        <button class="act" type="button"><span class="zi">字</span> → dict</button>
+      </div>
+      <p class="wc-keys">鍵盤 keys 1 2 3 4 · esc 關閉 close</p>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="ft">
+    <span class="fbrand">紡 Tsumugu</span>
+    <span>追垃圾車 · 當代中文課程 第二冊 第七課</span>
+    <span>預覽 preview · 原創語料 original corpus · 2026-07</span>
+    <span>LXGW WenKai TC · Noto Serif TC · Inter</span>
+  </div>
+</footer>
+
+<script>
+"use strict";
+/* ─── theme (shared, persists across the two pages) ─── */
+(function(){
+  var root=document.documentElement, btn=document.getElementById("themeBtn");
+  var saved=null; try{saved=localStorage.getItem("tsu-theme");}catch(e){}
+  if(saved==="dark"||saved==="light"){ root.setAttribute("data-theme",saved); }
+  function sync(){ btn.textContent = root.getAttribute("data-theme")==="dark" ? "☀" : "☾"; }
+  sync();
+  btn.addEventListener("click",function(){
+    var next = root.getAttribute("data-theme")==="dark" ? "light" : "dark";
+    root.setAttribute("data-theme",next);
+    try{localStorage.setItem("tsu-theme",next);}catch(e){}
+    sync();
+  });
+})();
+
+/* ─── word-card caret alignment: point the ::before connector at its anchor word (音樂).
+   The card lives in the right rail; its caret sits at top:56px. We set the card's
+   margin-top so the caret's centre meets the anchor's vertical centre. Recomputes on
+   resize and after webfonts settle, so a relayout can't silently re-break it. The CSS
+   margin-top is only a pre-JS fallback. (Not motion: layout, not a transition.) ─── */
+(function(){
+  var card=document.getElementById("wordCard"),
+      anchor=document.getElementById("anchorWord"),
+      grid=document.querySelector(".reader-grid");
+  if(!card||!anchor||!grid) return;
+  var CARET_TOP=56;                                   /* .wordcard::before top */
+  function align(){
+    var caretShown=getComputedStyle(card,"::before").display!=="none";
+    if(!caretShown){ card.style.marginTop=""; return; }   /* single column: CSS centres it */
+    var gridTop=grid.getBoundingClientRect().top;
+    var a=anchor.getBoundingClientRect();
+    var mid=(a.top-gridTop)+a.height/2;
+    card.style.marginTop=Math.max(0,Math.round(mid-CARET_TOP))+"px";
+  }
+  align();
+  window.addEventListener("resize",align);
+  window.addEventListener("load",align);
+  if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(align); }
+})();
+
+/* ─── THE WASH: the one motion. Words learned since the last visit fade from
+   their learning marks to plain ink, staggered, one breath. A delta report. ─── */
+(function(){
+  var washBtn=document.getElementById("washBtn");
+  if(!washBtn) return;
+  var washed=false;
+  washBtn.addEventListener("click",function(){
+    var words=document.querySelectorAll("#prose .wash");
+    if(!washed){
+      words.forEach(function(el,i){
+        el.style.transitionDelay=(i*140)+"ms";
+        var rt=el.querySelector("rt");
+        if(rt) rt.style.transitionDelay=(i*140)+"ms";
+        el.classList.add("washed");
+      });
+      washed=true;
+    }else{
+      words.forEach(function(el){
+        el.style.transitionDelay="0ms";
+        var rt=el.querySelector("rt");
+        if(rt) rt.style.transitionDelay="0ms";
+        el.classList.remove("washed");
+      });
+      washed=false;
+    }
+  });
+})();
+</script>
+</body>
+</html>

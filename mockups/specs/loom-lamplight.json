@@ -1,0 +1,127 @@
+{
+  "name": "Loom & Lamplight",
+  "oneLiner": "A warm-grey editorial reading room where the Chinese text sits like a book page and the only saturated thing on screen is the violet thread that ties a word you tapped back to a word you already know.",
+  "mood": "Quiet, bookish, lamp-lit. The unhurried calm of iA Writer / Ulysses crossed with the curatorial restraint of Are.na. Reads like a small press literary journal that happens to teach you Chinese. Long-session gentleness: nothing pulses, nothing competes with the line you are reading. Generous margins, one column, a single warm light source.",
+  "paletteLight": [
+    {
+      "role": "page (reading surface)",
+      "hex": "#F4F1EB"
+    },
+    {
+      "role": "raised card / popover",
+      "hex": "#FBF9F4"
+    },
+    {
+      "role": "sunk well (header strip, code)",
+      "hex": "#ECE8DF"
+    },
+    {
+      "role": "ink (body prose)",
+      "hex": "#23211C"
+    },
+    {
+      "role": "ink-muted (gloss, meta)",
+      "hex": "#5E594F"
+    },
+    {
+      "role": "ink-faint (labels, captions)",
+      "hex": "#938C7E"
+    },
+    {
+      "role": "hairline rule",
+      "hex": "#DBD5C8"
+    },
+    {
+      "role": "violet thread (brand accent, bridge)",
+      "hex": "#6D5AE0"
+    },
+    {
+      "role": "violet-wash (bridge card fill)",
+      "hex": "#EFEBFB"
+    },
+    {
+      "role": "status new (underline)",
+      "hex": "#C2603F"
+    },
+    {
+      "role": "status learning (underline)",
+      "hex": "#C79A3A"
+    },
+    {
+      "role": "VI-rail tint (Hán-Việt ruby ink)",
+      "hex": "#4C6B86"
+    }
+  ],
+  "paletteDark": [
+    {
+      "role": "page (reading surface)",
+      "hex": "#16161A"
+    },
+    {
+      "role": "raised card / popover",
+      "hex": "#1E1E24"
+    },
+    {
+      "role": "sunk well (header strip)",
+      "hex": "#121215"
+    },
+    {
+      "role": "ink (body prose)",
+      "hex": "#E9E5DC"
+    },
+    {
+      "role": "ink-muted (gloss, meta)",
+      "hex": "#A39E92"
+    },
+    {
+      "role": "ink-faint (labels, captions)",
+      "hex": "#6E6A60"
+    },
+    {
+      "role": "hairline rule",
+      "hex": "#2C2B30"
+    },
+    {
+      "role": "violet thread (brand accent, bridge)",
+      "hex": "#A99BF2"
+    },
+    {
+      "role": "violet-wash (bridge card fill)",
+      "hex": "#211F33"
+    },
+    {
+      "role": "status new (underline)",
+      "hex": "#D98763"
+    },
+    {
+      "role": "status learning (underline)",
+      "hex": "#D3AE5C"
+    },
+    {
+      "role": "VI-rail tint (Hán-Việt ruby ink)",
+      "hex": "#8AA9C6"
+    }
+  ],
+  "typography": {
+    "display": "Newsreader (Google Fonts, free, optical-size variable) for titles, source meta, and the bridge card's lead — a literary newspaper serif with real personality at large sizes; alternative Source Serif 4 if a steadier voice is wanted",
+    "body": "Latin prose (EN gloss, VI gloss, the long English/Vietnamese reading rail) in Newsreader at reading size 18-19px / line-height 1.7; UI labels and toggle text in Inter at 13px so chrome stays quiet and neutral against the serif",
+    "chinese": "Reading face = LXGW WenKai TC (霞鶩文楷, already self-hosted in the engine repo, OFL) — a warm brush-kai that matches the bookish serif far better than a screen Hei; dictionary-tap glyphs reuse the dictionary's Kaiti. CJK reading size 28-30px / line-height 2.1 so ruby has air",
+    "rationale": "Newsreader + WenKai is the whole thesis: both are humanist, ink-on-paper, slightly literary, and they share a stroke contrast so Latin and Han sit on one page without a seam. This is deliberately NOT Inter-for-everything (that reads as an app); serif carries the prose, Inter is demoted to chrome only. WenKai is reused from the engine so there is zero new font cost and it visually distinguishes Core from the dictionary's Kaiti while staying in the same family of warmth."
+  },
+  "dualRailTreatment": "First sight, mobile, two stacked rows that never scroll away (sticky, 96px total). ROW 1 is the rail switcher as a real choice, not a setting: a single full-width segmented control with two long pills — 'English' / 'Tiếng Việt' — separated by a thin woven divider (a 2px violet stitch). The active pill is filled in violet-wash with a violet underline; it sets data-reading + data-gloss together. ROW 2 is three small ghost toggles, left-aligned, label-over-value so they read like margin notes: 简/繁 (data-script), 拼/ㄅ or 拼/Hán (data-reading detail, the right options swap by rail), 文/譯 (gloss on/off, data-gloss). Each toggle is borderless Inter 12px with a 1px underline under the active option — no boxes, no fills, so the chrome recedes to the weight of a caption. The whole header sits on the sunk-well color (#ECE8DF light / #121215 dark) one shade off the page so it reads as a deckle edge, not a toolbar. On scroll-down the toggle row collapses to a 4px violet progress thread and the rail name shrinks to a single tappable chip; scroll-up brings it back.",
+  "bridgeCard": "The moat. When a VI-rail reader taps a word, the gloss popover leads not with the definition but with the bridge — a card-within-the-card on violet-wash (#EFEBFB / #211F33) edged by a single hairline in violet, with a small woven-knot glyph (the brand mark, 12px) in the top-left corner literally tying the label. Label in Inter caps 11px violet: 'BẠN ĐÃ BIẾT ÂM NÀY RỒI · you already know this morpheme'. Body in Newsreader serif: the tapped char's Hán-Việt reading set large and violet (e.g. vọng), then a row of 2-3 cognate compounds the learner plausibly already says — hy vọng (希望) · kỳ vọng (期望) — each compound's shared char faintly underscored in violet so the eye catches the thread. One closing serif clause: '— cùng chữ 望 vọng.' The shared morpheme is the only saturated ink in the whole popover; the actual Mandarin pinyin, the English/VI gloss, the part-of-speech all sit below it in muted ink. Micro-interaction: on open, the violet underline under the shared char draws left-to-right over 240ms like a stitch being pulled through — the single signature animation. EN-rail readers get a quieter sibling card (no Hán-Việt line) showing the phonetic series / component story instead, so the slot is never empty and the violet is reserved for genuine recognition.",
+  "calmReadingSurface": "One centered column, max 36rem, on the warm-grey page with no card, no border, no shadow — the text is the page, exactly like an iA Writer doc. Margins are generous (24px gutter mobile, growing to true book margins on tablet). Source meta (title · level band · 'AI-original' provenance line) sits above the text in small-caps faint serif, separated by a single hairline, then gets out of the way. No chrome touches the text block: the sticky header is the only fixed furniture and it lives on the off-page well so the reading column floats free of it. Punctuation is set in ink-faint so the Han characters carry the rhythm. Tapping anywhere outside a word dismisses any open card and dims nothing — the page never darkens, never modal-blocks; the popover is a small lifted slip of paper (#FBF9F4) anchored under the word, the way a marginal note would sit. Meaning-bearing marks survive the minimalism: status underlines, the VI ruby line, and the rail tint all stay; everything decorative is removed.",
+  "statusColoring": "Status lives entirely in the underline, never in a background fill or a glyph color, so the prose ink stays uniform and the page stays calm. NEW = a 2px terracotta underline (#C2603F light / #D98763 dark), offset 6px below the baseline — present but warm, not the alarm-red of the wnac reader. LEARNING = a 2px dotted amber underline (#C79A3A) — the dashes read as 'in progress' without a second hue load. KNOWN = no underline at all (the calm endpoint, same as the engine's ramp). The two status colors are both warm earth tones drawn from the paper family, so they read as ink annotations on a manuscript rather than UI state — and crucially neither is violet, keeping violet exclusively for the recognition/bridge moment. A faint count in the source meta ('3 new') is the only quantified status; no progress bars, no streak chrome.",
+  "motion": "Near-stillness by default — this is a reading room. Exactly three motions exist: (1) the bridge underline 'stitch pull' draw-on, 240ms ease-out, the one expressive moment; (2) the gloss slip fades+rises 8px in 160ms when a word is tapped, settles with no bounce; (3) the header toggle row collapse/expand on scroll, 200ms standard ease, becoming the thin violet reading-progress thread. Rail switching cross-fades the gloss/reading layer in 120ms with no layout jump (the data-* attribute swap the substrate already supports). No hover pulses, no shimmer, no spring overshoot anywhere in the reading column. Respects prefers-reduced-motion by dropping even the stitch draw to an instant state.",
+  "divergesFrom": "From the current dark-navy wnac reader: that surface is a dark APP (deep navy #000610, blue #5089d8 chrome, two-layer wnac tokens, alarm-red 'new', lifted cards with 24px shadows, Inter-driven UI everywhere). Loom & Lamplight is a light-default READING ROOM: warm-grey paper not navy, serif prose (Newsreader) carrying the page instead of Inter chrome, NO card/shadow under the reading column, and a terracotta-not-red status underline. The wnac reader spends color on its own UI; Core spends color only on the violet thread of recognition. From the Paper&Ink dictionary: that surface is warmer and more saturated (#f7f3ea paper, terracotta SEAL #b25a44 as its single accent, dense reference layout — gloss frames, family chips, decomposition grids, Kaiti throughout). Core deliberately steps one notch cooler and emptier: a greyer paper (#F4F1EB, less yellow), a single column instead of a reference grid, WenKai instead of Kaiti for the body so the two products are siblings not twins, and a different accent identity — the dictionary's accent is terracotta (seal/authority), Core's accent is VIOLET (thread/recognition). When you tap DOWN from a Core word into tsumugu-ed, the surface should visibly warm and densify — you've walked from the reading room into the reference library. On the brand: EMBRACE and evolve the violet stitched-knot. Violet is repositioned from a generic 'app accent' (where the wnac reader scatters mauve #b36ef5 across gradients) into a SINGLE meaning — the thread of cognate recognition. The knot mark appears literally tying the bridge card label and as the scroll-progress thread; the 紡ぐ 'spin thread' metaphor becomes functional, not decorative. Violet earns its saturation by being the only saturated thing, and only at the moment of 'you already know this.'",
+  "references": [
+    "iA Writer — single warm-grey column, type-does-everything, chrome that vanishes while reading",
+    "Ulysses — calm sticky header, sheet-as-page, library-room restraint (already Wedge's stated north star for tsumugu-ed)",
+    "Are.na — neutral editorial surface, hairline structure, color used almost never and meaningfully",
+    "Robin Rendle / Newsreader specimen — literary serif at reading size on a near-paper background",
+    "Readwise Reader & Matter — recede-the-chrome reading apps with status/highlight marks that survive minimalism",
+    "LXGW WenKai TC (霞鶩文楷) — the warm brush-kai already self-hosted in the engine, paired here with a humanist Latin serif",
+    "Migaku ruby-above / underline-below convention — kept as the meaning-bearing layer the calm surface must NOT strip"
+  ],
+  "asciiPreview": "┌──────────────────────────────────┐\n│ 紡 Tsumugu Core        ☾ light/dark│  ← sunk well, deckle edge\n│ ┌────────────┊────────────┐       │\n│ │  English   ┊  Tiếng Việt │ ←rail │  violet stitch divider ┊\n│ └────────────┴────────────┘ (VI on)│\n│  简/繁    拼/Hán    文/譯           │  ← ghost toggles, underline=active\n├──────────────────────────────────┤\n│  A COURSE IN CONTEMPORARY · B4L3   │  small-caps faint serif meta\n│  AI-original · 3 new            ──  │\n│                                    │\n│   他  抬起  头 ， 望  向  那 座      │  ← WenKai, ruby Hán-Việt above\n│        đài-khởi    vọng              │     learning=dotted, new=solid\n│   ‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹ tap 望 ›‹‹‹‹‹‹‹‹   │     terracotta underline on 望\n│                                    │\n│        ╭─ gloss slip ────────────╮ │  lifted paper #FBF9F4\n│        │ ⬡ BẠN ĐÃ BIẾT ÂM NÀY    │ │  ← knot ties the label\n│        │   vọng                  │ │  violet, serif, large\n│        │   hy v̲ọ̲n̲g̲ (希望) · kỳ    │ │  shared char stitched violet\n│        │   v̲ọ̲n̲g̲ (期望) — cùng 望  │ │  (the draw-on animation)\n│        │ ───────────────────────│ │\n│        │ wàng · động từ          │ │  muted pinyin + POS below\n│        │ nhìn ra xa; ngóng trông │ │  muted gloss\n│        │ [+ thẻ] [✓ biết] [辞→]  │ │  tap-down → dictionary (warms)\n│        ╰────────────────────────╯ │\n│                                    │\n└──────────────────────────────────┘\n  on scroll → header = 4px violet thread"
+}

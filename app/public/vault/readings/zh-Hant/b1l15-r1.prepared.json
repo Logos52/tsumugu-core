@@ -1,0 +1,3619 @@
+{
+  "schema": "tsumugu/prepared-content@2",
+  "lang": "zh-Hant",
+  "title": "I Don't Feel Well · 對話一",
+  "tokens": [
+    {
+      "text": "乙",
+      "isWord": true
+    },
+    {
+      "text": "：",
+      "isWord": false
+    },
+    {
+      "text": "甲",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "你",
+      "isWord": true
+    },
+    {
+      "text": "今天",
+      "isWord": true
+    },
+    {
+      "text": "的",
+      "isWord": true
+    },
+    {
+      "text": "臉色",
+      "isWord": true
+    },
+    {
+      "text": "很",
+      "isWord": true
+    },
+    {
+      "text": "難看",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "怎麼了",
+      "isWord": true
+    },
+    {
+      "text": "？",
+      "isWord": false
+    },
+    {
+      "text": "是",
+      "isWord": true
+    },
+    {
+      "text": "不",
+      "isWord": true
+    },
+    {
+      "text": "是",
+      "isWord": true
+    },
+    {
+      "text": "生病",
+      "isWord": true
+    },
+    {
+      "text": "了",
+      "isWord": true
+    },
+    {
+      "text": "？\n",
+      "isWord": false
+    },
+    {
+      "text": "甲",
+      "isWord": true
+    },
+    {
+      "text": "：",
+      "isWord": false
+    },
+    {
+      "text": "我",
+      "isWord": true
+    },
+    {
+      "text": "也",
+      "isWord": true
+    },
+    {
+      "text": "不",
+      "isWord": true
+    },
+    {
+      "text": "知道",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "從",
+      "isWord": true
+    },
+    {
+      "text": "昨天",
+      "isWord": true
+    },
+    {
+      "text": "晚上",
+      "isWord": true
+    },
+    {
+      "text": "開始",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "我",
+      "isWord": true
+    },
+    {
+      "text": "就",
+      "isWord": true
+    },
+    {
+      "text": "一直",
+      "isWord": true
+    },
+    {
+      "text": "流",
+      "isWord": true
+    },
+    {
+      "text": "鼻水",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "頭",
+      "isWord": true
+    },
+    {
+      "text": "也",
+      "isWord": true
+    },
+    {
+      "text": "很",
+      "isWord": true
+    },
+    {
+      "text": "痛",
+      "isWord": true
+    },
+    {
+      "text": "。\n",
+      "isWord": false
+    },
+    {
+      "text": "乙",
+      "isWord": true
+    },
+    {
+      "text": "：",
+      "isWord": false
+    },
+    {
+      "text": "你",
+      "isWord": true
+    },
+    {
+      "text": "的",
+      "isWord": true
+    },
+    {
+      "text": "喉嚨",
+      "isWord": true
+    },
+    {
+      "text": "呢",
+      "isWord": true
+    },
+    {
+      "text": "？",
+      "isWord": false
+    },
+    {
+      "text": "會",
+      "isWord": true
+    },
+    {
+      "text": "不",
+      "isWord": true
+    },
+    {
+      "text": "會",
+      "isWord": true
+    },
+    {
+      "text": "也",
+      "isWord": true
+    },
+    {
+      "text": "不",
+      "isWord": true
+    },
+    {
+      "text": "舒服",
+      "isWord": true
+    },
+    {
+      "text": "？\n",
+      "isWord": false
+    },
+    {
+      "text": "甲",
+      "isWord": true
+    },
+    {
+      "text": "：",
+      "isWord": false
+    },
+    {
+      "text": "會",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "喉嚨",
+      "isWord": true
+    },
+    {
+      "text": "好像",
+      "isWord": true
+    },
+    {
+      "text": "發炎",
+      "isWord": true
+    },
+    {
+      "text": "了",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "喝",
+      "isWord": true
+    },
+    {
+      "text": "水",
+      "isWord": true
+    },
+    {
+      "text": "的",
+      "isWord": true
+    },
+    {
+      "text": "時候",
+      "isWord": true
+    },
+    {
+      "text": "特別",
+      "isWord": true
+    },
+    {
+      "text": "痛",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "這",
+      "isWord": true
+    },
+    {
+      "text": "兩",
+      "isWord": true
+    },
+    {
+      "text": "天",
+      "isWord": true
+    },
+    {
+      "text": "我",
+      "isWord": true
+    },
+    {
+      "text": "的",
+      "isWord": true
+    },
+    {
+      "text": "胃口",
+      "isWord": true
+    },
+    {
+      "text": "很",
+      "isWord": true
+    },
+    {
+      "text": "差",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "什麼",
+      "isWord": true
+    },
+    {
+      "text": "東西",
+      "isWord": true
+    },
+    {
+      "text": "都",
+      "isWord": true
+    },
+    {
+      "text": "不",
+      "isWord": true
+    },
+    {
+      "text": "太",
+      "isWord": true
+    },
+    {
+      "text": "想",
+      "isWord": true
+    },
+    {
+      "text": "吃",
+      "isWord": true
+    },
+    {
+      "text": "。\n",
+      "isWord": false
+    },
+    {
+      "text": "乙",
+      "isWord": true
+    },
+    {
+      "text": "：",
+      "isWord": false
+    },
+    {
+      "text": "你",
+      "isWord": true
+    },
+    {
+      "text": "看",
+      "isWord": true
+    },
+    {
+      "text": "起",
+      "isWord": true
+    },
+    {
+      "text": "來",
+      "isWord": true
+    },
+    {
+      "text": "像",
+      "isWord": true
+    },
+    {
+      "text": "是",
+      "isWord": true
+    },
+    {
+      "text": "感冒",
+      "isWord": true
+    },
+    {
+      "text": "了",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "我",
+      "isWord": true
+    },
+    {
+      "text": "摸",
+      "isWord": true
+    },
+    {
+      "text": "摸",
+      "isWord": true
+    },
+    {
+      "text": "看",
+      "isWord": true
+    },
+    {
+      "text": "……",
+      "isWord": false
+    },
+    {
+      "text": "你",
+      "isWord": true
+    },
+    {
+      "text": "的",
+      "isWord": true
+    },
+    {
+      "text": "頭",
+      "isWord": true
+    },
+    {
+      "text": "好",
+      "isWord": true
+    },
+    {
+      "text": "燙",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "可",
+      "isWord": true
+    },
+    {
+      "text": "能",
+      "isWord": true
+    },
+    {
+      "text": "還",
+      "isWord": true
+    },
+    {
+      "text": "發燒",
+      "isWord": true
+    },
+    {
+      "text": "了",
+      "isWord": true
+    },
+    {
+      "text": "。\n",
+      "isWord": false
+    },
+    {
+      "text": "甲",
+      "isWord": true
+    },
+    {
+      "text": "：",
+      "isWord": false
+    },
+    {
+      "text": "難",
+      "isWord": true
+    },
+    {
+      "text": "怪",
+      "isWord": true
+    },
+    {
+      "text": "我",
+      "isWord": true
+    },
+    {
+      "text": "覺得",
+      "isWord": true
+    },
+    {
+      "text": "頭",
+      "isWord": true
+    },
+    {
+      "text": "越",
+      "isWord": true
+    },
+    {
+      "text": "來",
+      "isWord": true
+    },
+    {
+      "text": "越",
+      "isWord": true
+    },
+    {
+      "text": "痛",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "全",
+      "isWord": true
+    },
+    {
+      "text": "身",
+      "isWord": true
+    },
+    {
+      "text": "都",
+      "isWord": true
+    },
+    {
+      "text": "沒",
+      "isWord": true
+    },
+    {
+      "text": "有",
+      "isWord": true
+    },
+    {
+      "text": "力",
+      "isWord": true
+    },
+    {
+      "text": "氣",
+      "isWord": true
+    },
+    {
+      "text": "。\n",
+      "isWord": false
+    },
+    {
+      "text": "乙",
+      "isWord": true
+    },
+    {
+      "text": "：",
+      "isWord": false
+    },
+    {
+      "text": "你",
+      "isWord": true
+    },
+    {
+      "text": "最好",
+      "isWord": true
+    },
+    {
+      "text": "去",
+      "isWord": true
+    },
+    {
+      "text": "看病",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "學校",
+      "isWord": true
+    },
+    {
+      "text": "的",
+      "isWord": true
+    },
+    {
+      "text": "健康中心",
+      "isWord": true
+    },
+    {
+      "text": "就",
+      "isWord": true
+    },
+    {
+      "text": "在",
+      "isWord": true
+    },
+    {
+      "text": "前面",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "走路",
+      "isWord": true
+    },
+    {
+      "text": "幾",
+      "isWord": true
+    },
+    {
+      "text": "分鐘",
+      "isWord": true
+    },
+    {
+      "text": "就",
+      "isWord": true
+    },
+    {
+      "text": "到",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "我",
+      "isWord": true
+    },
+    {
+      "text": "陪",
+      "isWord": true
+    },
+    {
+      "text": "你",
+      "isWord": true
+    },
+    {
+      "text": "去",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "好不好",
+      "isWord": true
+    },
+    {
+      "text": "？\n",
+      "isWord": false
+    },
+    {
+      "text": "甲",
+      "isWord": true
+    },
+    {
+      "text": "：",
+      "isWord": false
+    },
+    {
+      "text": "不用了",
+      "isWord": true
+    },
+    {
+      "text": "吧",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "我",
+      "isWord": true
+    },
+    {
+      "text": "躺",
+      "isWord": true
+    },
+    {
+      "text": "著",
+      "isWord": true
+    },
+    {
+      "text": "休息",
+      "isWord": true
+    },
+    {
+      "text": "一",
+      "isWord": true
+    },
+    {
+      "text": "下",
+      "isWord": true
+    },
+    {
+      "text": "就",
+      "isWord": true
+    },
+    {
+      "text": "好",
+      "isWord": true
+    },
+    {
+      "text": "。\n",
+      "isWord": false
+    },
+    {
+      "text": "乙",
+      "isWord": true
+    },
+    {
+      "text": "：",
+      "isWord": false
+    },
+    {
+      "text": "別",
+      "isWord": true
+    },
+    {
+      "text": "這樣",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "生病",
+      "isWord": true
+    },
+    {
+      "text": "不",
+      "isWord": true
+    },
+    {
+      "text": "能",
+      "isWord": true
+    },
+    {
+      "text": "拖",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "你",
+      "isWord": true
+    },
+    {
+      "text": "跟",
+      "isWord": true
+    },
+    {
+      "text": "我",
+      "isWord": true
+    },
+    {
+      "text": "去",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "醫生",
+      "isWord": true
+    },
+    {
+      "text": "看",
+      "isWord": true
+    },
+    {
+      "text": "了",
+      "isWord": true
+    },
+    {
+      "text": "以後",
+      "isWord": true
+    },
+    {
+      "text": "就",
+      "isWord": true
+    },
+    {
+      "text": "會",
+      "isWord": true
+    },
+    {
+      "text": "給",
+      "isWord": true
+    },
+    {
+      "text": "你",
+      "isWord": true
+    },
+    {
+      "text": "開",
+      "isWord": true
+    },
+    {
+      "text": "藥",
+      "isWord": true
+    },
+    {
+      "text": "。\n",
+      "isWord": false
+    },
+    {
+      "text": "甲",
+      "isWord": true
+    },
+    {
+      "text": "：",
+      "isWord": false
+    },
+    {
+      "text": "好",
+      "isWord": true
+    },
+    {
+      "text": "吧",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "謝謝",
+      "isWord": true
+    },
+    {
+      "text": "你",
+      "isWord": true
+    },
+    {
+      "text": "這麼",
+      "isWord": true
+    },
+    {
+      "text": "關心",
+      "isWord": true
+    },
+    {
+      "text": "我",
+      "isWord": true
+    },
+    {
+      "text": "。\n",
+      "isWord": false
+    },
+    {
+      "text": "乙",
+      "isWord": true
+    },
+    {
+      "text": "：",
+      "isWord": false
+    },
+    {
+      "text": "我",
+      "isWord": true
+    },
+    {
+      "text": "先",
+      "isWord": true
+    },
+    {
+      "text": "去",
+      "isWord": true
+    },
+    {
+      "text": "倒",
+      "isWord": true
+    },
+    {
+      "text": "一",
+      "isWord": true
+    },
+    {
+      "text": "杯",
+      "isWord": true
+    },
+    {
+      "text": "水",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "你",
+      "isWord": true
+    },
+    {
+      "text": "把",
+      "isWord": true
+    },
+    {
+      "text": "這",
+      "isWord": true
+    },
+    {
+      "text": "杯",
+      "isWord": true
+    },
+    {
+      "text": "水",
+      "isWord": true
+    },
+    {
+      "text": "喝",
+      "isWord": true
+    },
+    {
+      "text": "了",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "再",
+      "isWord": true
+    },
+    {
+      "text": "把",
+      "isWord": true
+    },
+    {
+      "text": "外",
+      "isWord": true
+    },
+    {
+      "text": "套",
+      "isWord": true
+    },
+    {
+      "text": "穿",
+      "isWord": true
+    },
+    {
+      "text": "好",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "我們",
+      "isWord": true
+    },
+    {
+      "text": "慢",
+      "isWord": true
+    },
+    {
+      "text": "慢走",
+      "isWord": true
+    },
+    {
+      "text": "過",
+      "isWord": true
+    },
+    {
+      "text": "去",
+      "isWord": true
+    },
+    {
+      "text": "。\n",
+      "isWord": false
+    },
+    {
+      "text": "甲",
+      "isWord": true
+    },
+    {
+      "text": "：",
+      "isWord": false
+    },
+    {
+      "text": "好",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "等一下",
+      "isWord": true
+    },
+    {
+      "text": "拿",
+      "isWord": true
+    },
+    {
+      "text": "了",
+      "isWord": true
+    },
+    {
+      "text": "藥",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "我",
+      "isWord": true
+    },
+    {
+      "text": "回家",
+      "isWord": true
+    },
+    {
+      "text": "就",
+      "isWord": true
+    },
+    {
+      "text": "早一點",
+      "isWord": true
+    },
+    {
+      "text": "睡覺",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "多",
+      "isWord": true
+    },
+    {
+      "text": "睡",
+      "isWord": true
+    },
+    {
+      "text": "幾",
+      "isWord": true
+    },
+    {
+      "text": "個",
+      "isWord": true
+    },
+    {
+      "text": "小時",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    }
+  ],
+  "glossary": {
+    "乙": {
+      "term": "乙",
+      "gloss": "乙",
+      "definitions": {
+        "en": {
+          "gloss": "乙"
+        },
+        "zh": {
+          "gloss": "乙",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "乙",
+        "bridgeReading": "ất",
+        "morphemes": [
+          {
+            "surface": "乙",
+            "etymon": "乙",
+            "reading": "ất"
+          }
+        ]
+      }
+    },
+    "甲": {
+      "term": "甲",
+      "gloss": "甲",
+      "definitions": {
+        "en": {
+          "gloss": "甲"
+        },
+        "zh": {
+          "gloss": "甲",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "甲",
+        "bridgeReading": "giáp",
+        "morphemes": [
+          {
+            "surface": "甲",
+            "etymon": "甲",
+            "reading": "giáp"
+          }
+        ]
+      }
+    },
+    "臉色": {
+      "term": "臉色",
+      "gloss": "a person's \"color\" (said of the face when healthy or sick, pleased or angry etc.)",
+      "definitions": {
+        "en": {
+          "gloss": "a person's \"color\" (said of the face when healthy or sick, pleased or angry etc.)"
+        },
+        "zh": {
+          "gloss": "a person's \"color\" (said of the face when healthy or sick, pleased or angry etc.)",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "臉色",
+        "bridgeReading": "kiểm sắc",
+        "morphemes": [
+          {
+            "surface": "臉",
+            "etymon": "臉",
+            "reading": "kiểm"
+          },
+          {
+            "surface": "色",
+            "etymon": "色",
+            "reading": "sắc"
+          }
+        ]
+      },
+      "reading": "liǎnsè"
+    },
+    "難看": {
+      "term": "難看",
+      "gloss": "not to look good",
+      "definitions": {
+        "en": {
+          "gloss": "not to look good"
+        },
+        "zh": {
+          "gloss": "not to look good",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "難看",
+        "bridgeReading": "khán",
+        "morphemes": [
+          {
+            "surface": "難",
+            "etymon": "難",
+            "reading": ""
+          },
+          {
+            "surface": "看",
+            "etymon": "看",
+            "reading": "khán"
+          }
+        ]
+      },
+      "reading": "nánkàn",
+      "hvAmbiguous": true
+    },
+    "怎麼了": {
+      "term": "怎麼了",
+      "gloss": "What's wrong?",
+      "definitions": {
+        "en": {
+          "gloss": "What's wrong?"
+        },
+        "zh": {
+          "gloss": "What's wrong?",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "怎麼了",
+        "bridgeReading": "chẩm ma liễu",
+        "morphemes": [
+          {
+            "surface": "怎",
+            "etymon": "怎",
+            "reading": "chẩm"
+          },
+          {
+            "surface": "麼",
+            "etymon": "麼",
+            "reading": "ma"
+          },
+          {
+            "surface": "了",
+            "etymon": "了",
+            "reading": "liễu"
+          }
+        ]
+      },
+      "reading": "zěnme le"
+    },
+    "生病": {
+      "term": "生病",
+      "gloss": "to fall ill",
+      "definitions": {
+        "en": {
+          "gloss": "to fall ill"
+        },
+        "zh": {
+          "gloss": "to fall ill",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "生病",
+        "bridgeReading": "sinh bệnh",
+        "morphemes": [
+          {
+            "surface": "生",
+            "etymon": "生",
+            "reading": "sinh"
+          },
+          {
+            "surface": "病",
+            "etymon": "病",
+            "reading": "bệnh"
+          }
+        ]
+      },
+      "reading": "shēngbìng"
+    },
+    "一直": {
+      "term": "一直",
+      "gloss": "continuously, all the way",
+      "definitions": {
+        "en": {
+          "gloss": "continuously, all the way"
+        },
+        "zh": {
+          "gloss": "continuously, all the way",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "一直",
+        "bridgeReading": "nhất trực",
+        "morphemes": [
+          {
+            "surface": "一",
+            "etymon": "一",
+            "reading": "nhất"
+          },
+          {
+            "surface": "直",
+            "etymon": "直",
+            "reading": "trực"
+          }
+        ]
+      },
+      "reading": "yìzhí"
+    },
+    "流": {
+      "term": "流",
+      "gloss": "to flow",
+      "definitions": {
+        "en": {
+          "gloss": "to flow"
+        },
+        "zh": {
+          "gloss": "to flow",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "流",
+        "bridgeReading": "lưu",
+        "morphemes": [
+          {
+            "surface": "流",
+            "etymon": "流",
+            "reading": "lưu"
+          }
+        ]
+      },
+      "reading": "liú"
+    },
+    "鼻水": {
+      "term": "鼻水",
+      "gloss": "snot, nasal mucus, a running nose",
+      "definitions": {
+        "en": {
+          "gloss": "snot, nasal mucus, a running nose"
+        },
+        "zh": {
+          "gloss": "snot, nasal mucus, a running nose",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "鼻水",
+        "bridgeReading": "tỵ thuỷ",
+        "morphemes": [
+          {
+            "surface": "鼻",
+            "etymon": "鼻",
+            "reading": "tỵ"
+          },
+          {
+            "surface": "水",
+            "etymon": "水",
+            "reading": "thuỷ"
+          }
+        ]
+      },
+      "reading": "bíshuǐ"
+    },
+    "頭": {
+      "term": "頭",
+      "gloss": "head",
+      "definitions": {
+        "en": {
+          "gloss": "head"
+        },
+        "zh": {
+          "gloss": "head",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "頭",
+        "bridgeReading": "đầu",
+        "morphemes": [
+          {
+            "surface": "頭",
+            "etymon": "頭",
+            "reading": "đầu"
+          }
+        ]
+      },
+      "reading": "tóu"
+    },
+    "痛": {
+      "term": "痛",
+      "gloss": "painful",
+      "definitions": {
+        "en": {
+          "gloss": "painful"
+        },
+        "zh": {
+          "gloss": "painful",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "痛",
+        "bridgeReading": "thống",
+        "morphemes": [
+          {
+            "surface": "痛",
+            "etymon": "痛",
+            "reading": "thống"
+          }
+        ]
+      },
+      "reading": "tòng"
+    },
+    "喉嚨": {
+      "term": "喉嚨",
+      "gloss": "throat",
+      "definitions": {
+        "en": {
+          "gloss": "throat"
+        },
+        "zh": {
+          "gloss": "throat",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "喉嚨",
+        "bridgeReading": "hầu lung",
+        "morphemes": [
+          {
+            "surface": "喉",
+            "etymon": "喉",
+            "reading": "hầu"
+          },
+          {
+            "surface": "嚨",
+            "etymon": "嚨",
+            "reading": "lung"
+          }
+        ]
+      },
+      "reading": "hóulóng"
+    },
+    "發炎": {
+      "term": "發炎",
+      "gloss": "to be inflamed",
+      "definitions": {
+        "en": {
+          "gloss": "to be inflamed"
+        },
+        "zh": {
+          "gloss": "to be inflamed",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "發炎",
+        "bridgeReading": "phát viêm",
+        "morphemes": [
+          {
+            "surface": "發",
+            "etymon": "發",
+            "reading": "phát"
+          },
+          {
+            "surface": "炎",
+            "etymon": "炎",
+            "reading": "viêm"
+          }
+        ]
+      },
+      "reading": "fāyán"
+    },
+    "水": {
+      "term": "水",
+      "gloss": "water",
+      "definitions": {
+        "en": {
+          "gloss": "water"
+        },
+        "zh": {
+          "gloss": "water",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "水",
+        "bridgeReading": "thuỷ",
+        "morphemes": [
+          {
+            "surface": "水",
+            "etymon": "水",
+            "reading": "thuỷ"
+          }
+        ]
+      },
+      "reading": "shuǐ"
+    },
+    "胃口": {
+      "term": "胃口",
+      "gloss": "appetite",
+      "definitions": {
+        "en": {
+          "gloss": "appetite"
+        },
+        "zh": {
+          "gloss": "appetite",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "胃口",
+        "bridgeReading": "vị khẩu",
+        "morphemes": [
+          {
+            "surface": "胃",
+            "etymon": "胃",
+            "reading": "vị"
+          },
+          {
+            "surface": "口",
+            "etymon": "口",
+            "reading": "khẩu"
+          }
+        ]
+      },
+      "reading": "wèikǒu"
+    },
+    "差": {
+      "term": "差",
+      "gloss": "poor, bad",
+      "definitions": {
+        "en": {
+          "gloss": "poor, bad"
+        },
+        "zh": {
+          "gloss": "poor, bad",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "差",
+        "morphemes": [
+          {
+            "surface": "差",
+            "etymon": "差",
+            "reading": ""
+          }
+        ]
+      },
+      "reading": "chā",
+      "hvAmbiguous": true
+    },
+    "起": {
+      "term": "起",
+      "gloss": "starting from...",
+      "definitions": {
+        "en": {
+          "gloss": "starting from..."
+        },
+        "zh": {
+          "gloss": "starting from...",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "起",
+        "bridgeReading": "khởi",
+        "morphemes": [
+          {
+            "surface": "起",
+            "etymon": "起",
+            "reading": "khởi"
+          }
+        ]
+      },
+      "reading": "qǐ"
+    },
+    "像": {
+      "term": "像",
+      "gloss": "similar to",
+      "definitions": {
+        "en": {
+          "gloss": "similar to"
+        },
+        "zh": {
+          "gloss": "similar to",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "像",
+        "bridgeReading": "tượng",
+        "morphemes": [
+          {
+            "surface": "像",
+            "etymon": "像",
+            "reading": "tượng"
+          }
+        ]
+      },
+      "reading": "xiàng"
+    },
+    "感冒": {
+      "term": "感冒",
+      "gloss": "to catch/have a cold",
+      "definitions": {
+        "en": {
+          "gloss": "to catch/have a cold"
+        },
+        "zh": {
+          "gloss": "to catch/have a cold",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "感冒",
+        "bridgeReading": "cảm mạo",
+        "morphemes": [
+          {
+            "surface": "感",
+            "etymon": "感",
+            "reading": "cảm"
+          },
+          {
+            "surface": "冒",
+            "etymon": "冒",
+            "reading": "mạo"
+          }
+        ]
+      },
+      "reading": "gǎnmào"
+    },
+    "摸": {
+      "term": "摸",
+      "gloss": "to feel, to touch",
+      "definitions": {
+        "en": {
+          "gloss": "to feel, to touch"
+        },
+        "zh": {
+          "gloss": "to feel, to touch",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "摸",
+        "morphemes": [
+          {
+            "surface": "摸",
+            "etymon": "摸",
+            "reading": ""
+          }
+        ]
+      },
+      "reading": "mō",
+      "hvAmbiguous": true
+    },
+    "燙": {
+      "term": "燙",
+      "gloss": "燙",
+      "definitions": {
+        "en": {
+          "gloss": "燙"
+        },
+        "zh": {
+          "gloss": "燙",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "燙",
+        "bridgeReading": "năng",
+        "morphemes": [
+          {
+            "surface": "燙",
+            "etymon": "燙",
+            "reading": "năng"
+          }
+        ]
+      }
+    },
+    "可": {
+      "term": "可",
+      "gloss": "可",
+      "definitions": {
+        "en": {
+          "gloss": "可"
+        },
+        "zh": {
+          "gloss": "可",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "可",
+        "morphemes": [
+          {
+            "surface": "可",
+            "etymon": "可",
+            "reading": ""
+          }
+        ]
+      },
+      "hvAmbiguous": true
+    },
+    "發燒": {
+      "term": "發燒",
+      "gloss": "to have a fever",
+      "definitions": {
+        "en": {
+          "gloss": "to have a fever"
+        },
+        "zh": {
+          "gloss": "to have a fever",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "發燒",
+        "bridgeReading": "phát thiêu",
+        "morphemes": [
+          {
+            "surface": "發",
+            "etymon": "發",
+            "reading": "phát"
+          },
+          {
+            "surface": "燒",
+            "etymon": "燒",
+            "reading": "thiêu"
+          }
+        ]
+      },
+      "reading": "fāshāo"
+    },
+    "怪": {
+      "term": "怪",
+      "gloss": "to blame",
+      "definitions": {
+        "en": {
+          "gloss": "to blame"
+        },
+        "zh": {
+          "gloss": "to blame",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "怪",
+        "bridgeReading": "quái",
+        "morphemes": [
+          {
+            "surface": "怪",
+            "etymon": "怪",
+            "reading": "quái"
+          }
+        ]
+      },
+      "reading": "guài"
+    },
+    "越": {
+      "term": "越",
+      "gloss": "more",
+      "definitions": {
+        "en": {
+          "gloss": "more"
+        },
+        "zh": {
+          "gloss": "more",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "越",
+        "bridgeReading": "việt",
+        "morphemes": [
+          {
+            "surface": "越",
+            "etymon": "越",
+            "reading": "việt"
+          }
+        ]
+      },
+      "reading": "yuè"
+    },
+    "全": {
+      "term": "全",
+      "gloss": "completely, entirely",
+      "definitions": {
+        "en": {
+          "gloss": "completely, entirely"
+        },
+        "zh": {
+          "gloss": "completely, entirely",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "全",
+        "bridgeReading": "toàn",
+        "morphemes": [
+          {
+            "surface": "全",
+            "etymon": "全",
+            "reading": "toàn"
+          }
+        ]
+      },
+      "reading": "quán"
+    },
+    "身": {
+      "term": "身",
+      "gloss": "身",
+      "definitions": {
+        "en": {
+          "gloss": "身"
+        },
+        "zh": {
+          "gloss": "身",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "身",
+        "bridgeReading": "thân",
+        "morphemes": [
+          {
+            "surface": "身",
+            "etymon": "身",
+            "reading": "thân"
+          }
+        ]
+      }
+    },
+    "力": {
+      "term": "力",
+      "gloss": "力",
+      "definitions": {
+        "en": {
+          "gloss": "力"
+        },
+        "zh": {
+          "gloss": "力",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "力",
+        "bridgeReading": "lực",
+        "morphemes": [
+          {
+            "surface": "力",
+            "etymon": "力",
+            "reading": "lực"
+          }
+        ]
+      }
+    },
+    "氣": {
+      "term": "氣",
+      "gloss": "氣",
+      "definitions": {
+        "en": {
+          "gloss": "氣"
+        },
+        "zh": {
+          "gloss": "氣",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "氣",
+        "bridgeReading": "khí",
+        "morphemes": [
+          {
+            "surface": "氣",
+            "etymon": "氣",
+            "reading": "khí"
+          }
+        ]
+      }
+    },
+    "最好": {
+      "term": "最好",
+      "gloss": "It would be best.../ (You) should...",
+      "definitions": {
+        "en": {
+          "gloss": "It would be best.../ (You) should..."
+        },
+        "zh": {
+          "gloss": "It would be best.../ (You) should...",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "最好",
+        "bridgeReading": "tối",
+        "morphemes": [
+          {
+            "surface": "最",
+            "etymon": "最",
+            "reading": "tối"
+          },
+          {
+            "surface": "好",
+            "etymon": "好",
+            "reading": ""
+          }
+        ]
+      },
+      "reading": "zuìhǎo",
+      "hvAmbiguous": true
+    },
+    "看病": {
+      "term": "看病",
+      "gloss": "to see a doctor",
+      "definitions": {
+        "en": {
+          "gloss": "to see a doctor"
+        },
+        "zh": {
+          "gloss": "to see a doctor",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "看病",
+        "bridgeReading": "khán bệnh",
+        "morphemes": [
+          {
+            "surface": "看",
+            "etymon": "看",
+            "reading": "khán"
+          },
+          {
+            "surface": "病",
+            "etymon": "病",
+            "reading": "bệnh"
+          }
+        ]
+      },
+      "reading": "kànbìng"
+    },
+    "健康中心": {
+      "term": "健康中心",
+      "gloss": "health center",
+      "definitions": {
+        "en": {
+          "gloss": "health center"
+        },
+        "zh": {
+          "gloss": "health center",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "健康中心",
+        "bridgeReading": "kiện khang tâm",
+        "morphemes": [
+          {
+            "surface": "健",
+            "etymon": "健",
+            "reading": "kiện"
+          },
+          {
+            "surface": "康",
+            "etymon": "康",
+            "reading": "khang"
+          },
+          {
+            "surface": "中",
+            "etymon": "中",
+            "reading": ""
+          },
+          {
+            "surface": "心",
+            "etymon": "心",
+            "reading": "tâm"
+          }
+        ]
+      },
+      "reading": "jiànkāng zhōngxīn",
+      "hvAmbiguous": true
+    },
+    "幾": {
+      "term": "幾",
+      "gloss": "how many",
+      "definitions": {
+        "en": {
+          "gloss": "how many"
+        },
+        "zh": {
+          "gloss": "how many",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "幾",
+        "morphemes": [
+          {
+            "surface": "幾",
+            "etymon": "幾",
+            "reading": ""
+          }
+        ]
+      },
+      "reading": "jǐ",
+      "hvAmbiguous": true
+    },
+    "陪": {
+      "term": "陪",
+      "gloss": "to go/stay with somebody, to accompany",
+      "definitions": {
+        "en": {
+          "gloss": "to go/stay with somebody, to accompany"
+        },
+        "zh": {
+          "gloss": "to go/stay with somebody, to accompany",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "陪",
+        "bridgeReading": "bồi",
+        "morphemes": [
+          {
+            "surface": "陪",
+            "etymon": "陪",
+            "reading": "bồi"
+          }
+        ]
+      },
+      "reading": "péi"
+    },
+    "不用了": {
+      "term": "不用了",
+      "gloss": "It's not necessary.",
+      "definitions": {
+        "en": {
+          "gloss": "It's not necessary."
+        },
+        "zh": {
+          "gloss": "It's not necessary.",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "不用了",
+        "bridgeReading": "bất dụng liễu",
+        "morphemes": [
+          {
+            "surface": "不",
+            "etymon": "不",
+            "reading": "bất"
+          },
+          {
+            "surface": "用",
+            "etymon": "用",
+            "reading": "dụng"
+          },
+          {
+            "surface": "了",
+            "etymon": "了",
+            "reading": "liễu"
+          }
+        ]
+      },
+      "reading": "búyòng le"
+    },
+    "躺": {
+      "term": "躺",
+      "gloss": "to lie down",
+      "definitions": {
+        "en": {
+          "gloss": "to lie down"
+        },
+        "zh": {
+          "gloss": "to lie down",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "躺",
+        "bridgeReading": "thảng",
+        "morphemes": [
+          {
+            "surface": "躺",
+            "etymon": "躺",
+            "reading": "thảng"
+          }
+        ]
+      },
+      "reading": "tǎng"
+    },
+    "著": {
+      "term": "著",
+      "gloss": "a particle indicating progression or continuation of action",
+      "definitions": {
+        "en": {
+          "gloss": "a particle indicating progression or continuation of action"
+        },
+        "zh": {
+          "gloss": "a particle indicating progression or continuation of action",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "著",
+        "morphemes": [
+          {
+            "surface": "著",
+            "etymon": "著",
+            "reading": ""
+          }
+        ]
+      },
+      "reading": "zhe",
+      "hvAmbiguous": true
+    },
+    "休息": {
+      "term": "休息",
+      "gloss": "to take a rest",
+      "definitions": {
+        "en": {
+          "gloss": "to take a rest"
+        },
+        "zh": {
+          "gloss": "to take a rest",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "休息",
+        "bridgeReading": "hưu tức",
+        "morphemes": [
+          {
+            "surface": "休",
+            "etymon": "休",
+            "reading": "hưu"
+          },
+          {
+            "surface": "息",
+            "etymon": "息",
+            "reading": "tức"
+          }
+        ]
+      },
+      "reading": "xiūxí"
+    },
+    "一": {
+      "term": "一",
+      "gloss": "一",
+      "definitions": {
+        "en": {
+          "gloss": "一"
+        },
+        "zh": {
+          "gloss": "一",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "一",
+        "bridgeReading": "nhất",
+        "morphemes": [
+          {
+            "surface": "一",
+            "etymon": "一",
+            "reading": "nhất"
+          }
+        ]
+      }
+    },
+    "下": {
+      "term": "下",
+      "gloss": "next",
+      "definitions": {
+        "en": {
+          "gloss": "next"
+        },
+        "zh": {
+          "gloss": "next",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "下",
+        "bridgeReading": "hạ",
+        "morphemes": [
+          {
+            "surface": "下",
+            "etymon": "下",
+            "reading": "hạ"
+          }
+        ]
+      },
+      "reading": "xià"
+    },
+    "別": {
+      "term": "別",
+      "gloss": "don't (used in imperatives)",
+      "definitions": {
+        "en": {
+          "gloss": "don't (used in imperatives)"
+        },
+        "zh": {
+          "gloss": "don't (used in imperatives)",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "別",
+        "bridgeReading": "biệt",
+        "morphemes": [
+          {
+            "surface": "別",
+            "etymon": "別",
+            "reading": "biệt"
+          }
+        ]
+      },
+      "reading": "bié"
+    },
+    "拖": {
+      "term": "拖",
+      "gloss": "拖",
+      "definitions": {
+        "en": {
+          "gloss": "拖"
+        },
+        "zh": {
+          "gloss": "拖",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "拖",
+        "bridgeReading": "tha",
+        "morphemes": [
+          {
+            "surface": "拖",
+            "etymon": "拖",
+            "reading": "tha"
+          }
+        ]
+      }
+    },
+    "跟": {
+      "term": "跟",
+      "gloss": "with",
+      "definitions": {
+        "en": {
+          "gloss": "with"
+        },
+        "zh": {
+          "gloss": "with",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "跟",
+        "bridgeReading": "cân",
+        "morphemes": [
+          {
+            "surface": "跟",
+            "etymon": "跟",
+            "reading": "cân"
+          }
+        ]
+      },
+      "reading": "gēn"
+    },
+    "醫生": {
+      "term": "醫生",
+      "gloss": "doctor",
+      "definitions": {
+        "en": {
+          "gloss": "doctor"
+        },
+        "zh": {
+          "gloss": "doctor",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "醫生",
+        "bridgeReading": "y sinh",
+        "morphemes": [
+          {
+            "surface": "醫",
+            "etymon": "醫",
+            "reading": "y"
+          },
+          {
+            "surface": "生",
+            "etymon": "生",
+            "reading": "sinh"
+          }
+        ]
+      },
+      "reading": "yīshēng"
+    },
+    "開": {
+      "term": "開",
+      "gloss": "to drive",
+      "definitions": {
+        "en": {
+          "gloss": "to drive"
+        },
+        "zh": {
+          "gloss": "to drive",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "開",
+        "bridgeReading": "khai",
+        "morphemes": [
+          {
+            "surface": "開",
+            "etymon": "開",
+            "reading": "khai"
+          }
+        ]
+      },
+      "reading": "kāi"
+    },
+    "藥": {
+      "term": "藥",
+      "gloss": "medicine",
+      "definitions": {
+        "en": {
+          "gloss": "medicine"
+        },
+        "zh": {
+          "gloss": "medicine",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "藥",
+        "bridgeReading": "dược",
+        "morphemes": [
+          {
+            "surface": "藥",
+            "etymon": "藥",
+            "reading": "dược"
+          }
+        ]
+      },
+      "reading": "yào"
+    },
+    "關心": {
+      "term": "關心",
+      "gloss": "to be concerned about",
+      "definitions": {
+        "en": {
+          "gloss": "to be concerned about"
+        },
+        "zh": {
+          "gloss": "to be concerned about",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "關心",
+        "bridgeReading": "quan tâm",
+        "morphemes": [
+          {
+            "surface": "關",
+            "etymon": "關",
+            "reading": "quan"
+          },
+          {
+            "surface": "心",
+            "etymon": "心",
+            "reading": "tâm"
+          }
+        ]
+      },
+      "reading": "guānxīn"
+    },
+    "倒": {
+      "term": "倒",
+      "gloss": "to throw out (garbage)",
+      "definitions": {
+        "en": {
+          "gloss": "to throw out (garbage)"
+        },
+        "zh": {
+          "gloss": "to throw out (garbage)",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "倒",
+        "morphemes": [
+          {
+            "surface": "倒",
+            "etymon": "倒",
+            "reading": ""
+          }
+        ]
+      },
+      "reading": "dào",
+      "hvAmbiguous": true
+    },
+    "把": {
+      "term": "把",
+      "gloss": "disposal marker",
+      "definitions": {
+        "en": {
+          "gloss": "disposal marker"
+        },
+        "zh": {
+          "gloss": "disposal marker",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "把",
+        "bridgeReading": "bả",
+        "morphemes": [
+          {
+            "surface": "把",
+            "etymon": "把",
+            "reading": "bả"
+          }
+        ]
+      },
+      "reading": "bǎ"
+    },
+    "外": {
+      "term": "外",
+      "gloss": "outward, external, foreign, to the outside (formal)",
+      "definitions": {
+        "en": {
+          "gloss": "outward, external, foreign, to the outside (formal)"
+        },
+        "zh": {
+          "gloss": "outward, external, foreign, to the outside (formal)",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "外",
+        "bridgeReading": "ngoại",
+        "morphemes": [
+          {
+            "surface": "外",
+            "etymon": "外",
+            "reading": "ngoại"
+          }
+        ]
+      },
+      "reading": "wài"
+    },
+    "套": {
+      "term": "套",
+      "gloss": "set of (books, clothes, equipment etc.)",
+      "definitions": {
+        "en": {
+          "gloss": "set of (books, clothes, equipment etc.)"
+        },
+        "zh": {
+          "gloss": "set of (books, clothes, equipment etc.)",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "套",
+        "bridgeReading": "sáo",
+        "morphemes": [
+          {
+            "surface": "套",
+            "etymon": "套",
+            "reading": "sáo"
+          }
+        ]
+      },
+      "reading": "tào"
+    },
+    "拿": {
+      "term": "拿",
+      "gloss": "to get",
+      "definitions": {
+        "en": {
+          "gloss": "to get"
+        },
+        "zh": {
+          "gloss": "to get",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "拿",
+        "bridgeReading": "nã",
+        "morphemes": [
+          {
+            "surface": "拿",
+            "etymon": "拿",
+            "reading": "nã"
+          }
+        ]
+      },
+      "reading": "ná"
+    },
+    "回家": {
+      "term": "回家",
+      "gloss": "go home",
+      "definitions": {
+        "en": {
+          "gloss": "go home"
+        },
+        "zh": {
+          "gloss": "go home",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "回家",
+        "bridgeReading": "hồi gia",
+        "morphemes": [
+          {
+            "surface": "回",
+            "etymon": "回",
+            "reading": "hồi"
+          },
+          {
+            "surface": "家",
+            "etymon": "家",
+            "reading": "gia"
+          }
+        ]
+      },
+      "reading": "huí jiā"
+    },
+    "早一點": {
+      "term": "早一點",
+      "gloss": "a bit earlier",
+      "definitions": {
+        "en": {
+          "gloss": "a bit earlier"
+        },
+        "zh": {
+          "gloss": "a bit earlier",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "早一點",
+        "bridgeReading": "tảo nhất điểm",
+        "morphemes": [
+          {
+            "surface": "早",
+            "etymon": "早",
+            "reading": "tảo"
+          },
+          {
+            "surface": "一",
+            "etymon": "一",
+            "reading": "nhất"
+          },
+          {
+            "surface": "點",
+            "etymon": "點",
+            "reading": "điểm"
+          }
+        ]
+      },
+      "reading": "zǎo yìdiǎn"
+    },
+    "睡覺": {
+      "term": "睡覺",
+      "gloss": "to sleep",
+      "definitions": {
+        "en": {
+          "gloss": "to sleep"
+        },
+        "zh": {
+          "gloss": "to sleep",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "睡覺",
+        "bridgeReading": "thuỵ",
+        "morphemes": [
+          {
+            "surface": "睡",
+            "etymon": "睡",
+            "reading": "thuỵ"
+          },
+          {
+            "surface": "覺",
+            "etymon": "覺",
+            "reading": ""
+          }
+        ]
+      },
+      "reading": "shuìjiào",
+      "hvAmbiguous": true
+    },
+    "睡": {
+      "term": "睡",
+      "gloss": "to sleep",
+      "definitions": {
+        "en": {
+          "gloss": "to sleep"
+        },
+        "zh": {
+          "gloss": "to sleep",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "睡",
+        "bridgeReading": "thuỵ",
+        "morphemes": [
+          {
+            "surface": "睡",
+            "etymon": "睡",
+            "reading": "thuỵ"
+          }
+        ]
+      },
+      "reading": "shuì"
+    },
+    "小時": {
+      "term": "小時",
+      "gloss": "hour",
+      "definitions": {
+        "en": {
+          "gloss": "hour"
+        },
+        "zh": {
+          "gloss": "hour",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "小時",
+        "bridgeReading": "tiểu thời",
+        "morphemes": [
+          {
+            "surface": "小",
+            "etymon": "小",
+            "reading": "tiểu"
+          },
+          {
+            "surface": "時",
+            "etymon": "時",
+            "reading": "thời"
+          }
+        ]
+      },
+      "reading": "xiǎoshí"
+    }
+  },
+  "core": {
+    "band": "A1",
+    "tocfl": 1,
+    "kind": "dialogue",
+    "newWords": 35,
+    "binding": {
+      "textbook": "accc",
+      "book": 1,
+      "lesson": 15
+    },
+    "topic": "生病 Falling Sick"
+  },
+  "fingerprint": {
+    "vocab": [
+      "一",
+      "一直",
+      "乙",
+      "了",
+      "力",
+      "下",
+      "也",
+      "小時",
+      "不",
+      "不用了",
+      "什麼",
+      "今天",
+      "分鐘",
+      "天",
+      "太",
+      "水",
+      "以後",
+      "去",
+      "可",
+      "外",
+      "生病",
+      "甲",
+      "休息",
+      "先",
+      "全",
+      "再",
+      "吃",
+      "回家",
+      "在",
+      "多",
+      "好",
+      "好不好",
+      "好像",
+      "早一點",
+      "有",
+      "你",
+      "別",
+      "吧",
+      "我",
+      "我們",
+      "把",
+      "沒",
+      "走路",
+      "身",
+      "來",
+      "兩",
+      "到",
+      "呢",
+      "怪",
+      "拖",
+      "杯",
+      "東西",
+      "的",
+      "知道",
+      "前面",
+      "很",
+      "怎麼了",
+      "昨天",
+      "是",
+      "流",
+      "看",
+      "看病",
+      "穿",
+      "胃口",
+      "個",
+      "倒",
+      "套",
+      "差",
+      "拿",
+      "時候",
+      "氣",
+      "特別",
+      "能",
+      "起",
+      "健康中心",
+      "從",
+      "晚上",
+      "這",
+      "這麼",
+      "這樣",
+      "都",
+      "陪",
+      "最好",
+      "喉嚨",
+      "喝",
+      "就",
+      "幾",
+      "痛",
+      "發炎",
+      "發燒",
+      "等一下",
+      "給",
+      "舒服",
+      "著",
+      "越",
+      "開",
+      "開始",
+      "想",
+      "感冒",
+      "會",
+      "睡",
+      "睡覺",
+      "跟",
+      "過",
+      "像",
+      "慢",
+      "慢走",
+      "摸",
+      "鼻水",
+      "躺",
+      "學校",
+      "燙",
+      "頭",
+      "臉色",
+      "謝謝",
+      "還",
+      "醫生",
+      "藥",
+      "關心",
+      "難",
+      "難看",
+      "覺得"
+    ],
+    "grammar": [
+      "一點",
+      "了 就",
+      "把",
+      "把",
+      "房子",
+      "家",
+      "租",
+      "基本15",
+      "得（比較動作）",
+      "程度補語比較",
+      "疑問詞非全盤肯定",
+      "學校",
+      "頭痛",
+      "點訕",
+      "離合詞",
+      "V＋了…就…"
+    ]
+  },
+  "acccBinding": {
+    "lessonId": "b1l15",
+    "ceiling": "TOCFL-2",
+    "cumulativeVocab": [
+      "一共",
+      "一定",
+      "一直",
+      "一起",
+      "一樣",
+      "一點",
+      "了",
+      "人",
+      "十二月底",
+      "又",
+      "上次",
+      "上個月",
+      "上班",
+      "上網",
+      "上課",
+      "下午",
+      "下次",
+      "下雨",
+      "下個星期",
+      "下雪",
+      "下課",
+      "久",
+      "也",
+      "千",
+      "大",
+      "大安",
+      "大家",
+      "大部分",
+      "大概",
+      "大樓",
+      "大學",
+      "女 + noun",
+      "小",
+      "小心",
+      "小吃",
+      "小姐",
+      "小時",
+      "小籠包",
+      "山",
+      "山上",
+      "工作",
+      "已經",
+      "不",
+      "不必客氣",
+      "不用了",
+      "不好",
+      "不好意思",
+      "不行",
+      "不客氣",
+      "不過",
+      "不錯",
+      "中",
+      "中午",
+      "中文",
+      "中國",
+      "五",
+      "什麼",
+      "今天",
+      "今年",
+      "內用",
+      "公司",
+      "公共汽車（公車）",
+      "分",
+      "分鐘",
+      "午餐",
+      "天",
+      "天氣",
+      "太",
+      "太太",
+      "太好了",
+      "太客氣",
+      "少",
+      "心想事成",
+      "手機",
+      "支",
+      "方便",
+      "日本",
+      "比",
+      "比較",
+      "比賽",
+      "水",
+      "水果",
+      "火車",
+      "父母",
+      "牛肉",
+      "王開文",
+      "他",
+      "他們",
+      "付",
+      "以前",
+      "以後",
+      "兄弟",
+      "冬天",
+      "出去",
+      "功課",
+      "加油",
+      "包",
+      "包子",
+      "半",
+      "去",
+      "去年",
+      "古代",
+      "只",
+      "叫",
+      "可以",
+      "可怕",
+      "可是",
+      "右邊",
+      "外面",
+      "外帶",
+      "左右",
+      "左邊",
+      "打",
+      "打電話",
+      "打算",
+      "玉山",
+      "生日",
+      "生日快樂",
+      "生病",
+      "生意",
+      "田中誠一",
+      "白如玉",
+      "交換",
+      "休息",
+      "先",
+      "先生",
+      "再",
+      "再見",
+      "冰",
+      "吃",
+      "吃吃看",
+      "吃飯",
+      "同學",
+      "名字",
+      "吐",
+      "回去",
+      "回來",
+      "回家",
+      "回國",
+      "因為",
+      "在",
+      "地方",
+      "多",
+      "多久",
+      "多少",
+      "她",
+      "好",
+      "好久不見",
+      "好不好",
+      "好吃",
+      "好玩",
+      "好的",
+      "好看",
+      "好啊",
+      "好喝",
+      "好像",
+      "字",
+      "年",
+      "年輕",
+      "忙",
+      "成績",
+      "收到",
+      "早一點",
+      "早上",
+      "有",
+      "有一點",
+      "有名",
+      "有事",
+      "有空",
+      "有時候",
+      "有意思",
+      "有線電視",
+      "次",
+      "百",
+      "老師",
+      "老闆",
+      "自己",
+      "衣服",
+      "西瓜",
+      "西班牙",
+      "西班牙文",
+      "伯母",
+      "但是",
+      "住",
+      "你",
+      "你好",
+      "你們",
+      "冷",
+      "別",
+      "吧",
+      "坐",
+      "希望",
+      "弟弟",
+      "忘（了）",
+      "快",
+      "快樂",
+      "我",
+      "我們",
+      "我就是",
+      "找",
+      "把",
+      "更",
+      "李明華",
+      "每",
+      "決定",
+      "沒",
+      "沒問題",
+      "沒關係",
+      "男 + noun",
+      "肚子",
+      "芒果",
+      "見面",
+      "走路",
+      "足球",
+      "車票",
+      "那",
+      "那裡",
+      "那麼",
+      "來",
+      "兩",
+      "到",
+      "呢",
+      "和",
+      "咖啡",
+      "夜市",
+      "妳",
+      "妹妹",
+      "姐妹",
+      "姐姐",
+      "姓",
+      "店",
+      "往",
+      "念",
+      "念書",
+      "怕",
+      "或是",
+      "房子",
+      "房東",
+      "房租",
+      "房間",
+      "所以",
+      "拍",
+      "放假",
+      "明天",
+      "明年",
+      "朋友",
+      "杯",
+      "東西",
+      "林",
+      "油",
+      "爸爸",
+      "玩",
+      "的",
+      "知道",
+      "空",
+      "花",
+      "花蓮",
+      "近",
+      "門口",
+      "附近",
+      "雨",
+      "非常",
+      "便利商店",
+      "便宜",
+      "保險",
+      "前面",
+      "客廳",
+      "建議",
+      "很",
+      "後天",
+      "後面",
+      "怎麼",
+      "怎麼了",
+      "怎麼樣",
+      "故宮博物院（故宮）",
+      "星期 + number",
+      "春天",
+      "昨天",
+      "是",
+      "是的",
+      "是啊",
+      "流",
+      "為什麼",
+      "看",
+      "看書",
+      "看病",
+      "秋天",
+      "穿",
+      "紅色",
+      "紅葉",
+      "美",
+      "美國",
+      "胃口",
+      "要",
+      "要是",
+      "訂",
+      "計畫",
+      "計程車",
+      "音樂",
+      "風",
+      "風景",
+      "香",
+      "個",
+      "剛",
+      "哥哥",
+      "哪",
+      "哪國",
+      "哪裡",
+      "哪裡，哪裡",
+      "夏天",
+      "套房",
+      "家",
+      "家人",
+      "差",
+      "差不多",
+      "拿",
+      "旁邊",
+      "旅行",
+      "旅館",
+      "時候",
+      "時間",
+      "書",
+      "書法",
+      "浴室",
+      "海",
+      "烏龍茶",
+      "特別",
+      "真",
+      "真的",
+      "祝",
+      "租",
+      "站",
+      "笑",
+      "紐約",
+      "能",
+      "臭豆腐",
+      "茶",
+      "茶館",
+      "討厭",
+      "記得",
+      "馬安同",
+      "高",
+      "高鐵",
+      "乾淨",
+      "做",
+      "做什麼",
+      "做飯",
+      "停",
+      "健康",
+      "健康中心",
+      "參觀",
+      "唱歌",
+      "商店",
+      "啊",
+      "問",
+      "問題",
+      "國家",
+      "宿舍",
+      "帶",
+      "常",
+      "張",
+      "張怡君",
+      "得",
+      "從",
+      "您",
+      "捷運",
+      "接",
+      "教",
+      "教室",
+      "晚上",
+      "晚飯",
+      "現在",
+      "甜",
+      "甜點",
+      "累",
+      "習慣",
+      "蛋",
+      "蛋糕",
+      "這",
+      "這次",
+      "這些",
+      "這裡",
+      "這麼",
+      "這樣",
+      "逛",
+      "都",
+      "陪",
+      "陳月美",
+      "傘",
+      "最",
+      "最好",
+      "最近",
+      "喂",
+      "喉嚨",
+      "喜歡",
+      "喝",
+      "就",
+      "幾",
+      "替",
+      "棒球",
+      "棟",
+      "游泳",
+      "游泳池",
+      "湯",
+      "痛",
+      "發炎",
+      "發燒",
+      "窗戶",
+      "等",
+      "等一下",
+      "結束",
+      "給",
+      "舒服",
+      "菜",
+      "貴",
+      "買",
+      "超市",
+      "越南",
+      "週末",
+      "開心",
+      "開始",
+      "間",
+      "黃色",
+      "傳統",
+      "嗎",
+      "塊",
+      "媽媽",
+      "微波",
+      "想",
+      "感冒",
+      "新",
+      "新年",
+      "新聞",
+      "會",
+      "滑雪",
+      "照片",
+      "照相",
+      "當然",
+      "睡",
+      "睡覺",
+      "矮",
+      "碗",
+      "萬",
+      "萬事如意",
+      "裝",
+      "裡面",
+      "試",
+      "試試看",
+      "跟",
+      "載",
+      "運動",
+      "過",
+      "電視",
+      "電話",
+      "電影",
+      "圖書館",
+      "對",
+      "對了",
+      "對不起",
+      "慢",
+      "慢走",
+      "漂亮",
+      "種",
+      "網球",
+      "網路上",
+      "臺東",
+      "臺南",
+      "臺灣（＝台灣）",
+      "語言",
+      "語言中心",
+      "說",
+      "辣",
+      "遠",
+      "銀行",
+      "需要",
+      "颱風",
+      "鼻水",
+      "寫",
+      "廚房",
+      "影片",
+      "樓",
+      "樓下",
+      "熱",
+      "熱心",
+      "熱水器",
+      "獎學金",
+      "誰",
+      "課",
+      "請",
+      "請問",
+      "請進",
+      "豬腳",
+      "賣",
+      "踢",
+      "學",
+      "學生",
+      "學校",
+      "學費",
+      "機車",
+      "機會",
+      "貓空",
+      "錢",
+      "頭",
+      "餐廳",
+      "幫",
+      "應該",
+      "濕",
+      "臉色",
+      "謝謝",
+      "還",
+      "還是",
+      "點",
+      "禮物",
+      "舊",
+      "藍色",
+      "醫生",
+      "騎",
+      "藥",
+      "藥局",
+      "關心",
+      "難",
+      "難看",
+      "籃球",
+      "覺得",
+      "鐘頭",
+      "麵",
+      "麵線",
+      "歡迎",
+      "聽",
+      "聽說",
+      "KTV",
+      "number + 月",
+      "number + 號"
+    ],
+    "newVocab": [
+      "醫生",
+      "一直",
+      "流",
+      "鼻水",
+      "頭",
+      "痛",
+      "胃口",
+      "差",
+      "喉嚨",
+      "發炎",
+      "生病",
+      "發燒",
+      "感冒",
+      "藥",
+      "藥局",
+      "拿",
+      "把",
+      "水",
+      "休息",
+      "睡覺",
+      "早一點",
+      "臉色",
+      "難看",
+      "肚子",
+      "吐",
+      "幾",
+      "次",
+      "陪",
+      "看病",
+      "健康",
+      "保險",
+      "跟",
+      "油",
+      "冰",
+      "別",
+      "關心",
+      "包",
+      "睡",
+      "小時",
+      "怎麼了",
+      "不用了",
+      "健康中心",
+      "回家",
+      "最好"
+    ],
+    "newGrammar": [
+      "一點",
+      "了 就",
+      "把",
+      "把",
+      "房子",
+      "家",
+      "租",
+      "基本15",
+      "得（比較動作）",
+      "程度補語比較",
+      "疑問詞非全盤肯定",
+      "學校",
+      "頭痛",
+      "點訕",
+      "離合詞",
+      "V＋了…就…"
+    ]
+  }
+}

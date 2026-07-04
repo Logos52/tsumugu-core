@@ -1,0 +1,3291 @@
+{
+  "schema": "tsumugu/prepared-content@2",
+  "lang": "zh-Hant",
+  "title": "Going to KTV at 9 O'clock in the Morning · 短文三",
+  "tokens": [
+    {
+      "text": "週末",
+      "isWord": true
+    },
+    {
+      "text": "的",
+      "isWord": true
+    },
+    {
+      "text": "下午",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "學校",
+      "isWord": true
+    },
+    {
+      "text": "裡",
+      "isWord": true
+    },
+    {
+      "text": "有",
+      "isWord": true
+    },
+    {
+      "text": "一",
+      "isWord": true
+    },
+    {
+      "text": "場",
+      "isWord": true
+    },
+    {
+      "text": "籃球",
+      "isWord": true
+    },
+    {
+      "text": "比賽",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "高",
+      "isWord": true
+    },
+    {
+      "text": "先生",
+      "isWord": true
+    },
+    {
+      "text": "很",
+      "isWord": true
+    },
+    {
+      "text": "喜歡",
+      "isWord": true
+    },
+    {
+      "text": "看",
+      "isWord": true
+    },
+    {
+      "text": "比賽",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "所以",
+      "isWord": true
+    },
+    {
+      "text": "這",
+      "isWord": true
+    },
+    {
+      "text": "個",
+      "isWord": true
+    },
+    {
+      "text": "星",
+      "isWord": true
+    },
+    {
+      "text": "期",
+      "isWord": true
+    },
+    {
+      "text": "六",
+      "isWord": true
+    },
+    {
+      "text": "他",
+      "isWord": true
+    },
+    {
+      "text": "很",
+      "isWord": true
+    },
+    {
+      "text": "早",
+      "isWord": true
+    },
+    {
+      "text": "就",
+      "isWord": true
+    },
+    {
+      "text": "到",
+      "isWord": true
+    },
+    {
+      "text": "了",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "比賽",
+      "isWord": true
+    },
+    {
+      "text": "從",
+      "isWord": true
+    },
+    {
+      "text": "下午",
+      "isWord": true
+    },
+    {
+      "text": "兩",
+      "isWord": true
+    },
+    {
+      "text": "點",
+      "isWord": true
+    },
+    {
+      "text": "開始",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "打",
+      "isWord": true
+    },
+    {
+      "text": "了",
+      "isWord": true
+    },
+    {
+      "text": "差",
+      "isWord": true
+    },
+    {
+      "text": "不",
+      "isWord": true
+    },
+    {
+      "text": "多",
+      "isWord": true
+    },
+    {
+      "text": "三",
+      "isWord": true
+    },
+    {
+      "text": "個",
+      "isWord": true
+    },
+    {
+      "text": "多",
+      "isWord": true
+    },
+    {
+      "text": "小",
+      "isWord": true
+    },
+    {
+      "text": "時",
+      "isWord": true
+    },
+    {
+      "text": "才",
+      "isWord": true
+    },
+    {
+      "text": "結束",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "場",
+      "isWord": true
+    },
+    {
+      "text": "上",
+      "isWord": true
+    },
+    {
+      "text": "的",
+      "isWord": true
+    },
+    {
+      "text": "同",
+      "isWord": true
+    },
+    {
+      "text": "學",
+      "isWord": true
+    },
+    {
+      "text": "一",
+      "isWord": true
+    },
+    {
+      "text": "邊",
+      "isWord": true
+    },
+    {
+      "text": "跑",
+      "isWord": true
+    },
+    {
+      "text": "一",
+      "isWord": true
+    },
+    {
+      "text": "邊",
+      "isWord": true
+    },
+    {
+      "text": "打",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "每",
+      "isWord": true
+    },
+    {
+      "text": "一",
+      "isWord": true
+    },
+    {
+      "text": "隊",
+      "isWord": true
+    },
+    {
+      "text": "都",
+      "isWord": true
+    },
+    {
+      "text": "很",
+      "isWord": true
+    },
+    {
+      "text": "厲",
+      "isWord": true
+    },
+    {
+      "text": "害",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "高",
+      "isWord": true
+    },
+    {
+      "text": "先生",
+      "isWord": true
+    },
+    {
+      "text": "坐",
+      "isWord": true
+    },
+    {
+      "text": "在",
+      "isWord": true
+    },
+    {
+      "text": "旁邊",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "一",
+      "isWord": true
+    },
+    {
+      "text": "邊",
+      "isWord": true
+    },
+    {
+      "text": "看",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "一",
+      "isWord": true
+    },
+    {
+      "text": "邊",
+      "isWord": true
+    },
+    {
+      "text": "跟",
+      "isWord": true
+    },
+    {
+      "text": "旁邊",
+      "isWord": true
+    },
+    {
+      "text": "的",
+      "isWord": true
+    },
+    {
+      "text": "朋友",
+      "isWord": true
+    },
+    {
+      "text": "說",
+      "isWord": true
+    },
+    {
+      "text": "話",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "他",
+      "isWord": true
+    },
+    {
+      "text": "覺得",
+      "isWord": true
+    },
+    {
+      "text": "這",
+      "isWord": true
+    },
+    {
+      "text": "場",
+      "isWord": true
+    },
+    {
+      "text": "比賽",
+      "isWord": true
+    },
+    {
+      "text": "真",
+      "isWord": true
+    },
+    {
+      "text": "有意思",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "比賽",
+      "isWord": true
+    },
+    {
+      "text": "快",
+      "isWord": true
+    },
+    {
+      "text": "結束",
+      "isWord": true
+    },
+    {
+      "text": "的",
+      "isWord": true
+    },
+    {
+      "text": "時候",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "林",
+      "isWord": true
+    },
+    {
+      "text": "小姐",
+      "isWord": true
+    },
+    {
+      "text": "打",
+      "isWord": true
+    },
+    {
+      "text": "電",
+      "isWord": true
+    },
+    {
+      "text": "話",
+      "isWord": true
+    },
+    {
+      "text": "來",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "問",
+      "isWord": true
+    },
+    {
+      "text": "他",
+      "isWord": true
+    },
+    {
+      "text": "晚上",
+      "isWord": true
+    },
+    {
+      "text": "有",
+      "isWord": true
+    },
+    {
+      "text": "沒",
+      "isWord": true
+    },
+    {
+      "text": "有空",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "高",
+      "isWord": true
+    },
+    {
+      "text": "先生",
+      "isWord": true
+    },
+    {
+      "text": "說",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "等一下",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "他",
+      "isWord": true
+    },
+    {
+      "text": "要",
+      "isWord": true
+    },
+    {
+      "text": "先",
+      "isWord": true
+    },
+    {
+      "text": "看",
+      "isWord": true
+    },
+    {
+      "text": "完",
+      "isWord": true
+    },
+    {
+      "text": "這",
+      "isWord": true
+    },
+    {
+      "text": "場",
+      "isWord": true
+    },
+    {
+      "text": "比賽",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "他",
+      "isWord": true
+    },
+    {
+      "text": "跟",
+      "isWord": true
+    },
+    {
+      "text": "林",
+      "isWord": true
+    },
+    {
+      "text": "小姐",
+      "isWord": true
+    },
+    {
+      "text": "說",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "他",
+      "isWord": true
+    },
+    {
+      "text": "下午",
+      "isWord": true
+    },
+    {
+      "text": "有事",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "得",
+      "isWord": true
+    },
+    {
+      "text": "看",
+      "isWord": true
+    },
+    {
+      "text": "完",
+      "isWord": true
+    },
+    {
+      "text": "比賽",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "晚上",
+      "isWord": true
+    },
+    {
+      "text": "才",
+      "isWord": true
+    },
+    {
+      "text": "可以",
+      "isWord": true
+    },
+    {
+      "text": "出",
+      "isWord": true
+    },
+    {
+      "text": "來",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "這",
+      "isWord": true
+    },
+    {
+      "text": "場",
+      "isWord": true
+    },
+    {
+      "text": "比賽",
+      "isWord": true
+    },
+    {
+      "text": "結束",
+      "isWord": true
+    },
+    {
+      "text": "以",
+      "isWord": true
+    },
+    {
+      "text": "後",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "已",
+      "isWord": true
+    },
+    {
+      "text": "經",
+      "isWord": true
+    },
+    {
+      "text": "五",
+      "isWord": true
+    },
+    {
+      "text": "點",
+      "isWord": true
+    },
+    {
+      "text": "半",
+      "isWord": true
+    },
+    {
+      "text": "了",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "高",
+      "isWord": true
+    },
+    {
+      "text": "先生",
+      "isWord": true
+    },
+    {
+      "text": "跟",
+      "isWord": true
+    },
+    {
+      "text": "朋友",
+      "isWord": true
+    },
+    {
+      "text": "說",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "今天",
+      "isWord": true
+    },
+    {
+      "text": "的",
+      "isWord": true
+    },
+    {
+      "text": "比賽",
+      "isWord": true
+    },
+    {
+      "text": "真",
+      "isWord": true
+    },
+    {
+      "text": "好看",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "下次",
+      "isWord": true
+    },
+    {
+      "text": "有",
+      "isWord": true
+    },
+    {
+      "text": "比賽",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "他們",
+      "isWord": true
+    },
+    {
+      "text": "還",
+      "isWord": true
+    },
+    {
+      "text": "要",
+      "isWord": true
+    },
+    {
+      "text": "一起",
+      "isWord": true
+    },
+    {
+      "text": "來",
+      "isWord": true
+    },
+    {
+      "text": "看",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "朋友",
+      "isWord": true
+    },
+    {
+      "text": "說",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "沒問題",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "可是",
+      "isWord": true
+    },
+    {
+      "text": "下次",
+      "isWord": true
+    },
+    {
+      "text": "你",
+      "isWord": true
+    },
+    {
+      "text": "可以",
+      "isWord": true
+    },
+    {
+      "text": "早",
+      "isWord": true
+    },
+    {
+      "text": "一",
+      "isWord": true
+    },
+    {
+      "text": "點",
+      "isWord": true
+    },
+    {
+      "text": "來",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "這",
+      "isWord": true
+    },
+    {
+      "text": "樣",
+      "isWord": true
+    },
+    {
+      "text": "我們",
+      "isWord": true
+    },
+    {
+      "text": "就",
+      "isWord": true
+    },
+    {
+      "text": "可以",
+      "isWord": true
+    },
+    {
+      "text": "坐",
+      "isWord": true
+    },
+    {
+      "text": "在",
+      "isWord": true
+    },
+    {
+      "text": "前面",
+      "isWord": true
+    },
+    {
+      "text": "了",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "回",
+      "isWord": true
+    },
+    {
+      "text": "家",
+      "isWord": true
+    },
+    {
+      "text": "的",
+      "isWord": true
+    },
+    {
+      "text": "路",
+      "isWord": true
+    },
+    {
+      "text": "上",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "高",
+      "isWord": true
+    },
+    {
+      "text": "先生",
+      "isWord": true
+    },
+    {
+      "text": "還",
+      "isWord": true
+    },
+    {
+      "text": "在",
+      "isWord": true
+    },
+    {
+      "text": "想",
+      "isWord": true
+    },
+    {
+      "text": "今天",
+      "isWord": true
+    },
+    {
+      "text": "的",
+      "isWord": true
+    },
+    {
+      "text": "比賽",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    },
+    {
+      "text": "他",
+      "isWord": true
+    },
+    {
+      "text": "覺得",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "每",
+      "isWord": true
+    },
+    {
+      "text": "個",
+      "isWord": true
+    },
+    {
+      "text": "週末",
+      "isWord": true
+    },
+    {
+      "text": "都",
+      "isWord": true
+    },
+    {
+      "text": "能",
+      "isWord": true
+    },
+    {
+      "text": "在",
+      "isWord": true
+    },
+    {
+      "text": "學校",
+      "isWord": true
+    },
+    {
+      "text": "看",
+      "isWord": true
+    },
+    {
+      "text": "一",
+      "isWord": true
+    },
+    {
+      "text": "場",
+      "isWord": true
+    },
+    {
+      "text": "這麼",
+      "isWord": true
+    },
+    {
+      "text": "好看",
+      "isWord": true
+    },
+    {
+      "text": "的",
+      "isWord": true
+    },
+    {
+      "text": "比賽",
+      "isWord": true
+    },
+    {
+      "text": "，",
+      "isWord": false
+    },
+    {
+      "text": "真",
+      "isWord": true
+    },
+    {
+      "text": "是",
+      "isWord": true
+    },
+    {
+      "text": "一",
+      "isWord": true
+    },
+    {
+      "text": "件",
+      "isWord": true
+    },
+    {
+      "text": "很",
+      "isWord": true
+    },
+    {
+      "text": "開",
+      "isWord": true
+    },
+    {
+      "text": "心",
+      "isWord": true
+    },
+    {
+      "text": "的",
+      "isWord": true
+    },
+    {
+      "text": "事",
+      "isWord": true
+    },
+    {
+      "text": "。",
+      "isWord": false
+    }
+  ],
+  "glossary": {
+    "下午": {
+      "term": "下午",
+      "gloss": "afternoon",
+      "definitions": {
+        "en": {
+          "gloss": "afternoon"
+        },
+        "zh": {
+          "gloss": "afternoon",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "下午",
+        "bridgeReading": "hạ ngọ",
+        "morphemes": [
+          {
+            "surface": "下",
+            "etymon": "下",
+            "reading": "hạ"
+          },
+          {
+            "surface": "午",
+            "etymon": "午",
+            "reading": "ngọ"
+          }
+        ]
+      },
+      "reading": "xiàwǔ"
+    },
+    "裡": {
+      "term": "裡",
+      "gloss": "裡",
+      "definitions": {
+        "en": {
+          "gloss": "裡"
+        },
+        "zh": {
+          "gloss": "裡",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "裡",
+        "bridgeReading": "lý",
+        "morphemes": [
+          {
+            "surface": "裡",
+            "etymon": "裡",
+            "reading": "lý"
+          }
+        ]
+      }
+    },
+    "一": {
+      "term": "一",
+      "gloss": "一",
+      "definitions": {
+        "en": {
+          "gloss": "一"
+        },
+        "zh": {
+          "gloss": "一",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "一",
+        "bridgeReading": "nhất",
+        "morphemes": [
+          {
+            "surface": "一",
+            "etymon": "一",
+            "reading": "nhất"
+          }
+        ]
+      }
+    },
+    "場": {
+      "term": "場",
+      "gloss": "measure word for performances",
+      "definitions": {
+        "en": {
+          "gloss": "measure word for performances"
+        },
+        "zh": {
+          "gloss": "measure word for performances",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "場",
+        "morphemes": [
+          {
+            "surface": "場",
+            "etymon": "場",
+            "reading": ""
+          }
+        ]
+      },
+      "reading": "chǎng",
+      "hvAmbiguous": true
+    },
+    "比賽": {
+      "term": "比賽",
+      "gloss": "game, competition",
+      "definitions": {
+        "en": {
+          "gloss": "game, competition"
+        },
+        "zh": {
+          "gloss": "game, competition",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "比賽",
+        "bridgeReading": "tái",
+        "morphemes": [
+          {
+            "surface": "比",
+            "etymon": "比",
+            "reading": ""
+          },
+          {
+            "surface": "賽",
+            "etymon": "賽",
+            "reading": "tái"
+          }
+        ]
+      },
+      "reading": "bǐsài",
+      "hvAmbiguous": true
+    },
+    "高": {
+      "term": "高",
+      "gloss": "tall",
+      "definitions": {
+        "en": {
+          "gloss": "tall"
+        },
+        "zh": {
+          "gloss": "tall",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "高",
+        "bridgeReading": "cao",
+        "morphemes": [
+          {
+            "surface": "高",
+            "etymon": "高",
+            "reading": "cao"
+          }
+        ]
+      },
+      "reading": "gāo"
+    },
+    "星": {
+      "term": "星",
+      "gloss": "星",
+      "definitions": {
+        "en": {
+          "gloss": "星"
+        },
+        "zh": {
+          "gloss": "星",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "星",
+        "bridgeReading": "tinh",
+        "morphemes": [
+          {
+            "surface": "星",
+            "etymon": "星",
+            "reading": "tinh"
+          }
+        ]
+      }
+    },
+    "期": {
+      "term": "期",
+      "gloss": "期",
+      "definitions": {
+        "en": {
+          "gloss": "期"
+        },
+        "zh": {
+          "gloss": "期",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "期",
+        "bridgeReading": "kỳ",
+        "morphemes": [
+          {
+            "surface": "期",
+            "etymon": "期",
+            "reading": "kỳ"
+          }
+        ]
+      }
+    },
+    "六": {
+      "term": "六",
+      "gloss": "六",
+      "definitions": {
+        "en": {
+          "gloss": "六"
+        },
+        "zh": {
+          "gloss": "六",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "六",
+        "bridgeReading": "lục",
+        "morphemes": [
+          {
+            "surface": "六",
+            "etymon": "六",
+            "reading": "lục"
+          }
+        ]
+      }
+    },
+    "早": {
+      "term": "早",
+      "gloss": "Good morning.",
+      "definitions": {
+        "en": {
+          "gloss": "Good morning."
+        },
+        "zh": {
+          "gloss": "Good morning.",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "早",
+        "bridgeReading": "tảo",
+        "morphemes": [
+          {
+            "surface": "早",
+            "etymon": "早",
+            "reading": "tảo"
+          }
+        ]
+      },
+      "reading": "zǎo"
+    },
+    "就": {
+      "term": "就",
+      "gloss": "then",
+      "definitions": {
+        "en": {
+          "gloss": "then"
+        },
+        "zh": {
+          "gloss": "then",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "就",
+        "bridgeReading": "tựu",
+        "morphemes": [
+          {
+            "surface": "就",
+            "etymon": "就",
+            "reading": "tựu"
+          }
+        ]
+      },
+      "reading": "jiù"
+    },
+    "從": {
+      "term": "從",
+      "gloss": "from",
+      "definitions": {
+        "en": {
+          "gloss": "from"
+        },
+        "zh": {
+          "gloss": "from",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "從",
+        "morphemes": [
+          {
+            "surface": "從",
+            "etymon": "從",
+            "reading": ""
+          }
+        ]
+      },
+      "reading": "cóng",
+      "hvAmbiguous": true
+    },
+    "點": {
+      "term": "點",
+      "gloss": "to order (meals)",
+      "definitions": {
+        "en": {
+          "gloss": "to order (meals)"
+        },
+        "zh": {
+          "gloss": "to order (meals)",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "點",
+        "bridgeReading": "điểm",
+        "morphemes": [
+          {
+            "surface": "點",
+            "etymon": "點",
+            "reading": "điểm"
+          }
+        ]
+      },
+      "reading": "diǎn"
+    },
+    "開始": {
+      "term": "開始",
+      "gloss": "to begin, to start",
+      "definitions": {
+        "en": {
+          "gloss": "to begin, to start"
+        },
+        "zh": {
+          "gloss": "to begin, to start",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "開始",
+        "bridgeReading": "khai thuỷ",
+        "morphemes": [
+          {
+            "surface": "開",
+            "etymon": "開",
+            "reading": "khai"
+          },
+          {
+            "surface": "始",
+            "etymon": "始",
+            "reading": "thuỷ"
+          }
+        ]
+      },
+      "reading": "kāishǐ"
+    },
+    "差": {
+      "term": "差",
+      "gloss": "poor, bad",
+      "definitions": {
+        "en": {
+          "gloss": "poor, bad"
+        },
+        "zh": {
+          "gloss": "poor, bad",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "差",
+        "morphemes": [
+          {
+            "surface": "差",
+            "etymon": "差",
+            "reading": ""
+          }
+        ]
+      },
+      "reading": "chā",
+      "hvAmbiguous": true
+    },
+    "三": {
+      "term": "三",
+      "gloss": "三",
+      "definitions": {
+        "en": {
+          "gloss": "三"
+        },
+        "zh": {
+          "gloss": "三",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "三",
+        "bridgeReading": "tam",
+        "morphemes": [
+          {
+            "surface": "三",
+            "etymon": "三",
+            "reading": "tam"
+          }
+        ]
+      }
+    },
+    "時": {
+      "term": "時",
+      "gloss": "when (formal)",
+      "definitions": {
+        "en": {
+          "gloss": "when (formal)"
+        },
+        "zh": {
+          "gloss": "when (formal)",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "時",
+        "bridgeReading": "thời",
+        "morphemes": [
+          {
+            "surface": "時",
+            "etymon": "時",
+            "reading": "thời"
+          }
+        ]
+      },
+      "reading": "shí"
+    },
+    "才": {
+      "term": "才",
+      "gloss": "just, only",
+      "definitions": {
+        "en": {
+          "gloss": "just, only"
+        },
+        "zh": {
+          "gloss": "just, only",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "才",
+        "bridgeReading": "tài",
+        "morphemes": [
+          {
+            "surface": "才",
+            "etymon": "才",
+            "reading": "tài"
+          }
+        ]
+      },
+      "reading": "cái"
+    },
+    "結束": {
+      "term": "結束",
+      "gloss": "to finish",
+      "definitions": {
+        "en": {
+          "gloss": "to finish"
+        },
+        "zh": {
+          "gloss": "to finish",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "結束",
+        "bridgeReading": "kết thúc",
+        "morphemes": [
+          {
+            "surface": "結",
+            "etymon": "結",
+            "reading": "kết"
+          },
+          {
+            "surface": "束",
+            "etymon": "束",
+            "reading": "thúc"
+          }
+        ]
+      },
+      "reading": "jiéshù"
+    },
+    "上": {
+      "term": "上",
+      "gloss": "a verb particle indicating the coming into contact between two nouns",
+      "definitions": {
+        "en": {
+          "gloss": "a verb particle indicating the coming into contact between two nouns"
+        },
+        "zh": {
+          "gloss": "a verb particle indicating the coming into contact between two nouns",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "上",
+        "morphemes": [
+          {
+            "surface": "上",
+            "etymon": "上",
+            "reading": ""
+          }
+        ]
+      },
+      "reading": "shàng",
+      "hvAmbiguous": true
+    },
+    "同": {
+      "term": "同",
+      "gloss": "同",
+      "definitions": {
+        "en": {
+          "gloss": "同"
+        },
+        "zh": {
+          "gloss": "同",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "同",
+        "bridgeReading": "đồng",
+        "morphemes": [
+          {
+            "surface": "同",
+            "etymon": "同",
+            "reading": "đồng"
+          }
+        ]
+      }
+    },
+    "邊": {
+      "term": "邊",
+      "gloss": "邊",
+      "definitions": {
+        "en": {
+          "gloss": "邊"
+        },
+        "zh": {
+          "gloss": "邊",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "邊",
+        "bridgeReading": "biên",
+        "morphemes": [
+          {
+            "surface": "邊",
+            "etymon": "邊",
+            "reading": "biên"
+          }
+        ]
+      }
+    },
+    "跑": {
+      "term": "跑",
+      "gloss": "to run",
+      "definitions": {
+        "en": {
+          "gloss": "to run"
+        },
+        "zh": {
+          "gloss": "to run",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "跑",
+        "bridgeReading": "bào",
+        "morphemes": [
+          {
+            "surface": "跑",
+            "etymon": "跑",
+            "reading": "bào"
+          }
+        ]
+      },
+      "reading": "pǎo"
+    },
+    "每": {
+      "term": "每",
+      "gloss": "every, each",
+      "definitions": {
+        "en": {
+          "gloss": "every, each"
+        },
+        "zh": {
+          "gloss": "every, each",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "每",
+        "bridgeReading": "mỗi",
+        "morphemes": [
+          {
+            "surface": "每",
+            "etymon": "每",
+            "reading": "mỗi"
+          }
+        ]
+      },
+      "reading": "měi"
+    },
+    "隊": {
+      "term": "隊",
+      "gloss": "隊",
+      "definitions": {
+        "en": {
+          "gloss": "隊"
+        },
+        "zh": {
+          "gloss": "隊",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "隊",
+        "bridgeReading": "đội",
+        "morphemes": [
+          {
+            "surface": "隊",
+            "etymon": "隊",
+            "reading": "đội"
+          }
+        ]
+      }
+    },
+    "厲": {
+      "term": "厲",
+      "gloss": "厲",
+      "definitions": {
+        "en": {
+          "gloss": "厲"
+        },
+        "zh": {
+          "gloss": "厲",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "厲",
+        "bridgeReading": "lệ",
+        "morphemes": [
+          {
+            "surface": "厲",
+            "etymon": "厲",
+            "reading": "lệ"
+          }
+        ]
+      }
+    },
+    "害": {
+      "term": "害",
+      "gloss": "adversely impacting somebody so that they...",
+      "definitions": {
+        "en": {
+          "gloss": "adversely impacting somebody so that they..."
+        },
+        "zh": {
+          "gloss": "adversely impacting somebody so that they...",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "害",
+        "bridgeReading": "hại",
+        "morphemes": [
+          {
+            "surface": "害",
+            "etymon": "害",
+            "reading": "hại"
+          }
+        ]
+      },
+      "reading": "hài"
+    },
+    "在": {
+      "term": "在",
+      "gloss": "to be located at",
+      "definitions": {
+        "en": {
+          "gloss": "to be located at"
+        },
+        "zh": {
+          "gloss": "to be located at",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "在",
+        "bridgeReading": "tại",
+        "morphemes": [
+          {
+            "surface": "在",
+            "etymon": "在",
+            "reading": "tại"
+          }
+        ]
+      },
+      "reading": "zài"
+    },
+    "跟": {
+      "term": "跟",
+      "gloss": "with",
+      "definitions": {
+        "en": {
+          "gloss": "with"
+        },
+        "zh": {
+          "gloss": "with",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "跟",
+        "bridgeReading": "cân",
+        "morphemes": [
+          {
+            "surface": "跟",
+            "etymon": "跟",
+            "reading": "cân"
+          }
+        ]
+      },
+      "reading": "gēn"
+    },
+    "話": {
+      "term": "話",
+      "gloss": "utterance, word",
+      "definitions": {
+        "en": {
+          "gloss": "utterance, word"
+        },
+        "zh": {
+          "gloss": "utterance, word",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "話",
+        "bridgeReading": "thoại",
+        "morphemes": [
+          {
+            "surface": "話",
+            "etymon": "話",
+            "reading": "thoại"
+          }
+        ]
+      },
+      "reading": "huà"
+    },
+    "有意思": {
+      "term": "有意思",
+      "gloss": "to be interesting, to be fun",
+      "definitions": {
+        "en": {
+          "gloss": "to be interesting, to be fun"
+        },
+        "zh": {
+          "gloss": "to be interesting, to be fun",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "有意思",
+        "bridgeReading": "hữu ý",
+        "morphemes": [
+          {
+            "surface": "有",
+            "etymon": "有",
+            "reading": "hữu"
+          },
+          {
+            "surface": "意",
+            "etymon": "意",
+            "reading": "ý"
+          },
+          {
+            "surface": "思",
+            "etymon": "思",
+            "reading": ""
+          }
+        ]
+      },
+      "reading": "yǒu yìsi",
+      "hvAmbiguous": true
+    },
+    "快": {
+      "term": "快",
+      "gloss": "fast",
+      "definitions": {
+        "en": {
+          "gloss": "fast"
+        },
+        "zh": {
+          "gloss": "fast",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "快",
+        "bridgeReading": "khoái",
+        "morphemes": [
+          {
+            "surface": "快",
+            "etymon": "快",
+            "reading": "khoái"
+          }
+        ]
+      },
+      "reading": "kuài"
+    },
+    "時候": {
+      "term": "時候",
+      "gloss": "when",
+      "definitions": {
+        "en": {
+          "gloss": "when"
+        },
+        "zh": {
+          "gloss": "when",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "時候",
+        "bridgeReading": "thời hậu",
+        "morphemes": [
+          {
+            "surface": "時",
+            "etymon": "時",
+            "reading": "thời"
+          },
+          {
+            "surface": "候",
+            "etymon": "候",
+            "reading": "hậu"
+          }
+        ]
+      },
+      "reading": "shíhòu"
+    },
+    "林": {
+      "term": "林",
+      "gloss": "Chinese last name, common in Taiwan",
+      "definitions": {
+        "en": {
+          "gloss": "Chinese last name, common in Taiwan"
+        },
+        "zh": {
+          "gloss": "Chinese last name, common in Taiwan",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "林",
+        "bridgeReading": "lâm",
+        "morphemes": [
+          {
+            "surface": "林",
+            "etymon": "林",
+            "reading": "lâm"
+          }
+        ]
+      },
+      "reading": "Lín"
+    },
+    "電": {
+      "term": "電",
+      "gloss": "electric power",
+      "definitions": {
+        "en": {
+          "gloss": "electric power"
+        },
+        "zh": {
+          "gloss": "electric power",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "電",
+        "bridgeReading": "điện",
+        "morphemes": [
+          {
+            "surface": "電",
+            "etymon": "電",
+            "reading": "điện"
+          }
+        ]
+      },
+      "reading": "diàn"
+    },
+    "問": {
+      "term": "問",
+      "gloss": "to ask",
+      "definitions": {
+        "en": {
+          "gloss": "to ask"
+        },
+        "zh": {
+          "gloss": "to ask",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "問",
+        "bridgeReading": "vấn",
+        "morphemes": [
+          {
+            "surface": "問",
+            "etymon": "問",
+            "reading": "vấn"
+          }
+        ]
+      },
+      "reading": "wèn"
+    },
+    "有空": {
+      "term": "有空",
+      "gloss": "to have free time",
+      "definitions": {
+        "en": {
+          "gloss": "to have free time"
+        },
+        "zh": {
+          "gloss": "to have free time",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "有空",
+        "bridgeReading": "hữu",
+        "morphemes": [
+          {
+            "surface": "有",
+            "etymon": "有",
+            "reading": "hữu"
+          },
+          {
+            "surface": "空",
+            "etymon": "空",
+            "reading": ""
+          }
+        ]
+      },
+      "reading": "yǒu kòng",
+      "hvAmbiguous": true
+    },
+    "等一下": {
+      "term": "等一下",
+      "gloss": "later",
+      "definitions": {
+        "en": {
+          "gloss": "later"
+        },
+        "zh": {
+          "gloss": "later",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "等一下",
+        "bridgeReading": "đẳng nhất hạ",
+        "morphemes": [
+          {
+            "surface": "等",
+            "etymon": "等",
+            "reading": "đẳng"
+          },
+          {
+            "surface": "一",
+            "etymon": "一",
+            "reading": "nhất"
+          },
+          {
+            "surface": "下",
+            "etymon": "下",
+            "reading": "hạ"
+          }
+        ]
+      },
+      "reading": "děng yíxià"
+    },
+    "先": {
+      "term": "先",
+      "gloss": "first",
+      "definitions": {
+        "en": {
+          "gloss": "first"
+        },
+        "zh": {
+          "gloss": "first",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "先",
+        "bridgeReading": "tiên",
+        "morphemes": [
+          {
+            "surface": "先",
+            "etymon": "先",
+            "reading": "tiên"
+          }
+        ]
+      },
+      "reading": "xiān"
+    },
+    "完": {
+      "term": "完",
+      "gloss": "phase marker for 'completion', to finish...",
+      "definitions": {
+        "en": {
+          "gloss": "phase marker for 'completion', to finish..."
+        },
+        "zh": {
+          "gloss": "phase marker for 'completion', to finish...",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "完",
+        "bridgeReading": "hoàn",
+        "morphemes": [
+          {
+            "surface": "完",
+            "etymon": "完",
+            "reading": "hoàn"
+          }
+        ]
+      },
+      "reading": "wán"
+    },
+    "有事": {
+      "term": "有事",
+      "gloss": "to be busy; to be engaged",
+      "definitions": {
+        "en": {
+          "gloss": "to be busy; to be engaged"
+        },
+        "zh": {
+          "gloss": "to be busy; to be engaged",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "有事",
+        "bridgeReading": "hữu sự",
+        "morphemes": [
+          {
+            "surface": "有",
+            "etymon": "有",
+            "reading": "hữu"
+          },
+          {
+            "surface": "事",
+            "etymon": "事",
+            "reading": "sự"
+          }
+        ]
+      },
+      "reading": "yǒu shì"
+    },
+    "得": {
+      "term": "得",
+      "gloss": "complement marker",
+      "definitions": {
+        "en": {
+          "gloss": "complement marker"
+        },
+        "zh": {
+          "gloss": "complement marker",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "得",
+        "bridgeReading": "đắc",
+        "morphemes": [
+          {
+            "surface": "得",
+            "etymon": "得",
+            "reading": "đắc"
+          }
+        ]
+      },
+      "reading": "de"
+    },
+    "可以": {
+      "term": "可以",
+      "gloss": "could (possibility)",
+      "definitions": {
+        "en": {
+          "gloss": "could (possibility)"
+        },
+        "zh": {
+          "gloss": "could (possibility)",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.2,
+        "corrected": false,
+        "etymon": "可以",
+        "bridgeReading": "dĩ",
+        "morphemes": [
+          {
+            "surface": "可",
+            "etymon": "可",
+            "reading": ""
+          },
+          {
+            "surface": "以",
+            "etymon": "以",
+            "reading": "dĩ"
+          }
+        ]
+      },
+      "reading": "kěyǐ",
+      "hvAmbiguous": true
+    },
+    "出": {
+      "term": "出",
+      "gloss": "出",
+      "definitions": {
+        "en": {
+          "gloss": "出"
+        },
+        "zh": {
+          "gloss": "出",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "出",
+        "bridgeReading": "xuất",
+        "morphemes": [
+          {
+            "surface": "出",
+            "etymon": "出",
+            "reading": "xuất"
+          }
+        ]
+      }
+    },
+    "以": {
+      "term": "以",
+      "gloss": "to use (formal)",
+      "definitions": {
+        "en": {
+          "gloss": "to use (formal)"
+        },
+        "zh": {
+          "gloss": "to use (formal)",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "以",
+        "bridgeReading": "dĩ",
+        "morphemes": [
+          {
+            "surface": "以",
+            "etymon": "以",
+            "reading": "dĩ"
+          }
+        ]
+      },
+      "reading": "yǐ"
+    },
+    "後": {
+      "term": "後",
+      "gloss": "afterwards (formal)",
+      "definitions": {
+        "en": {
+          "gloss": "afterwards (formal)"
+        },
+        "zh": {
+          "gloss": "afterwards (formal)",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "後",
+        "bridgeReading": "hậu",
+        "morphemes": [
+          {
+            "surface": "後",
+            "etymon": "後",
+            "reading": "hậu"
+          }
+        ]
+      },
+      "reading": "hòu"
+    },
+    "已": {
+      "term": "已",
+      "gloss": "already (formal)",
+      "definitions": {
+        "en": {
+          "gloss": "already (formal)"
+        },
+        "zh": {
+          "gloss": "already (formal)",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "已",
+        "bridgeReading": "dĩ",
+        "morphemes": [
+          {
+            "surface": "已",
+            "etymon": "已",
+            "reading": "dĩ"
+          }
+        ]
+      },
+      "reading": "yǐ"
+    },
+    "經": {
+      "term": "經",
+      "gloss": "經",
+      "definitions": {
+        "en": {
+          "gloss": "經"
+        },
+        "zh": {
+          "gloss": "經",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "經",
+        "bridgeReading": "kinh",
+        "morphemes": [
+          {
+            "surface": "經",
+            "etymon": "經",
+            "reading": "kinh"
+          }
+        ]
+      }
+    },
+    "半": {
+      "term": "半",
+      "gloss": "half",
+      "definitions": {
+        "en": {
+          "gloss": "half"
+        },
+        "zh": {
+          "gloss": "half",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "半",
+        "bridgeReading": "bán",
+        "morphemes": [
+          {
+            "surface": "半",
+            "etymon": "半",
+            "reading": "bán"
+          }
+        ]
+      },
+      "reading": "bàn"
+    },
+    "下次": {
+      "term": "下次",
+      "gloss": "next time",
+      "definitions": {
+        "en": {
+          "gloss": "next time"
+        },
+        "zh": {
+          "gloss": "next time",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "下次",
+        "bridgeReading": "hạ thứ",
+        "morphemes": [
+          {
+            "surface": "下",
+            "etymon": "下",
+            "reading": "hạ"
+          },
+          {
+            "surface": "次",
+            "etymon": "次",
+            "reading": "thứ"
+          }
+        ]
+      },
+      "reading": "xià cì"
+    },
+    "還": {
+      "term": "還",
+      "gloss": "still, additionally",
+      "definitions": {
+        "en": {
+          "gloss": "still, additionally"
+        },
+        "zh": {
+          "gloss": "still, additionally",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "還",
+        "bridgeReading": "hoàn",
+        "morphemes": [
+          {
+            "surface": "還",
+            "etymon": "還",
+            "reading": "hoàn"
+          }
+        ]
+      },
+      "reading": "hái"
+    },
+    "沒問題": {
+      "term": "沒問題",
+      "gloss": "No problem.",
+      "definitions": {
+        "en": {
+          "gloss": "No problem."
+        },
+        "zh": {
+          "gloss": "No problem.",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "沒問題",
+        "bridgeReading": "một vấn đề",
+        "morphemes": [
+          {
+            "surface": "沒",
+            "etymon": "沒",
+            "reading": "một"
+          },
+          {
+            "surface": "問",
+            "etymon": "問",
+            "reading": "vấn"
+          },
+          {
+            "surface": "題",
+            "etymon": "題",
+            "reading": "đề"
+          }
+        ]
+      },
+      "reading": "méi wèntí"
+    },
+    "樣": {
+      "term": "樣",
+      "gloss": "measure word for dishes, kinds",
+      "definitions": {
+        "en": {
+          "gloss": "measure word for dishes, kinds"
+        },
+        "zh": {
+          "gloss": "measure word for dishes, kinds",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "樣",
+        "bridgeReading": "dạng",
+        "morphemes": [
+          {
+            "surface": "樣",
+            "etymon": "樣",
+            "reading": "dạng"
+          }
+        ]
+      },
+      "reading": "yàng"
+    },
+    "回": {
+      "term": "回",
+      "gloss": "to return to",
+      "definitions": {
+        "en": {
+          "gloss": "to return to"
+        },
+        "zh": {
+          "gloss": "to return to",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "回",
+        "bridgeReading": "hồi",
+        "morphemes": [
+          {
+            "surface": "回",
+            "etymon": "回",
+            "reading": "hồi"
+          }
+        ]
+      },
+      "reading": "huí"
+    },
+    "路": {
+      "term": "路",
+      "gloss": "路",
+      "definitions": {
+        "en": {
+          "gloss": "路"
+        },
+        "zh": {
+          "gloss": "路",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "路",
+        "bridgeReading": "lộ",
+        "morphemes": [
+          {
+            "surface": "路",
+            "etymon": "路",
+            "reading": "lộ"
+          }
+        ]
+      }
+    },
+    "件": {
+      "term": "件",
+      "gloss": "measure word for clothing",
+      "definitions": {
+        "en": {
+          "gloss": "measure word for clothing"
+        },
+        "zh": {
+          "gloss": "measure word for clothing",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "件",
+        "bridgeReading": "kiện",
+        "morphemes": [
+          {
+            "surface": "件",
+            "etymon": "件",
+            "reading": "kiện"
+          }
+        ]
+      },
+      "reading": "jiàn"
+    },
+    "開": {
+      "term": "開",
+      "gloss": "to drive",
+      "definitions": {
+        "en": {
+          "gloss": "to drive"
+        },
+        "zh": {
+          "gloss": "to drive",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "開",
+        "bridgeReading": "khai",
+        "morphemes": [
+          {
+            "surface": "開",
+            "etymon": "開",
+            "reading": "khai"
+          }
+        ]
+      },
+      "reading": "kāi"
+    },
+    "心": {
+      "term": "心",
+      "gloss": "心",
+      "definitions": {
+        "en": {
+          "gloss": "心"
+        },
+        "zh": {
+          "gloss": "心",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "心",
+        "bridgeReading": "tâm",
+        "morphemes": [
+          {
+            "surface": "心",
+            "etymon": "心",
+            "reading": "tâm"
+          }
+        ]
+      }
+    },
+    "事": {
+      "term": "事",
+      "gloss": "issue, matter, event, thing",
+      "definitions": {
+        "en": {
+          "gloss": "issue, matter, event, thing"
+        },
+        "zh": {
+          "gloss": "issue, matter, event, thing",
+          "level": "TOCFL-3",
+          "monolingual": true
+        }
+      },
+      "bridge": {
+        "bridgeLang": "zh-Hant",
+        "confidence": 0.8,
+        "corrected": false,
+        "etymon": "事",
+        "bridgeReading": "sự",
+        "morphemes": [
+          {
+            "surface": "事",
+            "etymon": "事",
+            "reading": "sự"
+          }
+        ]
+      },
+      "reading": "shì"
+    }
+  },
+  "core": {
+    "band": "A1",
+    "tocfl": 1,
+    "kind": "story",
+    "newWords": 19,
+    "binding": {
+      "textbook": "accc",
+      "book": 1,
+      "lesson": 7
+    },
+    "topic": "Time (Time-When and Time-Duration) 時間（時點、時段）"
+  },
+  "fingerprint": {
+    "vocab": [
+      "一",
+      "一起",
+      "了",
+      "三",
+      "上",
+      "下午",
+      "下次",
+      "小",
+      "小姐",
+      "已",
+      "才",
+      "不",
+      "五",
+      "今天",
+      "六",
+      "心",
+      "比賽",
+      "他",
+      "他們",
+      "以",
+      "出",
+      "半",
+      "可以",
+      "可是",
+      "打",
+      "件",
+      "先",
+      "先生",
+      "同",
+      "回",
+      "在",
+      "多",
+      "好看",
+      "早",
+      "有",
+      "有事",
+      "有空",
+      "有意思",
+      "你",
+      "坐",
+      "完",
+      "快",
+      "我們",
+      "每",
+      "沒",
+      "沒問題",
+      "事",
+      "來",
+      "兩",
+      "到",
+      "所以",
+      "朋友",
+      "林",
+      "的",
+      "前面",
+      "很",
+      "後",
+      "星",
+      "是",
+      "看",
+      "要",
+      "個",
+      "害",
+      "家",
+      "差",
+      "旁邊",
+      "時",
+      "時候",
+      "真",
+      "能",
+      "高",
+      "問",
+      "得",
+      "從",
+      "晚上",
+      "這",
+      "這麼",
+      "都",
+      "喜歡",
+      "場",
+      "就",
+      "期",
+      "等一下",
+      "結束",
+      "跑",
+      "週末",
+      "開",
+      "開始",
+      "隊",
+      "想",
+      "經",
+      "裡",
+      "話",
+      "跟",
+      "路",
+      "電",
+      "說",
+      "厲",
+      "樣",
+      "學",
+      "學校",
+      "還",
+      "點",
+      "邊",
+      "籃球",
+      "覺得"
+    ],
+    "grammar": [
+      "工作",
+      "可以",
+      "可以硏",
+      "在（進行）",
+      "在泣",
+      "每",
+      "每",
+      "看",
+      "時間與地點",
+      "基本7",
+      "從 到沁",
+      "從 到訕",
+      "從…到…",
+      "說",
+      "學習",
+      "聽"
+    ]
+  },
+  "acccBinding": {
+    "lessonId": "b1l07",
+    "ceiling": "TOCFL-2",
+    "cumulativeVocab": [
+      "一共",
+      "一定",
+      "一起",
+      "了",
+      "人",
+      "上網",
+      "上課",
+      "下午",
+      "下次",
+      "下課",
+      "也",
+      "千",
+      "大",
+      "大安",
+      "大樓",
+      "小",
+      "小吃",
+      "小姐",
+      "小籠包",
+      "山",
+      "山上",
+      "不",
+      "不好",
+      "不客氣",
+      "不錯",
+      "中",
+      "中午",
+      "中文",
+      "五",
+      "什麼",
+      "今天",
+      "內用",
+      "分",
+      "午餐",
+      "天",
+      "太",
+      "太好了",
+      "少",
+      "手機",
+      "支",
+      "方便",
+      "日本",
+      "比賽",
+      "牛肉",
+      "王開文",
+      "他",
+      "他們",
+      "兄弟",
+      "包子",
+      "半",
+      "去",
+      "叫",
+      "可以",
+      "可是",
+      "外面",
+      "外帶",
+      "打",
+      "田中誠一",
+      "白如玉",
+      "先生",
+      "再見",
+      "吃",
+      "吃飯",
+      "名字",
+      "在",
+      "地方",
+      "多",
+      "多少",
+      "好",
+      "好不好",
+      "好吃",
+      "好玩",
+      "好的",
+      "好看",
+      "好啊",
+      "好喝",
+      "字",
+      "忙",
+      "早上",
+      "有",
+      "有一點",
+      "有名",
+      "有事",
+      "有空",
+      "有意思",
+      "百",
+      "老師",
+      "老闆",
+      "自己",
+      "伯母",
+      "你",
+      "你好",
+      "你們",
+      "吧",
+      "坐",
+      "我",
+      "我們",
+      "找",
+      "李明華",
+      "每",
+      "沒",
+      "沒問題",
+      "見面",
+      "足球",
+      "那",
+      "那裡",
+      "來",
+      "兩",
+      "到",
+      "呢",
+      "和",
+      "咖啡",
+      "妳",
+      "妹妹",
+      "姐妹",
+      "姐姐",
+      "姓",
+      "店",
+      "怕",
+      "房子",
+      "所以",
+      "明天",
+      "朋友",
+      "杯",
+      "東西",
+      "爸爸",
+      "的",
+      "知道",
+      "花蓮",
+      "近",
+      "附近",
+      "便宜",
+      "前面",
+      "很",
+      "後天",
+      "後面",
+      "怎麼樣",
+      "昨天",
+      "是",
+      "是的",
+      "是啊",
+      "為什麼",
+      "看",
+      "看書",
+      "美",
+      "美國",
+      "要",
+      "音樂",
+      "風景",
+      "個",
+      "剛",
+      "哥哥",
+      "哪",
+      "哪國",
+      "哪裡",
+      "家",
+      "家人",
+      "旁邊",
+      "時候",
+      "書",
+      "書法",
+      "海",
+      "烏龍茶",
+      "真",
+      "真的",
+      "能",
+      "臭豆腐",
+      "茶",
+      "馬安同",
+      "做什麼",
+      "做飯",
+      "唱歌",
+      "商店",
+      "啊",
+      "問",
+      "宿舍",
+      "常",
+      "張",
+      "張怡君",
+      "得",
+      "從",
+      "您",
+      "接",
+      "教",
+      "教室",
+      "晚上",
+      "晚飯",
+      "現在",
+      "甜點",
+      "這",
+      "這裡",
+      "這麼",
+      "都",
+      "陳月美",
+      "最",
+      "最近",
+      "喜歡",
+      "喝",
+      "幾",
+      "棒球",
+      "棟",
+      "游泳",
+      "游泳池",
+      "湯",
+      "等一下",
+      "結束",
+      "菜",
+      "貴",
+      "買",
+      "越南",
+      "週末",
+      "開始",
+      "嗎",
+      "塊",
+      "媽媽",
+      "微波",
+      "想",
+      "新",
+      "會",
+      "照片",
+      "照相",
+      "碗",
+      "萬",
+      "裡面",
+      "運動",
+      "電影",
+      "圖書館",
+      "對了",
+      "對不起",
+      "漂亮",
+      "種",
+      "網球",
+      "臺灣（＝台灣）",
+      "說",
+      "辣",
+      "遠",
+      "銀行",
+      "寫",
+      "樓",
+      "樓下",
+      "熱",
+      "誰",
+      "課",
+      "請",
+      "請問",
+      "請進",
+      "賣",
+      "踢",
+      "學",
+      "學生",
+      "學校",
+      "錢",
+      "餐廳",
+      "幫",
+      "謝謝",
+      "還是",
+      "點",
+      "舊",
+      "籃球",
+      "覺得",
+      "麵",
+      "歡迎",
+      "聽",
+      "聽說",
+      "KTV"
+    ],
+    "newVocab": [
+      "點",
+      "KTV",
+      "唱歌",
+      "分",
+      "見面",
+      "從",
+      "中午",
+      "得",
+      "銀行",
+      "時候",
+      "後天",
+      "大安",
+      "下次",
+      "沒問題",
+      "對了",
+      "有空",
+      "再見",
+      "在",
+      "午餐",
+      "剛",
+      "下課",
+      "下午",
+      "半",
+      "比賽",
+      "結束",
+      "最近",
+      "忙",
+      "每",
+      "天",
+      "書法",
+      "課",
+      "開始",
+      "字",
+      "寫",
+      "可以",
+      "問",
+      "等一下",
+      "有事",
+      "有意思"
+    ],
+    "newGrammar": [
+      "工作",
+      "可以",
+      "可以硏",
+      "在（進行）",
+      "在泣",
+      "每",
+      "每",
+      "看",
+      "時間與地點",
+      "基本7",
+      "從 到沁",
+      "從 到訕",
+      "從…到…",
+      "說",
+      "學習",
+      "聽"
+    ]
+  }
+}

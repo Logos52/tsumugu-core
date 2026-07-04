@@ -1,0 +1,66 @@
+name: Deploy Tsumugu Core
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.5.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Link monorepo packages
+        run: |
+          test -d ../tsumugu/packages/engine || (echo "Checkout tsumugu monorepo beside tsumugu-core for deploy" && exit 1)
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r --filter "./packages/*" build
+      # WO-D D11 freshness gate: a deploy never ships stale/mismatched dict
+      # shards (the Vite copy step silently no-ops when the ed repo is absent;
+      # this check fails loudly instead). Requires tsumugu-ed beside this repo.
+      - run: npx tsx scripts/dict-sync.ts --check
+      - run: npx tsx scripts/build-shell-contract.ts --check app/public/shell
+      - run: pnpm build
+        env:
+          VITE_SITE_ORIGIN: ${{ vars.SITE_ORIGIN }}
+          VITE_BASE: "/"
+          ANALYTICS_SNIPPET: ${{ secrets.ANALYTICS_SNIPPET }}
+          GOATCOUNTER_CODE: ${{ vars.GOATCOUNTER_CODE }}
+          CF_BEACON_TOKEN: ${{ secrets.CF_BEACON_TOKEN }}
+          GSC_VERIFICATION: ${{ vars.GSC_VERIFICATION }}
+      - run: |
+          mkdir -p _site
+          cp -r dist/. _site/
+          node -e "const o=process.env.VITE_SITE_ORIGIN||'https://tsumugu.cc';require('fs').writeFileSync('_site/CNAME',new URL(o).host)"
+        env:
+          VITE_SITE_ORIGIN: ${{ vars.SITE_ORIGIN }}
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

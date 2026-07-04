@@ -1,0 +1,236 @@
+[
+ {
+  "unit": "B1L01",
+  "id": "R2",
+  "format": "自述",
+  "issues": [
+   "'有一位小姐請我喝茶，問我喝不喝...我不喜歡咖啡，我喜歡喝茶' — clones R1's tea-vs-coffee/nationality beats almost intact"
+  ]
+ },
+ {
+  "unit": "B1L01",
+  "id": "R3",
+  "format": "短文",
+  "issues": [
+   "'周先生謝謝林小姐來接他們' — 'them' has no antecedent, only 周先生 was picked up (R1 leftover)",
+   "airport-pickup+tea-offer+nationality-question sequence duplicates R1 near-verbatim, third telling of same event"
+  ]
+ },
+ {
+  "unit": "B1L02",
+  "id": "R3",
+  "format": "短文",
+  "issues": [
+   "'周老師的爸爸也是老師，很喜歡看書，所以他們家有很多書' clones R2's father-teacher-loves-books-house-full-of-books beat",
+   "favorite-family-photo climax duplicates R2's photo-hobby beat almost point for point"
+  ]
+ },
+ {
+  "unit": "B1L05",
+  "id": "R3",
+  "format": "短文",
+  "issues": [
+   "'台北最有名的小吃就是牛肉麵，所以他每個星期都要到一家老店去吃' duplicates R1's famous-noodle-shop premise"
+  ]
+ },
+ {
+  "unit": "B1L06",
+  "id": "R3",
+  "format": "短文",
+  "issues": [
+   "'現在都住在山上的學校宿舍裡...再一起坐火車去花蓮' — already living there vs. traveling there, unresolved contradiction"
+  ]
+ },
+ {
+  "unit": "B1L07",
+  "id": "R2",
+  "format": "日記",
+  "issues": [
+   "'因為下午一點我得去銀行' duplicates R1's identical '一點...去銀行' detail almost verbatim",
+   "'晚上，一個朋友打電話來，問我後天有沒有空...去唱歌' reuses R1's 後天-KTV call setup",
+   "bank visit ends 1:30pm but text claims 'almost late' for a class starting 2pm — internal timeline error"
+  ]
+ },
+ {
+  "unit": "B1L09",
+  "id": "R3",
+  "format": "問答",
+  "issues": [
+   "Recycles both 臺東 (R1's destination) and 貓空 (R2's destination) instead of a new scene: 我最喜歡臺東，那裡的海很美。我還去過貓空，在山上的茶館喝茶 — the interview should have surfaced a different situation, not summarized the other two articles."
+  ]
+ },
+ {
+  "unit": "B1L10",
+  "id": "R3",
+  "format": "日記",
+  "issues": [
+   "Templated phrase reuse: R1 '這種芒果又香又甜...我以前沒吃過這麼好吃的西瓜' vs R3 '芒果又香又甜，我以前沒吃過這麼好吃的芒果' — same sentence skeleton, object swapped, not organic variation."
+  ]
+ },
+ {
+  "unit": "B1L12",
+  "id": "R1",
+  "format": "對話",
+  "issues": [
+   "'念到很累' collocation ('念書真的需要花很多時間，我每天都念到很累') is reused verbatim in R2 and R3 — templated, not organic language.",
+   "Life arc (worried about tuition, hoping for a scholarship, ambiguous company-job-vs-small-business future) is the same arc repeated in R2 and R3."
+  ]
+ },
+ {
+  "unit": "B1L12",
+  "id": "R2",
+  "format": "自述",
+  "issues": [
+   "Repeats '念到很累' verbatim: 每天念到很累，常常想.",
+   "Near-verbatim with R3 on career ambition: R2 '或者自己做一點小生意' vs R3 '或者再做一點自己的小生意'."
+  ]
+ },
+ {
+  "unit": "B1L12",
+  "id": "R3",
+  "format": "短文",
+  "issues": [
+   "Third verbatim occurrence of '念到很累': 有時候她念到很累，可是她沒有放棄.",
+   "Retells the same study-Chinese/scholarship-worry/vague-career arc as R1 and R2 with no distinguishing situation."
+  ]
+ },
+ {
+  "unit": "B1L13",
+  "id": "R3",
+  "format": "日記",
+  "issues": [
+   "Diary retells R1's exact surprise-party event from the recipient's POV — explicitly banned 'diary-of-R1' pattern. Same characters (高美 orders the cake, 林小姐 hands over a gift) and the identical line 祝你萬事如意，心想事成 verbatim from R1.",
+   "Plot inconsistency on top of the reuse: R1 says the party is at 高's house ('就在我家'), but R3's diarist returns to her own home ('一到家門口') to find everyone waiting."
+  ]
+ },
+ {
+  "unit": "B1L15",
+  "id": "R3",
+  "format": "短文",
+  "issues": [
+   "Duplicates R1's exact scene mechanism (companion notices bad complexion, asks 是不是生病了, touches the sick person's forehead, escorts to health center): R1 '你今天的臉色很難看，怎麼了？是不是生病了？' vs R3 '覺得他的臉色很難看，就問他...你怎麼了？是不是生病了？'.",
+   "Register slip: 高先生 works at a company ('高先生在一家公司上班') but is taken to '健康中心' — a term R1/R2 establish as a SCHOOL health center; a working adult would go to a 診所 or 醫院, not a campus clinic."
+  ]
+ },
+ {
+  "unit": "B2L01",
+  "id": "R3",
+  "format": "短文",
+  "issues": [
+   "Same-event-retold: reuses R1's exact direction template ('看見郵局以後左轉，走進旁邊那條小巷子，麵店就到了' mirrors R1's 'you右轉…看見師大的大門' sequence) with 高同學 subbing for 高先生.",
+   "Duplicates R2's convenience-store detail near-verbatim: R2 '又順手買了一枝筆和一本本子…正好門口就有一台提款機' vs R3 '裡面有提款機…買了一枝新的筆和一本本子'.",
+   "All 3 articles orbit the same 和平東路/師大路/麵店 landmarks — thin scene variety, echoes the prior B1L01 scene-variety=false flag."
+  ]
+ },
+ {
+  "unit": "B2L04",
+  "id": "R1",
+  "format": "對話",
+  "issues": [
+   "Primary speaker introduced as '我是語言系的黃主任' — surname 黃 is outside the approved 甲乙丙丁/高林周 set."
+  ]
+ },
+ {
+  "unit": "B2L04",
+  "id": "R2",
+  "format": "自述",
+  "issues": [
+   "First-person narrator self-names '我叫陳美玲' — surname 陳 unapproved, and 美玲/月美 is a near-collision with the explicitly banned textbook character 陳月美."
+  ]
+ },
+ {
+  "unit": "B2L08",
+  "id": "R3",
+  "format": "問答",
+  "issues": [
+   "Central interviewee named '張師父，您在這個體育館教太極拳已經三十年了' — surname 張 not in the approved 甲乙丙丁/高林周 set, and unlike R1's passing mention this is the article's main speaking character.",
+   "Third repetition in one lesson of the same fitness-transformation beat ('有的人本來連一百公尺都走不動，現在天天早上自己起來運動')."
+  ]
+ },
+ {
+  "unit": "B2L13",
+  "id": "R1",
+  "format": "對話",
+  "issues": [
+   "Entire article uses ASCII halfwidth punctuation instead of fullwidth — e.g. 「我的手機呢?剛剛還在這裡,怎麼一下子就不見了?」",
+   "「(過了一會兒)」 uses ASCII parentheses, not fullwidth （）"
+  ]
+ },
+ {
+  "unit": "B2L13",
+  "id": "R2",
+  "format": "自述",
+  "issues": [
+   "Entire article uses ASCII halfwidth commas throughout instead of fullwidth，",
+   "「檢查手機裡的功能通知」 — stiff, over-technical phrasing ('function notifications') for a first-person monologue register"
+  ]
+ },
+ {
+  "unit": "B2L13",
+  "id": "R3",
+  "format": "問答",
+  "issues": [
+   "Entire article uses ASCII halfwidth punctuation (, ? ;) throughout instead of fullwidth"
+  ]
+ },
+ {
+  "unit": "B2L15",
+  "id": "R1",
+  "format": "對話",
+  "issues": [
+   "Entire article uses ASCII halfwidth punctuation, e.g. 「張伯伯,新年快樂!歡迎歡迎,請進,別客氣。」",
+   "張伯伯's turns chain into back-to-back customs lectures ('圍爐的意思是說...', '年糕代表步步高升，橘子代表吉祥...') cued by a child's leading questions — reads as an exposition dump, not real dialogue"
+  ]
+ },
+ {
+  "unit": "B2L15",
+  "id": "R2",
+  "format": "自述",
+  "issues": [
+   "Entire article uses ASCII halfwidth punctuation throughout, not fullwidth — otherwise the strongest, most natural piece in the lesson"
+  ]
+ },
+ {
+  "unit": "B2L15",
+  "id": "R3",
+  "format": "報導",
+  "issues": [
+   "Entire article uses ASCII halfwidth punctuation throughout, not fullwidth"
+  ]
+ },
+ {
+  "unit": "B3L08",
+  "id": "R3",
+  "format": "報導",
+  "issues": [
+   "Profiles real living celebrity 吳寶春 with his actual biography (father died young, mother raised the family, Taipei bakery apprenticeship, 2008 Singapore competition, world bread championship) — violates corpus's 'original only' copyright rule; recounting a real identifiable person's real life story risks close-paraphrase of existing published bios and factual/defamation risk, unlike the corpus's invented-character norm."
+  ]
+ },
+ {
+  "unit": "B3L11",
+  "id": "R2",
+  "format": "自述",
+  "issues": [
+   "Third and weakest repeat of the '林-surnamed elder, 三十幾年, small food business, 人情味' template already used in B3L04 R2 and B3L09 R2 — nearly identical opening formula ('我姓林,大家都叫我林太太,今年六十五歲,在巷口擺攤子賣中式早餐已經三十幾年了') and closing sentiment about the lane's warmth."
+  ]
+ },
+ {
+  "unit": "B4L02",
+  "id": "R1",
+  "format": "對話",
+  "issues": [
+   "免得 used 6× in one dialogue (被擋在門口/遲到/響起來/影響觀眾/顯得隨便/又錯過) — 5-word problem: drilled, not conversational",
+   "「去年得獎的那位導演，演技跟劇情的安排都很特別」 — 5-word problem: 演技 wrongly describes a director",
+   "「曾經坐在我旁邊的人手機一直響」 — 5-word problem: 曾經 forced into odd modifier slot"
+  ]
+ },
+ {
+  "unit": "B4L03",
+  "id": "R3",
+  "format": "報導",
+  "issues": [
+   "No news lead/dateline; opens 「科技日新月異，徹底改變了人們的生活方式」 — 5-word problem: generic essay, not a report",
+   "Reporter framing (記者採訪了幾位家長) only appears in paragraph 6 — weak 報導 execution vs. sibling lessons' R3s"
+  ]
+ }
+]

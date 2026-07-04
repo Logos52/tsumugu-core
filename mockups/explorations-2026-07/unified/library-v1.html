@@ -1,0 +1,379 @@
+<!doctype html>
+<!--
+  Library — v1 (title-led) · 2026-07-03 · real data from content/titles.json (138 readings)
+  Right-of-books slot = the BOOK-SPLIT panel: the selected volume's three 部分 (parts),
+  which filter the spreadsheet below. Interest still leads: the reader-language TITLE is
+  the prominent column (rail EN/VI); Chinese title + lesson + band are quiet columns; a
+  faint format icon is the only colour. Sort: Lesson (default) / Format / Title.
+  The earlier "Featured" treatment for this slot is preserved live in library-v1-featured.html.
+  Follows DESIGN-PRINCIPLES.md. Covers (Grok) are v2.
+-->
+<html lang="zh-Hant" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem("tsu-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<title>Tsumugu · Library</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-tc-webfont@1.2.0/style.css" rel="stylesheet">
+<style>
+:root{
+  --f-ui:"Inter",-apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+  --f-han:"PingFang TC","Noto Sans TC","Inter",sans-serif;
+  --f-read:"LXGW WenKai TC","Songti TC",serif;
+  --bg:#F5F6F8;--surface:#FFFFFF;--ink:#1C1C1E;--read:#2C2C30;
+  --muted:#6E6E76;--faint:#A2A2AA;--ghost:#C7C7CE;--hair:#E9E9ED;
+  --a:#0C8DAF;--a-wash:rgba(15,160,196,.10);
+  --sh:0 1px 2px rgba(20,22,28,.05),0 8px 22px -14px rgba(20,22,28,.16);
+  --cover:0 1px 2px rgba(20,22,28,.08),0 6px 16px -10px rgba(20,22,28,.22);
+  --sel-wash:color-mix(in srgb,var(--a) 5%,var(--surface));
+  --dlg:#5A8CA6;--slf:#7C79B0;--sty:#5E9E86;--dia:#B07A8E;--qa:#8C8A96;--rep:#8C8A96;--exp:#B0904E;
+}
+[data-theme="dark"]{
+  --bg:#0B0B0D;--surface:#1A1A1D;--ink:#F2F2F5;--read:#E9E9EE;
+  --muted:#98989F;--faint:#68686F;--ghost:#48484E;--hair:#2A2A2E;
+  --a:#43ADC6;--a-wash:rgba(67,173,198,.13);
+  --sh:0 1px 2px rgba(0,0,0,.5),0 10px 26px -16px rgba(0,0,0,.6);
+  --cover:0 1px 2px rgba(0,0,0,.5),0 6px 16px -8px rgba(0,0,0,.7);
+  --sel-wash:color-mix(in srgb,var(--a) 7%,var(--surface));
+  --dlg:#7FA6BC;--slf:#9B98CB;--sty:#7FBBA2;--dia:#C99AAC;--qa:#A8A6B0;--rep:#A8A6B0;--exp:#C9AC72;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.55;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;padding:0}a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--a);outline-offset:2px;border-radius:6px}::selection{background:var(--a-wash)}
+
+.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(1.8) blur(20px);-webkit-backdrop-filter:saturate(1.8) blur(20px);border-bottom:1px solid var(--hair)}
+.top .in{max-width:880px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;gap:14px}
+.brand{display:flex;align-items:center;gap:9px}
+.brand .seal{width:26px;height:26px;border-radius:8px;background:var(--a);color:#fff;font-family:var(--f-read);font-weight:600;font-size:14px;display:grid;place-items:center}
+.brand .word{font-weight:600;font-size:16px;letter-spacing:-.02em}
+.brand .beta{font-size:9.5px;font-weight:600;color:var(--a);background:var(--a-wash);border-radius:6px;padding:2px 6px}
+.nav{display:flex;gap:1px;margin-left:6px}.nav a{padding:6px 11px;border-radius:8px;font-size:13px;color:var(--muted);font-weight:500}
+.nav a:hover{color:var(--ink);background:var(--hair)}.nav a[aria-current]{color:var(--a)}
+.grow{flex:1}
+.rail{display:inline-flex;background:var(--hair);border-radius:8px;padding:2px}
+.rail button{padding:4px 11px;border-radius:6px;font-size:12px;font-weight:600;color:var(--muted)}
+.rail button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(20,22,28,.12)}
+[data-theme="dark"] .rail button[aria-pressed="true"]{box-shadow:0 1px 2px rgba(0,0,0,.5)}
+.icon{width:30px;height:30px;border-radius:8px;color:var(--muted);display:grid;place-items:center;font-size:14px}.icon:hover{color:var(--ink);background:var(--hair)}
+
+main{max-width:880px;margin:0 auto;padding:36px 22px 110px}
+.sect{margin-bottom:40px}
+.sect > h2{font-family:var(--f-han);font-size:13px;font-weight:600;color:var(--muted);margin:0 0 16px 2px;display:flex;align-items:baseline;gap:8px}
+.sect > h2 .en{font-family:var(--f-ui);font-weight:500;color:var(--faint);font-size:11.5px}
+
+/* the band fills the whitespace: books left, the book's three parts right */
+.band{display:flex;gap:18px;align-items:stretch}
+.shelf{display:flex;gap:9px;align-items:stretch;flex:none}
+.cover{width:62px;flex:none;min-height:120px;border-radius:2px 5px 5px 2px;background:var(--surface);box-shadow:var(--cover);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:12px 3px;transition:box-shadow .14s ease}
+.cover:hover{box-shadow:var(--sh),0 0 0 1px var(--hair)}
+.cover.dim{opacity:.5}
+.cover .v{writing-mode:vertical-rl;font-family:var(--f-han);font-weight:600;font-size:14px;letter-spacing:.1em;color:var(--ink)}
+.cover .lv{font-size:9px;color:var(--faint);font-weight:600}
+.cover.on{background:var(--sel-wash)}
+.cover.on::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--a);border-radius:2px 5px 0 0}
+
+.parts{flex:1;min-width:0;display:flex;gap:9px}
+.pt{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between;text-align:left;background:var(--surface);box-shadow:var(--sh);border-radius:12px;padding:14px 16px;transition:background .12s ease}
+.pt:hover:not(.off){background:color-mix(in srgb,var(--a) 4%,var(--surface))}
+.pt .pn{font-family:var(--f-han);font-weight:600;font-size:15px;color:var(--ink);letter-spacing:.03em}
+.pt .pmeta{font-size:12px;color:var(--muted);margin-top:3px}
+.pt .ptrack{display:flex;gap:3px;margin-top:12px}
+.pt .ptrack span{height:3px;flex:1;border-radius:2px;background:var(--hair)}
+.pt.on{background:var(--sel-wash)}
+.pt.on .pn{color:var(--a)}
+.pt.on .ptrack span{background:color-mix(in srgb,var(--a) 45%,var(--hair))}
+.pt.off{opacity:.55;cursor:default;box-shadow:none;background:color-mix(in srgb,var(--hair) 40%,var(--surface))}
+@media (max-width:600px){.pt .ptrack{display:none}}
+
+/* sort control */
+.sortbar{display:flex;align-items:center;gap:6px;margin:22px 2px 0}
+.sortbar .sl{font-size:10.5px;color:var(--faint);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-right:4px}
+.sortbar .sb{font-size:12.5px;color:var(--muted);padding:5px 11px;border-radius:8px}
+.sortbar .sb:hover{color:var(--ink);background:var(--hair)}
+.sortbar .sb.on{background:var(--a-wash);color:var(--a);font-weight:600}
+
+/* the title-led spreadsheet */
+.card{background:var(--surface);border-radius:14px;box-shadow:var(--sh);overflow:hidden;margin-top:10px}
+table.cat{width:100%;border-collapse:collapse}
+.cat thead th{text-align:left;font-family:var(--f-ui);font-weight:500;font-size:11px;color:var(--faint);letter-spacing:.02em;padding:12px 14px 10px;white-space:nowrap;border-bottom:1px solid var(--hair)}
+.cat tbody td{padding:12px 14px;border-top:1px solid var(--hair);vertical-align:middle}
+.cat tbody tr:first-child td{border-top:none}
+.cat tbody tr{cursor:pointer}
+.cat tbody tr:hover td{background:color-mix(in srgb,var(--a) 4%,var(--surface))}
+.c-title{display:flex;align-items:center;gap:11px}
+.fi{width:16px;height:16px;flex:none}
+.fi.dlg{color:var(--dlg)}.fi.slf{color:var(--slf)}.fi.sty{color:var(--sty)}.fi.dia{color:var(--dia)}.fi.qa{color:var(--qa)}.fi.rep{color:var(--rep)}.fi.exp{color:var(--exp)}
+.lead{font-size:15.5px;font-weight:500;color:var(--ink);letter-spacing:-.01em}
+.c-zh{font-family:var(--f-read);color:var(--muted);font-size:14px;white-space:nowrap}
+.c-lesson{font-family:var(--f-han);color:var(--faint);font-size:12px;white-space:nowrap}
+.c-band{color:var(--faint);font-size:12px}
+.empty{padding:22px 16px;color:var(--faint);font-size:13px}
+@media (max-width:600px){.c-zh{display:none}main{padding:26px 16px 80px}.band{flex-direction:column}.shelf{flex:1}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="brand" href="#"><span class="seal">紡</span><span class="word">Tsumugu</span><span class="beta">Beta</span></a>
+  <nav class="nav"><a href="#" aria-current="page">Library</a><a href="reader.html">Reader</a><a href="#">Blog</a><a href="#">About</a></nav>
+  <span class="grow"></span>
+  <span class="rail" role="group" aria-label="Rail"><button data-rail="en" aria-pressed="true">EN</button><button data-rail="vi" aria-pressed="false">VI</button></span>
+  <button class="icon" id="themeBtn" title="Theme">☾</button>
+</div></header>
+
+<main>
+  <section class="sect" aria-label="By textbook">
+    <h2>課本架 <span class="en">當代中文課程</span></h2>
+    <div class="band">
+      <div class="shelf" id="shelf">
+        <button class="cover on" data-i="0"><span class="v">第一冊</span><span class="lv">A1</span></button>
+        <button class="cover" data-i="1"><span class="v">第二冊</span><span class="lv">A2</span></button>
+        <button class="cover" data-i="2"><span class="v">第三冊</span><span class="lv">B1</span></button>
+        <button class="cover" data-i="3"><span class="v">第四冊</span><span class="lv">B1</span></button>
+        <button class="cover dim" data-i="4"><span class="v">第五冊</span><span class="lv">B1</span></button>
+      </div>
+      <div class="parts" id="parts"></div>
+    </div>
+
+    <div class="sortbar" role="group" aria-label="Sort">
+      <span class="sl">Sort</span>
+      <button class="sb on" data-s="lesson">Lesson</button>
+      <button class="sb" data-s="format">Format</button>
+      <button class="sb" data-s="title">Title</button>
+    </div>
+    <div class="card">
+      <table class="cat">
+        <thead><tr><th>Title</th><th>中文</th><th>課</th><th>級</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script>
+"use strict";
+var FMT={
+  "對話":["dlg","dialogue"],"dialogue":["dlg","dialogue"],
+  "自述":["slf","first-person"],"first-person":["slf","first-person"],
+  "短文":["sty","story"],"story":["sty","story"],
+  "日記":["dia","diary"],"diary":["dia","diary"],
+  "問答":["qa","Q&A"],"比較":["qa","compare"],"報導":["rep","report"],"report":["rep","report"],
+  "explainer":["exp","explainer"]
+};
+var ICON={
+  dlg:'<path d="M3 5h10v7H7l-4 3z"/><path d="M15 8h6v6l-3-2h-5"/>',
+  slf:'<circle cx="12" cy="8" r="3.4"/><path d="M6 19a6 6 0 0112 0"/>',
+  sty:'<path d="M5 6h14M5 11h14M5 16h9"/>',
+  dia:'<path d="M5 5h7v14H5zM12 5h7v14h-7z"/>',
+  qa:'<path d="M4 5h11v8H8l-4 3z"/><path d="M9.5 8.2a1.6 1.6 0 113 .6c-.7.5-1.5.7-1.5 1.7"/><circle cx="11" cy="12.4" r=".2"/>',
+  rep:'<path d="M6 4h9l3 3v13H6zM14 4v4h4M9 12h6M9 15h6"/>',
+  exp:'<path d="M12 4a5 5 0 013 9c-1 1-1 2-1 3H10c0-1 0-2-1-3a5 5 0 013-9z"/><path d="M10 20h4"/>'
+};
+function fmtIcon(f){var m=FMT[f]||["sty","story"];return '<svg class="fi '+m[0]+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+ICON[m[0]]+'</svg>';}
+function fmtLabel(f){return FMT[f]?FMT[f][1]:f;}
+
+var BOOKS=[
+ {vol:"第一冊",band:"A1",n:15,R:[
+  ["B1L01","對話","The First Cup of Oolong","Tách trà Ô Long đầu tiên","接機的第一杯烏龍茶"],
+  ["B1L01","自述","A Japanese Student Falls for Oolong","Du học sinh Nhật yêu trà Ô Long","一個日本人愛上烏龍茶"],
+  ["B1L01","短文","Mr. Zhou's First Day in Taiwan","Ngày đầu tiên của ông Chu ở Đài Loan","周先生第一次來臺灣"],
+  ["B1L02","對話","Who's in the Photo?","Người trong bức ảnh là ai?","照片牆上的人是誰"],
+  ["B1L02","story","Five of Us at Home","Năm người trong nhà tôi","我家有五個人"],
+  ["B1L02","短文","When a Student Came to Visit","Khi học sinh đến thăm nhà","學生來看全家福"],
+  ["B1L03","dialogue","Basketball Tomorrow Morning","Sáng mai chơi bóng rổ","明天早上打籃球"],
+  ["B1L03","日記","Pho After the Movie","Phở sau buổi xem phim","電影散場後的河粉"],
+  ["B1L03","story","A Swim by the River","Bơi bên bờ sông cuối tuần","週末相約去河邊游泳"],
+  ["B1L04","dialogue","Three Buns, Two Teas","Ba cái bánh bao, hai ly trà","三個包子兩杯茶"],
+  ["B1L04","story","Finally, a New Phone","Cuối cùng cũng đổi điện thoại mới","終於換了新手機"],
+  ["B1L04","story","Comparing Prices at the Market","So giá ở chợ cuối tuần","週末逛市場比價"],
+  ["B1L05","dialogue","The Best Beef Noodles on the Street","Mì bò ngon nhất phố này","這條街最好吃的牛肉麵"],
+  ["B1L05","story","Mom Taught Me the Kitchen","Mẹ dạy tôi vào bếp","媽媽教我下廚房"],
+  ["B1L05","短文","A Bowl Made Just for Her","Tô mì riêng cho cô ấy","老闆做一碗不辣的麵"],
+  ["B1L06","dialogue","Sea in Front, Mountain Behind","Trước biển, sau núi","前面海後面山"],
+  ["B1L06","story","Living on the Fifth Floor","Sống ở tầng năm ký túc xá","住在五樓的宿舍生活"],
+  ["B1L06","短文","Train Ride to the Hualien Coast","Tàu đi Hoa Liên ngắm biển","坐火車去花蓮看海"],
+  ["B1L07","dialogue","Karaoke at Nine in the Morning","Hát karaoke lúc chín giờ sáng","早上九點去唱歌"],
+  ["B1L07","日記","A Packed First of July","Ngày mùng một tháng bảy bận rộn","七月一日很忙"],
+  ["B1L07","story","A Saturday Afternoon Game","Trận bóng rổ cuối tuần","週末下午的籃球賽"],
+  ["B1L08","dialogue","Taking the Train to Tainan","Đi Tainan bằng tàu hỏa","坐火車去臺南"],
+  ["B1L08","story","Scooter to the MRT","Xe máy rồi lên tàu điện","騎機車換捷運"],
+  ["B1L08","story","Class Trip to the Palace Museum","Cả lớp đi Bảo tàng Cố cung","班遊去故宮"],
+  ["B1L09","dialogue","Taitung by the Sea","Đài Đông ngắm biển","七月去臺東看海"],
+  ["B1L09","story","Tea on Maokong with My Daughter","Uống trà Maokong cùng con gái","帶女兒上貓空"],
+  ["B1L09","問答","Not Ready to Leave Taiwan","Không nỡ rời Đài Loan","捨不得走的臺灣"],
+  ["B1L10","對話","Mangoes and Watermelon at the Shop","Xoài và dưa hấu ở cửa hàng","這家的芒果和西瓜"],
+  ["B1L10","story","Family Photos in the Park","Ảnh gia đình trong công viên","公園裡的全家福"],
+  ["B1L10","日記","The Sea Outside the Window","Biển ngoài cửa sổ khách sạn","旅館窗外的大海"],
+  ["B1L11","dialogue","A Tour of the Studio","Xem căn phòng trọ","來看這間套房"],
+  ["B1L11","story","A Small Place That Fits","Căn phòng nhỏ vừa đủ","小小的套房剛好"],
+  ["B1L11","story","After the Water Heater Broke","Sau khi bình nước nóng hỏng","熱水器壞了之後"],
+  ["B1L12","對話","Chinese First, Plans Later","Học tiếng Trung trước đã","先念好中文再說"],
+  ["B1L12","自述","Chinese Isn't So Hard Anymore","Tiếng Trung không còn khó","中文沒有那麼難了"],
+  ["B1L12","短文","Leaving Work to Study","Nghỉ việc để đi học","停下工作去念書"],
+  ["B1L13","dialogue","Planning Her Birthday Surprise","Lên kế hoạch bất ngờ sinh nhật","幫她過一個生日"],
+  ["B1L13","自述","Birthday Noodles, Not Cake","Mì chân giò ngày sinh nhật","生日吃豬腳麵線"],
+  ["B1L13","日記","Surprise at the Door","Bất ngờ sau cánh cửa","開門的生日驚喜"],
+  ["B1L14","dialogue","A Snowy Winter in New York","Mùa đông có tuyết ở New York","紐約下雪的冬天"],
+  ["B1L14","短文","Autumn Leaves on Yushan","Lá đỏ trên núi Ngọc Sơn","玉山上的紅葉"],
+  ["B1L14","story","The Typhoon at the Door","Cơn bão chặn cửa nhà","颱風擋住了門"],
+  ["B1L15","dialogue","I'll Walk You to the Clinic","Tôi đưa bạn đến y tế","陪你去健康中心"],
+  ["B1L15","日記","Stomachache at Midnight","Đau bụng nửa đêm","半夜肚子痛"],
+  ["B1L15","短文","Fever but Still at Work","Sốt mà vẫn đi làm","發燒還在上班"],
+ ]},
+ {vol:"第二冊",band:"A2",n:15,R:[
+  ["B2L01","對話","Lost on Heping East Road","Lạc đường Hòa Bình Đông","迷路在和平東路"],
+  ["B2L01","自述","Saved by the Map App","Ứng dụng bản đồ cứu tôi","手機地圖救了我"],
+  ["B2L01","短文","Finding the Noodle Shop","Tìm quán mì gần Đại Sư","找到師大的麵店"],
+  ["B2L02","dialogue","One EasyCard Is Enough","Một thẻ EasyCard là đủ","一張悠遊卡就夠"],
+  ["B2L02","story","Lost on the Paris Metro","Lạc tàu điện ngầm ở Pháp","法國的地鐵迷路記"],
+  ["B2L02","story","Train to Hualien","Chuyến tàu đi Hoa Liên","火車往花蓮去"],
+  ["B2L03","dialogue","Almost Perfect on the Dictation","Đọc chính tả gần như đúng hết","聽寫幾乎全對"],
+  ["B2L03","story","Learning Chinese in Taiwan","Học tiếng Trung ở Đài Loan","在台灣學中文"],
+  ["B2L03","dialogue","Language and Culture","Ngôn ngữ và văn hóa","語言和文化"],
+  ["B2L04","對話","Five Hundred an Hour","Năm trăm đồng một giờ","五百塊一鐘頭"],
+  ["B2L04","自述","Languages Are My Edge","Ngôn ngữ là lợi thế của tôi","語言就是我的優勢"],
+  ["B2L04","問答","Summer Help at the Café","Sinh viên làm hè ở quán cà phê","暑假的工讀生"],
+  ["B2L05","對話","Is the Red Envelope Ready?","Bao lì xì đã sẵn chưa?","紅包準備好了嗎"],
+  ["B2L05","短文","Table by Table, Cheers","Mời rượu từng bàn một","敬酒一桌一桌"],
+  ["B2L05","問答","May You Live in Harmony","Trăm năm hạnh phúc","百年好合"],
+  ["B2L06","dialogue","Before the Lease Ends","Trước khi hết hạn hợp đồng","合約到期之前"],
+  ["B2L06","自述","Goodbye to the Neighbor's Dog","Tạm biệt chú chó hàng xóm","跟鄰居小狗說再見"],
+  ["B2L06","問答","Slow Down Before You Move","Chuyển nhà cứ từ từ","搬家別急，慢慢來"],
+  ["B2L07","對話","Three Days of Trash at the Door","Ba ngày rác ở cửa","門口的垃圾放了三天"],
+  ["B2L07","story","Chasing the Garbage Truck","Đuổi theo xe rác","追垃圾車"],
+  ["B2L07","explainer","Why Sort the Trash?","Vì sao phải phân loại rác?","為什麼要垃圾分類"],
+  ["B2L08","dialogue","Tai Chi at Eight O'Clock","Thái cực lúc tám giờ","八點的太極拳"],
+  ["B2L08","story","Six Months to One Form","Nửa năm học một bài quyền","半年學會第一套拳"],
+  ["B2L08","問答","Talent Isn't the Point","Tài năng không phải điều quan trọng nhất","天分不是最重要的"],
+  ["B2L09","dialogue","Diving in Thailand Over Spring Break","Lặn biển Thái Lan kỳ nghỉ xuân","泰國春假潛水記"],
+  ["B2L09","story","Missing the Stars Back Home","Nhớ những đêm trông thấy sao","想念看得到星星的日子"],
+  ["B2L09","story","An Afternoon at a Paris Café","Buổi chiều ở quán cà phê Paris","巴黎路邊的咖啡店"],
+  ["B2L10","dialogue","Wrapping Dumplings on a Rainy Day","Gói bánh bao ngày mưa","雨天一起包水餃"],
+  ["B2L10","自述","Getting to Know a Country at the Table","Hiểu một đất nước qua mâm cơm","在餐桌上認識一個國家"],
+  ["B2L10","dialogue","A Jar of Pickled Peppers Each","Mỗi người một lọ ớt ngâm","每人帶走一罐辣椒"],
+  ["B2L11","對話","Let's Go to Kenting","Lần này đi Kenting thôi","這次就去墾丁吧"],
+  ["B2L11","自述","Golden Hour in Kenting","Hoàng hôn ở Kenting","墾丁的黃昏"],
+  ["B2L11","日記","The Wallet Lost at the Beach","Mất ví ở bãi biển","海邊丟了錢包"],
+  ["B2L12","dialogue","Once a Week Is Fine","Một tuần một hai bữa thôi","一週吃一兩餐就好"],
+  ["B2L12","自述","Twenty Years Without Meat","Hai mươi năm ăn chay","吃了二十幾年的素"],
+  ["B2L12","dialogue","Mr. Gao's Organic Kitchen","Tiệm ăn hữu cơ của ông Cao","高先生的有機小店"],
+  ["B2L13","對話","Lost at the Gym Again","Lại để mất điện thoại ở gym","手機又丟在健身房"],
+  ["B2L13","自述","One Percent Before the Flight","Chỉ còn một phần trăm pin trước chuyến bay","出國前手機只剩百分之一"],
+  ["B2L13","問答","Put the Phone Down","Hãy buông điện thoại ra","放下手機，面對面說話"],
+  ["B2L14","對話","The Interview Before Graduation","Buổi phỏng vấn trước khi tốt nghiệp","畢業前的那場面試"],
+  ["B2L14","自述","From Business School to the Classroom","Từ khoa kinh doanh đến lớp học tiếng Trung","從企管系到中文教室"],
+  ["B2L14","問答","A Senior at the Foreign Ministry","Anh khóa làm ở Bộ Ngoại giao","在外交部工作的學長"],
+  ["B2L15","對話","Uncle Zhang on New Year's Eve","Chú Trương kể về bữa tất niên","張伯伯講年夜飯"],
+  ["B2L15","自述","Opening for the God of Wealth","Mở cửa đón thần tài mùng năm","初五開門迎財神"],
+  ["B2L15","報導","Walking the New Year Market","Dạo chợ tết","走進年貨大街"],
+ ]},
+ {vol:"第三冊",band:"B1",n:12,R:[
+  ["B3L01","對話","Course Selection Chaos","Rối ren chọn môn tuần đầu học","開學週的選課煩惱"],
+  ["B3L01","自述","Switching to Foreign Languages","Di Quân chuyển sang ngành ngoại ngữ","怡君轉進外語系"],
+  ["B3L01","報導","Lines at the Registrar","Hàng dài ở phòng hành chính","教務處排隊的人潮"],
+  ["B3L02","對話","Browsing the Anniversary Sale","Chọn áo khoác ngày khuyến mãi","週年慶裡挑外套"],
+  ["B3L02","自述","A Bill Higher Than Promised","Hóa đơn đắt hơn lời hứa","電信帳單比想像貴"],
+  ["B3L02","問答","What the Manager Says About Sales","Giám đốc nói về đợt sale","經理怎麼看週年慶"],
+  ["B3L03","對話","A Cold Front Weekend","Cuối tuần gió lạnh ập tới","冷氣團來襲的週末"],
+  ["B3L03","自述","Always Home for Dragon Boat","Tết Đoan Ngọ phải về nhà","端午節一定要回家"],
+  ["B3L03","問答","How Mid-Autumn Began","Tết Trung Thu bắt nguồn thế nào","中秋節怎麼來的"],
+  ["B3L04","對話","A Date for Sky Lanterns","Hẹn thả đèn trời ở Bình Khê","平溪放天燈的約定"],
+  ["B3L04","自述","No Shortcuts in the Broth","Nước dùng không được qua loa","擔仔麵湯頭不將就"],
+  ["B3L04","問答","Seeing Tainan Slowly","Khám phá Đài Nam từ từ","慢慢逛台南"],
+  ["B3L05","對話","The Magic of a Live Show","Sức hút của concert trực tiếp","演唱會的魔力"],
+  ["B3L05","自述","Before the Bookshop Closed","Trước ngày tiệm sách đóng cửa","關門前的租書店"],
+  ["B3L05","報導","Chasing What's in Style","Theo đuổi mốt thời trang","跟風買的衣服"],
+  ["B3L06","dialogue","Spending the Night in the Countryside","Đêm ở nông thôn","鄉下過一夜"],
+  ["B3L06","自述","The Story Behind a Tomato","Câu chuyện sau quả cà chua","一顆番茄的故事"],
+  ["B3L06","報導","Farming Meets Tourism","Nông thôn gặp du lịch","農村與觀光"],
+  ["B3L07","對話","Breaking Up Over a Dog","Chia tay vì một con chó","為了一隻狗分手"],
+  ["B3L07","自述","Family by Adoption","Người thân từ trại cứu hộ","領養來的家人"],
+  ["B3L07","比較","Four Ways to Be a Family","Bốn kiểu gia đình","家的四種模樣"],
+  ["B3L08","對話","Civil Service or Design","Công chức hay thiết kế","公職還是設計"],
+  ["B3L08","story","I Just Want to Be Myself","Tôi chỉ muốn là chính mình","我只是想做自己"],
+  ["B3L08","報導","From Apprentice to Champion","Từ học việc đến vô địch","從學徒到冠軍"],
+  ["B3L09","對話","A Lesson in Online Shopping","Bài học mua hàng online","網購入門課"],
+  ["B3L09","自述","Grandma Sells Pastries Online","Bà bán bánh cưới trên mạng","阿嬤上網賣喜餅"],
+  ["B3L09","報導","A New Future for Pineapples","Con đường mới cho dứa","鳳梨的新出路"],
+  ["B3L10","對話","A Lesson from Running a Red","Bài học từ vượt đèn đỏ","闖紅燈的教訓"],
+  ["B3L10","自述","The Surgeon on Night Call","Bác sĩ ngoại khoa đêm khuya","深夜的外科醫生"],
+  ["B3L10","問答","A Small Change for Confidence","Chỉnh nhẹ để tự tin hơn","為自信做的微整"],
+  ["B3L11","對話","Where to Start with Red Hair Fort","Bắt đầu kể về thành Hồng Mao","紅毛城從哪說起"],
+  ["B3L11","自述","Thirty Years at the Corner Stall","Ba mươi năm quán sáng ở đầu hẻm","巷口早餐攤三十年"],
+  ["B3L11","問答","A Hakka Elder's Crossing to Taiwan","Câu chuyện di cư của một cụ Hakka","客家阿伯的遷徙記"],
+  ["B3L12","對話","My Cousin Wants to March","Em họ muốn đi biểu tình phản hạt nhân","表妹要去反核遊行"],
+  ["B3L12","自述","The Retired Editor Runs for Office","Biên tập viên về hưu ra tranh cử","退休編輯競選里長"],
+  ["B3L12","問答","A Legislator on Re-election","Nghị sĩ tranh cử tái nhiệm nói gì","連任議員的功課"],
+ ]},
+ {vol:"第四冊",band:"B1",n:12,R:[
+  ["B4L01","對話","Skip the Horror Tonight","Tối nay xem phim tình cảm thôi","今晚看愛情片就好"],
+  ["B4L01","自述","After the Office Closes","Sau giờ làm của giám đốc kinh doanh","業務經理下班以後"],
+  ["B4L01","問答","Chatroom Friends, With Care","Kết bạn qua phòng chat cần cẩn thận","聊天室交友怎麼拿捏"],
+  ["B4L02","對話","Before the Cloud Gate Show","Trước buổi biểu diễn Vân Môn","去看雲門之前"],
+  ["B4L02","自述","Art Won't Fill Your Stomach","Nghệ thuật không nuôi sống cái bụng","藝術填不飽肚子"],
+  ["B4L02","報導","Three Days of Street Art","Ba ngày lễ hội nghệ thuật đường phố","街頭藝術節三日記"],
+  ["B4L03","對話","The Model Wore It Better","Người mẫu mặc đẹp hơn thực tế","模特兒穿得比較好看"],
+  ["B4L03","自述","Teaching Grandma to Shop Online","Dạy bà mua sắm trên điện thoại","教外婆用手機購物"],
+  ["B4L03","報導","What the Cloud Changed","Đám mây đã thay đổi cuộc sống","雲端改變了日常生活"],
+  ["B4L04","對話","Where the Wardrobe Goes","Tủ quần áo để chỗ nào cho đúng","衣櫥到底擺哪裡"],
+  ["B4L04","自述","Fate, Fortune, Then Feng Shui","Mệnh, vận, rồi mới đến phong thủy","一命二運三風水"],
+  ["B4L04","報導","Feng Shui Hidden in Xinyi Towers","Phong thủy ẩn trong các toà nhà Xinyi","信義區的風水巧思"],
+ ]},
+ {vol:"第五冊",band:"B1",n:10,R:[]}
+];
+
+var rail="en", cur=0, part=0, sortMode="lesson";
+var CNP=["一","二","三"];
+function lnum(l){return parseInt(l.slice(l.indexOf("L")+1),10);}
+function bParts(n){return n===10?[4,7,10]:[n/3,2*n/3,n];}
+function partRange(p,i){return [i===0?1:p[i-1]+1, p[i]];}
+function inPart(l,p,i){var r=partRange(p,i),k=lnum(l);return k>=r[0]&&k<=r[1];}
+function lessonShort(l){return "L"+l.slice(-2);}
+
+function renderParts(){
+  var b=BOOKS[cur], parts=bParts(b.n), html="";
+  for(var i=0;i<3;i++){
+    var r=partRange(parts,i), lessons=r[1]-r[0]+1;
+    var cnt=b.R.filter(function(x){return inPart(x[0],parts,i);}).length;
+    var off=cnt===0, seg="";
+    for(var s=0;s<lessons;s++) seg+="<span></span>";
+    html+='<button class="pt'+(i===part?" on":"")+(off?" off":"")+'" data-p="'+i+'"'+(off?" disabled":"")+'>'+
+      '<span class="ptxt"><span class="pn">第'+CNP[i]+'部分</span>'+
+        '<span class="pmeta">L'+r[0]+'–'+r[1]+(off?" · soon":" · "+cnt+" 篇")+'</span></span>'+
+      '<span class="ptrack">'+seg+'</span></button>';
+  }
+  var el=document.getElementById("parts"); el.innerHTML=html;
+  el.querySelectorAll(".pt").forEach(function(bn){ if(bn.disabled)return;
+    bn.addEventListener("click",function(){ part=+bn.dataset.p; renderParts(); renderList(); }); });
+}
+function rowHtml(r,band){ var lead=rail==="en"?r[2]:r[3];
+  return '<tr><td class="c-title">'+fmtIcon(r[1])+'<span class="lead">'+lead+'</span></td>'+
+    '<td class="c-zh" lang="zh-Hant">'+r[4]+'</td><td class="c-lesson">'+lessonShort(r[0])+'</td>'+
+    '<td class="c-band">'+band+'</td></tr>';
+}
+function renderList(){
+  var b=BOOKS[cur], parts=bParts(b.n);
+  var data=b.R.filter(function(x){return inPart(x[0],parts,part);});
+  if(!data.length){ document.getElementById("rows").innerHTML='<tr><td class="empty" colspan="4">Not yet published.</td></tr>'; return; }
+  if(sortMode==="format") data.sort(function(x,y){return fmtLabel(x[1]).localeCompare(fmtLabel(y[1]))||lnum(x[0])-lnum(y[0]);});
+  else if(sortMode==="title") data.sort(function(x,y){var xv=rail==="en"?x[2]:x[3],yv=rail==="en"?y[2]:y[3];return xv.localeCompare(yv);});
+  else data.sort(function(x,y){return lnum(x[0])-lnum(y[0]);});
+  document.getElementById("rows").innerHTML=data.map(function(r){return rowHtml(r,b.band);}).join("");
+}
+function selectBook(i){ cur=i; part=0;
+  document.querySelectorAll("#shelf .cover").forEach(function(x,j){x.classList.toggle("on",j===i);});
+  renderParts(); renderList();
+}
+document.querySelectorAll("#shelf .cover").forEach(function(c,i){c.addEventListener("click",function(){selectBook(i);});});
+document.querySelectorAll(".sortbar .sb").forEach(function(bn){bn.addEventListener("click",function(){
+  sortMode=bn.dataset.s; document.querySelectorAll(".sortbar .sb").forEach(function(x){x.classList.toggle("on",x===bn);}); renderList();});});
+document.querySelectorAll(".rail button").forEach(function(bn){bn.addEventListener("click",function(){
+  rail=bn.dataset.rail; document.querySelectorAll(".rail button").forEach(function(x){x.setAttribute("aria-pressed",String(x===bn));}); renderList();});});
+(function(){var r=document.documentElement,b=document.getElementById("themeBtn");if(!r.getAttribute("data-theme"))r.setAttribute("data-theme","light");
+  function s(){b.textContent=r.getAttribute("data-theme")==="dark"?"☀":"☾";}s();
+  b.addEventListener("click",function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";r.setAttribute("data-theme",n);try{localStorage.setItem("tsu-theme",n);}catch(e){}s();});})();
+renderParts(); renderList();
+</script>
+</body>
+</html>
