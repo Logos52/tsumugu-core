@@ -14,15 +14,33 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
+      # Absent sibling: print a skip notice and exit 0. Later steps are gated on
+      # skip=false, so install / dict-sync / shell-contract / typecheck / test /
+      # build do not run. Present sibling: the hard guard below still fails the
+      # job if the directory check does not pass, then the full path runs.
       - name: Link monorepo packages
+        id: monorepo
         run: |
+          if [ ! -d ../tsumugu/packages/engine ]; then
+            echo "Skip: ../tsumugu/packages/engine is absent. Monorepo-dependent steps are skipped."
+            echo "::notice::Skip: ../tsumugu/packages/engine is absent. Monorepo-dependent steps are skipped."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           test -d ../tsumugu/packages/engine || (echo "Checkout tsumugu monorepo beside tsumugu-core for CI" && exit 1)
-      - run: pnpm install
+          echo "skip=false" >> "$GITHUB_OUTPUT"
       # WO-D D11 gates: dict-search freshness (fails loudly on an absent/stale
       # ed source — requires tsumugu-ed checked out beside this repo, like the
       # monorepo link above) + shell-contract artifact drift.
+      - run: pnpm install
+        if: steps.monorepo.outputs.skip == 'false'
       - run: npx tsx scripts/dict-sync.ts --check
+        if: steps.monorepo.outputs.skip == 'false'
       - run: npx tsx scripts/build-shell-contract.ts --check app/public/shell
+        if: steps.monorepo.outputs.skip == 'false'
       - run: pnpm typecheck
+        if: steps.monorepo.outputs.skip == 'false'
       - run: pnpm test
+        if: steps.monorepo.outputs.skip == 'false'
       - run: pnpm build
+        if: steps.monorepo.outputs.skip == 'false'
