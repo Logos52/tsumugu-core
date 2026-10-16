@@ -1,6 +1,6 @@
 
 
-type Child = Node | string | number | null | undefined | false; // lint-proof
+type Child = Node | string | number | null | undefined | false;
 
 export interface ElProps {
   class?: string;
