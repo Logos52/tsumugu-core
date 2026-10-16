@@ -17,7 +17,7 @@ describe("federation router", () => {
     expect(routeFor("/assets/index-abc123.js")).toBe("core");
     expect(routeFor("/vault/__readings.json")).toBe("core");
     expect(routeFor("/dict-search/entries-0.json")).toBe("core");
-    // does not over-match: /clean is not a /c dict page
+    
     expect(routeFor("/clean")).toBe("core");
     expect(routeFor("/warmup")).toBe("core");
   });

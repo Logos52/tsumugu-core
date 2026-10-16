@@ -1,24 +1,5 @@
 #!/usr/bin/env tsx
-/**
- * Shell-contract artifact generator (item 28).
- *
- * Emits a VERSIONED shared-chrome artifact from a single shell source:
- *   - shell-tokens.css  — the :root palette tokens + chrome CSS
- *   - topnav.html       — the top navigation fragment (stamped data-shell="vN")
- *   - nav.json          — the primary-nav link set
- * Both properties (core SPA + tsumugu-ed render_site.py) vendor the SAME artifact
- * and stamp `data-shell="vN"`; a CI check curls both and diffs (fails on drift).
- *
- * ⚠️ SOURCE CAVEAT (unresolved — coordinate with Lane A/B before wiring to build):
- *   The default source `mockups/site/_shell.html` is STALE (silk-default; no seal/mist
- *   per the design spec) AND `mockups/` is a forbidden WRITE path. This generator READS
- *   it, but the canonical Seal shell may need to come from Lane A/B's committed CSS.
- *   Until that source is confirmed, DO NOT wire this into the Vite build as authoritative
- *   (it would bake stale chrome). Repoint `--source` at the Seal shell when it lands.
- *
- *   tsx scripts/build-shell-contract.ts --emit app/public/shell [--source <html>]
- *   tsx scripts/build-shell-contract.ts --check app/public/shell [--source <html>]
- */
+
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -51,14 +32,14 @@ function slice(html: string, open: RegExp, closeTag: string): string {
   return html.slice(start, end + closeTag.length);
 }
 
-/** Extract the chrome CSS (contents of the first <style> block). */
+
 export function extractTokensCss(html: string): string {
   const block = slice(html, /<style>/, "</style>");
   const css = block.replace(/^<style>/, "").replace(/<\/style>$/, "").trim();
   return `/* shell-contract ${SHELL_VERSION} — generated; do not edit by hand */\n${css}\n`;
 }
 
-/** Extract the topnav fragment and stamp it with the shell version. */
+
 export function extractTopnav(html: string): string {
   const header = slice(html, /<header class="topnav">/, "</header>");
   return header.replace(
@@ -67,7 +48,7 @@ export function extractTopnav(html: string): string {
   );
 }
 
-/** Extract the primary-nav links as structured data. */
+
 export function extractNav(html: string): NavLink[] {
   const navBlock = slice(html, /<nav class="primary-nav"[^>]*>/, "</nav>");
   const links: NavLink[] = [];
@@ -104,7 +85,7 @@ export function emit(dir: string, contract: ShellContract): void {
   writeFileSync(f.nav, JSON.stringify({ version: contract.version, nav: contract.nav }, null, 2) + "\n", "utf8");
 }
 
-/** Diff regenerated artifact vs committed on disk; returns drifted file names. */
+
 export function checkDrift(dir: string, contract: ShellContract): string[] {
   const f = artifactFiles(dir);
   const drift: string[] = [];

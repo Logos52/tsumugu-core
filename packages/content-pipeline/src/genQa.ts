@@ -1,6 +1,4 @@
-/**
- * QA-lib import surface — re-exported from `@tsumugu/gen-qa` (WO-CORE-0).
- */
+
 export {
   checkDefLevel,
   verifyContent,

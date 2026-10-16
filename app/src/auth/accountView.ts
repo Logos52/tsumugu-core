@@ -1,20 +1,4 @@
-/**
- * Sync panel (WO-UNIFY-C C1, item 47) — was the simulated-account surface.
- *
- * Sync Stage 1 is 100% LOCAL: no server, no accounts, no PII. The panel offers
- *   - file export of the UserDoc (download JSON)
- *   - file import (picker + drag/drop) → clock-aware merge (never demotes)
- *   - Web Share API handoff where supported
- *   - a copy/paste "sync code" = base64url(deflate(UserDoc)) (QR is CUT)
- *   - BYO-URL pull (Stage-1 pull-only; writes stay manual export)
- *   - Anki `.apkg` export (built deck)
- *
- * Everything here is gated behind `VITE_FEATURE_SYNC` (default OFF). With the
- * flag off, {@link mountSyncPanel} renders NOTHING — zero sync surface ships.
- *
- * The simulated magic-link login UI has been removed; `auth/session.ts` stays
- * (dev-force-login + `tsumugu-session` auth semantics live there).
- */
+
 
 import { el } from "../ui/dom.js";
 import { resolveUiLocale, tFormat, tKey, type Strings } from "../i18n/strings.js";
@@ -26,11 +10,7 @@ import { encodeSyncCode, decodeSyncCode } from "../sync/syncCode.js";
 import { FEATURES } from "../config/features.js";
 import { trackEvent } from "../build/analytics.js";
 
-/**
- * Kept name/shape so `main.ts` (Lane B) compiles unchanged. Settings were pulled
- * OUT of this surface (C2) into the 設 popover, so these fields are unused here —
- * accepted only for call-site compatibility.
- */
+
 export interface AccountViewOpts {
   getSettings?: () => ReaderSettings;
   onSettingsChange?: (patch: Partial<ReaderSettings>) => void;
@@ -50,25 +30,22 @@ function getStore(): UserStore {
   return getUserStoreForAccount();
 }
 
-/** Panel copy — resolved per call so rail/uiLang switches take effect live. */
+
 function tt(key: keyof Strings): string {
   return tKey(key, resolveUiLocale());
 }
 
-/** Panel copy with a `{n}` count. */
+
 function ttN(key: keyof Strings, n: number): string {
   return tFormat(key, resolveUiLocale(), { n });
 }
 
-/** GoatCounter kill-gate counters for the Stage-2 decision (2026-07-02 sign-off). */
+
 function count(event: "sync-export" | "sync-import"): void {
-  try { trackEvent(event); } catch { /* analytics is best-effort */ }
+  try { trackEvent(event); } catch {  }
 }
 
-/**
- * Mount the Sync panel. NO-OP when `VITE_FEATURE_SYNC` is off — nothing is added
- * to the DOM and the returned controller is inert.
- */
+
 export function mountSyncPanel(root: HTMLElement = document.body, _opts: SyncPanelOpts = {}): SyncController {
   if (!FEATURES.sync) {
     return { open() {}, close() {}, destroy() {} };
@@ -113,15 +90,12 @@ export function mountSyncPanel(root: HTMLElement = document.body, _opts: SyncPan
   };
 }
 
-/** Backwards-compatible alias — `main.ts` still imports `mountAccountView`. */
+
 export function mountAccountView(root: HTMLElement = document.body, opts: AccountViewOpts = {}): SyncController {
   return mountSyncPanel(root, opts);
 }
 
-/**
- * Build the (ungated) Sync panel body. Exported for tests so the "on" surface
- * can be exercised without flipping the build-time flag.
- */
+
 export function buildSyncPanelContent(): HTMLElement {
   const body = el("div", { class: "tsg-account-body tsg-sync-body" });
   const st = getStore();
@@ -151,7 +125,7 @@ function status(): HTMLElement {
   return el("p", { class: "tsg-sync-status", attrs: { role: "status", "aria-live": "polite" } });
 }
 
-// ── File export / import / share ───────────────────────────────────────────
+
 function renderFileSection(st: UserStore): HTMLElement {
   const wrap = section(tt("sync.fileTitle"));
   const msg = status();
@@ -170,7 +144,7 @@ function renderFileSection(st: UserStore): HTMLElement {
     msg.textContent = tt("sync.exported");
   });
 
-  // Web Share API (files) where supported.
+  
   const share = el("button", { class: "tsg-btn", type: "button", text: tt("sync.share") });
   share.addEventListener("click", () => {
     void (async () => {
@@ -195,7 +169,7 @@ function renderFileSection(st: UserStore): HTMLElement {
     })();
   });
 
-  // Import via picker.
+  
   const fileInput = el("input", { class: "tsg-sync-file", attrs: { type: "file", accept: "application/json,.json" } });
   fileInput.style.display = "none";
   const imp = el("button", { class: "tsg-btn", type: "button", text: tt("sync.importFile") });
@@ -206,7 +180,7 @@ function renderFileSection(st: UserStore): HTMLElement {
     fileInput.value = "";
   });
 
-  // Drag/drop target.
+  
   const drop = el("div", { class: "tsg-sync-drop", text: tt("sync.drop") });
   drop.addEventListener("dragover", (e) => { e.preventDefault(); drop.classList.add("over"); });
   drop.addEventListener("dragleave", () => drop.classList.remove("over"));
@@ -236,7 +210,7 @@ async function importFromFile(file: File, st: UserStore, msg: HTMLElement): Prom
   }
 }
 
-// ── Sync code (copy/paste) ─────────────────────────────────────────────────
+
 function renderSyncCodeSection(st: UserStore): HTMLElement {
   const wrap = section(tt("sync.codeTitle"));
   const msg = status();
@@ -289,7 +263,7 @@ function renderSyncCodeSection(st: UserStore): HTMLElement {
   return wrap;
 }
 
-// ── BYO-URL pull (Stage-1 pull-only) ───────────────────────────────────────
+
 function renderUrlPullSection(st: UserStore): HTMLElement {
   const wrap = section(tt("sync.pullTitle"));
   const msg = status();
@@ -322,7 +296,7 @@ function renderUrlPullSection(st: UserStore): HTMLElement {
   return wrap;
 }
 
-// ── Anki export ────────────────────────────────────────────────────────────
+
 function renderAnkiSection(st: UserStore): HTMLElement {
   const wrap = section(tt("sync.ankiTitle"));
   const msg = status();

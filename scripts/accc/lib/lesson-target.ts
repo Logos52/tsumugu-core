@@ -38,7 +38,7 @@ export interface VocabRow {
 
 const HAN_RE = /\p{Script=Han}/u;
 
-/** Parse `b4l3`, `b4l03`, or `{book,lesson}` into canonical `b4l03`. */
+
 export function parseLessonRef(
   ref: string | { book: number; lesson: number },
 ): LessonCoords {
@@ -79,7 +79,7 @@ export function ordinalFromCanonical(canonical: string): number {
   return lessonOrdinal(book, lesson);
 }
 
-/** Minimal RFC-style CSV row parser (handles quoted commas). */
+
 export function parseCsvRow(line: string): string[] {
   const fields: string[] = [];
   let current = "";
@@ -239,7 +239,7 @@ export function resolveLessonTarget(
   };
 }
 
-/** Gate-facing grammar markers derived from ACCC grammar points. */
+
 export function grammarMarkers(points: GrammarPoint[]): string[] {
   return points.map((p) => p.name_zh).filter(Boolean);
 }

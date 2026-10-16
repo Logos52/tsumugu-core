@@ -46,7 +46,7 @@ describe("dict-sync freshness gate", () => {
       "entries-0.json": "[1,2,3]",
       "cjk-0.json": "[9]",
     });
-    // vendored is missing the newer family → stale
+    
     seed(dest, { "entries-meta.json": JSON.stringify({ count: 10178 }), "entries-0.json": "[1,2,3]" });
     const res = checkFreshness(source, dest);
     expect(res.ok).toBe(false);
@@ -73,7 +73,7 @@ describe("dict-sync freshness gate", () => {
     seed(dest, { "stale-legacy.json": "[0]" });
     copyFullSet(source, dest);
     const m = shardManifest(dest);
-    expect(m.files).toBe(2); // only source files remain
+    expect(m.files).toBe(2); 
   });
 
   it("copyFullSet throws loudly when source is absent", () => {

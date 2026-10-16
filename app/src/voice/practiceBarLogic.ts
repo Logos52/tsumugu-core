@@ -1,8 +1,4 @@
-/**
- * Pure logic for the segment-loop practice bar (data-free port).
- * No DOM, no wavesurfer. Used by practice bar impl and A/B loop.
- * Inert w/o assets; demo supports.
- */
+
 
 export interface Bounds {
   start: number;

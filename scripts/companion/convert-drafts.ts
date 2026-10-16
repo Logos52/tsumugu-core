@@ -1,42 +1,5 @@
 #!/usr/bin/env tsx
-/**
- * convert-drafts — drafts → prepared-content@2 companion converter.
- *
- *   pnpm companion:convert
- *
- * For every lesson JSON in `mockups/drafts/` (46 files; `_STATUS.json` / any
- * `_*.json` skipped) this:
- *   1. Segments each reading with the pipeline's Node-side segmenter and bakes
- *      the EN + Hán-Việt rails via `populateDualRail`, emitting a valid
- *      `tsumugu/prepared-content@2` document (accepted by `parsePreparedContent`).
- *   2. Resolves the authoritative LessonTarget from the unit id (dangdai CSV +
- *      merged grammar index) and runs the A–H gate (`verifyReading`, invoked
- *      inside `populateDualRail`) on every reading — recording EVERY outcome
- *      (hard failures, could-not-run checks, advisory notes) without relaxing,
- *      skipping, or reinterpreting any threshold, and never crashing the batch.
- *   3. Writes per-reading prepared JSON, a full CatalogEntry[] manifest, a
- *      machine-readable gate report, and a human GATE-REPORT.md summary.
- *
- * Outputs land under `out/companion/`.
- *
- * ── Title rule (deterministic) ────────────────────────────────────────────
- *   `<lesson title from lesson-highlights.json> · <format><CJK ordinal>`
- *   e.g. "Welcome to Taiwan! · 對話一" (R1), "… · 自述二" (R2), "… · 短文三" (R3).
- *   The ordinal is the 1-indexed reading position rendered as 一/二/三…；the
- *   format is the draft reading's `format` field verbatim.
- *
- * ── Kind map (draft `format` → CatalogEntry.kind) ─────────────────────────
- *   對話 → dialogue   問答 → dialogue
- *   自述 → story      短文 → story    日記 → story    比較 → story
- *   報導 → explainer  廣播 → explainer
- *   (fallback → story). ReadingKind has no companion-specific value, so the
- *   eight corpus formats collapse onto story/dialogue/explainer.
- *
- * ── Band / TOCFL clamp (DELIBERATE — flagged in the report) ───────────────
- *   book 1 → A1 / TOCFL 1;  book 2 → A2 / TOCFL 2;  books 3+ → B1 / TOCFL 3.
- *   The app exposes exactly three rungs (A1/A2/B1), so books 3, 4, 5, 6 all
- *   clamp to B1/TOCFL-3. This is lossy above book 3.
- */
+
 import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -59,15 +22,10 @@ const OUT_DIR = join(REPO_ROOT, "out", "companion");
 const READINGS_OUT = join(OUT_DIR, "readings");
 const POLYPHONE_LOG = join(OUT_DIR, "polyphone-candidates.jsonl");
 
-/** Companion manifest row — identical to CatalogEntry but origin is "companion"
- *  (as instructed by the task). NOTE: CatalogEntry.origin is typed "generated"
- *  only; the app's manifest fetch blind-casts JSON so this flows through at
- *  runtime, but it is off the published union — flagged in the report. */
+
 type CompanionEntry = Omit<CatalogEntry, "origin"> & { origin: "companion" };
 
-/** App CorePreparedMeta shape (app/src/catalog/preparedMeta.ts) — distinct from
- *  the dualRail string-shaped `core`; we overwrite the latter with this so the
- *  file is consumable by enrichCatalogEntry / publish:readings. */
+
 interface AppCore {
   band: "A1" | "A2" | "B1";
   tocfl: 1 | 2 | 3;
@@ -102,9 +60,7 @@ function kindForFormat(format: string): ReadingKind {
   return KIND_MAP[format] ?? "story";
 }
 
-/** Expand `X（＝Y）` alternate-form vocab entries (2 in the CSV: 臺灣（＝台灣）,
- *  教部（＝教育部）) into their surface forms — the raw compound never matches
- *  running text, so segmentation needs the split forms. */
+
 function vocabSurfaceForms(entry: string): string[] {
   const m = /^(.+?)（＝(.+?)）$/.exec(entry);
   return m ? [m[1]!, m[2]!] : [entry];
@@ -119,11 +75,10 @@ function cjkOrdinal(n: number): string {
 function bandForBook(book: number): { band: "A1" | "A2" | "B1"; tocfl: 1 | 2 | 3 } {
   if (book <= 1) return { band: "A1", tocfl: 1 };
   if (book === 2) return { band: "A2", tocfl: 2 };
-  return { band: "B1", tocfl: 3 }; // books 3+ clamp to the top rung
+  return { band: "B1", tocfl: 3 }; 
 }
 
-/** Load pinyin/meaning lookup + the set of Character-Name proper nouns.
- *  Contract-1: CSV loaders do NOT drop Character-Name rows — the caller must. */
+
 function loadVocab(): { lookup: Map<string, { pinyin?: string; meaning?: string }>; names: Set<string> } {
   const raw = readFileSync(VOCAB_CSV, "utf8");
   const lines = raw.split(/\r?\n/).filter((l) => l.trim().length > 0);
@@ -149,7 +104,7 @@ interface ReadingRecord {
   unit: string;
   readingId: string;
   format: string;
-  file: string; // catalog path (vault-relative)
+  file: string; 
   title: string;
   book: number;
   lesson: number;
@@ -169,7 +124,7 @@ interface ReadingRecord {
   error?: string;
 }
 
-// Reason-prefix → check bucket for the matrix.
+
 const CHECK_BUCKETS = [
   "prose",
   "newVocab",
@@ -223,15 +178,15 @@ async function main(): Promise<void> {
     const readings: DraftReading[] = Array.isArray(draftDoc) ? draftDoc : draftDoc.readings;
 
     const target = resolveLessonTarget(unit);
-    // Contract-1 caller-filter: drop textbook Character-Name proper nouns from the
-    // gate's new-vocab target (the companion deliberately never uses the textbook
-    // cast — copyright rule). Cumulative is left intact (aids segmentation, harmless).
+    
+    
+    
     const filteredTarget = {
       ...target,
       newVocab: target.newVocab.filter((w) => !characterNames.has(w)),
     };
-    // Segmentation lexicon = cumulative + new vocab with alternate-form entries
-    // (臺灣（＝台灣）…) expanded to their surface forms.
+    
+    
     const segmentLexicon = new Set(
       [...filteredTarget.cumulativeVocab, ...filteredTarget.newVocab].flatMap(vocabSurfaceForms),
     );
@@ -284,21 +239,21 @@ async function main(): Promise<void> {
           vocabLookup,
           polyphoneLogPath: POLYPHONE_LOG,
           knownWords: segmentLexicon,
-          // Greedy longest-match against the lesson lexicon — jieba's
-          // Simplified-oriented dict over-fragments this Traditional corpus
-          // (歡迎→歡|迎, 臺灣→臺|灣), distorting wordCounts/totalWords/ciMeasured.
+          
+          
+          
           segmenter: "greedy",
         });
 
-        // newWords for the app catalog = distinct filtered new-vocab terms that
-        // actually surface in THIS reading (per-reading granularity).
+        
+        
         const wordSet = new Set(prepared.tokens.filter((t) => t.isWord).map((t) => t.text));
         const newWordsHere = filteredTarget.newVocab.filter((w) => wordSet.has(w)).length;
 
-        // Overwrite the dualRail string-shaped `core` with the app's
-        // CorePreparedMeta shape so the file is consumable by enrichCatalogEntry
-        // / publish:readings. fingerprint + acccBinding are kept (extra fields
-        // are tolerated by parsePreparedContent).
+        
+        
+        
+        
         const appPrepared: AppPrepared = {
           ...prepared,
           core: {
@@ -343,7 +298,7 @@ async function main(): Promise<void> {
     }
   }
 
-  // Manifest sort: band order → book → lesson → reading id.
+  
   const bandOrder: Record<string, number> = { A1: 0, A2: 1, B1: 2 };
   manifest.sort((a, b) => {
     const ba = bandOrder[a.band] ?? 9;
@@ -361,7 +316,7 @@ async function main(): Promise<void> {
   writeFileSync(join(OUT_DIR, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
   touchedFiles.add(join(OUT_DIR, "manifest.json"));
 
-  // ── gate-report.json (per-reading, per-check) ───────────────────────────
+  
   const gateJson = {
     generatedAt: new Date().toISOString(),
     totals: {
@@ -377,11 +332,11 @@ async function main(): Promise<void> {
   writeFileSync(join(OUT_DIR, "gate-report.json"), `${JSON.stringify(gateJson, null, 2)}\n`, "utf8");
   touchedFiles.add(join(OUT_DIR, "gate-report.json"));
 
-  // ── GATE-REPORT.md summary matrix ───────────────────────────────────────
+  
   const books = [...new Set(records.map((r) => r.book))].sort((a, b) => a - b);
   const bookReadings = (bk: number) => records.filter((r) => r.book === bk);
 
-  // Per book × per check: count readings that emitted ≥1 hard reason in bucket.
+  
   const matrixRows: string[] = [];
   matrixRows.push(`| book | readings | ${CHECK_BUCKETS.join(" | ")} |`);
   matrixRows.push(`| --- | --- | ${CHECK_BUCKETS.map(() => "---").join(" | ")} |`);
@@ -402,7 +357,7 @@ async function main(): Promise<void> {
     .sort((a, b) => b.gate.reasons.length - a.gate.reasons.length)
     .slice(0, 20);
 
-  // Polyphone log stats.
+  
   let polyRows = 0;
   const polyChars = new Set<string>();
   try {
@@ -413,12 +368,12 @@ async function main(): Promise<void> {
         const o = JSON.parse(ln) as { char?: string };
         if (o.char) polyChars.add(o.char);
       } catch {
-        /* skip malformed */
+        
       }
     }
     touchedFiles.add(POLYPHONE_LOG);
   } catch {
-    /* no polyphone log emitted */
+    
   }
 
   const md: string[] = [];

@@ -1,4 +1,4 @@
-/** Minimal argv parser: `--key value` pairs and `--flag` booleans. */
+
 export interface ParsedArgs {
   _: string[];
   opts: Record<string, string | boolean>;

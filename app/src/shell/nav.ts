@@ -1,17 +1,4 @@
-/**
- * App shell navigation: Verdigris TopNav (single-palette Bound Volume direction).
- * Sticky header = brand (紡 seal + Tsumugu + Beta pill) · bilingual Han+English nav
- * (Home · 課本架 Library · 讀 Reader · 誌 Blog · About) · rail switch · import ·
- * ⌘K search hint · 設 (settings popover) · Sync · light/dark theme toggle.
- * Grammar + Flashcards links are gone; the dictionary is never a nav tab
- * (it is reached via ⌘K and /c/ links). Vanilla DOM; wires into router + settings.
- *
- * The palette switcher is retired with the single-palette pick; only the theme
- * (light/dark) toggle remains. Brand lockup = 紡 seal + "Tsumugu" + a small green
- * "Beta" pill. `誌 Blog` leaves the SPA to the static /blog/ index (router.blogHref).
- * Chrome CSS (`.tsg-topnav`, `.primary-nav`, `.site-footer`, …) lives in the app
- * stylesheets; this module renders the markup + wires the JS.
- */
+
 
 import { applyI18n, tKey as t } from "../i18n/strings.js";
 import type { ReaderSettings } from "../app/settings.js";
@@ -21,11 +8,7 @@ import { FEATURES } from "../config/features.js";
 import { mountSettingsView } from "../settings/SettingsView.js";
 import { renderAppFooter } from "./footer.js";
 
-/**
- * Surfaces the header can drive via {@link TopNavController.setActive}. `about`
- * is included so the About nav item carries `aria-current`; `blog` is not a
- * surface here (it is a full-page link out of the SPA).
- */
+
 export type NavSurface = "home" | "library" | "account" | "reader" | "about";
 
 export interface TopNavController {
@@ -36,7 +19,7 @@ export interface TopNavController {
   destroy(): void;
 }
 
-/** Sync nav entry shows only when the local Sync panel ships (VITE_FEATURE_SYNC). */
+
 const SYNC_ON = FEATURES.sync === true;
 
 export function createTopNav(opts: {
@@ -47,7 +30,7 @@ export function createTopNav(opts: {
   onImport: () => void;
   onCommandK: () => void;
   onContinue: () => void;
-  /** Settings popover content (Lane C's SettingsView). */
+  
   getSettings: () => ReaderSettings;
   onSettingsChange: (patch: Partial<ReaderSettings>) => void;
   initialRail?: "en" | "vi";
@@ -58,7 +41,7 @@ export function createTopNav(opts: {
   const header = document.createElement("header");
   header.className = "topnav tsg-topnav";
 
-  // a11y skip link
+  
   const skip = document.createElement("a");
   skip.href = "#surface";
   skip.className = "tsg-skip-link";
@@ -97,7 +80,7 @@ export function createTopNav(opts: {
     <button class="iconbtn theme-toggle" id="themeBtn" type="button" title="Light / dark" data-i18n-title="settings.theme">☀</button>
   `;
 
-  // Settings popover (mounts Lane C's SettingsView on first open)
+  
   const settingsPop = document.createElement("div");
   settingsPop.className = "tsg-settings-pop";
   settingsPop.setAttribute("role", "dialog");
@@ -105,15 +88,15 @@ export function createTopNav(opts: {
   header.append(settingsPop);
   let settingsMounted = false;
 
-  // ── Nav links ──────────────────────────────────────────────────────────
-  // SPA routes are intercepted (preventDefault) so an existing deep link
-  // (e.g. `#read=<path>`) is not clobbered by the anchor's bare hash. `blog`
-  // is a real navigation out of the SPA to the static /blog/ index, so its
-  // click is left to the browser.
+  
+  
+  
+  
+  
   header.querySelectorAll<HTMLAnchorElement>(".navlink, .brand").forEach((link) => {
     link.addEventListener("click", (ev) => {
       const nav = link.dataset.nav;
-      if (nav === "blog") return; // full-page navigation to /blog/
+      if (nav === "blog") return; 
       if (nav === "continue") {
         ev.preventDefault();
         opts.onContinue();
@@ -130,7 +113,7 @@ export function createTopNav(opts: {
     });
   });
 
-  // ── Rail switcher ──────────────────────────────────────────────────────
+  
   const railSeg = header.querySelector<HTMLDivElement>("#railSeg")!;
   const railBtns = railSeg.querySelectorAll<HTMLButtonElement>("button[data-rail]");
   railBtns.forEach((btn) => {
@@ -145,7 +128,7 @@ export function createTopNav(opts: {
     });
   });
 
-  // ── Theme toggle ───────────────────────────────────────────────────────
+  
   const themeBtn = header.querySelector<HTMLButtonElement>("#themeBtn")!;
   function updateThemeBtn(theme: "light" | "dark") {
     themeBtn.textContent = theme === "dark" ? "☾" : "☀";
@@ -157,11 +140,11 @@ export function createTopNav(opts: {
     opts.onThemeToggle();
   });
 
-  // ── Import + ⌘K ────────────────────────────────────────────────────────
+  
   header.querySelector<HTMLButtonElement>("#importBtn")?.addEventListener("click", () => opts.onImport());
   header.querySelector<HTMLButtonElement>("#cmdkBtn")?.addEventListener("click", () => opts.onCommandK());
 
-  // ── 設 settings popover ─────────────────────────────────────────────────
+  
   const settingsBtn = header.querySelector<HTMLButtonElement>("#settingsBtn")!;
   function closeSettings() {
     settingsPop.hidden = true;
@@ -190,7 +173,7 @@ export function createTopNav(opts: {
     closeSettings();
   });
 
-  // ── initial state ──────────────────────────────────────────────────────
+  
   updateThemeBtn((document.documentElement.dataset.theme as "light" | "dark") || "light");
   setActiveClass(header, "home");
 
@@ -208,7 +191,7 @@ export function createTopNav(opts: {
   }
 
   function setLoggedIn(_li: boolean) {
-    // Sync/account label is Lane C's Sync surface; no auth chip in v1 chrome.
+    
   }
 
   function destroy() {
@@ -227,7 +210,7 @@ function setActiveClass(header: HTMLElement, surface: NavSurface) {
   });
 }
 
-/** Helper: apply settings patch from global rail etc. */
+
 export function syncRailToSettings(rail: "en" | "vi", onPatch: (p: Partial<ReaderSettings>) => void): void {
   const patch: Partial<ReaderSettings> = {
     rail,
@@ -240,7 +223,7 @@ export function syncRailToSettings(rail: "en" | "vi", onPatch: (p: Partial<Reade
   });
 }
 
-/** Render the shared site footer + apply i18n (links use hash routes / static blog). */
+
 export function wireAppFooter(): void {
   const footer = document.getElementById("app-footer");
   if (!footer) return;

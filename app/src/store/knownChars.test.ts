@@ -1,4 +1,4 @@
-// @vitest-environment happy-dom
+
 import { beforeEach, describe, expect, it } from "vitest";
 import { WordStore } from "@tsumugu/engine";
 import {
@@ -28,7 +28,7 @@ describe("knownChars derivation (C5)", () => {
 
   it("does not tint characters of an unknown word", () => {
     const store = new WordStore();
-    store.setStatus("zh-Hant", "困難", "2"); // still learning
+    store.setStatus("zh-Hant", "困難", "2"); 
     const chars = deriveKnownChars(store);
     expect(chars).not.toContain("困");
     expect(chars).not.toContain("難");

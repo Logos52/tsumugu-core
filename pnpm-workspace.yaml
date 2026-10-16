@@ -2,5 +2,5 @@ packages:
   - "."
   - "packages/*"
   - "../tsumugu/packages/engine"
-
-
+allowBuilds:
+  esbuild: true

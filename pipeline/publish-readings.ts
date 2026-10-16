@@ -1,7 +1,5 @@
 #!/usr/bin/env tsx
-/**
- * Emit `__readings.json` from generated `*.prepared.json` in the static vault.
- */
+
 import { readdir, writeFile, mkdir } from "node:fs/promises";
 import { join, relative } from "node:path";
 import { enrichCatalogEntry } from "./lib/catalogEnrich.js";

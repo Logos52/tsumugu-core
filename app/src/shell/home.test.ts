@@ -1,4 +1,4 @@
-// @vitest-environment happy-dom
+
 import { describe, expect, it, beforeEach, afterEach } from "vitest";
 import { createHomeSurface } from "./home.js";
 import { tKey as t } from "../i18n/strings.js";

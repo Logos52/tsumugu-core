@@ -1,11 +1,11 @@
 import type { ReaderState } from "./state.js";
 import { newTargetCount } from "../types/corePrepared.js";
 
-// The chrome never narrates itself (DESIGN-PRINCIPLES §11): no provenance
-// chip, no status legend, no how-to hint — the marks teach by being used.
+
+
 const VI = {
-  // `core` key retained for shape compatibility; the brand tag is now the
-  // "Beta" pill in the shell header (no longer painted into chrome).
+  
+  
   core: "Beta",
   newSuffix: " từ mới",
   aAdd: "+ Thêm thẻ",
@@ -13,8 +13,8 @@ const VI = {
 };
 
 const EN = {
-  // `core` key retained for shape compatibility; the brand tag is now the
-  // "Beta" pill in the shell header (no longer painted into chrome).
+  
+  
   core: "Beta",
   newSuffix: " new",
   aAdd: "+ Add card",

@@ -49,7 +49,7 @@ describe("wordPopup lookup-is-capture", () => {
     const anchor = document.createElement("span");
     popup.open("望", anchor);
 
-    // let the shard lookup + form paint settle
+    
     await Promise.resolve();
     await Promise.resolve();
 

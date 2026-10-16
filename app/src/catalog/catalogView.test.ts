@@ -1,4 +1,4 @@
-// @vitest-environment happy-dom
+
 import { describe, expect, it, beforeEach } from "vitest";
 import { WordStore } from "@tsumugu/engine";
 import { mountCatalogView } from "./catalogView.js";
@@ -39,7 +39,7 @@ describe("catalogView (Bound Volume library)", () => {
   it("groups spreadsheet rows by lesson (冊/課) with group header rows", () => {
     mount(root, new WordStore());
     const groups = root.querySelectorAll(".catalog-sec tbody tr.grp");
-    expect(groups.length).toBeGreaterThanOrEqual(3); // ≥2 bound lessons + ≥1 free band bucket
+    expect(groups.length).toBeGreaterThanOrEqual(3); 
     expect(root.querySelector(".catalog-sec")?.textContent).toContain("篇");
   });
 
@@ -109,18 +109,18 @@ describe("catalogView (Bound Volume library)", () => {
     const tbody = root.querySelector<HTMLElement>(".catalog-sec tbody")!;
     const lens = (): number[] => [...rows(root)].map((r) => Number((r as HTMLElement).dataset.len));
 
-    th.click(); // ascending
+    th.click(); 
     expect(tbody.classList.contains("sorted")).toBe(true);
     expect(th.getAttribute("aria-sort")).toBe("ascending");
     const asc = lens();
     expect(asc).toEqual([...asc].sort((a, b) => a - b));
 
-    th.click(); // descending
+    th.click(); 
     expect(th.getAttribute("aria-sort")).toBe("descending");
     const desc = lens();
     expect(desc).toEqual([...desc].sort((a, b) => b - a));
 
-    th.click(); // back to shelf order
+    th.click(); 
     expect(tbody.classList.contains("sorted")).toBe(false);
     expect(th.getAttribute("aria-sort")).toBe("none");
   });

@@ -8,7 +8,7 @@ export interface CorePreparedMeta {
     kind: ReadingKind;
     newWords: number;
     binding?: LessonBinding;
-    topic?: string; // for facets + search
+    topic?: string; 
   };
 }
 

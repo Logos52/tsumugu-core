@@ -63,7 +63,7 @@ export function createReaderState(
     gradeWord(word: string, status: WordStatus): void {
       store.setStatus(state.lang, word, status, clock);
       saveStore(store);
-      // Notify central user store (debounced sync + metadata)
+      
       try { getUserStore().notifyChange(); } catch {}
       trackEvent("grade", { word, status });
       emit("status");
@@ -84,7 +84,7 @@ export function createReaderState(
 
     setTranscript(t: TranscriptDoc | null): void {
       state.transcript = t || null;
-      emit("content"); // reuse for re-render cues
+      emit("content"); 
     },
 
     setVoiceBinding(b: VoiceNotesBinding | null): void {
@@ -99,7 +99,7 @@ export function createReaderState(
     updateSettings(patch: Partial<ReaderSettings>): void {
       state.settings = { ...state.settings, ...patch };
       saveSettings(state.settings);
-      // Push into user doc (profile/settings) when logged in
+      
       try { getUserStore().updateSettings(patch); } catch {}
       emit("settings");
     },

@@ -49,7 +49,7 @@ export function mountImportPanel(
   actions.append(clearBtn, pickBtn, submitBtn);
   panel.append(title, notice, caption, textarea, fileInput, error, actions);
 
-  // Drag + drop support (paste UI polish)
+  
   const dropTarget = textarea;
   ["dragenter", "dragover"].forEach((ev) => dropTarget.addEventListener(ev, (e) => { e.preventDefault(); dropTarget.style.borderColor = "var(--tsg-accent)"; }));
   dropTarget.addEventListener("dragleave", () => { dropTarget.style.borderColor = ""; });
@@ -60,7 +60,7 @@ export function mountImportPanel(
     if (file) await loadFileIntoTextarea(file, textarea, setError);
   });
 
-  // File picker + EPUB/text support (client-side only, no MT, no network)
+  
   pickBtn.addEventListener("click", () => fileInput.click());
   fileInput.addEventListener("change", async () => {
     const f = fileInput.files?.[0];
@@ -94,7 +94,7 @@ export function mountImportPanel(
   };
 
   const open = (): void => {
-    // Refresh rail-dependent copy (EN/VI) at open time.
+    
     notice.textContent = importPrivacyNotice();
     caption.textContent = importCaption();
     backdrop.classList.remove("tsg-import-hidden");
@@ -106,21 +106,21 @@ export function mountImportPanel(
     setError(null);
   });
 
-  // Client-side file/EPUB loader (no network, no MT). .txt/.md direct; .epub basic text extraction (spine html text).
+  
   async function loadFileIntoTextarea(file: File, ta: HTMLTextAreaElement, setErr: (m: string | null) => void): Promise<void> {
     setErr(null);
     const name = file.name.toLowerCase();
     try {
       if (name.endsWith(".epub")) {
-        // Minimal client EPUB text extraction: read zip-ish bytes, decode html parts as utf8 text.
-        // (Full zip central-dir parse would be longer; this grabs readable text chunks for polish.)
+        
+        
         const buf = await file.arrayBuffer();
         const bytes = new Uint8Array(buf);
         let text = "";
-        // Scan for common epub html/xhtml content markers and decode segments (best-effort, pure browser)
+        
         for (let i = 0; i < bytes.length - 20; i++) {
-          if (bytes[i] === 0x3C && (bytes[i+1] === 0x68 || bytes[i+1] === 0x78)) { // <h or <x
-            // take a window and decode
+          if (bytes[i] === 0x3C && (bytes[i+1] === 0x68 || bytes[i+1] === 0x78)) { 
+            
             const slice = bytes.slice(i, Math.min(i + 4096, bytes.length));
             try {
               const dec = new TextDecoder("utf-8", { fatal: false }).decode(slice);
@@ -133,7 +133,7 @@ export function mountImportPanel(
         ta.value = text.slice(0, 18000);
         return;
       }
-      // txt / md / plain
+      
       const txt = await file.text();
       ta.value = txt;
     } catch (e) {

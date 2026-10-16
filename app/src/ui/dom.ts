@@ -1,6 +1,4 @@
-/**
- * Tiny hyperscript helper so views create DOM consistently. No framework.
- */
+
 
 type Child = Node | string | number | null | undefined | false;
 
@@ -54,14 +52,12 @@ export function el<K extends keyof HTMLElementTagNameMap>(
   return node;
 }
 
-/** Remove all children of a node. */
+
 export function clear(node: Element): void {
   while (node.firstChild) node.removeChild(node.firstChild);
 }
 
-/** Embed patterns stub (quick win): light web-component-like preview or json embed.
- * For future share cards or external sites.
- */
+
 export function embedPatternStub(data: { title: string; rail: string }, container: HTMLElement): void {
   const stub = document.createElement("div");
   stub.className = "tsg-embed-stub";

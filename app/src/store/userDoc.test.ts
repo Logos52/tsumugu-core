@@ -43,7 +43,7 @@ describe("UserDoc portability (C4)", () => {
   it("A → B → regrade both → re-sync: zero demotions, zero lost notes/tags", () => {
     const base = emptyUserDoc("u", "", DEFAULT_SETTINGS);
 
-    // Device A: 朋友 known (with notes + tags), 山 still learning.
+    
     const a = new WordStore();
     a.upsert({
       lang: "zh-Hant",
@@ -56,7 +56,7 @@ describe("UserDoc portability (C4)", () => {
     a.upsert({ lang: "zh-Hant", word: "山", status: "2", statusUpdatedAt: "2026-06-24T10:00:00.000Z" });
     const docA = toUserDoc(a, base, "2026-06-24T10:00:00.000Z");
 
-    // Device B imports A into an empty local store, then grades 山→known and adds 水.
+    
     const emptyB = emptyUserDoc("u", "", DEFAULT_SETTINGS);
     const { merged: onB } = mergeUserDocs(emptyB, docA, "2026-06-24T11:00:00.000Z");
     const bStore = WordStore.fromDoc(onB.store);
@@ -64,22 +64,22 @@ describe("UserDoc portability (C4)", () => {
     bStore.setStatus("zh-Hant", "水", "4", undefined, { at: "2026-06-25T09:05:00.000Z" });
     const docB = toUserDoc(bStore, onB, "2026-06-25T09:10:00.000Z");
 
-    // Meanwhile A accidentally demotes 朋友 with an OLDER clock — must not win.
+    
     const a2 = WordStore.fromDoc(docA.store);
     a2.setStatus("zh-Hant", "朋友", "2", undefined, { at: "2026-06-23T00:00:00.000Z" });
     const docA2 = toUserDoc(a2, docA, "2026-06-25T10:00:00.000Z");
 
-    // Re-sync B back into A2.
+    
     const { merged: final } = mergeUserDocs(docA2, docB, "2026-06-25T11:00:00.000Z");
     const fs = WordStore.fromDoc(final.store);
 
-    expect(fs.getStatus("zh-Hant", "朋友")).toBe("known"); // never demoted
-    expect(fs.getStatus("zh-Hant", "山")).toBe("known"); // B's upgrade preserved
-    expect(fs.getStatus("zh-Hant", "水")).toBe("4"); // new word preserved
+    expect(fs.getStatus("zh-Hant", "朋友")).toBe("known"); 
+    expect(fs.getStatus("zh-Hant", "山")).toBe("known"); 
+    expect(fs.getStatus("zh-Hant", "水")).toBe("4"); 
 
     const pengyou = fs.get("zh-Hant", "朋友");
-    expect(pengyou?.notes).toBe("friend note"); // notes preserved
-    expect(pengyou?.tags).toEqual(expect.arrayContaining(["core", "hsk1"])); // tags preserved
+    expect(pengyou?.notes).toBe("friend note"); 
+    expect(pengyou?.tags).toEqual(expect.arrayContaining(["core", "hsk1"])); 
   });
 
   it("re-imports cleanly after a FUTURE schema bump — no data silently dropped", () => {
@@ -90,7 +90,7 @@ describe("UserDoc portability (C4)", () => {
       entries: [{ id: "ba-construction", status: "known", statusUpdatedAt: "2026-06-24T10:00:00.000Z", notes: "gn", tags: ["g"] }],
     };
 
-    // Simulate a hypothetical future schema version.
+    
     const future = JSON.parse(JSON.stringify({ ...doc, schema: 999 })) as unknown;
     const migrated = migrateUserDoc(future);
 
@@ -118,7 +118,7 @@ describe("UserDoc portability (C4)", () => {
     const migrated = migrateUserDoc(legacy);
     expect(migrated.schema).toBe(USER_DOC_SCHEMA);
     expect(migrated.grammar).toBeUndefined();
-    expect(migrated.profile.email).toBe(""); // zero-PII
+    expect(migrated.profile.email).toBe(""); 
     expect(WordStore.fromDoc(migrated.store).getStatus("zh-Hant", "你好")).toBe("known");
   });
 });
@@ -134,7 +134,7 @@ describe("grammar-known slot (C7)", () => {
       updatedAt: "2026-06-25T00:00:00.000Z",
       grammar: {
         entries: [
-          { id: "g1", status: "2", statusUpdatedAt: "2026-06-23T00:00:00.000Z" }, // older, lower — must lose
+          { id: "g1", status: "2", statusUpdatedAt: "2026-06-23T00:00:00.000Z" }, 
           { id: "g2", status: "4", statusUpdatedAt: "2026-06-25T00:00:00.000Z" },
         ],
       },

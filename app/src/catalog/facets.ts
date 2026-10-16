@@ -114,7 +114,7 @@ export function applyFacets(catalog: CatalogEntry[], f: CatalogFacets): CatalogE
   });
 }
 
-/** Extended query state for Library (facets + search + sort), roundtrippable via hash. */
+
 export interface LibraryQuery {
   facets: CatalogFacets;
   search: string;
@@ -151,7 +151,7 @@ export function sortEntries(entries: CatalogEntry[], mode: SortMode): CatalogEnt
   if (mode === "length") {
     return copy.sort((a, b) => (b.minutes - a.minutes) || (a.title || "").localeCompare(b.title || ""));
   }
-  // level (default): by band then title
+  
   const bandOrder: Record<Band, number> = { A1: 0, A2: 1, B1: 2 };
   return copy.sort((a, b) => bandOrder[a.band] - bandOrder[b.band] || (a.title || "").localeCompare(b.title || ""));
 }

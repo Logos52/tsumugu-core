@@ -32,17 +32,11 @@ export interface PolyphoneCandidate {
   readings: string[];
   chosen?: string;
   hvAmbiguous: boolean;
-  /** g2pW candidate / to-integrate — not wired in v1 */
+  
   g2pwStatus: "candidate / to-integrate";
 }
 
-/**
- * Core metadata block baked into each generated reading. Emitted in a
- * `CatalogEntry`-compatible shape (see `app/src/catalog/types.ts` +
- * `catalog/preparedMeta.ts`) so `pipeline/lib/catalogEnrich.ts` composes it
- * without a shape mismatch: object-form `binding`, numeric `tocfl` / `newWords`,
- * `topic`. The reader chrome also reads `binding.book`/`binding.lesson`.
- */
+
 export interface CoreMetadata {
   band: Band;
   tocfl: 1 | 2 | 3;
@@ -63,12 +57,12 @@ function toKind(s: string): ReadingKind {
   return (VALID_KINDS as readonly string[]).includes(s) ? (s as ReadingKind) : "story";
 }
 
-/** Numeric TOCFL band the catalog indexes on (A1→1, A2→2, B1→3). */
+
 function tocflFromBand(band: Band): 1 | 2 | 3 {
   return band === "A1" ? 1 : band === "A2" ? 2 : 3;
 }
 
-/** Parse an ACCC lesson id (`b4l03`) into object-form `LessonBinding`. */
+
 export function parseLessonBinding(lesson: string): LessonBinding | undefined {
   const m = /^b(\d+)l0*(\d+)$/i.exec(lesson.trim());
   if (!m) return undefined;
@@ -103,7 +97,7 @@ export interface DualRailOptions {
   band: string;
   kind: string;
   title?: string;
-  /** Facet topic carried into `core.topic` (catalog search/facets). */
+  
   topic?: string;
   vocabLookup?: Map<string, VocabLookup>;
   hanviet?: HanVietIndex;
@@ -111,9 +105,7 @@ export interface DualRailOptions {
   defLevelIndex?: DefLevelIndex;
   polyphoneLogPath?: string;
   knownWords?: Set<string>;
-  /** Segmentation strategy. "jieba" (default) = jieba-wasm with greedy refinement;
-   *  "greedy" = pure longest-match against the lesson lexicon (correct for this
-   *  Traditional corpus, where jieba's Simplified-oriented dict over-fragments). */
+  
   segmenter?: "jieba" | "greedy";
 }
 
@@ -123,7 +115,7 @@ export interface DualRailResult {
   gateReport: Awaited<ReturnType<typeof verifyReading>>;
 }
 
-/** Greedy longest-match segmentation (sync fallback / tests). */
+
 export const segmentDraft = segmentDraftGreedy;
 
 function defaultCeiling(target: AcccLessonTarget): string {
@@ -188,7 +180,7 @@ function buildBridgeForWord(
     const reading = readings[0]!;
     morphemes.push({ surface: ch, etymon: ch, reading });
     if (!charViHas(charVi, ch)) {
-      // Ungrounded — still surface for gate to fail closed.
+      
       morphemes[morphemes.length - 1]!.reading = reading;
     }
   }
@@ -236,10 +228,7 @@ function buildGlossaryEntry(
   return entry;
 }
 
-/**
- * Turn an accepted draft into PREPARED_CONTENT_SCHEMA_V2 with EN+VI rails baked.
- * Polyphone chars are flagged — g2pW is candidate / to-integrate only (v1).
- */
+
 export async function populateDualRail(opts: DualRailOptions): Promise<DualRailResult> {
   const segmentLexicon =
     opts.knownWords ??
@@ -250,7 +239,7 @@ export async function populateDualRail(opts: DualRailOptions): Promise<DualRailR
       : await segmentDraftAsync(opts.draft, segmentLexicon);
   const wordSet = new Set(tokens.filter((t) => t.isWord).map((t) => t.text));
   const newVocabSet = new Set(opts.lessonTarget.newVocab);
-  /** Prior-lesson cumulative — new-target words still need rails baked. */
+  
   const priorKnown = new Set(
     opts.lessonTarget.cumulativeVocab.filter((w) => !newVocabSet.has(w)),
   );
@@ -262,8 +251,8 @@ export async function populateDualRail(opts: DualRailOptions): Promise<DualRailR
     try {
       defLevelIndex = loadDefLevelIndex();
     } catch {
-      // private pack absent (common in this workspace); verifyReading will surface
-      // "defLevelIndex not provided" reason and gate will fail-closed on in-band.
+      
+      
     }
   }
   const polyphones: PolyphoneCandidate[] = [];
@@ -320,7 +309,7 @@ export async function populateDualRail(opts: DualRailOptions): Promise<DualRailR
     ...(defLevelIndex ? { defLevelIndex } : {}),
   });
 
-  // Mechanical support for bridge verification + polyphone handling (labels only; g2pW candidate / to-integrate, no integration).
-  // Ungrounded bridges + ambiguous polyphones surfaced to gateReport + polyphone-candidates.jsonl; fail-closed.
+  
+  
   return { prepared, polyphones, gateReport };
 }

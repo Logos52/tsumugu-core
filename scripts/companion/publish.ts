@@ -1,31 +1,5 @@
 #!/usr/bin/env tsx
-/**
- * Companion publish step (PRD-Companion-Articles §3).
- *
- * Publishes the eligible companion readings into the app vault:
- *   1. GUARD (no writes on failure): every candidate on the eligible list is
- *      re-checked against `gate-report.json` under the SIGNED companion binding
- *      profile (companion-v1). Script / glossary / paragraph / vi-rail reasons
- *      bind; sentence-rule reasons bind after the two signed calibrations
- *      (dialogue-interjection carve-out ≤3 Han with terminal 。！？; band-scaled
- *      length cap 60 Han for Books 1–2, 80 for Books 3+). Advisory families
- *      (in-band A, grammar-marker B, polyphone H, per-reading recycle, CI)
- *      never block. Unknown reason strings FAIL CLOSED (treated as binding).
- *   2. Copies each eligible `out/companion/readings/<id>.prepared.json` →
- *      `app/public/vault/readings/zh-Hant/<id>.prepared.json`.
- *   3. Merges each reading's CatalogEntry (from `out/companion/manifest.json`)
- *      into `app/public/vault/__readings.json` idempotently — keyed by `path`,
- *      re-runs replace, never duplicate — stamped `origin: "companion"`. The
- *      `clean.prepared.json` smoke fixture is removed once real content lands.
- *   4. Emits `app/public/vault/companion-lessons.json` from the 46 units of
- *      `mockups/lesson-highlights.json` (READ-ONLY source): the signed decision
- *      publishes {unit, title, theme, grammar:[{name}]} per lesson.
- *
- * Deterministic output: re-running twice yields a byte-identical vault.
- *
- *   pnpm companion:publish
- *   tsx scripts/companion/publish.ts [--eligible out/companion/eligible-YYYY-MM-DD.json]
- */
+
 import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -34,17 +8,17 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(HERE, "../..");
 
 export interface PublishPaths {
-  /** Converter manifest: full CatalogEntry[] for all converted drafts. */
+  
   manifest: string;
-  /** Gate report with per-reading `gate.reasons` (post-segmentation-fix run). */
+  
   gateReport: string;
-  /** Eligible list ({ eligible_today: string[] }). */
+  
   eligible: string;
-  /** Directory holding `<id>.prepared.json` conversion outputs. */
+  
   readingsDir: string;
-  /** Vault root (`app/public/vault`). */
+  
   vaultDir: string;
-  /** Curated lesson-highlights JSON (READ-ONLY source, 46 units). */
+  
   highlights: string;
 }
 
@@ -74,7 +48,7 @@ interface CatalogRow {
   [k: string]: unknown;
 }
 
-/** Band-scaled sentence-length cap (signed calibration 2): 60 for B1–2, 80 for B3+. */
+
 export function bandCapFor(book: number): number {
   return book >= 3 ? 80 : 60;
 }
@@ -82,23 +56,19 @@ export function bandCapFor(book: number): number {
 const RE_TOO_SHORT = /^prose: sentences\[\d+\] Han count (\d+) < min \d+: (.+)$/;
 const RE_TOO_LONG = /^prose: sentences\[\d+\] Han count (\d+) > max \d+/;
 
-/**
- * Classify one gate-report reason under the signed companion binding profile.
- * Returns "advisory" (logged, never blocks) or "binding" (blocks publish).
- * Unknown reason shapes fail closed as binding.
- */
+
 export function classifyReason(reason: string, book: number): "advisory" | "binding" {
-  // Advisory families (named flip conditions in the PRD §2).
-  if (reason.startsWith("newVocab:")) return "advisory"; // per-reading recycle
-  if (reason.startsWith("newGrammar:")) return "advisory"; // marker check (B)
-  if (reason.startsWith("polyphone:")) return "advisory"; // HV whitelist pending (H)
-  if (reason.startsWith("ci:")) return "advisory"; // CI advisory by config
+  
+  if (reason.startsWith("newVocab:")) return "advisory"; 
+  if (reason.startsWith("newGrammar:")) return "advisory"; 
+  if (reason.startsWith("polyphone:")) return "advisory"; 
+  if (reason.startsWith("ci:")) return "advisory"; 
   if (reason.startsWith("prose:")) {
-    if (reason.includes("defLevelIndex not provided")) return "advisory"; // in-band (A) cannot run
+    if (reason.includes("defLevelIndex not provided")) return "advisory"; 
     const short = RE_TOO_SHORT.exec(reason);
     if (short) {
-      // Calibration 1: dialogue-interjection carve-out — ≤3 Han complete
-      // utterances (。！？-terminated) are natural beats, not defects.
+      
+      
       const count = Number(short[1]);
       const text = short[2].trim();
       const terminal = text.slice(-1);
@@ -107,16 +77,16 @@ export function classifyReason(reason: string, book: number): "advisory" | "bind
     }
     const long = RE_TOO_LONG.exec(reason);
     if (long) {
-      // Calibration 2: band-scaled cap. Within cap → calibrated out; above → run-on.
+      
       return Number(long[1]) <= bandCapFor(book) ? "advisory" : "binding";
     }
-    return "binding"; // unknown prose reason → fail closed
+    return "binding"; 
   }
-  // script / glossary / paragraph / vi-rail and anything unrecognized bind.
+  
   return "binding";
 }
 
-/** All binding failures for one gate record under the signed profile. */
+
 export function bindingFailures(rec: GateRecord): string[] {
   return rec.gate.reasons.filter((r) => classifyReason(r, rec.book) === "binding");
 }
@@ -139,7 +109,7 @@ export interface CompanionLessonRow {
   grammar: { name: string }[];
 }
 
-/** Project lesson-highlights (46 units) into the published lesson list. */
+
 export function buildCompanionLessons(highlights: Record<string, unknown>): CompanionLessonRow[] {
   return Object.keys(highlights)
     .filter((k) => k !== "_meta")
@@ -164,11 +134,7 @@ export interface PublishResult {
   removedFixture: boolean;
 }
 
-/**
- * Run the publish step. THROWS (before any write) when a candidate's gate
- * record shows a binding failure under the signed profile, is missing from the
- * gate report / manifest, or its prepared reading file is absent.
- */
+
 export function publishCompanion(paths: PublishPaths = defaultPaths()): PublishResult {
   const manifest = JSON.parse(readFileSync(paths.manifest, "utf8")) as CatalogRow[];
   const gateReport = JSON.parse(readFileSync(paths.gateReport, "utf8")) as { readings: GateRecord[] };
@@ -185,7 +151,7 @@ export function publishCompanion(paths: PublishPaths = defaultPaths()): PublishR
   const manifestByPath = new Map<string, CatalogRow>();
   for (const row of manifest) manifestByPath.set(row.path, row);
 
-  // ── GUARD: validate every candidate before ANY write (stale-list defense) ──
+  
   const problems: string[] = [];
   const plan: { id: string; src: string; destName: string; entry: CatalogRow }[] = [];
   for (const id of ids) {
@@ -219,13 +185,13 @@ export function publishCompanion(paths: PublishPaths = defaultPaths()): PublishR
     );
   }
 
-  // ── Writes (guard passed) ──
+  
   const destDir = join(paths.vaultDir, "readings/zh-Hant");
   mkdirSync(destDir, { recursive: true });
 
   for (const p of plan) copyFileSync(p.src, join(destDir, p.destName));
 
-  // Merge into __readings.json idempotently (keyed by path; replace, never duplicate).
+  
   const vaultManifestPath = join(paths.vaultDir, "__readings.json");
   let existing: CatalogRow[] = [];
   if (existsSync(vaultManifestPath)) {
@@ -245,12 +211,12 @@ export function publishCompanion(paths: PublishPaths = defaultPaths()): PublishR
   const rows = [...merged.values()].sort((a, b) => a.path.localeCompare(b.path));
   writeFileSync(vaultManifestPath, JSON.stringify(rows, null, 2) + "\n");
 
-  // The smoke-sample fixture file leaves with its manifest entry.
+  
   const fixtureFile = join(paths.vaultDir, FIXTURE_PATH);
   const removedFixture = existsSync(fixtureFile);
   if (removedFixture) rmSync(fixtureFile);
 
-  // companion-lessons.json — the signed decision publishes the 46-unit lesson list.
+  
   const lessons = buildCompanionLessons(highlights);
   writeFileSync(join(paths.vaultDir, "companion-lessons.json"), JSON.stringify(lessons, null, 2) + "\n");
 
@@ -272,7 +238,7 @@ function main(): void {
   );
 }
 
-// Run only as a CLI entry (never on import, so tests can pull the pure pieces).
+
 const isCliEntry =
   process.argv[1] !== undefined && import.meta.url === pathToFileURL(process.argv[1]).href;
 

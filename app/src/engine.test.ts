@@ -26,7 +26,7 @@ describe("@tsumugu/engine import", () => {
   });
 });
 
-// hygiene: public pack + LRU test (11.5)
+
 import { LRU, packForLang } from "./packs/index.js";
 it("LRU bounded cache works for hygiene", () => {
   const l = new LRU<string, number>(2);

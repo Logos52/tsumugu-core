@@ -1,11 +1,4 @@
-/**
- * Vendor self-hosted fonts from node_modules into app/public/fonts/.
- *
- * First-party font serving (privacy + §11 posture: no third-party calls):
- * copies ONLY the weights the site uses plus each css's referenced files, and
- * emits fonts.css for index.html + the blog template. Output is gitignored;
- * deterministic from the lockfile. Runs before dev/build (package.json).
- */
+
 import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -13,7 +6,7 @@ import { fileURLToPath } from "node:url";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const out = join(root, "app/public/fonts");
 
-/** [package, css entry, output subdir] — the weights actually in the type system. */
+
 const SOURCES = [
   ["@fontsource/inter", "400.css", "inter"],
   ["@fontsource/inter", "500.css", "inter"],

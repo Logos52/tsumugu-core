@@ -1,4 +1,4 @@
-// @vitest-environment happy-dom
+
 import { describe, expect, it } from "vitest";
 import { WordStore } from "@tsumugu/engine";
 import { DEFAULT_SETTINGS } from "../app/settings.js";

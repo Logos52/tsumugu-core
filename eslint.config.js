@@ -1,7 +1,23 @@
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
+import noComments from "./eslint/no-comments.js";
 
 export default tseslint.config(
+  {
+    ignores: [
+      "dist/**",
+      "node_modules/**",
+      ".workflow/**",
+      "packages/gen-qa/**",
+      "workflows/**",
+      "mockups/**",
+      "app/public/**",
+      "content/**",
+      "private/**",
+      "coverage/**",
+      "scripts/lint-fixtures/**",
+    ],
+  },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   {
@@ -19,17 +35,15 @@ export default tseslint.config(
     },
   },
   {
-    ignores: [
-      "dist/**",
-      "node_modules/**",
-      ".workflow/**",
-      "packages/gen-qa/**",
-      // Workflow-harness scripts run with injected globals (agent/log/phase/
-      // pipeline); they are not app code and never compile standalone.
-      "workflows/**",
-      // Generated lesson-viewer browser data (build_lesson_data.py output);
-      // mockups/ is a review surface, not lintable app code.
-      "mockups/**",
-    ],
+    plugins: {
+      tsumugu: {
+        rules: {
+          "no-comments": noComments,
+        },
+      },
+    },
+    rules: {
+      "tsumugu/no-comments": "error",
+    },
   },
 );

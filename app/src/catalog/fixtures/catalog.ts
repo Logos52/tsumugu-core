@@ -1,6 +1,6 @@
 import type { CatalogEntry } from "../types.js";
 
-/** Fixture catalog: ≥2 bands, ≥1 bound, ≥1 unbound. */
+
 export const FIXTURE_CATALOG: CatalogEntry[] = [
   {
     path: "readings/zh-Hant/morning-market.prepared.json",
@@ -75,7 +75,7 @@ export const FIXTURE_CATALOG: CatalogEntry[] = [
     dateAdded: "2026-03-01",
     topic: "culture",
   },
-  // expanded synthetic manifests/transcripts for hygiene 11.5 examples
+  
   {
     path: "fixtures/synthetic-manifest.prepared.json",
     lang: "zh-Hant",

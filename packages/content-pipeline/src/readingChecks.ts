@@ -121,10 +121,7 @@ function wordTokensInParagraph(paragraph: string, content: PreparedContent): str
   return words;
 }
 
-/**
- * Fail-closed prose QA gate — checks A–H per WO-CORE-1 / PRD §6.4.
- * Collects ALL failure reasons; does not short-circuit.
- */
+
 function buildGateStore(
   base: WordStore,
   lang: string,
@@ -159,7 +156,7 @@ export async function verifyReading(opts: ReadingCheckOptions): Promise<ReadingC
   let ciMeasured = 0;
   let newTargetRecycle: { word: string; count: number; ok: boolean }[] = [];
 
-  // ── A. In-band coverage (mechanical majority at-or-below target) ──────────
+  
   if (opts.defLevelIndex) {
     const defResult = checkDefLevel({
       text: prose,
@@ -187,7 +184,7 @@ export async function verifyReading(opts: ReadingCheckOptions): Promise<ReadingC
       );
     }
 
-    // Explicit majority check (in addition to allowance): majority of words must be at-or-below
+    
     const total = wordTokens.length || 1;
     const aboveRatio = uncredited.length / total;
     if (aboveRatio > 0.15) {
@@ -197,15 +194,15 @@ export async function verifyReading(opts: ReadingCheckOptions): Promise<ReadingC
       );
     }
 
-    // TODO(WO-CORE-2): fail tokens outside cumulativeVocab ∪ newVocab once the
-    // reconciled lesson index is authoritative.
+    
+    
   } else {
     reasons.push("prose: defLevelIndex not provided — cannot verify in-band coverage");
   }
 
-  // ── B. Features the new items (touches, not necessarily all in one reading) ──
-  // Each reading must touch at least MIN_NEW_VOCAB_TOUCHED of the chapter's new vocab.
-  // Multiple readings per lesson can cover different subsets (variety of choices).
+  
+  
+  
   let touchedNew = 0;
   for (const word of target.newVocab) {
     const count = wordTokens.filter((t) => t.text === word).length;
@@ -233,23 +230,23 @@ export async function verifyReading(opts: ReadingCheckOptions): Promise<ReadingC
   }));
 
   for (const r of newTargetRecycle) {
-    if (!r.ok && r.count > 0) {  // only complain about low recycle on words the reading actually touches
+    if (!r.ok && r.count > 0) {  
       reasons.push(
         `newVocab: ${r.word} recurs ${r.count}×, need ≥${config.NEW_TARGET_RECYCLE_MIN}`,
       );
     }
   }
 
-  // TODO(WO-CORE-2): grammar-marker matcher keyed to reconciled grammar representation.
+  
   for (const marker of target.newGrammar) {
     if (!prose.includes(marker)) {
       reasons.push(`newGrammar: missing marker ${marker}`);
     }
   }
 
-  // (OpenCC script guard is performed via verifyContent below — see G)
+  
 
-  // ── D. Sentence completeness + length spread ─────────────────────────
+  
   const sentences = splitSentences(prose);
   if (sentences.length < config.MIN_SENTENCES) {
     reasons.push(
@@ -287,7 +284,7 @@ export async function verifyReading(opts: ReadingCheckOptions): Promise<ReadingC
     }
   }
 
-  // ── E. Paragraph repetition / distinct openers ─────────────────────────
+  
   const paragraphs = splitParagraphs(prose);
   for (let p = 0; p < paragraphs.length; p++) {
     const para = paragraphs[p]!;
@@ -314,7 +311,7 @@ export async function verifyReading(opts: ReadingCheckOptions): Promise<ReadingC
     }
   }
 
-  // ── F. CI band (informational by default) ──────────────────────────────
+  
   const ci = scoreCI({
     lang: content.lang,
     tokens: content.tokens,
@@ -329,7 +326,7 @@ export async function verifyReading(opts: ReadingCheckOptions): Promise<ReadingC
     );
   }
 
-  // ── G. Dual-rail integrity (reuse verifyContent missing-glossary + OpenCC path) ─
+  
   const verifyReport: VerifyReport = await verifyContent({
     lang: content.lang,
     pack,
@@ -344,7 +341,7 @@ export async function verifyReading(opts: ReadingCheckOptions): Promise<ReadingC
     reasons.push(`glossary: missing usable gloss for unknown word ${word}`);
   }
 
-  // OpenCC s2twp via verifyContent (reuses its full normalize walk over tokens+glossary+bridge)
+  
   for (const change of verifyReport.openccChanges) {
     if (scriptLeakUncovered(change.before, change.after, allowChars)) {
       scriptLeaks.push(change);
@@ -400,7 +397,7 @@ export async function verifyReading(opts: ReadingCheckOptions): Promise<ReadingC
     }
   }
 
-  // ── H. Polyphone safety (byReading silent-drop) ────────────────────────
+  
   if (opts.hanviet) {
     for (const [word, entry] of Object.entries(content.glossary)) {
       const morphemes = entry.bridge?.morphemes;

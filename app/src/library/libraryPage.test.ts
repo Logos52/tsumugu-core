@@ -1,4 +1,4 @@
-// @vitest-environment happy-dom
+
 import { beforeEach, afterEach, describe, expect, it, vi } from "vitest";
 import {
   bookParts,
@@ -20,7 +20,7 @@ function entry(book: number, lesson: number, id: string, kind: CatalogEntry["kin
   };
 }
 
-// Books 1 (lessons 1, 2, 6) and 3 (lesson 1) — parts + level fan-out both exercised.
+
 const CATALOG: CatalogEntry[] = [
   entry(1, 1, "b1l01-r1", "dialogue"), entry(1, 1, "b1l01-r2"), entry(1, 1, "b1l01-r3"),
   entry(1, 2, "b1l02-r1", "dialogue"),
@@ -107,19 +107,19 @@ describe("mountLibraryPage", () => {
 
   it("scopes the table: lesson click narrows to that lesson, header click to the part, re-click widens", () => {
     mount();
-    // whole book: 5 readings of book 1
+    
     expect(root.querySelectorAll(".lp-cat tbody tr[data-path]")).toHaveLength(5);
-    // click 課1 → 3 readings
+    
     (root.querySelector(".lp-les") as HTMLElement).click();
     expect(root.querySelectorAll(".lp-cat tbody tr[data-path]")).toHaveLength(3);
     expect(root.querySelector(".lp-les.on")).not.toBeNull();
-    // re-click → widens to its column (part 1 = lessons 1,2 → 4 readings)
+    
     (root.querySelector(".lp-les") as HTMLElement).click();
     expect(root.querySelectorAll(".lp-cat tbody tr[data-path]")).toHaveLength(4);
-    // part-2 header (L6–10, has lesson 6) → 1 reading
+    
     (root.querySelectorAll(".lp-colh")[1] as HTMLElement).click();
     expect(root.querySelectorAll(".lp-cat tbody tr[data-path]")).toHaveLength(1);
-    // header re-click → whole book again
+    
     (root.querySelectorAll(".lp-colh")[1] as HTMLElement).click();
     expect(root.querySelectorAll(".lp-cat tbody tr[data-path]")).toHaveLength(5);
   });
@@ -151,15 +151,15 @@ describe("mountLibraryPage", () => {
     mount();
     (root.querySelectorAll(".lp-tab")[1] as HTMLElement).click();
     const spines = root.querySelectorAll(".lp-shelf .lp-cover");
-    expect(spines).toHaveLength(6); // A1 A2 B1 B2 C1 C2
+    expect(spines).toHaveLength(6); 
     expect(spines[0]!.textContent).toContain("A1");
-    // select B1 (index 2): columns are 第三/四/五冊
+    
     (spines[2] as HTMLElement).click();
     const heads = Array.from(root.querySelectorAll(".lp-colh .pn")).map((h) => h.textContent);
     expect(heads).toEqual(["第三冊", "第四冊", "第五冊"]);
-    // its one published reading shows a 冊-prefixed lesson label
+    
     expect(root.querySelector(".lp-cat .lp-lesson")?.textContent).toBe("三·課1");
-    // empty volumes show the coming-soon note
+    
     expect(root.querySelectorAll(".lp-soon").length).toBeGreaterThanOrEqual(1);
   });
 
@@ -180,7 +180,7 @@ describe("mountLibraryPage", () => {
 
   it("sorts by title and format on demand", () => {
     mount();
-    (root.querySelectorAll(".lp-sortbar .sb")[2] as HTMLElement).click(); // Title
+    (root.querySelectorAll(".lp-sortbar .sb")[2] as HTMLElement).click(); 
     const leads = Array.from(root.querySelectorAll(".lp-title .lead")).map((l) => l.textContent);
     expect(leads).toEqual([...leads].sort((a, b) => a!.localeCompare(b!)));
   });

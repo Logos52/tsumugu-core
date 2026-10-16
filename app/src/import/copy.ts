@@ -1,7 +1,4 @@
-/**
- * Import-panel copy, EN + VI (WO-UNIFY-B B10 sweep: every user string ships
- * both rails; no em dashes). Locale is the current rail at render time.
- */
+
 
 export const IMPORT_PRIVACY_NOTICE_EN =
   "Your text is processed entirely in your browser. We never send it to a server, store it, or add it to any shared library.";
@@ -31,6 +28,6 @@ export function importCaption(vi: boolean = isViRail()): string {
   return vi ? IMPORT_CAPTION_VI : IMPORT_CAPTION_EN;
 }
 
-/** @deprecated EN-only aliases kept for existing imports; prefer the functions. */
+
 export const IMPORT_PRIVACY_NOTICE = IMPORT_PRIVACY_NOTICE_EN;
 export const IMPORT_CAPTION = IMPORT_CAPTION_EN;

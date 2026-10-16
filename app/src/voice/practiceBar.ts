@@ -1,16 +1,4 @@
-/**
- * Segment-loop practice bar (full port from monorepo voice/practiceBar.ts) — wavesurfer.js + RegionsPlugin.
- *
- * An always-visible (or toggleable) waveform that FOLLOWS the active sentence: drag to select a
- * slice, loop it (🔁), nudge edges ([ / ]), slow it (1× / 0.85× / 0.75×). One
- * wavesurfer instance is mounted and `setCue()` reloads its audio when the active
- * cue changes (cheap `ws.load`, per-cue object-URL cache) — no recreate.
- *
- * Real assets: uses vault.readBytes + LRU when vault + binding present.
- * Fallback: no-op bar (null) if no readBytes.
- *
- * Loop uses the regions plugin's media-element seek.
- */
+
 
 import type { VaultIO } from "@tsumugu/engine";
 import type { Region } from "wavesurfer.js/plugins/regions";
@@ -25,35 +13,35 @@ import {
 } from "./practiceBarLogic.js";
 
 export interface PracticeBar {
-  /** Reload the bar's waveform to a different cue (follow the active sentence). */
+  
   setCue(cueIndex: number): void;
-  /** Toggle looping of the selected region (or the whole cue if none selected). */
+  
   toggleLoop(): void;
-  /** Nudge the region edge nearest the playhead: -1 = earlier, +1 = later. */
+  
   nudge(dir: -1 | 1): void;
-  /** Advance to the next speed preset; returns the new rate. */
+  
   cycleSpeed(): number;
-  /** Play/pause the cue audio. */
+  
   playPause(): void;
   isLooping(): boolean;
-  /** Tear down the wavesurfer instance and free cached audio URLs. */
+  
   destroy(): void;
 }
 
 export interface PracticeBarArgs {
-  /** Element the waveform mounts into. */
+  
   container: HTMLElement;
   vault?: VaultIO | null;
   binding?: VoiceNotesBinding | null;
-  /** The cue to load first. */
+  
   initialCue: number;
 }
 
 export async function createPracticeBar(args: PracticeBarArgs): Promise<PracticeBar | null> {
   const { container, vault, binding, initialCue } = args;
   if (!vault?.readBytes || !binding) {
-    // Fallback: return a minimal inert controller so callers don't crash.
-    // Real assets path only when binding/vault present (production case).
+    
+    
     const noop: PracticeBar = {
       setCue() {},
       toggleLoop() {},
@@ -63,16 +51,16 @@ export async function createPracticeBar(args: PracticeBarArgs): Promise<Practice
       isLooping() { return false; },
       destroy() {},
     };
-    // Mount a very light placeholder so UI can still show "no audio" state if desired.
+    
     const ph = document.createElement("div");
     ph.textContent = "[practice bar: no audio vault/binding]";
     ph.style.cssText = "font-size:10px;opacity:0.6;padding:4px;";
     container.appendChild(ph);
-    (noop as any)._ph = ph; // for destroy
+    (noop as any)._ph = ph; 
     return noop;
   }
 
-  // Lazy-load wavesurfer + regions only when we can actually use real audio.
+  
   const { default: WaveSurfer } = await import("wavesurfer.js");
   const { default: RegionsPlugin } = await import("wavesurfer.js/plugins/regions");
 
@@ -95,10 +83,10 @@ export async function createPracticeBar(args: PracticeBarArgs): Promise<Practice
   let looping = false;
   let region: Region | null = null;
   let rate = 1;
-  const urlCache = new Map<number, string>(); // cueIndex → object URL (insertion-ordered LRU)
+  const urlCache = new Map<number, string>(); 
   let loadToken = 0;
 
-  // Single selection: a new drag replaces any prior region.
+  
   regions.on("region-created", (r: Region) => {
     for (const other of regions.getRegions()) if (other !== r) other.remove();
     region = r;
@@ -106,7 +94,7 @@ export async function createPracticeBar(args: PracticeBarArgs): Promise<Practice
   regions.on("region-updated", (r: Region) => {
     region = r;
   });
-  // Loop: when playback leaves the active region (~at its end), replay from start.
+  
   regions.on("region-out", (r: Region) => {
     if (looping && r === region) r.play();
   });
@@ -118,7 +106,7 @@ export async function createPracticeBar(args: PracticeBarArgs): Promise<Practice
       urlCache.set(i, hit);
       return hit;
     }
-    const b = binding; // narrowed by outer guard
+    const b = binding; 
     const v = vault;
     if (!b || !v?.readBytes) return null;
     const note = b.byCue.get(i);
@@ -130,7 +118,7 @@ export async function createPracticeBar(args: PracticeBarArgs): Promise<Practice
       return null;
     }
     if (!bytes) return null;
-    const part = new Uint8Array(bytes); // fresh copy for Blob
+    const part = new Uint8Array(bytes); 
     const url = URL.createObjectURL(new Blob([part.buffer]));
     urlCache.set(i, url);
     while (urlCache.size > 12) {
@@ -148,20 +136,20 @@ export async function createPracticeBar(args: PracticeBarArgs): Promise<Practice
     const tk = loadToken;
     const url = await urlForCue(i);
     if (tk !== loadToken) return;
-    if (!url) return; // cue without audio — keep prior waveform
+    if (!url) return; 
     looping = false;
     region = null;
     try {
       regions.clearRegions();
     } catch {
-      /* no-op */
+      
     }
     try {
       await ws.load(url);
       if (tk !== loadToken) return;
       ws.setPlaybackRate(rate, true);
     } catch {
-      /* load races / unsupported — non-fatal */
+      
     }
   }
 

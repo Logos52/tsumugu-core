@@ -1,4 +1,4 @@
-/** Register the service worker in production; no-op in dev. */
+
 export function registerSW(): void {
   if (import.meta.env.DEV) return;
   if (!("serviceWorker" in navigator)) return;
@@ -52,7 +52,7 @@ export function registerSW(): void {
         });
       })
       .catch(() => {
-        /* SW registration is best-effort */
+        
       });
   });
 }

@@ -1,4 +1,4 @@
-// @vitest-environment happy-dom
+
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { createTopNav, type TopNavController } from "./nav.js";
 import { DEFAULT_SETTINGS } from "../app/settings.js";

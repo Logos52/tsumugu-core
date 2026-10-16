@@ -13,7 +13,7 @@ import {
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 
-// A minimal fixture so the test does not depend on the (stale) mockups source shape.
+
 const FIXTURE = `<!doctype html><html data-page="__PAGE__"><head><style>
 :root{--tsg-accent:#6b4bd6}
 header.topnav{display:flex}
@@ -57,8 +57,8 @@ describe("shell-contract extractors", () => {
   });
 
   it("parses the real (stale) mockups shell source without throwing", () => {
-    // Read-only sanity: the generator reads mockups/site/_shell.html today, but the
-    // canonical source may be repointed to Lane A/B's Seal chrome before wiring.
+    
+    
     const html = readFileSync(DEFAULT_SHELL_SOURCE, "utf8");
     const c = buildShellContract(html);
     expect(c.nav.map((n) => n.nav)).toEqual(["home", "library", "reader"]);

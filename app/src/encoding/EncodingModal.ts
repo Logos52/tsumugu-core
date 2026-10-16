@@ -1,9 +1,4 @@
-/**
- * Encoding / review surface (in-app modal or depth, data-free, using engine).
- * Form+story+components from prebaked or encoding page doc.
- * Flag for authoring, personal notes local-only.
- * Inert w/o deep data; hooks from reader hover.
- */
+
 
 import { el } from "../ui/dom.js";
 import { isEncodingPageDoc, parseEncodingPage, type EncodingPageDoc } from "@tsumugu/engine";
@@ -32,7 +27,7 @@ export function createEncodingModal(host: HTMLElement = document.body): Encoding
     const closeBtn = el("button", { text: "✕", class: "close" });
     closeBtn.onclick = close;
 
-    // Use engine encodingPage if available on prepared glossary (or stub)
+    
     let enc: EncodingPageDoc | null = null;
     if (prepared) {
       try {
@@ -64,7 +59,7 @@ export function createEncodingModal(host: HTMLElement = document.body): Encoding
 
     const flag = el("button", { text: "Flag for authoring", class: "flag" });
     flag.onclick = () => {
-      // local only flag
+      
       try { localStorage.setItem(`tsg-flag-${word}`, "1"); } catch {}
       flag.textContent = "Flagged ✓";
     };
@@ -72,7 +67,7 @@ export function createEncodingModal(host: HTMLElement = document.body): Encoding
     card.append(closeBtn, title, body, flag);
     overlay.append(card);
     host.append(overlay);
-    // esc close
+    
     const onEsc = (e: KeyboardEvent) => { if (e.key === "Escape") { close(); document.removeEventListener("keydown", onEsc); } };
     document.addEventListener("keydown", onEsc, { once: true });
   }

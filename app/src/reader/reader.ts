@@ -1,8 +1,4 @@
-/**
- * Reader view — token-by-token render with status coloring and keyboard nav.
- * Core v1 reader — no synced-media or encoding-route coupling.
- * Words open def+form popup on *click* (see wordPopup.ts; hover is passive).
- */
+
 
 import {
   hotkeyToStatus,
@@ -30,13 +26,13 @@ const GRADE_LABELS = ["1", "2", "3", "4", "K", "X"] as const;
 export interface ReaderController {
   rebuildProse(): void;
   unmount(): void;
-  /** Voice / shadowing / practice with real assets when vault + binding present; fallback otherwise. */
+  
   attachVoice(demo?: boolean): Promise<VoicePlayer | null>;
   attachPracticeBar(container: HTMLElement): Promise<PracticeBar | null>;
-  /** For transcript sync + karaoke style cue highlight */
+  
   setTranscript(doc: TranscriptDoc | null): void;
   highlightCue(cueIdx: number): void;
-  /** Mount per-cue multi-row waveforms (cueWaveforms) when voice tracks + vault available. */
+  
   attachCueWaveforms(opts?: { vault?: VaultIO; tracks?: any }): Promise<CueWaveforms | null>;
 }
 
@@ -55,7 +51,7 @@ export function mountReader(
   let currentWord: string | null = null;
   let activeSpan: HTMLElement | null = null;
 
-  // Voice / transcript extensions (inert + demo)
+  
   let voicePlayer: VoicePlayer | null = null;
   let practice: PracticeBar | null = null;
   let cueWaves: CueWaveforms | null = null;
@@ -112,17 +108,17 @@ export function mountReader(
     } else {
       ruby.append(document.createTextNode(word));
     }
-    // Known words keep a DIMMED ruby (design contract: known = no underline + dimmed
-    // ruby, mockup .w.k rt). CSS (.w.tsg-status-known rt) does the dimming; render the
-    // ruby whenever a reading exists so the mark is present to dim.
+    
+    
+    
     const showRt = !!rtText;
     if (showRt) ruby.append(el("rt", { text: rtText }));
     span.append(ruby);
 
     span.addEventListener("mouseenter", (ev) => {
       setCurrent(word, span);
-      // Popup opens on explicit mouse click only (def + form view).
-      // Hover/shift logic retained for other behaviors (no auto popup).
+      
+      
     });
     span.addEventListener("click", (ev) => {
       ev.stopPropagation();
@@ -131,15 +127,7 @@ export function mountReader(
     });
     span.addEventListener("focus", () => {
       setCurrent(word, span);
-      // Do not auto-open popup on focus; click or explicit setActive handles.
     });
-
-    // hygiene 11.5: lazy wavesurfer stub for future audio (Phase2 port from monorepo)
-    // dynamic import + LRU for regions only when audio manifest present. Inert otherwise.
-    // (perf: no wavesurfer in initial bundle; see public pack tests too)
-    if (import.meta.env.DEV && word.length > 3) {
-      // placeholder for: import('wavesurfer.js').then(w => { /* LRU cache attach */ })
-    }
 
     return span;
   }
@@ -161,10 +149,10 @@ export function mountReader(
 
   function highlightCue(cueIdx: number): void {
     currentCue = cueIdx;
-    // highlight matching .sent that contains the cue's tokens (simple scan)
+    
     const sents = Array.from(proseRoot.querySelectorAll(".sent"));
-    sents.forEach((s, i) => s.classList.toggle(CLS.sel, i === cueIdx)); // crude but works for sentence-aligned
-    // if ranges known, use token ranges to be more precise
+    sents.forEach((s, i) => s.classList.toggle(CLS.sel, i === cueIdx)); 
+    
     if (cueRanges.length && cueIdx >= 0) {
       const r = cueRanges[cueIdx];
       if (r) {
@@ -174,14 +162,12 @@ export function mountReader(
         });
       }
     }
-    // Follow with practice bar (Audacity-style AB) and cue waveforms when present
+    
     if (practice) practice.setCue(Math.max(0, cueIdx));
     cueWaves?.setActive(Math.max(0, cueIdx));
   }
 
-  /** Select a sentence/cue (by index among .sent elements) as loop target.
-   *  Used by mouse clicks on sentences/waves and by word activation to keep
-   *  the 'l' target in sync. */
+  
   function selectSentence(idx: number): void {
     if (idx < 0) return;
     highlightCue(idx);
@@ -228,8 +214,8 @@ export function mountReader(
     const idx = wordSpans.findIndex((w) => w.span === span);
     if (idx >= 0) activeIndex = idx;
 
-    // Sync sentence/cue selection so that word nav or clicks make the containing
-    // sentence/waveform the target for 'l' (loop). Mouse clicks on sentences also select.
+    
+    
     const sentEl = span.closest(".sent") as HTMLElement | null;
     if (sentEl) {
       const sents = Array.from(proseRoot.querySelectorAll(".sent"));
@@ -272,7 +258,7 @@ export function mountReader(
 
     if (!state.settings.knownStateOn) return;
 
-    if (ev.key === "ArrowRight") {  // 'l' reclaimed exclusively for loop (see onVoiceKey context-aware handler)
+    if (ev.key === "ArrowRight") {  
       ev.preventDefault();
       setActive(activeIndex + 1);
       return;
@@ -295,7 +281,7 @@ export function mountReader(
       popup.close();
     }
 
-    // Bulk mark as known (all visible non-known)
+    
     if ((ev.key === "b" || ev.key === "B") && state.settings.knownStateOn) {
       ev.preventDefault();
       for (const { word } of wordSpans) {
@@ -329,12 +315,12 @@ export function mountReader(
     if (first) setCurrent(first.word, first.span);
   }
 
-  // Sentence click for meaning reveal (gradable/hover/loopable text support)
-  // Also: click selects sentence/wave so that 'l' triggers loop on it.
-  // Enhanced for "audio only" + tap-to-reveal:
-  // - In audioOnly mode (or always for practice): tap sentence reveals Chinese if hidden.
-  // - Tap always toggles translation (EN/VI from cue.tr).
-  // - Individual words inside still open dict popup (bubbles stopped at word level).
+  
+  
+  
+  
+  
+  
   proseRoot.addEventListener("click", (ev) => {
     const sent = (ev.target as HTMLElement).closest(".sent");
     if (sent) {
@@ -344,34 +330,34 @@ export function mountReader(
         selectSentence(idx);
       }
 
-      // 1. Tap-to-reveal Chinese text (for audio-only / waveforms-first mode)
-      //    Add .audio-only class to root or sent to hide Chinese initially.
-      //    Clicking .sent (or a .chinese wrapper) reveals it.
-      const chinese = sent.querySelector(".chinese") || sent; // fallback to whole sent
+      
+      
+      
+      const chinese = sent.querySelector(".chinese") || sent; 
       if (chinese.classList.contains("chinese-hidden") || (state.settings as any).audioOnly) {
         chinese.classList.remove("chinese-hidden");
         chinese.classList.add("revealed");
-        // optional: auto-play the cue when revealing in audio mode
+        
         if (voicePlayer && currentCue >= 0) {
           voicePlayer.playCue(currentCue);
         }
       }
 
-      // 2. Tap to reveal / toggle sentence translation (EN or VI)
+      
       if (transcriptDoc && idx >= 0) {
         const cue = transcriptDoc.cues[idx];
         const tr = cue?.tr;
         if (tr) {
           let reveal = sent.querySelector(".sent-tr");
           if (reveal) {
-            reveal.remove(); // toggle off
+            reveal.remove(); 
           } else {
             const transLang = state.settings.gloss === "vi" ? "vi" : "en";
             reveal = el("span", {
               class: `sent-tr ${transLang}`,
               text: ` 〔${tr}〕`
             });
-            // append after the main Chinese content
+            
             const anchor = sent.querySelector(".chinese") || sent;
             anchor.append(reveal);
           }
@@ -380,15 +366,15 @@ export function mountReader(
     }
   });
 
-  // Keyboard support for shadowing A/B advance (Space) + demo
-  // 'l' (lowercase) reclaimed for loop on currently selected sentence/waveform
-  // (ties to practiceBar.toggleLoop or region/cue play). Context/mode aware:
-  // when practice bar or shadowing is active (or voicePlayer present for a
-  // selected waveform/sentence), 'l' triggers loop/play; else falls back to
-  // next-word nav (preserves old behavior in pure-text mode).
-  // Does not affect grading hotkeys (1-4/k/K/x handled via hotkeyToStatus in onKeyDown).
-  // Space/s conflict handled: Space only advances when shadow active; 's' starts.
-  // 'l' is independent.
+  
+  
+  
+  
+  
+  
+  
+  
+  
   const onVoiceKey = (ev: KeyboardEvent) => {
     const tag = (ev.target as HTMLElement | null)?.tagName;
     if (tag === "INPUT" || tag === "SELECT" || tag === "TEXTAREA") return;
@@ -399,28 +385,28 @@ export function mountReader(
       const practiceActive = !!practice;
       const hasVoice = !!voicePlayer;
       if (practiceActive || shadowActive || hasVoice) {
-        // Voice/practice/shadow context: trigger loop on current selected sentence/wave
+        
         if (practice) {
           practice.toggleLoop();
-          // When enabling loop, kick off play on the selected cue (ties region play)
+          
           if (practice.isLooping()) {
             const c = currentCue >= 0 ? currentCue : 0;
             if (voicePlayer) {
               voicePlayer.playCue(c);
             } else {
-              // practice bar fallback play
+              
               practice.playPause();
             }
           }
         } else if (voicePlayer) {
-          // No bar attached yet, but voice present: 'l' plays/initiates on selected
-          // (proxy for waveform region play / sentence loop)
+          
+          
           const c = currentCue >= 0 ? currentCue : 0;
           voicePlayer.playCue(c);
           highlightCue(c);
         }
       } else {
-        // No voice mode active: fall back to nav (reclaim only affects voice contexts)
+        
         setActive(activeIndex + 1);
       }
       return;
@@ -437,7 +423,7 @@ export function mountReader(
       }
     }
     if (ev.key.toLowerCase() === "s" && voicePlayer) {
-      // demo shadow start on current
+      
       ev.preventDefault();
       const c = currentCue >= 0 ? currentCue : 0;
       shadowState = shadowReducer(SHADOW_IDLE, { type: "start", cue: c }, 99);
@@ -454,7 +440,7 @@ export function mountReader(
       vault: vault ?? undefined,
       binding: state.voiceBinding ?? undefined,
       cues: cuesForVoice,
-      speak: (text: string) => { /* no-op or caller override in full app wiring */ },
+      speak: (text: string) => {  },
     });
     return voicePlayer;
   }
@@ -472,10 +458,10 @@ export function mountReader(
     return p;
   }
 
-  // Stub for optional cueWaveforms attach (full impl lives in voice/cueWaveforms; wired when assets present)
+  
   async function attachCueWaveformsLocal(opts: { vault: VaultIO; binding?: any; tracks?: any }): Promise<CueWaveforms | null> {
-    // In real would: if (cueWaves) cueWaves.destroy(); cueWaves = await mountCueWaveforms({...})
-    // For now return null (inert); highlightCue already does safe cueWaves?.setActive
+    
+    
     return null;
   }
 
@@ -487,20 +473,20 @@ export function mountReader(
       if (prepared) {
         cueRanges = alignCuesToTokens(prepared.tokens, doc.cues);
       }
-      // re-highlight if active cue
+      
       if (currentCue >= 0) highlightCue(currentCue);
     }
   }
 
-  const origRebuild = () => { /* capture later */ };
-  const origUnmount = () => { /* */ };
+  const origRebuild = () => {  };
+  const origUnmount = () => {  };
 
   return {
     rebuildProse() {
       popup.close();
       buildProse();
       if (transcriptDoc) {
-        // re-attach cue ranges
+        
         const prepared = currentContent();
         if (prepared) cueRanges = alignCuesToTokens(prepared.tokens, transcriptDoc.cues);
       }

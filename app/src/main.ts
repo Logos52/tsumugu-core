@@ -26,7 +26,7 @@ import "./styles/catalog.css";
 import { registerSW } from "./pwa/register.js";
 import { trackEvent } from "./build/analytics.js";
 
-// New shell + routing + i18n (scoped to app shell + homepage + routing foundation)
+
 import { createTopNav, type NavSurface } from "./shell/nav.js";
 import { createRouter, surfaceFromHash } from "./app/router.js";
 import { createHomeSurface } from "./shell/home.js";
@@ -57,14 +57,14 @@ async function loadFixture(): Promise<CorePreparedContent> {
 }
 
 function setThemeBtn(theme: "light" | "dark"): void {
-  // themeBtn now lives in shell topnav; update if legacy one exists
+  
   const btn = document.getElementById("themeBtn") || document.getElementById("shellThemeBtn");
   if (btn) btn.textContent = theme === "dark" ? "☾" : "☀";
 }
 
 function showCatalogView(catalogEl: HTMLElement, workEl: HTMLElement): void {
   catalogEl.hidden = false;
-  workEl.hidden = false; // keep visible for coverage etc; router controls outer
+  workEl.hidden = false; 
 }
 
 function showReaderView(catalogEl: HTMLElement, workEl: HTMLElement): void {
@@ -72,7 +72,7 @@ function showReaderView(catalogEl: HTMLElement, workEl: HTMLElement): void {
   workEl.hidden = false;
 }
 
-/** Notice shown when a Phase-2 surface is reached while its feature flag is off. */
+
 function renderPhase2(host: HTMLElement, title: string): void {
   host.innerHTML = `<div class="tsg-shell" style="padding:2rem;max-width:680px;margin:0 auto">
     <h2 style="margin:0 0 .5rem">${title}</h2>
@@ -88,17 +88,17 @@ async function boot(): Promise<void> {
   setThemeBtn(settings.theme);
 
   const userStore = getUserStore();
-  const store = userStore.getWordStore(); // central, supports login merge later
+  const store = userStore.getWordStore(); 
   const vault = createHttpVault(staticVaultBase());
   let catalog = await listVaultReadings(staticVaultBase());
-  // Fall back to the fixture catalog when the published manifest yields no
-  // valid entries (httpVault already drops rows lacking band/kind/wordCounts,
-  // so length alone is the validity signal).
+  
+  
+  
   if (catalog.length === 0) catalog = FIXTURE_CATALOG;
-  // Companion lesson metadata (title/theme/grammar) for the library shelf;
-  // degrades to [] when companion-lessons.json is absent.
+  
+  
   const companionLessons: CompanionLesson[] = await loadCompanionLessons(staticVaultBase());
-  // Tri-rail reading titles (EN/VI/ZH) — the library's interest layer; {} when absent.
+  
   const readingTitles = await loadCompanionTitles(staticVaultBase());
 
   const content = await loadFixture();
@@ -121,15 +121,15 @@ async function boot(): Promise<void> {
 
   const popup = createWordPopup(state);
   const reader = mountReader(prose, state, popup, vault);
-  // Rich encoding/components modal is Phase-2 (WO-CORE-4 deferred). When off, the
-  // popup "Form" affordance falls back to its inline hint instead of the modal.
+  
+  
   const encModal = FEATURES.encodingModal ? createEncodingModal() : null;
   if (encModal) (window as any).__tsgEnc = encModal;
   (window as any).__tsgReader = reader;
   paintReadHead(state);
 
-  // The settled library page (2026-07): 課本架/級別架 band + title-led table.
-  // Progress affordances (continue, coverage) return later as an enhancement.
+  
+  
   const catalogView = mountLibraryView(catalogEl, {
     catalog,
     titles: readingTitles,
@@ -146,16 +146,16 @@ async function boot(): Promise<void> {
     onSelect: (path) => void openReading(path),
   });
 
-  // Sync panel (local-only export/import, Lane C Stage 1) behind VITE_FEATURE_SYNC.
-  // Gated off → not mounted, no nav entry, #account routes to a Phase-2 notice.
+  
+  
   const accountCtrl = FEATURES.sync ? mountSyncPanel(document.body) : null;
 
-  // Monetization seams (Phase 3) — built as unlinked options; flags default OFF
-  // and the surfaces are additionally inert until monetize/config.ts is filled.
+  
+  
   if (FEATURES.pro) mountProPanel(document.body);
   if (FEATURES.donate) mountDonateCard(document.body);
 
-  // Rebind state.store + refresh surfaces after login/merge (ref change inside userStore)
+  
   const importPanel = mountImportPanel(document.body, {
     state,
     vault,
@@ -168,7 +168,7 @@ async function boot(): Promise<void> {
 
   document.getElementById("pasteBtn")?.addEventListener("click", () => importPanel.open());
   document.getElementById("catalogBtn")?.addEventListener("click", () => {
-    // navigate to library surface via router hash
+    
     const q = queryFromHash(location.hash);
     const next = q.facets.band ? location.hash.replace(/^#read=.*$/, "") : "#library";
     if (location.hash !== next) location.hash = next || "";
@@ -178,9 +178,9 @@ async function boot(): Promise<void> {
 
   async function openReading(path: string): Promise<void> {
     try { localStorage.setItem("tsumugu-core/lastReadingId", path); } catch {}
-    // Probe metric (2026-07-04 decision): return-reading rate. Cookieless day
-    // flags in localStorage; events fire only when the analytics beacon ships
-    // (GOATCOUNTER_CODE at deploy). Rate = return_read uniques ÷ first_read.
+    
+    
+    
     try {
       const day = new Date().toISOString().slice(0, 10);
       const first = localStorage.getItem("tsumugu-core/firstReadDay");
@@ -191,13 +191,13 @@ async function boot(): Promise<void> {
         localStorage.setItem("tsumugu-core/lastReturnDay", day);
         trackEvent("return_read");
       }
-    } catch { /* storage unavailable — unmeasured, never blocking */ }
+    } catch {  }
     const text = await vault.readText(path);
     if (!text) return;
     const parsed = parsePreparedContent(JSON.parse(text)) as CorePreparedContent;
     state.setContent(parsed);
     location.hash = `#read=${encodeURIComponent(path)}`;
-    // ensure reader surface visible
+    
     const surfaceEl = document.getElementById("surface");
     const readerH = document.getElementById("reader-host");
     if (surfaceEl) surfaceEl.hidden = true;
@@ -205,17 +205,17 @@ async function boot(): Promise<void> {
     showReaderView(catalogEl, workEl);
     reader.rebuildProse();
     paintReadHead(state);
-    // Voice/shadowing is Phase-2 (PRD §8.4 leave-behind) and ships no audio
-    // assets in v1; only attach when the feature is explicitly enabled.
+    
+    
     if (FEATURES.voice && reader.attachVoice) {
       void reader.attachVoice(true).then((vp) => { if (vp) console.debug("[tsumugu] voice demo attached (inert/speech fallback)"); });
     }
   }
 
-  /** Continue: reopen the last reading if one exists, else land on the library hub. */
+  
   function openContinue(): void {
     let last: string | null = null;
-    try { last = localStorage.getItem("tsumugu-core/lastReadingId"); } catch { /* ignore */ }
+    try { last = localStorage.getItem("tsumugu-core/lastReadingId"); } catch {  }
     if (last) {
       void openReading(last);
       router.navigate("reader");
@@ -234,10 +234,10 @@ async function boot(): Promise<void> {
     applySettings(state.settings);
     setThemeBtn(state.settings.theme);
     applyChromeLang(state);
-    applyI18n(document); // re-render any i18n chrome
+    applyI18n(document); 
   }
 
-  // Note: railSeg is no longer in DOM (global rail now in TopNav). Reader-local segs still here.
+  
   const scriptSeg = document.getElementById("scriptSeg");
   const readingSeg = document.getElementById("readingSeg");
   const glossSeg = document.getElementById("glossSeg");
@@ -254,10 +254,10 @@ async function boot(): Promise<void> {
     applyChromeLang(state);
   });
 
-  // Palette/theme now driven from shell nav (see below). Keep legacy compat if elements exist.
+  
   state.subscribe("settings", () => applyChromeLang(state));
 
-  // ========== NEW: Router + AppShell + Homepage ==========
+  
   const surfaceEl = document.getElementById("surface");
   const readerHost = document.getElementById("reader-host");
   const topnavHost = document.getElementById("topnav");
@@ -299,21 +299,21 @@ async function boot(): Promise<void> {
       initialRail: settings.rail,
       initialLoggedIn: !!getSession().userId,
     });
-    // insert the shell header (replace placeholder)
+    
     topnavHost.replaceWith(topNavCtrl.el);
   }
 
-  // Keep topnav auth label in sync with real session.
-  // Subscribe *after* topNavCtrl is initialized to avoid TDZ.
-  // subscribeSession emits current value synchronously.
+  
+  
+  
   subscribeSession((snap) => {
     if (topNavCtrl) {
       topNavCtrl.setLoggedIn(!!snap.userId);
     }
-    // also sync root data if profile has rail/uiLang (future)
+    
   });
 
-  // Render surface on route change
+  
   router.onChange((surf, detail) => {
     const currentRail = (document.documentElement.dataset.rail as "en" | "vi") || "en";
     updateSeo(surf, currentRail);
@@ -371,22 +371,22 @@ async function boot(): Promise<void> {
       if (readerHost) readerHost.hidden = true;
       if (catalogEl) catalogEl.hidden = true;
       if (accountCtrl) {
-        // Account is a modal surface (not a full page replace). Open panel over a blank surface.
+        
         if (surfaceEl) surfaceEl.hidden = true;
         accountCtrl.open();
       } else if (surfaceEl) {
-        // Accounts are Phase-2 (gated off): show a notice rather than a dead route.
+        
         surfaceEl.hidden = false;
         clear(surfaceEl);
         renderPhase2(surfaceEl, "Accounts & sync");
       }
       if (topNavCtrl) topNavCtrl.setActive("account");
       applyI18n(document);
-      // Do not leave #account hash polluting; router will have set it but panel owns state.
+      
       return;
     }
 
-    // Static footer pages (colophon + method fold into About via the router).
+    
     if (surf === "about" || surf === "privacy" || surf === "terms" || surf === "feedback") {
       if (surfaceEl) {
         surfaceEl.hidden = false;
@@ -396,14 +396,14 @@ async function boot(): Promise<void> {
         renderStaticPage(surf, surfaceEl, currentRail);
         applyI18n(surfaceEl);
       }
-      // About is a nav item → carry aria-current; privacy/feedback have no nav
-      // entry, so they fall back to highlighting Home.
+      
+      
       if (topNavCtrl) topNavCtrl.setActive(surf === "about" ? "about" : "home");
       return;
     }
   });
 
-  // Initial navigation (home by default; reader hash takes precedence)
+  
   router.start();
 
   const initialPath = readingPathFromHash(location.hash);
@@ -415,39 +415,37 @@ async function boot(): Promise<void> {
     showReaderView(catalogEl, workEl);
     router.navigate("reader");
   } else if (surfaceFromHash(location.hash).surface === "library") {
-    // Route through the router's parser so shared library deep links with
-    // filter state ("#library=&lt=food&lq=…") and facet hashes survive boot.
+    
+    
     showCatalogView(catalogEl, workEl);
     catalogView.render();
     router.navigate("library");
   } else if (!location.hash && hasWordState) {
-    // Returning visitor with progress boots straight to the library hub;
-    // the marketing home is for first / signed-out visits.
+    
+    
     showCatalogView(catalogEl, workEl);
     catalogView.render();
     router.navigate("library");
   } else {
-    // default to the marketing home landing
+    
     router.navigate("home");
   }
 
-  // Keep hash reader changes wired
+  
   window.addEventListener("hashchange", () => {
     const path = readingPathFromHash(location.hash);
     if (path) {
       void openReading(path);
-      // router will receive via its listener but we force
+      
       if (router.current !== "reader") router.navigate("reader");
-    } else if (!isReaderHash(location.hash)) {
-      // could be library or home; router change will handle
     }
   });
 
-  // Apply i18n + SEO once at end
+  
   applyI18n(document);
   updateSeo(router.current, settings.rail);
 
-  // Expose auth session for future nav / <AuthButton> (read-only integration point)
+  
   (window as any).__tsumuguAuth = {
     subscribe: subscribeSession,
     get: getSession,
@@ -455,16 +453,16 @@ async function boot(): Promise<void> {
     userStore: userStore,
   };
 
-  // Initial sync of nav login state (in case session restored)
+  
   if (topNavCtrl) {
     const s0 = getSession();
     topNavCtrl.setLoggedIn(!!s0.userId);
   }
 
-  // First-grade toast: fires once when the learner's word-state first becomes
-  // non-empty in-session. Suppressed for returning visitors who already had
-  // progress at boot. (Seam: Lane C's WordStore does not yet emit a dedicated
-  // first-grade event; we approximate via store size.)
+  
+  
+  
+  
   const fireFirstGradeToast = createFirstGradeToast({
     message: t("toast.firstGrade", (document.documentElement.dataset.rail as "en" | "vi") || "en"),
     alreadyFired: hasWordState,
@@ -473,7 +471,7 @@ async function boot(): Promise<void> {
   userStore.subscribe((ev) => {
     if (ev === "store" || ev === "doc" || ev === "sync") {
       (state as { store: typeof state.store }).store = userStore.getWordStore();
-      try { catalogView.render(); } catch { /* ignore */ }
+      try { catalogView.render(); } catch {  }
       const rail = (document.documentElement.dataset.rail as "en" | "vi") || "en";
       if (homeCtrl) homeCtrl.render(rail);
       fireFirstGradeToast(userStore.getWordStore().size() > 0);
@@ -481,7 +479,7 @@ async function boot(): Promise<void> {
   });
 
   subscribeSession(() => {
-    try { catalogView.render(); } catch { /* ignore */ }
+    try { catalogView.render(); } catch {  }
     const rail = (document.documentElement.dataset.rail as "en" | "vi") || "en";
     if (homeCtrl) homeCtrl.render(rail);
   });
@@ -493,7 +491,7 @@ void boot().catch((err) => {
   console.error(err);
   const app = document.getElementById("app");
   if (app) {
-    // Preserve footer and structure; show a non-destructive error banner
+    
     const banner = document.createElement("div");
     banner.style.cssText = "background:#fee2e2;color:#991b1b;padding:8px 12px;margin:8px;border:1px solid #fecaca;border-radius:6px;font-family:monospace";
     banner.textContent = `Boot failed: ${String(err)}`;

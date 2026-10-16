@@ -1,15 +1,4 @@
-/**
- * Library model — the pure, testable core behind the Seal-red library surface.
- *
- * Maps real `CatalogEntry` rows to the render-friendly `ReadingRecord` the card
- * variants consume, and holds the interaction model (topic filter, "for my
- * level", audio-only, sort, search ranking) ported from the mockup's vanilla JS.
- *
- * NOTE (Lane B seam): the bilingual UI copy in `LIB_COPY` / `TOPIC_META` is
- * carried here as data (rail-driven, exactly like the mockup) so this surface
- * ships bilingual today. Lane B may later promote these into `i18n/strings.ts`.
- * LANE-B-KEY-NEEDED: library.* (topics, controls, affordances) — see PR notes.
- */
+
 import type { WordStatus } from "@tsumugu/engine";
 import { hasKnownWords, percentKnown, readingBand } from "./coverage.js";
 import type { CatalogEntry } from "./types.js";
@@ -19,7 +8,7 @@ export type LibSort = "fit" | "new" | "short";
 export type LibView = "gallery" | "table";
 export type ReadingStatus = "in" | "stretch";
 
-/** ACCC format label (對話/自述/短文…), derived from the title suffix. */
+
 const KIND_FMT: Record<string, string> = {
   dialogue: "對話",
   story: "短文",
@@ -27,11 +16,7 @@ const KIND_FMT: Record<string, string> = {
   byo: "自訂",
 };
 
-/**
- * Format label (體) shown on the shelf + spreadsheet. Companion titles carry the
- * form as the last "·" segment (e.g. "… · 對話一" → 對話); strip the ordinal
- * suffix. Falls back to the `kind` when no suffix is present.
- */
+
 export function formatLabel(entry: CatalogEntry): string {
   const title = entry.title ?? "";
   const idx = title.lastIndexOf("·");
@@ -42,21 +27,21 @@ export function formatLabel(entry: CatalogEntry): string {
   return KIND_FMT[entry.kind] ?? "短文";
 }
 
-/** Descriptive title with the "· 對話一" format suffix stripped. */
+
 export function descriptiveTitle(entry: CatalogEntry): string {
   const title = entry.title ?? entry.path;
   const idx = title.lastIndexOf("·");
   return (idx > 0 ? title.slice(0, idx) : title).trim() || title.trim();
 }
 
-/** Numeric rank for the CEFR band (級) column, so A1<A2<B1 sorts correctly. */
+
 export function bandNum(band: string): number {
   return band === "A1" ? 1 : band === "A2" ? 2 : band === "B1" ? 3 : 9;
 }
 
 const HAN_DIGITS = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
 
-/** Small Chinese numeral (1–99), for shelf headers like 第七課 / 第二冊. */
+
 export function hanNum(n: number): string {
   if (n < 0 || !Number.isFinite(n)) return String(n);
   if (n < 10) return HAN_DIGITS[n]!;
@@ -70,11 +55,11 @@ export interface TopicMeta {
   zh: string;
   en: string;
   vi: string;
-  /** CSS custom-property reference for the topic hue, e.g. `var(--t-food)`. */
+  
   v: string;
 }
 
-/** Canonical topic table + hue vars. Render order is fixed by `TOPIC_ORDER`. */
+
 export const TOPIC_META: Record<TopicKey, TopicMeta> = {
   food: { zh: "飲食", en: "Food & Markets", vi: "Ẩm thực & chợ", v: "var(--t-food)" },
   family: { zh: "家人", en: "Family & People", vi: "Gia đình & con người", v: "var(--t-family)" },
@@ -86,7 +71,7 @@ export const TOPIC_META: Record<TopicKey, TopicMeta> = {
 
 export const TOPIC_ORDER: TopicKey[] = ["food", "family", "city", "travel", "work", "nature"];
 
-/** Aliases so free-text pipeline topics still land in a canonical bucket. */
+
 const TOPIC_ALIASES: Record<string, TopicKey> = {
   food: "food", "food-drink": "food", markets: "food", eating: "food",
   family: "family", people: "family", social: "family", relationships: "family",
@@ -97,11 +82,7 @@ const TOPIC_ALIASES: Record<string, TopicKey> = {
   culture: "family",
 };
 
-/**
- * Keyword fallback for free-text topics (the companion pipeline emits textbook
- * theme strings like "Food and Drink" / "交通 Transportation"). Scanned in
- * order after the exact alias table; first hit wins, else "city".
- */
+
 const TOPIC_KEYWORDS: [TopicKey, RegExp][] = [
   ["food", /food|eating|diet|restaurant|market|shopping|飲食|購物/],
   ["family", /family|people|social|relationship|friend|introduc|appearance|sick|health|家庭|家人|人際|社交|生病|醫療/],
@@ -110,7 +91,7 @@ const TOPIC_KEYWORDS: [TopicKey, RegExp][] = [
   ["nature", /nature|weather|season|climate|agricultur|天氣|氣候|農業|自然/],
 ];
 
-/** Normalize an arbitrary `entry.topic` to one of the six canonical keys. */
+
 export function normalizeTopic(topic?: string): TopicKey {
   if (!topic) return "city";
   const key = topic.trim().toLowerCase();
@@ -120,7 +101,7 @@ export function normalizeTopic(topic?: string): TopicKey {
   return "city";
 }
 
-/** Bilingual UI copy (rail-driven), mirroring the mockup. */
+
 export const LIB_COPY = {
   continue: { en: "Continue", vi: "Tiếp tục" },
   resume: { en: "Resume →", vi: "Đọc tiếp →" },
@@ -184,8 +165,8 @@ export const LIB_COPY = {
     en: "Preview catalog. ~150 graded readings planned.",
     vi: "Danh mục xem trước. Dự kiến ~150 bài đọc theo cấp.",
   },
-  // ── legacy library hub (unrouted) — masthead retired: the chrome never
-  // narrates the product (DESIGN-PRINCIPLES §11) ──
+  
+  
   masthead: { en: "", vi: "" },
   companion: { en: "Companion · 當代中文課程", vi: "Đồng hành · 當代中文課程" },
   booksRange: { en: "Books 1 to 5", vi: "Sách 1 đến 5" },
@@ -215,7 +196,7 @@ export const LIB_COPY = {
   },
   read: { en: "已讀", vi: "已讀" },
   unread: { en: "未讀", vi: "未讀" },
-  // ── Library page (2026-07 settled design) ──
+  
   sortLesson: { en: "Lesson", vi: "Bài" },
   sortFormat: { en: "Format", vi: "Thể loại" },
   sortTitle: { en: "Title", vi: "Tên bài" },
@@ -235,7 +216,7 @@ export function say(key: LibCopyKey, vi: boolean): string {
   return vi ? pair.vi : pair.en;
 }
 
-/** Render-friendly shape the card variants consume. */
+
 export interface ReadingRecord {
   path: string;
   zh: string;
@@ -247,33 +228,33 @@ export interface ReadingRecord {
   bind: string;
   mins: number;
   audio: boolean;
-  /** Coverage % to display in the ring / bar (0–100). */
+  
   cov: number;
-  /** Whether `cov` reflects real local known-word progress (vs an estimate). */
+  
   covReal: boolean;
   newN: number;
   status: ReadingStatus;
   rec: boolean;
-  /** Sort key for "newest" (epoch ms). */
+  
   added: number;
-  /** [hanzi, sinoVietnamese, pinyin] samples. */
+  
   nw: [string, string, string][];
-  /** Pre-rendered excerpt HTML, or "" when unavailable. */
+  
   ex: string;
-  /** Format label (對話/自述/短文…) — the 體 column + shelf article rows. */
+  
   fmt: string;
-  /** Character/token count (字 column). */
+  
   len: number;
-  /** ACCC book/lesson from the binding; null when unbound (free reading). */
+  
   book: number | null;
   lesson: number | null;
-  /** Descriptive title with the "· 對話一" format suffix stripped. */
+  
   descTitle: string;
 }
 
 const clamp = (n: number, lo: number, hi: number): number => Math.max(lo, Math.min(hi, n));
 
-/** Map a `CatalogEntry` to a `ReadingRecord`, degrading gracefully on gaps. */
+
 export function toReadingRecord(
   entry: CatalogEntry,
   getStatus: (lang: string, word: string) => WordStatus,
@@ -320,15 +301,11 @@ export function toReadingRecord(
   };
 }
 
-/**
- * Lesson grouping for the 目錄 catalog spreadsheet: bound readings cluster by
- * 冊/課 (book→lesson, shelf order), unbound "free" readings cluster by band.
- * Group rows are hidden while a column sort is active (the view handles that).
- */
+
 export interface LessonGroupRows {
-  /** Stable key, e.g. "b2l7" or "free-A1". */
+  
   key: string;
-  /** True for the unbound "免 Free readings" band buckets. */
+  
   free: boolean;
   book: number | null;
   lesson: number | null;
@@ -350,13 +327,13 @@ export function groupCatalogByLesson(records: ReadingRecord[]): LessonGroupRows[
   }
   for (const g of groups.values()) g.items.sort((a, b) => a.path.localeCompare(b.path));
   return [...groups.values()].sort((a, b) => {
-    if (a.free !== b.free) return a.free ? 1 : -1; // free buckets last
+    if (a.free !== b.free) return a.free ? 1 : -1; 
     if (a.free) return bandNum(a.band) - bandNum(b.band);
     return (a.book! - b.book!) || (a.lesson! - b.lesson!);
   });
 }
 
-/** Interaction state for the library surface. */
+
 export interface LibState {
   topic: TopicKey | "all";
   forLevel: boolean;
@@ -374,10 +351,7 @@ function haystack(r: ReadingRecord): string {
   return `${r.zh} ${r.rom} ${r.romVi} ${r.nw.map((w) => w.join(" ")).join(" ")}`.toLowerCase();
 }
 
-/**
- * Does a record pass the non-search filters (audio, for-my-level, topic)?
- * `ignoreTopic` powers the stable per-topic counts on the rail.
- */
+
 export function passRecord(r: ReadingRecord, state: LibState, ignoreTopic = false): boolean {
   if (state.audio && !r.audio) return false;
   if (state.forLevel && r.status === "stretch") return false;
@@ -385,7 +359,7 @@ export function passRecord(r: ReadingRecord, state: LibState, ignoreTopic = fals
   return true;
 }
 
-/** Substring search over the record haystack (used inside `passRecord` flows). */
+
 export function matchesQuery(r: ReadingRecord, q: string): boolean {
   const needle = q.trim().toLowerCase();
   if (!needle) return true;
@@ -404,11 +378,7 @@ export function sortRecords(list: ReadingRecord[], sort: LibSort): ReadingRecord
   });
 }
 
-/**
- * Search ranking (Task A4): exact title > title prefix > word/haystack match.
- * Returns only matching records, ordered by tier then the active sort as
- * tiebreak. Titles compare against zh and both romanizations.
- */
+
 export function rankRecords(list: ReadingRecord[], q: string, sort: LibSort = "fit"): ReadingRecord[] {
   const needle = q.trim().toLowerCase();
   if (!needle) return sortRecords(list, sort);
@@ -427,15 +397,15 @@ export function rankRecords(list: ReadingRecord[], q: string, sort: LibSort = "f
     .map((x) => x.r);
 }
 
-/** Records grouped by topic in canonical render order (empty topics dropped). */
+
 export function groupByTopic(list: ReadingRecord[]): { key: TopicKey; items: ReadingRecord[] }[] {
   return TOPIC_ORDER
     .map((key) => ({ key, items: list.filter((r) => r.topic === key) }))
     .filter((g) => g.items.length > 0);
 }
 
-// ── URL hash round-trip for library state (Task A10) ────────────────────────
-// Library params use `l*` keys so they coexist with facet params (band/kind/…).
+
+
 
 function parseHash(hash: string): URLSearchParams {
   const raw = hash.startsWith("#") ? hash.slice(1) : hash;
@@ -456,7 +426,7 @@ export function libStateFromHash(hash: string): LibState {
   return s;
 }
 
-/** Serialize library state into the hash, preserving any facet params present. */
+
 export function libStateToHash(state: LibState, baseHash = ""): string {
   const p = parseHash(baseHash);
   const set = (k: string, cond: boolean, v: string): void => {

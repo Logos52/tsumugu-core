@@ -18,15 +18,15 @@ describe("build-sitemap (pure builders)", () => {
   });
 
   it("emits ONLY real URLs — root + static /blog/ paths, no /catalog or /read placeholder routes", () => {
-    // Explicit blog slugs make the count deterministic regardless of how many
-    // posts content/blog/posts holds. Real, distinct responses only: the origin
-    // root, the static blog index, and one path per built post. Hash routes
-    // (#library, #read=…) are fragments of index.html, never their own URLs.
+    
+    
+    
+    
     const xml = buildSitemapXml("https://tsumugu.cc", "/", ["rebuilding-dun", "word-first-character-later"]);
     expect(xml).not.toContain("/catalog");
     expect(xml).not.toContain("/read");
     expect(xml).toContain("<loc>https://tsumugu.cc/blog/</loc>");
-    expect(xml.match(/<url>/g)?.length).toBe(4); // root + /blog/ + 2 posts
+    expect(xml.match(/<url>/g)?.length).toBe(4); 
   });
 
   it("respects a non-root base for both sitemap and robots", () => {

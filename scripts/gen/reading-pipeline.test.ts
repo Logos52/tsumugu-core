@@ -152,10 +152,10 @@ describe("reading pipeline", () => {
 
   it("chooseLowFreqReviewItems fronts the rarest (highest/absent rank) items first", () => {
     const prevNew = ["常", "冷", "僻"];
-    const freqRank = { 常: 10, 冷: 500 }; // 僻 absent → treated as rarest
+    const freqRank = { 常: 10, 冷: 500 }; 
     expect(chooseLowFreqReviewItems(prevNew, freqRank, 2)).toEqual(["僻", "冷"]);
     expect(chooseLowFreqReviewItems([], freqRank, 3)).toEqual([]);
-    // needed clamps to at least 1
+    
     expect(chooseLowFreqReviewItems(prevNew, freqRank, 0)).toHaveLength(1);
   });
 
@@ -169,10 +169,10 @@ describe("reading pipeline", () => {
       outputDir: join(workDir, "out"),
       batchClient: client,
       resolveTarget: () => TARGET,
-      // force error via stub that always throws to simulate
+      
       gateStub: async () => { throw new Error("boom in gate"); },
     } as any);
-    // wrapper catches, produces skipped outcome
+    
     expect(outcomes.length).toBeGreaterThan(0);
     expect(outcomes[0]?.status).toBe("skipped");
   });

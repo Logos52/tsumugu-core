@@ -1,7 +1,7 @@
 import { DEFAULT_KNOWN_POLICY, type WordStatus } from "@tsumugu/engine";
 import type { Band, CatalogEntry, CoverageBand } from "./types.js";
 
-/** % known (0–100) from manifest word counts + live word-store statuses. */
+
 export function percentKnown(
   wordCounts: Record<string, number>,
   totalWords: number,
@@ -33,7 +33,7 @@ export function bandLabel(band: CoverageBand): string {
   }
 }
 
-/** Per-band counts for rung headers — never an aggregate total. */
+
 export function perBandCounts(catalog: CatalogEntry[]): Record<Band, number> {
   const counts: Record<Band, number> = { A1: 0, A2: 0, B1: 0 };
   for (const entry of catalog) {
@@ -42,7 +42,7 @@ export function perBandCounts(catalog: CatalogEntry[]): Record<Band, number> {
   return counts;
 }
 
-/** Whether any word in the reading has a known status in the local store. */
+
 export function hasKnownWords(
   wordCounts: Record<string, number>,
   getStatus: (w: string) => WordStatus,
@@ -54,7 +54,7 @@ export function hasKnownWords(
   return false;
 }
 
-/** Pick a good "continue / up next" candidate. Prefers explicit lastId, else highest %known that is not outgrown, else any with knowns. */
+
 export function pickContinueCandidate(
   catalog: CatalogEntry[],
   getStatus: (lang: string, word: string) => WordStatus,
@@ -72,20 +72,18 @@ export function pickContinueCandidate(
   for (const entry of catalog) {
     if (!hasKnownWords(entry.wordCounts, (w) => getStatus(lang, w))) continue;
     const pct = percentKnown(entry.wordCounts, entry.totalWords, (w) => getStatus(lang, w));
-    if (pct > 95) continue; // outgrown, prefer stretch/in-range for continue
+    if (pct > 95) continue; 
     if (!best || pct > best.pct) {
       best = { entry, pct };
     }
   }
   if (best) return best.entry;
 
-  // fallback: any with knowns
+  
   return catalog.find((e) => hasKnownWords(e.wordCounts, (w) => getStatus(lang, w))) || null;
 }
 
-/** Library health scan skeleton (Phase2 mechanical, cos scan.py inspired, read-only deterministic).
- * Flags stale (old date), orphans (no binding + low known), simple issues. Returns report.
- */
+
 export interface HealthIssue { path: string; reason: string; }
 export interface LibraryHealthReport {
   ok: boolean;
@@ -113,9 +111,7 @@ export function libraryHealthScan(catalog: CatalogEntry[], now = Date.now()): Li
   };
 }
 
-/** Daily digest / thin strip static gen skeleton (Phase2).
- * Produces minimal digest object from catalog + local signals (static friendly).
- */
+
 export interface DailyDigest {
   date: string;
   recent: string[];
@@ -131,14 +127,12 @@ export function generateDailyDigestThinStrip(catalog: CatalogEntry[], lastIds: s
     date,
     recent,
     backlog,
-    openQs: 0, // mechanical, real from coherence
+    openQs: 0, 
     nextRec: catalog[0]?.path || null,
   };
 }
 
-/** Reverse links stub (quick win): "used in readings" from dict side.
- * Given word, return catalog paths mentioning it (synthetic for now).
- */
+
 export function reverseLinksForWord(word: string, catalog: CatalogEntry[]): string[] {
   return catalog.filter(e => e.wordCounts && e.wordCounts[word]).map(e => e.path);
 }

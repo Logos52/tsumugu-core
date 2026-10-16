@@ -34,7 +34,7 @@ function minutesFromWords(totalWords: number): number {
   return Math.max(1, Math.round(totalWords / WORDS_PER_MINUTE));
 }
 
-/** Build one catalog row from on-disk prepared JSON with Core metadata. */
+
 export async function enrichCatalogEntry(
   preparedPath: string,
   catalogPath: string,

@@ -1,13 +1,4 @@
-/**
- * Per-sentence waveforms — one ROW per cue: sentence text left, one or more
- * compact wavesurfer loopers on the right (multi-track support, e.g. Native + Serena).
- * Drag to A/B-loop using RegionsPlugin; ▶ / Space plays the selected line's primary clip.
- *
- * Ported from monorepo voice/cueWaveforms.ts. Supports real assets via vault.readBytes
- * when binding/vault present; falls back gracefully otherwise.
- *
- * Multi-cue row support included (full patterns).
- */
+
 
 import type { VaultIO } from "@tsumugu/engine";
 import { resolveAudioPath, type VoiceNotesBinding } from "./manifest.js";
@@ -21,7 +12,7 @@ export interface CueWaveTrack {
 
 export interface CueWaveforms {
   setActive(cueIndex: number): void;
-  /** Show/hide English under each sentence (譯 toolbar toggle / `t` hotkey). */
+  
   setTranslationVisible(on: boolean): void;
   key(ev: KeyboardEvent): boolean;
   playThrough(): void;
@@ -34,9 +25,9 @@ interface CueWaveformOpts {
   ranges: readonly { startToken: number; endToken: number }[];
   tokenEls: readonly (HTMLElement | null)[];
   vault: VaultIO;
-  /** One or more voice tracks — stacked for multi-speaker (e.g. dialogues). */
+  
   tracks: readonly CueWaveTrack[];
-  /** One English line per cue (optional). */
+  
   translations?: readonly (string | undefined)[];
   showTranslation?: boolean;
   onActivate?: (cueIndex: number) => void;
@@ -175,7 +166,7 @@ export async function mountCueWaveforms(opts: CueWaveformOpts): Promise<CueWavef
         try {
           o.ws.pause();
         } catch {
-          /* no-op */
+          
         }
       }
     }
@@ -253,7 +244,7 @@ export async function mountCueWaveforms(opts: CueWaveformOpts): Promise<CueWavef
         inst.url = URL.createObjectURL(new Blob([new Uint8Array(bytes).buffer]));
         await ws.load(inst.url);
       } catch {
-        /* missing clip */
+        
       }
     })();
 
@@ -345,7 +336,7 @@ export async function mountCueWaveforms(opts: CueWaveformOpts): Promise<CueWavef
         try {
           i.ws.pause();
         } catch {
-          /* no-op */
+          
         }
       }
     },
@@ -363,7 +354,7 @@ export async function mountCueWaveforms(opts: CueWaveformOpts): Promise<CueWavef
         try {
           i.ws.destroy();
         } catch {
-          /* no-op */
+          
         }
         if (i.url) URL.revokeObjectURL(i.url);
       }

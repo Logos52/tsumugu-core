@@ -1,10 +1,4 @@
-/**
- * Definition + Form popup (click on word in prose).
- * Defaults to Tsumugu dictionary via dictResolve + bundled shards (tsumugu-ed).
- * LIMIT DISPLAY: only 'definition' (gloss/g/gv) + 'form' / encoding / component form fields.
- * Other info (bridge) kept optional/collapsed. Click opens; supports form popup (encoding modal / inline).
- * lookup-is-capture.
- */
+
 
 import { lookupPrebaked, type PrebakedEntry, type BridgeInfo } from "@tsumugu/engine";
 import type { ReaderState } from "../app/state.js";
@@ -130,14 +124,14 @@ export function createWordPopup(
   function paintEntry(word: string, entry: PrebakedEntry | undefined, anchor: HTMLElement): void {
     const { settings } = state;
     const glossLang = settings.gloss;
-    // Default to Tsumugu dict via shards for def+form (prebaked as fallback only)
+    
     const shardPromise = lookupShardEntry(word);
     const reading = readingForEntry(entry, settings.reading);
     const preGloss = glossForEntry(entry, glossLang);
 
     if (glyphEl) glyphEl.textContent = word;
     if (readingEl) readingEl.textContent = reading;
-    // Collapse auxiliary (ipa/pos) per simplify-to-def+form
+    
     if (ipaEl) ipaEl.textContent = "";
     if (posEl) posEl.textContent = "";
 
@@ -163,8 +157,8 @@ export function createWordPopup(
       }
     }
 
-    // Cognate bridge (the VI moat): show on the VI rail when the entry carries
-    // one, the EN-rail phonetic-series note on the EN rail, else collapse both.
+    
+    
     const bridge = entry?.bridge;
     const showBridge = !!bridge && settings.rail === "vi";
     card!.classList.toggle("is-bridge", showBridge);
@@ -190,7 +184,7 @@ export function createWordPopup(
     if (exEl) exEl.style.display = "none";
 
     if (aAdd) {
-      // + Add card = reserved violet deliberate action (promote + capture)
+      
       aAdd.onclick = (ev) => {
         ev.stopPropagation();
         state.recordSeen(word);
@@ -227,47 +221,47 @@ export function createWordPopup(
       };
     }
 
-    // Default to Tsumugu dict (dictResolve + bundled shards). Limit to def + form only.
-    // Def = gloss/g/gv. Form = encoding/component form (inline hint + modal support).
+    
+    
     void shardPromise.then((shard) => {
       if (!shard || !card || !glossEl) return;
-      // Definition / gloss field from shards (priority)
+      
       const useG = glossLang === "vi" && shard.gv ? shard.gv : (shard.g || preGloss);
       if (useG && (!glossEl.textContent || glossEl.textContent === "—" || glossEl.textContent === preGloss)) {
         glossEl.textContent = useG;
       }
       glossEl.title = shard.g || shard.gv || "Definition from tsumugu-ed";
 
-      // Form / encoding / component form fields — prominent inline section
-      // (keep bridge/other collapsed; form supports modal popup too)
+      
+      
       const formText = shard.form || shard.components || shard.encoding || shard.hve || "";
-      // Remove any prior form host to avoid dupes on re-paint
+      
       const priorForm = card.querySelector(".tsg-form");
       if (priorForm) priorForm.remove();
-      // Only render the Form box when the entry actually carries form data;
-      // the dict shards lack typed form/components fields today, so the empty
-      // box would otherwise always show.
+      
+      
+      
       if (formText) {
         const formHost = el("div", { class: "tsg-form", style: { margin: "8px 0", padding: "8px 10px", border: "1px solid var(--tsg-border)", borderRadius: "8px", background: "var(--tsg-sunk)", fontSize: "13px" } as any });
         const lbl = el("span", { class: "form-lbl", text: "Form: ", style: { fontWeight: "600", color: "var(--tsg-accent)" } as any });
         const val = el("span", { class: "form-val", text: formText });
         formHost.append(lbl, val);
-        // Inline form view click opens modal too
+        
         formHost.style.cursor = "pointer";
         formHost.addEventListener("click", (e) => {
           e.stopPropagation();
           const modal = (window as { __tsgEnc?: { open: (w: string, c: unknown) => void } }).__tsgEnc;
           if (modal?.open) modal.open(word, (state as { content?: unknown }).content);
         });
-        // Insert prominently after gloss
+        
         glossEl.parentElement?.insertBefore(formHost, glossEl.nextSibling);
       }
-      // (no HanViet depth append; no extra rich; only def+form per request)
+      
     });
 
-    // Restore action handlers (add/known kept for compatibility; not core def+form)
+    
     if (aAdd) {
-      // + Add card = reserved violet deliberate action (promote + capture)
+      
       aAdd.onclick = (ev) => {
         ev.stopPropagation();
         state.recordSeen(word);

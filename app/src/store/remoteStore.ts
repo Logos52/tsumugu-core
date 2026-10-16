@@ -1,8 +1,4 @@
-/**
- * Remote user-doc persistence abstraction.
- * Default: LocalSimRemoteStore (localStorage `tsumugu-sim-server/`).
- * Production sync: FetchRemoteStore when VITE_SYNC_API_URL is set.
- */
+
 
 import { type UserDoc, migrateUserDoc } from "./userDoc.js";
 
@@ -33,7 +29,7 @@ export class LocalSimRemoteStore implements RemoteStore {
     try {
       localStorage.setItem(this.key(userId), JSON.stringify(doc));
     } catch {
-      /* ignore quota errors */
+      
     }
   }
 
@@ -41,22 +37,12 @@ export class LocalSimRemoteStore implements RemoteStore {
     try {
       localStorage.removeItem(this.key(userId));
     } catch {
-      /* ignore */
+      
     }
   }
 }
 
-/**
- * Sync Stage 1 — BYO-URL, PULL-ONLY (WO-UNIFY-C C1).
- *
- * The user pastes a URL that serves their exported UserDoc JSON (any static host:
- * a gist raw URL, an R2/S3 object, a personal endpoint). We GET it, normalize it
- * through {@link migrateUserDoc}, and hand it back for the clock-aware merge.
- *
- * Writes stay MANUAL (file export / sync code) — `put`/`delete` are intentional
- * no-ops. This is NOT the deferred Stage-2 Worker+D1 store ({@link FetchRemoteStore}
- * is the untouched Stage-2 seam); do not add push/auth here.
- */
+
 export class UrlRemoteStore implements RemoteStore {
   constructor(private readonly url: string) {}
 
@@ -69,14 +55,14 @@ export class UrlRemoteStore implements RemoteStore {
     return migrateUserDoc(raw);
   }
 
-  /** No-op: Stage-1 writes stay manual (export / sync code). */
+  
   async put(): Promise<void> {
-    /* pull-only */
+    
   }
 
-  /** No-op: Stage-1 has nothing to delete remotely. */
+  
   async delete(): Promise<void> {
-    /* pull-only */
+    
   }
 }
 

@@ -87,9 +87,7 @@ export function packForLang(
   }
 }
 
-/** Simple LRU cache (monorepo hygiene 11.5 for manifests, audio regions, dict shards).
- * Bounded, O(1) get/put. Used by lazy loads.
- */
+
 export class LRU<K, V> {
   private max: number;
   private map = new Map<K, V>();

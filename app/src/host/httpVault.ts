@@ -1,6 +1,4 @@
-/**
- * HTTP-backed vault: read-only static publish (`/vault/`).
- */
+
 
 import type { VaultIO } from "@tsumugu/engine";
 import type { CatalogEntry } from "../catalog/types.js";
@@ -8,13 +6,13 @@ import type { CatalogEntry } from "../catalog/types.js";
 const url = (base: string, path: string): string =>
   base + path.replace(/^\/+/, "").split("/").map(encodeURIComponent).join("/");
 
-/** Published static vault root (respects Vite `base`, e.g. `/tsumugu/app/vault/`). */
+
 export function staticVaultBase(): string {
   const base = import.meta.env.BASE_URL || "/";
   return base + (base.endsWith("/") ? "" : "/") + "vault/";
 }
 
-/** A read-only VaultIO backed by HTTP fetch (static publish). */
+
 export function createHttpVault(base = staticVaultBase()): VaultIO {
   return {
     async readText(path: string): Promise<string | null> {
@@ -35,12 +33,7 @@ export function createHttpVault(base = staticVaultBase()): VaultIO {
   };
 }
 
-/**
- * A catalog entry is only usable if it carries the facet fields the library UI
- * indexes on. A thin/partial manifest (e.g. a hand-stubbed `__readings.json` with
- * only `path`) must NOT masquerade as a live catalog — the caller (main.ts) falls
- * back to the bundled fixture set when this yields **zero valid entries**.
- */
+
 function isValidCatalogEntry(entry: unknown): entry is CatalogEntry {
   if (typeof entry !== "object" || entry === null) return false;
   const e = entry as Record<string, unknown>;
@@ -52,14 +45,7 @@ function isValidCatalogEntry(entry: unknown): entry is CatalogEntry {
   );
 }
 
-/**
- * List prepared readings from static `__readings.json`.
- *
- * Runtime validity guard: each entry must have `band` + `kind` + `wordCounts`;
- * invalid entries are skipped with a `console.warn`. Returns only valid entries,
- * so a thin manifest yields `[]` and lets the caller trigger the fixture fallback
- * on **validity** (zero valid entries) rather than raw manifest length.
- */
+
 export async function listVaultReadings(vaultBase = staticVaultBase()): Promise<CatalogEntry[]> {
   try {
     const r = await fetch(url(vaultBase, "__readings.json"));

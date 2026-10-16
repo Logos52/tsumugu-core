@@ -1,16 +1,4 @@
-/**
- * Shared site footer (rendered into #app-footer on every surface).
- *
- * One quiet band: brand (紡 seal + Tsumugu + Beta pill) + a compact link row so
- * the secondary pages (Blog, Privacy, Feedback…) never dead-end. Nothing else —
- * the footer doesn't narrate the product (DESIGN-PRINCIPLES §11); taglines,
- * corpus notes, and type credits belong to the About/colophon page if anywhere.
- * Bilingual via the established `.en-only`/`.vi-only` spans (toggled by
- * `:root[data-rail]` in reader.css); no new i18n keys.
- *
- * The static footer baked into index.html is the no-JS fallback; this replaces it
- * once the shell boots so the footer content lives in one owned place.
- */
+
 
 import { blogHref } from "../app/router.js";
 
@@ -32,10 +20,7 @@ function footerHTML(): string {
     </div>`;
 }
 
-/**
- * Render (or re-render) the shared footer into #app-footer. Idempotent: safe to
- * call on every boot. No-ops when the footer host is absent (e.g. unit tests).
- */
+
 export function renderAppFooter(): void {
   const footer = document.getElementById("app-footer");
   if (!footer) return;

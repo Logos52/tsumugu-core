@@ -32,7 +32,7 @@ interface RawHanVietEntry {
 let cachedHanViet: HanVietIndex | undefined;
 let cachedCharVi: Set<string> | undefined;
 
-/** Parse hanviet.json into a char → readings map. */
+
 export function loadHanViet(jsonPath: string = DEFAULT_HANVIET_JSON): HanVietIndex {
   if (cachedHanViet !== undefined && jsonPath === DEFAULT_HANVIET_JSON) {
     return cachedHanViet;
@@ -62,7 +62,7 @@ export function loadHanViet(jsonPath: string = DEFAULT_HANVIET_JSON): HanVietInd
   return index;
 }
 
-/** Build-time char_vi membership set (share-alike; never bundled to client). */
+
 export function loadCharVi(txtPath: string = DEFAULT_CHAR_VI_TXT): CharViIndex {
   if (cachedCharVi !== undefined && txtPath === DEFAULT_CHAR_VI_TXT) {
     return { has: (char) => cachedCharVi!.has(char) };
@@ -92,7 +92,7 @@ export function charViHas(charVi: CharViIndex, char: string): boolean {
   return charVi.has(char);
 }
 
-/** Test helper: reset module caches between fixture loads. */
+
 export function resetHanVietCaches(): void {
   cachedHanViet = undefined;
   cachedCharVi = undefined;

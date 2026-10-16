@@ -1,4 +1,4 @@
-/** Han character matcher — mirrors example_checks.py HAN_RE semantics. */
+
 export const HAN_RE = /[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/gu;
 
 export const FINAL_PUNCT = "。！？";
@@ -8,7 +8,7 @@ export function hanCount(s: string): number {
   return [...s.matchAll(HAN_RE)].length;
 }
 
-/** Ends with sentence-final punctuation (trailing closers tolerated). */
+
 export function isCompleteSentence(zh: string): boolean {
   let t = zh.trimEnd();
   while (t.length > 0 && CLOSERS.includes(t.at(-1)!)) {
@@ -17,7 +17,7 @@ export function isCompleteSentence(zh: string): boolean {
   return t.length > 0 && FINAL_PUNCT.includes(t.at(-1)!);
 }
 
-/** Split prose into sentence chunks (delimiters retained on each chunk). */
+
 export function splitSentences(prose: string): string[] {
   const sentences: string[] = [];
   let current = "";
@@ -34,13 +34,13 @@ export function splitSentences(prose: string): string[] {
   return sentences;
 }
 
-/** Split prose into paragraphs on blank lines. */
+
 export function splitParagraphs(prose: string): string[] {
   const parts = prose.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
   return parts.length > 0 ? parts : [prose.trim()];
 }
 
-/** First two Han characters of a sentence (opening bigram). */
+
 export function sentenceOpenerBigram(sentence: string): string {
   const han = [...sentence.matchAll(HAN_RE)].map((m) => m[0]);
   return han.slice(0, 2).join("");
@@ -52,7 +52,7 @@ export interface ContentWordCount {
   ratio: number;
 }
 
-/** Count content-word repetition within one paragraph's token texts. */
+
 export function paragraphWordCounts(
   wordTexts: string[],
 ): { total: number; byWord: Map<string, number> } {

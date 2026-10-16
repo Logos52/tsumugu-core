@@ -272,8 +272,8 @@ export function reconcileGrammarIndexes(
     return a.name_zh.localeCompare(b.name_zh, "zh-Hant");
   });
 
-  // Robust dedup + canonical pattern_id: sources have collisions/bad ids (e.g. trailing -, internal dups in v2).
-  // Use lesson+name based key for uniqueness; regenerate colliding/empty ids. One authoritative set.
+  
+  
   const seenPatternIds = new Set<string>();
   const deduped: MergedGrammarPoint[] = [];
   for (const point of mergedPoints) {
@@ -289,7 +289,7 @@ export function reconcileGrammarIndexes(
       point.pattern_id = pid;
     }
     if (seenPatternIds.has(pid)) {
-      // absolute guard, should not reach
+      
       continue;
     }
     seenPatternIds.add(pid);

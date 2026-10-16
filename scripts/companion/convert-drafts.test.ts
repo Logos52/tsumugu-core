@@ -68,13 +68,13 @@ describe("convert-drafts", () => {
       },
     };
 
-    // parsePreparedContent round-trip (the reader's validation gate).
+    
     const parsed = parsePreparedContent(JSON.stringify(appPrepared));
     expect(parsed.schema).toBe(PREPARED_CONTENT_SCHEMA_V2);
     expect(parsed.lang).toBe("zh-Hant");
     expect(parsed.tokens.length).toBeGreaterThan(0);
 
-    // Round-trip through the on-disk enrichment path → CatalogEntry with all fields.
+    
     const outPath = join(tmpdir(), `companion-test-${Date.now()}.prepared.json`);
     const { writeFileSync } = await import("node:fs");
     writeFileSync(outPath, JSON.stringify(appPrepared, null, 2), "utf8");
@@ -83,7 +83,7 @@ describe("convert-drafts", () => {
       "readings/zh-Hant/b1l01-r1.prepared.json",
     );
 
-    // Every required CatalogEntry field is present + well-typed.
+    
     expect(entry.path).toBe("readings/zh-Hant/b1l01-r1.prepared.json");
     expect(entry.kind).toBe("dialogue");
     expect(entry.origin).toBe("generated");

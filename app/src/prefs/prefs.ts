@@ -1,4 +1,4 @@
-/** @deprecated Import from `../app/settings.js` — re-exported for tests and legacy callers. */
+
 export {
   DEFAULT_RAIL,
   DEFAULT_SETTINGS,

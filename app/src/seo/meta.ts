@@ -1,6 +1,4 @@
-/**
- * Per-locale document title + meta description for SPA surfaces.
- */
+
 
 import { getLocale, tKey as t } from "../i18n/strings.js";
 import type { Surface } from "../app/router.js";
@@ -16,8 +14,8 @@ const SEO_KEYS: Record<SeoSurface, { title: string; description: string }> = {
   privacy: { title: "seo.privacy.title", description: "seo.privacy.description" },
   terms: { title: "seo.terms.title", description: "seo.terms.description" },
   feedback: { title: "seo.feedback.title", description: "seo.feedback.description" },
-  // Blog is a static section: `#blog` redirects out of the SPA before any
-  // in-app SEO is applied. Reuse the home strings to keep the map exhaustive.
+  
+  
   blog: { title: "seo.home.title", description: "seo.home.description" },
 };
 
@@ -31,7 +29,7 @@ function setMetaDescription(content: string): void {
   el.content = content;
 }
 
-/** Update `<title>`, meta description, and `<html lang>` from rail/locale. */
+
 export function updateSeo(surface: SeoSurface, rail: "en" | "vi"): void {
   const locale = getLocale(rail);
   const keys = SEO_KEYS[surface] ?? SEO_KEYS.home;

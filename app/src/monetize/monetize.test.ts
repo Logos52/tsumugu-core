@@ -1,4 +1,4 @@
-// @vitest-environment happy-dom
+
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { getTier, isPro, setTier, resetEntitlementCache } from "./entitlement.js";
 import { mountProPanel, mountAdSlot, mountDonateCard } from "./surfaces.js";
@@ -16,7 +16,7 @@ describe("entitlement", () => {
     setTier("pro");
     expect(isPro()).toBe(true);
     resetEntitlementCache();
-    expect(getTier()).toBe("pro"); // persisted
+    expect(getTier()).toBe("pro"); 
     setTier("free");
     expect(localStorage.getItem("tsumugu-core/entitlement")).toBeNull();
   });

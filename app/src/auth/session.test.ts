@@ -1,4 +1,4 @@
-// @vitest-environment happy-dom
+
 import { beforeEach, describe, expect, it } from "vitest";
 import { resetUserStoreForTest } from "../store/userStore.js";
 import { devForceLogin, getSession, isLoggedIn, resetSessionForTest } from "./session.js";

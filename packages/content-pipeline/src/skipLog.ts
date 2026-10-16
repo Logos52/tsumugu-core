@@ -8,7 +8,7 @@ export interface SkipLogEntry {
   reasons: string[];
 }
 
-/** Append one JSONL skip-queue record (idempotent append; creates parent dirs). */
+
 export function appendSkipLog(
   report: ReadingCheckReport,
   sourcePath: string,

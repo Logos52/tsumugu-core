@@ -15,7 +15,7 @@ function loadTokenize(): Promise<TokenizeFn> {
   return tokenizePromise;
 }
 
-/** Greedy longest-match fallback (tests + offline without wasm). */
+
 export function segmentDraftGreedy(text: string, knownWords: Set<string>): PreparedToken[] {
   const tokens: PreparedToken[] = [];
   let i = 0;
@@ -52,7 +52,7 @@ export function segmentDraftGreedy(text: string, knownWords: Set<string>): Prepa
   return tokens;
 }
 
-/** jieba-wasm segmentation with greedy lexicon refinement for known multi-char words. */
+
 export async function segmentDraftAsync(
   text: string,
   knownWords: Set<string>,

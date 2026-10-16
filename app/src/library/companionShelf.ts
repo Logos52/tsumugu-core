@@ -1,17 +1,4 @@
-/**
- * Companion shelf — the Book → Lesson spine over the ACCC textbook companion.
- *
- * Each lesson set is sold as a study-C card: pedagogy-as-hero, with the
- * union-coverage promise (the union of the lesson's 3 articles = 100% of the
- * lesson's vocab + grammar). Reading data comes from `CatalogEntry.binding`
- * (grouped by book/lesson); lesson title/theme/grammar metadata comes from the
- * content workflow's `companion-lessons.json` (consumed read-only, may be
- * absent — the shelf degrades to bindings alone).
- *
- * Per the 2026-07-02 amendment, the lesson view PUBLISHES the extracted
- * grammar-point list AND links each point to its tsumugu-ed `g/` page. This
- * module renders that list link-only; it never renders in-app grammar prose.
- */
+
 import type { WordStatus } from "@tsumugu/engine";
 import { el, clear } from "../ui/dom.js";
 import { formatLabel, hanNum, isViRail, say } from "../catalog/libraryModel.js";
@@ -20,13 +7,13 @@ import type { CatalogEntry } from "../catalog/types.js";
 
 export interface CompanionGrammar {
   name: string;
-  /** tsumugu-ed grammar-page slug (`g/<edSlug>`), when known. */
+  
   edSlug?: string;
 }
 
-/** One lesson's metadata, as emitted by `companion-lessons.json`. */
+
 export interface CompanionLesson {
-  /** Unit label, e.g. "B1L02". Book/lesson may also be given explicitly. */
+  
   unit: string;
   book?: number;
   lesson?: number;
@@ -44,7 +31,7 @@ export interface LessonGroup {
   readings: CatalogEntry[];
   grammar: CompanionGrammar[];
   articles: number;
-  /** Union coverage the card sells (0–100). */
+  
   unionCoverage: number;
 }
 
@@ -59,7 +46,7 @@ function parseUnit(unit: string): { book?: number; lesson?: number } {
   return { book: Number(m[1]), lesson: Number(m[2]) };
 }
 
-/** Build the Book → Lesson spine from bindings, joined with lesson metadata. */
+
 export function buildCompanionSpine(
   catalog: CatalogEntry[],
   lessons: CompanionLesson[] = [],
@@ -97,8 +84,8 @@ export function buildCompanionSpine(
 
   for (const g of groups.values()) {
     g.articles = g.readings.length;
-    // The pipeline guarantees the union of a lesson's articles covers 100% of
-    // its target vocab+grammar; surface that promise once articles exist.
+    
+    
     g.unionCoverage = g.articles > 0 ? 100 : 0;
   }
 
@@ -117,7 +104,7 @@ export function buildCompanionSpine(
 const esc = (s: string): string =>
   s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
 
-/** Resolve a grammar point's tsumugu-ed `g/` URL, or null when link-only slug absent. */
+
 export function grammarHref(g: CompanionGrammar, base: string): string | null {
   if (!g.edSlug) return null;
   return `${base.replace(/\/$/, "")}/g/${encodeURIComponent(g.edSlug)}`;
@@ -127,26 +114,20 @@ export interface CompanionShelfOpts {
   catalog: CatalogEntry[];
   lessons?: CompanionLesson[];
   onOpen: (path: string) => void;
-  /** Base origin for tsumugu-ed grammar pages (kept for the lesson-detail view). */
+  
   grammarBase?: string;
-  /** Optional: last-opened reading path, to preselect its book + mark it current. */
+  
   getLastReadingId?: () => string | null;
-  /** Optional: live word status, so read articles can show 已讀. */
+  
   getStatus?: (lang: string, word: string) => WordStatus;
 }
 
-/** Books the shelf shows as spines (the 當代中文課程 companion runs B1–B5). */
+
 const SHELF_BOOKS = [1, 2, 3, 4, 5];
 
 const fmtOf = (e: CatalogEntry): string => formatLabel(e);
 
-/**
- * 課本架 Companion shelf — Book spines (B1–B5, open = current) opening into
- * lesson set-cards. Each card lists its 3 articles (format / 字 / status) and a
- * 書腰 obi line (詞彙與語法 100%, the union-coverage guarantee). Rebuilt from the
- * 2026-07-02 unified mockup; render-only (grammar points link out of the future
- * lesson-detail view, not the card face — minimalism wins).
- */
+
 export function mountCompanionShelf(
   root: HTMLElement,
   opts: CompanionShelfOpts,
@@ -268,7 +249,7 @@ export function mountCompanionShelf(
   };
 }
 
-/** Fetch `companion-lessons.json` from the vault base; [] when absent/invalid. */
+
 export async function loadCompanionLessons(vaultBase: string): Promise<CompanionLesson[]> {
   try {
     const res = await fetch(`${vaultBase.replace(/\/$/, "")}/companion-lessons.json`);

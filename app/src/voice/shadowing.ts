@@ -1,10 +1,4 @@
-/**
- * Shadowing / chorusing mode — pure state machine (data-free port from monorepo).
- *
- * Loop: play cue → highlight stays → user repeats → Space advances.
- * No auto-advance. Esc exits. Inert without assets + demo hook.
- * Keeps per-sentence policy.
- */
+
 
 export type ShadowState =
   | { phase: "idle" }
