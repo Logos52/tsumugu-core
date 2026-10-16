@@ -1,6 +1,6 @@
 
 
-type Child = Node | string | number | null | undefined | false;
+type Child = Node | string | number | null | undefined | false; // lint-proof
 
 export interface ElProps {
   class?: string;
