@@ -9,15 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      # Absent sibling: print a skip notice and exit 0. Later steps are gated on
-      # skip=false, so install / dict-sync / shell-contract / typecheck / test /
-      # build do not run. Present sibling: the hard guard below still fails the
-      # job if the directory check does not pass, then the full path runs.
+      # Absent sibling: print a skip notice and exit 0. pnpm setup, Node setup
+      # (cache: pnpm), install, dict-sync, shell-contract, typecheck, test, and
+      # build are gated on skip=false. setup-node's post step saves the pnpm
+      # store and fails the job when install never created that directory.
+      # Present sibling: the hard guard below still fails the job if the
+      # directory check does not pass, then the full path runs, including cache.
       - name: Link monorepo packages
         id: monorepo
         run: |
@@ -29,6 +26,13 @@ jobs:
           fi
           test -d ../tsumugu/packages/engine || (echo "Checkout tsumugu monorepo beside tsumugu-core for CI" && exit 1)
           echo "skip=false" >> "$GITHUB_OUTPUT"
+      - uses: pnpm/action-setup@v4
+        if: steps.monorepo.outputs.skip == 'false'
+      - uses: actions/setup-node@v4
+        if: steps.monorepo.outputs.skip == 'false'
+        with:
+          node-version: 22
+          cache: pnpm
       # WO-D D11 gates: dict-search freshness (fails loudly on an absent/stale
       # ed source — requires tsumugu-ed checked out beside this repo, like the
       # monorepo link above) + shell-contract artifact drift.
