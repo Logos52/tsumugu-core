@@ -1,16 +1,11 @@
-/**
- * Static footer-linked pages: About, Privacy, Feedback.
- * Colophon + Method fold into About (their content is appended to About's body).
- * Short original copy; EN/VI via i18n.
- */
+
 
 import { el, clear } from "../ui/dom.js";
 import { applyI18n, getCurrentLocale, tKey as t } from "../i18n/strings.js";
 
 export type StaticPage = "about" | "privacy" | "terms" | "feedback";
 
-/** Colophon + Method hashes redirect to About; the router handles that, this
- * only recognises the three real static pages. */
+
 export function staticPageFromHash(hash: string): StaticPage | null {
   const clean = (hash || "").replace(/^#/, "").toLowerCase();
   if (clean === "about" || clean === "colophon" || clean === "method") return "about";
@@ -27,7 +22,7 @@ function pageBody(page: StaticPage, locale: ReturnType<typeof getCurrentLocale>)
     return `${body}<p><a href="mailto:${mail}">${mail}</a></p>`;
   }
   if (page === "about") {
-    // Fold the colophon + method sections into About.
+    
     const method = t("method.body", locale);
     const colophon = t("colophon.body", locale);
     const methodTitle = t("method.title", locale);
@@ -51,7 +46,7 @@ export function mountStaticPage(host: HTMLElement, page: StaticPage): HTMLElemen
   return wrap;
 }
 
-/** Legacy entry used by main.ts router (rail-aware locale via getCurrentLocale). */
+
 export function renderStaticPage(
   kind: StaticPage,
   root: HTMLElement,

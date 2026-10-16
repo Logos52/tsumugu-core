@@ -2,7 +2,7 @@ import { lookupPrebaked, type PrebakedEntry } from "@tsumugu/engine";
 import type { CorePreparedContent } from "../types/corePrepared.js";
 import type { Reading } from "../app/settings.js";
 
-/** Extract the display reading for the active reading mode from a prebaked entry. */
+
 export function readingForEntry(
   entry: PrebakedEntry | undefined,
   mode: Reading,
@@ -14,7 +14,7 @@ export function readingForEntry(
   const parts = raw.split("/").map((p) => p.trim());
   if (parts.length === 1) return parts[0] ?? "";
 
-  // Common generator shape: "hv / py" or "hv / py / zhuyin".
+  
   if (mode === "hv") return parts[0] ?? raw;
   if (mode === "py") return parts[1] ?? parts[0] ?? raw;
   if (mode === "zh" || mode === "zy") return parts[2] ?? parts[1] ?? parts[0] ?? raw;

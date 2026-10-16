@@ -1,27 +1,17 @@
-/**
- * Cue-aware voice-note player (ported from monorepo voice/player.ts).
- *
- * Plays per-cue local audio through one HTMLAudioElement, loading blobs lazily
- * via the host vault (httpVault readBytes or File System) with a small LRU of
- * decoded object-URLs. Slow playback pitch-corrects via playbackRate (0.85×).
- * Any missing/unreadable file falls back to the Web Speech path for that cue.
- *
- * Supports real assets when vault + binding present; otherwise demo speak fallback.
- * The slow-vs-natural decision reuses selectPlayback (pure).
- */
+
 
 import type { VaultIO } from "@tsumugu/engine";
 import type { VoiceNote, VoiceNotesBinding } from "./manifest.js";
 import { resolveAudioPath } from "./manifest.js";
 
-/** Gap between cues in "play from here" / shadowing auto-advance. */
+
 export const CHAIN_GAP_MS = 350;
-/** How many decoded cue object-URLs to keep alive. */
+
 export const AUDIO_LRU = 10;
-/** Reader-side slow speed (pitch-corrected). */
+
 export const SLOW_PLAYBACK_RATE = 0.85;
 
-/** Which file to play and at what rate for a cue — pure. */
+
 export function selectPlayback(
   note: VoiceNote | undefined,
   slow: boolean,
@@ -33,13 +23,13 @@ export function selectPlayback(
 }
 
 export interface VoicePlayer {
-  /** Play one cue; `onEnded` fires when its audio (or speech fallback) completes. */
+  
   playCue(index: number, opts?: { slow?: boolean; onEnded?: () => void }): void;
-  /** Play consecutively from `index`, advancing the highlight via `onAdvance`. */
+  
   playFrom(index: number, opts?: { slow?: boolean; onAdvance?: (index: number) => void; onDone?: () => void }): void;
-  /** Stop playback and cancel any pending chained advance. */
+  
   stop(): void;
-  /** Tear down: stop + revoke all cached object-URLs. */
+  
   destroy(): void;
 }
 
@@ -47,14 +37,14 @@ export interface VoicePlayerDeps {
   vault?: VaultIO | null;
   binding?: VoiceNotesBinding | null;
   cues: readonly { text: string }[];
-  /** Web Speech fallback. */
+  
   speak?: (text: string) => void;
 }
 
 export function createVoicePlayer(deps: VoicePlayerDeps): VoicePlayer {
   const { vault, binding, cues, speak } = deps;
   const audio = new Audio();
-  const cache = new Map<string, string>(); // resolved path → object URL (insertion-ordered LRU)
+  const cache = new Map<string, string>(); 
   let token = 0;
   let chainStopped = true;
   let chainTimer: ReturnType<typeof setTimeout> | undefined;

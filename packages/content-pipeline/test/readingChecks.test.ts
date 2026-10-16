@@ -151,7 +151,7 @@ describe("verifyReading", () => {
 
   it("enforces MIN_SENTENCES and length spread using prose utils", async () => {
     const { prepared, target } = loadFixturePair("clean");
-    // clean has 4 sentences, spread=12 >=8
+    
     const report = await verifyReading({
       ...baseOpts("clean"),
     });
@@ -171,7 +171,7 @@ describe("verifyReading", () => {
     const { prepared, target } = loadFixturePair("clean");
     const noBridgeContent = {
       ...prepared,
-      glossary: {}, // strip all
+      glossary: {}, 
     };
     const report = await verifyReading({
       content: noBridgeContent,

@@ -1,6 +1,4 @@
-/**
- * Tone parsing for the browser packs — pure, data-free, DOM-free.
- */
+
 
 export function toneClassesFromZhuyin(reading: string): number[] | undefined {
   if (!reading) return undefined;

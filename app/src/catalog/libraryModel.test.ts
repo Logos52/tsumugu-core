@@ -49,7 +49,7 @@ describe("normalizeTopic", () => {
     expect(normalizeTopic("教育 Education")).toBe("work");
     expect(normalizeTopic("天氣 The Weather")).toBe("nature");
     expect(normalizeTopic("台灣農業 Taiwan's Agricultural Industry")).toBe("nature");
-    // no keyword hit → default bucket
+    
     expect(normalizeTopic("Hobbies")).toBe("city");
   });
 });
@@ -128,7 +128,7 @@ describe("toReadingRecord degrades gracefully", () => {
   });
   it("carries the spreadsheet fields (fmt, len, book/lesson, descTitle)", () => {
     const r = toReadingRecord(entry, () => "1");
-    expect(r.fmt).toBe("短文"); // kind=story fallback (no "·" suffix in title)
+    expect(r.fmt).toBe("短文"); 
     expect(r.len).toBe(100);
     expect(r.book).toBe(2);
     expect(r.lesson).toBe(4);
@@ -181,7 +181,7 @@ describe("groupCatalogByLesson", () => {
     ];
     const groups = groupCatalogByLesson(list);
     expect(groups.map((g) => g.key)).toEqual(["b1l3", "b2l7", "free-A1"]);
-    // items sorted by path within the lesson
+    
     expect(groups[0]!.items.map((r) => r.path)).toEqual(["b1l3-a", "b1l3-b"]);
     expect(groups[2]!.free).toBe(true);
   });

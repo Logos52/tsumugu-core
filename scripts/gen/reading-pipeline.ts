@@ -36,9 +36,9 @@ export interface ReadingPipelineOptions {
   apiKey?: string;
   workerId?: string;
   resolveTarget?: (lesson: string) => LessonTarget;
-  /** Optional preloaded band index for gate in-band checks (falls back to load inside). */
+  
   defLevelIndex?: DefLevelIndex;
-  /** Inject gate failures for tests (attempt → fail?). May return prepared on ok for reuse. */
+  
   gateStub?: (spec: ReadingQueueSpec, attempt: number) => Promise<{ ok: boolean; violations: string[]; prepared?: any }>;
 }
 
@@ -77,10 +77,10 @@ function buildUserPrompt(spec: ReadingQueueSpec, target: LessonTarget): string {
   const newWords = target.newVocab.slice(0, 30).join("、");
   const newGrammar = target.newGrammar.map((g) => g.name_zh).join("、");
 
-  // Reverse-regression lower bounds only. The per-prior-lesson "chosen" review subsets
-  // are NOT injected here (that needs resolving L-1/L-2… — `chooseLowFreqReviewItems`
-  // is the selector for when that lands); the model satisfies the proportions from the
-  // frozen cumulative vocabulary in the cached system block.
+  
+  
+  
+  
   const regressionNote = [
     `REVERSE REGRESSION / SPACED REVIEW (lower bounds on token proportion from each bucket; see COMPANION-SET-LAYOUT.md and prompt for formula + self-QA):`,
     `current (${spec.lesson}): >=40% from this lesson's newVocab + newGrammar`,
@@ -103,15 +103,7 @@ function buildUserPrompt(spec: ReadingQueueSpec, target: LessonTarget): string {
   ].join("\n");
 }
 
-/**
- * Stub for future: given a previous lesson's newVocab list + freqRank lookup,
- * return the rarest-first chosen subset sized for the review bucket volume.
- * (Full impl lives near resolveLessonTarget or in a shared target builder.)
- * Used to prepare the "chosen" lists passed for L-1/L-2... regression in the prompt.
- *
- * freqRank: word -> rank (lower rank = more frequent; absent or high = rarer)
- * needed: how many distinct to front-load for this bucket's lower-bound.
- */
+
 export function chooseLowFreqReviewItems(
   prevNew: string[],
   freqRank: Record<string, number>,
@@ -121,7 +113,7 @@ export function chooseLowFreqReviewItems(
   const sorted = [...prevNew].sort((a, b) => {
     const ra = freqRank[a] ?? Number.MAX_SAFE_INTEGER;
     const rb = freqRank[b] ?? Number.MAX_SAFE_INTEGER;
-    // Rarest first: higher rank (or absent) first → larger rank wins
+    
     if (rb !== ra) return rb - ra;
     return a.localeCompare(b);
   });
@@ -154,7 +146,7 @@ async function defaultGate(
   };
 }
 
-/** Process one claimed spec through generate → gate → critique → repair (max 2). */
+
 export async function processReadingSpec(
   spec: ReadingQueueSpec,
   target: LessonTarget,
@@ -182,7 +174,7 @@ export async function processReadingSpec(
       : await defaultGate(spec, draft, target, deps.defLevelIndex, deps.skipLogPath);
 
     if (gate.ok) {
-      // Reuse prepared from gate pass if available (enhances dualRail pop: no redundant segment/bridge/verify)
+      
       let prepared = gate.prepared;
       if (!prepared) {
         const full = await populateDualRail({
@@ -242,7 +234,7 @@ export async function processReadingSpec(
   }
 }
 
-/** Drive the claim queue up to `lanes` concurrent specs with error handling. */
+
 export async function runReadingPipeline(opts: ReadingPipelineOptions): Promise<PipelineOutcome[]> {
   if (opts.apiKey !== undefined && !opts.apiKey) {
     throw new Error("ANTHROPIC_API_KEY is required for live Batches runs");
@@ -253,8 +245,8 @@ export async function runReadingPipeline(opts: ReadingPipelineOptions): Promise<
   const resolveTarget = opts.resolveTarget ?? ((lesson: string) => resolveLessonTarget(lesson));
   const outcomes: PipelineOutcome[] = [];
 
-  // Improved claim-based: drain queue with lane concurrency limit + per-spec error handling.
-  // Never injects full wordlist (only new in user turn; cumulative frozen in cached prefix).
+  
+  
   const queue = loadQueue(opts.queuePath);
   const pending = queue.specs.filter((s) => s.status === "pending");
 
@@ -310,7 +302,7 @@ export async function runReadingPipeline(opts: ReadingPipelineOptions): Promise<
   return outcomes.filter(Boolean) as PipelineOutcome[];
 }
 
-/** Expose last submitted batch requests for shape assertions in tests. */
+
 export function submittedGenerateShape(requests: BatchRequest[]): {
   hasCacheControl: boolean;
   vocabInUserTurn: boolean;

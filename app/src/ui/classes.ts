@@ -1,8 +1,4 @@
-/**
- * Shared CSS class names for the Core reader shell.
- *
- * Status coloring classes come from the engine's `statusColorClass(status)`.
- */
+
 
 export const CLS = {
   word: "w",
@@ -20,7 +16,7 @@ export const CLS = {
   popupHidden: "tsg-popup-hidden",
   tone: (n: number) => `tone-${n}`,
 
-  // Voice / transcript / practice additions (ported from monorepo for AB waveforms, cue rows, shadowing)
+  
   cueActive: "cue-active",
   transcript: "tsg-transcript",
   player: "tsg-player",

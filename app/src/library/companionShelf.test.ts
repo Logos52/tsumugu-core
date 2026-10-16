@@ -1,4 +1,4 @@
-// @vitest-environment happy-dom
+
 import { describe, expect, it, beforeEach } from "vitest";
 import { buildCompanionSpine, grammarHref, mountCompanionShelf, type CompanionLesson } from "./companionShelf.js";
 import type { CatalogEntry } from "../catalog/types.js";
@@ -62,7 +62,7 @@ describe("mountCompanionShelf", () => {
     const open = root.querySelector(".spine.open")!;
     expect(open.textContent).toContain("B1");
     const cards = root.querySelectorAll(".lessons .lcard");
-    expect(cards.length).toBe(2); // B1L2, B1L3
+    expect(cards.length).toBe(2); 
     const row = cards[0]!.querySelector(".lrow")!;
     expect(row.querySelector(".fmtg")?.textContent).toBeTruthy();
     expect(row.textContent).toContain("字");
@@ -74,7 +74,7 @@ describe("mountCompanionShelf", () => {
     const b2 = root.querySelector<HTMLElement>('.spine[data-book="2"]')!;
     b2.click();
     expect(root.querySelector(".spine.open")?.textContent).toContain("B2");
-    expect(root.querySelectorAll(".lessons .lcard").length).toBe(1); // B2L1 only
+    expect(root.querySelectorAll(".lessons .lcard").length).toBe(1); 
   });
 
   it("shows a not-yet-published note for an empty book spine", () => {

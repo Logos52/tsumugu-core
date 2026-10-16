@@ -1,15 +1,4 @@
-/**
- * Emit sitemap.xml + robots.txt into dist/ for the core SPA.
- * Run after `vite build` (see `pnpm build`) — not committed to the repo.
- *
- * Core is a hash-routed SPA (PRD-Site-Federation §"core owns `/`, `#library`,
- * `#read=…`"). `#library` and `#read=<slug>` are fragments of the root document,
- * NOT distinct server responses — a crawler hitting `/catalog` or `/read/<slug>`
- * receives `index.html` regardless of slug. Those are placeholder routes, so the
- * sitemap lists ONLY the live-origin root URL (the one URL that resolves to a
- * distinct, real response). Reading-level sitemap entries require Lane B to add
- * path-based deep-linking (pushState) or prerender first.
- */
+
 
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
@@ -42,14 +31,10 @@ function urlEntry(loc: string, lastmod?: string): string {
   return `  <url>\n    <loc>${xmlEscape(loc)}</loc>\n${last}  </url>\n`;
 }
 
-/** Static blog slugs emitted by scripts/build-blog.ts (keep in sync with content/blog/posts/). */
+
 const BLOG_SLUGS = ["rebuilding-dun", "word-first-character-later"];
 
-/**
- * Every published blog slug, read from content/blog/posts/ frontmatter so the
- * sitemap always matches what build-blog.ts emitted (not a hand-kept list).
- * Falls back to BLOG_SLUGS if the posts dir can't be read.
- */
+
 function readBlogSlugs(): string[] {
   try {
     const dir = resolve(ROOT, "content/blog/posts");
@@ -66,7 +51,7 @@ function readBlogSlugs(): string[] {
   }
 }
 
-/** Build the sitemap XML: root + static /blog/ paths (hash routes are not URLs). */
+
 export function buildSitemapXml(origin: string, base: string, blogSlugs: string[] = BLOG_SLUGS): string {
   const cleanOrigin = origin.replace(/\/$/, "");
   const cleanBase = base.replace(/\/?$/, "/");
@@ -83,7 +68,7 @@ export function buildSitemapXml(origin: string, base: string, blogSlugs: string[
   );
 }
 
-/** Build robots.txt whose Sitemap pointer resolves to the emitted sitemap. */
+
 export function buildRobotsTxt(origin: string, base: string): string {
   const cleanOrigin = origin.replace(/\/$/, "");
   const cleanBase = base.replace(/\/?$/, "/");
@@ -98,10 +83,7 @@ function main(): void {
   console.log(`wrote ${OUT_PATH} (1 origin + blog index + ${slugs.length} post url(s))`);
 }
 
-/** Morning Conductor script equivalent (Phase2 mechanical, cos PRD-morning-conductor inspired).
- * Local-first chain stub: health scan + digest + (future publish). Callable from node.
- * Usage: import and call morningConductor(catalog)
- */
+
 export async function morningConductor(catalog: CatalogEntry[]): Promise<{
   digest: { date: string; recent: string[]; backlog: number };
   health: { ok: boolean; scanned: number; summary: string };
@@ -116,13 +98,13 @@ export async function morningConductor(catalog: CatalogEntry[]): Promise<{
   return { digest, health, ranAt: new Date().toISOString() };
 }
 
-// Run only as a CLI entry (never on import, so tests can pull the pure builders).
+
 const isCliEntry =
   process.argv[1] !== undefined &&
   import.meta.url === pathToFileURL(process.argv[1]).href;
 
 if (isCliEntry) {
-  // allow direct: tsx scripts/build-sitemap.ts --conductor
+  
   if (process.argv.includes("--conductor")) {
     const cat = JSON.parse(readFileSync(READINGS_PATH, "utf8")) as CatalogEntry[];
     void morningConductor(cat);

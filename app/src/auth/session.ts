@@ -1,10 +1,4 @@
-/**
- * Auth session abstraction + login flow (passwordless magic-link simulation for v1 dev).
- * Clean client: later swap the login impl to real POST /auth/* without callers changing.
- *
- * Exposes observable snapshot. Use subscribe.
- * Login does NOT talk network; simulates the round-trip + "confirm".
- */
+
 
 import { getUserStore, type UserStore } from "../store/userStore.js";
 import { trackEvent } from "../build/analytics.js";
@@ -54,7 +48,7 @@ export function getSession(): SessionSnapshot {
 
 export function subscribeSession(fn: SessionListener): () => void {
   listeners.add(fn);
-  // emit current immediately
+  
   fn({ ...lastSnap });
   return () => listeners.delete(fn);
 }
@@ -66,19 +60,15 @@ function emit(): void {
   }
 }
 
-// Wire into UserStore events so session always fresh for nav/chrome consumers
+
 getStore().subscribe((ev) => {
   if (ev === "doc" || ev === "sync") emit();
 });
 
-// Seed snapshot from UserStore (constructor may async-restore `tsumugu-session` shortly after)
+
 refreshSnap();
 
-/**
- * Direct login (dev / tests). The simulated magic-link UI path is REMOVED
- * (WO-UNIFY-C C1) — this is the only login entry point now, and it never talks
- * to the network. It drives the same clock-aware merge as any future real auth.
- */
+
 export async function devForceLogin(email: string): Promise<void> {
   const store = getStore();
   const userId = `u_${email.toLowerCase().replace(/[^a-z0-9]/g, "_")}`;
@@ -86,11 +76,9 @@ export async function devForceLogin(email: string): Promise<void> {
   emit();
 }
 
-// --- Compatibility shims for main integration ---
 
-/**
- * No-op: session restore is delegated to UserStore constructor, which reads `tsumugu-session`.
- */
+
+
 export function restoreSession(): null {
   return null;
 }
@@ -115,12 +103,12 @@ export function logout(): void {
   emit();
 }
 
-/** Expose raw userStore for account view (import/export/dev tools). */
+
 export function getUserStoreForAccount(): UserStore {
   return getStore();
 }
 
-/** Test helper: reset cached store reference after singleton reset. */
+
 export function resetSessionForTest(): void {
   _store = null;
   lastSnap = { status: "logged-out", userId: null, email: null };

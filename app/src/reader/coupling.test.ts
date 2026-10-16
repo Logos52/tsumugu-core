@@ -6,7 +6,7 @@ import { describe, expect, it } from "vitest";
 const SRC = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 const FORBIDDEN = [
-  // transcript/voice/encoding-modal now ported for Bucket C (11.5) — no old #/ routes or personal coupling
+  
   "splitter",
   "theater",
   "fsVault",

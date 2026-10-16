@@ -1,7 +1,4 @@
-/**
- * Settings panel — palette, theme, rail default, reading prefs, known-state toggle.
- * Reuses ReaderSettings from app/settings.ts.
- */
+
 
 import { el, clear } from "../ui/dom.js";
 import { applyI18n, getCurrentLocale, tKey as t } from "../i18n/strings.js";
@@ -9,12 +6,7 @@ import type { ReaderSettings } from "../app/settings.js";
 import { applySettingsToRoot } from "../app/settings.js";
 import { writePrefsMirror } from "../prefs/prefsMirror.js";
 
-/**
- * Palette catalog. `seal` + `mist` are added per the Palette-type extension Lane
- * B owns (seal default) with CSS from Lane A. Values are kept as plain strings
- * and cast to `ReaderSettings["palette"]` at the change seam so this file
- * compiles whether or not Lane B's type bump has landed yet.
- */
+
 const PALETTE_CATALOG: Array<{ value: string; label: string; forcesDark?: boolean }> = [
   { value: "seal", label: "印 Seal" },
   { value: "silk", label: "絹 Silk-Seam" },
@@ -68,9 +60,9 @@ export function mountSettingsView(host: HTMLElement, opts: SettingsViewOpts): Se
   const panel = el("section", { class: "tsg-settings", id: "settings-surface" });
   host.appendChild(panel);
 
-  // Persist through the host (app/settings.ts) AND mirror the federation-facing
-  // prefs (WO-UNIFY-C C6). The mirror reflects the intended post-change state so
-  // it is correct regardless of when the host commits.
+  
+  
+  
   function applyChange(patch: Partial<ReaderSettings>): void {
     opts.onChange(patch);
     writePrefsMirror({ ...opts.getSettings(), ...patch });
@@ -83,7 +75,7 @@ export function mountSettingsView(host: HTMLElement, opts: SettingsViewOpts): Se
 
     panel.append(el("h2", { class: "tsg-settings-title", text: t("settings.title", locale) }));
 
-    // Palette
+    
     const paletteBlock = el("div", { class: "tsg-settings-block" });
     paletteBlock.append(el("div", { class: "tsg-settings-label", text: t("settings.palette", locale) }));
     const paletteRow = el("div", { class: "palettes settings-palettes" });
@@ -108,7 +100,7 @@ export function mountSettingsView(host: HTMLElement, opts: SettingsViewOpts): Se
     paletteBlock.append(paletteRow);
     panel.append(paletteBlock);
 
-    // Light / dark
+    
     const themeBlock = el("div", { class: "tsg-settings-block" });
     themeBlock.append(el("div", { class: "tsg-settings-label", text: t("settings.theme", locale) }));
     const themeSeg = el("div", { class: "seg settings-seg" });
@@ -129,7 +121,7 @@ export function mountSettingsView(host: HTMLElement, opts: SettingsViewOpts): Se
     themeBlock.append(themeSeg);
     panel.append(themeBlock);
 
-    // Rail default
+    
     panel.append(
       makeSeg(
         "settings.railDefault",
@@ -152,7 +144,7 @@ export function mountSettingsView(host: HTMLElement, opts: SettingsViewOpts): Se
       ),
     );
 
-    // Reading prefs header
+    
     panel.append(el("h3", { class: "tsg-settings-sub", text: t("settings.readingPrefs", locale) }));
 
     panel.append(
@@ -189,7 +181,7 @@ export function mountSettingsView(host: HTMLElement, opts: SettingsViewOpts): Se
       ),
     );
 
-    // Known-state toggle
+    
     const knownBlock = el("div", { class: "tsg-settings-block tsg-settings-toggle" });
     const knownLabel = el("label", { class: "tsg-settings-check" });
     const knownInput = el("input", {

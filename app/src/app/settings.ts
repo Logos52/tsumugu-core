@@ -1,6 +1,6 @@
-/** Default rail for first paint + persistence (PRD §1.2 EN reach). */
-// NOTE: prefsMirror imports getPrefs from this module; the cycle is safe (both
-// sides only call each other at runtime, never during module init).
+
+
+
 import { writePrefsMirror } from "../prefs/prefsMirror.js";
 
 export const DEFAULT_RAIL = "en" as const;
@@ -23,9 +23,9 @@ export interface ReaderSettings {
   knownStateOn: boolean;
   guessFirst: boolean;
   toneColoring: boolean;
-  /** "shift" = quiet hover; reveal on Shift+hover. "all" = hover opens card. */
+  
   hoverMode: HoverMode;
-  /** Audio-only / waveforms-first mode: hide Chinese text by default, show waveforms/practice bars first. Tap sentence to reveal Chinese + tr. */
+  
   audioOnly: boolean;
 }
 
@@ -81,9 +81,9 @@ function readRaw(): Partial<ReaderSettings> | undefined {
 
 function writeStored(settings: ReaderSettings): void {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
-  // Cross-site federation mirror (tsumugu.prefs.v1): every pref-change path —
-  // nav rail toggle, palette swatches, SettingsView, reader segs — funnels
-  // through this write, so the dictionary always sees current display prefs.
+  
+  
+  
   writePrefsMirror(settings);
 }
 
@@ -123,7 +123,7 @@ function commit(root: HTMLElement, settings: ReaderSettings): ReaderSettings {
   return getPrefs();
 }
 
-/** Restore prefs from storage and apply to `<html>` dataset. */
+
 export function restore(root: HTMLElement = document.documentElement): ReaderSettings {
   const stored = readRaw();
   const merged = stored ? normalizeStored(stored) : { ...DEFAULT_SETTINGS };

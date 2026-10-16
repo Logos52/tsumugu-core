@@ -33,7 +33,7 @@ const MAX_LOCK_RETRIES = 8;
 function sleep(ms: number): void {
   const deadline = Date.now() + ms;
   while (Date.now() < deadline) {
-    /* spin */
+    ;
   }
 }
 
@@ -51,7 +51,7 @@ export function saveQueue(path: string, queue: ReadingQueue): void {
   renameSync(tmp, path);
 }
 
-/** CAS claim: mark the first pending spec claimed by `workerId`. */
+
 export function claimNextSpec(
   path: string,
   workerId: string,

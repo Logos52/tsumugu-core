@@ -52,7 +52,7 @@ describe("reconcileGrammarIndexes", () => {
   it("robustly dedups and canonicalizes colliding/bad pattern_ids (e.g. from v2 empties)", () => {
     const p1 = createValidFixturePoint({ pattern_id: "accc-b1l01-", name_zh: "了", book: 1, lesson: 1, cumulative_through: "b1l01" });
     const p2 = createValidFixturePoint({ pattern_id: "accc-b1l01-", name_zh: "也", book: 1, lesson: 1, cumulative_through: "b1l01" });
-    const p3 = createValidFixturePoint({ pattern_id: "accc-b1l01-", name_zh: "了", book: 1, lesson: 1, cumulative_through: "b1l01" }); // dup id, same as p1-ish
+    const p3 = createValidFixturePoint({ pattern_id: "accc-b1l01-", name_zh: "了", book: 1, lesson: 1, cumulative_through: "b1l01" }); 
 
     const { merged, summary } = reconcileGrammarIndexes({
       json: makeIndex([p1, p2]),
@@ -62,11 +62,11 @@ describe("reconcileGrammarIndexes", () => {
       qwen: makeIndex([]),
     });
 
-    // All unique after canonical dedup
+    
     const ids = merged.points.map((p) => p.pattern_id);
     expect(new Set(ids).size).toBe(ids.length);
     expect(summary.totalPoints).toBeGreaterThanOrEqual(2);
-    // canonical form used for bad ids
+    
     expect(ids.some((id) => id.startsWith("accc-b1l01-"))).toBe(true);
   });
 });

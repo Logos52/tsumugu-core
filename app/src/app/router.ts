@@ -1,14 +1,4 @@
-/**
- * Minimal client-side router for surfaces.
- * Surfaces: home | library | account | reader | about | privacy | feedback | blog
- * Uses hash for reader (#read=...) and facets; simple path-ish for others via #home, #library etc.
- * Default: home (the static marketing front). Library hub lives at #library.
- * Colophon + Method fold into About (their hashes redirect to #about).
- * `blog` is not an in-SPA surface: `#blog` bounces the browser to the static
- * `/blog/` index (built by scripts/build-blog.ts). The router intercepts it and
- * does a full-page navigation rather than emitting to surface listeners.
- * Library facets continue to use hash fragments (handled by catalog later).
- */
+
 
 import { applyI18n } from "../i18n/strings.js";
 
@@ -23,7 +13,7 @@ export type Surface =
   | "feedback"
   | "blog";
 
-/** Absolute path to the static blog index, respecting the Vite `base`. */
+
 export function blogHref(): string {
   const base = (import.meta.env.BASE_URL || "/").replace(/\/+$/, "");
   return `${base}/blog/`;
@@ -41,7 +31,7 @@ const SURFACE_HASH: Record<Surface, string> = {
   home: "#home",
   library: "#library",
   account: "#account",
-  reader: "#read", // prefix
+  reader: "#read", 
   about: "#about",
   privacy: "#privacy",
   terms: "#terms",
@@ -49,18 +39,18 @@ const SURFACE_HASH: Record<Surface, string> = {
   blog: "#blog",
 };
 
-/** Parse a location hash into a surface (exported for tests). */
+
 export function surfaceFromHash(hash: string): { surface: Surface; detail?: string } {
   if (hash.startsWith("#read=") || hash === "#read") {
     return { surface: "reader", detail: hash };
   }
   if (hash.startsWith("#read")) return { surface: "reader", detail: hash };
 
-  // The root / empty hash is the marketing home; never let the library-facet
-  // greedy rule swallow it.
+  
+  
   if (hash === "" || hash === "#" || hash === "#/") return { surface: "home" };
 
-  // Library facets: an explicit #library, or a catalog facet hash (band/topic).
+  
   if (hash.startsWith("#library") || hash.includes("band") || hash.includes("topic")) {
     return { surface: "library", detail: hash };
   }
@@ -74,10 +64,10 @@ export function surfaceFromHash(hash: string): { surface: Surface; detail?: stri
       return { surface: "library" };
     case "account":
       return { surface: "account" };
-    // Blog is a static section outside the SPA; the router redirects on it.
+    
     case "blog":
       return { surface: "blog" };
-    // Colophon + Method fold into About; retired Grammar + Flashcards land there too.
+    
     case "about":
     case "colophon":
     case "method":
@@ -91,7 +81,7 @@ export function surfaceFromHash(hash: string): { surface: Surface; detail?: stri
     case "feedback":
       return { surface: "feedback" };
     default:
-      // if looks like a leftover facet hash from catalog, go library
+      
       if (hash.includes("=")) return { surface: "library", detail: hash };
       return { surface: "home" };
   }
@@ -102,13 +92,13 @@ export function createRouter(): Router {
   const listeners = new Set<(s: Surface, detail?: string) => void>();
   let started = false;
 
-  /** Blog leaves the SPA: bounce to the static index instead of emitting. */
+  
   function redirectIfBlog(surface: Surface): boolean {
     if (surface !== "blog") return false;
     try {
       window.location.assign(blogHref());
     } catch {
-      /* navigation not available (e.g. jsdom) — best-effort */
+      
     }
     return true;
   }
@@ -127,12 +117,12 @@ export function createRouter(): Router {
         emit(parsed.surface, parsed.detail);
         return;
       }
-      // treat bare name
+      
       const h = SURFACE_HASH[to as Surface] || `#${to}`;
       const parsed = surfaceFromHash(h);
-      // Keep an existing deep link (e.g. "#read=<path>", "#library=&lq=…") when
-      // the current hash already resolves to the target surface; rewriting to
-      // the bare prefix would clobber it.
+      
+      
+      
       const cur = surfaceFromHash(location.hash);
       if (cur.surface === parsed.surface) {
         emit(cur.surface, cur.detail);
@@ -155,7 +145,7 @@ export function createRouter(): Router {
   function onHashChange() {
     const parsed = surfaceFromHash(location.hash);
     emit(parsed.surface, parsed.detail);
-    applyI18n(); // ensure chrome strings update
+    applyI18n(); 
   }
 
   function onChange(fn: (s: Surface, detail?: string) => void) {
@@ -167,7 +157,7 @@ export function createRouter(): Router {
     if (started) return;
     started = true;
     window.addEventListener("hashchange", onHashChange);
-    // bootstrap current from url; owner will call navigate or we emit once
+    
     const parsed = surfaceFromHash(location.hash || "#home");
     if (redirectIfBlog(parsed.surface)) return;
     current = parsed.surface;
@@ -190,7 +180,7 @@ export function createRouter(): Router {
   };
 }
 
-// Utility for library facets preservation (existing)
+
 export function getCurrentHash(): string {
   return location.hash;
 }

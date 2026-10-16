@@ -1,18 +1,4 @@
-/**
- * Build static blog pages into app/public/blog/ from content/blog/posts/*.md.
- * Run before `vite build` so Pages serves /blog/ alongside the SPA.
- *
- *   tsx scripts/build-blog.ts
- *
- * The pages are a self-contained static build (no app bundle) that wears the
- * SAME 冊 Bound Volume chrome as the SPA: shared sticky header (紡 seal +
- * Tsumugu + Beta pill + Home/Library/Reader/Blog nav + theme toggle), the
- * Verdigris token block (light + dark, plain backgrounds), the fonts (LXGW
- * WenKai TC prose · Noto Serif TC display/titles/obi · Inter chrome), and the
- * shared footer. Post pages set the title in the display serif, the body in a
- * comfortable reading measure, and a muted date · reading-time meta line styled
- * like the 書腰 obi band. The index lists posts as quiet cards.
- */
+
 
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
@@ -68,13 +54,13 @@ export function parsePostFile(contents: string, filename: string): BlogPost {
   return { slug, title, date, description, body };
 }
 
-/** Drop editor-only tail sections (## Maintenance …) from published HTML. */
+
 export function publishableBody(body: string): string {
   const cut = body.search(/\n## Maintenance\b/);
   return (cut >= 0 ? body.slice(0, cut) : body).trim();
 }
 
-/** Rough reading time in whole minutes (≈200 wpm), floored at 1. */
+
 export function readingMinutes(body: string): number {
   const words = publishableBody(body)
     .replace(/```[\s\S]*?```/g, " ")
@@ -83,7 +69,7 @@ export function readingMinutes(body: string): number {
   return Math.max(1, Math.round(words / 200));
 }
 
-/** Inline markdown → safe HTML: links, bold, inline code. Escapes first. */
+
 function renderInline(text: string): string {
   return escapeHtml(text)
     .replace(/`([^`]+)`/g, (_m, code: string) => `<code>${code}</code>`)
@@ -95,11 +81,7 @@ function renderInline(text: string): string {
     .replace(/\*\*([^*]+)\*\*/g, (_m, b: string) => `<strong>${b}</strong>`);
 }
 
-/**
- * Block-level markdown → HTML. Handles fenced code blocks, ATX headings,
- * unordered lists, and paragraphs — the subset the posts use. Fences are
- * scanned line-by-line so blank lines inside a code block never split it.
- */
+
 export function bodyToHtml(body: string): string {
   const lines = publishableBody(body).split("\n");
   const out: string[] = [];
@@ -126,7 +108,7 @@ export function bodyToHtml(body: string): string {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i]!;
 
-    // raw SVG block (charts): pass through untouched until the closing tag
+    
     if (/^\s*<svg[\s>]/.test(line)) {
       flush();
       const raw: string[] = [line];
@@ -138,7 +120,7 @@ export function bodyToHtml(body: string): string {
       continue;
     }
 
-    // fenced code block
+    
     const fence = line.match(/^```(\w*)\s*$/);
     if (fence) {
       flush();
@@ -153,22 +135,22 @@ export function bodyToHtml(body: string): string {
       continue;
     }
 
-    // blank line = block boundary
+    
     if (line.trim() === "") {
       flush();
       continue;
     }
 
-    // ATX heading
+    
     const h = line.match(/^(#{1,6})\s+(.*)$/);
     if (h) {
       flush();
-      const level = Math.min(h[1]!.length + 1, 6); // demote (# reserved for the post title)
+      const level = Math.min(h[1]!.length + 1, 6); 
       out.push(`<h${level}>${renderInline(h[2]!.trim())}</h${level}>`);
       continue;
     }
 
-    // GFM pipe table: a | row whose next line is a |---| separator
+    
     if (
       /^\s*\|.*\|\s*$/.test(line) &&
       i + 1 < lines.length &&
@@ -183,13 +165,13 @@ export function bodyToHtml(body: string): string {
           .split("|")
           .map((cell) => cell.trim());
       const headCells = splitRow(line);
-      i += 2; // skip header + separator
+      i += 2; 
       const bodyRows: string[][] = [];
       while (i < lines.length && /^\s*\|.*\|\s*$/.test(lines[i]!)) {
         bodyRows.push(splitRow(lines[i]!));
         i++;
       }
-      i--; // loop increment will advance past the last consumed row
+      i--; 
       const thead = `<thead><tr>${headCells.map((c) => `<th>${renderInline(c)}</th>`).join("")}</tr></thead>`;
       const tbody = `<tbody>${bodyRows
         .map((r) => `<tr>${r.map((c) => `<td>${renderInline(c)}</td>`).join("")}</tr>`)
@@ -198,7 +180,7 @@ export function bodyToHtml(body: string): string {
       continue;
     }
 
-    // unordered list item
+    
     const li = line.match(/^\s*[-*]\s+(.*)$/);
     if (li) {
       flushPara();
@@ -206,7 +188,7 @@ export function bodyToHtml(body: string): string {
       continue;
     }
 
-    // paragraph line
+    
     flushList();
     para.push(line.trim());
   }
@@ -215,9 +197,9 @@ export function bodyToHtml(body: string): string {
   return out.join("\n");
 }
 
-/* ═══════════ shared Bound Volume chrome ═══════════ */
 
-/** Verdigris tokens (light + dark) + chrome, lifted from the unified mockups. */
+
+
 const CHROME_CSS = `
 :root{
   color-scheme:light;
@@ -346,7 +328,7 @@ const THEME_SCRIPT = `
 })();
 `.trim();
 
-/** Shared sticky header. `current` marks the active nav item (only Blog here). */
+
 function header(current: "blog"): string {
   const cur = (k: string) => (k === current ? ' aria-current="page"' : "");
   return `<header class="top">

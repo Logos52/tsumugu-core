@@ -12,13 +12,7 @@ const BASE = process.env.VITE_BASE ?? "/";
 const DICT_SOURCE = resolve(HERE, "../tsumugu-ed/exports/site/assets/search");
 const DICT_DEST = resolve(HERE, "app/public/dict-search");
 
-/**
- * Copy tsumugu-ed search index into app/public/dict-search at build/dev start.
- * Mirrors the FULL shard family set (every `*.json` — entries + cjk + pinyin/VI/
- * zhuyin/EN/facet families + pattern entries), not just entries/cjk. Silently
- * no-ops when the sibling repo is absent (dev ergonomics); the loud freshness gate
- * is `scripts/dict-sync.ts --check`, which fails CI on an absent/stale source.
- */
+
 function copyDictSearchIndex(): Plugin {
   return {
     name: "copy-dict-search-index",
@@ -34,7 +28,7 @@ function copyDictSearchIndex(): Plugin {
   };
 }
 
-/** Recursively sum bytes of `*.json` under a directory (0 if absent). */
+
 function sumJsonBytes(dir: string): { bytes: number; files: number } {
   let bytes = 0;
   let files = 0;
@@ -56,11 +50,7 @@ function sumJsonBytes(dir: string): { bytes: number; files: number } {
 
 const mib = (bytes: number): string => `${(bytes / (1024 * 1024)).toFixed(2)}MB`;
 
-/**
- * Print a build-time byte measurement of precached readings + dict shards so the
- * precache-everything policy (PRD-PWA-Offline / item 54) is sized against reality.
- * The per-file precache cap lives in the VitePWA config below.
- */
+
 function precacheByteReport(): Plugin {
   const DIST = resolve(HERE, "dist");
   return {
@@ -74,7 +64,7 @@ function precacheByteReport(): Plugin {
         `precache JSON payload: readings ${mib(readings.bytes)} (${readings.files} files) + ` +
           `dict shards ${mib(dict.bytes)} (${dict.files} files) = ${mib(total)} total`,
       );
-      // Also to stdout so it lands in CI logs regardless of Rollup logger level.
+      
       console.log(
         `[precache] readings=${mib(readings.bytes)}/${readings.files}f ` +
           `dict-shards=${mib(dict.bytes)}/${dict.files}f total=${mib(total)}`,
@@ -130,15 +120,15 @@ export default defineConfig({
       manifest: false,
       devOptions: { enabled: false },
       injectManifest: {
-        // Precache-everything (default expectation A): `json` pulls the vault
-        // readings/manifest + dict-search shards into the precache manifest so they
-        // resolve offline on cold install. Vault is no longer ignored.
+        
+        
+        
         globPatterns: ["**/*.{js,css,html,ico,png,svg,webmanifest,wasm,json}"],
-        // Self-hosted fonts (public/fonts): runtime-cached by the browser, NOT
-        // precached — hundreds of unicode-range chunks would bloat SW install.
+        
+        
         globIgnores: ["fonts/**"],
-        // Per-file cap; the largest dict shard is ~0.19MB and readings are small,
-        // so 5MB comfortably admits the full set. Raise only if a single shard grows.
+        
+        
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         rollupFormat: "iife",
       },

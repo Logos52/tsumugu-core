@@ -1,4 +1,4 @@
-// @vitest-environment happy-dom
+
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { WordStore } from "@tsumugu/engine";
 import { DEFAULT_SETTINGS } from "../app/settings.js";
@@ -56,11 +56,11 @@ describe("UserStore", () => {
 
   it("importUserDoc merges a full doc never-demoting (C1/C4)", () => {
     const store = new UserStore(undefined, new LocalSimRemoteStore());
-    // Local anon: 山 learning (dated earlier than the incoming known).
+    
     store.getWordStore().setStatus("zh-Hant", "山", "2", undefined, { at: "2026-06-24T00:00:00.000Z" });
     store.notifyChange();
 
-    // Incoming doc from another device: 山 known + a new word 水.
+    
     const other = new WordStore();
     other.upsert({ lang: "zh-Hant", word: "山", status: "known", statusUpdatedAt: "2026-06-25T00:00:00.000Z" });
     other.upsert({ lang: "zh-Hant", word: "水", status: "4", statusUpdatedAt: "2026-06-25T00:00:00.000Z" });
@@ -108,7 +108,7 @@ describe("UserStore.pullFromUrl — UrlRemoteStore merge (C1)", () => {
 
     const { report } = await store.pullFromUrl("https://example.test/doc.json");
     expect(report.wordsTouched).toBeGreaterThan(0);
-    expect(store.getWordStore().getStatus("zh-Hant", "書")).toBe("known"); // upgraded
-    expect(store.getWordStore().getStatus("zh-Hant", "筆")).toBe("4"); // new word pulled in
+    expect(store.getWordStore().getStatus("zh-Hant", "書")).toBe("known"); 
+    expect(store.getWordStore().getStatus("zh-Hant", "筆")).toBe("4"); 
   });
 });

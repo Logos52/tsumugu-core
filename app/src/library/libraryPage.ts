@@ -1,27 +1,10 @@
-/**
- * Library page — the settled 2026-07 design (contract: mockups/explorations-
- * 2026-07/unified/library-columns.html + docs/DESIGN-PRINCIPLES.md).
- *
- * One page, master–detail:
- *   tabs (課本架 volumes / 級別架 TOCFL) → a slim book shelf on the LEFT with
- *   the selection's three columns filling the space to its RIGHT (a volume's
- *   三部分, or a level's contributing volumes) → below everything, the
- *   title-led reading table (faint format dot · reader-language title · 中文 ·
- *   課), scoped by the band, sortable (Lesson/Format/Title) and filterable in
- *   place (⌘K focuses the filter; no modal).
- *
- * Interest leads: readings surface by their EN/VI title (content/titles.json,
- * shipped as vault/__titles.json). Cold-start first: no progress affordances
- * here — the progress layer arrives as an enhancement, never the baseline.
- * Supersedes the stacked catalogView hub (masthead/continue/spreadsheet/cards),
- * which stays in-tree unrouted until the progress layer returns.
- */
+
 import { el, clear } from "../ui/dom.js";
 import { hanNum, isViRail, say } from "../catalog/libraryModel.js";
 import { buildCompanionSpine, type CompanionLesson, type LessonGroup } from "./companionShelf.js";
 import type { CatalogEntry } from "../catalog/types.js";
 
-/** One reading's tri-rail title, as emitted by content/titles.json. */
+
 export interface ReadingTitle {
   zh: string;
   en: string;
@@ -31,7 +14,7 @@ export interface ReadingTitle {
 }
 export type TitlesMap = Record<string, ReadingTitle>;
 
-/** Volume metadata the shelf needs even before a volume publishes. */
+
 export const BOOK_META: Record<number, { lessons: number; band: string }> = {
   1: { lessons: 15, band: "A1" },
   2: { lessons: 15, band: "A2" },
@@ -41,7 +24,7 @@ export const BOOK_META: Record<number, { lessons: number; band: string }> = {
 };
 const SHELF_BOOKS = [1, 2, 3, 4, 5];
 
-/** 級別架 levels; contributing volumes overlap the 課本架 shelf. */
+
 export const SHELF_LEVELS: { code: string; books: number[] }[] = [
   { code: "A1", books: [1] },
   { code: "A2", books: [2] },
@@ -51,25 +34,25 @@ export const SHELF_LEVELS: { code: string; books: number[] }[] = [
   { code: "C2", books: [] },
 ];
 
-/** A volume's three-part split boundaries (cumulative last-lesson per 部分). */
+
 export function bookParts(lessons: number): [number, number, number] {
   if (lessons === 10) return [4, 7, 10];
   const third = lessons / 3;
   return [Math.round(third), Math.round(2 * third), lessons];
 }
 
-/** [first, last] lesson numbers of part `i` (0–2). */
+
 export function partRange(parts: [number, number, number], i: number): [number, number] {
   return [i === 0 ? 1 : parts[i - 1]! + 1, parts[i]!];
 }
 
-/** Reading id (titles.json key) from a vault path: …/b1l02-r2.prepared.json → b1l02-r2. */
+
 export function readingId(path: string): string {
   const m = /([^/]+?)(?:\.prepared)?\.json$/.exec(path);
   return m ? m[1]! : path;
 }
 
-/** Format string (zh or en) → signifier class. */
+
 const FMT_CLASS: Record<string, string> = {
   對話: "dlg", dialogue: "dlg",
   自述: "slf", "first-person": "slf",
@@ -93,17 +76,17 @@ const esc = (s: string): string =>
 const CNP = ["一", "二", "三"];
 
 interface Col {
-  /** Column heading (第N部分 or 第N冊) + right-aligned range note. */
+  
   pn: string;
   rg: string;
   lessons: LessonGroup[];
-  /** Set in multi-volume (level) columns, for 課-label disambiguation. */
+  
   book?: number;
 }
 
 export interface LibraryPageOpts {
   catalog: CatalogEntry[];
-  /** vault/__titles.json — reading id → tri-rail title. */
+  
   titles?: TitlesMap;
   lessons?: CompanionLesson[];
   onOpen: (path: string) => void;
@@ -117,7 +100,7 @@ export function mountLibraryPage(
   const spine = buildCompanionSpine(opts.catalog, opts.lessons ?? []);
   const byBook = new Map(spine.map((b) => [b.book, b]));
 
-  // ── interaction state (survives repaints; render() rebuilds the DOM) ──
+  
   let mode: "book" | "level" = "book";
   let curBook = 1;
   let curLvl = 0;
@@ -180,7 +163,7 @@ export function mountLibraryPage(
     return all(cols);
   };
 
-  // ── static frame (built once per render; band + list repaint in place) ──
+  
   const wrap = el("div", { class: "wrap lp" });
   let bandCols!: HTMLElement;
   let shelfEl!: HTMLElement;
@@ -232,7 +215,7 @@ export function mountLibraryPage(
       html += `</div>`;
     });
     bandCols.innerHTML = html;
-    // shelf height follows the columns' collapsed height (books read short)
+    
     const maxL = Math.max(0, ...cols.map((c) => c.lessons.length));
     wrap.style.setProperty("--lp-shelf-h", `${Math.max(120, 27 + Math.min(maxL, 5) * 35)}px`);
   };
@@ -269,7 +252,7 @@ export function mountLibraryPage(
         const cls = fmtOf(e);
         const b = e.binding;
         const lkey = b ? `${b.book}:${b.lesson}` : "";
-        // ledger convention: suppress a repeated 課 value (lesson sort only)
+        
         const showL = sortMode !== "lesson" || lkey !== prev;
         prev = lkey;
         const lab = b ? `${multi ? `${hanNum(b.book)}·` : ""}課${b.lesson}` : "";
@@ -351,7 +334,7 @@ export function mountLibraryPage(
     if (les) {
       const key = les.dataset.lesson ?? null;
       const col = Number(les.dataset.col ?? 0);
-      if (scope.lesson === key) scope = { col, lesson: null }; // re-click: widen to its column
+      if (scope.lesson === key) scope = { col, lesson: null }; 
       else scope = { col, lesson: key };
       paintCols(); paintList();
       return;
@@ -359,7 +342,7 @@ export function mountLibraryPage(
     const colh = target.closest<HTMLElement>(".lp-colh");
     if (colh) {
       const col = Number(colh.dataset.col ?? 0);
-      if (scope.col === col && scope.lesson === null) scope = { col: null, lesson: null }; // widen to everything
+      if (scope.col === col && scope.lesson === null) scope = { col: null, lesson: null }; 
       else scope = { col, lesson: null };
       paintCols(); paintList();
       return;
@@ -404,7 +387,7 @@ export function mountLibraryPage(
   };
 }
 
-/** Fetch `__titles.json` from the vault base; {} when absent/invalid. */
+
 export async function loadCompanionTitles(vaultBase: string): Promise<TitlesMap> {
   try {
     const res = await fetch(`${vaultBase.replace(/\/$/, "")}/__titles.json`);

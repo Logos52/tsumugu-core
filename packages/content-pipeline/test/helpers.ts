@@ -3,7 +3,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parsePreparedContent, WordStore } from "@tsumugu/engine";
 import type { DefLevelIndex } from "../src/genQa.js";
-import type { CharViIndex, HanVietIndex } from "../src/hanviet.js";
+import type { CharViIndex, HanVietIndex, HanVietRecord } from "../src/hanviet.js";
 import { loadLessonTarget, type LessonTarget } from "../src/lessonTarget.js";
 import { createFakeZhPack } from "../src/pack.js";
 
@@ -59,7 +59,7 @@ export const FIXTURE_DEF_INDEX: DefLevelIndex = {
   freq: {},
 };
 
-export const FIXTURE_HANVIET: HanVietIndex = new Map([
+export const FIXTURE_HANVIET: HanVietIndex = new Map<string, HanVietRecord>([
   ["散", { hanViets: ["tán"], pinyinMap: { "*": "tán" } }],
   ["步", { hanViets: ["bộ"], pinyinMap: { "*": "bộ" } }],
   [

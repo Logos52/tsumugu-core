@@ -1,10 +1,4 @@
-/**
- * Minimal transient toast + a one-time "first grade" trigger.
- *
- * The first time a learner grades a word in a session, Tsumugu tells them their
- * progress is saved locally and portable. Lane C owns the WordStore; this reads
- * a boolean "has any tracked word" signal it emits and fires the toast once.
- */
+
 
 export function showToast(message: string, host: HTMLElement = document.body): HTMLElement {
   const node = document.createElement("div");
@@ -16,11 +10,7 @@ export function showToast(message: string, host: HTMLElement = document.body): H
   return node;
 }
 
-/**
- * Returns a function that fires `show(message)` exactly once, on the first call
- * where `hasGraded` is true. Pass `alreadyFired` true to suppress it for
- * returning visitors who already had progress at boot.
- */
+
 export function createFirstGradeToast(opts: {
   message: string;
   show?: (message: string) => void;

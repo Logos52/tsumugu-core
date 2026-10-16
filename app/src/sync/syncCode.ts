@@ -1,16 +1,4 @@
-/**
- * Sync code = `base64url(deflate(UserDoc))` (WO-UNIFY-C C1).
- *
- * A copy/paste transport for the whole UserDoc (~120KB JSON at ~2,500 entries,
- * a few tens of KB after deflate). QR is intentionally CUT from the doc path.
- *
- * Compression uses the platform `CompressionStream("deflate")` when available.
- * A 1-char header records the codec so decode is always symmetric even where
- * `CompressionStream` is missing (the raw-base64url fallback):
- *   "D" = deflate,  "R" = raw (no compression).
- *
- * No network. Pure transform over a UserDoc.
- */
+
 
 import { type UserDoc, migrateUserDoc } from "../store/userDoc.js";
 
@@ -52,7 +40,7 @@ async function inflate(bytes: Uint8Array): Promise<Uint8Array> {
   return streamThrough(bytes, new DecompressionStream("deflate"));
 }
 
-/** Encode a UserDoc to a copy/paste sync code. */
+
 export async function encodeSyncCode(doc: UserDoc): Promise<string> {
   const json = JSON.stringify(doc);
   const raw = new TextEncoder().encode(json);
@@ -63,7 +51,7 @@ export async function encodeSyncCode(doc: UserDoc): Promise<string> {
   return HDR_RAW + bytesToBase64url(raw);
 }
 
-/** Decode a sync code back into a normalized UserDoc (migrated + zero-PII). */
+
 export async function decodeSyncCode(code: string): Promise<UserDoc> {
   const trimmed = code.trim();
   if (!trimmed) throw new Error("Empty sync code.");

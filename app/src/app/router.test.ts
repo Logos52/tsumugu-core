@@ -1,4 +1,4 @@
-// @vitest-environment happy-dom
+
 import { beforeEach, describe, expect, it } from "vitest";
 import { blogHref, createRouter, surfaceFromHash } from "./router.js";
 

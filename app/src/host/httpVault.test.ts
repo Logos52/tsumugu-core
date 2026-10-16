@@ -59,7 +59,7 @@ describe("createHttpVault", () => {
     const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
     const mixed = [
       ...CATALOG,
-      { path: "readings/zh-Hant/thin.prepared.json" }, // thin: no band/kind/wordCounts
+      { path: "readings/zh-Hant/thin.prepared.json" }, 
     ];
     vi.stubGlobal(
       "fetch",
@@ -77,7 +77,7 @@ describe("createHttpVault", () => {
 
   it("yields zero valid entries for a real thin manifest (fixture-fallback trigger)", async () => {
     vi.spyOn(console, "warn").mockImplementation(() => {});
-    // The real thin manifest: 1 entry, no band → zero valid → Lane B's fallback fires.
+    
     const thin = [{ path: "readings/zh-Hant/only.prepared.json", title: "Only" }];
     vi.stubGlobal(
       "fetch",

@@ -107,7 +107,7 @@ describe("populateDualRail", () => {
     });
 
     expect(prepared.schema).toBe(PREPARED_CONTENT_SCHEMA_V2);
-    // CatalogEntry-compatible core shape (D10): object binding + numeric tocfl/newWords + topic.
+    
     expect(prepared.core?.binding).toEqual({ textbook: "accc", book: 4, lesson: 3 });
     expect(prepared.core?.tocfl).toBe(2);
     expect(prepared.core?.kind).toBe("story");

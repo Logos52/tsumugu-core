@@ -1,4 +1,4 @@
-// @vitest-environment happy-dom
+
 import { describe, expect, it, beforeEach, vi } from "vitest";
 import { createReaderState } from "../app/state.js";
 import { DEFAULT_SETTINGS } from "../app/settings.js";

@@ -3,7 +3,7 @@ import type { LanguagePack } from "@tsumugu/engine";
 
 let cachedPack: LanguagePack | undefined;
 
-/** zh-Hant pack with OpenCC s2twp script normalizer (Taiwan idioms). */
+
 export function createZhHantPack(): LanguagePack {
   if (cachedPack) return cachedPack;
   const cn2tw = Converter({ from: "cn", to: "twp" });
@@ -27,7 +27,7 @@ export function createZhHantPack(): LanguagePack {
   return cachedPack;
 }
 
-/** Deterministic fake normalizer for unit tests (subset of Simplified→Traditional). */
+
 export function createFakeZhPack(
   s2t: Record<string, string> = { 学: "學", 发: "發", 电: "電", 脑: "腦" },
 ): LanguagePack {

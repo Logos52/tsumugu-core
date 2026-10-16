@@ -1,10 +1,4 @@
-/**
- * Voice-notes manifest (data-free port of monorepo voice/manifest.ts).
- *
- * The reader's view of a `tsumugu/voice-notes@1` sidecar.
- * Inert without assets + demo hook: parse succeeds on demo manifests; player uses Web Speech fallback when no audio.
- * Per-sentence segmented audio support for readings (policy kept: per-sentence vs dict head+examples).
- */
+
 
 export const VOICE_NOTES_SCHEMA = "tsumugu/voice-notes@1";
 
@@ -76,7 +70,7 @@ export function bindVoiceNotes(manifest: VoiceNotesManifest, baseDir: string): V
   return { manifest, baseDir, byCue: indexNotes(manifest) };
 }
 
-/** Demo hook: synthetic manifest for testing without assets. */
+
 export function createDemoVoiceNotes(cueCount: number): VoiceNotesManifest {
   const notes: VoiceNote[] = [];
   for (let i = 0; i < cueCount; i++) {

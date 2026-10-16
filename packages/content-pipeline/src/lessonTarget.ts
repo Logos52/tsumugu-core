@@ -9,13 +9,13 @@ const PRIVATE_DIR = join(REPO_ROOT, "private");
 
 export interface LessonTarget {
   lessonId: string;
-  /** Cumulative band ceiling, e.g. "TOCFL-3". */
+  
   ceiling: string;
-  /** Every word allowed without being new-target. */
+  
   cumulativeVocab: Set<string>;
-  /** Lesson NEW words (must appear + recycle). */
+  
   newVocab: string[];
-  /** Lesson NEW grammar point ids/markers. */
+  
   newGrammar: string[];
 }
 
@@ -27,7 +27,7 @@ export interface LessonTargetJson {
   newGrammar: string[];
 }
 
-/** ACCC-binding facet on prepared content (metadata only; WO-CORE-2 finalizes). */
+
 export interface AcccBindingFacet {
   lessonId: string;
   ceiling: string;
@@ -55,10 +55,7 @@ function targetFromJson(data: LessonTargetJson): LessonTarget {
   };
 }
 
-/**
- * Loader — reads reconciled lesson target JSON fixture or authoritative via resolveLessonTargetFromAuthoritative.
- * Uses WO-CORE-3 authoritative lesson → {vocab, grammar} (FINAL/merged + dangdai.csv).
- */
+
 export function loadLessonTarget(path: string = DEFAULT_FIXTURE): LessonTarget {
   if (!existsSync(path)) {
     throw new Error(`lesson target fixture not found: ${path}`);
@@ -67,12 +64,12 @@ export function loadLessonTarget(path: string = DEFAULT_FIXTURE): LessonTarget {
   return targetFromJson(data);
 }
 
-/** Sidecar convention: `<reading>.target.json` beside `<reading>.prepared.json`. */
+
 export function targetSidecarPath(preparedPath: string): string {
   return preparedPath.replace(/\.prepared\.json$/i, ".target.json");
 }
 
-/** Minimal parsers adapted for authoritative gate targets (vocab csv + reconciled grammar). */
+
 function parseCsvRow(line: string): string[] {
   const fields: string[] = [];
   let current = "";
@@ -153,7 +150,7 @@ export function resolveLessonTargetFromAuthoritative(
   ref: string | { book: number; lesson: number },
   opts: ResolveAuthOptions = {},
 ): LessonTarget {
-  // parse ref to lessonId + ordinals
+  
   let book: number, lesson: number, lessonId: string;
   if (typeof ref === "object") {
     book = ref.book;
@@ -214,11 +211,7 @@ export function resolveLessonTargetFromAuthoritative(
   };
 }
 
-/**
- * Resolve lesson target from the reading's ACCC-binding facet or a sidecar fixture.
- * Full: if neither and lessonId parseable from content title or binding stub, falls back to
- * authoritative resolve from reconciled index + vocab (WO-CORE-3).
- */
+
 export function resolveLessonTarget(
   content: PreparedContent,
   preparedPath?: string,
@@ -240,7 +233,7 @@ export function resolveLessonTarget(
     if (existsSync(sidecar)) return loadLessonTarget(sidecar);
   }
 
-  // Full authoritative resolution support for pipeline/gen (lessonId from title e.g. "ACCC b4l03")
+  
   const title = (content as any).title || (content as any).core?.binding || "";
   const m = /b(\d+)l(\d+)/i.exec(title);
   if (m) {

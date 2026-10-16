@@ -1,22 +1,17 @@
-/**
- * Minimal i18n layer for account + auth surfaces (EN/VI).
- * UI lang comes from profile.uiLang or current rail/gloss preference.
- * All new account/login text MUST go through t() here.
- * Strings are paper-clean, no gamification.
- */
+
 
 export type Locale = "en" | "vi";
 
 export interface Strings {
-  // Login / auth (magic-link keys removed 2026-07-02 with the simulated
-  // magic-link flow — auth/session.ts keeps only devForceLogin)
+  
+  
   accountTitle: string;
   emailLabel: string;
   emailPlaceholder: string;
   logout: string;
   loggedOut: string;
 
-  // Profile
+  
   profileTitle: string;
   displayName: string;
   railLabel: string;
@@ -25,44 +20,44 @@ export interface Strings {
   saveProfile: string;
   signOut: string;
 
-  // Progress / stats
+  
   progressTitle: string;
   knownCount: string;
-  wordsThisWeek: string; // honest, no streak
+  wordsThisWeek: string; 
   coverageTrend: string;
   noData: string;
 
-  // Actions
+  
   exportData: string;
   exportAnki: string;
   importVocab: string;
   deleteAccount: string;
   deleteConfirm: string;
 
-  // Dev helpers (for testing merge)
+  
   devTools: string;
   forceConflict: string;
   simulateOtherDevice: string;
   simulateOtherDeviceHint: string;
 
-  // Merge / sync
+  
   syncStatus: string;
   merged: string;
   conflictNote: string;
   offline: string;
 
-  // Misc
+  
   close: string;
   cancel: string;
 
-  // Library
+  
   libraryTitle: string;
   libraryContinue: string;
   libraryUpNext: string;
   libraryEmpty: string;
   librarySearch: string;
 
-  // App shell chrome (nav, footer, rail)
+  
   "brand.name": string;
   "brand.tag": string;
   "nav.home": string;
@@ -88,7 +83,7 @@ export interface Strings {
   "footer.colophon": string;
   "footer.method": string;
 
-  // Homepage
+  
   "home.hero.headline": string;
   "home.hero.subhead": string;
   "home.rail.chooser": string;
@@ -109,7 +104,7 @@ export interface Strings {
   "home.rail.btnVi": string;
   "home.rail.btnEn": string;
 
-  // Settings UI
+  
   "settings.theme": string;
   "settings.title": string;
   "settings.readingPrefs": string;
@@ -125,7 +120,7 @@ export interface Strings {
   "settings.light": string;
   "settings.dark": string;
 
-  // Catalog facets
+  
   "facet.level": string;
   "facet.kind": string;
   "facet.sort": string;
@@ -145,7 +140,7 @@ export interface Strings {
   "catalog.minutes": string;
   "catalog.rungCount": string;
 
-  // Grammar
+  
   "grammar.title": string;
   "grammar.hint": string;
   "grammar.empty": string;
@@ -154,7 +149,7 @@ export interface Strings {
   "grammar.byTextbook": string;
   "grammar.readingsLink": string;
 
-  // Flashcards
+  
   "flashcards.title": string;
   "flashcards.note": string;
   "flashcards.coming": string;
@@ -163,7 +158,7 @@ export interface Strings {
   "flashcards.goLibrary": string;
   "flashcards.openAccount": string;
 
-  // Static pages
+  
   "about.title": string;
   "about.body": string;
   "privacy.title": string;
@@ -177,7 +172,7 @@ export interface Strings {
   "method.title": string;
   "method.body": string;
 
-  // SEO (document title + meta description)
+  
   "seo.home.title": string;
   "seo.home.description": string;
   "seo.library.title": string;
@@ -203,7 +198,7 @@ export interface Strings {
   "seo.method.title": string;
   "seo.method.description": string;
 
-  // Surfaces
+  
   "surface.home": string;
   "surface.library": string;
   "surface.grammar": string;
@@ -211,7 +206,7 @@ export interface Strings {
   "surface.account": string;
   "surface.reader": string;
 
-  // Phase 2 personal mechanical + polish (i18n full)
+  
   "dashboard.title": string;
   "dashboard.hero": string;
   "dashboard.progress": string;
@@ -240,8 +235,8 @@ export interface Strings {
   "theme.experiment": string;
   "sync.delta": string;
 
-  // Sync panel (gated behind VITE_FEATURE_SYNC; strings live here so the panel
-  // ships bilingual the moment the flag turns on)
+  
+  
   "sync.title": string;
   "sync.intro": string;
   "sync.fileTitle": string;
@@ -319,14 +314,14 @@ const EN: Strings = {
   close: "Close",
   cancel: "Cancel",
 
-  // Library (content browser)
+  
   libraryTitle: "Library",
   libraryContinue: "Continue reading",
   libraryUpNext: "Up next at your level",
   libraryEmpty: "No readings match your filters.",
   librarySearch: "Search titles or topics…",
 
-  // Shell (EN)
+  
   "brand.name": "Tsumugu",
   "brand.tag": "Beta",
   "nav.home": "Home",
@@ -467,7 +462,7 @@ const EN: Strings = {
   "surface.account": "Account",
   "surface.reader": "Reading",
 
-  // Phase 2 personal mechanical + polish (i18n full)
+  
   "dashboard.title": "Personal Dashboard",
   "dashboard.hero": "Focus • Coverage • Next",
   "dashboard.progress": "Your progress",
@@ -573,14 +568,14 @@ const VI: Strings = {
   close: "Đóng",
   cancel: "Hủy",
 
-  // Library (content browser)
+  
   libraryTitle: "Thư viện",
   libraryContinue: "Tiếp tục đọc",
   libraryUpNext: "Phù hợp tiếp theo",
   libraryEmpty: "Không có bài đọc phù hợp với bộ lọc.",
   librarySearch: "Tìm theo tiêu đề hoặc chủ đề…",
 
-  // Shell (VI)
+  
   "brand.name": "Tsumugu",
   "brand.tag": "Beta",
   "nav.home": "Trang chủ",
@@ -721,7 +716,7 @@ const VI: Strings = {
   "surface.account": "Tài khoản",
   "surface.reader": "Đọc",
 
-  // Phase 2 personal mechanical + polish (i18n full)
+  
   "dashboard.title": "Bảng điều khiển cá nhân",
   "dashboard.hero": "Tập trung • Bao phủ • Tiếp theo",
   "dashboard.progress": "Tiến độ của bạn",
@@ -797,11 +792,11 @@ export function t(locale: Locale, key: keyof Strings): string {
   return all[locale]?.[key] ?? all.en[key] ?? String(key);
 }
 
-// Key-first style used by shell/home (preferred for chrome nav)
+
 export function tKey(key: string, locale: Locale = "en"): string {
-  // Try new style first, then fall back to legacy key map if present
+  
   if (key in (all[locale] || {})) return (all[locale])[key] ?? (all.en)[key] ?? key;
-  // Fallback to previous flat map (if we still have STRINGS)
+  
   const flat = (globalThis as any).__TSG_FLAT_STRINGS;
   if (flat && flat[key]) return flat[key][locale] ?? flat[key].en ?? key;
   return String(key);
@@ -809,7 +804,7 @@ export function tKey(key: string, locale: Locale = "en"): string {
 
 export const getLocaleFromRail = getLocale;
 
-/** Resolve UI locale: explicit arg → dataset.uiLang → data-rail. */
+
 export function resolveUiLocale(explicit?: Locale): Locale {
   if (explicit) return explicit;
   const root = document.documentElement;
@@ -819,16 +814,13 @@ export function resolveUiLocale(explicit?: Locale): Locale {
   return root?.dataset?.rail === "vi" ? "vi" : "en";
 }
 
-/**
- * Set UI language on <html> and re-apply all data-i18n chrome.
- * Profile uiLang changes in Account should call this (optional integration).
- */
+
 export function setUiLang(lang: Locale): void {
   document.documentElement.dataset.uiLang = lang;
   applyI18n(document, lang);
 }
 
-// Apply data-i18n and data-i18n-title using resolved UI locale
+
 export function applyI18n(root: HTMLElement | Document = document, locale?: Locale): void {
   const loc = resolveUiLocale(locale);
   root.querySelectorAll<HTMLElement>("[data-i18n]").forEach((el) => {
@@ -847,7 +839,7 @@ export function applyI18n(root: HTMLElement | Document = document, locale?: Loca
   });
 }
 
-/** Current UI locale for programmatic strings (uiLang → rail). */
+
 export function getCurrentLocale(): Locale {
   try {
     return resolveUiLocale();
@@ -856,7 +848,7 @@ export function getCurrentLocale(): Locale {
   }
 }
 
-/** Replace `{name}` tokens in a translated string. */
+
 export function tFormat(key: string, locale: Locale, vars: Record<string, string | number>): string {
   let out = tKey(key, locale);
   for (const [name, value] of Object.entries(vars)) {
@@ -865,7 +857,7 @@ export function tFormat(key: string, locale: Locale, vars: Record<string, string
   return out;
 }
 
-// Legacy flat map support (populated for nav/home if needed)
+
 export const STRINGS: Record<string, { en: string; vi: string }> = {
   "nav.home": { en: "Home", vi: "Trang chủ" },
   "nav.library": { en: "Library", vi: "Thư viện" },

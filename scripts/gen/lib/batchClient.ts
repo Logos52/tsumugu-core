@@ -46,7 +46,7 @@ export function extractResultText(result: BatchResult): string {
     .trim();
 }
 
-/** Build generate request: cumulative vocab in cached system prefix, not user turn. (frozen, no injection) */
+
 export function buildGenerateRequest(opts: {
   customId: string;
   model: string;
@@ -134,7 +134,7 @@ export function buildRepairRequest(opts: {
   };
 }
 
-/** In-memory client for vitest — returns results in arbitrary order. */
+
 export function createMockBatchClient(
   responses: Record<string, string>,
 ): BatchClient & { submitted: BatchRequest[] } {
@@ -147,7 +147,7 @@ export function createMockBatchClient(
     },
     async poll(_batchId) {
       const entries = Object.entries(responses);
-      // Deliberately shuffle to assert custom_id routing.
+      
       const shuffled = [...entries].sort((a, b) => (a[0] < b[0] ? 1 : -1));
       return shuffled.map(([custom_id, text]) => ({
         custom_id,
@@ -164,7 +164,7 @@ function sleep(ms: number): Promise<void> {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-/** Real Batches client using Anthropic REST (env-gated, 50% price, supports cache_control on system). */
+
 export function createAnthropicBatchClient(apiKey: string): BatchClient {
   const BASE = "https://api.anthropic.com/v1/messages/batches";
   const HDR = {
@@ -197,7 +197,7 @@ export function createAnthropicBatchClient(apiKey: string): BatchClient {
       return data.id;
     },
     async poll(batchId) {
-      // Poll status until ended, then fetch results_url (jsonl of {custom_id, result})
+      
       for (let attempt = 0; attempt < 120; attempt++) {
         const stRes = await fetch(`${BASE}/${batchId}`, { headers: HDR });
         if (!stRes.ok) {

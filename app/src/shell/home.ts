@@ -1,11 +1,4 @@
-/**
- * Marketing Home — the static front at `#/` (WO-UNIFY-B amendment).
- * Structure (Seal-red mockup §5): hero H1 + hero-sub + EN/VI rail chooser +
- * one CTA into the library + a LIVE SAMPLE with the tappable cognate bridge.
- * No dashboard, no personal bento, no `tsumugu-session` gate.
- * EN/VI copy selected by the current rail. Rail chooser is two-way-synced with
- * the header rail switch.
- */
+
 
 import { el, clear as domClear } from "../ui/dom.js";
 import { applyI18n, tKey as t, getLocale } from "../i18n/strings.js";
@@ -52,7 +45,7 @@ export function createHomeSurface(opts: {
 
     const wrap = el("div", { class: "wrap" });
 
-    // ── BETA NOTICE — homepage only, temporary (under construction) ─────
+    
     const beta = el("div", { class: "beta-banner" });
     beta.setAttribute("role", "note");
     beta.innerHTML =
@@ -60,14 +53,14 @@ export function createHomeSurface(opts: {
       'Your feedback is welcome — <a href="https://x.com/webigis" target="_blank" rel="noopener">@webigis</a> on X.';
     wrap.append(beta);
 
-    // ── HERO ────────────────────────────────────────────────────────────
+    
     const hero = el("section", { class: "hero" });
     hero.append(
       el("h1", { class: "hero-head", text: t("home.hero.headline", locale) }),
       el("p", { class: "hero-sub", text: t("home.hero.subhead", locale) }),
     );
 
-    // Rail chooser (two cards; two-way synced with header rail switch)
+    
     const chooser = el("div", { class: "rail-chooser", id: "railChooser" });
     chooser.append(el("div", { class: "chooser-label", text: t("home.rail.chooser", locale) }));
 
@@ -97,7 +90,7 @@ export function createHomeSurface(opts: {
     chooser.append(btnVi, btnEn);
     hero.append(chooser);
 
-    // One CTA into the library
+    
     const ctas = el("div", { class: "hero-ctas" });
     ctas.append(
       el("a", {
@@ -110,7 +103,7 @@ export function createHomeSurface(opts: {
     hero.append(ctas);
     wrap.append(hero);
 
-    // ── LIVE SAMPLE ─────────────────────────────────────────────────────
+    
     const sampleWrap = el("section", { class: "home-sample" });
     const sampleHead = el("div", { class: "sample-head" });
     sampleHead.append(
@@ -147,7 +140,7 @@ export function createHomeSurface(opts: {
     applyI18n(container);
   }
 
-  // Bridge reveal card (reuses global #card / #scrim; VI rail only)
+  
   function showSampleBridge(rail: "en" | "vi", anchor: HTMLElement) {
     if (rail !== "vi") {
       anchor.classList.add("sel");

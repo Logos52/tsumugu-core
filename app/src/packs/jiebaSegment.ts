@@ -1,6 +1,4 @@
-/**
- * Lazy jieba-wasm segmentation for live Chinese text.
- */
+
 
 import type { LanguagePack, Token } from "@tsumugu/engine";
 
@@ -40,7 +38,7 @@ async function resolvePackTokens(text: string, pack: LanguagePack): Promise<Toke
   return result;
 }
 
-/** Segment `text` for the active pack — jieba for zh-Hant, pack fallback otherwise. */
+
 export async function segmentLiveText(
   text: string,
   pack: LanguagePack,

@@ -4,7 +4,7 @@ import { parseVoiceNotes, bindVoiceNotes, createDemoVoiceNotes } from "./manifes
 
 describe("voice player (inert + demo)", () => {
   beforeEach(() => {
-    // reset speech mock if any
+    
     if (typeof window !== "undefined" && window.speechSynthesis) {
       vi.spyOn(window.speechSynthesis, "speak").mockImplementation(() => {});
       vi.spyOn(window.speechSynthesis, "cancel").mockImplementation(() => {});

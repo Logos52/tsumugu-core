@@ -1,19 +1,4 @@
-/**
- * Library surface (home) — 冊 Bound Volume convergence (2026-07-02, §8 final).
- *
- * Top-to-bottom, matching mockups/explorations-2026-07/unified/library.html:
- *   masthead (one line) → Continue strip (quiet glow row + obi) → 課本架
- *   Companion shelf (slot; Book spines → lesson set-cards) → 目錄 Catalog (a
- *   large sortable SPREADSHEET grouped by 冊/課, replacing the Reading Wall) →
- *   卡 Card studies (planned picture cards) → note.
- *
- * The green (D Verdigris) is the only saturated voice; statistics stay minimal
- * (one fact per spreadsheet row: the 新 new-word count; no rings, no zebra, no
- * percentages). All colour flows through the app's semantic --tsg-* tokens.
- *
- * The old Seal-red Reading Wall (topic rail / gallery / study-A·C cards / table
- * toggle) is retired here; its pure model helpers stay in libraryModel.ts.
- */
+
 import type { WordStatus } from "@tsumugu/engine";
 import { el, clear } from "../ui/dom.js";
 import { pickContinueCandidate } from "./coverage.js";
@@ -36,19 +21,14 @@ export interface CatalogViewOpts {
   onOpen: (path: string) => void;
   bandMin?: number;
   bandMax?: number;
-  /** When true (logged-in), show coverage % on the continue obi + resume row. */
+  
   isLoggedIn?: boolean | (() => boolean);
   getLastReadingId?: () => string | null;
-  /** Force the demo banner; defaults to detecting the bundled fixture catalog. */
+  
   isDemo?: boolean;
-  /** Render the loading skeleton instead of content (manifest still in flight). */
+  
   loading?: boolean;
-  /**
-   * Companion-shelf slot: called with a host section placed between the
-   * continue strip and the catalog spreadsheet (hub order per the 2026-07-02
-   * amendment: Continue → 課本架 Companion → 目錄 Catalog). The slot is dropped
-   * when the callback renders nothing.
-   */
+  
   renderCompanion?: (host: HTMLElement) => void;
 }
 
@@ -57,24 +37,24 @@ const esc = (s: string): string =>
 
 const stripTags = (s: string): string => s.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 
-/** Rung labels for the "免 Free readings" band buckets (unbound entries). */
+
 const RUNG_ZH: Record<string, string> = {
   A1: "入門 Starter",
   A2: "基礎 Elementary",
   B1: "進階 Intermediate",
 };
 
-/** 課 position label for the obi + continue strip. */
+
 function courseLabel(r: ReadingRecord): string {
   return r.book != null && r.lesson != null ? `當代 B${r.book} L${r.lesson}` : (RUNG_ZH[r.band] ?? r.band);
 }
 
-/** 課 spreadsheet cell (zero-padded lesson), or an em dash when unbound. */
+
 function courseCell(r: ReadingRecord): string {
   return r.book != null && r.lesson != null ? `當代 B${r.book}·L${String(r.lesson).padStart(2, "0")}` : "—";
 }
 
-/** 書腰 obi band: one fixed fact line. Band leads (bold); % shown only when real. */
+
 function obiHtml(r: ReadingRecord, vi: boolean, opts: { min?: boolean; known?: boolean } = {}): string {
   const parts: string[] = [esc(courseLabel(r)), esc(r.fmt), `${r.len}字`];
   if (opts.known && r.covReal) parts.push(`${r.cov}% ${esc(say("known", vi))}`);
@@ -83,7 +63,7 @@ function obiHtml(r: ReadingRecord, vi: boolean, opts: { min?: boolean; known?: b
   return `<b>${esc(r.band)}</b> · ${parts.join(" · ")}`;
 }
 
-/** First-line cell: pre-rendered excerpt HTML when present, else muted title. */
+
 function firstCellHtml(r: ReadingRecord): string {
   return r.ex ? r.ex : `<span class="cat-first-fallback">${esc(r.descTitle)}</span>`;
 }
@@ -104,13 +84,13 @@ export function mountCatalogView(
     return v ?? false;
   };
 
-  /** Records after the hard URL facet filter (deep links: #band=…&book=…). */
+  
   const facetedRecords = (): ReadingRecord[] => {
     const faceted = applyFacets(opts.catalog, facetsFromHash(location.hash));
     return faceted.map((e) => toReadingRecord(e, opts.getStatus));
   };
 
-  // ─────────────────────────── masthead ───────────────────────────
+  
   const mastheadHtml = (vi: boolean): string => {
     const m = say("masthead", vi);
     const dot = m.indexOf(". ");
@@ -119,7 +99,7 @@ export function mountCatalogView(
     return `<p><b>${esc(lead)}</b>${rest ? ` ${esc(rest)}` : ""}</p>`;
   };
 
-  // ─────────────────────────── continue strip ─────────────────────
+  
   const buildContinue = (cr: ReadingRecord, vi: boolean): HTMLElement => {
     const cont = el("section", { class: "lib-continue", attrs: { "aria-label": say("continue", vi) } });
     const card = el("a", {
@@ -140,7 +120,7 @@ export function mountCatalogView(
     return cont;
   };
 
-  // ─────────────────────────── catalog spreadsheet ────────────────
+  
   const buildCatalog = (records: ReadingRecord[], vi: boolean, continueId: string | null): HTMLElement => {
     const sec = el("section", { class: "catalog-sec", attrs: { "aria-label": "目錄 Catalog" } });
     const readingsWord = records.length === 1 ? say("reading", vi) : say("readings", vi);
@@ -163,7 +143,7 @@ export function mountCatalogView(
         .join("") +
       `<th class="nosort" scope="col">續</th>`;
 
-    // Natural (shelf) order with a stable idx for the sort tiebreak.
+    
     const groups = groupCatalogByLesson(records);
     let idx = 0;
     let body = "";
@@ -201,7 +181,7 @@ export function mountCatalogView(
     return sec;
   };
 
-  /** Three-state column sort (asc → desc → shelf order), ported from the mockup. */
+  
   const wireSort = (table: HTMLTableElement): void => {
     const tbody = table.querySelector("tbody");
     if (!tbody) return;
@@ -209,7 +189,7 @@ export function mountCatalogView(
     const ths = Array.from(table.querySelectorAll<HTMLElement>("th[data-key]"));
     const coll = new Intl.Collator("zh-Hant", { numeric: true });
     let stateKey: string | null = null;
-    let dir = 0; // 1 asc, -1 desc, 0 off
+    let dir = 0; 
 
     const restore = (): void => {
       natural.forEach((r) => tbody.appendChild(r));
@@ -224,7 +204,7 @@ export function mountCatalogView(
         if (c === 0) c = Number(a.dataset.idx) - Number(b.dataset.idx);
         return c * d;
       });
-      tbody.classList.add("sorted"); // CSS hides .grp while sorted
+      tbody.classList.add("sorted"); 
       rows.forEach((r) => tbody.appendChild(r));
     };
     const indicators = (): void => {
@@ -263,7 +243,7 @@ export function mountCatalogView(
     });
   };
 
-  // ─────────────────────────── card studies ───────────────────────
+  
   const buildCardStudies = (records: ReadingRecord[], vi: boolean): HTMLElement => {
     const sec = el("section", { class: "cards-sec", attrs: { "aria-label": "卡 Card studies" } });
     const picks = records.slice().sort((a, b) => b.newN - a.newN).slice(0, 4);
@@ -285,7 +265,7 @@ export function mountCatalogView(
     return sec;
   };
 
-  // ─────────────────────────── render ─────────────────────────────
+  
   const render = (): void => {
     clear(root);
     const vi = isViRail();
@@ -317,10 +297,10 @@ export function mountCatalogView(
 
     const records = facetedRecords();
 
-    // Masthead (one line).
+    
     wrap.append(el("div", { class: "masthead", html: mastheadHtml(vi) }));
 
-    // Continue strip (real resume target + obi fact line).
+    
     const showProgress = resolveLoggedIn() || records.some((r) => r.covReal);
     const lastId = opts.getLastReadingId?.() ?? null;
     const candidateEntry = showProgress
@@ -331,29 +311,29 @@ export function mountCatalogView(
       wrap.append(buildContinue(toReadingRecord(candidateEntry, opts.getStatus), vi));
     }
 
-    // 課本架 Companion shelf slot (Continue → Companion → Catalog).
+    
     if (opts.renderCompanion) {
       const slot = el("section", { class: "lib-companion-slot" });
       opts.renderCompanion(slot);
       if (slot.childNodes.length > 0) wrap.append(slot);
     }
 
-    // 目錄 Catalog spreadsheet (replaces the Reading Wall).
+    
     const catalogSec = buildCatalog(records, vi, continueId);
     wrap.append(catalogSec);
 
-    // 卡 Card studies (planned picture cards).
+    
     wrap.append(buildCardStudies(records, vi));
 
     wrap.append(el("p", { class: "lib-note", html: say("note", vi) }));
     root.append(wrap);
 
-    // Wire the spreadsheet sort + row / continue navigation.
+    
     const table = catalogSec.querySelector<HTMLTableElement>("table.catalog");
     if (table) wireSort(table);
     wrap.addEventListener("click", (e) => {
       const target = e.target as HTMLElement;
-      if (target.closest("th[data-key]")) return; // sort headers handle themselves
+      if (target.closest("th[data-key]")) return; 
       const go = target.closest<HTMLElement>('[data-go="1"], tr.rd[data-path]');
       if (go) {
         e.preventDefault();

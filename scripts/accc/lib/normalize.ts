@@ -1,4 +1,4 @@
-/** Collapse whitespace and normalize punctuation for fuzzy comparison. */
+
 export function normalizeText(input: string): string {
   return input
     .normalize("NFKC")

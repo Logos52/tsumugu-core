@@ -53,7 +53,7 @@ function seedRepo(opts: { reasons: string[]; book?: number }): PublishPaths {
       B1L99: { title: "T", theme: "Th", grammar: [{ title: "嗎 questions" }] },
     }),
   );
-  // Pre-existing vault manifest with the smoke fixture entry.
+  
   writeFileSync(
     join(vaultDir, "__readings.json"),
     JSON.stringify([{ path: "readings/zh-Hant/clean.prepared.json", dateAdded: "2026-06-23T12:00:00Z" }]),
@@ -74,7 +74,7 @@ describe("companion publish guard (signed profile)", () => {
   it("refuses a seeded binding failure and writes nothing", () => {
     const paths = seedRepo({ reasons: ["script: Simplified/non-TW variant leak: 台 → 臺"] });
     expect(() => publishCompanion(paths)).toThrow(/REFUSING to publish/);
-    // No writes: reading not copied, fixture entry + file untouched.
+    
     expect(existsSync(join(paths.vaultDir, "readings/zh-Hant/b1l99-r1.prepared.json"))).toBe(false);
     expect(existsSync(join(paths.vaultDir, "companion-lessons.json"))).toBe(false);
     expect(existsSync(join(paths.vaultDir, "readings/zh-Hant/clean.prepared.json"))).toBe(true);
@@ -137,7 +137,7 @@ describe("signed-profile reason classification", () => {
   it("carve-out exempts ≤3-Han terminal utterances only", () => {
     expect(classifyReason("prose: sentences[3] Han count 2 < min 4: 你呢？", 1)).toBe("advisory");
     expect(classifyReason("prose: sentences[3] Han count 3 < min 4: 乙：好啊！", 1)).toBe("advisory");
-    // 4+ Han short-sentence reasons or non-terminal fragments still bind.
+    
     expect(classifyReason("prose: sentences[3] Han count 3 < min 4: 然後就", 1)).toBe("binding");
   });
 
@@ -147,8 +147,8 @@ describe("signed-profile reason classification", () => {
     expect(bandCapFor(3)).toBe(80);
     expect(bandCapFor(5)).toBe(80);
     const long62 = "prose: sentences[17] Han count 62 > max 60: 畢業以後我希望";
-    expect(classifyReason(long62, 3)).toBe("advisory"); // within B3+ cap
-    expect(classifyReason(long62, 2)).toBe("binding"); // genuine B2 run-on
+    expect(classifyReason(long62, 3)).toBe("advisory"); 
+    expect(classifyReason(long62, 2)).toBe("binding"); 
     expect(classifyReason("prose: sentences[1] Han count 87 > max 60: 這", 3)).toBe("binding");
   });
 

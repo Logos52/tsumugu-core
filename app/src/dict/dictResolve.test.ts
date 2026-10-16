@@ -16,7 +16,7 @@ describe("dictResolve", () => {
   it("derives a base-relative index root from BASE_URL (not a hardcoded absolute)", () => {
     const base = import.meta.env.BASE_URL || "/";
     expect(dictIndexBase()).toBe(`${base.replace(/\/$/, "")}/dict-search`);
-    // No trailing slash — shard paths are appended as `/entries-*.json`.
+    
     expect(dictIndexBase().endsWith("/")).toBe(false);
   });
 
