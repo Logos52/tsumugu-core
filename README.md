@@ -1,6 +1,12 @@
 # Tsumugu Core
 
-The public reading product in the Tsumugu line. A website of AI-generated, level-graded Chinese reading (Simplified or Traditional), served to English-L1 and Vietnamese-L1 learners on two independent support rails over shared Chinese content.
+The public reading product in the Tsumugu line. A website of AI-generated, level-graded Traditional Chinese reading, served to English-L1 and Vietnamese-L1 learners on two independent support rails over shared Chinese content.
+
+Traditional on the surface; Simplified is stored hidden, never user-facing.
+
+Code is Apache-2.0. Content is all rights reserved. No content license is chosen.
+
+A paid version may come later; nothing here blocks it.
 
 - Vietnamese rail (Viet to Han). Hán-Việt reading + Vietnamese gloss + the Sino-Vietnamese cognate bridge. The moat.
 - English rail (Eng to Han). Pinyin + English gloss + character depth. The reach that carries the Vietnamese mission.
