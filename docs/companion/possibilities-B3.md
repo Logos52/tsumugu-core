@@ -1,6 +1,6 @@
-# Article Possibilities — Book 3 (ACCC 當代中文課程 3)
+# Article Possibilities. Book 3 (ACCC 當代中文課程 3)
 
-Scope: an authoring catalog of NEW article possibilities for the 12 Book-3 companion lessons (B3L01–B3L12), enumerated per lesson beyond the 3 articles already drafted, plus a book-level section of multi-lesson series ideas. Each row names a format from the companion format library (核心: 對話/自述/短文/問答/比較/報導/迷你廣播劇; rotations: 真實語境 Dcard·LINE, 廣播; combined formats are marked "A+B"), a register (textbook-clean / everyday / colloquial-Dcard), a concrete premise (a named person or artifact — original speakers only, GREEN, never the textbook cast 王開文/陳月美/李明華), the lesson grammar it would naturally exercise, and an effort mark (S = single-scene, M = multi-scene / multi-voice). These are OPTIONS, not commitments — nothing here is scheduled or owed. Generated 2026-07-02.
+Scope. An authoring catalog of NEW article possibilities for the 12 Book-3 companion lessons (B3L01-B3L12), enumerated per lesson beyond the 3 articles already drafted, plus a book-level section of multi-lesson series ideas. Each row names a format from the companion format library (核心: 對話/自述/短文/問答/比較/報導/迷你廣播劇; rotations: 真實語境 Dcard·LINE, 廣播; combined formats are marked "A+B"), a register (textbook-clean / everyday / colloquial-Dcard), a concrete premise (a named person or artifact. Original speakers only, GREEN, never the textbook cast 王開文/陳月美/李明華), the lesson grammar it would naturally exercise, and an effort mark (S = single-scene, M = multi-scene / multi-voice). These are OPTIONS, not commitments. Nothing here is scheduled or owed. Generated 2026-07-02.
 
 Per-lesson floor: 750 Han chars/article (naturalness > floor). Union of the eventual 3 chosen articles must still hit 100% grammar (HARD) and ≤3 deferred vocab.
 
@@ -190,7 +190,7 @@ Existing drafts: R1 對話 (anti-nuclear march) · R2 自述 (retired editor) ·
 
 ## Book-3 series possibilities (multi-lesson)
 
-Laddered same-topic threads, recurring-cast 迷你廣播劇 arcs, and review readings that span 2–3 lessons. Same row shape; the **Spans** column marks the lessons involved. Options, not commitments — each still has to clear its own lesson's grammar/coverage gate at authoring time.
+Laddered same-topic threads, recurring-cast 迷你廣播劇 arcs, and review readings that span 2-3 lessons. Same row shape; the Spans column marks the lessons involved. Options, not commitments. Each still has to clear its own lesson's grammar/coverage gate at authoring time.
 
 | # | Format | Register | Premise | Grammar / note | Effort | Spans |
 |---|--------|----------|---------|----------------|--------|-------|

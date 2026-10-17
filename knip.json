@@ -1,0 +1,14 @@
+{
+  "entry": ["app/src/main.ts", "app/src/pwa/sw.ts", "worker/index.ts"],
+  "rules": { "files": "off" },
+  "ignoreBinaries": ["kit"],
+  "ignoreDependencies": [
+    "@tsumugu/engine",
+    "@fontsource/inter",
+    "@fontsource/noto-sans-tc",
+    "lxgw-wenkai-tc-webfont",
+    "workbox-precaching",
+    "workbox-routing",
+    "workbox-strategies"
+  ]
+}

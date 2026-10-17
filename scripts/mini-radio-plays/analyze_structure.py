@@ -6,6 +6,10 @@ import csv
 import json
 import re
 from pathlib import Path
+import sys
+def say(*parts, sep=" ", end="\n", file=None):
+    stream = sys.stdout if file is None or file is sys.stdout else sys.stderr
+    stream.write(sep.join(str(part) for part in parts) + end)
 
 REPO = Path(__file__).resolve().parents[2]
 TRANSCRIPT_DIR = REPO / "private/mrp-transcripts"
@@ -15,10 +19,8 @@ OUT = REPO / "private/STRUCTURE-NOTES.md"
 HAN = re.compile(r"[一-鿿]")
 SPEAKER = re.compile(r"^([^\s：:]{1,6})[：:]")
 
-
 def han_count(text: str) -> int:
     return len(HAN.findall(text))
-
 
 def parse_cast(raw: str) -> list[str]:
     lines = [ln.strip() for ln in raw.splitlines()]
@@ -34,7 +36,6 @@ def parse_cast(raw: str) -> list[str]:
             if re.match(r"^[\u4e00-\u9fff]{2,4}$", s) and "歲" not in s:
                 names.append(s)
     return names
-
 
 def strip_cast_header(text: str) -> str:
     """Drop opening title + 劇中人 cast list."""
@@ -54,9 +55,7 @@ def strip_cast_header(text: str) -> str:
             out.append(line)
     return "\n".join(out)
 
-
 _LESSON = r"第[一二三四五六七八九十\d]+課"
-
 
 def drama_key(name: str) -> str | None:
     base = name.replace(".json", "").replace(".txt", "")
@@ -67,7 +66,6 @@ def drama_key(name: str) -> str | None:
         return None
     lesson, part, title = m.group(1), m.group(2), m.group(3).strip()
     return f"L{lesson}-P{part}-{title}"
-
 
 def load_transcripts() -> dict[str, dict]:
     by_key: dict[str, dict] = {}
@@ -99,14 +97,12 @@ def load_transcripts() -> dict[str, dict]:
         }
     return by_key
 
-
 def lesson_groups(by_key: dict[str, dict]) -> dict[str, list[dict]]:
     groups: dict[str, list[dict]] = {}
     for key, row in sorted(by_key.items()):
         lesson = key.split("-", 1)[0]
         groups.setdefault(lesson, []).append(row)
     return groups
-
 
 def write_notes(by_key: dict[str, dict]) -> None:
     lines = [
@@ -185,17 +181,15 @@ def write_notes(by_key: dict[str, dict]) -> None:
             lines.append("")
 
     OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(f"Wrote {OUT}")
-
+    say(f"Wrote {OUT}")
 
 def main() -> int:
     by_key = load_transcripts()
     if not by_key:
-        print("No transcripts found — run transcribe_mrp.py first", file=__import__("sys").stderr)
+        say("No transcripts found — run transcribe_mrp.py first", file=__import__("sys").stderr)
         return 1
     write_notes(by_key)
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

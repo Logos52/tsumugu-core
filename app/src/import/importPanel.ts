@@ -5,13 +5,13 @@ import { DEFAULT_MAX_CHARS, prepareFromText } from "./prepareFromText.js";
 import { importCaption, importPrivacyNotice } from "./copy.js";
 import { el } from "../ui/dom.js";
 
-export interface ImportPanelOpts {
+interface ImportPanelOpts {
   state: ReaderState;
   vault?: import("@tsumugu/engine").VaultIO | null;
   onLoaded?: () => void;
 }
 
-export interface ImportPanelController {
+interface ImportPanelController {
   open(): void;
   close(): void;
   destroy(): void;

@@ -1,6 +1,6 @@
 
 
-export const VOICE_NOTES_SCHEMA = "tsumugu/voice-notes@1";
+const VOICE_NOTES_SCHEMA = "tsumugu/voice-notes@1";
 
 export interface VoiceNote {
   cueIndex: number;
@@ -8,7 +8,7 @@ export interface VoiceNote {
   audioSlow?: string;
 }
 
-export interface VoiceNotesManifest {
+interface VoiceNotesManifest {
   schema: typeof VOICE_NOTES_SCHEMA;
   lang: string;
   slug: string;
@@ -48,7 +48,7 @@ export function parseVoiceNotes(raw: unknown, cueCount: number): VoiceNotesManif
   return m;
 }
 
-export function indexNotes(manifest: VoiceNotesManifest): ReadonlyMap<number, VoiceNote> {
+function indexNotes(manifest: VoiceNotesManifest): ReadonlyMap<number, VoiceNote> {
   const map = new Map<number, VoiceNote>();
   for (const n of manifest.notes) map.set(n.cueIndex, n);
   return map;
@@ -69,7 +69,6 @@ export interface VoiceNotesBinding {
 export function bindVoiceNotes(manifest: VoiceNotesManifest, baseDir: string): VoiceNotesBinding {
   return { manifest, baseDir, byCue: indexNotes(manifest) };
 }
-
 
 export function createDemoVoiceNotes(cueCount: number): VoiceNotesManifest {
   const notes: VoiceNote[] = [];

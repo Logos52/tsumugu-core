@@ -1,3 +1,4 @@
+import { paintEntryFromPart } from "./wordPopup.fns.js";
 
 
 import { lookupPrebaked, type PrebakedEntry, type BridgeInfo } from "@tsumugu/engine";
@@ -72,6 +73,8 @@ export function createWordPopup(
   state: ReaderState,
   opts?: { onCapture?: (word: string) => void },
 ): WordPopupController {
+const ctx: any = {};
+
   const card = document.getElementById("card");
   const scrim = document.getElementById("scrim");
   if (!card || !scrim) {
@@ -108,7 +111,8 @@ export function createWordPopup(
     });
     aDict.parentElement.appendChild(encBtn);
   }
-  let revealBtn: HTMLButtonElement | null = null;
+  const revealBtn: HTMLButtonElement | null = null;
+ctx.revealBtn = revealBtn;
 
   function close(): void {
     card!.style.display = "none";
@@ -116,172 +120,13 @@ export function createWordPopup(
     card!.classList.remove("is-bridge");
     document.querySelectorAll(`.${CLS.word}.${CLS.sel}`).forEach((n) => n.classList.remove(CLS.sel));
     anchorEl = null;
-    revealBtn?.remove();
-    revealBtn = null;
+    ctx.revealBtn?.remove();
+    ctx.revealBtn = null;
     if (glossEl) glossEl.classList.remove(CLS.popupHidden);
   }
 
-  function paintEntry(word: string, entry: PrebakedEntry | undefined, anchor: HTMLElement): void {
-    const { settings } = state;
-    const glossLang = settings.gloss;
-    
-    const shardPromise = lookupShardEntry(word);
-    const reading = readingForEntry(entry, settings.reading);
-    const preGloss = glossForEntry(entry, glossLang);
-
-    if (glyphEl) glyphEl.textContent = word;
-    if (readingEl) readingEl.textContent = reading;
-    
-    if (ipaEl) ipaEl.textContent = "";
-    if (posEl) posEl.textContent = "";
-
-    revealBtn?.remove();
-    revealBtn = null;
-    if (glossEl) {
-      glossEl.textContent = preGloss || "—";
-      glossEl.classList.remove(CLS.popupHidden);
-      if (state.settings.guessFirst && preGloss) {
-        glossEl.classList.add(CLS.popupHidden);
-        revealBtn = el("button", {
-          class: "dict reveal",
-          text: "Reveal",
-          title: "Reveal gloss (guess-first)",
-        });
-        revealBtn.addEventListener("click", (ev) => {
-          ev.stopPropagation();
-          glossEl.classList.remove(CLS.popupHidden);
-          revealBtn?.remove();
-          revealBtn = null;
-        });
-        glossEl.parentElement?.insertBefore(revealBtn, glossEl.nextSibling);
-      }
-    }
-
-    
-    
-    const bridge = entry?.bridge;
-    const showBridge = !!bridge && settings.rail === "vi";
-    card!.classList.toggle("is-bridge", showBridge);
-
-    if (bridgeEl && cogsEl && closeEl && enNoteEl) {
-      if (showBridge) {
-        bridgeEl.style.display = "";
-        enNoteEl.style.display = "none";
-        renderBridgeCogs(cogsEl, bridge!, word);
-        closeEl.textContent = bridge!.meaning ?? bridge!.bridgeReading ?? "";
-        bridgeEl.classList.remove("draw");
-        void bridgeEl.offsetWidth;
-        bridgeEl.classList.add("draw");
-      } else if (bridge && settings.rail === "en") {
-        bridgeEl.style.display = "none";
-        enNoteEl.style.display = "";
-        renderEnNote(enNoteEl, bridge, word);
-      } else {
-        bridgeEl.style.display = "none";
-        enNoteEl.style.display = "none";
-      }
-    }
-    if (exEl) exEl.style.display = "none";
-
-    if (aAdd) {
-      
-      aAdd.onclick = (ev) => {
-        ev.stopPropagation();
-        state.recordSeen(word);
-        if (settings.knownStateOn) state.gradeWord(word, "known");
-        close();
-      };
-    }
-    if (aKnown) {
-      aKnown.style.display = settings.knownStateOn ? "" : "none";
-      aKnown.onclick = (ev) => {
-        ev.stopPropagation();
-        state.gradeWord(word, "known");
-        close();
-      };
-    }
-
-    if (aDict) {
-      aDict.textContent = "字 →";
-      aDict.title = dictTitle(glossLang);
-      void resolveKind(word).then((kind) => {
-        const href = dictUrlFor(word, kind, readRailParams());
-        aDict.setAttribute("href", href);
-      });
-    }
-
-    if (encBtn) {
-      encBtn.textContent = "Form";
-      encBtn.title = "Form / encoding / components (modal)";
-      encBtn.onclick = (ev) => {
-        ev.stopPropagation();
-        const modal = (window as { __tsgEnc?: { open: (w: string, c: unknown) => void } }).__tsgEnc;
-        if (modal?.open) modal.open(word, (state as { content?: unknown }).content);
-        else alert(`Form/encoding for ${word} (demo; local notes only)`);
-      };
-    }
-
-    
-    
-    void shardPromise.then((shard) => {
-      if (!shard || !card || !glossEl) return;
-      
-      const useG = glossLang === "vi" && shard.gv ? shard.gv : (shard.g || preGloss);
-      if (useG && (!glossEl.textContent || glossEl.textContent === "—" || glossEl.textContent === preGloss)) {
-        glossEl.textContent = useG;
-      }
-      glossEl.title = shard.g || shard.gv || "Definition from tsumugu-ed";
-
-      
-      
-      const formText = shard.form || shard.components || shard.encoding || shard.hve || "";
-      
-      const priorForm = card.querySelector(".tsg-form");
-      if (priorForm) priorForm.remove();
-      
-      
-      
-      if (formText) {
-        const formHost = el("div", { class: "tsg-form", style: { margin: "8px 0", padding: "8px 10px", border: "1px solid var(--tsg-border)", borderRadius: "8px", background: "var(--tsg-sunk)", fontSize: "13px" } as any });
-        const lbl = el("span", { class: "form-lbl", text: "Form: ", style: { fontWeight: "600", color: "var(--tsg-accent)" } as any });
-        const val = el("span", { class: "form-val", text: formText });
-        formHost.append(lbl, val);
-        
-        formHost.style.cursor = "pointer";
-        formHost.addEventListener("click", (e) => {
-          e.stopPropagation();
-          const modal = (window as { __tsgEnc?: { open: (w: string, c: unknown) => void } }).__tsgEnc;
-          if (modal?.open) modal.open(word, (state as { content?: unknown }).content);
-        });
-        
-        glossEl.parentElement?.insertBefore(formHost, glossEl.nextSibling);
-      }
-      
-    });
-
-    
-    if (aAdd) {
-      
-      aAdd.onclick = (ev) => {
-        ev.stopPropagation();
-        state.recordSeen(word);
-        if (settings.knownStateOn) state.gradeWord(word, "known");
-        close();
-      };
-    }
-    if (aKnown) {
-      aKnown.style.display = settings.knownStateOn ? "" : "none";
-      aKnown.onclick = (ev) => {
-        ev.stopPropagation();
-        state.gradeWord(word, "known");
-        close();
-      };
-    }
-
-    card!.style.display = "block";
-    scrim!.style.display = "block";
-    positionCard(anchor, card!);
-  }
+  ctx.state = state; ctx.lookupShardEntry = lookupShardEntry; ctx.readingForEntry = readingForEntry; ctx.glossForEntry = glossForEntry; ctx.glyphEl = glyphEl; ctx.readingEl = readingEl; ctx.ipaEl = ipaEl; ctx.posEl = posEl; ctx.glossEl = glossEl; ctx.CLS = CLS; ctx.el = el; ctx.card = card; ctx.bridgeEl = bridgeEl; ctx.cogsEl = cogsEl; ctx.closeEl = closeEl; ctx.enNoteEl = enNoteEl; ctx.renderBridgeCogs = renderBridgeCogs; ctx.renderEnNote = renderEnNote; ctx.exEl = exEl; ctx.aAdd = aAdd; ctx.close = close; ctx.aKnown = aKnown; ctx.aDict = aDict; ctx.dictTitle = dictTitle; ctx.resolveKind = resolveKind; ctx.dictUrlFor = dictUrlFor; ctx.readRailParams = readRailParams; ctx.encBtn = encBtn; ctx.scrim = scrim; ctx.positionCard = positionCard;
+const paintEntry = (word: string, entry: PrebakedEntry | undefined, anchor: HTMLElement) => paintEntryFromPart(ctx, word, entry, anchor);
 
   function open(word: string, anchor: HTMLElement): void {
     state.recordSeen(word);

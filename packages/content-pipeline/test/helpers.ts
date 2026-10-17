@@ -2,10 +2,10 @@ import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parsePreparedContent, WordStore } from "@tsumugu/engine";
-import type { DefLevelIndex } from "../src/genQa.js";
-import type { CharViIndex, HanVietIndex, HanVietRecord } from "../src/hanviet.js";
-import { loadLessonTarget, type LessonTarget } from "../src/lessonTarget.js";
-import { createFakeZhPack } from "../src/pack.js";
+import type { DefLevelIndex } from "content-pipeline/genQa";
+import type { CharViIndex, HanVietIndex, HanVietRecord } from "content-pipeline/hanviet";
+import { loadLessonTarget, type LessonTarget } from "content-pipeline/lessonTarget";
+import { createFakeZhPack } from "content-pipeline/pack";
 
 const FIXTURES_DIR = resolve(dirname(fileURLToPath(import.meta.url)), "fixtures");
 

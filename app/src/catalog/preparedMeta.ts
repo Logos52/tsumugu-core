@@ -1,7 +1,7 @@
 import type { RawPreparedContent } from "@tsumugu/engine";
 import type { Band, LessonBinding, ReadingKind } from "./types.js";
 
-export interface CorePreparedMeta {
+interface CorePreparedMeta {
   core?: {
     band: Band;
     tocfl: 1 | 2 | 3;

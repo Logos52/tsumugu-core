@@ -2,7 +2,6 @@ import { WordStore } from "@tsumugu/engine";
 import { loadSettings, saveSettings, type ReaderSettings } from "./settings.js";
 import { getUserStore } from "../store/userStore.js";
 
-
 const STORE_KEY = "tsumugu-core/word-store";
 
 export function loadStore(): WordStore {
@@ -23,8 +22,6 @@ export function saveStore(store: WordStore): void {
   try { getUserStore().notifyChange(); } catch {}
 }
 
-export { loadSettings, saveSettings, type ReaderSettings };
-
+export { saveSettings, type ReaderSettings };
 
 export { getUserStore } from "../store/userStore.js";
-export { subscribeSession, getSession, logout, devForceLogin } from "../auth/session.js";

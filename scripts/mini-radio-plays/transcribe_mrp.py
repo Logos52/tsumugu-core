@@ -18,11 +18,14 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+def say(*parts, sep=" ", end="\n", file=None):
+    stream = sys.stdout if file is None or file is sys.stdout else sys.stderr
+    stream.write(sep.join(str(part) for part in parts) + end)
+
 
 REPO = Path(__file__).resolve().parents[2]
 AUDIO_DIR = Path("/Users/n1/Documents/Language/Chinese/MTC/MTC/Mini Radio Plays")
 OUT_DIR = REPO / "private/mrp-transcripts"
-# large-v3 HF repo 404/401 here; turbo is the cached local pipeline default.
 WHISPER_MODEL = "mlx-community/whisper-large-v3-turbo"
 S2TWP = "s2twp"
 
@@ -78,7 +81,7 @@ def transcribe_one(py: Path, audio: Path, force: bool) -> None:
     json_path = OUT_DIR / f"{stem}.json"
 
     if txt_path.exists() and json_path.exists() and not force:
-        print(f"skip {audio.name} (exists)")
+        say(f"skip {audio.name} (exists)")
         return
 
     script = REPO / "scripts/mini-radio-plays/_transcribe_worker.py"
@@ -91,7 +94,7 @@ def transcribe_one(py: Path, audio: Path, force: bool) -> None:
         WHISPER_MODEL,
         S2TWP,
     ]
-    print(f"transcribe {audio.name} …")
+    say(f"transcribe {audio.name} …")
     subprocess.run(cmd, check=True)
 
 
@@ -107,14 +110,14 @@ def main() -> int:
     args = ap.parse_args()
 
     if not AUDIO_DIR.is_dir():
-        print(f"Audio dir missing: {AUDIO_DIR}", file=sys.stderr)
+        say(f"Audio dir missing: {AUDIO_DIR}", file=sys.stderr)
         return 1
 
     lessons = parse_lessons(args.lessons)
     parts = [p.strip() for p in args.parts.split(",") if p.strip()]
     tracks = select_tracks(lessons, parts)
     if not tracks:
-        print("No tracks matched filters", file=sys.stderr)
+        say("No tracks matched filters", file=sys.stderr)
         return 1
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -123,7 +126,7 @@ def main() -> int:
     for track in tracks:
         transcribe_one(py, track, args.force)
 
-    print(f"Done — {len(tracks)} track(s) → {OUT_DIR}")
+    say(f"Done — {len(tracks)} track(s) → {OUT_DIR}")
     return 0
 
 

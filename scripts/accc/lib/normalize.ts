@@ -1,5 +1,5 @@
 
-export function normalizeText(input: string): string {
+function normalizeText(input: string): string {
   return input
     .normalize("NFKC")
     .toLowerCase()

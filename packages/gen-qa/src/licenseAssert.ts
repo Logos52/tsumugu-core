@@ -1,7 +1,3 @@
-/**
- * Build-time license assertion for monolingual zh generation inputs (PRD §6.2).
- * Hard-fails when a BY-SA / BY-ND source is used as a *generation seed*.
- */
 
 export type GenerationSeedLicense =
   | "cc0"
@@ -21,7 +17,6 @@ export interface ProvenanceSource {
   id: string;
   license: GenerationSeedLicense;
   role: ProvenanceRole;
-  /** Optional excerpt checked for known contamination markers. */
   text?: string;
 }
 
@@ -31,9 +26,7 @@ export interface ProvenanceManifest {
 
 export interface LicenseAssertResult {
   ok: boolean;
-  /** Hard-fail reasons (BY-SA/BY-ND seeds, etc.). */
   errors: string[];
-  /** Non-blocking notes (reference-only BY-SA sources, etc.). */
   notes: string[];
 }
 
@@ -43,7 +36,6 @@ const FORBIDDEN_SEED_LICENSES = new Set<GenerationSeedLicense>([
   "gfdl",
 ]);
 
-/** Known markers that indicate MoEDict / MoE dictionary text in a seed. */
 const MOEDICT_MARKERS = [
   "教育部國語小字典",
   "MoEDict",
@@ -52,10 +44,6 @@ const MOEDICT_MARKERS = [
   "國語小字典",
 ] as const;
 
-/**
- * Assert every monolingual-generation input against the allow-list.
- * BY-SA / BY-ND sources used as generation seeds → hard-fail.
- */
 export function assertMonolingualSeedLicenses(
   manifest: ProvenanceManifest,
 ): LicenseAssertResult {
@@ -85,7 +73,6 @@ export function assertMonolingualSeedLicenses(
   return { ok: errors.length === 0, errors, notes };
 }
 
-/** First PRD fixture: MoEDict BY-ND used as a generation seed → hard-fail. */
 export function moedictByNdSeedFixture(): ProvenanceManifest {
   return {
     sources: [

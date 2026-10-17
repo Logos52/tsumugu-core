@@ -7,7 +7,9 @@
   "exports": {
     ".": "./src/readingChecks.ts",
     "./lessonTarget": "./src/lessonTarget.ts",
-    "./hanviet": "./src/hanviet.ts"
+    "./hanviet": "./src/hanviet.ts",
+    "./genQa": "./src/genQa.ts",
+    "./pack": "./src/pack.ts"
   },
   "bin": {
     "reading-checks": "./src/cli.ts"

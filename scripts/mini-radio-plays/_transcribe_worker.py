@@ -8,6 +8,10 @@ from pathlib import Path
 
 import mlx_whisper
 import opencc
+def say(*parts, sep=" ", end="\n", file=None):
+    stream = sys.stdout if file is None or file is sys.stdout else sys.stderr
+    stream.write(sep.join(str(part) for part in parts) + end)
+
 
 
 def main() -> None:
@@ -46,7 +50,7 @@ def main() -> None:
 
     Path(json_out).write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     Path(txt_out).write_text(payload["text"] + "\n", encoding="utf-8")
-    print(f"  ✓ {len(lines)} segments, {len(payload['text'])} chars")
+    say(f"  ✓ {len(lines)} segments, {len(payload['text'])} chars")
 
 
 if __name__ == "__main__":

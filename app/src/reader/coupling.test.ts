@@ -26,7 +26,7 @@ function walkTs(dir: string): string[] {
 describe("no leftover coupling", () => {
   it("reader.ts and wordPopup.ts contain no forbidden references (voice/transcript ports exempted for Bucket C)", () => {
     function codeOnly(text: string): string {
-      return text.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/.*$/gm, "");
+      return text.replace(new RegExp("/\\*[\\s\\S]*?\\*/", "g"), "").replace(new RegExp("//.*$", "gm"), "");
     }
 
     for (const file of ["reader/reader.ts", "hover/wordPopup.ts"]) {
@@ -39,7 +39,7 @@ describe("no leftover coupling", () => {
 
   it("zero #/encoding hits in shipped app/src (comments allowed for docs)", () => {
     function codeOnly(text: string): string {
-      return text.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/.*$/gm, "");
+      return text.replace(new RegExp("/\\*[\\s\\S]*?\\*/", "g"), "").replace(new RegExp("//.*$", "gm"), "");
     }
     for (const file of walkTs(SRC)) {
       const text = codeOnly(readFileSync(file, "utf8"));

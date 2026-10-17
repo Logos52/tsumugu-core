@@ -79,4 +79,4 @@ export function mountCardShell(doc: Document = document): void {
   `;
 }
 
-export type { PreparedContent };
+;

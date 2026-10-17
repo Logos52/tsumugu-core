@@ -1,7 +1,6 @@
 import { DEFAULT_KNOWN_POLICY, type WordStatus } from "@tsumugu/engine";
 import type { Band, CatalogEntry, CoverageBand } from "./types.js";
 
-
 export function percentKnown(
   wordCounts: Record<string, number>,
   totalWords: number,
@@ -22,7 +21,7 @@ export function readingBand(pct: number, min = 80, max = 95): CoverageBand {
   return "stretch";
 }
 
-export function bandLabel(band: CoverageBand): string {
+function bandLabel(band: CoverageBand): string {
   switch (band) {
     case "in-range":
       return "in range";
@@ -33,7 +32,6 @@ export function bandLabel(band: CoverageBand): string {
   }
 }
 
-
 export function perBandCounts(catalog: CatalogEntry[]): Record<Band, number> {
   const counts: Record<Band, number> = { A1: 0, A2: 0, B1: 0 };
   for (const entry of catalog) {
@@ -41,7 +39,6 @@ export function perBandCounts(catalog: CatalogEntry[]): Record<Band, number> {
   }
   return counts;
 }
-
 
 export function hasKnownWords(
   wordCounts: Record<string, number>,
@@ -53,7 +50,6 @@ export function hasKnownWords(
   }
   return false;
 }
-
 
 export function pickContinueCandidate(
   catalog: CatalogEntry[],
@@ -83,9 +79,8 @@ export function pickContinueCandidate(
   return catalog.find((e) => hasKnownWords(e.wordCounts, (w) => getStatus(lang, w))) || null;
 }
 
-
-export interface HealthIssue { path: string; reason: string; }
-export interface LibraryHealthReport {
+interface HealthIssue { path: string; reason: string; }
+interface LibraryHealthReport {
   ok: boolean;
   scanned: number;
   issues: HealthIssue[];
@@ -111,8 +106,7 @@ export function libraryHealthScan(catalog: CatalogEntry[], now = Date.now()): Li
   };
 }
 
-
-export interface DailyDigest {
+interface DailyDigest {
   date: string;
   recent: string[];
   backlog: number;
@@ -131,7 +125,6 @@ export function generateDailyDigestThinStrip(catalog: CatalogEntry[], lastIds: s
     nextRec: catalog[0]?.path || null,
   };
 }
-
 
 export function reverseLinksForWord(word: string, catalog: CatalogEntry[]): string[] {
   return catalog.filter(e => e.wordCounts && e.wordCounts[word]).map(e => e.path);

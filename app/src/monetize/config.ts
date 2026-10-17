@@ -1,6 +1,6 @@
 
 
-export interface ProOffer {
+interface ProOffer {
   
   price: string | null;
   
@@ -9,12 +9,12 @@ export interface ProOffer {
   benefits: { zh: string; en: string; vi: string }[];
 }
 
-export interface AdsConfig {
+interface AdsConfig {
   
   provider: string | null;
 }
 
-export interface DonateConfig {
+interface DonateConfig {
   
   href: string | null;
 }

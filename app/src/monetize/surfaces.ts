@@ -4,15 +4,13 @@ import { isViRail } from "../catalog/libraryModel.js";
 import { MONETIZE } from "./config.js";
 import { isPro } from "./entitlement.js";
 
+type AdPlacement = "reading-end" | "library-interstice" | "daily-strip";
 
-export type AdPlacement = "reading-end" | "library-interstice" | "daily-strip";
-
-export interface Mounted {
+interface Mounted {
   destroy: () => void;
 }
 
 const noop: Mounted = { destroy: () => {} };
-
 
 export function mountProPanel(host: HTMLElement): Mounted {
   const offer = MONETIZE.pro;
@@ -29,14 +27,12 @@ export function mountProPanel(host: HTMLElement): Mounted {
   return { destroy: () => { panel.remove(); clear(host); } };
 }
 
-
 export function mountAdSlot(host: HTMLElement, placement: AdPlacement): Mounted {
   if (isPro() || !MONETIZE.ads.provider) return noop;
   const slot = el("div", { class: "ad-slot", dataset: { placement } });
   host.append(slot);
   return { destroy: () => slot.remove() };
 }
-
 
 export function mountDonateCard(host: HTMLElement): Mounted {
   const { href } = MONETIZE.donate;

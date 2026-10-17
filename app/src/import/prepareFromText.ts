@@ -7,7 +7,7 @@ import type {
 import { PREPARED_CONTENT_SCHEMA_V2 } from "@tsumugu/engine";
 import { segmentLiveText } from "../packs/jiebaSegment.js";
 
-export interface PrepareFromTextOptions {
+interface PrepareFromTextOptions {
   pack: LanguagePack;
   title?: string;
   maxChars?: number;

@@ -3,7 +3,7 @@
 import { getLocale, tKey as t } from "../i18n/strings.js";
 import type { Surface } from "../app/router.js";
 
-export type SeoSurface = Surface;
+type SeoSurface = Surface;
 
 const SEO_KEYS: Record<SeoSurface, { title: string; description: string }> = {
   home: { title: "seo.home.title", description: "seo.home.description" },
@@ -28,7 +28,6 @@ function setMetaDescription(content: string): void {
   }
   el.content = content;
 }
-
 
 export function updateSeo(surface: SeoSurface, rail: "en" | "vi"): void {
   const locale = getLocale(rail);

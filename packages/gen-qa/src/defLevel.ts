@@ -1,7 +1,3 @@
-/**
- * Band-ceiling verifier for monolingual zh definitions (PRD §5.3 Stage 4).
- * Distinct from the CI metric — measures defining-vocabulary band, not learner known-words.
- */
 import { tokenize, add_word } from "jieba-wasm";
 import {
   type DefLevelIndex,
@@ -14,23 +10,16 @@ import {
 const WORD_RE = /[\p{Script=Han}\p{L}\p{N}]/u;
 
 export interface DefLevelViolation {
-  /** Offending token. */
   word: string;
-  /** Resolved band (`TOCFL-N` or `unrankable`). */
   band: string;
-  /** Ceiling the text was checked against. */
   ceiling: string;
-  /** Source field within the entry. */
   field: string;
 }
 
 export interface CheckDefLevelResult {
   violations: DefLevelViolation[];
-  /** Measured max token band present, as `TOCFL-N`. */
   achievedLevel: string;
-  /** True when measured band exceeds the requested ceiling. */
   levelEscalated: boolean;
-  /** Distinct Han/word tokens that fed the lookup (debug). */
   tokens: string[];
 }
 
@@ -39,7 +28,6 @@ export interface CheckDefLevelOptions {
   ceiling: string;
   index: DefLevelIndex;
   field?: string;
-  /** Injectable segmenter for tests; defaults to jieba seeded + HMM-off. */
   segmenter?: (text: string, index: DefLevelIndex) => string[];
 }
 
@@ -54,7 +42,6 @@ function seedJieba(index: DefLevelIndex): void {
   jiebaSeededFor = index;
 }
 
-/** D2 baseline: jieba-wasm with CC-CEDICT/TOCFL seeding, HMM off (PRD §12 Q5). */
 export function segmentDefText(text: string, index: DefLevelIndex): string[] {
   if (text === "") return [];
   seedJieba(index);
@@ -62,7 +49,6 @@ export function segmentDefText(text: string, index: DefLevelIndex): string[] {
   return raw.filter((t) => WORD_RE.test(t.word)).map((t) => t.word);
 }
 
-/** Greedy longest-match decomposition against the band-N allow-list. */
 export function decomposesIntoAllowList(
   token: string,
   allowList: Set<string>,
@@ -86,9 +72,6 @@ export function decomposesIntoAllowList(
   return true;
 }
 
-/**
- * Band-check one zh string: segment → resolve bands → decomposition credit → violations.
- */
 export function checkDefLevel(opts: CheckDefLevelOptions): CheckDefLevelResult {
   const { text, ceiling, index, field = "text" } = opts;
   const segment = opts.segmenter ?? segmentDefText;
@@ -120,7 +103,6 @@ export function checkDefLevel(opts: CheckDefLevelOptions): CheckDefLevelResult {
   return { violations, achievedLevel, levelEscalated, tokens };
 }
 
-/** Reset jieba seed marker (tests). */
 export function resetDefLevelSegmenter(): void {
   jiebaSeededFor = undefined;
 }

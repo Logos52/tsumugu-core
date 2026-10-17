@@ -2,7 +2,7 @@ export const EXTRACTION_SOURCES = ["json", "grok", "composer", "v2", "qwen"] as 
 
 export type ExtractionSource = (typeof EXTRACTION_SOURCES)[number];
 
-export interface SourceRef {
+interface SourceRef {
   pdf: string;
   page: number;
 }

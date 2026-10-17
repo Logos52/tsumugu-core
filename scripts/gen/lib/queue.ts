@@ -7,9 +7,9 @@ import {
 } from "node:fs";
 import { dirname } from "node:path";
 
-export type ReadingFormat = "story" | "dialogue" | "explainer";
+type ReadingFormat = "story" | "dialogue" | "explainer";
 
-export type QueueSpecStatus = "pending" | "claimed" | "complete" | "skipped";
+type QueueSpecStatus = "pending" | "claimed" | "complete" | "skipped";
 
 export interface ReadingQueueSpec {
   id: string;
@@ -23,7 +23,7 @@ export interface ReadingQueueSpec {
   claimedAt?: string;
 }
 
-export interface ReadingQueue {
+interface ReadingQueue {
   version: 1;
   specs: ReadingQueueSpec[];
 }
@@ -44,13 +44,12 @@ export function loadQueue(path: string): ReadingQueue {
   return JSON.parse(readFileSync(path, "utf8")) as ReadingQueue;
 }
 
-export function saveQueue(path: string, queue: ReadingQueue): void {
+function saveQueue(path: string, queue: ReadingQueue): void {
   mkdirSync(dirname(path), { recursive: true });
   const tmp = `${path}.tmp-${process.pid}-${Date.now()}`;
   writeFileSync(tmp, `${JSON.stringify(queue, null, 2)}\n`, "utf8");
   renameSync(tmp, path);
 }
-
 
 export function claimNextSpec(
   path: string,

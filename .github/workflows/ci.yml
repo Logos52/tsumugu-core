@@ -36,7 +36,7 @@ jobs:
       # WO-D D11 gates: dict-search freshness (fails loudly on an absent/stale
       # ed source — requires tsumugu-ed checked out beside this repo, like the
       # monorepo link above) + shell-contract artifact drift.
-      - run: pnpm install
+      - run: pnpm install --frozen-lockfile
         if: steps.monorepo.outputs.skip == 'false'
       - run: npx tsx scripts/dict-sync.ts --check
         if: steps.monorepo.outputs.skip == 'false'

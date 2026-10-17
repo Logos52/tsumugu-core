@@ -1,9 +1,3 @@
-/**
- * Hán-Việt bridge harness (PRD §5.6). The agent generates bridge entries from
- * prompts/bridge.md; this caches them into the BridgeRegistry JSON and runs
- * cross-seeding against the user's known Hanzi (from their store) to report how
- * much Vietnamese coverage their Chinese unlocks.
- */
 import {
   BridgeRegistry,
   crossSeed,
@@ -15,7 +9,6 @@ import {
 
 const KNOWN: WordStatus[] = ["4", "known"];
 
-/** Decompose the user's known words in the bridge language into known Hanzi. */
 export function knownHanziFromStore(store: WordStore, bridgeLang: string): Set<string> {
   const out = new Set<string>();
   for (const e of store.all(bridgeLang)) {
@@ -35,7 +28,6 @@ export interface CacheResult {
   crossSeed: CrossSeedResult;
 }
 
-/** Merge agent-produced bridge records into the registry + report cross-seeding. */
 export function cacheBridges(
   registry: BridgeRegistry,
   targetLang: string,
@@ -52,7 +44,6 @@ export function cacheBridges(
   return { added, updated, crossSeed: crossSeedFromRegistry(registry, targetLang, knownEtyma) };
 }
 
-/** Run cross-seeding over everything cached for a target language. */
 export function crossSeedFromRegistry(
   registry: BridgeRegistry,
   targetLang: string,
@@ -64,7 +55,6 @@ export function crossSeedFromRegistry(
   return crossSeed({ targetLang, entries, knownEtyma });
 }
 
-/** Skeleton BridgeInfo for a word the agent still needs to resolve. */
 export function bridgeSkeleton(bridgeLang: string): BridgeInfo {
   return { bridgeLang, confidence: 0, corrected: false };
 }

@@ -1,12 +1,12 @@
-# Article Possibilities — Book 2 (ACCC 當代中文課程, B2L01–B2L15)
+# Article Possibilities. Book 2 (ACCC 當代中文課程, B2L01-B2L15)
 
-Scope: a brainstorming catalog of NEW article possibilities for the Tsumugu textbook-companion set, one section per Book 2 lesson (B2L01–B2L15), plus a book-level series section. Each row is grounded in the lesson's real theme, vocabulary domain, and Highlights grammar points (`mockups/lesson-highlights.json`) and is written to sit *alongside* the three articles already drafted in `mockups/drafts/B2L*.json` (whose existing formats/premises are noted under each heading). These are **options, not commitments** — no ordering, floor-check, or coverage guarantee is implied; each would still have to pass `check_candidate.py` (B2 floor 450 Han/article, grammar 100% union, ≤3 deferred vocab). Formats are drawn only from the corpus format library; combined formats are marked. Copyright: original prose only, speakers 甲乙丙丁 or invented surnames 高/林/周/張/陳 — never the textbook cast. Generated 2026-07-02.
+Scope. A brainstorming catalog of NEW article possibilities for the Tsumugu textbook-companion set, one section per Book 2 lesson (B2L01-B2L15), plus a book-level series section. Each row is grounded in the lesson's real theme, vocabulary domain, and Highlights grammar points (`mockups/lesson-highlights.json`) and is written to sit *alongside* the three articles already drafted in `mockups/drafts/B2L*.json` (whose existing formats/premises are noted under each heading). These are options, not commitments. No ordering, floor-check, or coverage guarantee is implied; each would still have to pass `check_candidate.py` (B2 floor 450 Han/article, grammar 100% union, ≤3 deferred vocab). Formats are drawn only from the corpus format library; combined formats are marked. Copyright. Original prose only, speakers 甲乙丙丁 or invented surnames 高/林/周/張/陳. Never the textbook cast. Generated 2026-07-02.
 
-Register key: **clean** = textbook-clean · **every** = everyday · **Dcard** = colloquial-Dcard. Effort: **S** = short/simpler build · **M** = longer/more construction.
+Register key. Clean = textbook-clean · every = everyday · Dcard = colloquial-Dcard. Effort: S = short/simpler build · M = longer/more construction.
 
 ---
 
-## B2L01 — Excuse Me. How Do You Get to Shida? (問路 Asking Directions)
+## B2L01. Excuse Me. How Do You Get to Shida? (問路 Asking Directions)
 Grammar: 從…往 · V起來 (judgmental) · V著 (ongoing) · 一邊…一邊 · 離
 Existing drafts: 對話 (林小姐 lost near Shida asks 高先生) · 自述 (newcomer relies on a downloaded map) · 短文 (周小姐meeting classmates at a noodle shop).
 
@@ -21,7 +21,7 @@ Existing drafts: 對話 (林小姐 lost near Shida asks 高先生) · 自述 (ne
 | 迷你廣播劇 | every | 3-voice skit: a tourist, a gruff taxi driver, a helpful student argue the fastest way to the night market. | 從…往 · 離 · V起來 · 一邊…一邊 | M |
 | 自述 | every | A food-delivery rider explains how he memorizes the maze of alleys, reading signs as he rides. | 一邊騎一邊看 · V著 · 離 · 從…往 | S |
 
-## B2L02 — Take the MRT Instead! (交通 Transportation)
+## B2L02. Take the MRT Instead! (交通 Transportation)
 Grammar: 一點也不 · 還是…吧 · V Vs 一點 (post-verbal 快/慢一點) · 不太 · 部/邊 (locative suffix)
 Existing drafts: 對話 (computer-expo outing) · 自述 (first flight to France, transfers) · 短文 (family's east-coast trip by train).
 
@@ -36,7 +36,7 @@ Existing drafts: 對話 (computer-expo outing) · 自述 (first flight to France
 | 短文 | every | 高先生 misses the last train and must choose a long walk or a pricey taxi home. | 還是…吧 · 一點也不 · 不太 · 快一點 | M |
 | 自述 | every | A driving-averse student explains why she won't get a scooter licence and lives by the MRT. | 一點也不(想) · 不太 · 還是…吧 · 部/邊 | S |
 
-## B2L03 — Your Chinese Has Improved! (學習 Studying)
+## B2L03. Your Chinese Has Improved! (學習 Studying)
 Grammar: 差不多 · 過 (experience) · 才 (merely/only) · 想起來 · 才 (later than expected)
 Existing drafts: 對話 (exam-progress chat) · 自述 (one year in Taiwan) · 問答 (speech-contest winner interview).
 
@@ -51,7 +51,7 @@ Existing drafts: 對話 (exam-progress chat) · 自述 (one year in Taiwan) · �
 | 短文 | every | Tutor 林老師 notices a shy student who secretly practised for months finally speak up in class. | 才 · 過 · 差不多 · 想起來 | M |
 | 迷你廣播劇 | every | 3-voice skit: two rival language-exchange partners and a teacher argue over who's improved most. | 差不多 · 過 · 才 · 想起來 | M |
 
-## B2L04 — I Work Part-time. I Teach French. (工作 Work)
+## B2L04. I Work Part-time. I Teach French. (工作 Work)
 Grammar: 除了…還 · 按照 · 跟 (to/with/from) · 給 (to/for) · 對…
 Existing drafts: 對話 (job interview with 黃主任) · 自述 (multilingual 華僑 background) · 問答 (café owner on hiring interns).
 
@@ -66,7 +66,7 @@ Existing drafts: 對話 (job interview with 黃主任) · 自述 (multilingual �
 | 短文 | every | 林小姐 hands in her resignation and trains her replacement over a week. | 給 · 跟 · 除了…還 · 按照 | M |
 | 日記 | every | Diary of a first payday: what she'll do with the salary they gave her. | 給 · 除了…還 · 對 · 跟 | S |
 
-## B2L05 — Attending a Wedding Reception (人際關係 Inter-personal Relationships)
+## B2L05. Attending a Wedding Reception (人際關係 Inter-personal Relationships)
 Grammar: 還 (still/yet) · V著 (manner) · 等…就 · V著V著就…了
 Existing drafts: 對話 (getting dressed for the banquet) · 短文 (cousin's wedding) · 問答 (radio Q&A with newlyweds).
 
@@ -81,7 +81,7 @@ Existing drafts: 對話 (getting dressed for the banquet) · 短文 (cousin's we
 | 迷你廣播劇 | every | 3-voice skit: the couple's two mothers and a photographer wrangle the group photo. | 等…就 · V著 · 還 · V著V著就…了 | M |
 | 報導 | clean | Feature on the rising cost of Taiwanese wedding banquets, quoting a hotel manager. | 還 · 等…就 · V著 · V著V著就…了 | M |
 
-## B2L06 — I Plan to Move Closer to School (搬家 Moving Home)
+## B2L06. I Plan to Move Closer to School (搬家 Moving Home)
 Grammar: 到 (destination, V+到) · 給 (indirect obj, V給) · V+在 (resultant location) · 把 (move object A把B V到/在/給) · 而且
 Existing drafts: 對話 (lease expiring, rent hike) · 自述 (leaving the childhood alley) · 問答 (housing-service centre advice).
 
@@ -96,7 +96,7 @@ Existing drafts: 對話 (lease expiring, rent hike) · 自述 (leaving the child
 | 短文 | every | 周先生 helps elderly neighbour 林太太 carry her sofa up to the fourth floor. | 把…搬到 · V在 · 給 · 而且 | M |
 | 廣播 | clean | Dorm PA announces move-out steps: return keys to the office, put trash in the marked spot. | 把 · 給 · 在 · 到 | S |
 
-## B2L07 — The Garbage Truck Is Here! (居家環境 Living Environment)
+## B2L07. The Garbage Truck Is Here! (居家環境 Living Environment)
 Grammar: 方向 V1V2/V1V2V3 (跑出去/拿出來) · 把 + V1V2V3 · 嗎 (confrontation) · posture verbs (站著/坐著) · 為了
 Existing drafts: 對話 (newcomer baffled by the garbage system) · 短文 (dashing to catch the truck) · 廣播 (green-city recycling broadcast).
 
@@ -111,7 +111,7 @@ Existing drafts: 對話 (newcomer baffled by the garbage system) · 短文 (dash
 | 短文 | every | Elderly 林伯伯 sits on a stool by the lane each evening waiting for the truck, greeting neighbours. | 坐著 (posture) · 站著 · 把 · V1V2 | M |
 | 問答 | clean | Interview a district cleaning worker about the hardest part of the round. | 為了 · 把 · V1V2V3 · 嗎 | M |
 
-## B2L08 — Learning Kungfu (休閒活動 Leisure Activities)
+## B2L08. Learning Kungfu (休閒活動 Leisure Activities)
 Grammar: 見 · 懂 · 會 · potential -得/-不 (看得懂/學不會) · 了 liǎo (得了/不了) · Vs得complement · 下去 · V完
 Existing drafts: 對話 (early-morning gym) · 自述 (kungfu-film fan finally learns) · 問答 (taichi master on talent).
 
@@ -126,7 +126,7 @@ Existing drafts: 對話 (early-morning gym) · 自述 (kungfu-film fan finally l
 | 問答 | clean | Interview a young champion about how many years until you truly "get it". | 懂 · 會 · 學得會 · 下去 | M |
 | 迷你廣播劇 | every | 3-voice skit: two students and a master debate whether talent or practice matters more. | 學得會/學不會 · 懂 · 得了/不了 · 下去 | M |
 
-## B2L09 — That City Is Really Beautiful (國家環境 National Environment)
+## B2L09. That City Is Really Beautiful (國家環境 National Environment)
 Grammar: 好 (complement 準備好) · 到 (successful 找到/看到) · 比起來 · 像…一樣 · 極了/得不得了/得很 · 得起/不起 (afford)
 Existing drafts: 對話 (Thailand diving trip) · 自述 (quiet hometown small town) · 日記 (Paris, third day).
 
@@ -141,7 +141,7 @@ Existing drafts: 對話 (Thailand diving trip) · 自述 (quiet hometown small t
 | 問答 | clean | Interview a returning traveller about the single most unforgettable place. | 比起來 · 像…一樣 · 到 · 得不得了 | M |
 | 報導 | clean | Feature comparing visitor numbers at two scenic spots this season. | 比起來 · 得很 · 到 · 極了 | M |
 
-## B2L10 — Come to My Place to Make Dumplings (交際 Socializing)
+## B2L10. Come to My Place to Make Dumplings (交際 Socializing)
 Grammar: 出來 (figure out 吃得出來) · 得下/不下 (accommodate 坐得下) · 把…V(一)V · 把 + resultative · 趁
 Existing drafts: 對話 (guest arrives, take off shoes) · 自述 (Korean student on spicy food) · 問答 (student's cooking class).
 
@@ -156,7 +156,7 @@ Existing drafts: 對話 (guest arrives, take off shoes) · 自述 (Korean studen
 | 問答 | clean | Interview a night-market dumpling vendor about the secret of the filling. | 吃得出來 · 把 · 趁 · 得下 | M |
 | 迷你廣播劇 | every | 3-voice skit: three flatmates argue over whose dumpling-folding is the ugliest. | 把…包一包 · 吃得出來 · 趁 · 坐得下 | M |
 
-## B2L11 — Taiwan Really Has Lots of Fun Places (旅行 Traveling)
+## B2L11. Taiwan Really Has Lots of Fun Places (旅行 Traveling)
 Grammar: 其他/別的/另外 · verb classifiers 下/趟/遍/次 · 然後/後來/以後 · 才 · 被 (passive) · V了V · 上 (愛上/看上)
 Existing drafts: 對話 (summer plan, too hot for hot springs) · 自述 (aborigine narrator from Kenting) · 日記 (beach-day mishap).
 
@@ -171,7 +171,7 @@ Existing drafts: 對話 (summer plan, too hot for hot springs) · 自述 (aborig
 | 問答 | clean | Interview a tour guide about the most-repeated destinations. | 趟/次 · 其他/別的 · 被 · 才 | M |
 | 迷你廣播劇 | every | 3-voice skit: three friends stranded after missing a bus improvise a new itinerary. | 然後/後來 · 被 · 才 · 別的/另外 | M |
 
-## B2L12 — How to Have a Healthy Diet? (飲食文化 Food Culture)
+## B2L12. How to Have a Healthy Diet? (飲食文化 Food Culture)
 Grammar: 讓 · 快一點/快點 · 起 (說起/想起) · 只要…就 · 越…越
 Existing drafts: 對話 (fast food, third time this week) · 自述 (lifelong vegetarian) · 問答 (organic-restaurant owner).
 
@@ -186,7 +186,7 @@ Existing drafts: 對話 (fast food, third time this week) · 自述 (lifelong ve
 | 問答 | clean | Interview a nutritionist about balancing convenience and health. | 讓 · 只要…就 · 越…越 · 談起/說起 | M |
 | 迷你廣播劇 | every | 3-voice skit: two foodies and a doctor debate whether tasty must mean unhealthy. | 越…越 · 只要…就 · 讓 · 起 | M |
 
-## B2L13 — I Lost My Cell Phone (網路與生活 The Internet and Life)
+## B2L13. I Lost My Cell Phone (網路與生活 The Internet and Life)
 Grammar: V過 (completion) · 走 (particle, 偷走/拿走) · 叫 (imperative) · 別再…了 · 會…的 (assurance) · 透過 · 才…就 · 每+time · 只有…才
 Existing drafts: 對話 (lost phone at the gym) · 自述 (travel prep, phone-dependent) · 問答 (how we learn the world online).
 
@@ -201,7 +201,7 @@ Existing drafts: 對話 (lost phone at the gym) · 自述 (travel prep, phone-de
 | 問答 | clean | Interview a police officer about phone-theft prevention. | 叫 · 別再…了 · 透過 · 只有…才 | M |
 | 迷你廣播劇 | every | 3-voice skit: a scam caller, a worried grandma, and her grandson stepping in. | 別再…了 · 叫 · 會…的 · 走 | M |
 
-## B2L14 — I Am Going to Start Looking for a Job (未來計畫 Plans for the Future)
+## B2L14. I Am Going to Start Looking for a Job (未來計畫 Plans for the Future)
 Grammar: 就要…了 · 說到/談到 · 對A有B (對…有興趣) · 連…都 · 不但…而且 · unintentional 把
 Existing drafts: 對話 (thesis, graduation looming) · 自述 (business-major regret) · 問答 (diplomat senior's path).
 
@@ -216,7 +216,7 @@ Existing drafts: 對話 (thesis, graduation looming) · 自述 (business-major r
 | 問答 | clean | Interview a career counsellor about what new grads most fear. | 對…有 · 說到/談到 · 不但…而且 · 連…都 | M |
 | 迷你廣播劇 | every | 3-voice skit: a grad, an anxious parent, and a laid-back friend debate the future. | 就要…了 · 連…都 · 不但…而且 · 對…有 | M |
 
-## B2L15 — Lunar New Year (節日 Holidays)
+## B2L15. Lunar New Year (節日 Holidays)
 Grammar: 到 (post-verbal, 忙到) · 一M一M (一個一個) · 一M比一M (一年比一年) · 起來 (inchoative 熱鬧起來) · 四字格 (大魚大肉/有說有笑/恭喜發財)
 Existing drafts: 對話 (welcoming 張伯伯 to 圍爐) · 自述 (busy noodle-shop owner at year-end) · 報導 (flower/年貨 market feature).
 
@@ -235,7 +235,7 @@ Existing drafts: 對話 (welcoming 張伯伯 to 圍爐) · 自述 (busy noodle-s
 
 ## Book-level series possibilities (multi-lesson)
 
-Laddered same-topic sets, 迷你廣播劇 arcs, and review readings that reuse and recycle vocabulary/grammar across two or three lessons. Options, not commitments — each episode/segment would still be authored to its own lesson's floor and coverage gate.
+Laddered same-topic sets, 迷你廣播劇 arcs, and review readings that reuse and recycle vocabulary/grammar across two or three lessons. Options, not commitments. Each episode/segment would still be authored to its own lesson's floor and coverage gate.
 
 | Format | Register | Premise | Grammar / spine | Spans | Effort |
 |---|---|---|---|---|---|

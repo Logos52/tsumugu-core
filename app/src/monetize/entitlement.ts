@@ -1,6 +1,6 @@
 
 
-export type Tier = "free" | "pro";
+type Tier = "free" | "pro";
 
 const KEY = "tsumugu-core/entitlement";
 
@@ -20,7 +20,6 @@ export function isPro(): boolean {
   return getTier() === "pro";
 }
 
-
 export function setTier(tier: Tier): void {
   cached = tier;
   try {
@@ -30,7 +29,6 @@ export function setTier(tier: Tier): void {
     
   }
 }
-
 
 export function resetEntitlementCache(): void {
   cached = null;

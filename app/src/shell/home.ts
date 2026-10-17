@@ -27,7 +27,7 @@ const BRIDGE_SAMPLE = {
   ],
 };
 
-export interface HomeSurface {
+interface HomeSurface {
   el: HTMLElement;
   render(rail: "en" | "vi"): void;
   destroy(): void;

@@ -1,8 +1,4 @@
-/**
- * Mechanical zh-definition guards the band metric cannot catch (PRD §5.3 Stage 6).
- */
 
-/** True when the headword appears as a substring in gloss or illustration. */
 export function isCircularZhDef(
   headword: string,
   gloss: string,
@@ -14,10 +10,6 @@ export function isCircularZhDef(
   return false;
 }
 
-/**
- * True when gloss is blank, or nothing meaningful remains after removing
- * every headword occurrence (PRD §2 check 5).
- */
 export function isEmptyZhDef(headword: string, gloss: string): boolean {
   const trimmed = gloss.trim();
   if (trimmed === "") return true;

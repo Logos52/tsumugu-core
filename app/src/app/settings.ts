@@ -1,17 +1,16 @@
 
 
-
 import { writePrefsMirror } from "../prefs/prefsMirror.js";
 
 export const DEFAULT_RAIL = "en" as const;
 
-export type Palette = "seal" | "mist" | "silk" | "celadon" | "sumi" | "loom" | "navy" | "mauve";
-export type Theme = "light" | "dark";
+type Palette = "seal" | "mist" | "silk" | "celadon" | "sumi" | "loom" | "navy" | "mauve";
+type Theme = "light" | "dark";
 export type Rail = "en" | "vi";
 export type Reading = "py" | "zh" | "hv" | "zy";
-export type Script = "trad" | "simp";
-export type Gloss = "en" | "vi";
-export type HoverMode = "shift" | "all";
+type Script = "trad" | "simp";
+type Gloss = "en" | "vi";
+type HoverMode = "shift" | "all";
 
 export interface ReaderSettings {
   rail: Rail;
@@ -29,7 +28,7 @@ export interface ReaderSettings {
   audioOnly: boolean;
 }
 
-export const STORAGE_KEY = "tsumugu.core.prefs";
+const STORAGE_KEY = "tsumugu.core.prefs";
 const LEGACY_STORAGE_KEY = "tsumugu-core/settings";
 
 export const DEFAULT_SETTINGS: ReaderSettings = {
@@ -123,7 +122,6 @@ function commit(root: HTMLElement, settings: ReaderSettings): ReaderSettings {
   return getPrefs();
 }
 
-
 export function restore(root: HTMLElement = document.documentElement): ReaderSettings {
   const stored = readRaw();
   const merged = stored ? normalizeStored(stored) : { ...DEFAULT_SETTINGS };
@@ -144,35 +142,35 @@ export function setTheme(
   return commit(root, { ...current, theme });
 }
 
-export function setRail(
+function setRail(
   rail: Rail,
   root: HTMLElement = document.documentElement,
 ): ReaderSettings {
   return commit(root, { ...current, rail, ...railDefaults(rail) });
 }
 
-export function setReading(
+function setReading(
   reading: Reading,
   root: HTMLElement = document.documentElement,
 ): ReaderSettings {
   return commit(root, { ...current, reading });
 }
 
-export function setScript(
+function setScript(
   script: Script,
   root: HTMLElement = document.documentElement,
 ): ReaderSettings {
   return commit(root, { ...current, script });
 }
 
-export function setGloss(
+function setGloss(
   gloss: Gloss,
   root: HTMLElement = document.documentElement,
 ): ReaderSettings {
   return commit(root, { ...current, gloss });
 }
 
-export function enableThemeExperiment(
+function enableThemeExperiment(
   flag: boolean,
   root: HTMLElement = document.documentElement,
 ): void {

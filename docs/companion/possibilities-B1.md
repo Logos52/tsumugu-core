@@ -1,12 +1,12 @@
-# Companion Article Possibilities — Book 1 (B1L01–B1L15)
+# Companion Article Possibilities. Book 1 (B1L01-B1L15)
 
-**Scope:** For each Book 1 lesson of the ACCC 當代中文課程 textbook companion, this catalog enumerates NEW article possibilities beyond the three already drafted in `mockups/drafts/B1L0X.json`. Each row names a format from the companion format library (combined formats marked), a register, a concrete premise (a person / a situation / an artifact — never "a dialogue about the topic"), the lesson grammar points it would naturally exercise, and an S/M effort mark. Speakers are original only (甲乙丙丁 or invented surnames 高/林/周); all content is GREEN with no real named media. **These are OPTIONS, not commitments** — an authoring menu, not a build order. Generated 2026-07-02. **Provenance caveat:** B1L04–B1L06 grammar lists are present but absent from `lesson-highlights.json`'s `_meta.verified`; verify against the textbook PDF p19 before authoring from those three lessons.
+Scope: For each Book 1 lesson of the ACCC 當代中文課程 textbook companion, this catalog enumerates NEW article possibilities beyond the three already drafted in `mockups/drafts/B1L0X.json`. Each row names a format from the companion format library (combined formats marked), a register, a concrete premise (a person / a situation / an artifact. Never "a dialogue about the topic"), the lesson grammar points it would naturally exercise, and an S/M effort mark. Speakers are original only (甲乙丙丁 or invented surnames 高/林/周); all content is GREEN with no real named media. These are OPTIONS, not commitments. An authoring menu, not a build order. Generated 2026-07-02. Provenance caveat: B1L04-B1L06 grammar lists are present but absent from `lesson-highlights.json`'s `_meta.verified`; verify against the textbook PDF p19 before authoring from those three lessons.
 
-Per-article Han floor for Book 1 = 250 (naturalness > floor). Most single readings mark **S**; multi-voice 迷你廣播劇 and cross-lesson pieces mark **M**.
+Per-article Han floor for Book 1 = 250 (naturalness > floor). Most single readings mark S; multi-voice 迷你廣播劇 and cross-lesson pieces mark M.
 
 ---
 
-## B1L01 — Welcome to Taiwan! (Introducing Myself)
+## B1L01. Welcome to Taiwan! (Introducing Myself)
 
 Existing drafts: R1 對話 (林小姐 meets 高先生 at the airport over 烏龍茶); R2 自述 (Japanese student 周大同 introduces himself); R3 短文 (林小姐 picks 周先生 up at the airport). Grammar: A-not-A (要不要/是不是) · 嗎 · 是的 · 不+V · 很+SV · …呢.
 
@@ -21,7 +21,7 @@ Existing drafts: R1 對話 (林小姐 meets 高先生 at the airport over 烏龍
 | 短文 | textbook-clean | Narrator describes a new neighbour 林先生 — where he's from, that he's very friendly, that he likes tea | 是 · 很+SV · 不+V | S |
 | 對話 + 問答 | everyday | First-day classroom "get to know you" game: 甲 fires rapid yes/no questions at 乙 | A-not-A · 嗎 · 是的 · 不 | S |
 
-## B1L02 — My Family (Family Members)
+## B1L02. My Family (Family Members)
 
 Existing drafts: R1 對話 (高媽媽 hosts 林 at home, walking a photo wall); R2 自述 (my family of five); R3 短文 (周老師's family). Grammar: 的 possessive · 的 modifier · 有 (有沒有) · 都 · measures 個/張.
 
@@ -36,9 +36,9 @@ Existing drafts: R1 對話 (高媽媽 hosts 林 at home, walking a photo wall); 
 | 短文 | textbook-clean | Narrator describes the framed photo on the 高家 wall — who each person is and what they do | 的 · 有 · 張 · 都 | S |
 | 日記 | everyday | Diary of a first video call home, describing the desk photos of each family member | 的 · 有沒有 · 個 · 都 | S |
 
-## B1L03 — What Are You Doing Over the Weekend? (Hobbies)
+## B1L03. What Are You Doing Over the Weekend? (Hobbies)
 
-Existing drafts: R1 對話 (planning weekend sports); R2 日記 (movie + Vietnamese dinner with sister); R3 短文 (classmates 高/林 who share sports). Grammar: time-word placement · 去+VP · topic sentence (都) · adverb order 也/都/常 · …吧.
+Existing drafts: R1 對話 (planning weekend sports); R2 日記 (movie + Vietnamese dinner with sister); R3 短文 (classmates 高/林 who share sports). Grammar. Time-word placement · 去+VP · topic sentence (都) · adverb order 也/都/常 · …吧.
 
 | Format | Register | Premise | Grammar exercised | Effort |
 |---|---|---|---|---|
@@ -51,9 +51,9 @@ Existing drafts: R1 對話 (planning weekend sports); R2 日記 (movie + Vietnam
 | 短文 | textbook-clean | Narrator describes a campus sports club that meets every weekend | 常 · 都 · 去+VP · 週末 | S |
 | 對話 | everyday | 甲 invites 乙 on a Sunday hike; they settle a meeting time | 明天/早上 · 去+VP · 吧 · 也 | S |
 
-## B1L04 — Excuse Me. How Much…in Total? (Shopping)
+## B1L04. Excuse Me. How Much…in Total? (Shopping)
 
-Existing drafts: R1 對話 (baozi + tea, running the total); R2 自述 (buying a new phone); R3 短文 (林小姐 at the market buying fruit). Grammar: measures 塊/杯/支/種 · 幫 · 的-phrase head omitted · 太…了 · 能 · 多.
+Existing drafts: R1 對話 (baozi + tea, running the total); R2 自述 (buying a new phone); R3 短文 (林小姐 at the market buying fruit). Grammar. Measures 塊/杯/支/種 · 幫 · 的-phrase head omitted · 太…了 · 能 · 多.
 
 | Format | Register | Premise | Grammar exercised | Effort |
 |---|---|---|---|---|
@@ -66,7 +66,7 @@ Existing drafts: R1 對話 (baozi + tea, running the total); R2 自述 (buying a
 | 短文 | textbook-clean | Narrator follows 高先生 shopping for a birthday gift, weighing sizes and prices | 種 · 塊 · 的 · 太…了 · 多 | S |
 | 對話 | everyday | Customer asks a phone-shop clerk 能不能 help move data to the new phone | 支 · 幫 · 能 · 太…了 | S |
 
-## B1L05 — Beef Noodles Are Really Delicious (Food and Drink)
+## B1L05. Beef Noodles Are Really Delicious (Food and Drink)
 
 Existing drafts: R1 對話 (famous beef-noodle shop, ordering); R2 自述 (learning to cook); R3 短文 (高 takes 林 to the shop). Grammar: 有一點 · 得 complement · 會 · 到.
 
@@ -81,7 +81,7 @@ Existing drafts: R1 對話 (famous beef-noodle shop, ordering); R2 自述 (learn
 | 短文 | textbook-clean | Narrator describes a small dessert shop whose owner 做得又香又甜 | 得 · 有一點 · 會 · 到 | S |
 | 日記 | everyday | Diary of cooking a first solo dinner for a friend — walked 到 the market, dish came out 有一點辣 | 到 · 有一點 · 得 · 會 | S |
 
-## B1L06 — Their School Is Up in the Mountains (Locations and Positions)
+## B1L06. Their School Is Up in the Mountains (Locations and Positions)
 
 Existing drafts: R1 對話 (a friend's mountain school in Hualien); R2 自述 (my dorm and campus layout); R3 短文 (周 + two friends visit Hualien). Grammar: 在+place · existential 有 · V(一)V · 不是 · 在…V.
 
@@ -96,7 +96,7 @@ Existing drafts: R1 對話 (a friend's mountain school in Hualien); R2 自述 (m
 | 短文 | textbook-clean | Narrator describes a small mountain village and what sits 在 each direction | 在 · 有 · 不是 · 在…V | S |
 | 對話 | everyday | Two friends decide where to sit in a big park — 在樹下 or 在海邊 | 在 · 有 · 在…V · V一V (走一走) | S |
 
-## B1L07 — Going to KTV at 9 O'clock… (Time)
+## B1L07. Going to KTV at 9 O'clock… (Time)
 
 Existing drafts: R1 對話 (planning a morning KTV outing); R2 日記 (calligraphy class, the bank); R3 短文 (timing a campus basketball game). Grammar: 從…到 · 在 (progressive) · 每 · 可以.
 
@@ -111,7 +111,7 @@ Existing drafts: R1 對話 (planning a morning KTV outing); R2 日記 (calligrap
 | 日記 | everyday | Diary of a busy exam week — what she was 在 doing 每天 從早到晚 | 在 · 每 · 從…到 | S |
 | 短文 | textbook-clean | Narrator describes a 24-hour convenience store's rhythm 從早到晚 | 從…到 · 每 · 在 | S |
 
-## B1L08 — Taking a Train to Tainan (Transportation)
+## B1L08. Taking a Train to Tainan (Transportation)
 
 Existing drafts: R1 對話 (train vs HSR to Tainan); R2 自述 (MRT + scooter in Taipei); R3 短文 (a class trip to the Palace Museum). Grammar: 跟 · 怎麼 · 比較 · 又…又 · 比.
 
@@ -126,7 +126,7 @@ Existing drafts: R1 對話 (train vs HSR to Tainan); R2 自述 (MRT + scooter in
 | 短文 | textbook-clean | Narrator follows a family choosing HSR 比 train because it's 又快又舒服 | 比 · 又…又 · 比較 · 跟 | S |
 | 日記 | everyday | Diary of a first solo trip stitched from several transport modes | 跟 · 怎麼 · 比較 · 又…又 | S |
 
-## B1L09 — Where Will You Go for the Holidays? (Leisure)
+## B1L09. Where Will You Go for the Holidays? (Leisure)
 
 Existing drafts: R1 對話 (Taitung trip suggestions); R2 日記 (Maokong tea with daughter); R3 問答 (interview with a student heading home). Grammar: …的時候 · 有時候…有時候… · 要是…就….
 
@@ -141,9 +141,9 @@ Existing drafts: R1 對話 (Taitung trip suggestions); R2 日記 (Maokong tea wi
 | 短文 | textbook-clean | Narrator describes a family's flexible holiday habit across a year | 有時候…有時候 · 的時候 · 要是…就 | S |
 | 對話 | everyday | A travel-desk clerk fields a customer's 要是 questions about a weekend package | 要是…就 · 的時候 · 有時候 | S |
 
-## B1L10 — The Fruit in Taiwan Tastes Really Good (Appearance of People and Things)
+## B1L10. The Fruit in Taiwan Tastes Really Good (Appearance of People and Things)
 
-Existing drafts: R1 對話 (fruit stand — mango/watermelon, try a slice); R2 短文 (family photo in the park, colors); R3 日記 (Tainan hotel with fruit). Grammar: VV看 · sentential 了 · 因為…所以….
+Existing drafts: R1 對話 (fruit stand. Mango/watermelon, try a slice); R2 短文 (family photo in the park, colors); R3 日記 (Tainan hotel with fruit). Grammar: VV看 · sentential 了 · 因為…所以….
 
 | Format | Register | Premise | Grammar exercised | Effort |
 |---|---|---|---|---|
@@ -156,7 +156,7 @@ Existing drafts: R1 對話 (fruit stand — mango/watermelon, try a slice); R2 �
 | 短文 | textbook-clean | Narrator describes a market where a new red fruit 賣完了 because everyone tried it | VV看 · 了 · 因為…所以 | S |
 | 日記 | everyday | Diary of buying new clothes and trying them on 穿穿看, describing the colors | VV看 (穿穿看) · 了 · 因為…所以 | S |
 
-## B1L11 — I Would Like to Rent a Place (Renting)
+## B1L11. I Would Like to Rent a Place (Renting)
 
 Existing drafts: R1 對話 (viewing a 套房); R2 自述 (settled into my rented suite); R3 短文 (林先生's broken water heater). Grammar: 來+VP · 就 (sooner than expected) · existential 有 · 會1/會2.
 
@@ -171,7 +171,7 @@ Existing drafts: R1 對話 (viewing a 套房); R2 自述 (settled into my rented
 | 短文 | textbook-clean | Narrator follows 高先生 hunting for a place near campus | 來+VP · 就 · 有 · 會2 | S |
 | 日記 | everyday | Diary of the first night in a newly rented room | 就 · 有 · 來+VP · 會 | S |
 
-## B1L12 — How Long Will You Be Studying Chinese…? (Study, Work)
+## B1L12. How Long Will You Be Studying Chinese…? (Study, Work)
 
 Existing drafts: R1 對話 (study-plan talk, scholarship); R2 自述 (高先生 studying in Taiwan); R3 短文 (林小姐 quit her job to study). Grammar: 先…再… · 以後 · 好/難+V (好學/難找…).
 
@@ -186,7 +186,7 @@ Existing drafts: R1 對話 (study-plan talk, scholarship); R2 自述 (高先生 
 | 短文 | textbook-clean | Narrator follows 周先生 balancing a part-time job and study | 先…再 · 以後 · 好/難+V | S |
 | 日記 | everyday | Diary of setting a semester goal | 先…再 · 以後 · 好學/難學 | S |
 
-## B1L13 — Happy Birthday (Social Life)
+## B1L13. Happy Birthday (Social Life)
 
 Existing drafts: R1 對話 (planning a surprise party by phone); R2 自述 (a Spanish student's birthday traditions); R3 日記 (my own surprise party). Grammar: 一…就 · 了 (completed) · 不 vs 沒 · question words all-inclusive (都/也) · 多/少+V · 是不是 · 跟…一樣.
 
@@ -201,7 +201,7 @@ Existing drafts: R1 對話 (planning a surprise party by phone); R2 自述 (a Sp
 | 短文 | textbook-clean | Narrator describes a party where 一開門 everyone stood up | 一…就 · 了 · 都 · 跟…一樣 | S |
 | 對話 | everyday | Two friends choose a gift — 是不是 she'd like this, is it 跟 last year's 一樣 | 是不是 · 跟…一樣 · 不 vs 沒 · 多/少+V | S |
 
-## B1L14 — It's So Cold! (The Weather)
+## B1L14. It's So Cold! (The Weather)
 
 Existing drafts: R1 對話 (a New York winter trip, snow); R2 短文 (a family's seasons, Yushan red leaves); R3 日記 (a typhoon day). Grammar: V了+duration · double 了 · 快…了 · 比…更 · 沒有…那麼/這麼.
 
@@ -216,9 +216,9 @@ Existing drafts: R1 對話 (a New York winter trip, snow); R2 短文 (a family's
 | 短文 | textbook-clean | Narrator describes a mountain town where autumn 沒有 the city 那麼熱 | 沒有…那麼 · 比…更 · 快…了 | S |
 | 日記 | everyday | Diary of the first snow on a New York trip | V了+duration · double 了 · 快…了 · 比…更 | S |
 
-## B1L15 — I Don't Feel Well (Falling Sick)
+## B1L15. I Don't Feel Well (Falling Sick)
 
-Existing drafts: R1 對話 (cold symptoms, off to the health center); R2 日記 (ate too much, stomachache); R3 短文 (colleague 林 helps a sick 高). Grammar: question words non-committal (什麼/哪裡/多少/幾) · 把 · V了…就 · 一點 · V得…比 · degree complements (一點/得多/多了).
+Existing drafts: R1 對話 (cold symptoms, off to the health center); R2 日記 (ate too much, stomachache); R3 短文 (colleague 林 helps a sick 高). Grammar. Question words non-committal (什麼/哪裡/多少/幾) · 把 · V了…就 · 一點 · V得…比 · degree complements (一點/得多/多了).
 
 | Format | Register | Premise | Grammar exercised | Effort |
 |---|---|---|---|---|
@@ -235,7 +235,7 @@ Existing drafts: R1 對話 (cold symptoms, off to the health center); R2 日記 
 
 ## Book-level series possibilities
 
-Multi-lesson threads — laddered same-topic pieces, 迷你廣播劇 arcs, and review readings spanning 2–3 lessons. Same table shape, plus the lessons each spans. Options, not commitments; a series would still be authored one article per lesson under that lesson's floor and gate.
+Multi-lesson threads. Laddered same-topic pieces, 迷你廣播劇 arcs, and review readings spanning 2-3 lessons. Same table shape, plus the lessons each spans. Options, not commitments; a series would still be authored one article per lesson under that lesson's floor and gate.
 
 | Format | Register | Premise | Grammar exercised | Spans | Effort |
 |---|---|---|---|---|---|

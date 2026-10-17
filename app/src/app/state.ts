@@ -11,7 +11,7 @@ import { trackEvent } from "../build/analytics.js";
 import type { TranscriptDoc } from "../reader/sync.js";
 import type { VoiceNotesBinding } from "../voice/manifest.js";
 
-export type ReaderEvent = "status" | "settings" | "content";
+type ReaderEvent = "status" | "settings" | "content";
 
 type Listener = () => void;
 
@@ -108,4 +108,4 @@ export function createReaderState(
   return state;
 }
 
-export type { PreparedContent };
+;

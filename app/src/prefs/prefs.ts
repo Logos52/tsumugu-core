@@ -1,26 +1,2 @@
 
-export {
-  DEFAULT_RAIL,
-  DEFAULT_SETTINGS,
-  STORAGE_KEY,
-  type ReaderSettings as Prefs,
-  type Palette,
-  type Theme,
-  type Rail,
-  type Reading,
-  type Script,
-  type Gloss,
-  type HoverMode,
-  loadSettings,
-  saveSettings,
-  applySettingsToRoot,
-  getPrefs,
-  restore,
-  setPalette,
-  setTheme,
-  setRail,
-  setReading,
-  setScript,
-  setGloss,
-  enableThemeExperiment,
-} from "../app/settings.js";
+export { DEFAULT_RAIL, getPrefs, restore, setPalette, setTheme } from "../app/settings.js";

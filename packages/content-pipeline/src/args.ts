@@ -1,5 +1,5 @@
 
-export interface ParsedArgs {
+interface ParsedArgs {
   _: string[];
   opts: Record<string, string | boolean>;
 }
@@ -30,18 +30,18 @@ export function str(opts: Record<string, string | boolean>, key: string): string
   return typeof v === "string" ? v : undefined;
 }
 
-export function num(opts: Record<string, string | boolean>, key: string): number | undefined {
+function num(opts: Record<string, string | boolean>, key: string): number | undefined {
   const v = str(opts, key);
   if (v === undefined) return undefined;
   const n = Number(v);
   return Number.isFinite(n) ? n : undefined;
 }
 
-export function list(opts: Record<string, string | boolean>, key: string): string[] {
+function list(opts: Record<string, string | boolean>, key: string): string[] {
   const v = str(opts, key);
   return v ? v.split(",").map((s) => s.trim()).filter(Boolean) : [];
 }
 
-export function flag(opts: Record<string, string | boolean>, key: string): boolean {
+function flag(opts: Record<string, string | boolean>, key: string): boolean {
   return opts[key] === true || opts[key] === "true";
 }

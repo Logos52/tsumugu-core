@@ -1,6 +1,6 @@
 
 
-export function showToast(message: string, host: HTMLElement = document.body): HTMLElement {
+function showToast(message: string, host: HTMLElement = document.body): HTMLElement {
   const node = document.createElement("div");
   node.className = "tsg-toast";
   node.setAttribute("role", "status");
@@ -9,7 +9,6 @@ export function showToast(message: string, host: HTMLElement = document.body): H
   setTimeout(() => node.remove(), 4200);
   return node;
 }
-
 
 export function createFirstGradeToast(opts: {
   message: string;

@@ -6,7 +6,7 @@ export type ShadowState =
   | { phase: "waiting"; cue: number }
   | { phase: "done" };
 
-export type ShadowEvent =
+type ShadowEvent =
   | { type: "start"; cue: number }
   | { type: "audioEnded" }
   | { type: "advance" }

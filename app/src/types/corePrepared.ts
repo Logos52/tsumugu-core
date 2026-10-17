@@ -1,8 +1,7 @@
 import type { PreparedContent } from "@tsumugu/engine";
 import type { Band, LessonBinding, ReadingKind } from "../catalog/types.js";
 
-
-export interface CoreFacetMeta {
+interface CoreFacetMeta {
   band: Band;
   tocfl: 1 | 2 | 3;
   kind: ReadingKind;

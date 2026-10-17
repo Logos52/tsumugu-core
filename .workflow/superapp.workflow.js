@@ -77,7 +77,6 @@ const CRITIC_SCHEMA = {
   required: ['soloMakerBuildability', 'copyrightWallContainment', 'oneBrainThesisRealOrVeneer', 'shipsValueEarly', 'valueLostFromFocusedThesis', 'duolingoStreakShameCreep', 'topFixes']
 }
 
-// ---------- PHASE 1: RESEARCH ----------
 phase('Research')
 const research_results = await parallel([
   function () { return agent(duolingoPrompt, { phase: 'Research', label: 'duolingo', agentType: 'claude' }) },
@@ -89,7 +88,6 @@ const research_results = await parallel([
 ])
 log('Research done: ' + research_results.filter(Boolean).length + '/6 docs written')
 
-// ---------- PHASE 2: SYNTHESIZE ----------
 phase('Synthesize')
 
 const visionPrompt = G + '\n\nRead all docs in ' + SA + '/ and the existing ' + DOCS + '/ux-and-features.md + ' + DOCS + '/scaffolding-inventory.md. Write the SUPER-APP VISION — "the Traditional-first Chinese-learning app Wedge wishes he had in Taiwan." Frame everything through that lens, NOT moats.\n\nCover: the one-line vision; the ONE BRAIN (known-word + dictionary + SRS) and how every surface docks onto it; the full FEATURE SET organized by surface (graded readers, AI stories, BYO text, comics/webtoon overlay, video immersion, shadowing) crossed with modes (read / shadow), plus the dictionary depth, the 1234kx status model, the Duolingo-borrowed habit/onboarding (judged for a serious learner), and Traditional-first + easy Simplified toggle + zhuyin + EN/VN gloss. Tag each feature MUST / SHOULD / LATER and which platform body (app / extension). Include a clearly-marked section "Wedge\'s Taiwan pain-points (to fill)" as a placeholder for his lived input. This is an explicit STRAWMAN for Wedge to react to. WRITE to ' + SA + '/VISION.md (start with "# Super-App Vision — the app I wish I had in Taiwan" + the status line). Return a 5-bullet summary + the list of MUST features. Do not return the full document.'
@@ -102,7 +100,6 @@ const synth = await parallel([
 ])
 log('Synthesize done: VISION + architecture/sequence')
 
-// ---------- PHASE 3: CRITIQUE ----------
 phase('Critique')
 const criticPrompt = G + '\n\nAdversarial pass over docs/super-app/* (read them all in ' + SA + '/, plus the existing ' + DOCS + '/ for continuity). Check: does the super-app stay buildable by a SOLO maker, or has it sprawled into six products? Are the copyright walls (comics/video) correctly contained to client-side overlay + extension-last, with no hosting / no DRM-bypass creep? Is the one-brain unifying thesis REAL or a veneer over a feature pile? Does the build sequence ship something usable EARLY, or defer all value? Is anything valuable from the focused Tsumugu Core thesis being lost (AI-owned content dissolving the walls; the VI bridge; the recaps GREEN-only verdict; content-QA-throughput as the true bottleneck)? Did Duolingo streak-shame sneak in against the attention-respect value? Be specific, cite docs, and prioritize the top fixes before this becomes the build plan.'
 const critic = await agent(criticPrompt, { phase: 'Critique', label: 'critic', schema: CRITIC_SCHEMA, agentType: 'claude' })

@@ -4,15 +4,13 @@ import type { VaultIO } from "@tsumugu/engine";
 import type { VoiceNote, VoiceNotesBinding } from "./manifest.js";
 import { resolveAudioPath } from "./manifest.js";
 
+const CHAIN_GAP_MS = 350;
 
-export const CHAIN_GAP_MS = 350;
+const AUDIO_LRU = 10;
 
-export const AUDIO_LRU = 10;
+const SLOW_PLAYBACK_RATE = 0.85;
 
-export const SLOW_PLAYBACK_RATE = 0.85;
-
-
-export function selectPlayback(
+function selectPlayback(
   note: VoiceNote | undefined,
   slow: boolean,
 ): { rel: string; rate: number } | null {
@@ -33,7 +31,7 @@ export interface VoicePlayer {
   destroy(): void;
 }
 
-export interface VoicePlayerDeps {
+interface VoicePlayerDeps {
   vault?: VaultIO | null;
   binding?: VoiceNotesBinding | null;
   cues: readonly { text: string }[];

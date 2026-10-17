@@ -8,7 +8,7 @@ export interface RemoteStore {
   delete(userId: string): Promise<void>;
 }
 
-export const SIM_SERVER_PREFIX = "tsumugu-sim-server/";
+const SIM_SERVER_PREFIX = "tsumugu-sim-server/";
 
 export class LocalSimRemoteStore implements RemoteStore {
   private key(userId: string): string {
@@ -42,7 +42,6 @@ export class LocalSimRemoteStore implements RemoteStore {
   }
 }
 
-
 export class UrlRemoteStore implements RemoteStore {
   constructor(private readonly url: string) {}
 
@@ -66,7 +65,7 @@ export class UrlRemoteStore implements RemoteStore {
   }
 }
 
-export class FetchRemoteStore implements RemoteStore {
+class FetchRemoteStore implements RemoteStore {
   constructor(private readonly baseUrl: string) {}
 
   private storeUrl(userId: string): string {

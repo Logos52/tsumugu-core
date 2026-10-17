@@ -18,6 +18,10 @@ import sys
 import tempfile
 import zipfile
 from pathlib import Path
+def say(*parts, sep=" ", end="\n", file=None):
+    stream = sys.stdout if file is None or file is sys.stdout else sys.stderr
+    stream.write(sep.join(str(part) for part in parts) + end)
+
 
 REPO = Path(__file__).resolve().parents[2]
 DEFAULT_APKG = REPO / "private/mrp-deck/deck.apkg"
@@ -142,15 +146,15 @@ def write_outputs(
         schema_lines.append(f"- `{tag}`: {count}")
 
     (OUT_DIR / "field-schema.md").write_text("\n".join(schema_lines) + "\n", encoding="utf-8")
-    print(f"Wrote {tsv_path} ({len(rows)} rows)")
-    print(f"Wrote {OUT_DIR / 'field-schema.md'}")
+    say(f"Wrote {tsv_path} ({len(rows)} rows)")
+    say(f"Wrote {OUT_DIR / 'field-schema.md'}")
 
 
 def main() -> int:
     apkg = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_APKG
     if not apkg.exists() or apkg.stat().st_size == 0:
-        print(f"Missing deck: {apkg}", file=sys.stderr)
-        print(
+        say(f"Missing deck: {apkg}", file=sys.stderr)
+        say(
             "AnkiWeb download returned 404 (2026-06-23). Drop deck.apkg manually:\n"
             "  Anki desktop → Get Shared → search 'Mini Radio Plays' → Download\n"
             f"  → save as {DEFAULT_APKG}",
@@ -160,8 +164,8 @@ def main() -> int:
     try:
         rows, notetype_names, field_names = parse_apkg(apkg)
     except zipfile.BadZipFile:
-        print(f"Invalid apkg (not a zip): {apkg}", file=sys.stderr)
-        print("Re-download via Anki desktop; curl URL is currently 404.", file=sys.stderr)
+        say(f"Invalid apkg (not a zip): {apkg}", file=sys.stderr)
+        say("Re-download via Anki desktop; curl URL is currently 404.", file=sys.stderr)
         return 1
     write_outputs(rows, notetype_names, field_names)
     return 0

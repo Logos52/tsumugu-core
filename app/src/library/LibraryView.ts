@@ -1,7 +1,2 @@
 
-export {
-  mountLibraryPage as mountLibraryView,
-  loadCompanionTitles,
-  type LibraryPageOpts as LibraryViewOpts,
-  type TitlesMap,
-} from "./libraryPage.js";
+export { mountLibraryPage as mountLibraryView, loadCompanionTitles } from "./libraryPage.js";

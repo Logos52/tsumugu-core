@@ -1,17 +1,3 @@
-/* shell-contract v3 — generated; do not edit by hand */
-/* ════════════════════════════════════════════════════════════════════════
-   Tsumugu.cc — SHARED SITE SHELL.
-   The same House layout + Silk-Seam token system as the reader
-   (mockups/reader-house-silk.html), so every public surface reads as one
-   product. Tokens, chrome, palette switcher, and fonts are VERBATIM from the
-   reader; only the navigation is generalized into a unified top menu.
-
-   Two-layer token model: RAW palette --raw-* (swapped per [data-palette] AND
-   [data-theme]) → SEMANTIC --tsg-* (everything references these). Palette and
-   light/dark are orthogonal axes on <html>. 絹 Silk-Seam is the default.
-   ════════════════════════════════════════════════════════════════════════ */
-
-/* ===== RAW PALETTE — 絹 SILK-SEAM (default / hero), LIGHT ================== */
 :root,
 :root[data-palette="silk"][data-theme="light"]{
   --raw-bg:#FBFAF7; --raw-bg2:#F4F2EC; --raw-card:#FFFFFF; --raw-rule:#E7E3DA;
@@ -28,7 +14,7 @@
   --halo:rgba(107,75,214,.05);
   color-scheme:light;
 }
-/* ===== 絹 SILK-SEAM, DARK ================================================= */
+
 :root[data-palette="silk"][data-theme="dark"]{
   --raw-bg:#14130F; --raw-bg2:#1B1A15; --raw-card:#1F1D18; --raw-rule:#2C2A22;
   --raw-rule-strong:#3A382E;
@@ -44,7 +30,7 @@
   --halo:rgba(169,145,245,.09);
   color-scheme:dark;
 }
-/* ===== ALTERNATE — 青磁 CELADON (cool jade-grey), LIGHT =================== */
+
 :root[data-palette="celadon"][data-theme="light"]{
   --raw-bg:#F6F8F6; --raw-bg2:#EBF0EC; --raw-card:#FFFFFF; --raw-rule:#DCE4DD;
   --raw-rule-strong:#CBD6CD;
@@ -75,7 +61,7 @@
   --halo:rgba(159,146,242,.09);
   color-scheme:dark;
 }
-/* ===== ALTERNATE — 墨 SUMI-SLATE (cool neutral graphite), LIGHT ========== */
+
 :root[data-palette="sumi"][data-theme="light"]{
   --raw-bg:#F8F8FA; --raw-bg2:#EEEFF3; --raw-card:#FFFFFF; --raw-rule:#E1E3EA;
   --raw-rule-strong:#D0D3DC;
@@ -106,7 +92,7 @@
   --halo:rgba(165,147,246,.09);
   color-scheme:dark;
 }
-/* ===== ALTERNATE — HOUSE DARK-NAVY (original wnac), DARK ================== */
+
 :root[data-palette="navy"][data-theme="dark"]{
   --raw-bg:#000610; --raw-bg2:#03101f; --raw-card:#0a1a30; --raw-rule:#1f375c;
   --raw-rule-strong:#2e466b;
@@ -137,7 +123,7 @@
   --halo:rgba(30,102,245,.06);
   color-scheme:light;
 }
-/* ===== ALTERNATE — MAUVE SPOOL (House's violet-forward), DARK ============ */
+
 :root[data-palette="mauve"][data-theme="dark"]{
   --raw-bg:#0a0512; --raw-bg2:#140a22; --raw-card:#1d1133; --raw-rule:#3a2a5e;
   --raw-rule-strong:#523c80;
@@ -168,7 +154,7 @@
   --halo:rgba(136,57,239,.06);
   color-scheme:light;
 }
-/* ===== ALTERNATE — 燈 LOOM & LAMPLIGHT (warm-grey editorial), LIGHT ====== */
+
 :root[data-palette="loom"][data-theme="light"]{
   --raw-bg:#F4F1EB; --raw-bg2:#ECE8DF; --raw-card:#FBF9F4; --raw-rule:#DBD5C8;
   --raw-rule-strong:#C9C2B2;
@@ -200,7 +186,6 @@
   color-scheme:dark;
 }
 
-/* ===== SEMANTIC TOKENS — point House's --tsg-* names at the raw layer ===== */
 :root{
   --tsg-bg:var(--raw-bg); --tsg-sunk:var(--raw-bg2);
   --tsg-surface:var(--raw-card); --tsg-surface-alt:var(--raw-bg2);
@@ -226,7 +211,6 @@ body{
 }
 a{color:inherit;text-decoration:none}
 
-/* ===== UNIFIED TOP MENU (House chrome, generalized to site nav) ========== */
 header.topnav{
   position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:14px;
   flex-wrap:wrap;padding:11px 22px;border-bottom:1px solid var(--tsg-border);
@@ -276,13 +260,11 @@ header.topnav{
 .sw[data-p="mauve"]{background:linear-gradient(135deg,#1d1133 0 50%,#c89bff 50% 100%)}
 .palettes .ttl{font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--tsg-faint);margin-right:1px;font-family:var(--read)}
 
-/* ===== MAIN + SHARED LAYOUT ============================================= */
 main{flex:1;width:100%}
 .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
 .eyebrow{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--tsg-faint)}
 .section-title{font-family:var(--display);font-weight:600;letter-spacing:-.01em;color:var(--tsg-ink)}
 
-/* ===== SHARED COMPONENTS (House component language) ===================== */
 .chip{font-size:12px;font-weight:600;letter-spacing:.03em;padding:4px 10px;border-radius:999px;
   border:1px solid var(--tsg-border);color:var(--tsg-muted);background:var(--tsg-surface);white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
 .chip.band{color:var(--tsg-accent);border-color:color-mix(in oklab,var(--tsg-accent) 45%,var(--tsg-border))}
@@ -303,7 +285,6 @@ main{flex:1;width:100%}
   background:color-mix(in oklab,var(--tsg-topic) 9%,var(--tsg-surface));
   border:1px solid color-mix(in oklab,var(--tsg-topic) 26%,var(--tsg-border));border-radius:999px;padding:3px 11px;display:inline-block}
 
-/* prose + tokens (reading face) — for live samples / method demos */
 .prose{font-family:var(--read);color:var(--tsg-ink);letter-spacing:.01em}
 ruby{ruby-position:over}
 rt{font-family:var(--ui);font-size:12px;font-weight:500;letter-spacing:0;color:var(--tsg-hv)}
@@ -321,7 +302,6 @@ rt{font-family:var(--ui);font-size:12px;font-weight:500;letter-spacing:0;color:v
   box-shadow:0 2px 12px color-mix(in oklab,var(--tsg-accent) 35%,transparent);text-decoration:none}
 .w.sel rt{color:var(--tsg-accent-ink)}
 
-/* the bridge — the moat (Silk-Seam violet-soft field + woven-thread left edge) */
 .bridge{position:relative;overflow:hidden;background:var(--raw-violet-soft);
   border:1px solid color-mix(in oklab,var(--tsg-accent) 22%,var(--tsg-border));
   border-radius:12px;padding:13px 14px 13px 18px}
@@ -344,7 +324,6 @@ rt{font-family:var(--ui);font-size:12px;font-weight:500;letter-spacing:0;color:v
 .bridge .close{font-size:12.5px;color:var(--tsg-ink);line-height:1.5}
 .bridge .close b{color:var(--tsg-accent);font-family:var(--read);font-weight:400}
 
-/* ===== SHARED FOOTER (links the front-facing pages together) ============ */
 .site-footer{border-top:1px solid var(--tsg-border);background:color-mix(in oklab,var(--tsg-sunk) 60%,var(--tsg-bg));
   margin-top:64px;padding:34px 22px}
 .site-footer .inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-start}
@@ -361,13 +340,9 @@ rt{font-family:var(--ui);font-size:12px;font-weight:500;letter-spacing:0;color:v
 .site-footer .legal{flex:1;min-width:200px;text-align:right;font-size:12px;color:var(--tsg-faint);line-height:1.7}
 .site-footer .legal .free{color:var(--tsg-st-known);font-weight:600}
 
-/* ===== responsive ====================================================== */
 @media(max-width:760px){
   header.topnav{gap:9px;padding:10px 14px}
   .primary-nav{margin-left:0;order:5;width:100%}
   .wrap{padding:0 16px}
   .site-footer .legal{text-align:left}
 }
-
-/* ─────────────── PAGE-SPECIFIC STYLES ─────────────── */
-/* __PAGECSS__ */

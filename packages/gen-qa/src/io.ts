@@ -1,7 +1,3 @@
-/**
- * Node-side IO for the generation CLI. This is a build-time script (not the
- * engine), so direct filesystem use is fine here.
- */
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { dirname } from "node:path";
 
@@ -22,18 +18,12 @@ export async function writeJson(path: string, value: unknown): Promise<void> {
   await writeText(path, JSON.stringify(value, null, 2) + "\n");
 }
 
-/** Unicode NFC normalize a term (ARCHITECTURE.md §3 filename invariant). */
 export function nfcTerm(term: string): string {
   return term.normalize("NFC");
 }
 
-/** Characters that require an explicit `slug:` override instead of a verbatim filename. */
 const FILESYSTEM_HOSTILE = /[\s/\\<>:"|?*]/;
 
-/**
- * Basename for an encoding twin (`encoding/{basename}.md`).
- * CJK terms pass through NFC-normalized; hostile terms require `slug`.
- */
 export function encodingBasename(term: string, slug?: string): string {
   const nfc = nfcTerm(term);
   if (slug !== undefined && slug !== "") return slugify(slug);
@@ -53,10 +43,10 @@ export function encodingBasename(term: string, slug?: string): string {
   return nfc;
 }
 
-/** Alias for {@link encodingBasename} (PRD §6.4 / ARCHITECTURE.md §3). */
-export const encodingFilename = encodingBasename;
+export function encodingFilename(term: string, slug?: string): string {
+  return encodingBasename(term, slug);
+}
 
-/** A filesystem-safe slug from a title/source (keeps CJK/Latin letters). */
 export function slugify(s: string): string {
   const trimmed = nfcTerm(s)
     .trim()

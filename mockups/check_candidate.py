@@ -6,18 +6,29 @@ to a later lesson (they roll forward via coverage_ledger.py). Grammar stays 100%
 Usage: python3 mockups/check_candidate.py B1L02 mockups/drafts/B1L02.json --min 450 --defer 3
 readings json: {"unit":..,"readings":[{"id","format","text"}...]} or a bare list.
 Exit 0 iff exactly 3 articles, grammar 100%, each >= --min Han, and missing vocab <= --defer."""
+import importlib.util
 import os, json, re, sys, argparse
+def say(*parts, sep=" ", end="\n", file=None):
+    stream = sys.stdout if file is None or file is sys.stdout else sys.stderr
+    stream.write(sep.join(str(part) for part in parts) + end)
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ns = {"__file__": os.path.join(ROOT, "mockups/build_lesson_data.py"), "__name__": "x"}
-exec(compile(open(ns["__file__"], encoding="utf-8").read(), "b", "exec"), ns)
-LS, surf = ns["load_deck"](); gram_hit = ns["gram_hit"]
+_spec = importlib.util.spec_from_file_location(
+    "build_lesson_data", os.path.join(ROOT, "mockups/build_lesson_data.py")
+)
+if _spec is None or _spec.loader is None:
+    raise SystemExit("lesson builder did not load")
+_module = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_module)
+LS, surf = _module.load_deck()
+gram_hit = _module.gram_hit
 H = json.load(open(os.path.join(ROOT, "mockups/lesson-highlights.json"), encoding="utf-8"))
 HAN = re.compile(r"[一-鿿]")
 def hc(t):
     tot = 0
     for l in t.split("\n"):
         idx = l.find("：")
-        body = l[idx + 1:] if 0 <= idx <= 8 else l   # strip only a leading speaker label
+        body = l[idx + 1:] if 0 <= idx <= 8 else l
         tot += len(HAN.findall(body))
     return tot
 ap = argparse.ArgumentParser(); ap.add_argument("unit"); ap.add_argument("readings")
@@ -38,21 +49,21 @@ carry_miss = [w for w in carry if w not in union]
 gmiss = [g["title"] for g in gram if not gram_hit(g, union)]
 size_ok = all(s >= a.min for s in sizes)
 ok = (len(reads) == 3) and not gmiss and size_ok and len(own_miss) <= a.defer
-print(f"{u}: articles={len(reads)} sizes={sizes} (floor {a.min}) "
+say(f"{u}: articles={len(reads)} sizes={sizes} (floor {a.min}) "
       f"vocab={len(own) - len(own_miss)}/{len(own)} grammar={len(gram) - len(gmiss)}/{len(gram)} "
       f"defer_budget={a.defer}")
 if own_miss:
     tag = "deferred → later lesson (within budget)" if len(own_miss) <= a.defer else f"OVER BUDGET by {len(own_miss) - a.defer}"
-    print(f"  MISSING vocab ({len(own_miss)}): {' '.join(own_miss)}   [{tag}]")
+    say(f"  MISSING vocab ({len(own_miss)}): {' '.join(own_miss)}   [{tag}]")
 if carry:
     line = f"  carryover placed: {len(carry) - len(carry_miss)}/{len(carry)}"
     if carry_miss:
         line += f"   still owed: {' '.join(carry_miss)}"
-    print(line)
+    say(line)
 if gmiss:
-    print(f"  MISSING grammar: {'; '.join(gmiss)}   [grammar must be 100%]")
+    say(f"  MISSING grammar: {'; '.join(gmiss)}   [grammar must be 100%]")
 under = [reads[i]["id"] for i, s in enumerate(sizes) if s < a.min]
 if under:
-    print(f"  UNDER floor: {under}")
-print("RESULT:", "PASS" if ok else "FAIL")
+    say(f"  UNDER floor: {under}")
+say("RESULT:", "PASS" if ok else "FAIL")
 sys.exit(0 if ok else 1)

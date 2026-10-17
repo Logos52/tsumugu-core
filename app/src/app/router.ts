@@ -13,13 +13,12 @@ export type Surface =
   | "feedback"
   | "blog";
 
-
 export function blogHref(): string {
   const base = (import.meta.env.BASE_URL || "/").replace(/\/+$/, "");
   return `${base}/blog/`;
 }
 
-export interface Router {
+interface Router {
   current: Surface;
   navigate(to: Surface | string): void;
   onChange(fn: (s: Surface, detail?: string) => void): () => void;
@@ -38,7 +37,6 @@ const SURFACE_HASH: Record<Surface, string> = {
   feedback: "#feedback",
   blog: "#blog",
 };
-
 
 export function surfaceFromHash(hash: string): { surface: Surface; detail?: string } {
   if (hash.startsWith("#read=") || hash === "#read") {
@@ -180,7 +178,6 @@ export function createRouter(): Router {
   };
 }
 
-
-export function getCurrentHash(): string {
+function getCurrentHash(): string {
   return location.hash;
 }

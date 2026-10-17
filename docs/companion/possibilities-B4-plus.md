@@ -1,15 +1,15 @@
-# Article-possibilities catalog — Book 4 (B4L01–B4L04) + book-agnostic templates
+# Article-possibilities catalog. Book 4 (B4L01-B4L04) + book-agnostic templates
 
-Scope: an enumeration of NEW article possibilities for the four Book-4 lessons that currently have both drafts and verified highlights (B4L01–B4L04), plus a book-level series section and a set of book-agnostic archetype templates for any future lesson once its highlights are extracted. Every row grounds a concrete premise (a person, a situation, an artifact) in the lesson's actual theme and vocabulary domain, and names the lesson grammar it would naturally exercise. These are OPTIONS for future authoring sessions, not commitments — nothing here is scheduled or approved. All speakers are original (甲乙丙丁 or invented surnames 高/林/周); no textbook cast, no real named media. Formats are drawn only from the companion format library; combined formats are marked. Effort: **S** = single-voice / short-research / one scene; **M** = multi-voice, research-heavy, or laddered. Generated 2026-07-02.
+Scope. An enumeration of NEW article possibilities for the four Book-4 lessons that currently have both drafts and verified highlights (B4L01-B4L04). Plus a book-level series section and a set of book-agnostic archetype templates for any future lesson once its highlights are extracted. Every row grounds a concrete premise (a person, a situation, an artifact) in the lesson's actual theme and vocabulary domain, and names the lesson grammar it would naturally exercise. These are OPTIONS for future authoring sessions, not commitments. Nothing here is scheduled or approved. All speakers are original (甲乙丙丁 or invented surnames 高/林/周); no textbook cast, no real named media. Formats are drawn only from the companion format library; combined formats are marked. Effort: S = single-voice / short-research / one scene; M = multi-voice, research-heavy, or laddered. Generated 2026-07-02.
 
 Grammar shorthand references the highlights `title` fields verbatim so an authoring session can map each row straight onto the coverage gate.
 
 ---
 
-## B4L01 — Seventeen or Twenty-five? · 網路 The Internet
+## B4L01. Seventeen or Twenty-five? · 網路 The Internet
 
-**Highlights grammar:** 與其A…不如B / 就 (on the contrary) / summary of 就 / 別說A，就是B也 / 簡直 / 不至於 / 往往 / V著玩
-**Existing 3 drafts:** R1 對話 (甲/乙 pick a movie instead of staying home online, horror-vs-romance, book tickets) · R2 自述 (business manager at a construction firm on work stress and relieving it online; daughter games 打著玩) · R3 問答 (host interviews a psychologist on chatroom friend-making and online scam traps).
+Highlights grammar: 與其A…不如B / 就 (on the contrary) / summary of 就 / 別說A，就是B也 / 簡直 / 不至於 / 往往 / V著玩
+Existing 3 drafts: R1 對話 (甲/乙 pick a movie instead of staying home online, horror-vs-romance, book tickets) · R2 自述 (business manager at a construction firm on work stress. And relieving it online; daughter games 打著玩) · R3 問答 (host interviews a psychologist on chatroom friend-making and online scam traps).
 
 | # | Format | Register | Premise | Grammar exercised | Effort |
 |---|--------|----------|---------|-------------------|--------|
@@ -25,10 +25,10 @@ Grammar shorthand references the highlights `title` fields verbatim so an author
 
 ---
 
-## B4L02 — A Feast for the Eyes and Ears · 藝術活動 Arts Activities
+## B4L02. A Feast for the Eyes and Ears · 藝術活動 Arts Activities
 
-**Highlights grammar:** V成 (successfully) / 萬一 / 以為 (wrongly thought) / 可 (emphatic) / 免得 / 曾經 / 等 (etc.) / 所+V+的
-**Existing 3 drafts:** R1 對話 (林婷/周凱 to a Cloud-Gate-style modern-dance show at the National Theater, plus performance etiquette) · R2 自述 (a lifelong art lover who learned piano/violin, dreamed of painting, went to a film festival) · R3 報導 (news report on a three-day street-art festival at 中正廣場).
+Highlights grammar: V成 (successfully) / 萬一 / 以為 (wrongly thought) / 可 (emphatic) / 免得 / 曾經 / 等 (etc.) / 所+V+的
+Existing 3 drafts: R1 對話 (林婷/周凱 to a Cloud-Gate-style modern-dance show at the National Theater, plus performance etiquette) · R2 自述 (a lifelong art lover who learned piano/violin. Dreamed of painting, went to a film festival) · R3 報導 (news report on a three-day street-art festival at 中正廣場).
 
 | # | Format | Register | Premise | Grammar exercised | Effort |
 |---|--------|----------|---------|-------------------|--------|
@@ -44,10 +44,10 @@ Grammar shorthand references the highlights `title` fields verbatim so an author
 
 ---
 
-## B4L03 — Cloud Technology · 科技 Technology
+## B4L03. Cloud Technology · 科技 Technology
 
-**Highlights grammar:** 何必 / 不見得 / 嘛 / V慣 (accustomed to) / V得/不動 / 無形中 / 此外 / 總而言之
-**Existing 3 drafts:** R1 對話 (甲/乙 on an online-shopping platform, women's clothing, counterfeits and returns) · R2 自述 (grandmother in her 80s learning phone shopping, a scam call, the silver generation and tech) · R3 報導 (news feature on cloud tech reshaping traffic/medical/work/education/government, plus kids' screen time).
+Highlights grammar: 何必 / 不見得 / 嘛 / V慣 (accustomed to) / V得/不動 / 無形中 / 此外 / 總而言之
+Existing 3 drafts: R1 對話 (甲/乙 on an online-shopping platform, women's clothing, counterfeits and returns) · R2 自述 (grandmother in her 80s learning phone shopping. A scam call, the silver generation and tech) · R3 報導 (news feature on cloud tech reshaping traffic/medical/work/education/government, plus kids' screen time).
 
 | # | Format | Register | Premise | Grammar exercised | Effort |
 |---|--------|----------|---------|-------------------|--------|
@@ -63,10 +63,10 @@ Grammar shorthand references the highlights `title` fields verbatim so an author
 
 ---
 
-## B4L04 — Where Should the Bed Go? · 風水 Feng Shui
+## B4L04. Where Should the Bed Go? · 風水 Feng Shui
 
-**Highlights grammar:** 總算 / 還不就是 / 才不 (outright denial) / summary of 才 / 所謂A是指B / 一口氣 / 光A就 / 都…了 (displeasure)
-**Existing 3 drafts:** R1 對話 (a couple arranging furniture in their new home — bed and mirror placement, feng shui vs impatience) · R2 自述 (an old-apartment resident who follows a cousin to a feng-shui-master house reading; 郭璞, 一命二運三風水, a Churchill quote, a skeptic engineer friend) · R3 報導 (news feature on 信義計畫區 buildings with feng-shui elements — 聚寶盆, 咬錢龜, 如意 canopy).
+Highlights grammar: 總算 / 還不就是 / 才不 (outright denial) / summary of 才 / 所謂A是指B / 一口氣 / 光A就 / 都…了 (displeasure)
+Existing 3 drafts: R1 對話 (a couple arranging furniture in their new home. Bed and mirror placement, feng shui vs impatience) · R2 自述 (an old-apartment resident who follows a cousin to a feng-shui-master house reading. 郭璞, 一命二運三風水, a Churchill quote, a skeptic engineer friend) · R3 報導 (news feature on 信義計畫區 buildings with feng-shui elements. 聚寶盆, 咬錢龜, 如意 canopy).
 
 | # | Format | Register | Premise | Grammar exercised | Effort |
 |---|--------|----------|---------|-------------------|--------|
@@ -82,7 +82,7 @@ Grammar shorthand references the highlights `title` fields verbatim so an author
 
 ---
 
-## Book-level SERIES possibilities (span 2–4 lessons)
+## Book-level SERIES possibilities (span 2-4 lessons)
 
 Laddered same-topic sets, recurring-cast 迷你廣播劇 arcs, and review readings that recycle two or three lessons' grammar for spaced practice. Same table shape; the span column names the lessons each would cover. Options, not commitments.
 
@@ -98,9 +98,9 @@ Laddered same-topic sets, recurring-cast 迷你廣播劇 arcs, and review readin
 
 ---
 
-## B4L05–B5L10 and beyond — book-agnostic TEMPLATES
+## B4L05-B5L10 and beyond. Book-agnostic TEMPLATES
 
-Archetypes to instantiate for any future lesson once its highlights are extracted (B4L05–B4L12 need Highlights pp.22+ vision-read; B5L01–B5L10 need the B5 page verified; B6 is blocked on a missing PDF). The premise column describes the template SLOT — fill it from the target lesson's theme and vocab domain; the grammar column names the slot's natural grammar shape, to be swapped for that lesson's actual points. Effort marks carry over. Respect the same policy: original speakers, GREEN content, no real named media, per-article Han floors by book (B4 950 / B5 1000).
+Archetypes to instantiate for any future lesson once its highlights are extracted (B4L05-B4L12 need Highlights pp.22+ vision-read; B5L01-B5L10 need the B5 page verified; B6 is blocked on a missing PDF). The premise column describes the template SLOT. Fill it from the target lesson's theme and vocab domain; the grammar column names the slot's natural grammar shape, to be swapped for that lesson's actual points. Effort marks carry over. Respect the same policy. Original speakers, GREEN content, no real named media, per-article Han floors by book (B4 950 / B5 1000).
 
 | # | Format | Register | Premise slot | Grammar slot | Effort |
 |---|--------|----------|--------------|--------------|--------|
