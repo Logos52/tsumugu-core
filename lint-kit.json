@@ -3,6 +3,7 @@
   "languages": ["ts", "js", "mjs", "py", "css", "sh"],
   "ignore": [
     "node_modules/**",
+    "**/node_modules/**",
     "dist/**",
     ".git/**",
     "coverage/**",

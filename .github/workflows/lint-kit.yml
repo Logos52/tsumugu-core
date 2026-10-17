@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -31,6 +33,9 @@ jobs:
           npm install --prefix "$RUNNER_TEMP/lint-kit" --install-strategy=nested --frozen-lockfile --no-save --no-package-lock "git+ssh://git@github.com/Logos52/lint-kit.git#5294e51e37a6b95e8c8613f5956d240ed1f4bd62"
           npm --prefix "$RUNNER_TEMP/lint-kit/node_modules/lint-kit" run build
           python -m pip install -r "$RUNNER_TEMP/lint-kit/node_modules/lint-kit/requirements.txt"
+      - name: Fetch base branch
+        if: github.base_ref != ''
+        run: git fetch origin "${{ github.base_ref }}"
       - name: Check
         run: |
           mkdir -p node_modules/.bin
