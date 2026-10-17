@@ -1,6 +1,6 @@
 # Tsumugu Core. Agent context
 
-Private local repo. Public graded-reader at tsumugu.cc (Traditional Chinese, dual EN/VI rails, tap-out to tsumugu-ed).
+Public repo. Graded reader at tsumugu.cc (Traditional Chinese, dual EN/VI rails, tap-out to tsumugu-ed).
 
 ## Authority chain
 
