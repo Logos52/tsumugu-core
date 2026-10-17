@@ -13,6 +13,14 @@ Public repo. Graded reader at tsumugu.cc (Traditional Chinese, dual EN/VI rails,
 
 Money specifics and ACCC source materials stay under `private/` (gitignored). Never republish functional-fact indices.
 
+## Cloud Agent
+
+`pnpm install` in `/workspace` installs nothing. pnpm 11.5.1 drops the install when the workspace package `../tsumugu/packages/engine` sits above `/`. The saved install script bind-mounts this checkout at `/home/ubuntu/dev/tsumugu-core` and the engine at `/home/ubuntu/dev/tsumugu`, then runs `pnpm install --frozen-lockfile` from the checkout mount.
+
+`/tsumugu` is a shallow clone of `https://github.com/Logos52/tsumugu-engine-legacy.git`. `Logos52/tsumugu` is not readable from this environment. The install script rewrites that engine's word-status union to `"1" | "2" | "3" | "4" | "known" | "ignored"`, which is the union this repo typechecks against. `/tsumugu-core` is a symlink to `/workspace` so the engine's dependency links resolve. Vite's `jieba-wasm` alias points at `/tsumugu/node_modules/jieba-wasm`, which the install script links to the workspace copy.
+
+`private/` textbook files and `../tsumugu-ed` are absent. Tests that open `private/dangdai-vocab/dangdai.csv` or `../tsumugu-ed/sources/hanviet/hanviet.json` fail. `pnpm typecheck`, `pnpm lint`, `pnpm build`, and `pnpm dev` (Vite on `http://127.0.0.1:5173`) do not need those files.
+
 ## Writing standards
 
 Read `Writing-Standards.md` in this directory before authoring or revising prose. PRDs, handoffs, journal entries, site copy, hero lines, about pages, buttons, nav labels.
