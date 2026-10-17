@@ -1,6 +1,3 @@
-/**
- * @tsumugu/gen-qa — reusable, data-free generation QA gate primitives.
- */
 
 export {
   checkDefLevel,

@@ -1,22 +1,22 @@
-# Anime cover prompt — Grok (per-lesson / per-reading covers)
+# Anime cover prompt. Grok (per-lesson / per-reading covers)
 
-The **interest layer**: every reading gets a cover image + a title in the reader's
-language. These covers are the "landmarks" the library leads with — the eye lands
+The interest layer. Every reading gets a cover image + a title in the reader's
+language. These covers are the "landmarks" the library leads with. The eye lands
 on a picture and an evocative title, and interest (not level) drives the click.
 
-Style: warm, hand-painted slice-of-life anime (Ghibli-inspired), authentically
-**Taiwanese** (Tsumugu 紡 is a Japanese word — the *aesthetic* is anime; the *world*
+Style. Warm, hand-painted slice-of-life anime (Ghibli-inspired), authentically
+Taiwanese (Tsumugu 紡 is a Japanese word. The *aesthetic* is anime; the *world*
 is Taiwan). One cover per reading, or one per lesson to start.
 
 ## How to use
-1. Generate a **character sheet** first (see the cast in `SUPPLEMENTARY-ARTICLE-IDEAS.md`)
+1. Generate a character sheet first (see the cast in `SUPPLEMENTARY-ARTICLE-IDEAS.md`)
    so recurring people stay consistent across covers.
-2. For each cover, paste the **STYLE BIBLE** unchanged, then fill the **SCENE** block.
+2. For each cover, paste the STYLE BIBLE unchanged, then fill the SCENE block.
 3. Keep the style bible + palette identical every time so the whole set reads as one show.
    Reuse a fixed seed per character where the tool allows, or attach the character sheet.
-4. Portrait **3:4**, **no text** (titles are set in the app, per rail).
+4. Portrait 3:4, no text (titles are set in the app, per rail).
 
-## STYLE BIBLE — paste verbatim on every cover
+## STYLE BIBLE. Paste verbatim on every cover
 > Soft, hand-painted anime illustration in the warm, cinematic spirit of Studio
 > Ghibli and early-2000s slice-of-life anime: gentle natural light, painterly
 > watercolour backgrounds, clean expressive linework, a muted warm palette (dusty
@@ -29,7 +29,7 @@ is Taiwan). One cover per reading, or one per lesson to start.
 > consistent across the series. Cinematic single-moment composition. Portrait 3:4.
 > No text, no captions, no logo, no watermark, no signature, no photorealism.
 
-## SCENE block — fill per reading
+## SCENE block. Fill per reading
 ```
 Scene: {one evocative moment from the reading — the action, what's happening}
 Characters: {which recurring cast members + a word on look/mood}
@@ -38,7 +38,7 @@ Taiwan details: {2–3 concrete local cues that fit this scene}
 Mood: {comedic / tender / tense / cozy / bittersweet}
 ```
 
-## Worked example — B2·L07 「追垃圾車 / Chasing the Garbage Truck」
+## Worked example. B2·L07 「追垃圾車 / Chasing the Garbage Truck」
 > [STYLE BIBLE]
 > Scene: a young woman in slippers and home clothes runs down a narrow evening
 > lane, a heavy bag of trash in each hand, chasing a yellow municipal garbage
@@ -51,12 +51,12 @@ Mood: {comedic / tender / tense / cozy / bittersweet}
 > Mood: comedic, warm, a little breathless.
 
 ## Consistency & safety
-- **Reuse the STYLE BIBLE word-for-word;** vary only the SCENE block — that keeps the set coherent.
-- **Character consistency:** make a sheet once (each recurring person, a couple of
+- Reuse the STYLE BIBLE word-for-word; vary only the SCENE block. That keeps the set coherent.
+- Character consistency. make a sheet once (each recurring person, a couple of
   angles, name + traits); reference it and/or reuse fixed seeds so 周怡君 looks like
   周怡君 every cover.
-- **Negative / avoid:** text, captions, watermark, logo, signature, photorealism,
+- Negative / avoid. text, captions, watermark, logo, signature, photorealism,
   extra fingers, generic Japanese/Western streetscapes.
-- Keep it **wholesome / all-ages** — the audience is learners.
-- **Original only:** never depict the ACCC textbook cast (王開文/陳月美/李明華) or any
+- Keep it wholesome / all-ages. The audience is learners.
+- Original only. never depict the ACCC textbook cast (王開文/陳月美/李明華) or any
   copyrighted characters; these are our invented cast and original scenes.

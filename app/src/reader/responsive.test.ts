@@ -8,9 +8,14 @@ const READER_CSS = join(
   "../styles/reader.css",
 );
 
+function expandCss(path: string): string {
+  const text = readFileSync(path, "utf8");
+  return text.replace(/@import\s+"([^"]+)";/g, (_match, rel: string) => expandCss(join(dirname(path), rel)));
+}
+
 describe("responsive", () => {
   it("hides rail at 980px and shrinks prose at 720px", () => {
-    const css = readFileSync(READER_CSS, "utf8");
+    const css = expandCss(READER_CSS);
     expect(css).toContain("@media(max-width:980px)");
     expect(css).toMatch(/@media\(max-width:980px\)[\s\S]*\.rail\{display:none\}/);
     expect(css).toContain("@media(max-width:720px)");

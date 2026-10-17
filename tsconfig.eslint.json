@@ -12,6 +12,7 @@
     "pipeline/**/*.ts",
     "worker/**/*.ts",
     "vite.config.ts",
-    "vitest.config.ts"
+    "vitest.config.ts",
+    "shapes.ts"
   ]
 }

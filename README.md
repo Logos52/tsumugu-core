@@ -1,21 +1,21 @@
 # Tsumugu Core
 
-The public reading product in the Tsumugu line: a website of AI-generated, level-graded Chinese reading (Simplified or Traditional), served to English-L1 and Vietnamese-L1 learners on two independent scaffolding rails over shared Chinese content.
+The public reading product in the Tsumugu line. A website of AI-generated, level-graded Chinese reading (Simplified or Traditional), served to English-L1 and Vietnamese-L1 learners on two independent support rails over shared Chinese content.
 
-- **Vietnamese rail (Viet→Han)** — Hán-Việt reading + Vietnamese gloss + the Sino-Vietnamese cognate bridge. The moat.
-- **English rail (Eng→Han)** — pinyin + English gloss + character depth. The reach that carries the Vietnamese mission.
+- Vietnamese rail (Viet to Han). Hán-Việt reading + Vietnamese gloss + the Sino-Vietnamese cognate bridge. The moat.
+- English rail (Eng to Han). Pinyin + English gloss + character depth. The reach that carries the Vietnamese mission.
 
-Owning and generating the content dissolves the two walls that sank earlier versions: copyright (no raws, no licensed catalog) and OCR (no images, no camera, no local model). The reader sits on the Tsumugu engine and links down into the Tsumugu-ed dictionary as its reference layer.
+Owning and generating the content dissolves the two walls that sank earlier versions. Copyright (no raws, no licensed catalog) and OCR (no images, no camera, no local model). The reader sits on the Tsumugu engine and links down into the Tsumugu-ed dictionary as its reference layer.
 
 ## The line
 
-- **Tsumugu** — the open-source engine.
-- **Tsumugu-ed** — the encoded character dictionary (the reference layer).
-- **Tsumugu Core** — this product: graded AI-generated content + reader + importer.
+- Tsumugu. The open-source engine.
+- Tsumugu-ed. The encoded character dictionary (the reference layer).
+- Tsumugu Core. This product: graded AI-generated content + reader + importer.
 
 ## Build contract
 
-Canonical PRD: [`docs/PRD-Tsumugu-Core-v1.md`](docs/PRD-Tsumugu-Core-v1.md).
+Canonical PRD: [`docs/PRD-Tsumugu-Core.md`](docs/PRD-Tsumugu-Core.md).
 
 ### Shared packages
 
@@ -43,11 +43,11 @@ pnpm accc:resolve b4l3  # lesson target resolver
 pnpm accc:eval-g2pw     # measure-only: g2pW polyphone eval (no pipeline integration)
 ```
 
-Default persisted rail is **`en`** (`DEFAULT_RAIL` in `app/src/prefs/prefs.ts`) — flag for Wedge confirmation vs mockup's `vi` demo rail.
+Default persisted rail is `en` (`DEFAULT_RAIL` in `app/src/prefs/prefs.ts`). Flag for Wedge confirmation vs mockup's `vi` demo rail.
 
 ## Status
 
-The v1 reader app is built and green — `pnpm typecheck`, `pnpm test` (149 tests), `pnpm lint`, and `pnpm build` all pass. The app shell is a hash router over 11 surfaces with a persistent TopNav (rail/palette/theme), landing page, footer pages, EN/VI i18n, and per-rail SEO.
+The v1 reader app is built and green. `pnpm typecheck`, `pnpm test` (149 tests), `pnpm lint`, and `pnpm build` all pass. The app shell is a hash router over 11 surfaces with a persistent TopNav (rail/palette/theme), landing page, footer pages, EN/VI i18n, and per-rail SEO.
 
 Delivery against the WO-CORE work orders:
 
@@ -66,7 +66,7 @@ Delivery against the WO-CORE work orders:
 
 Word familiarity uses `"1" | "2" | "3" | "4" | "known" | "ignored"` (1 = New, strongest highlight … 4 = Learned; LingQ-style number keybinds). This replaced the older `new | l1..l4` scheme across `@tsumugu/engine` and every consuming app.
 
-### Feature flags — Phase-2 surfaces (default OFF)
+### Feature flags. Phase-2 surfaces (default OFF)
 
 v1 is a static, local-only, account-free reader (PRD §1.3 / §12.1). Several larger surfaces were built ahead of schedule; they stay in the tree but are gated off in [`app/src/config/features.ts`](app/src/config/features.ts). Flip the matching `VITE_FEATURE_*` env to enable one for dev (e.g. `VITE_FEATURE_VOICE=true pnpm dev`):
 
@@ -78,6 +78,6 @@ v1 is a static, local-only, account-free reader (PRD §1.3 / §12.1). Several la
 | `grammar` | grammar-point browser | PRD Phase 2 (still needs a data source) |
 | `encodingModal` | rich in-app encoding / components modal | WO-CORE-4 deferred |
 
-The local WordStore (known-state coloring, progress, paste import) is **not** gated — it is core to the v1 reader.
+The local WordStore (known-state coloring, progress, paste import) is not gated. It is core to the v1 reader.
 
 See `docs/` for research artifacts and `handoffs/` for Composer work orders.

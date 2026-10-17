@@ -27,12 +27,10 @@ const G = [
   'SOURCE: existing docs in /Users/n1/Projects/tsumugu-core/docs/ (esp. content-generation.md, super-app/traditional-taiwan-learner-gap.md, super-app/content-samples/) ; engine /Users/n1/Projects/tsumugu/ ; dictionary /Users/n1/Projects/tsumugu-ed/ .',
 ].join('\n')
 
-// ---------- PHASE 1: GROUND ----------
 phase('Ground')
 const accResearchPrompt = G + '\n\nTASK: Ground the facts about "A Course in Contemporary Chinese" (當代中文課程). Use WebSearch/WebFetch; mark anything uncertain. Cover: the series structure (how many books/volumes, lessons per book, roughly how many vocab items per lesson and cumulatively per book); the publisher/origin (NTNU Mandarin Training Center / 聯經 Linking Publishing) and that it is a TAIWAN textbook using TRADITIONAL characters + zhuyin (注音) and pinyin; the level alignment of each book to TOCFL and CEFR (e.g. Book 1 ~ Novice/A1-A2, up through Books 5-6 ~ B2-C1); how the vocabulary is presented in each lesson (生詞 lists, 課文 texts); and the SOURCING options for the vocab lists with their tradeoffs and legality — the books themselves, the official publisher/MTC materials, community decks (Anki / Quizlet / Pleco flashcard sets for 當代中文課程), any open datasets, and OCR of the vocab pages. Restate the COPYRIGHT stance for using the lists as a controlled-vocabulary level-target (facts vs expression; never reproduce their texts; thin compilation caution). WRITE to ' + TC + '/accc-research.md (H1 + "Status: grounding — facts to react to, 2026-06-22"). Return a 5-bullet summary incl. book count, the per-book TOCFL mapping, and the best sourcing option. Do not return the full document.'
 await agent(accResearchPrompt, { phase: 'Ground', label: 'accc-research', agentType: 'claude' })
 
-// ---------- PHASE 2: DEMO + FEASIBILITY ----------
 phase('Demo')
 
 function demoFmt() {

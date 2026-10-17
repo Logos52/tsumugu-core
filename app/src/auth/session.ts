@@ -3,9 +3,9 @@
 import { getUserStore, type UserStore } from "../store/userStore.js";
 import { trackEvent } from "../build/analytics.js";
 
-export type AuthStatus = "logged-out" | "logging-in" | "logged-in" | "sync-conflict" | "offline";
+type AuthStatus = "logged-out" | "logging-in" | "logged-in" | "sync-conflict" | "offline";
 
-export interface SessionSnapshot {
+interface SessionSnapshot {
   status: AuthStatus;
   userId: string | null;
   email: string | null;
@@ -60,14 +60,11 @@ function emit(): void {
   }
 }
 
-
 getStore().subscribe((ev) => {
   if (ev === "doc" || ev === "sync") emit();
 });
 
-
 refreshSnap();
-
 
 export async function devForceLogin(email: string): Promise<void> {
   const store = getStore();
@@ -75,9 +72,6 @@ export async function devForceLogin(email: string): Promise<void> {
   await store.login(userId, email);
   emit();
 }
-
-
-
 
 export function restoreSession(): null {
   return null;
@@ -96,18 +90,16 @@ export function isLoggedIn(): boolean {
   }
 }
 
-export function logout(): void {
+function logout(): void {
   const store = getStore();
   store.logout();
   trackEvent("logout", {});
   emit();
 }
 
-
 export function getUserStoreForAccount(): UserStore {
   return getStore();
 }
-
 
 export function resetSessionForTest(): void {
   _store = null;

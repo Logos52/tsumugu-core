@@ -2,6 +2,7 @@
 
 import type { VaultIO } from "@tsumugu/engine";
 import type { CatalogEntry } from "../catalog/types.js";
+import { isCatalogEntry } from "./shapes.js";
 
 const url = (base: string, path: string): string =>
   base + path.replace(/^\/+/, "").split("/").map(encodeURIComponent).join("/");
@@ -34,18 +35,6 @@ export function createHttpVault(base = staticVaultBase()): VaultIO {
 }
 
 
-function isValidCatalogEntry(entry: unknown): entry is CatalogEntry {
-  if (typeof entry !== "object" || entry === null) return false;
-  const e = entry as Record<string, unknown>;
-  return (
-    typeof e.band === "string" &&
-    typeof e.kind === "string" &&
-    typeof e.wordCounts === "object" &&
-    e.wordCounts !== null
-  );
-}
-
-
 export async function listVaultReadings(vaultBase = staticVaultBase()): Promise<CatalogEntry[]> {
   try {
     const r = await fetch(url(vaultBase, "__readings.json"));
@@ -57,7 +46,7 @@ export async function listVaultReadings(vaultBase = staticVaultBase()): Promise<
     }
     const valid: CatalogEntry[] = [];
     for (const entry of raw) {
-      if (isValidCatalogEntry(entry)) {
+      if (isCatalogEntry(entry)) {
         valid.push(entry);
       } else {
         const path =

@@ -10,7 +10,6 @@ export const meta = {
 
 const REPO = '/Users/n1/Projects/tsumugu-core'
 
-// Lessons: B2 repair (existing drafts under floor) + B2 new + all 12 B3.
 const LESSONS = [
   { unit: 'B4L01', floor: 950, mode: 'new' },
   { unit: 'B4L02', floor: 950, mode: 'new' },
@@ -145,7 +144,6 @@ log(`Authoring ${LESSONS.length} Book-4 lessons on Sonnet 5 (B4L01-04 @950) — 
 
 const results = await pipeline(
   LESSONS,
-  // STAGE 1 — author + self-check + stage
   (item) => agent(authorPrompt(item), {
     label: `author:${item.unit}`,
     phase: 'Author',
@@ -153,7 +151,6 @@ const results = await pipeline(
     model: 'sonnet',
     effort: 'high',
   }),
-  // STAGE 2 — fresh-context critic
   (authorRes, item) => agent(criticPrompt(item.unit, item.floor), {
     label: `critic:${item.unit}`,
     phase: 'Critic',
@@ -161,7 +158,6 @@ const results = await pipeline(
     model: 'sonnet',
     effort: 'high',
   }).then((critic) => ({ item, authorRes, critic })),
-  // STAGE 3 — conditional repair
   async (prev) => {
     const { item, authorRes, critic } = prev || {}
     if (!critic) return { item, authorRes, critic, repaired: null }

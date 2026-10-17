@@ -26,7 +26,7 @@ export function wireSeg(
   }
 }
 
-export function wirePaletteSwatches(
+function wirePaletteSwatches(
   onChange: (palette: ReaderSettings["palette"]) => void,
 ): void {
   const swatches = document.querySelectorAll<HTMLElement>(".sw");

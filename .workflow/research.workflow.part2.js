@@ -1,0 +1,46 @@
+export const meta = {
+  name: 'tsumugu-core-research',
+  description: 'Tsumugu Core research phase: scaffolding inventory, competitive teardown, content-gen strategy, recaps/synopses legal feasibility, UX/features catalog, management plan — pre-PRD checkpoint',
+  phases: [
+    { title: 'Ground', detail: 'scaffolding inventory (reads repos) + 8 competitive-research clusters incl. Miraa (web)' },
+    { title: 'Analyze', detail: 'teardown, content-gen, recaps feasibility (3-lens adversarial verify), UX/features' },
+    { title: 'Synthesize', detail: 'management plan & roadmap + PRD outline / open-decisions register' },
+    { title: 'Critique', detail: 'adversarial completeness critic over the full set' },
+  ],
+}
+
+export const DOCS = '/Users/n1/Projects/tsumugu-core/docs'
+
+export const GROUNDING = [
+  '# Tsumugu Core — grounding brief (authoritative; do not contradict; flag, do not resolve, open questions)',
+  '',
+  'PRODUCT (decided 2026-06-22): Tsumugu Core is a public website of AI-generated, level-graded Chinese reading (Simplified or Traditional), for English-L1 and Vietnamese-L1 learners, on two INDEPENDENT scaffolding rails over SHARED Chinese content:',
+  '- Vietnamese rail (Viet->Han): Han-Viet reading + Vietnamese gloss + the Sino-Vietnamese COGNATE BRIDGE ("you already know this morpheme"). THE MOAT — no competitor has it.',
+  '- English rail (Eng->Han): pinyin + English gloss + character depth. A strong graded reader in a crowded field; competes on content quality + dictionary depth. The VOLUME and ARPU that FUNDS the Vietnamese mission.',
+  '',
+  'NAMING: Tsumugu = open-source engine. Tsumugu-ed = encoded character dictionary (reference layer, 2,662 deep entries). Tsumugu Core = the reading product (graded AI content + reader + importer), linked down into the dictionary.',
+  '',
+  'WHY THIS DIRECTION: generating and OWNING the content dissolves the two walls that sank earlier versions — (1) COPYRIGHT (no raws, no licensed catalog) and (2) OCR (no images/camera/local model). Earlier ideas (web-novel convert reader; manhua/webtoon comic reader) DEMOTE to a single client-side BRING-YOUR-OWN-TEXT import feature; comics deferred behind an in-browser OCR eval.',
+  '',
+  'THE SHAPE: AI-generated leveled readings as the spine (original Chinese written to a target HSK/TOCFL band); reader + importer (read the library, or paste/import your own text client-side, never store imported prose server-side); content variety (news summaries, ShortForm-style book synopses, movie recaps — transformative summary only, never reproduction); a known-word layer (log in, save what you know, see only what you do not; seed HSK 1-3 on signup; import from Anki/Migaku/Pleco); the dictionary underneath (tap a word for a gloss, full-entry link into the encoded character page).',
+  '',
+  'ALREADY SCAFFOLDED (reuse, do not rebuild): the graded-reader engine + the data-* toggle matrix (script simplified/traditional, reading pinyin/zhuyin, gloss EN/VI as independent axes); hanviet.json (10,540 chars, 94.2% single-reading); EN/VI localization (100% complete); the 2,662-entry dictionary; the example-sentence QA gate (scripts/example_checks.py) + TOCFL band machinery; the migaku-style-overlay PRD + known-words importer; a reader mockup at tsumugu/personal/migaku-style-overlay/reader-mockup-concept.html. ~982 authored Simplified stories carry EN + simplified-Chinese with 0 Vietnamese (a known content-asymmetry gap).',
+  '',
+  'REFERENCE APPS (what each contributes): Yomitan = instant hover/tap gloss (the lookup); Migaku ~10/mo = immersion overlay + one-click SRS mining + known-word tracking (the loop); Mokuro free = offline comic OCR to selectable text overlay (the comic pattern); Pleco free+add-ons = depth-on-tap + document/clipboard reader (reference depth); LingQ ~13/mo = import-your-own-text + status coloring + known-word state (the importer); Du Chinese / The Chairman Bao / Maayot ~5-9/mo = polished leveled graded content (the QUALITY BAR Tsumugu Core targets); Hanzii = the Vietnamese incumbent dictionary (price anchor — Pro must sit below it). All are English-first and Han-Viet-blind — the gap Tsumugu Core fills.',
+  '',
+  'COPYRIGHT POSTURE (high confidence): a purely client-side overlay of YOUR OWN dictionary onto text the user supplies/renders, with no server-side hosting/storage/redistribution, is cleanest (WhenU; Perfect 10 server test; Adblock-Plus/Axel-Springer; MDY v. Blizzard = client-side mod is contract not copyright; a decade of unlitigated peers: Yomitan, Zhongwen, Pleco, ttu, Migaku, Language Reactor). Risk lives in controllable places: never bypass paywall/DRM (DMCA 1201; Bypass Paywalls Clean killed Aug 2024); no server-side storage of prose; no shared/community library of imports; passive in-page only (no scraper); no prose machine translation; isolate copyleft data (CC-CEDICT BY-SA, char_vi share-alike). Live caveat: Germany BGH (July 2025) reopened the in-memory-DOM-modification theory, so the EU position is open.',
+  '',
+  'CONTENT COPYRIGHT LADDER: AI-original readings + original news summaries = CLEAN. Book synopses + movie recaps = need TRANSFORMATIVE summary, never reproduction. Hosting raws / licensed catalog = OUT.',
+  '',
+  'OPEN QUESTIONS (flag, do NOT silently resolve): quality at volume (solo maker + QA gate vs Du Chinese polish); smallest shippable v1; does EN rail fund or dilute VI positioning; free-vs-ads vs freemium per rail; generation pipeline (which model, how QA gate plugs in); comics unlock (in-browser OCR eval); convert-to-learner conversion (the core UNVALIDATED demand assumption — never treat as proven).',
+  '',
+  'MONETIZATION RULE: KEEP MONEY SPECIFICS OUT of these public-destined docs (CPMs, exact prices live in a gitignored KB private note). Menu only, high level: free+ads (thin), Pro PPP-split (sells convenience never content), donations, dataset licensing, Anki/SRS deck, Pleco funnel, B2B/university. Reference "see private monetization note" rather than embedding figures.',
+  '',
+  'WRITING VOICE for prose: High-Signal Decision Writing — verdict first, measured claims, steelman the opposing view, recommend with rationale. Declarative. AVOID the "not X, but Y" / "isn it A — it is B" tic. No filler, no exposition restating the obvious. We, not I.',
+  '',
+  'SOURCE FILES (read for depth):',
+  '- Journals: /Users/n1/Projects/llm-knowledge-base/journal/2026-06-22-tsumugu-core-graded-reader-meets-ai-content.md ; .../2026-06-22-monetization-reach-and-web-novel-reader.md ; .../2026-06-22-ulysses-design-philosophy-for-tsumugu-ed.md ; .../2026-06-21-hanviet-bridge-deep-dive.md',
+  '- Engine PRDs: /Users/n1/Projects/tsumugu/PRD-*.md (esp. PRD.md, PRD-Tsumugu-Dictionary-App.md, PRD-Wiki-Reader-UX.md, PRD-Library-and-Toolbar.md, PRD-Dictionary.md, PRD-Simplified-Edition.md, PRD-HanViet-Bridge.md)',
+  '- Reader overlay PRD + mockup: /Users/n1/Projects/tsumugu/personal/migaku-style-overlay/',
+  '- Dictionary repo: /Users/n1/Projects/tsumugu-ed/ (FEASIBILITY-inband-definitions.md, PRD-HanViet-Bridge-Render.md, schema/, scripts/example_checks.py)',
+].join("\n")

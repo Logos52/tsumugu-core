@@ -2,7 +2,6 @@
 
 import type { PreparedToken } from "@tsumugu/engine";
 
-
 export interface TranscriptCue {
   text: string;
   
@@ -14,8 +13,7 @@ export interface TranscriptCue {
   speaker?: string;
 }
 
-
-export interface TranscriptSection {
+interface TranscriptSection {
   start: string;
   end: string;
   title?: string;
@@ -25,7 +23,6 @@ export interface TranscriptSection {
   tr?: string;
 }
 
-
 export interface TranscriptDoc {
   cues: TranscriptCue[];
   
@@ -34,7 +31,6 @@ export interface TranscriptDoc {
   sections?: TranscriptSection[];
 }
 
-
 export interface CueRange {
   cueIndex: number;
   startToken: number;
@@ -42,11 +38,9 @@ export interface CueRange {
   endToken: number;
 }
 
-
 function densify(s: string): string {
   return s.replace(/\s+/gu, "");
 }
-
 
 export function parseTimecode(tc: string): number {
   if (!tc) return 0;
@@ -59,25 +53,21 @@ export function parseTimecode(tc: string): number {
   return seconds;
 }
 
-
-export function cueTimes(
+function cueTimes(
   spans: readonly { start: string; end: string }[],
 ): { start: number; end: number }[] {
   return spans.map((c) => ({ start: parseTimecode(c.start), end: parseTimecode(c.end) }));
 }
 
-
 export function shouldLoopBack(t: number, bounds: { start: number; end: number }): boolean {
   return t >= bounds.end;
 }
-
 
 export function timelineTime(clientX: number, left: number, width: number, duration: number): number {
   if (width <= 0) return 0;
   const f = Math.max(0, Math.min(1, (clientX - left) / width));
   return f * Math.max(0, duration);
 }
-
 
 export function snapToBoundary(t: number, boundaries: readonly number[]): number {
   let best: number | null = null;
@@ -92,7 +82,6 @@ export function snapToBoundary(t: number, boundaries: readonly number[]): number
   return best ?? t;
 }
 
-
 export function cueIndexAtTime(
   spans: readonly { start: string; end: string }[],
   seconds: number,
@@ -104,7 +93,6 @@ export function cueIndexAtTime(
   }
   return -1;
 }
-
 
 export function alignCuesToTokens(
   tokens: readonly PreparedToken[],

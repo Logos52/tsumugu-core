@@ -12,7 +12,7 @@ import argparse
 import json
 import os
 import re
-import unicodedata
+import sys
 from collections import OrderedDict
 from datetime import date
 from glob import glob
@@ -26,8 +26,11 @@ TITLES_OUT = os.path.join(ROOT, "content", "titles.json")
 REPORT_OUT = os.path.join(ROOT, "content", "titles-report.json")
 
 BANNED_CAST = ("王開文", "陳月美", "李明華")
-_VN = set("ăâđêôơưĂÂĐÊÔƠƯ")
-_COMBINING = set("̛̣̀́̃̉̂̆")
+
+
+def say(*parts, sep=" ", end="\n", file=None):
+    stream = sys.stdout if file is None or file is sys.stdout else sys.stderr
+    stream.write(sep.join(str(part) for part in parts) + end)
 
 
 def lesson_label(binding: dict | None, unit: str | None) -> str:
@@ -52,11 +55,9 @@ def zh_from_prepared(path: str) -> str:
 def existing_zh_title(title_field: str | None) -> str | None:
     if not title_field:
         return None
-    # "My Family · 自述二" -> take Chinese segment after · if present
     if "·" in title_field:
         zh = title_field.split("·", 1)[1].strip()
         return zh or None
-    # if looks mostly Han, reuse
     han = re.findall(r"[\u4e00-\u9fff]", title_field)
     if len(han) >= 2:
         return title_field.strip()
@@ -141,7 +142,7 @@ def stage(shard_size: int) -> None:
     }
     with open(os.path.join(SHARDS, "manifest.json"), "w", encoding="utf-8") as f:
         json.dump(manifest, f, ensure_ascii=False, indent=2)
-    print(json.dumps({"staged": len(corpus), "shards": len(manifest_items)}, indent=2))
+    say(json.dumps({"staged": len(corpus), "shards": len(manifest_items)}, indent=2))
 
 
 def merge() -> None:
@@ -166,63 +167,7 @@ def merge() -> None:
         json.dump(merged, f, ensure_ascii=False, indent=2)
     with open(os.path.join(SHARDS, "STATUS.json"), "w", encoding="utf-8") as f:
         json.dump(status, f, ensure_ascii=False, indent=2)
-    print(json.dumps(status, indent=2))
-
-
-def has_vn_diacritics(s: str) -> bool:
-    for ch in unicodedata.normalize("NFD", s or ""):
-        if ch in _COMBINING or ch in _VN:
-            return True
-    return False
-
-
-def validate() -> None:
-    corpus = {r["id"]: r for r in iter_corpus()}
-    if not os.path.exists(TITLES_OUT):
-        raise SystemExit("titles.json missing — merge first")
-    titles = json.load(open(TITLES_OUT, encoding="utf-8"))
-    report: list[dict] = []
-    en_seen: dict[str, str] = {}
-    zh_seen: dict[str, str] = {}
-
-    for rid in sorted(corpus.keys()):
-        flags: list[str] = []
-        if rid not in titles:
-            report.append({"id": rid, "flags": ["missing"]})
-            continue
-        t = titles[rid]
-        for key in ("zh", "en", "vi", "lesson", "format"):
-            if not (t.get(key) or "").strip():
-                flags.append(f"blank:{key}")
-        if any(b in (t.get("zh", "") + t.get("en", "") + t.get("vi", "")) for b in BANNED_CAST):
-            flags.append("banned_cast")
-        if not has_vn_diacritics(t.get("vi", "")) and len(t.get("vi", "")) > 3:
-            flags.append("vi_no_diacritics")
-        en = (t.get("en") or "").strip()
-        zh = (t.get("zh") or "").strip()
-        if re.search(r"(?i)^(reading|dialogue|story|article)\s*\d", en):
-            flags.append("generic_en")
-        if en in en_seen:
-            flags.append(f"dup_en:{en_seen[en]}")
-        else:
-            en_seen[en] = rid
-        if zh in zh_seen:
-            flags.append(f"dup_zh:{zh_seen[zh]}")
-        else:
-            zh_seen[zh] = rid
-        report.append({"id": rid, "flags": flags, "titles": t})
-
-    flagged = [r for r in report if r.get("flags")]
-    summary = {
-        "total": len(corpus),
-        "titled": len(titles),
-        "missing": sum(1 for r in report if "missing" in r.get("flags", [])),
-        "flagged": len(flagged),
-        "updated": str(date.today()),
-    }
-    with open(REPORT_OUT, "w", encoding="utf-8") as f:
-        json.dump({"summary": summary, "items": report}, f, ensure_ascii=False, indent=2)
-    print(json.dumps(summary, indent=2))
+    say(json.dumps(status, indent=2))
 
 
 def main() -> None:
@@ -238,6 +183,7 @@ def main() -> None:
     elif args.cmd == "merge":
         merge()
     elif args.cmd == "validate":
+        from titles_validate import validate
         validate()
 
 

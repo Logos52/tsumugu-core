@@ -2,7 +2,7 @@
 
 type Child = Node | string | number | null | undefined | false;
 
-export interface ElProps {
+interface ElProps {
   class?: string;
   text?: string;
   html?: string;
@@ -52,13 +52,11 @@ export function el<K extends keyof HTMLElementTagNameMap>(
   return node;
 }
 
-
 export function clear(node: Element): void {
   while (node.firstChild) node.removeChild(node.firstChild);
 }
 
-
-export function embedPatternStub(data: { title: string; rail: string }, container: HTMLElement): void {
+function embedPatternStub(data: { title: string; rail: string }, container: HTMLElement): void {
   const stub = document.createElement("div");
   stub.className = "tsg-embed-stub";
   stub.setAttribute("data-embed", "pattern");

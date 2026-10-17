@@ -3,10 +3,10 @@
 import { el, clear } from "../ui/dom.js";
 import { applyI18n, getCurrentLocale, tKey as t } from "../i18n/strings.js";
 
-export type StaticPage = "about" | "privacy" | "terms" | "feedback";
+type StaticPage = "about" | "privacy" | "terms" | "feedback";
 
 
-export function staticPageFromHash(hash: string): StaticPage | null {
+function staticPageFromHash(hash: string): StaticPage | null {
   const clean = (hash || "").replace(/^#/, "").toLowerCase();
   if (clean === "about" || clean === "colophon" || clean === "method") return "about";
   if (clean === "privacy") return "privacy";
@@ -33,7 +33,7 @@ function pageBody(page: StaticPage, locale: ReturnType<typeof getCurrentLocale>)
   return body;
 }
 
-export function mountStaticPage(host: HTMLElement, page: StaticPage): HTMLElement {
+function mountStaticPage(host: HTMLElement, page: StaticPage): HTMLElement {
   clear(host);
   const locale = getCurrentLocale();
   const wrap = el("article", { class: "tsg-static-page", id: `${page}-surface` });

@@ -1,11 +1,12 @@
+import { mountLibraryPageTail1 } from "./libraryPage.fns1.js";
+import { mountLibraryPageTail2 } from "./libraryPage.fns2.js";
 
 import { el, clear } from "../ui/dom.js";
 import { hanNum, isViRail, say } from "../catalog/libraryModel.js";
 import { buildCompanionSpine, type CompanionLesson, type LessonGroup } from "./companionShelf.js";
 import type { CatalogEntry } from "../catalog/types.js";
 
-
-export interface ReadingTitle {
+interface ReadingTitle {
   zh: string;
   en: string;
   vi: string;
@@ -14,8 +15,7 @@ export interface ReadingTitle {
 }
 export type TitlesMap = Record<string, ReadingTitle>;
 
-
-export const BOOK_META: Record<number, { lessons: number; band: string }> = {
+const BOOK_META: Record<number, { lessons: number; band: string }> = {
   1: { lessons: 15, band: "A1" },
   2: { lessons: 15, band: "A2" },
   3: { lessons: 12, band: "B1" },
@@ -23,7 +23,6 @@ export const BOOK_META: Record<number, { lessons: number; band: string }> = {
   5: { lessons: 10, band: "B1" },
 };
 const SHELF_BOOKS = [1, 2, 3, 4, 5];
-
 
 export const SHELF_LEVELS: { code: string; books: number[] }[] = [
   { code: "A1", books: [1] },
@@ -34,24 +33,20 @@ export const SHELF_LEVELS: { code: string; books: number[] }[] = [
   { code: "C2", books: [] },
 ];
 
-
 export function bookParts(lessons: number): [number, number, number] {
   if (lessons === 10) return [4, 7, 10];
   const third = lessons / 3;
   return [Math.round(third), Math.round(2 * third), lessons];
 }
 
-
 export function partRange(parts: [number, number, number], i: number): [number, number] {
   return [i === 0 ? 1 : parts[i - 1]! + 1, parts[i]!];
 }
-
 
 export function readingId(path: string): string {
   const m = /([^/]+?)(?:\.prepared)?\.json$/.exec(path);
   return m ? m[1]! : path;
 }
-
 
 const FMT_CLASS: Record<string, string> = {
   對話: "dlg", dialogue: "dlg",
@@ -75,7 +70,7 @@ const esc = (s: string): string =>
 
 const CNP = ["一", "二", "三"];
 
-interface Col {
+export interface Col {
   
   pn: string;
   rg: string;
@@ -84,7 +79,7 @@ interface Col {
   book?: number;
 }
 
-export interface LibraryPageOpts {
+interface LibraryPageOpts {
   catalog: CatalogEntry[];
   
   titles?: TitlesMap;
@@ -96,17 +91,25 @@ export function mountLibraryPage(
   root: HTMLElement,
   opts: LibraryPageOpts,
 ): { destroy: () => void; render: () => void } {
+const ctx: any = {};
+
   const titles: TitlesMap = opts.titles ?? {};
   const spine = buildCompanionSpine(opts.catalog, opts.lessons ?? []);
   const byBook = new Map(spine.map((b) => [b.book, b]));
 
   
-  let mode: "book" | "level" = "book";
-  let curBook = 1;
-  let curLvl = 0;
-  let scope: { col: number | null; lesson: string | null } = { col: null, lesson: null };
-  let sortMode: "lesson" | "format" | "title" = "lesson";
-  let q = "";
+  const mode: "book" | "level" = "book";
+ctx.mode = mode;
+  const curBook = 1;
+ctx.curBook = curBook;
+  const curLvl = 0;
+ctx.curLvl = curLvl;
+  const scope: { col: number | null; lesson: string | null } = { col: null, lesson: null };
+ctx.scope = scope;
+  const sortMode: "lesson" | "format" | "title" = "lesson";
+ctx.sortMode = sortMode;
+  const q = "";
+ctx.q = q;
 
   const lessonKey = (g: LessonGroup): string => `${g.book}:${g.lesson}`;
   const lessonsOf = (book: number): LessonGroup[] => byBook.get(book)?.lessons ?? [];
@@ -117,276 +120,9 @@ export function mountLibraryPage(
     const zh = e.title ?? e.path;
     return { zh, en: zh, vi: zh };
   };
-  const leadOf = (e: CatalogEntry, vi: boolean): string => {
-    const t = titleOf(e);
-    return vi ? t.vi || t.en : t.en || t.zh;
-  };
-  const fmtOf = (e: CatalogEntry): string => fmtClass(titleOf(e).format ?? e.kind);
-
-  const currentCols = (): Col[] => {
-    const partsOf = (book: number): Col[] => {
-      const meta = BOOK_META[book] ?? { lessons: 15, band: "A1" };
-      const parts = bookParts(meta.lessons);
-      const ls = lessonsOf(book);
-      return [0, 1, 2].map((i) => {
-        const [a, b] = partRange(parts, i);
-        return {
-          pn: `第${CNP[i]!}部分`,
-          rg: `L${a}–${b}`,
-          lessons: ls.filter((g) => g.lesson >= a && g.lesson <= b),
-        };
-      });
-    };
-    if (mode === "book") return partsOf(curBook);
-    const lvl = SHELF_LEVELS[curLvl]!;
-    if (lvl.books.length === 0) return [{ pn: lvl.code, rg: "", lessons: [] }];
-    if (lvl.books.length === 1) return partsOf(lvl.books[0]!);
-    return lvl.books.slice(0, 3).map((b) => ({
-      pn: `第${hanNum(b)}冊`,
-      rg: `${BOOK_META[b]?.lessons ?? "?"} 課`,
-      lessons: lessonsOf(b),
-      book: b,
-    }));
-  };
-
-  const multiBook = (): boolean => mode === "level" && (SHELF_LEVELS[curLvl]?.books.length ?? 0) > 1;
-
-  const scopedReadings = (cols: Col[]): CatalogEntry[] => {
-    const all = (cs: Col[]): CatalogEntry[] => cs.flatMap((c) => c.lessons.flatMap((g) => g.readings));
-    if (scope.lesson) {
-      return all(cols).filter((e) => {
-        const b = e.binding;
-        return b ? `${b.book}:${b.lesson}` === scope.lesson : false;
-      });
-    }
-    if (scope.col != null && cols[scope.col]) return all([cols[scope.col]!]);
-    return all(cols);
-  };
-
-  
-  const wrap = el("div", { class: "wrap lp" });
-  let bandCols!: HTMLElement;
-  let shelfEl!: HTMLElement;
-  let rowsEl!: HTMLElement;
-  let filterInput!: HTMLInputElement;
-
-  const paintShelf = (): void => {
-    let html = "";
-    if (mode === "book") {
-      for (const b of SHELF_BOOKS) {
-        const has = (byBook.get(b)?.lessons.length ?? 0) > 0;
-        html +=
-          `<button class="lp-cover${b === curBook ? " on" : ""}${has ? "" : " dim"}" data-book="${b}">` +
-          `<span class="vt">第${hanNum(b)}冊</span><span class="lv">${esc(BOOK_META[b]?.band ?? "")}</span></button>`;
-      }
-    } else {
-      SHELF_LEVELS.forEach((L, i) => {
-        const live = L.books.some((b) => (byBook.get(b)?.lessons.length ?? 0) > 0);
-        html +=
-          `<button class="lp-cover lvl${i === curLvl ? " on" : ""}${live ? "" : " dim"}" data-lvl="${i}">` +
-          `<span class="vt">${esc(L.code)}</span></button>`;
-      });
-    }
-    shelfEl.innerHTML = html;
-  };
-
-  const paintCols = (): void => {
-    const vi = isViRail();
-    const cols = currentCols();
-    let html = "";
-    cols.forEach((col, i) => {
-      const hOn = scope.col === i && scope.lesson === null;
-      html += `<div class="lp-col">`;
-      html +=
-        `<button class="lp-colh${hOn ? " on" : ""}" data-col="${i}">` +
-        `<span class="pn">${esc(col.pn)}</span><span class="rg">${esc(col.rg)}</span></button>`;
-      if (col.lessons.length === 0) {
-        html += `<div class="lp-soon">尚未出版<span>coming soon</span></div>`;
-      } else {
-        for (const g of col.lessons) {
-          const key = lessonKey(g);
-          const first = g.readings[0];
-          const lead = first ? leadOf(first, vi) : g.title || g.unit;
-          html +=
-            `<button class="lp-les${scope.lesson === key ? " on" : ""}" data-col="${i}" data-lesson="${esc(key)}">` +
-            `<span class="lnum">課${g.lesson}</span><span class="ltitle">${esc(lead)}</span></button>`;
-        }
-      }
-      html += `</div>`;
-    });
-    bandCols.innerHTML = html;
-    
-    const maxL = Math.max(0, ...cols.map((c) => c.lessons.length));
-    wrap.style.setProperty("--lp-shelf-h", `${Math.max(120, 27 + Math.min(maxL, 5) * 35)}px`);
-  };
-
-  const paintList = (): void => {
-    const vi = isViRail();
-    const cols = currentCols();
-    let data = scopedReadings(cols);
-    const hadAny = data.length > 0;
-    if (q) {
-      const ql = q.toLowerCase();
-      data = data.filter((e) => {
-        const t = titleOf(e);
-        return (
-          t.en.toLowerCase().includes(ql) || t.vi.toLowerCase().includes(ql) || t.zh.includes(q)
-        );
-      });
-    }
-    if (data.length === 0) {
-      const msg = q && hadAny ? say("noMatches", vi) : say("notYetPublished", vi);
-      rowsEl.innerHTML = `<tr><td class="lp-empty" colspan="3">${esc(msg)}</td></tr>`;
-      return;
-    }
-    const lessonNum = (e: CatalogEntry): number => (e.binding ? e.binding.book * 100 + e.binding.lesson : 0);
-    if (sortMode === "format") data.sort((a, b) => fmtOf(a).localeCompare(fmtOf(b)) || lessonNum(a) - lessonNum(b) || a.path.localeCompare(b.path));
-    else if (sortMode === "title") data.sort((a, b) => leadOf(a, vi).localeCompare(leadOf(b, vi)));
-    else data.sort((a, b) => lessonNum(a) - lessonNum(b) || a.path.localeCompare(b.path));
-
-    const multi = multiBook();
-    let prev = "";
-    rowsEl.innerHTML = data
-      .map((e) => {
-        const t = titleOf(e);
-        const cls = fmtOf(e);
-        const b = e.binding;
-        const lkey = b ? `${b.book}:${b.lesson}` : "";
-        
-        const showL = sortMode !== "lesson" || lkey !== prev;
-        prev = lkey;
-        const lab = b ? `${multi ? `${hanNum(b.book)}·` : ""}課${b.lesson}` : "";
-        return (
-          `<tr data-path="${esc(e.path)}"><td class="lp-title">` +
-          `<i class="lp-d ${cls}" title="${esc(FMT_TIP[cls] ?? "")}"></i>` +
-          `<span class="lead">${esc(vi ? t.vi || t.en : t.en || t.zh)}</span></td>` +
-          `<td class="lp-zh" lang="zh-Hant">${esc(t.zh)}</td>` +
-          `<td class="lp-lesson">${showL ? esc(lab) : ""}</td></tr>`
-        );
-      })
-      .join("");
-  };
-
-  const paintTabs = (): void => {
-    wrap.querySelectorAll<HTMLElement>(".lp-tab").forEach((t) => {
-      t.classList.toggle("on", t.dataset.shelf === mode);
-    });
-  };
-
-  const render = (): void => {
-    const vi = isViRail();
-    clear(root);
-    clear(wrap);
-
-    if (opts.catalog.length === 0) {
-      wrap.append(el("div", { class: "lib-empty", html: say("emptyCatalog", vi) }));
-      root.append(wrap);
-      return;
-    }
-
-    wrap.innerHTML =
-      `<h2 class="lp-tabs">` +
-      `<button class="lp-tab${mode === "book" ? " on" : ""}" data-shelf="book">課本架 <span class="en">當代中文課程</span></button>` +
-      `<button class="lp-tab${mode === "level" ? " on" : ""}" data-shelf="level">級別架 <span class="en">TOCFL</span></button>` +
-      `</h2>` +
-      `<div class="lp-band"><div class="lp-shelf"></div><div class="lp-cols"></div></div>` +
-      `<div class="lp-sortbar"><span class="sl">${esc(say("sort", vi))}</span>` +
-      `<button class="sb${sortMode === "lesson" ? " on" : ""}" data-sort="lesson">${esc(say("sortLesson", vi))}</button>` +
-      `<button class="sb${sortMode === "format" ? " on" : ""}" data-sort="format">${esc(say("sortFormat", vi))}</button>` +
-      `<button class="sb${sortMode === "title" ? " on" : ""}" data-sort="title">${esc(say("sortTitle", vi))}</button>` +
-      `<span class="lp-filter">⌕<input type="text" autocomplete="off" placeholder="${esc(say("filterPh", vi))}" aria-label="${esc(say("searchAria", vi))}"></span></div>` +
-      `<div class="lp-card"><table class="lp-cat" aria-label="讀物目錄"><tbody></tbody></table></div>`;
-
-    shelfEl = wrap.querySelector(".lp-shelf")!;
-    bandCols = wrap.querySelector(".lp-cols")!;
-    rowsEl = wrap.querySelector(".lp-cat tbody")!;
-    filterInput = wrap.querySelector<HTMLInputElement>(".lp-filter input")!;
-    filterInput.value = q;
-    filterInput.addEventListener("input", () => {
-      q = filterInput.value.trim();
-      paintList();
-    });
-
-    paintShelf();
-    paintCols();
-    paintList();
-    root.append(wrap);
-  };
-
-  const onClick = (e: MouseEvent): void => {
-    const target = e.target as HTMLElement;
-    const tab = target.closest<HTMLElement>(".lp-tab");
-    if (tab && tab.dataset.shelf && tab.dataset.shelf !== mode) {
-      mode = tab.dataset.shelf as "book" | "level";
-      scope = { col: null, lesson: null };
-      paintTabs(); paintShelf(); paintCols(); paintList();
-      return;
-    }
-    const cover = target.closest<HTMLElement>(".lp-cover");
-    if (cover) {
-      if (cover.dataset.book) curBook = Number(cover.dataset.book);
-      if (cover.dataset.lvl) curLvl = Number(cover.dataset.lvl);
-      scope = { col: null, lesson: null };
-      paintShelf(); paintCols(); paintList();
-      return;
-    }
-    const les = target.closest<HTMLElement>(".lp-les");
-    if (les) {
-      const key = les.dataset.lesson ?? null;
-      const col = Number(les.dataset.col ?? 0);
-      if (scope.lesson === key) scope = { col, lesson: null }; 
-      else scope = { col, lesson: key };
-      paintCols(); paintList();
-      return;
-    }
-    const colh = target.closest<HTMLElement>(".lp-colh");
-    if (colh) {
-      const col = Number(colh.dataset.col ?? 0);
-      if (scope.col === col && scope.lesson === null) scope = { col: null, lesson: null }; 
-      else scope = { col, lesson: null };
-      paintCols(); paintList();
-      return;
-    }
-    const sb = target.closest<HTMLElement>(".lp-sortbar .sb");
-    if (sb && sb.dataset.sort) {
-      sortMode = sb.dataset.sort as typeof sortMode;
-      wrap.querySelectorAll(".lp-sortbar .sb").forEach((x) => x.classList.toggle("on", x === sb));
-      paintList();
-      return;
-    }
-    const row = target.closest<HTMLElement>("tr[data-path]");
-    if (row?.dataset.path) {
-      e.preventDefault();
-      opts.onOpen(row.dataset.path);
-    }
-  };
-
-  const onKey = (e: KeyboardEvent): void => {
-    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-      e.preventDefault();
-      filterInput?.focus();
-    } else if (e.key === "Escape" && document.activeElement === filterInput) {
-      filterInput.value = "";
-      q = "";
-      paintList();
-      filterInput.blur();
-    }
-  };
-
-  wrap.addEventListener("click", onClick);
-  document.addEventListener("keydown", onKey);
-  render();
-
-  return {
-    render,
-    destroy: () => {
-      wrap.removeEventListener("click", onClick);
-      document.removeEventListener("keydown", onKey);
-      clear(root);
-    },
-  };
+  ctx.titleOf = titleOf; ctx.fmtClass = fmtClass; ctx.BOOK_META = BOOK_META; ctx.bookParts = bookParts; ctx.lessonsOf = lessonsOf; ctx.partRange = partRange; ctx.CNP = CNP; ctx.SHELF_LEVELS = SHELF_LEVELS; ctx.hanNum = hanNum; ctx.el = el; ctx.SHELF_BOOKS = SHELF_BOOKS; ctx.byBook = byBook; ctx.esc = esc; ctx.isViRail = isViRail; ctx.lessonKey = lessonKey; ctx.say = say; ctx.FMT_TIP = FMT_TIP; ctx.clear = clear; ctx.root = root; ctx.opts = opts;
+return mountLibraryPageTail2(ctx);
 }
-
 
 export async function loadCompanionTitles(vaultBase: string): Promise<TitlesMap> {
   try {

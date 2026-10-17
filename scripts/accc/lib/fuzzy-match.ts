@@ -60,7 +60,7 @@ function levenshteinRatio(a: string, b: string): number {
   return 1 - distance / maxLen;
 }
 
-export function structureSimilarity(a: string, b: string): number {
+function structureSimilarity(a: string, b: string): number {
   const normA = normalizeStructureTemplate(a);
   const normB = normalizeStructureTemplate(b);
 
@@ -79,7 +79,7 @@ export function structureSimilarity(a: string, b: string): number {
   return Math.max(tokenScore, editScore);
 }
 
-export function nameSimilarity(a: string, b: string): number {
+function nameSimilarity(a: string, b: string): number {
   const normA = normalizeNameZh(a);
   const normB = normalizeNameZh(b);
 

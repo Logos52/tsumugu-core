@@ -1,4 +1,5 @@
 import type { Band, CatalogEntry, ReadingKind } from "./types.js";
+import { KINDS, isBand, isReadingKind } from "./shapes.js";
 
 export interface CatalogFacets {
   band?: Band[];
@@ -8,10 +9,7 @@ export interface CatalogFacets {
   hasAudio?: boolean;
 }
 
-export type SortMode = "level" | "newest" | "length";
-
-const BANDS: Band[] = ["A1", "A2", "B1"];
-const KINDS: ReadingKind[] = ["story", "dialogue", "explainer", "byo"];
+type SortMode = "level" | "newest" | "length";
 
 function parseHash(hash: string): URLSearchParams {
   const raw = hash.startsWith("#") ? hash.slice(1) : hash;
@@ -31,13 +29,13 @@ export function facetsFromHash(hash: string): CatalogFacets {
 
   const bandRaw = splitList(params.get("band"));
   if (bandRaw) {
-    const bands = bandRaw.filter((b): b is Band => BANDS.includes(b as Band));
+    const bands = bandRaw.filter(isBand);
     if (bands.length > 0) facets.band = bands;
   }
 
   const kindRaw = splitList(params.get("kind"));
   if (kindRaw) {
-    const kinds = kindRaw.filter((k): k is ReadingKind => KINDS.includes(k as ReadingKind));
+    const kinds = kindRaw.filter(isReadingKind);
     if (kinds.length > 0) {
       facets.kind = [...kinds].sort((a, b) => KINDS.indexOf(a) - KINDS.indexOf(b));
     }
@@ -114,8 +112,7 @@ export function applyFacets(catalog: CatalogEntry[], f: CatalogFacets): CatalogE
   });
 }
 
-
-export interface LibraryQuery {
+interface LibraryQuery {
   facets: CatalogFacets;
   search: string;
   sort: SortMode;
@@ -130,7 +127,7 @@ export function queryFromHash(hash: string): LibraryQuery {
   return { facets, search, sort };
 }
 
-export function queryToHash(q: { facets?: CatalogFacets; search?: string; sort?: SortMode }): string {
+function queryToHash(q: { facets?: CatalogFacets; search?: string; sort?: SortMode }): string {
   const facetsPart = facetsToHash(q.facets ?? {});
   const params = facetsPart ? new URLSearchParams(facetsPart.slice(1)) : new URLSearchParams();
   if (q.search && q.search.trim()) {
@@ -143,7 +140,7 @@ export function queryToHash(q: { facets?: CatalogFacets; search?: string; sort?:
   return qs ? `#${qs}` : "";
 }
 
-export function sortEntries(entries: CatalogEntry[], mode: SortMode): CatalogEntry[] {
+function sortEntries(entries: CatalogEntry[], mode: SortMode): CatalogEntry[] {
   const copy = [...entries];
   if (mode === "newest") {
     return copy.sort((a, b) => (b.dateAdded || "").localeCompare(a.dateAdded || ""));

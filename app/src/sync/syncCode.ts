@@ -9,7 +9,7 @@ function bytesToBase64url(bytes: Uint8Array): string {
   let bin = "";
   for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]!);
   const b64 = btoa(bin);
-  return b64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  return b64.replace(/\+/g, "-").split("/").join("_").replace(/=+$/, "");
 }
 
 function base64urlToBytes(s: string): Uint8Array {

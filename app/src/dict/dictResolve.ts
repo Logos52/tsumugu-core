@@ -2,7 +2,7 @@
 
 import { firstCjkChar } from "./dictLink.js";
 
-export type DictKind = "c" | "w" | "g";
+type DictKind = "c" | "w" | "g";
 
 export interface ShardDictEntry {
   id: number;
@@ -30,7 +30,6 @@ interface EntriesMeta {
   parts: { start: number; count: number }[];
 }
 
-
 export function dictIndexBase(): string {
   const base = import.meta.env.BASE_URL || "/";
   return `${base.replace(/\/$/, "")}/dict-search`;
@@ -40,7 +39,6 @@ const INDEX_BASE = dictIndexBase();
 
 let loadPromise: Promise<{ kindMap: Map<string, DictKind>; rows: ShardDictEntry[] }> | null = null;
 let testEntries: ShardDictEntry[] | null = null;
-
 
 export function __setTestEntries(entries: ShardDictEntry[] | null): void {
   testEntries = entries;
@@ -91,7 +89,6 @@ async function ensureLookup(): Promise<{ kindMap: Map<string, DictKind>; rows: S
   return loadPromise;
 }
 
-
 export async function resolveKind(word: string): Promise<"c" | "w"> {
   try {
     const { kindMap } = await ensureLookup();
@@ -107,7 +104,6 @@ export async function resolveKind(word: string): Promise<"c" | "w"> {
   }
 }
 
-
 export async function lookupShardEntry(word: string): Promise<ShardDictEntry | undefined> {
   try {
     const { rows } = await ensureLookup();
@@ -121,7 +117,6 @@ export async function lookupShardEntry(word: string): Promise<ShardDictEntry | u
     return undefined;
   }
 }
-
 
 export async function searchEdShards(q: string, limit = 8): Promise<ShardDictEntry[]> {
   const qq = q.trim().toLowerCase();

@@ -2,12 +2,11 @@ import { appendFileSync, mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 import type { ReadingCheckReport } from "./readingChecks.js";
 
-export interface SkipLogEntry {
+interface SkipLogEntry {
   ts: string;
   path: string;
   reasons: string[];
 }
-
 
 export function appendSkipLog(
   report: ReadingCheckReport,

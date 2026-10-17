@@ -4,7 +4,7 @@ import { el } from "../ui/dom.js";
 import { isEncodingPageDoc, parseEncodingPage, type EncodingPageDoc } from "@tsumugu/engine";
 import type { CorePreparedContent } from "../types/corePrepared.js";
 
-export interface EncodingModal {
+interface EncodingModal {
   open(word: string, prepared?: CorePreparedContent | null): void;
   close(): void;
   destroy(): void;

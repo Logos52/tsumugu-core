@@ -1,9 +1,8 @@
 
 
 export type ReadingKind = "story" | "dialogue" | "explainer" | "byo";
-export type ReadingOrigin = "generated";
+type ReadingOrigin = "generated";
 export type Band = "A1" | "A2" | "B1";
-
 
 export interface LessonBinding {
   textbook: "accc";
@@ -40,8 +39,6 @@ export interface CatalogEntry {
   recommended?: boolean;
 }
 
-
 export type CoverageBand = "in-range" | "stretch" | "outgrown";
 
-
-export type ReadingBand = CoverageBand;
+type ReadingBand = CoverageBand;

@@ -1,0 +1,62 @@
+name: lint-kit
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  kit-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.LINT_KIT_DEPLOY_KEY }}
+      - name: Stub engine package
+        run: node scripts/ensure-engine-stub.mjs
+      - uses: pnpm/action-setup@v4
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Install lint-kit
+        run: |
+          npm install --prefix "$RUNNER_TEMP/lint-kit" --install-strategy=nested --frozen-lockfile --no-save --no-package-lock "git+ssh://git@github.com/Logos52/lint-kit.git#5294e51e37a6b95e8c8613f5956d240ed1f4bd62"
+          npm --prefix "$RUNNER_TEMP/lint-kit/node_modules/lint-kit" run build
+          python -m pip install -r "$RUNNER_TEMP/lint-kit/node_modules/lint-kit/requirements.txt"
+      - name: Fetch base branch
+        if: github.base_ref != ''
+        run: git fetch origin "${{ github.base_ref }}"
+      - name: Check
+        run: |
+          mkdir -p node_modules/.bin
+          ln -sfn "$RUNNER_TEMP/lint-kit/node_modules/.bin/kit" node_modules/.bin/kit
+          set +e
+          set -o pipefail
+          npx kit check | tee "$RUNNER_TEMP/kit-check.txt"
+          status=${PIPESTATUS[0]}
+          {
+            echo "## kit check"
+            echo
+            echo "baseline lines: $(grep -c '^baseline ' "$RUNNER_TEMP/kit-check.txt" || true)"
+            echo
+            echo "warn lines: $(grep -c '^warn ' "$RUNNER_TEMP/kit-check.txt" || true)"
+            echo
+            echo "summary:"
+            echo
+            grep '^summary ' "$RUNNER_TEMP/kit-check.txt" || true
+            echo
+            echo '```'
+            cat "$RUNNER_TEMP/kit-check.txt"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit "$status"

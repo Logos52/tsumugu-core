@@ -10,16 +10,41 @@ mockups/drafts/_deferred.json (consumed by print_lesson_spec.py as carryover).
 
 Usage: python3 mockups/coverage_ledger.py
 """
+import importlib.util
 import os, json, re, glob
+import sys
+def say(*parts, sep=" ", end="\n", file=None):
+    stream = sys.stdout if file is None or file is sys.stdout else sys.stderr
+    stream.write(sep.join(str(part) for part in parts) + end)
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ns = {"__file__": os.path.join(ROOT, "mockups/build_lesson_data.py"), "__name__": "x"}
-exec(compile(open(ns["__file__"], encoding="utf-8").read(), "b", "exec"), ns)
-LS, _ = ns["load_deck"]()
+_spec = importlib.util.spec_from_file_location(
+    "build_lesson_data", os.path.join(ROOT, "mockups/build_lesson_data.py")
+)
+if _spec is None or _spec.loader is None:
+    raise SystemExit("lesson builder did not load")
+_module = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_module)
+LS, _surf = _module.load_deck()
 
 
-def ukey(u):
-    m = re.match(r"B(\d)L(\d+)", u)
-    return (int(m.group(1)), int(m.group(2)))
+def ukey(unit):
+    matched = re.match(r"B(\d)L(\d+)", unit)
+    if matched is None:
+        return (0, 0)
+    return (int(matched.group(1)), int(matched.group(2)))
+
+
+def apply_lesson(unit, union, pool):
+    own = [row["w"] for row in LS.get(unit, [])]
+    placed = [word for word in list(pool) if word in union]
+    for word in placed:
+        pool.pop(word, None)
+    own_miss = [word for word in own if word not in union]
+    for word in own_miss:
+        pool.setdefault(word, unit)
+    note = ("defer: " + " ".join(own_miss)) if own_miss else ""
+    return own, placed, own_miss, note
 
 
 def main():
@@ -29,36 +54,28 @@ def main():
         if obj.get("unit") and obj.get("readings"):
             drafts[obj["unit"]] = " ".join(r["text"] for r in obj["readings"])
     units = sorted(drafts, key=ukey)
-    pool = {}          # word -> unit where first deferred
+    pool = {}
     placed_total = deferred_total = own_total = 0
-    print(f"Coverage ledger — {len(units)} staged lessons, in order (hybrid: defer rolls forward)\n")
-    print(f"{'unit':7}{'own cov':>9}{'pool placed':>13}{'new defer':>11}  notes")
-    for u in units:
-        union = drafts[u]
-        own = [v["w"] for v in LS.get(u, [])]
-        placed = [w for w in list(pool) if w in union]
-        for w in placed:
-            pool.pop(w, None)
-        own_miss = [w for w in own if w not in union]
-        for w in own_miss:
-            pool.setdefault(w, u)
-        own_total += len(own); placed_total += len(placed); deferred_total += len(own_miss)
-        note = ""
-        if own_miss:
-            note = "defer: " + " ".join(own_miss)
-        print(f"{u:7}{len(own)-len(own_miss):>4}/{len(own):<4}{len(placed):>13}{len(own_miss):>11}  {note}")
-    print(f"\nTotals: own-vocab covered in-lesson {own_total-deferred_total}/{own_total} "
+    say(f"Coverage ledger — {len(units)} staged lessons, in order (hybrid: defer rolls forward)\n")
+    say(f"{'unit':7}{'own cov':>9}{'pool placed':>13}{'new defer':>11}  notes")
+    for unit in units:
+        own, placed, own_miss, note = apply_lesson(unit, drafts[unit], pool)
+        own_total += len(own)
+        placed_total += len(placed)
+        deferred_total += len(own_miss)
+        say(f"{unit:7}{len(own)-len(own_miss):>4}/{len(own):<4}{len(placed):>13}{len(own_miss):>11}  {note}")
+    say(f"\nTotals: own-vocab covered in-lesson {own_total-deferred_total}/{own_total} "
           f"({100*(own_total-deferred_total)/own_total:.1f}%) · "
           f"pool words later placed {placed_total} · still owed {len(pool)}")
     if pool:
-        print("\nStill owed (place in an upcoming lesson where it fits):")
+        say("\nStill owed (place in an upcoming lesson where it fits):")
         for w, frm in sorted(pool.items(), key=lambda x: ukey(x[1])):
-            print(f"  {w}   (deferred from {frm})")
+            say(f"  {w}   (deferred from {frm})")
     json.dump({"pool": list(pool), "detail": pool,
                "as_of": units[-1] if units else None},
               open(os.path.join(ROOT, "mockups/drafts/_deferred.json"), "w"),
               ensure_ascii=False, indent=1)
-    print(f"\nwrote mockups/drafts/_deferred.json  (pool: {len(pool)} words)")
+    say(f"\nwrote mockups/drafts/_deferred.json  (pool: {len(pool)} words)")
 
 
 if __name__ == "__main__":

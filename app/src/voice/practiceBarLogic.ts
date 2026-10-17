@@ -5,11 +5,11 @@ export interface Bounds {
   end: number;
 }
 
-export const SPEED_PRESETS = [1, 0.85, 0.75] as const;
+const SPEED_PRESETS = [1, 0.85, 0.75] as const;
 
 export const NUDGE_SEC = 0.05;
 
-export const MIN_REGION_SEC = 0.05;
+const MIN_REGION_SEC = 0.05;
 
 function clamp(x: number, lo: number, hi: number): number {
   return Math.min(Math.max(x, lo), hi);

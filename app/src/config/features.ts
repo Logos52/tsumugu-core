@@ -32,4 +32,4 @@ export const FEATURES = {
   donate: envOn("VITE_FEATURE_DONATE"),
 } as const;
 
-export type FeatureFlag = keyof typeof FEATURES;
+type FeatureFlag = keyof typeof FEATURES;

@@ -5,12 +5,9 @@ import {
   type ValidationResult,
 } from "./grammar-index-types.js";
 import { expectedCumulativeThrough } from "./normalize.js";
+import { isRecord } from "./shapes.js";
 
 const VALID_TOCFL_BANDS = new Set(["A", "B", "C"]);
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null;
-}
 
 function validatePoint(
   point: unknown,
@@ -140,7 +137,7 @@ export function formatValidationErrors(errors: ValidationError[]): string {
   return errors.map((error) => `${error.path}: ${error.message}`).join("\n");
 }
 
-export function assertValidGrammarIndex(
+function assertValidGrammarIndex(
   data: unknown,
   options: { merged?: boolean } = {},
 ): GrammarIndexFile {

@@ -33,10 +33,15 @@ function slice(html: string, open: RegExp, closeTag: string): string {
 }
 
 
+function stripCssComments(css: string): string {
+  const comment = new RegExp("/" + "\\*" + "[\\s\\S]*?" + "\\*" + "/", "g");
+  return css.replace(comment, "").replace(/^\n+/, "").replace(/\n{3,}/g, "\n\n").replace(/\n+$/, "");
+}
+
 export function extractTokensCss(html: string): string {
   const block = slice(html, /<style>/, "</style>");
   const css = block.replace(/^<style>/, "").replace(/<\/style>$/, "").trim();
-  return `/* shell-contract ${SHELL_VERSION} — generated; do not edit by hand */\n${css}\n`;
+  return `${stripCssComments(css)}\n`;
 }
 
 

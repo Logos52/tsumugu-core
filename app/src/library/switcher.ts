@@ -27,7 +27,7 @@ function metaLine(entry: CatalogEntry): string {
   return parts.join(" · ");
 }
 
-export interface SwitcherOpts {
+interface SwitcherOpts {
   catalog: CatalogEntry[];
   getStatus: (lang: string, word: string) => WordStatus;
   bandMin?: number;

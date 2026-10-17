@@ -1,10 +1,15 @@
 import { readFileSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
 const TOKENS_PATH = resolve(dirname(fileURLToPath(import.meta.url)), "tokens.css");
 const css = readFileSync(TOKENS_PATH, "utf8");
+
+function expandCss(path: string): string {
+  const text = readFileSync(path, "utf8");
+  return text.replace(/@import\s+"([^"]+)";/g, (_match, rel: string) => expandCss(join(dirname(path), rel)));
+}
 
 describe("tokens.css", () => {
   it("maps semantic accent and status tokens from raw layer", () => {
@@ -48,7 +53,7 @@ describe("tokens.css", () => {
   });
 
   it("reserves the accent and uses underline status (no status background fills on .w)", () => {
-    const base = readFileSync(resolve(dirname(TOKENS_PATH), "base.css"), "utf8");
+    const base = expandCss(resolve(dirname(TOKENS_PATH), "base.css"));
     expect(base.match(/\.tsg-status-\w+\s*\{[^}]*background/)).toBeNull();
     expect(base).toContain(".w.nw");
     expect(base).toContain("var(--raw-violet-soft)");

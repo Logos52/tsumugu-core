@@ -20,6 +20,9 @@ REGENERATE:  python3 mockups/build_lesson_data.py
 OUTPUT:      mockups/lesson-viewer-data.js  (window.LESSONS = [...])
 """
 import csv, json, re, os, sys
+from build_lesson_qa import (
+    load_drafts, gram_hit, coverage_qa, check_encounter_balance, advisory_scan,
+)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DECK = os.path.join(ROOT, "private/dangdai-vocab/dangdai.csv")
@@ -31,15 +34,11 @@ LABELS = set("甲乙丙丁高林周")
 CN_NUM = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十",
           "十一", "十二", "十三", "十四", "十五"]
 
-# STOPWORDS knob (tunable): function-word substrate excluded from encounter/recency
-# targets — they self-saturate by Zipf. Pronouns are POS "N", so listed explicitly.
 FUNC_POS = {"Ptc", "Adv", "Det", "M", "Prep", "Vaux", "Conj"}
 FUNC_WORDS = {"你", "我", "他", "她", "妳", "我們", "你們", "他們", "您", "是"}
 
-
 def is_function(v):
     return v["pos"] in FUNC_POS or v["w"] in FUNC_WORDS
-
 
 def lemma_core(w):
     """A few deck headwords store a grammar-pattern annotation in place of a clean
@@ -51,12 +50,10 @@ def lemma_core(w):
     w = re.sub(r"\b(?:number|noun|verb|adj\w*)\s*\+\s*", "", w)
     return w.strip()
 
-
 def clean_trad(t):
     base = re.split(r"[（(]", t)[0].strip()
     variants = re.findall(r"[＝=]\s*([^）)]+)", t)
     return lemma_core(base), [lemma_core(base)] + [lemma_core(v.strip()) for v in variants]
-
 
 def load_deck():
     """All books, fused (no dialogue split). -> ({unit:[vocab]}, {unit:set(forms)})."""
@@ -73,8 +70,6 @@ def load_deck():
             surf.setdefault(unit, set()).update(alts)
     return LS, surf
 
-
-# ---- ORIGINAL readings — EXACTLY 3 articles per lesson, union = 100% coverage ----
 READINGS = {
  "B1L01": [
   {"id": "R1", "format": "對話", "text":
@@ -129,152 +124,45 @@ FMT = {"對話": "Dialogue", "自述": "Monologue", "問答": "Q & A",
        "短文": "Narrative", "日記": "Diary", "便條": "Note", "簡訊": "Message",
        "廣播": "Broadcast", "閱讀": "Reading"}
 
-
-def load_drafts():
-    """Verified readings staged in mockups/drafts/<UNIT>.json override the inline
-    READINGS above — so staging a lesson auto-integrates it. Shape per file:
-    {"unit": "B1L02", "readings": [{"id","format","text"}, ...]}."""
-    import glob
-    d = {}
-    for fp in sorted(glob.glob(os.path.join(ROOT, "mockups/drafts", "B*L*.json"))):
-        try:
-            obj = json.load(open(fp, encoding="utf-8"))
-        except Exception:
-            continue
-        u, rs = obj.get("unit"), obj.get("readings")
-        if u and rs:
-            d[u] = [{"id": r["id"], "format": r["format"], "text": r["text"]} for r in rs]
-    return d
-
-
 READINGS.update(load_drafts())
 
+def lesson_sort_key(unit):
+    matched = re.match(r"B(\d)L(\d+)", unit)
+    if matched is None:
+        return (0, 0)
+    return (int(matched.group(1)), int(matched.group(2)))
 
-def gram_hit(g, text):
-    if g.get("pat") == "anota":
-        return re.search(r"(.)不\1", text) is not None
-    if g.get("pat") == "v1v":
-        return re.search(r"(.)一\1", text) is not None
-    if g.get("re"):
-        return re.search(g["re"], text) is not None
-    if g.get("m"):
-        return g["m"] in text
-    if g.get("any"):
-        return any(a in text for a in g["any"])
-    return False
+def lesson_number(unit):
+    matched = re.search(r"L(\d+)$", unit)
+    if matched is None:
+        raise SystemExit(f"bad unit {unit}")
+    return int(matched.group(1))
 
-
-DEFER_BUDGET = 3   # hybrid coverage: up to this many own-vocab words may defer to a later
-                   # lesson (they roll forward via coverage_ledger.py). Grammar stays 100%.
-
-
-def coverage_qa(LS, highlights):
-    """Gate: exactly 3 articles/lesson; union covers 100% grammar and >= (vocab-DEFER_BUDGET).
-    Deferred vocab words are reported, not failed — they roll forward (naturalness wins)."""
-    ok = True
-    print(f"coverage QA (3 articles · grammar 100% · vocab may defer <= {DEFER_BUDGET}/lesson):")
-    for unit in UNITS:
-        reads = READINGS[unit]
-        union = " ".join(r["text"] for r in reads)
-        vmiss = [v["w"] for v in LS[unit] if v["w"] not in union]
-        gmiss = [g["title"] for g in highlights[unit]["grammar"] if not gram_hit(g, union)]
-        vtot, gtot = len(LS[unit]), len(highlights[unit]["grammar"])
-        ncount = "" if len(reads) == 3 else f"  !! {len(reads)} articles (need 3)"
-        print(f"  {unit}: vocab {vtot-len(vmiss)}/{vtot} · grammar {gtot-len(gmiss)}/{gtot} · "
-              f"articles {len(reads)}{ncount}")
-        if len(reads) != 3:
-            ok = False
-        if vmiss:
-            over = len(vmiss) > DEFER_BUDGET
-            label = f"OVER BUDGET ({len(vmiss)}>{DEFER_BUDGET})" if over else "deferred"
-            print(f"    {label} vocab ({len(vmiss)}): {' '.join(vmiss)}")
-            if over:
-                ok = False
-        if gmiss:
-            print(f"    MISSING grammar: {'; '.join(gmiss)}"); ok = False
-    return ok
-
-
-def check_encounter_balance(LS):
-    """ADVISORY — smooth encounters across content words by SPREAD (spacing effect).
-    Excludes the function-word substrate (it self-saturates). Floors content words at
-    spread >= 2 of the 3 articles; reports the distribution + under-spaced singletons.
-    Never fails — naturalness wins; genuinely-rare words may stay thin (lifetime floor
-    accrues across later lessons)."""
-    print("encounter balance (content words should sit in >=2 of 3 articles):")
-    for unit in UNITS:
-        reads = READINGS[unit]
-        content = [v for v in LS[unit] if not is_function(v)]
-        dist = {1: [], 2: [], 3: []}
-        for v in content:
-            spread = sum(1 for r in reads if v["w"] in r["text"])
-            dist.setdefault(spread, []).append(v["w"])
-        spaced = len(dist.get(2, [])) + len(dist.get(3, []))
-        singles = dist.get(1, [])
-        print(f"  {unit}: content {len(content)} · spaced>=2 {spaced}/{len(content)} · "
-              f"in[1/2/3 articles] {len(singles)}/{len(dist.get(2,[]))}/{len(dist.get(3,[]))}")
-        if singles:
-            print(f"    under-spaced ({len(singles)}): {' '.join(singles)}")
-
-
-def advisory_scan(surf, highlights):
-    """ADVISORY only — out-of-band footprint per article; never fails (naturalness wins)."""
-    gmarks = set()
-    for u in UNITS:
-        for g in highlights[u]["grammar"]:
-            if g.get("m"):
-                gmarks.add(g["m"])
-            gmarks.update(g.get("any", []))
-    maxlen = max(len(s) for s in set().union(*surf.values()) | gmarks)
-    total = 0
-    for idx, unit in enumerate(UNITS):
-        band = set().union(*(surf.get(u, set()) for u in UNITS[:idx + 1])) | gmarks
-        for r in READINGS[unit]:
-            oob = []
-            for line in r["text"].split("\n"):
-                line = line.split("：", 1)[-1]
-                i = 0
-                while i < len(line):
-                    if line[i] in "，。！？、：；「」（） ":
-                        i += 1; continue
-                    hit = None
-                    for n in range(min(maxlen, len(line) - i), 0, -1):
-                        if line[i:i + n] in band:
-                            hit = line[i:i + n]; i += n; break
-                    if not hit:
-                        if line[i] not in LABELS:
-                            oob.append(line[i])
-                        i += 1
-            if oob:
-                total += len(set(oob))
-                print(f"  advisory  {unit}/{r['id']}: {' '.join(sorted(set(oob)))}")
-    print(f"advisory scan: {total} distinct out-of-band token(s) — allowed (naturalness wins)")
-
+def say(*parts, sep=" ", end="\n", file=None):
+    stream = sys.stdout if file is None or file is sys.stdout else sys.stderr
+    stream.write(sep.join(str(part) for part in parts) + end)
 
 def main():
     global UNITS
     LS, surf = load_deck()
     highlights = json.load(open(HILITES, encoding="utf-8"))
-    # Ship every unit that has highlights + vocab + readings (drafts auto-included).
-    def _key(u):
-        m = re.match(r"B(\d)L(\d+)", u)
-        return (int(m.group(1)), int(m.group(2)))
     UNITS = sorted((u for u in highlights
                     if not u.startswith("_") and u in LS and u in READINGS),
-                   key=_key)
+                   key=lesson_sort_key)
     if not UNITS:
         sys.exit("no shippable units (need highlights + vocab + readings)")
 
-    if not coverage_qa(LS, highlights):
+    state = {"units": UNITS, "readings": READINGS, "labels": LABELS}
+    if not coverage_qa(LS, highlights, state):
         sys.exit("\nCOVERAGE QA FAILED — every lesson needs exactly 3 articles covering "
                  "100% of vocab + grammar. Patch the readings above and rerun.")
-    advisory_scan(surf, highlights)
-    check_encounter_balance(LS)
+    advisory_scan(surf, highlights, state)
+    check_encounter_balance(LS, state)
 
     lessons = []
     for unit in UNITS:
         h = highlights[unit]
-        n = int(re.search(r"L(\d+)$", unit).group(1))
+        n = lesson_number(unit)
         lessons.append({
             "unit": unit, "cn": "第" + CN_NUM[n - 1] + "課", "n": n,
             "title": h["title"], "theme": h["theme"], "objectives": h["objectives"],
@@ -293,11 +181,10 @@ def main():
         f.write(banner)
         f.write("window.LESSONS = " + json.dumps(lessons, ensure_ascii=False) + ";\n")
 
-    for L in lessons:
-        print(f"{L['unit']} {L['title']!r}: vocab={len(L['vocab'])} grammar={len(L['grammar'])} "
-              f"articles={len(L['readings'])}")
-    print("wrote", os.path.relpath(OUT, ROOT))
-
+    for lesson in lessons:
+        say(f"{lesson['unit']} {lesson['title']!r}: vocab={len(lesson['vocab'])} grammar={len(lesson['grammar'])} "
+            f"articles={len(lesson['readings'])}")
+    say("wrote", os.path.relpath(OUT, ROOT))
 
 if __name__ == "__main__":
     main()

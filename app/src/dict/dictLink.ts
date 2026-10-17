@@ -1,10 +1,8 @@
 import { SITE } from "../config/site.js";
 
-
 export const DICT_ORIGIN = SITE.dictOrigin;
 
-
-export interface DictRailParams {
+interface DictRailParams {
   
   script: "trad" | "simp";
   
@@ -16,7 +14,6 @@ export interface DictRailParams {
 const SCRIPT_DEFAULT: DictRailParams["script"] = "trad";
 const READING_DEFAULT: DictRailParams["reading"] = "hv";
 const GLOSS_DEFAULT: DictRailParams["gloss"] = "vi";
-
 
 function toDictReading(internal: string | undefined): DictRailParams["reading"] {
   switch (internal) {
@@ -32,7 +29,6 @@ function toDictReading(internal: string | undefined): DictRailParams["reading"] 
   }
 }
 
-
 export function readRailParams(root: HTMLElement = document.documentElement): DictRailParams {
   const script = root.dataset.script;
   const gloss = root.dataset.gloss;
@@ -42,7 +38,6 @@ export function readRailParams(root: HTMLElement = document.documentElement): Di
     gloss: gloss === "en" ? "en" : GLOSS_DEFAULT,
   };
 }
-
 
 export function dictUrlFor(
   word: string,
@@ -54,7 +49,6 @@ export function dictUrlFor(
   const qs = new URLSearchParams({ s: p.script, r: p.reading, g: p.gloss });
   return `${path}?${qs.toString()}`;
 }
-
 
 export function firstCjkChar(word: string): string {
   for (const ch of word) {

@@ -1,0 +1,10 @@
+{
+  "entries": [
+    {
+      "rule": "R2",
+      "file": "app/public/shell/shell-tokens.css",
+      "fingerprint": "6e765e0c",
+      "reason": "Single-file shell contract. scripts/build-shell-contract.ts byte-compares this artifact to the generator output from mockups/site/_shell.html. Splitting the file would fail that drift check."
+    }
+  ]
+}

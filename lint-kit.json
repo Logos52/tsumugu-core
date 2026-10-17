@@ -1,0 +1,27 @@
+{
+  "profile": "strict",
+  "languages": ["ts", "js", "mjs", "py", "css", "sh"],
+  "ignore": [
+    "node_modules/**",
+    "**/node_modules/**",
+    "dist/**",
+    ".git/**",
+    "coverage/**",
+    "scripts/lint-fixtures/**"
+  ],
+  "proseGlobs": [
+    "README.md",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "CONTRIBUTING.md",
+    "docs/**/*.md",
+    ".github/**/*.md"
+  ],
+  "boundaryFiles": [],
+  "baseline": ".lint-kit-baseline.json",
+  "rules": {},
+  "prose": {
+    "allow": []
+  },
+  "exemptReason": ""
+}
