@@ -14,6 +14,9 @@ importers:
       '@tsumugu/gen-qa':
         specifier: workspace:*
         version: link:packages/gen-qa
+      '@tsumugu/vocab-import':
+        specifier: workspace:*
+        version: link:packages/vocab-import
       content-pipeline:
         specifier: workspace:*
         version: link:packages/content-pipeline
@@ -132,6 +135,8 @@ importers:
       '@types/node':
         specifier: ^22.10.0
         version: 22.20.0
+
+  packages/vocab-import: {}
 
 packages:
 

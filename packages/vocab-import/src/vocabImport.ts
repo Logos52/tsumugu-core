@@ -1,15 +1,17 @@
 import {
+  VocabImportError,
   destinationLang,
   laterWins,
   rowsFromVocabJson,
   splitLearningList,
   type ReadyRow,
+  type VocabEntryView,
   type VocabImportStore,
   type VocabStatus,
 } from "./vocabImport.parse.js";
 
-export type { VocabEntryView, VocabImportStore, VocabStatus } from "./vocabImport.parse.js";
-export { VocabImportError, splitLearningList } from "./vocabImport.parse.js";
+export { VocabImportError, splitLearningList };
+export type { VocabEntryView, VocabImportStore, VocabStatus };
 
 export interface VocabImportOptions {
   clock?: { now(): Date };

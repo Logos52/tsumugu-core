@@ -1,6 +1,6 @@
 # Vocab import format v1
 
-Two inputs. A JSON document of the user's tracked vocabulary, or a pasted list of words they are currently learning. Each import is one of those inputs. This file is the contract Wedge settled. `app/src/import/vocabImport.ts` implements it. `mergeUserDocs` stays the sync path. Stored documents stay at schema 2. The importer reads schema 2 and schema 3.
+Two inputs. A JSON document of the user's tracked vocabulary, or a pasted list of words they are currently learning. Each import is one of those inputs. This file is the contract Wedge settled. `packages/vocab-import/src/vocabImport.ts` implements it. `mergeUserDocs` stays the sync path. Stored documents stay at schema 2. The importer reads schema 2 and schema 3.
 
 Examples: [spec/examples/known-vocab.json](examples/known-vocab.json), [spec/examples/learning-list.txt](examples/learning-list.txt), [spec/examples/unknown-status.json](examples/unknown-status.json), [spec/examples/bad-json.txt](examples/bad-json.txt).
 

@@ -9,7 +9,7 @@ import {
   type VocabEntryView,
   type VocabImportStore,
   type VocabStatus,
-} from "./vocabImport.js";
+} from "@tsumugu/vocab-import";
 const examples = join(dirname(fileURLToPath(import.meta.url)), "../../../spec/examples");
 const clock = { now: () => new Date("2026-07-01T00:00:00.000Z") };
 function readExample(name: string): string {
