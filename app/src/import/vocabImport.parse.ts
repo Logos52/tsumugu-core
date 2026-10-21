@@ -103,7 +103,7 @@ function readDocument(raw: unknown): { declared?: string; entries: unknown[] } {
   if (Array.isArray(raw)) throw new VocabImportError("bare array is not a v1 document");
   if (!isRecord(raw)) throw new VocabImportError("document is not a v1 object");
   if (typeof raw.schema === "number") {
-    if (raw.schema !== 3) throw new VocabImportError(`user document schema ${raw.schema} is not 3`);
+    if (raw.schema !== 2 && raw.schema !== 3) throw new VocabImportError(`user document schema ${raw.schema} is not 2 or 3`);
     if (!isRecord(raw.store)) throw new VocabImportError("user document has no store");
     if (raw.store.schema !== "tsumugu/word-store@2") {
       throw new VocabImportError("word-store schema is not tsumugu/word-store@2");
@@ -115,7 +115,7 @@ function readDocument(raw: unknown): { declared?: string; entries: unknown[] } {
     if (!Array.isArray(raw.entries)) throw new VocabImportError("word-store entries are missing");
     return { declared: declaredLang(raw), entries: raw.entries };
   }
-  throw new VocabImportError("document is not word-store@2 or user document schema 3");
+  throw new VocabImportError("document is not word-store@2 or user document schema 2 or 3");
 }
 
 export function destinationLang(store: VocabImportStore): string {

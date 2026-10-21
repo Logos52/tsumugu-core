@@ -121,26 +121,23 @@ describe("vocab import rules", () => {
     expect(statusOf(store, "今天")).toBe("4");
   });
 
-  it("reads a schema 3 user document and leaves stored schema 2 alone", () => {
+  it("reads schema 2, schema 3, and a bare word-store@2 object", () => {
     const store = memory();
-    importVocabJson(
+    const userDoc = (schema: number, word: string) =>
       JSON.stringify({
-        schema: 3,
-        profile: { email: "skip@example.com" },
-        store: { schema: "tsumugu/word-store@2", entries: [{ word: "水", status: "ignored" }] },
-      }),
+        schema,
+        store: { schema: "tsumugu/word-store@2", entries: [{ word, status: "1" }] },
+      });
+    importVocabJson(userDoc(2, "山"), store, { clock });
+    importVocabJson(userDoc(3, "水"), store, { clock });
+    importVocabJson(
+      JSON.stringify({ schema: "tsumugu/word-store@2", entries: [{ word: "朋友", status: "known" }] }),
       store,
       { clock },
     );
-    expect(statusOf(store, "水")).toBe("ignored");
-    expect(() =>
-      importVocabJson(
-        JSON.stringify({ schema: 2, store: { schema: "tsumugu/word-store@2", entries: [{ word: "山", status: "1" }] } }),
-        store,
-      ),
-    ).toThrow(/schema 2 is not 3/);
-    expect(statusOf(store, "山")).toBeUndefined();
-    expect(statusOf(store, "水")).toBe("ignored");
+    expect(statusOf(store, "山")).toBe("1");
+    expect(statusOf(store, "水")).toBe("1");
+    expect(statusOf(store, "朋友")).toBe("known");
   });
 
   it("defaults a missing lang to the document lang, then the store lang", () => {

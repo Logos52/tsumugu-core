@@ -1,6 +1,6 @@
 # Vocab import format v1
 
-Two inputs. A JSON document of the user's tracked vocabulary, or a pasted list of words they are currently learning. Each import is one of those inputs. This file is the contract Wedge settled. `app/src/import/vocabImport.ts` implements it. `mergeUserDocs` stays the sync path. The cross-check records the schema decision that is still open.
+Two inputs. A JSON document of the user's tracked vocabulary, or a pasted list of words they are currently learning. Each import is one of those inputs. This file is the contract Wedge settled. `app/src/import/vocabImport.ts` implements it. `mergeUserDocs` stays the sync path. Stored documents stay at schema 2. The importer reads schema 2 and schema 3.
 
 Examples: [spec/examples/known-vocab.json](examples/known-vocab.json), [spec/examples/learning-list.txt](examples/learning-list.txt), [spec/examples/unknown-status.json](examples/unknown-status.json), [spec/examples/bad-json.txt](examples/bad-json.txt).
 
@@ -17,11 +17,11 @@ A word-store document:
 }
 ```
 
-A user document at schema 3. The entries live on `store`:
+A user document at schema 2 or schema 3. The entries live on `store`. The app writes schema 2, so a user's own export is schema 2. Schema 3 is the same read-only input.
 
 ```json
 {
-  "schema": 3,
+  "schema": 2,
   "store": {
     "schema": "tsumugu/word-store@2",
     "entries": []
@@ -29,7 +29,7 @@ A user document at schema 3. The entries live on `store`:
 }
 ```
 
-`schema` on the user document is the number 3. `schema` on the word-store document is the string `tsumugu/word-store@2`. Profile, settings, progress, grammar, and a document-level `updatedAt` are outside the subset. v1 does not apply them.
+`schema` on the user document is the number 2 or the number 3. `schema` on the word-store document is the string `tsumugu/word-store@2`. Profile, settings, progress, grammar, and a document-level `updatedAt` are outside the subset. v1 does not apply them. Reading a document does not change the schema the app writes.
 
 A bare array is not a v1 document.
 
@@ -138,7 +138,7 @@ v1 follows the union this repo's call sites use. `"l1"` through `"l4"` are impor
 
 ### UserDoc schema
 
-v1 uses the number `3` on the user document. `importVocabJson` reads that number and rejects any other user-document schema, including `2`. `app/src/store/userDoc.part2.ts` sets `USER_DOC_SCHEMA = 2`. `emptyUserDoc` and `toUserDoc` write `2`. `migrateUserDoc` rewrites whatever schema number it is given to `2`. Nothing in this repo writes schema `3`. That bump is still a product decision.
+`importVocabJson` reads a user document at schema 2 or schema 3, and a word-store document at `tsumugu/word-store@2`. It does not write a schema. `app/src/store/userDoc.part2.ts` sets `USER_DOC_SCHEMA = 2`. `emptyUserDoc` and `toUserDoc` write `2`. `migrateUserDoc` rewrites whatever schema number it is given to `2`. Nothing in this repo writes schema `3`. Whether stored documents move to 3 is still open. A user's export today is schema 2, and this importer accepts that file.
 
 The word-store string matches. `emptyUserDoc` writes `"tsumugu/word-store@2"`. Legacy `WORD_STORE_SCHEMA` is that same string. Legacy `WordStoreDoc.schema` also allows `"tsumugu/word-store@1"`. v1 accepts `@2`.
 
