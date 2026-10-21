@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { importVocabJson, importVocabList, type VocabImportStore } from "./vocabImport.js";
+import { importVocabJson, importVocabList, type VocabImportStore } from "@tsumugu/vocab-import";
 
 const store: VocabImportStore = {
   all: () => [],
