@@ -1,7 +1,9 @@
 import { importVocabJson as panelJson, importVocabList as panelList } from "../../app/src/import/importPanel.js";
 import {
+  VocabImportError,
   importVocabJson,
   importVocabList,
+  splitLearningList,
   type VocabEntryView,
   type VocabImportStore,
   type VocabStatus,
@@ -33,3 +35,5 @@ const json = importVocabJson(
 const list = importVocabList("水", memory(), { clock });
 if (json.applied !== 1 || list.applied !== 1) throw new Error("vocab import entry failed");
 if (panelJson !== importVocabJson || panelList !== importVocabList) throw new Error("vocab import re-export drifted");
+if (splitLearningList("水\n山").join(",") !== "水,山") throw new Error("vocab import list split failed");
+if (!(new VocabImportError("missing") instanceof Error)) throw new Error("vocab import error missing");
