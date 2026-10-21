@@ -4,7 +4,6 @@ import type { CorePreparedContent } from "../types/corePrepared.js";
 import { DEFAULT_MAX_CHARS, prepareFromText } from "./prepareFromText.js";
 import { importCaption, importPrivacyNotice } from "./copy.js";
 import { el } from "../ui/dom.js";
-import { importVocabJson, importVocabList, type VocabImportStore } from "./vocabImport.js";
 
 interface ImportPanelOpts {
   state: ReaderState;
@@ -18,19 +17,10 @@ interface ImportPanelController {
   destroy(): void;
 }
 
-const emptyVocabStore: VocabImportStore = {
-  all: () => [],
-  get: () => undefined,
-  setStatus: () => undefined,
-};
-
 export function mountImportPanel(
   root: HTMLElement,
   opts: ImportPanelOpts,
 ): ImportPanelController {
-  const emptyJson = importVocabJson('{"schema":"tsumugu/word-store@2","entries":[]}', emptyVocabStore);
-  const emptyList = importVocabList("", emptyVocabStore);
-  if (emptyJson.applied !== 0 || emptyList.applied !== 0) throw new Error("empty vocab import wrote a word");
   const backdrop = el("div", { class: "tsg-import-backdrop tsg-import-hidden" });
   const panel = el("div", { class: "tsg-import-panel" });
   const title = el("h2", { class: "tsg-import-title", text: "Paste a reading" });
