@@ -1,0 +1,13 @@
+{
+  "name": "@tsumugu/vocab-import",
+  "version": "0.0.0",
+  "description": "Vocab import v1 for a Tsumugu word-store document or a pasted learning list.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/vocabImport.ts"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  }
+}

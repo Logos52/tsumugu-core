@@ -12,7 +12,7 @@
     "build": "tsx scripts/vendor-fonts.ts && tsx scripts/build-blog.ts && vite build && node --experimental-strip-types scripts/build-sitemap.ts",
     "preview": "vite preview",
     "pretypecheck": "node scripts/ensure-engine-stub.mjs",
-    "typecheck": "tsc --noEmit -p app && tsc --noEmit -p app/tsconfig.sw.json && tsc --noEmit -p packages/gen-qa && tsc --noEmit -p packages/content-pipeline",
+    "typecheck": "tsc --noEmit -p app && tsc --noEmit -p app/tsconfig.sw.json && tsc --noEmit -p packages/gen-qa && tsc --noEmit -p packages/content-pipeline && tsc --noEmit -p packages/vocab-import",
     "test": "vitest run",
     "test:watch": "vitest",
     "prelint": "node scripts/ensure-engine-stub.mjs",
@@ -30,6 +30,7 @@
   "dependencies": {
     "@tsumugu/engine": "workspace:*",
     "@tsumugu/gen-qa": "workspace:*",
+    "@tsumugu/vocab-import": "workspace:*",
     "content-pipeline": "workspace:*",
     "jieba-wasm": "^2.2.0",
     "opencc-js": "^1.0.5",
