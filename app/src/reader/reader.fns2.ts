@@ -18,7 +18,7 @@ import { createPracticeBar, type PracticeBar } from "../voice/practiceBar.js";
 import { mountCueWaveforms, type CueWaveforms } from "../voice/cueWaveforms.js";
 import { shadowReducer, SHADOW_IDLE, type ShadowState } from "../voice/shadowing.js";
 import { alignCuesToTokens } from "./sync.js";
-export async function mountReaderTail4(ctx: any): Promise<any> {
+export function mountReaderTail4(ctx: any): any {
 const onVoiceKey = (ev: KeyboardEvent) => {
     const tag = (ev.target as HTMLElement | null)?.tagName;
     if (tag === "INPUT" || tag === "SELECT" || tag === "TEXTAREA") return;

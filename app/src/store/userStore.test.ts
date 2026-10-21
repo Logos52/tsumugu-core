@@ -111,4 +111,15 @@ describe("UserStore.pullFromUrl — UrlRemoteStore merge (C1)", () => {
     expect(store.getWordStore().getStatus("zh-Hant", "書")).toBe("known"); 
     expect(store.getWordStore().getStatus("zh-Hant", "筆")).toBe("4"); 
   });
+
+  it("reports nothing to pull when the URL is missing", async () => {
+    const store = new UserStore(undefined, new LocalSimRemoteStore());
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => ({ ok: false, status: 404, json: async () => ({}) }) as unknown as Response),
+    );
+    const { report } = await store.pullFromUrl("https://example.test/missing.json");
+    expect(report).toEqual({ hadConflict: false, wordsTouched: 0, note: "Nothing to pull." });
+    expect(store.getWordStore().all()).toEqual([]);
+  });
 });

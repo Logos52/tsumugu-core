@@ -4,10 +4,12 @@ import { DEFAULT_SETTINGS } from "../app/settings.js";
 import {
   USER_DOC_SCHEMA,
   type UserDoc,
+  computeProgress,
   emptyUserDoc,
   mergeUserDocs,
   migrateUserDoc,
   toUserDoc,
+  wordStoreFromUserDoc,
 } from "./userDoc.js";
 
 describe("mergeUserDocs", () => {
@@ -144,6 +146,43 @@ describe("grammar-known slot (C7)", () => {
     expect(g1?.status).toBe("known");
     expect(g1?.notes).toBe("keep");
     expect(merged.grammar?.entries.find((e) => e.id === "g2")?.status).toBe("4");
+  });
+});
+
+describe("computeProgress", () => {
+  it("counts 4, known, and ignored as known and ignores other languages", () => {
+    const store = new WordStore();
+    expect(computeProgress(store)).toMatchObject({ knownCount: 0, trackedCount: 0 });
+
+    store.upsert({ lang: "zh-Hant", word: "山", status: "known" });
+    store.upsert({ lang: "zh-Hant", word: "水", status: "4" });
+    store.upsert({ lang: "zh-Hant", word: "火", status: "2" });
+    store.upsert({ lang: "zh-Hant", word: "他", status: "1" });
+    store.upsert({ lang: "zh-Hant", word: "名", status: "ignored" });
+    store.upsert({ lang: "en", word: "hill", status: "known" });
+
+    const progress = computeProgress(store, "zh-Hant");
+    expect(progress.trackedCount).toBe(5);
+    expect(progress.knownCount).toBe(3);
+    expect(progress.byStatus["2"]).toBe(1);
+    expect(progress.byStatus["1"]).toBe(1);
+    expect(progress.byStatus.known).toBe(1);
+    expect(progress.byStatus.ignored).toBe(1);
+    expect(progress.byStatus["4"]).toBe(1);
+  });
+});
+
+describe("wordStoreFromUserDoc", () => {
+  it("returns an empty store when the doc or its store is missing", () => {
+    expect(wordStoreFromUserDoc(null).getStatus("zh-Hant", "山")).toBe("1");
+    expect(wordStoreFromUserDoc(undefined).size()).toBe(0);
+    const missing = { ...emptyUserDoc("u", "", DEFAULT_SETTINGS), store: undefined } as unknown as UserDoc;
+    expect(wordStoreFromUserDoc(missing).all()).toEqual([]);
+
+    const source = new WordStore();
+    source.setStatus("zh-Hant", "山", "known");
+    const restored = wordStoreFromUserDoc(toUserDoc(source, emptyUserDoc("u", "", DEFAULT_SETTINGS)));
+    expect(restored.getStatus("zh-Hant", "山")).toBe("known");
   });
 });
 
