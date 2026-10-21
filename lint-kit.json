@@ -17,7 +17,7 @@
     "docs/**/*.md",
     ".github/**/*.md"
   ],
-  "boundaryFiles": ["app/src/import/vocabImport.ts"],
+  "boundaryFiles": [],
   "baseline": ".lint-kit-baseline.json",
   "rules": {},
   "prose": {
