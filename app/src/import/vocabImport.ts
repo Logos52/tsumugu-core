@@ -51,6 +51,14 @@ export function importVocabJson(
   return { applied, unchanged };
 }
 
+export function attachVocabImport(target: {
+  importVocabJson?: typeof importVocabJson;
+  importVocabList?: typeof importVocabList;
+}): void {
+  target.importVocabJson = importVocabJson;
+  target.importVocabList = importVocabList;
+}
+
 export function importVocabList(
   text: string,
   store: VocabImportStore,

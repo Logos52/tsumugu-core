@@ -23,9 +23,7 @@ import { loadCompanionLessons, type CompanionLesson } from "./library/companionS
 import { SITE } from "./config/site.js";
 import { clear } from "./ui/dom.js";
 import { mountImportPanel } from "./import/importPanel.js";
-import { importVocabJson, importVocabList } from "./import/vocabImport.js";
-
-export { importVocabJson, importVocabList };
+import { attachVocabImport } from "./import/vocabImport.js";
 import { mountProPanel, mountDonateCard } from "./monetize/surfaces.js";
 import "./styles/reader.css";
 import "./styles/catalog.css";
@@ -88,7 +86,8 @@ function renderPhase2(host: HTMLElement, title: string): void {
 }
 
 async function boot(): Promise<void> {
-  const ctx: any = { importVocabJson, importVocabList };
+  const ctx: any = {};
+  attachVocabImport(ctx);
 
   ctx.restoreSession = restoreSession; ctx.loadSettings = loadSettings; ctx.applySettings = applySettings; ctx.setThemeBtn = setThemeBtn; ctx.getUserStore = getUserStore; ctx.createHttpVault = createHttpVault; ctx.staticVaultBase = staticVaultBase; ctx.listVaultReadings = listVaultReadings; ctx.FIXTURE_CATALOG = FIXTURE_CATALOG; ctx.loadCompanionLessons = loadCompanionLessons; ctx.loadCompanionTitles = loadCompanionTitles; ctx.loadFixture = loadFixture; ctx.createReaderState = createReaderState; ctx.createWordPopup = createWordPopup; ctx.mountReader = mountReader; ctx.FEATURES = FEATURES; ctx.createEncodingModal = createEncodingModal; ctx.paintReadHead = paintReadHead; ctx.mountLibraryView = mountLibraryView; ctx.trackEvent = trackEvent; ctx.mountCommandSwitcher = mountCommandSwitcher; ctx.mountSyncPanel = mountSyncPanel; ctx.mountProPanel = mountProPanel; ctx.mountDonateCard = mountDonateCard; ctx.mountImportPanel = mountImportPanel; ctx.showReaderView = showReaderView; ctx.queryFromHash = queryFromHash; ctx.showCatalogView = showCatalogView; ctx.parsePreparedContent = parsePreparedContent; ctx.applyChromeLang = applyChromeLang; ctx.applyI18n = applyI18n; ctx.wireSeg = wireSeg; ctx.createRouter = createRouter; ctx.createTopNav = createTopNav; ctx.updateSeo = updateSeo; ctx.getSession = getSession; ctx.subscribeSession = subscribeSession; ctx.createHomeSurface = createHomeSurface; ctx.clear = clear; ctx.renderPhase2 = renderPhase2; ctx.renderStaticPage = renderStaticPage; ctx.readingPathFromHash = readingPathFromHash; ctx.isReaderHash = isReaderHash; ctx.surfaceFromHash = surfaceFromHash; ctx.createFirstGradeToast = createFirstGradeToast; ctx.t = t;
 return bootTail4(ctx);
