@@ -98,7 +98,7 @@ Each word is Traditional Chinese. Each word is stored at status `"1"`. A word wh
 
 A word at `"2"`, `"3"`, `"4"`, or `"ignored"`, and a word that was absent, is stored at `"1"`.
 
-[spec/examples/learning-list.txt](examples/learning-list.txt) splits into `朋友`, `學習`, `今天`, `明天`, `你好`, `謝謝`, `看見`, and `聽見`. Each is stored at `"1"`, except a `朋友` that is already `known`.
+[spec/examples/learning-list.txt](examples/learning-list.txt) splits into `朋友`, `學習`, `今天`, `明天`, `你好`, `謝謝`, `看見`, and `聽見`. An already-`known` `朋友` stays `known`. The other seven words are stored at `"1"`.
 
 ## Errors
 
