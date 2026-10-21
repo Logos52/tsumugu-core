@@ -5,6 +5,8 @@ import { DEFAULT_MAX_CHARS, prepareFromText } from "./prepareFromText.js";
 import { importCaption, importPrivacyNotice } from "./copy.js";
 import { el } from "../ui/dom.js";
 
+export { importVocabJson, importVocabList } from "./vocabImport.js";
+
 interface ImportPanelOpts {
   state: ReaderState;
   vault?: import("@tsumugu/engine").VaultIO | null;

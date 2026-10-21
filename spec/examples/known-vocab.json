@@ -1,0 +1,19 @@
+{
+  "schema": "tsumugu/word-store@2",
+  "entries": [
+    {
+      "word": "朋友",
+      "status": "known",
+      "updatedAt": "2026-06-24T10:00:00.000Z"
+    },
+    {
+      "word": "學習",
+      "status": "l3"
+    },
+    {
+      "word": "今天",
+      "status": "learning-1",
+      "updatedAt": "2026-06-20T08:00:00.000Z"
+    }
+  ]
+}

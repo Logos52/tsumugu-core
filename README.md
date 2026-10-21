@@ -4,7 +4,7 @@ The public reading product in the Tsumugu line. A website of AI-generated, level
 
 Traditional on the surface; Simplified is stored hidden, never user-facing.
 
-Code is Apache-2.0. Content is all rights reserved. No content license is chosen.
+Code is Apache-2.0. Wedge's own content and the cast are all rights reserved. CONTENT-RIGHTS.md lists the paths. Third-party files keep their own licenses.
 
 A paid version may come later; nothing here blocks it.
 
