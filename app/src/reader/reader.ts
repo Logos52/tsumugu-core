@@ -141,6 +141,7 @@ const buildProse = () => buildProseFromPart(ctx);
 
   function setCurrent(word: string, span: HTMLElement): void {
     currentWord = word;
+    ctx.currentWord = word;
     if (activeSpan && activeSpan !== span) activeSpan.classList.remove(CLS.sel);
     activeSpan = span;
     span.classList.add(CLS.sel);

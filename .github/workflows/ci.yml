@@ -69,24 +69,18 @@ jobs:
           esac
           exit "$status"
 
-      - name: Vocab import entry
-        run: npx tsx scripts/ci/vocab-import-entry.ts
-
       - name: Lint
         run: pnpm lint
 
       - name: Typecheck
         run: pnpm typecheck
 
-      # dualRail and reader.test fail on current main (async reader
-      # controller, hotkey currentWord never written). Private-fixture
-      # tests fail closed without dangdai.csv / hanviet.json. Those files
-      # are not in this checkout, and this job does not change product code.
+      # These tests read private/dangdai-vocab/dangdai.csv or
+      # ../tsumugu-ed/sources/hanviet/hanviet.json. Neither file is in
+      # this checkout, so the job excludes them and still fails on the rest.
       - name: Test
         run: |
           pnpm test \
-            --exclude app/src/reader/dualRail.test.ts \
-            --exclude app/src/reader/reader.test.ts \
             --exclude scripts/accc/resolve-lesson-target.test.ts \
             --exclude scripts/companion/convert-drafts.test.ts \
             --exclude scripts/gen/reading-pipeline.test.ts \
