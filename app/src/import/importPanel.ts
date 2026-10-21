@@ -4,8 +4,7 @@ import type { CorePreparedContent } from "../types/corePrepared.js";
 import { DEFAULT_MAX_CHARS, prepareFromText } from "./prepareFromText.js";
 import { importCaption, importPrivacyNotice } from "./copy.js";
 import { el } from "../ui/dom.js";
-
-export { importVocabJson, importVocabList } from "./vocabImport.js";
+import { importVocabJson, importVocabList } from "./vocabImport.js";
 
 interface ImportPanelOpts {
   state: ReaderState;
@@ -17,6 +16,8 @@ interface ImportPanelController {
   open(): void;
   close(): void;
   destroy(): void;
+  importVocabJson: typeof importVocabJson;
+  importVocabList: typeof importVocabList;
 }
 
 export function mountImportPanel(
@@ -187,5 +188,7 @@ export function mountImportPanel(
     destroy: () => {
       backdrop.remove();
     },
+    importVocabJson,
+    importVocabList,
   };
 }
