@@ -1,4 +1,6 @@
-export type VocabStatus = "1" | "2" | "3" | "4" | "known" | "ignored";
+import { isRecord, isVocabStatus, type VocabStatus } from "./shapes.js";
+
+export type { VocabStatus } from "./shapes.js";
 
 export interface VocabEntryView {
   lang: string;
@@ -56,22 +58,14 @@ export interface ReadyRow {
   updatedAt?: string;
 }
 
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-
 function declaredLang(doc: Record<string, unknown>): string | undefined {
   return typeof doc.lang === "string" && doc.lang.length > 0 ? doc.lang : undefined;
-}
-
-function isCanonical(status: string): status is VocabStatus {
-  return status === "1" || status === "2" || status === "3" || status === "4" || status === "known" || status === "ignored";
 }
 
 function canonicalStatus(word: string, status: unknown): VocabStatus {
   const shown = JSON.stringify(status);
   if (typeof status === "string") {
-    if (isCanonical(status)) return status;
+    if (isVocabStatus(status)) return status;
     const mapped = ALIAS[status];
     if (mapped) return mapped;
   }
