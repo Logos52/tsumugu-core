@@ -1,6 +1,6 @@
 # Vocab import format v1
 
-Two inputs. A JSON document of the user's tracked vocabulary, or a pasted list of words they are currently learning. Each import is one of those inputs. This file is the contract Wedge settled. No parser in this repository implements it. The last section records where the code differs.
+Two inputs. A JSON document of the user's tracked vocabulary, or a pasted list of words they are currently learning. Each import is one of those inputs. This file is the contract Wedge settled. `app/src/import/vocabImport.ts` implements it. `mergeUserDocs` stays the sync path. Stored documents stay at schema 2. The importer reads schema 2 and schema 3.
 
 Examples: [spec/examples/known-vocab.json](examples/known-vocab.json), [spec/examples/learning-list.txt](examples/learning-list.txt), [spec/examples/unknown-status.json](examples/unknown-status.json), [spec/examples/bad-json.txt](examples/bad-json.txt).
 
@@ -17,11 +17,11 @@ A word-store document:
 }
 ```
 
-A user document at schema 3. The entries live on `store`:
+A user document at schema 2 or schema 3. The entries live on `store`. The app writes schema 2, so a user's own export is schema 2. Schema 3 is the same read-only input.
 
 ```json
 {
-  "schema": 3,
+  "schema": 2,
   "store": {
     "schema": "tsumugu/word-store@2",
     "entries": []
@@ -29,7 +29,7 @@ A user document at schema 3. The entries live on `store`:
 }
 ```
 
-`schema` on the user document is the number 3. `schema` on the word-store document is the string `tsumugu/word-store@2`. Profile, settings, progress, grammar, and a document-level `updatedAt` are outside the subset. v1 does not apply them.
+`schema` on the user document is the number 2 or the number 3. `schema` on the word-store document is the string `tsumugu/word-store@2`. Profile, settings, progress, grammar, and a document-level `updatedAt` are outside the subset. v1 does not apply them. Reading a document does not change the schema the app writes.
 
 A bare array is not a v1 document.
 
@@ -94,11 +94,11 @@ Later means later in array order.
 
 Separators are the newline, the comma `,`, the ASCII space, and the ideographic comma `、`. Consecutive separators produce no empty word. A tab is not a separator.
 
-Each word is Traditional Chinese. Each word is stored at status `"1"`. A word whose current status is `"known"` stays `"known"`.
+Each word is Traditional Chinese. Each word is stored at status `"1"`. A word whose current status is `"4"` or `"known"` stays at that status.
 
-A word at `"2"`, `"3"`, `"4"`, or `"ignored"`, and a word that was absent, is stored at `"1"`.
+A word at `"2"`, `"3"`, or `"ignored"`, and a word that was absent, is stored at `"1"`.
 
-[spec/examples/learning-list.txt](examples/learning-list.txt) splits into `朋友`, `學習`, `今天`, `明天`, `你好`, `謝謝`, `看見`, and `聽見`. An already-`known` `朋友` stays `known`. The other seven words are stored at `"1"`.
+[spec/examples/learning-list.txt](examples/learning-list.txt) splits into `朋友`, `學習`, `今天`, `明天`, `你好`, `謝謝`, `看見`, and `聽見`. An already-`known` or `"4"` `朋友` stays at that status. The other words are stored at `"1"`.
 
 ## Errors
 
@@ -138,38 +138,31 @@ v1 follows the union this repo's call sites use. `"l1"` through `"l4"` are impor
 
 ### UserDoc schema
 
-v1 uses the number `3` on the user document. `app/src/store/userDoc.part2.ts` sets `USER_DOC_SCHEMA = 2`. `emptyUserDoc` and `toUserDoc` write `2`. `migrateUserDoc` rewrites whatever schema number it is given to `2`. Nothing in this repo writes schema `3`.
+`importVocabJson` reads a user document at schema 2 or schema 3, and a word-store document at `tsumugu/word-store@2`. It does not write a schema. `app/src/store/userDoc.part2.ts` sets `USER_DOC_SCHEMA = 2`. `emptyUserDoc` and `toUserDoc` write `2`. `migrateUserDoc` rewrites whatever schema number it is given to `2`. Nothing in this repo writes schema `3`. Whether stored documents move to 3 is still open. A user's export today is schema 2, and this importer accepts that file.
 
 The word-store string matches. `emptyUserDoc` writes `"tsumugu/word-store@2"`. Legacy `WORD_STORE_SCHEMA` is that same string. Legacy `WordStoreDoc.schema` also allows `"tsumugu/word-store@1"`. v1 accepts `@2`.
 
 ### Clock field
 
-v1 reads per-word `updatedAt`.
+The importer reads per-word `updatedAt`. The later time wins. Equal times, and two omitted times, keep the later entry in the file. A present `updatedAt` beats an omitted one. An `updatedAt` that is present and is not a timestamp rejects the file.
 
-Legacy `WordEntry` has `statusUpdatedAt`. It has no per-word `updatedAt`. `WordStoreDoc.updatedAt` is the document clock. `setStatus` writes `statusUpdatedAt`. `mergeUserDocs` in `app/src/store/userDoc.part1.ts` reconciles with `statusUpdatedAt` and `policy: "never-demote"`. A file from `toUserDoc` or `WordStore.toDoc` carries `statusUpdatedAt` on each entry. v1 does not read that key, so the export clock is invisible to this format.
+Legacy `WordEntry` stores `statusUpdatedAt`. The importer does not write `updatedAt` onto the entry. `setStatus` still stamps `statusUpdatedAt`. When the destination already has the word, that stored `statusUpdatedAt` is the word's clock for the same comparison, and a tie applies the import. `mergeUserDocs` in `app/src/store/userDoc.part1.ts` is unchanged: it still reconciles with `statusUpdatedAt` and `policy: "never-demote"`.
 
-### `lang` and validation
+A file from `toUserDoc` carries `statusUpdatedAt` and no per-word `updatedAt`. This importer does not read `statusUpdatedAt` from the file, so that export clock stays invisible here. `importUserDoc` remains the path for those files.
 
-Legacy `WordEntry` requires `lang` and `word`. `WordStore.fromDoc` drops an entry whose `lang` or `word` is not a string, and it stores the `status` string it is given. It does not map aliases and it does not reject `"new"`.
+### `lang`
 
-v1 entries have no `lang` key. Writes in this app use `lang: "zh-Hant"` (`app/src/store/userDoc.test.ts`, `app/src/account/ankiExport.ts`). Passing a v1 entry through `WordStore.fromDoc` as written drops it, because `lang` is missing.
+A missing `lang` takes the document language, in this order: a `lang` string on the import document, otherwise the one `lang` shared by entries that name one, otherwise the destination store's language when every stored entry shares one `lang`, otherwise `"zh-Hant"`. An entry that names `lang` keeps it. `WordStore.fromDoc` is unchanged and still drops a row with no `lang`.
 
-### Importer that exists today
+### Sync import
 
-`importUserDoc` in `app/src/store/userStoreMethods2.ts` runs `migrateUserDoc`, then `mergeUserDocs`. That path merges a full user document. It does not apply this subset, these aliases, or "later entry wins."
+`importUserDoc` still runs `migrateUserDoc`, then `mergeUserDocs`. It does not use this subset, these aliases, or "later entry wins." `importFromFile` still surfaces a `JSON.parse` error and leaves the store unassigned. `prepareFromText` still builds prepared content and does not write status `"1"`.
 
-`importFromFile` in `app/src/auth/accountView.part2.ts` parses with `JSON.parse`. A parse error is caught, the message is `sync.importFailed` plus `Error.message`, and the store is left unassigned. That matches the bad-JSON rule. The same function does not check status, so an unknown status is stored today.
+### Paste and "4"
 
-`app/src/import/prepareFromText.ts` turns pasted reading text into prepared content. It does not write status `"1"`.
-
-### "Already known"
-
-The paste rule leaves a word alone when its status is the string `"known"`.
-
-`packages/gen-qa/src/bridge.ts` also treats `"4"` as known. Legacy `DEFAULT_KNOWN_POLICY` treats `l4`, `known`, and `ignored` as known. `app/src/catalog/coverage.ts` uses `DEFAULT_KNOWN_POLICY.knownStatuses` from the engine. The paste rule does not. A pasted word at `"4"` or `"ignored"` is stored at `"1"`. README calls `"4"` Learned and `"1"` New, so a paste of a Learned word stores it as New.
+The paste leaves `"4"` and `"known"` in place. `"ignored"` is stored at `"1"`. README calls `"4"` Learned and `"1"` New. A pasted Learned word stays Learned.
 
 ### Left unspecified
 
-- An `updatedAt` value that is present and is not a timestamp.
 - A pasted token that is not Traditional Chinese.
 - Separators other than newline, comma, ASCII space, and `、`.
