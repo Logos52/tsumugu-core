@@ -1,0 +1,1 @@
+{ "schema": "tsumugu/word-store@2", "entries": [ }

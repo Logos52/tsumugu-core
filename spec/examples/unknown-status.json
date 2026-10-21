@@ -1,0 +1,7 @@
+{
+  "schema": "tsumugu/word-store@2",
+  "entries": [
+    { "word": "朋友", "status": "known" },
+    { "word": "山", "status": "new" }
+  ]
+}
