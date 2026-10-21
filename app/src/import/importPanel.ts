@@ -4,9 +4,8 @@ import type { CorePreparedContent } from "../types/corePrepared.js";
 import { DEFAULT_MAX_CHARS, prepareFromText } from "./prepareFromText.js";
 import { importCaption, importPrivacyNotice } from "./copy.js";
 import { el } from "../ui/dom.js";
-import { importVocabJson, importVocabList } from "./vocabImport.js";
 
-export { importVocabJson, importVocabList };
+export { importVocabJson, importVocabList } from "./vocabImport.js";
 
 interface ImportPanelOpts {
   state: ReaderState;
