@@ -1,6 +1,5 @@
 import type { ReaderState } from "../app/state.js";
 import { packForLang } from "../packs/index.js";
-import type { CorePreparedContent } from "../types/corePrepared.js";
 import { DEFAULT_MAX_CHARS, prepareFromText } from "./prepareFromText.js";
 import { importCaption, importPrivacyNotice } from "./copy.js";
 import { el } from "../ui/dom.js";

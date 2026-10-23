@@ -10,7 +10,7 @@ import {
   type VocabStatus,
 } from "./vocabImport.parse.js";
 
-export { VocabImportError, splitLearningList };
+export { VocabImportError };
 export type { VocabEntryView, VocabImportStore, VocabStatus };
 
 export interface VocabImportOptions {
