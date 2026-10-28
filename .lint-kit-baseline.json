@@ -1,10 +1,10 @@
 {
+  "pin": "11b2880e890ba1525775843e3f6027e729afbe25",
   "entries": [
     {
       "rule": "R2",
       "file": "app/public/shell/shell-tokens.css",
-      "fingerprint": "6e765e0c",
-      "reason": "Single-file shell contract. scripts/build-shell-contract.ts byte-compares this artifact to the generator output from mockups/site/_shell.html. Splitting the file would fail that drift check."
+      "fingerprint": "6e765e0c"
     }
   ]
 }

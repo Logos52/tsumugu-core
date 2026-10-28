@@ -20,6 +20,7 @@
   "boundaryFiles": [],
   "baseline": ".lint-kit-baseline.json",
   "rules": {},
+  "batch": "v5",
   "prose": {
     "allow": []
   },
