@@ -26,6 +26,9 @@ jobs:
             git clone --depth 1 file:///home/box/mirrors/tsumugu-engine-legacy.git ../tsumugu
           fi
           node scripts/ci/rewrite-engine-word-status.mjs ../tsumugu/packages/engine
+          git -C ../tsumugu rev-parse HEAD
+          node -e 'console.log(new Date().toISOString(), "SOURCE_DATE_EPOCH="+process.env.SOURCE_DATE_EPOCH)'
+          nl -ba ../tsumugu/packages/engine/src/anki/exporter.ts | sed -n '470,530p'
 
       - uses: pnpm/action-setup@v6
 
