@@ -13,28 +13,24 @@ concurrency:
 
 jobs:
   check:
-    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: [self-hosted, tsumugu-core]
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v7
 
       - name: Engine sibling
         run: |
+          rm -rf ../tsumugu
           if [ ! -d ../tsumugu/packages/engine ]; then
-            git clone --depth 1 https://github.com/Logos52/tsumugu-engine-legacy.git ../tsumugu
+            git clone --depth 1 file:///home/box/mirrors/tsumugu-engine-legacy.git ../tsumugu
           fi
           node scripts/ci/rewrite-engine-word-status.mjs ../tsumugu/packages/engine
 
       - uses: pnpm/action-setup@v6
 
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 22
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
-
       - name: Install
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --store-dir "$RUNNER_TEMP/pnpm-store"
 
       - name: Link jieba-wasm for the Vite alias
         run: |
