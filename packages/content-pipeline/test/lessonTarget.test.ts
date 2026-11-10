@@ -2,6 +2,7 @@ import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
+import { PREPARED_CONTENT_SCHEMA_V2 } from "@tsumugu/engine";
 import {
   loadLessonTarget,
   resolveLessonTarget,
@@ -9,6 +10,16 @@ import {
   targetSidecarPath,
   type PreparedWithBinding,
 } from "content-pipeline/lessonTarget";
+
+function prepared(extra: object = {}): PreparedWithBinding {
+  return {
+    schema: PREPARED_CONTENT_SCHEMA_V2,
+    lang: "zh-Hant",
+    tokens: [],
+    glossary: {},
+    ...extra,
+  } as unknown as PreparedWithBinding;
+}
 
 const CSV = [
   "id,traditional",
@@ -115,9 +126,7 @@ describe("resolveLessonTarget", () => {
   });
 
   it("reads an acccBinding facet and does not require a sidecar", () => {
-    const content = {
-      tokens: [],
-      glossary: {},
+    const content = prepared({
       title: "b9l99",
       acccBinding: {
         lessonId: "b1l01",
@@ -126,7 +135,7 @@ describe("resolveLessonTarget", () => {
         newVocab: ["好"],
         newGrammar: ["呢"],
       },
-    } as PreparedWithBinding;
+    });
     const target = resolveLessonTarget(content, "/missing/no.prepared.json");
     expect(target.lessonId).toBe("b1l01");
     expect(target.ceiling).toBe("TOCFL-2");
@@ -136,11 +145,9 @@ describe("resolveLessonTarget", () => {
   });
 
   it("fills missing binding arrays with empty collections", () => {
-    const content = {
-      tokens: [],
-      glossary: {},
+    const content = prepared({
       acccBinding: { lessonId: "b2l03", ceiling: "TOCFL-4" },
-    } as PreparedWithBinding;
+    });
     const target = resolveLessonTarget(content);
     expect(target.cumulativeVocab).toEqual(new Set());
     expect(target.newVocab).toEqual([]);
@@ -149,8 +156,8 @@ describe("resolveLessonTarget", () => {
 
   it("loads a sidecar when the prepared path has one", () => {
     dir = mkdtempSync(join(tmpdir(), "lesson-sidecar-"));
-    const prepared = join(dir, "b1l01.prepared.json");
-    const sidecar = targetSidecarPath(prepared);
+    const preparedPath = join(dir, "b1l01.prepared.json");
+    const sidecar = targetSidecarPath(preparedPath);
     writeFileSync(
       sidecar,
       JSON.stringify({
@@ -163,17 +170,13 @@ describe("resolveLessonTarget", () => {
     );
     const loaded = loadLessonTarget(sidecar);
     expect(loaded.cumulativeVocab).toEqual(new Set(["你", "好"]));
-    const target = resolveLessonTarget({ tokens: [], glossary: {} } as PreparedWithBinding, prepared);
+    const target = resolveLessonTarget(prepared(), preparedPath);
     expect(target).toEqual(loaded);
   });
 
   it("throws when there is no binding, sidecar, or resolvable title", () => {
-    expect(() => resolveLessonTarget({ tokens: [], glossary: {} } as PreparedWithBinding)).toThrow(
-      /no lesson target/,
-    );
-    expect(() =>
-      resolveLessonTarget({ tokens: [], glossary: {}, title: "b1l01 story" } as PreparedWithBinding),
-    ).toThrow(/no lesson target/);
+    expect(() => resolveLessonTarget(prepared())).toThrow(/no lesson target/);
+    expect(() => resolveLessonTarget(prepared({ title: "b1l01 story" }))).toThrow(/no lesson target/);
   });
 
   it("throws when the sidecar path does not exist", () => {
