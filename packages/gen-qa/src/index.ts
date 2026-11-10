@@ -80,3 +80,5 @@ export {
   EXAMPLE_COUNT_MAX,
   EXAMPLE_COUNT_DEFAULT,
 } from "./examples.js";
+
+export { isCircularZhDef, isEmptyZhDef } from "./zhDefGuards.js";

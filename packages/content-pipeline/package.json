@@ -9,7 +9,9 @@
     "./lessonTarget": "./src/lessonTarget.ts",
     "./hanviet": "./src/hanviet.ts",
     "./genQa": "./src/genQa.ts",
-    "./pack": "./src/pack.ts"
+    "./pack": "./src/pack.ts",
+    "./proseUtils": "./src/proseUtils.ts",
+    "./skipLog": "./src/skipLog.ts"
   },
   "bin": {
     "reading-checks": "./src/cli.ts"
