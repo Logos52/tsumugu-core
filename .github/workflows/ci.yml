@@ -16,6 +16,10 @@ jobs:
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: [self-hosted, tsumugu-core]
     timeout-minutes: 30
+    # fflate dates the Anki zip from the local year of 1980-01-01T00:00:00Z.
+    # West of UTC that local year is 1979 and the zip throws.
+    env:
+      TZ: UTC
     steps:
       - uses: actions/checkout@v7
 
@@ -26,9 +30,6 @@ jobs:
             git clone --depth 1 file:///home/box/mirrors/tsumugu-engine-legacy.git ../tsumugu
           fi
           node scripts/ci/rewrite-engine-word-status.mjs ../tsumugu/packages/engine
-          git -C ../tsumugu rev-parse HEAD
-          node -e 'console.log(new Date().toISOString(), "SOURCE_DATE_EPOCH="+process.env.SOURCE_DATE_EPOCH)'
-          nl -ba ../tsumugu/packages/engine/src/anki/exporter.ts | sed -n '470,530p'
 
       - uses: pnpm/action-setup@v6
 
