@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { flag, list, num, parseArgs, str } from "../src/args.js";
+import { flag, list, num, parseArgs, str } from "@tsumugu/gen-qa";
 
 describe("parseArgs", () => {
   it("keeps positionals and reads values and bare flags", () => {

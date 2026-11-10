@@ -7,7 +7,7 @@ import {
   splitParagraphs,
   splitSentences,
   topRepetitionOffender,
-} from "../src/proseUtils.js";
+} from "content-pipeline/proseUtils";
 
 describe("prose splitting", () => {
   it("counts Han characters, including the extension block", () => {

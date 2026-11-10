@@ -11,7 +11,7 @@ import {
   slugify,
   writeJson,
   writeText,
-} from "../src/io.js";
+} from "@tsumugu/gen-qa";
 
 describe("slugify and NFC", () => {
   it("folds spaces and slashes into single hyphens and drops other symbols", () => {

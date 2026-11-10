@@ -12,7 +12,7 @@ import {
   tocflBandFromOrdinal,
   tocflOrdinal,
   type DefLevelIndex,
-} from "../src/defLevelData.js";
+} from "@tsumugu/gen-qa";
 
 const INDEX: DefLevelIndex = {
   tocfl: {

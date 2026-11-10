@@ -3,7 +3,7 @@ import {
   assertMonolingualSeedLicenses,
   moedictByNdSeedFixture,
   type ProvenanceManifest,
-} from "../src/licenseAssert.js";
+} from "@tsumugu/gen-qa";
 
 function manifest(sources: ProvenanceManifest["sources"]): ProvenanceManifest {
   return { sources };

@@ -8,7 +8,7 @@ import {
   isOverlayExample,
   isSharedExample,
   seedSharedExampleSlots,
-} from "../src/examples.js";
+} from "@tsumugu/gen-qa";
 
 describe("exampleTargetCount", () => {
   it("stays inside the shared-example band and is stable", () => {

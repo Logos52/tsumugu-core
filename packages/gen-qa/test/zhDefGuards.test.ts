@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isCircularZhDef, isEmptyZhDef } from "../src/zhDefGuards.js";
+import { isCircularZhDef, isEmptyZhDef } from "@tsumugu/gen-qa";
 
 describe("isCircularZhDef", () => {
   it("is false for an empty headword", () => {

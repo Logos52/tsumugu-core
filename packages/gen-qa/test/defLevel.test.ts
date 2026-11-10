@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { checkDefLevel, decomposesIntoAllowList, resetDefLevelSegmenter, segmentDefText } from "../src/defLevel.js";
-import type { DefLevelIndex } from "../src/defLevelData.js";
+import {
+  checkDefLevel,
+  decomposesIntoAllowList,
+  resetDefLevelSegmenter,
+  segmentDefText,
+  type DefLevelIndex,
+} from "@tsumugu/gen-qa";
 
 const INDEX: DefLevelIndex = {
   tocfl: {
