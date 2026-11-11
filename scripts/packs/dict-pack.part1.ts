@@ -8,7 +8,7 @@ const KINDS = new Set(["c", "w", "g"]);
 const BANDS = new Set(["A1", "A2", "B1", "B2", "C1", "C2"]);
 const STRING_FIELDS = ["g", "gv", "p", "py", "v", "zy"] as const;
 
-export interface DictMeta {
+interface DictMeta {
   cjkShards: number;
   entryShards: number;
   entries: number;
@@ -18,7 +18,7 @@ export interface DictMeta {
   zyLetters: string[];
 }
 
-export interface EntryPart {
+interface EntryPart {
   start: number;
   count: number;
 }
