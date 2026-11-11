@@ -41,6 +41,9 @@ jobs:
           mkdir -p ../tsumugu/node_modules
           ln -sfn "$GITHUB_WORKSPACE/node_modules/jieba-wasm" ../tsumugu/node_modules/jieba-wasm
 
+      - name: Data pack checks
+        run: npx tsx scripts/packs/validate-data-packs.ts
+
       - name: Dict search freshness
         run: |
           if [ -d ../tsumugu-ed/exports/site/assets/search ]; then

@@ -1,0 +1,83 @@
+{
+  "pack": "dict-search",
+  "files": {
+    "meta.json": {
+      "cjkShards": 1,
+      "enLetters": [
+        "y"
+      ],
+      "entries": 1,
+      "entryShards": 1,
+      "pyLetters": [
+        "n"
+      ],
+      "viLetters": [
+        "n"
+      ],
+      "zyLetters": [
+        "ㄋ"
+      ]
+    },
+    "entries-meta.json": {
+      "count": 1,
+      "sharded": true,
+      "parts": [
+        {
+          "count": 1,
+          "start": 0
+        }
+      ]
+    },
+    "entries-0.json": [
+      {
+        "id": 0,
+        "h": "你",
+        "k": "c",
+        "u": "c/你.html",
+        "g": "you",
+        "gv": "bạn",
+        "py": "nǐ",
+        "p": "ni",
+        "v": "nễ",
+        "zy": "ㄋㄧˇ",
+        "b": "A1"
+      }
+    ],
+    "en-y.json": {
+      "you": [
+        0
+      ]
+    },
+    "vi-n.json": {
+      "nễ": [
+        0
+      ]
+    },
+    "zy-ㄋ.json": {
+      "ㄋㄧˇ": [
+        0
+      ]
+    },
+    "cjk-00.json": {
+      "你": [
+        0
+      ]
+    },
+    "facet-band.json": {
+      "A1": [
+        0
+      ]
+    },
+    "facet-component.json": {},
+    "facet-phonetic.json": {},
+    "variants.json": {
+      "chars": {
+        "你": [
+          "你"
+        ]
+      },
+      "words": {}
+    }
+  },
+  "expect": "missing file py-n.json"
+}
