@@ -1,106 +1,19 @@
 import { issue, type PackIssue } from "./issues.js";
 import { isInteger, isNonEmptyString, isNonNegativeInteger, isRecord } from "./shapes.js";
+import { bindingLesson, validateCompanionLessons, validateVaultTitles } from "./vault-pack.part1.js";
+import { checkPrepared } from "./vault-pack.part2.js";
 
 const KINDS = new Set(["story", "dialogue", "explainer", "byo"]);
 const ORIGINS = new Set(["companion", "generated"]);
 const BANDS = new Set(["A1", "A2", "B1"]);
 const PATH_RE = /^readings\/zh-Hant\/(b\d+l\d{2}-r\d+)\.prepared\.json$/;
-const TITLE_ID_RE = /^b(\d+)l(\d{2})-r\d+$/;
-const UNIT_RE = /^B(\d+)L(\d{2})$/;
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
-const SCHEMA = "tsumugu/prepared-content@2";
 
 export interface VaultPackInput {
   catalog: unknown;
   titles: unknown;
   lessons: unknown;
   prepared: Record<string, unknown>;
-}
-
-function stringList(value: unknown): value is string[] {
-  return Array.isArray(value) && value.every((item) => isNonEmptyString(item));
-}
-
-function bindingLesson(binding: Record<string, unknown>): string | null {
-  if (!isInteger(binding.book) || !isInteger(binding.lesson)) return null;
-  return `B${binding.book}L${String(binding.lesson).padStart(2, "0")}`;
-}
-
-function bindingLessonId(binding: Record<string, unknown>): string | null {
-  if (!isInteger(binding.book) || !isInteger(binding.lesson)) return null;
-  return `b${binding.book}l${String(binding.lesson).padStart(2, "0")}`;
-}
-
-export function validateVaultTitles(titles: unknown): PackIssue[] {
-  const issues: PackIssue[] = [];
-  if (!isRecord(titles)) {
-    return [issue("vault-titles", "__titles.json", "titles must be an object keyed by reading id")];
-  }
-  for (const [id, row] of Object.entries(titles)) {
-    const match = TITLE_ID_RE.exec(id);
-    if (!match) {
-      issues.push(issue("vault-titles", id, "id must look like b1l01-r1"));
-      continue;
-    }
-    if (!isRecord(row)) {
-      issues.push(issue("vault-titles", id, "title row must be an object"));
-      continue;
-    }
-    for (const field of ["zh", "en", "vi", "lesson", "format"] as const) {
-      if (!isNonEmptyString(row[field])) {
-        issues.push(issue("vault-titles", id, `${field} must be a non-empty string`));
-      }
-    }
-    const book = match[1];
-    const lesson = match[2];
-    const expected = `B${book}L${lesson}`;
-    if (isNonEmptyString(row.lesson) && row.lesson !== expected) {
-      issues.push(issue("vault-titles", id, `lesson must be ${expected}, got ${row.lesson}`));
-    }
-  }
-  return issues;
-}
-
-export function validateCompanionLessons(lessons: unknown): PackIssue[] {
-  const issues: PackIssue[] = [];
-  if (!Array.isArray(lessons)) {
-    return [issue("companion-lessons", "companion-lessons.json", "lessons must be an array")];
-  }
-  const seen = new Set<string>();
-  for (let index = 0; index < lessons.length; index += 1) {
-    const row = lessons[index];
-    const path = `companion-lessons.json[${index}]`;
-    if (!isRecord(row)) {
-      issues.push(issue("companion-lessons", path, "lesson must be an object"));
-      continue;
-    }
-    if (!isNonEmptyString(row.unit) || !UNIT_RE.test(row.unit)) {
-      issues.push(issue("companion-lessons", path, "unit must look like B1L01"));
-      continue;
-    }
-    if (seen.has(row.unit)) {
-      issues.push(issue("companion-lessons", row.unit, `duplicate unit ${row.unit}`));
-    }
-    seen.add(row.unit);
-    if (!isNonEmptyString(row.title)) {
-      issues.push(issue("companion-lessons", row.unit, "title must be a non-empty string"));
-    }
-    if (!isNonEmptyString(row.theme)) {
-      issues.push(issue("companion-lessons", row.unit, "theme must be a non-empty string"));
-    }
-    if (!Array.isArray(row.grammar)) {
-      issues.push(issue("companion-lessons", row.unit, "grammar must be an array"));
-      continue;
-    }
-    for (let grammarIndex = 0; grammarIndex < row.grammar.length; grammarIndex += 1) {
-      const grammar = row.grammar[grammarIndex];
-      const grammarPath = `${row.unit}.grammar[${grammarIndex}]`;
-      if (!isRecord(grammar) || !isNonEmptyString(grammar.name)) {
-        issues.push(issue("companion-lessons", grammarPath, "grammar name must be a non-empty string"));
-      }
-    }
-  }
-  return issues;
 }
 
 function checkBinding(binding: unknown, path: string, issues: PackIssue[]): Record<string, unknown> | null {
@@ -120,129 +33,30 @@ function checkBinding(binding: unknown, path: string, issues: PackIssue[]): Reco
   return binding;
 }
 
-function tokenCounts(tokens: { text: string; isWord: boolean }[]): Record<string, number> {
+function checkWordCounts(
+  value: unknown,
+  path: string,
+  totalWords: unknown,
+  issues: PackIssue[],
+): Record<string, number> | null {
+  if (!isRecord(value)) {
+    issues.push(issue("vault-readings", path, "wordCounts must be an object"));
+    return null;
+  }
   const counts: Record<string, number> = {};
-  for (const token of tokens) {
-    if (!token.isWord) continue;
-    counts[token.text] = (counts[token.text] ?? 0) + 1;
+  let sum = 0;
+  for (const [word, count] of Object.entries(value)) {
+    if (!isNonEmptyString(word) || !isInteger(count) || count < 1) {
+      issues.push(issue("vault-readings", path, `wordCounts.${word} must be a positive integer`));
+      continue;
+    }
+    counts[word] = count;
+    sum += count;
+  }
+  if (isNonNegativeInteger(totalWords) && sum !== totalWords) {
+    issues.push(issue("vault-readings", path, `totalWords must equal the sum of wordCounts, got ${totalWords} vs ${sum}`));
   }
   return counts;
-}
-
-function sameCounts(left: Record<string, number>, right: Record<string, number>): boolean {
-  const leftKeys = Object.keys(left);
-  const rightKeys = Object.keys(right);
-  if (leftKeys.length !== rightKeys.length) return false;
-  return leftKeys.every((key) => left[key] === right[key]);
-}
-
-function sameBinding(left: unknown, right: unknown): boolean {
-  if (!isRecord(left) || !isRecord(right)) return false;
-  return left.textbook === right.textbook && left.book === right.book && left.lesson === right.lesson;
-}
-
-function checkPrepared(
-  path: string,
-  doc: unknown,
-  catalog: Record<string, unknown>,
-  binding: Record<string, unknown>,
-  wordCounts: Record<string, number>,
-  issues: PackIssue[],
-): void {
-  if (!isRecord(doc)) {
-    issues.push(issue("vault-readings", path, "prepared file must be an object"));
-    return;
-  }
-  if (doc.schema !== SCHEMA) {
-    issues.push(
-      issue("vault-readings", path, `schema must be ${SCHEMA}, got ${JSON.stringify(doc.schema)}`),
-    );
-  }
-  if (doc.lang !== catalog.lang) {
-    issues.push(issue("vault-readings", path, "prepared lang must match the catalog"));
-  }
-  if (doc.title !== catalog.title) {
-    issues.push(issue("vault-readings", path, "prepared title must match the catalog"));
-  }
-  if (!Array.isArray(doc.tokens) || doc.tokens.length === 0) {
-    issues.push(issue("vault-readings", path, "tokens must be a non-empty array"));
-  }
-  const tokens: { text: string; isWord: boolean }[] = [];
-  if (Array.isArray(doc.tokens)) {
-    for (let index = 0; index < doc.tokens.length; index += 1) {
-      const token = doc.tokens[index];
-      if (!isRecord(token) || typeof token.text !== "string" || token.text === "" || typeof token.isWord !== "boolean") {
-        issues.push(issue("vault-readings", `${path}#tokens[${index}]`, "token must have string text and boolean isWord"));
-        continue;
-      }
-      tokens.push({ text: token.text, isWord: token.isWord });
-    }
-  }
-  if (!sameCounts(tokenCounts(tokens), wordCounts)) {
-    issues.push(issue("vault-readings", path, "wordCounts do not match isWord token counts"));
-  }
-  if (!isRecord(doc.glossary)) {
-    issues.push(issue("vault-readings", path, "glossary must be an object"));
-  } else {
-    for (const [key, entry] of Object.entries(doc.glossary)) {
-      if (!isRecord(entry)) {
-        issues.push(issue("vault-readings", `${path}#glossary.${key}`, "glossary entry must be an object"));
-        continue;
-      }
-      if (entry.term !== key) {
-        issues.push(issue("vault-readings", `${path}#glossary.${key}`, `glossary term must match key ${key}`));
-      }
-      if (!isNonEmptyString(entry.gloss)) {
-        issues.push(
-          issue("vault-readings", `${path}#glossary.${key}`, `glossary gloss must be a non-empty string for ${key}`),
-        );
-      }
-    }
-  }
-  if (!isRecord(doc.core)) {
-    issues.push(issue("vault-readings", path, "core must be an object"));
-  } else {
-    for (const field of ["band", "tocfl", "kind", "newWords", "topic"] as const) {
-      if (doc.core[field] !== catalog[field]) {
-        issues.push(issue("vault-readings", path, `core.${field} must match the catalog`));
-      }
-    }
-    if (!sameBinding(doc.core.binding, binding)) {
-      issues.push(issue("vault-readings", path, "core.binding must match the catalog"));
-    }
-  }
-  if (!isRecord(doc.fingerprint)) {
-    issues.push(issue("vault-readings", path, "fingerprint must be an object"));
-  } else {
-    if (!stringList(doc.fingerprint.vocab)) {
-      issues.push(issue("vault-readings", path, "fingerprint.vocab must be an array of non-empty strings"));
-    }
-    if (!stringList(doc.fingerprint.grammar)) {
-      issues.push(issue("vault-readings", path, "fingerprint.grammar must be an array of non-empty strings"));
-    }
-  }
-  const lessonId = bindingLessonId(binding);
-  if (!isRecord(doc.acccBinding)) {
-    issues.push(issue("vault-readings", path, "acccBinding must be an object"));
-  } else {
-    if (lessonId !== null && doc.acccBinding.lessonId !== lessonId) {
-      issues.push(
-        issue(
-          "vault-readings",
-          path,
-          `lessonId must be ${lessonId}, got ${JSON.stringify(doc.acccBinding.lessonId)}`,
-        ),
-      );
-    }
-    if (!isNonEmptyString(doc.acccBinding.ceiling)) {
-      issues.push(issue("vault-readings", path, "acccBinding.ceiling must be a non-empty string"));
-    }
-    for (const field of ["cumulativeVocab", "newVocab", "newGrammar"] as const) {
-      if (!stringList(doc.acccBinding[field])) {
-        issues.push(issue("vault-readings", path, `acccBinding.${field} must be an array of non-empty strings`));
-      }
-    }
-  }
 }
 
 function checkCatalogRow(
@@ -323,32 +137,6 @@ function checkCatalogRow(
     return;
   }
   if (binding && wordCounts) checkPrepared(row.path, input.prepared[row.path], row, binding, wordCounts, issues);
-}
-
-function checkWordCounts(
-  value: unknown,
-  path: string,
-  totalWords: unknown,
-  issues: PackIssue[],
-): Record<string, number> | null {
-  if (!isRecord(value)) {
-    issues.push(issue("vault-readings", path, "wordCounts must be an object"));
-    return null;
-  }
-  const counts: Record<string, number> = {};
-  let sum = 0;
-  for (const [word, count] of Object.entries(value)) {
-    if (!isNonEmptyString(word) || !isInteger(count) || count < 1) {
-      issues.push(issue("vault-readings", path, `wordCounts.${word} must be a positive integer`));
-      continue;
-    }
-    counts[word] = count;
-    sum += count;
-  }
-  if (isNonNegativeInteger(totalWords) && sum !== totalWords) {
-    issues.push(issue("vault-readings", path, `totalWords must equal the sum of wordCounts, got ${totalWords} vs ${sum}`));
-  }
-  return counts;
 }
 
 export function validateVaultPack(input: VaultPackInput): PackIssue[] {

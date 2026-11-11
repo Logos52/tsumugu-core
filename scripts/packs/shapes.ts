@@ -13,3 +13,7 @@ export function isInteger(value: unknown): value is number {
 export function isNonNegativeInteger(value: unknown): value is number {
   return isInteger(value) && value >= 0;
 }
+
+export function isNonEmptyStringList(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((item) => isNonEmptyString(item));
+}
