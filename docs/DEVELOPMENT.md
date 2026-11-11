@@ -111,7 +111,7 @@ There is no deploy workflow. Merging publishes nothing from these files.
 
 `check` runs on push and pull request for this repository. After checkout it clones the engine mirror, rewrites word status, runs `pnpm install --frozen-lockfile`, links `jieba-wasm`, then the steps below. It sets `TZ=UTC`.
 
-Dict search: when `../tsumugu-ed/exports/site/assets/search` exists, the job runs `npx tsx scripts/dict-sync.ts --check`. That directory is absent here. The job prints a notice and skips the check. Running the check anyway exited 1: `ED-REPO-BLOCKED: ed search export not found at /agent/repos/tsumugu-ed/exports/site/assets/search`.
+When `../tsumugu-ed/exports/site/assets/search` exists, the job runs `npx tsx scripts/dict-sync.ts --check`. That directory is absent here. The job prints a notice and skips the check. Running the check on this machine exited 1. The failure names `ED-REPO-BLOCKED` and the missing path `/agent/repos/tsumugu-ed/exports/site/assets/search`.
 
 Shell contract: `npx tsx scripts/build-shell-contract.ts --check app/public/shell` exited 1. The drift line names `topnav.html`. The workflow treats that single drift line as success. This wrapper exited 0:
 
