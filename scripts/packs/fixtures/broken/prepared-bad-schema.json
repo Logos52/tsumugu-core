@@ -1,0 +1,103 @@
+{
+  "pack": "vault",
+  "catalog": [
+    {
+      "path": "readings/zh-Hant/b1l01-r1.prepared.json",
+      "lang": "zh-Hant",
+      "title": "Hello",
+      "kind": "dialogue",
+      "origin": "companion",
+      "band": "A1",
+      "tocfl": 1,
+      "binding": {
+        "textbook": "accc",
+        "book": 1,
+        "lesson": 1
+      },
+      "sentences": 1,
+      "minutes": 1,
+      "dateAdded": "2026-07-02",
+      "totalWords": 1,
+      "wordCounts": {
+        "你": 1
+      },
+      "newWords": 1,
+      "hasAudio": false,
+      "topic": "Greeting"
+    }
+  ],
+  "titles": {
+    "b1l01-r1": {
+      "zh": "你好",
+      "en": "Hello",
+      "vi": "Xin chào",
+      "lesson": "B1L01",
+      "format": "對話"
+    }
+  },
+  "lessons": [
+    {
+      "unit": "B1L01",
+      "title": "Welcome",
+      "theme": "Greeting",
+      "grammar": [
+        {
+          "name": "嗎"
+        }
+      ]
+    }
+  ],
+  "prepared": {
+    "readings/zh-Hant/b1l01-r1.prepared.json": {
+      "schema": "tsumugu/prepared-content@1",
+      "lang": "zh-Hant",
+      "title": "Hello",
+      "tokens": [
+        {
+          "text": "你",
+          "isWord": true
+        }
+      ],
+      "glossary": {
+        "你": {
+          "term": "你",
+          "gloss": "you"
+        }
+      },
+      "core": {
+        "band": "A1",
+        "tocfl": 1,
+        "kind": "dialogue",
+        "newWords": 1,
+        "binding": {
+          "textbook": "accc",
+          "book": 1,
+          "lesson": 1
+        },
+        "topic": "Greeting"
+      },
+      "fingerprint": {
+        "vocab": [
+          "你"
+        ],
+        "grammar": [
+          "嗎"
+        ]
+      },
+      "acccBinding": {
+        "lessonId": "b1l01",
+        "ceiling": "TOCFL-1",
+        "cumulativeVocab": [
+          "你"
+        ],
+        "newVocab": [
+          "你"
+        ],
+        "newGrammar": [
+          "嗎"
+        ]
+      }
+    }
+  },
+  "expect": "schema must be tsumugu/prepared-content@2, got \"tsumugu/prepared-content@1\""
+}
